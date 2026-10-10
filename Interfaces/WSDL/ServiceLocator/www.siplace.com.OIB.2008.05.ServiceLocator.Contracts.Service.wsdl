@@ -1,0 +1,348 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:tns="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Service" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" targetNamespace="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Service" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Service/Imports">
+      <xsd:import namespace="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Service" />
+      <xsd:import namespace="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Data" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import namespace="http://www.siplace.com/OIB/2008/05/ConfigurationManager/Contracts/Data" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IServiceLocator_RegisterService_InputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterService" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLocator_RegisterService_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterServiceResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLocator_RegisterService_ServiceLocatorFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q1="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Data" element="q1:ServiceLocatorFault" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLocator_UnregisterService_InputMessage">
+    <wsdl:part name="parameters" element="tns:UnregisterService" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLocator_UnregisterService_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UnregisterServiceResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLocator_UnregisterService_ServiceLocatorFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q2="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Data" element="q2:ServiceLocatorFault" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLocator_GetAllServices_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllServices" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLocator_GetAllServices_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllServicesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLocator_GetAllServices_ServiceLocatorFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q3="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Data" element="q3:ServiceLocatorFault" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLocator_GetAllRESTServices_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllRESTServices" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLocator_GetAllRESTServices_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllRESTServicesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLocator_GetAllRESTServices_ServiceLocatorFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q4="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Data" element="q4:ServiceLocatorFault" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLocator_GetServices_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetServices" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLocator_GetServices_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetServicesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLocator_GetServices_ServiceLocatorFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q5="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Data" element="q5:ServiceLocatorFault" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLocator_FindServices_InputMessage">
+    <wsdl:part name="parameters" element="tns:FindServices" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLocator_FindServices_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FindServicesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLocator_FindServices_ServiceLocatorFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q6="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Data" element="q6:ServiceLocatorFault" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLocator_Save_InputMessage">
+    <wsdl:part name="parameters" element="tns:Save" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLocator_Save_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLocator_Save_ServiceLocatorFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q7="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Data" element="q7:ServiceLocatorFault" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLocator_GetServicesWithoutParents_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetServicesWithoutParents" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLocator_GetServicesWithoutParents_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetServicesWithoutParentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLocator_GetServicesWithoutParents_ServiceLocatorFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q8="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Data" element="q8:ServiceLocatorFault" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLocator_SaveServiceDescription_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveServiceDescription" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLocator_SaveServiceDescription_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveServiceDescriptionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLocator_SaveServiceDescription_ServiceLocatorFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q9="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Data" element="q9:ServiceLocatorFault" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLocator_SaveServiceDescription2_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveServiceDescription2" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLocator_SaveServiceDescription2_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveServiceDescription2Response" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLocator_SaveServiceDescription2_ServiceLocatorFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q10="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Data" element="q10:ServiceLocatorFault" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLocator_CheckAlive_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckAlive" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLocator_CheckAlive_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckAliveResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLocator_UnregisterServiceEnhanced_InputMessage">
+    <wsdl:part name="parameters" element="tns:UnregisterServiceEnhanced" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLocator_UnregisterServiceEnhanced_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UnregisterServiceEnhancedResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLocator_UnregisterServiceEnhanced_ServiceLocatorFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q11="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Data" element="q11:ServiceLocatorFault" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLocator_SaveServiceDescriptionEnhanced_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveServiceDescriptionEnhanced" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLocator_SaveServiceDescriptionEnhanced_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveServiceDescriptionEnhancedResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceLocator_SaveServiceDescriptionEnhanced_ServiceLocatorFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q12="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Data" element="q12:ServiceLocatorFault" />
+  </wsdl:message>
+  <wsdl:portType name="IServiceLocator">
+    <wsdl:operation name="RegisterService">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Service/IServiceLocator/RegisterService" message="tns:IServiceLocator_RegisterService_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Service/IServiceLocator/RegisterServiceResponse" message="tns:IServiceLocator_RegisterService_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Service/IServiceLocator/RegisterServiceServiceLocatorFaultFault" name="ServiceLocatorFaultFault" message="tns:IServiceLocator_RegisterService_ServiceLocatorFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UnregisterService">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Service/IServiceLocator/UnregisterService" message="tns:IServiceLocator_UnregisterService_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Service/IServiceLocator/UnregisterServiceResponse" message="tns:IServiceLocator_UnregisterService_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Service/IServiceLocator/UnregisterServiceServiceLocatorFaultFault" name="ServiceLocatorFaultFault" message="tns:IServiceLocator_UnregisterService_ServiceLocatorFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllServices">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Service/IServiceLocator/GetAllServices" message="tns:IServiceLocator_GetAllServices_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Service/IServiceLocator/GetAllServicesResponse" message="tns:IServiceLocator_GetAllServices_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Service/IServiceLocator/GetAllServicesServiceLocatorFaultFault" name="ServiceLocatorFaultFault" message="tns:IServiceLocator_GetAllServices_ServiceLocatorFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllRESTServices">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Service/IServiceLocator/GetAllRESTServices" message="tns:IServiceLocator_GetAllRESTServices_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Service/IServiceLocator/GetAllRESTServicesResponse" message="tns:IServiceLocator_GetAllRESTServices_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Service/IServiceLocator/GetAllRESTServicesServiceLocatorFaultFault" name="ServiceLocatorFaultFault" message="tns:IServiceLocator_GetAllRESTServices_ServiceLocatorFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetServices">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Service/IServiceLocator/GetServices" message="tns:IServiceLocator_GetServices_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Service/IServiceLocator/GetServicesResponse" message="tns:IServiceLocator_GetServices_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Service/IServiceLocator/GetServicesServiceLocatorFaultFault" name="ServiceLocatorFaultFault" message="tns:IServiceLocator_GetServices_ServiceLocatorFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="FindServices">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Service/IServiceLocator/FindServices" message="tns:IServiceLocator_FindServices_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Service/IServiceLocator/FindServicesResponse" message="tns:IServiceLocator_FindServices_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Service/IServiceLocator/FindServicesServiceLocatorFaultFault" name="ServiceLocatorFaultFault" message="tns:IServiceLocator_FindServices_ServiceLocatorFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Save">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Service/IServiceLocator/Save" message="tns:IServiceLocator_Save_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Service/IServiceLocator/SaveResponse" message="tns:IServiceLocator_Save_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Service/IServiceLocator/SaveServiceLocatorFaultFault" name="ServiceLocatorFaultFault" message="tns:IServiceLocator_Save_ServiceLocatorFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetServicesWithoutParents">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Service/IServiceLocator/GetServicesWithoutParents" message="tns:IServiceLocator_GetServicesWithoutParents_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Service/IServiceLocator/GetServicesWithoutParentsResponse" message="tns:IServiceLocator_GetServicesWithoutParents_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Service/IServiceLocator/GetServicesWithoutParentsServiceLocatorFaultFault" name="ServiceLocatorFaultFault" message="tns:IServiceLocator_GetServicesWithoutParents_ServiceLocatorFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveServiceDescription">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Service/IServiceLocator/SaveServiceDescription" message="tns:IServiceLocator_SaveServiceDescription_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Service/IServiceLocator/SaveServiceDescriptionResponse" message="tns:IServiceLocator_SaveServiceDescription_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Service/IServiceLocator/SaveServiceDescriptionServiceLocatorFaultFault" name="ServiceLocatorFaultFault" message="tns:IServiceLocator_SaveServiceDescription_ServiceLocatorFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveServiceDescription2">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Service/IServiceLocator/SaveServiceDescription2" message="tns:IServiceLocator_SaveServiceDescription2_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Service/IServiceLocator/SaveServiceDescription2Response" message="tns:IServiceLocator_SaveServiceDescription2_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Service/IServiceLocator/SaveServiceDescription2ServiceLocatorFaultFault" name="ServiceLocatorFaultFault" message="tns:IServiceLocator_SaveServiceDescription2_ServiceLocatorFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckAlive">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Service/IServiceLocator/CheckAlive" message="tns:IServiceLocator_CheckAlive_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Service/IServiceLocator/CheckAliveResponse" message="tns:IServiceLocator_CheckAlive_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UnregisterServiceEnhanced">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Service/IServiceLocator/UnregisterServiceEnhanced" message="tns:IServiceLocator_UnregisterServiceEnhanced_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Service/IServiceLocator/UnregisterServiceEnhancedResponse" message="tns:IServiceLocator_UnregisterServiceEnhanced_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Service/IServiceLocator/UnregisterServiceEnhancedServiceLocatorFaultFault" name="ServiceLocatorFaultFault" message="tns:IServiceLocator_UnregisterServiceEnhanced_ServiceLocatorFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveServiceDescriptionEnhanced">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Service/IServiceLocator/SaveServiceDescriptionEnhanced" message="tns:IServiceLocator_SaveServiceDescriptionEnhanced_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Service/IServiceLocator/SaveServiceDescriptionEnhancedResponse" message="tns:IServiceLocator_SaveServiceDescriptionEnhanced_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Service/IServiceLocator/SaveServiceDescriptionEnhancedServiceLocatorFaultFault" name="ServiceLocatorFaultFault" message="tns:IServiceLocator_SaveServiceDescriptionEnhanced_ServiceLocatorFaultFault_FaultMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DefaultBinding_IServiceLocator" type="tns:IServiceLocator">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="RegisterService">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Service/IServiceLocator/RegisterService" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceLocatorFaultFault">
+        <soap:fault name="ServiceLocatorFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="UnregisterService">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Service/IServiceLocator/UnregisterService" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceLocatorFaultFault">
+        <soap:fault name="ServiceLocatorFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllServices">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Service/IServiceLocator/GetAllServices" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceLocatorFaultFault">
+        <soap:fault name="ServiceLocatorFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllRESTServices">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Service/IServiceLocator/GetAllRESTServices" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceLocatorFaultFault">
+        <soap:fault name="ServiceLocatorFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetServices">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Service/IServiceLocator/GetServices" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceLocatorFaultFault">
+        <soap:fault name="ServiceLocatorFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="FindServices">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Service/IServiceLocator/FindServices" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceLocatorFaultFault">
+        <soap:fault name="ServiceLocatorFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Save">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Service/IServiceLocator/Save" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceLocatorFaultFault">
+        <soap:fault name="ServiceLocatorFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetServicesWithoutParents">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Service/IServiceLocator/GetServicesWithoutParents" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceLocatorFaultFault">
+        <soap:fault name="ServiceLocatorFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="SaveServiceDescription">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Service/IServiceLocator/SaveServiceDescription" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceLocatorFaultFault">
+        <soap:fault name="ServiceLocatorFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="SaveServiceDescription2">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Service/IServiceLocator/SaveServiceDescription2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceLocatorFaultFault">
+        <soap:fault name="ServiceLocatorFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="CheckAlive">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Service/IServiceLocator/CheckAlive" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UnregisterServiceEnhanced">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Service/IServiceLocator/UnregisterServiceEnhanced" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceLocatorFaultFault">
+        <soap:fault name="ServiceLocatorFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="SaveServiceDescriptionEnhanced">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Service/IServiceLocator/SaveServiceDescriptionEnhanced" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceLocatorFaultFault">
+        <soap:fault name="ServiceLocatorFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+</wsdl:definitions>

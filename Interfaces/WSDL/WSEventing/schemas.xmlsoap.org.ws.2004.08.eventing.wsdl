@@ -1,0 +1,580 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:tns="http://schemas.xmlsoap.org/ws/2004/08/eventing" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" targetNamespace="http://schemas.xmlsoap.org/ws/2004/08/eventing" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://schemas.xmlsoap.org/ws/2004/08/eventing/Imports">
+      <xsd:import namespace="http://schemas.xmlsoap.org/ws/2004/08/eventing" />
+      <xsd:import namespace="http://www.siplace.com/OIB/2008/05/WS/Common/Contracts/Data" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import namespace="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Message" />
+      <xsd:import namespace="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Service" />
+      <xsd:import namespace="http://schemas.xmlsoap.org/ws/2004/08/addressing" />
+      <xsd:import namespace="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Data" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/System.Collections.Generic" />
+      <xsd:import namespace="http://schemas.microsoft.com/serviceModel/2004/05/xpathfilter/" />
+      <xsd:import namespace="http://schemas.microsoft.com/serviceModel/2004/05/xpathfilter" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/System.ServiceModel.Dispatcher" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/System" />
+      <xsd:import namespace="http://schemas.microsoft.com/Message" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IEventingRouter_RegisterSecondaryService_InputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterSecondaryService" />
+  </wsdl:message>
+  <wsdl:message name="IEventingRouter_RegisterSecondaryService_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterSecondaryServiceResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEventingRouter_RegisterSecondaryService_OIBWSFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q1="http://www.siplace.com/OIB/2008/05/WS/Common/Contracts/Data" element="q1:OIBWSFault" />
+  </wsdl:message>
+  <wsdl:message name="IEventingRouter_UnregisterSecondaryService_InputMessage">
+    <wsdl:part name="parameters" element="tns:UnregisterSecondaryService" />
+  </wsdl:message>
+  <wsdl:message name="IEventingRouter_UnregisterSecondaryService_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UnregisterSecondaryServiceResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEventingRouter_UnregisterSecondaryService_OIBWSFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q2="http://www.siplace.com/OIB/2008/05/WS/Common/Contracts/Data" element="q2:OIBWSFault" />
+  </wsdl:message>
+  <wsdl:message name="IEventingRouter_GetSecondaryServices_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSecondaryServices" />
+  </wsdl:message>
+  <wsdl:message name="IEventingRouter_GetSecondaryServices_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSecondaryServicesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEventingRouter_GetSecondaryServices_OIBWSFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q3="http://www.siplace.com/OIB/2008/05/WS/Common/Contracts/Data" element="q3:OIBWSFault" />
+  </wsdl:message>
+  <wsdl:message name="SynchronizeSubscriptionsRequest">
+    <wsdl:part name="parameters" element="tns:SynchronizeSubscriptionsRequest" />
+  </wsdl:message>
+  <wsdl:message name="SynchronizeSubscriptionsResponse">
+    <wsdl:part name="parameters" element="tns:SynchronizeSubscriptionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEventingSynchronization_SynchronizeSubscriptions_OIBWSFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q4="http://www.siplace.com/OIB/2008/05/WS/Common/Contracts/Data" element="q4:OIBWSFault" />
+  </wsdl:message>
+  <wsdl:message name="IEventingSynchronization_ReportQueueStatisticToPrimary_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReportQueueStatisticToPrimary" />
+  </wsdl:message>
+  <wsdl:message name="IEventingSynchronization_ReportQueueStatisticToPrimary_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReportQueueStatisticToPrimaryResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEventingSynchronization_ReportQueueStatisticToPrimary_OIBWSFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q5="http://www.siplace.com/OIB/2008/05/WS/Common/Contracts/Data" element="q5:OIBWSFault" />
+  </wsdl:message>
+  <wsdl:message name="INotificationManager_CancelSubscription_InputMessage">
+    <wsdl:part name="parameters" element="tns:CancelSubscription" />
+  </wsdl:message>
+  <wsdl:message name="IOneWay_OneWay_InputMessage">
+    <wsdl:part name="message" xmlns:q6="http://schemas.microsoft.com/Message" type="q6:MessageBody" />
+  </wsdl:message>
+  <wsdl:message name="ISubscriptionManager_CreateSubscriptionTopic_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateSubscriptionTopic" />
+  </wsdl:message>
+  <wsdl:message name="ISubscriptionManager_CreateSubscriptionTopic_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateSubscriptionTopicResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISubscriptionManager_CreateSubscriptionTopic_OIBWSFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q7="http://www.siplace.com/OIB/2008/05/WS/Common/Contracts/Data" element="q7:OIBWSFault" />
+  </wsdl:message>
+  <wsdl:message name="ISubscriptionManager_GetAvailableSubscriptionTopics_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAvailableSubscriptionTopics" />
+  </wsdl:message>
+  <wsdl:message name="ISubscriptionManager_GetAvailableSubscriptionTopics_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAvailableSubscriptionTopicsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISubscriptionManager_GetAvailableSubscriptionTopics_OIBWSFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q8="http://www.siplace.com/OIB/2008/05/WS/Common/Contracts/Data" element="q8:OIBWSFault" />
+  </wsdl:message>
+  <wsdl:message name="UtcTimeRequest">
+    <wsdl:part name="parameters" element="tns:UtcTimeRequest" />
+  </wsdl:message>
+  <wsdl:message name="UtcTimeResponse">
+    <wsdl:part name="parameters" element="tns:UtcTimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISubscriptionManager_GetServiceUtcTime_OIBWSFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q9="http://www.siplace.com/OIB/2008/05/WS/Common/Contracts/Data" element="q9:OIBWSFault" />
+  </wsdl:message>
+  <wsdl:message name="GetStatusRequest">
+    <wsdl:part name="parameters" element="tns:GetStatusRequest" />
+  </wsdl:message>
+  <wsdl:message name="GetStatusRequest_Headers">
+    <wsdl:part name="Identifier" element="tns:Identifier" />
+  </wsdl:message>
+  <wsdl:message name="GetStatusResponse">
+    <wsdl:part name="parameters" element="tns:GetStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISubscriptionManager_GetStatus_OIBWSFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q10="http://www.siplace.com/OIB/2008/05/WS/Common/Contracts/Data" element="q10:OIBWSFault" />
+  </wsdl:message>
+  <wsdl:message name="ISubscriptionManager_GetSubscriptions_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSubscriptions" />
+  </wsdl:message>
+  <wsdl:message name="ISubscriptionManager_GetSubscriptions_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSubscriptionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISubscriptionManager_GetSubscriptions_OIBWSFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q11="http://www.siplace.com/OIB/2008/05/WS/Common/Contracts/Data" element="q11:OIBWSFault" />
+  </wsdl:message>
+  <wsdl:message name="PauseRequest">
+    <wsdl:part name="parameters" element="tns:PauseRequest" />
+  </wsdl:message>
+  <wsdl:message name="PauseResponse">
+    <wsdl:part name="parameters" element="tns:PauseResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISubscriptionManager_Pause_OIBWSFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q12="http://www.siplace.com/OIB/2008/05/WS/Common/Contracts/Data" element="q12:OIBWSFault" />
+  </wsdl:message>
+  <wsdl:message name="RenewRequest">
+    <wsdl:part name="parameters" element="tns:RenewRequest" />
+  </wsdl:message>
+  <wsdl:message name="RenewRequest_Headers">
+    <wsdl:part name="Identifier" element="tns:Identifier" />
+    <wsdl:part name="SubscriptionTopic" xmlns:q13="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Message" element="q13:SubscriptionTopic" />
+  </wsdl:message>
+  <wsdl:message name="RenewResponse">
+    <wsdl:part name="parameters" element="tns:RenewResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISubscriptionManager_Renew_OIBWSFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q14="http://www.siplace.com/OIB/2008/05/WS/Common/Contracts/Data" element="q14:OIBWSFault" />
+  </wsdl:message>
+  <wsdl:message name="ResumeRequest">
+    <wsdl:part name="parameters" element="tns:ResumeRequest" />
+  </wsdl:message>
+  <wsdl:message name="ResumeResponse">
+    <wsdl:part name="parameters" element="tns:ResumeResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISubscriptionManager_Resume_OIBWSFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q15="http://www.siplace.com/OIB/2008/05/WS/Common/Contracts/Data" element="q15:OIBWSFault" />
+  </wsdl:message>
+  <wsdl:message name="SubscribeRequest">
+    <wsdl:part name="parameters" element="tns:SubscribeRequest" />
+  </wsdl:message>
+  <wsdl:message name="SubscribeRequest_Headers">
+    <wsdl:part name="MessageId" xmlns:q16="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Message" element="q16:MsgId" />
+    <wsdl:part name="SubscriptionTopic" xmlns:q17="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Message" element="q17:SubscriptionTopic" />
+  </wsdl:message>
+  <wsdl:message name="SubscribeResponse">
+    <wsdl:part name="parameters" element="tns:SubscribeResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISubscriptionManager_Subscribe_SupportedDeliveryMode_FaultMessage">
+    <wsdl:part name="detail" element="tns:SupportedDeliveryMode" />
+  </wsdl:message>
+  <wsdl:message name="ISubscriptionManager_Subscribe_SupportedDialect_FaultMessage">
+    <wsdl:part name="detail" element="tns:SupportedDialect" />
+  </wsdl:message>
+  <wsdl:message name="ISubscriptionManager_Subscribe_OIBWSFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q18="http://www.siplace.com/OIB/2008/05/WS/Common/Contracts/Data" element="q18:OIBWSFault" />
+  </wsdl:message>
+  <wsdl:message name="UnsubscribeRequest">
+    <wsdl:part name="parameters" element="tns:UnsubscribeRequest" />
+  </wsdl:message>
+  <wsdl:message name="UnsubscribeRequest_Headers">
+    <wsdl:part name="Endpoint" element="tns:Endpoint" />
+    <wsdl:part name="Identifier" element="tns:Identifier" />
+    <wsdl:part name="SubscriptionTopic" xmlns:q19="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Message" element="q19:SubscriptionTopic" />
+  </wsdl:message>
+  <wsdl:message name="UnsubscribeResponse">
+    <wsdl:part name="parameters" element="tns:UnsubscribeResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISubscriptionManager_Unsubscribe_OIBWSFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q20="http://www.siplace.com/OIB/2008/05/WS/Common/Contracts/Data" element="q20:OIBWSFault" />
+  </wsdl:message>
+  <wsdl:message name="ISubscriptionManager_UpdateSubscription_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateSubscription" />
+  </wsdl:message>
+  <wsdl:message name="ISubscriptionManager_UpdateSubscription_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateSubscriptionResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISubscriptionManager_UpdateSubscription_OIBWSFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q21="http://www.siplace.com/OIB/2008/05/WS/Common/Contracts/Data" element="q21:OIBWSFault" />
+  </wsdl:message>
+  <wsdl:message name="ISubscriptionManager_ReadSubscriptionSettings_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReadSubscriptionSettings" />
+  </wsdl:message>
+  <wsdl:message name="ISubscriptionManager_ReadSubscriptionSettings_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReadSubscriptionSettingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISubscriptionManager_ReadSubscriptionSettings_OIBWSFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q22="http://www.siplace.com/OIB/2008/05/WS/Common/Contracts/Data" element="q22:OIBWSFault" />
+  </wsdl:message>
+  <wsdl:message name="ISubscriptionManager_UpdateSubscriptionSettings_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateSubscriptionSettings" />
+  </wsdl:message>
+  <wsdl:message name="ISubscriptionManager_UpdateSubscriptionSettings_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateSubscriptionSettingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISubscriptionManager_UpdateSubscriptionSettings_OIBWSFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q23="http://www.siplace.com/OIB/2008/05/WS/Common/Contracts/Data" element="q23:OIBWSFault" />
+  </wsdl:message>
+  <wsdl:portType name="IEventingRouter">
+    <wsdl:operation name="RegisterSecondaryService">
+      <wsdl:input wsaw:Action="http://schemas.xmlsoap.org/ws/2004/08/eventing/IEventingRouter/RegisterSecondaryService" message="tns:IEventingRouter_RegisterSecondaryService_InputMessage" />
+      <wsdl:output wsaw:Action="http://schemas.xmlsoap.org/ws/2004/08/eventing/IEventingRouter/RegisterSecondaryServiceResponse" message="tns:IEventingRouter_RegisterSecondaryService_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.xmlsoap.org/ws/2004/08/eventing/IEventingRouter/RegisterSecondaryServiceOIBWSFaultFault" name="OIBWSFaultFault" message="tns:IEventingRouter_RegisterSecondaryService_OIBWSFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UnregisterSecondaryService">
+      <wsdl:input wsaw:Action="http://schemas.xmlsoap.org/ws/2004/08/eventing/IEventingRouter/UnregisterSecondaryService" message="tns:IEventingRouter_UnregisterSecondaryService_InputMessage" />
+      <wsdl:output wsaw:Action="http://schemas.xmlsoap.org/ws/2004/08/eventing/IEventingRouter/UnregisterSecondaryServiceResponse" message="tns:IEventingRouter_UnregisterSecondaryService_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.xmlsoap.org/ws/2004/08/eventing/IEventingRouter/UnregisterSecondaryServiceOIBWSFaultFault" name="OIBWSFaultFault" message="tns:IEventingRouter_UnregisterSecondaryService_OIBWSFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSecondaryServices">
+      <wsdl:input wsaw:Action="http://schemas.xmlsoap.org/ws/2004/08/eventing/IEventingRouter/GetSecondaryServices" message="tns:IEventingRouter_GetSecondaryServices_InputMessage" />
+      <wsdl:output wsaw:Action="http://schemas.xmlsoap.org/ws/2004/08/eventing/IEventingRouter/GetSecondaryServicesResponse" message="tns:IEventingRouter_GetSecondaryServices_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.xmlsoap.org/ws/2004/08/eventing/IEventingRouter/GetSecondaryServicesOIBWSFaultFault" name="OIBWSFaultFault" message="tns:IEventingRouter_GetSecondaryServices_OIBWSFaultFault_FaultMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IEventingSynchronization">
+    <wsdl:operation name="SynchronizeSubscriptions">
+      <wsdl:input wsaw:Action="http://schemas.xmlsoap.org/ws/2004/08/eventing/IEventingSynchronization/SynchronizeSubscriptions" name="SynchronizeSubscriptionsRequest" message="tns:SynchronizeSubscriptionsRequest" />
+      <wsdl:output wsaw:Action="http://schemas.xmlsoap.org/ws/2004/08/eventing/IEventingSynchronization/SynchronizeSubscriptionsResponse" name="SynchronizeSubscriptionsResponse" message="tns:SynchronizeSubscriptionsResponse" />
+      <wsdl:fault wsaw:Action="http://schemas.xmlsoap.org/ws/2004/08/eventing/IEventingSynchronization/SynchronizeSubscriptionsOIBWSFaultFault" name="OIBWSFaultFault" message="tns:IEventingSynchronization_SynchronizeSubscriptions_OIBWSFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReportQueueStatisticToPrimary">
+      <wsdl:input wsaw:Action="http://schemas.xmlsoap.org/ws/2004/08/eventing/IEventingSynchronization/ReportQueueStatisticToPrimary" message="tns:IEventingSynchronization_ReportQueueStatisticToPrimary_InputMessage" />
+      <wsdl:output wsaw:Action="http://schemas.xmlsoap.org/ws/2004/08/eventing/IEventingSynchronization/ReportQueueStatisticToPrimaryResponse" message="tns:IEventingSynchronization_ReportQueueStatisticToPrimary_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.xmlsoap.org/ws/2004/08/eventing/IEventingSynchronization/ReportQueueStatisticToPrimaryOIBWSFaultFault" name="OIBWSFaultFault" message="tns:IEventingSynchronization_ReportQueueStatisticToPrimary_OIBWSFaultFault_FaultMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="INotificationManager">
+    <wsdl:operation name="CancelSubscription">
+      <wsdl:input wsaw:Action="CancelSubscription" message="tns:INotificationManager_CancelSubscription_InputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="INotificationManagerSynchronous" />
+  <wsdl:portType name="IOneWay">
+    <wsdl:operation name="OneWay">
+      <wsdl:input wsaw:Action="http://schemas.xmlsoap.org/ws/2004/08/eventing/IOneWay/OneWay" message="tns:IOneWay_OneWay_InputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ISubscriptionManager">
+    <wsdl:operation name="CreateSubscriptionTopic">
+      <wsdl:input wsaw:Action="http://schemas.xmlsoap.org/ws/2004/08/eventing/ISubscriptionManager/CreateSubscriptionTopic" message="tns:ISubscriptionManager_CreateSubscriptionTopic_InputMessage" />
+      <wsdl:output wsaw:Action="http://schemas.xmlsoap.org/ws/2004/08/eventing/ISubscriptionManager/CreateSubscriptionTopicResponse" message="tns:ISubscriptionManager_CreateSubscriptionTopic_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.xmlsoap.org/ws/2004/08/eventing/ISubscriptionManager/CreateSubscriptionTopicOIBWSFaultFault" name="OIBWSFaultFault" message="tns:ISubscriptionManager_CreateSubscriptionTopic_OIBWSFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAvailableSubscriptionTopics">
+      <wsdl:input wsaw:Action="http://schemas.xmlsoap.org/ws/2004/08/eventing/ISubscriptionManager/GetAvailableSubscriptionTopics" message="tns:ISubscriptionManager_GetAvailableSubscriptionTopics_InputMessage" />
+      <wsdl:output wsaw:Action="http://schemas.xmlsoap.org/ws/2004/08/eventing/ISubscriptionManager/GetAvailableSubscriptionTopicsResponse" message="tns:ISubscriptionManager_GetAvailableSubscriptionTopics_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.xmlsoap.org/ws/2004/08/eventing/ISubscriptionManager/GetAvailableSubscriptionTopicsOIBWSFaultFault" name="OIBWSFaultFault" message="tns:ISubscriptionManager_GetAvailableSubscriptionTopics_OIBWSFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetServiceUtcTime">
+      <wsdl:input wsaw:Action="http://schemas.xmlsoap.org/ws/2004/08/eventing/UtcTime" name="UtcTimeRequest" message="tns:UtcTimeRequest" />
+      <wsdl:output wsaw:Action="http://schemas.xmlsoap.org/ws/2004/08/eventing/ResumeResponse" name="UtcTimeResponse" message="tns:UtcTimeResponse" />
+      <wsdl:fault wsaw:Action="http://schemas.xmlsoap.org/ws/2004/08/eventing/ISubscriptionManager/GetServiceUtcTimeOIBWSFaultFault" name="OIBWSFaultFault" message="tns:ISubscriptionManager_GetServiceUtcTime_OIBWSFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStatus">
+      <wsdl:input wsaw:Action="http://schemas.xmlsoap.org/ws/2004/08/eventing/GetStatus" name="GetStatusRequest" message="tns:GetStatusRequest" />
+      <wsdl:output wsaw:Action="http://schemas.xmlsoap.org/ws/2004/08/eventing/GetStatusResponse" name="GetStatusResponse" message="tns:GetStatusResponse" />
+      <wsdl:fault wsaw:Action="http://schemas.xmlsoap.org/ws/2004/08/eventing/ISubscriptionManager/GetStatusOIBWSFaultFault" name="OIBWSFaultFault" message="tns:ISubscriptionManager_GetStatus_OIBWSFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSubscriptions">
+      <wsdl:input wsaw:Action="http://schemas.xmlsoap.org/ws/2004/08/eventing/ISubscriptionManager/GetSubscriptions" message="tns:ISubscriptionManager_GetSubscriptions_InputMessage" />
+      <wsdl:output wsaw:Action="http://schemas.xmlsoap.org/ws/2004/08/eventing/ISubscriptionManager/GetSubscriptionsResponse" message="tns:ISubscriptionManager_GetSubscriptions_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.xmlsoap.org/ws/2004/08/eventing/ISubscriptionManager/GetSubscriptionsOIBWSFaultFault" name="OIBWSFaultFault" message="tns:ISubscriptionManager_GetSubscriptions_OIBWSFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Pause">
+      <wsdl:input wsaw:Action="http://schemas.xmlsoap.org/ws/2004/08/eventing/Pause" name="PauseRequest" message="tns:PauseRequest" />
+      <wsdl:output wsaw:Action="http://schemas.xmlsoap.org/ws/2004/08/eventing/PauseResponse" name="PauseResponse" message="tns:PauseResponse" />
+      <wsdl:fault wsaw:Action="http://schemas.xmlsoap.org/ws/2004/08/eventing/ISubscriptionManager/PauseOIBWSFaultFault" name="OIBWSFaultFault" message="tns:ISubscriptionManager_Pause_OIBWSFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Renew">
+      <wsdl:input wsaw:Action="http://schemas.xmlsoap.org/ws/2004/08/eventing/Renew" name="RenewRequest" message="tns:RenewRequest" />
+      <wsdl:output wsaw:Action="http://schemas.xmlsoap.org/ws/2004/08/eventing/RenewResponse" name="RenewResponse" message="tns:RenewResponse" />
+      <wsdl:fault wsaw:Action="http://schemas.xmlsoap.org/ws/2004/08/eventing/ISubscriptionManager/RenewOIBWSFaultFault" name="OIBWSFaultFault" message="tns:ISubscriptionManager_Renew_OIBWSFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Resume">
+      <wsdl:input wsaw:Action="http://schemas.xmlsoap.org/ws/2004/08/eventing/Resume" name="ResumeRequest" message="tns:ResumeRequest" />
+      <wsdl:output wsaw:Action="http://schemas.xmlsoap.org/ws/2004/08/eventing/ResumeResponse" name="ResumeResponse" message="tns:ResumeResponse" />
+      <wsdl:fault wsaw:Action="http://schemas.xmlsoap.org/ws/2004/08/eventing/ISubscriptionManager/ResumeOIBWSFaultFault" name="OIBWSFaultFault" message="tns:ISubscriptionManager_Resume_OIBWSFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Subscribe">
+      <wsdl:input wsaw:Action="http://schemas.xmlsoap.org/ws/2004/08/eventing/Subscribe" name="SubscribeRequest" message="tns:SubscribeRequest" />
+      <wsdl:output wsaw:Action="http://schemas.xmlsoap.org/ws/2004/08/eventing/SubscribeResponse" name="SubscribeResponse" message="tns:SubscribeResponse" />
+      <wsdl:fault wsaw:Action="http://schemas.xmlsoap.org/ws/2004/08/eventing/ISubscriptionManager/SubscribeSupportedDeliveryMode" name="SupportedDeliveryMode" message="tns:ISubscriptionManager_Subscribe_SupportedDeliveryMode_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.xmlsoap.org/ws/2004/08/eventing/ISubscriptionManager/SubscribeSupportedDialect" name="SupportedDialect" message="tns:ISubscriptionManager_Subscribe_SupportedDialect_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.xmlsoap.org/ws/2004/08/eventing/ISubscriptionManager/SubscribeOIBWSFaultFault" name="OIBWSFaultFault" message="tns:ISubscriptionManager_Subscribe_OIBWSFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Unsubscribe">
+      <wsdl:input wsaw:Action="http://schemas.xmlsoap.org/ws/2004/08/eventing/Unsubscribe" name="UnsubscribeRequest" message="tns:UnsubscribeRequest" />
+      <wsdl:output wsaw:Action="http://schemas.xmlsoap.org/ws/2004/08/eventing/UnsubscribeResponse" name="UnsubscribeResponse" message="tns:UnsubscribeResponse" />
+      <wsdl:fault wsaw:Action="http://schemas.xmlsoap.org/ws/2004/08/eventing/ISubscriptionManager/UnsubscribeOIBWSFaultFault" name="OIBWSFaultFault" message="tns:ISubscriptionManager_Unsubscribe_OIBWSFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateSubscription">
+      <wsdl:input wsaw:Action="http://schemas.xmlsoap.org/ws/2004/08/eventing/ISubscriptionManager/UpdateSubscription" message="tns:ISubscriptionManager_UpdateSubscription_InputMessage" />
+      <wsdl:output wsaw:Action="http://schemas.xmlsoap.org/ws/2004/08/eventing/ISubscriptionManager/UpdateSubscriptionResponse" message="tns:ISubscriptionManager_UpdateSubscription_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.xmlsoap.org/ws/2004/08/eventing/ISubscriptionManager/UpdateSubscriptionOIBWSFaultFault" name="OIBWSFaultFault" message="tns:ISubscriptionManager_UpdateSubscription_OIBWSFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReadSubscriptionSettings">
+      <wsdl:input wsaw:Action="http://schemas.xmlsoap.org/ws/2004/08/eventing/ISubscriptionManager/ReadSubscriptionSettings" message="tns:ISubscriptionManager_ReadSubscriptionSettings_InputMessage" />
+      <wsdl:output wsaw:Action="http://schemas.xmlsoap.org/ws/2004/08/eventing/ISubscriptionManager/ReadSubscriptionSettingsResponse" message="tns:ISubscriptionManager_ReadSubscriptionSettings_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.xmlsoap.org/ws/2004/08/eventing/ISubscriptionManager/ReadSubscriptionSettingsOIBWSFaultFault" name="OIBWSFaultFault" message="tns:ISubscriptionManager_ReadSubscriptionSettings_OIBWSFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateSubscriptionSettings">
+      <wsdl:input wsaw:Action="http://schemas.xmlsoap.org/ws/2004/08/eventing/ISubscriptionManager/UpdateSubscriptionSettings" message="tns:ISubscriptionManager_UpdateSubscriptionSettings_InputMessage" />
+      <wsdl:output wsaw:Action="http://schemas.xmlsoap.org/ws/2004/08/eventing/ISubscriptionManager/UpdateSubscriptionSettingsResponse" message="tns:ISubscriptionManager_UpdateSubscriptionSettings_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.xmlsoap.org/ws/2004/08/eventing/ISubscriptionManager/UpdateSubscriptionSettingsOIBWSFaultFault" name="OIBWSFaultFault" message="tns:ISubscriptionManager_UpdateSubscriptionSettings_OIBWSFaultFault_FaultMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DefaultBinding_IEventingRouter" type="tns:IEventingRouter">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="RegisterSecondaryService">
+      <soap:operation soapAction="http://schemas.xmlsoap.org/ws/2004/08/eventing/IEventingRouter/RegisterSecondaryService" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="OIBWSFaultFault">
+        <soap:fault name="OIBWSFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="UnregisterSecondaryService">
+      <soap:operation soapAction="http://schemas.xmlsoap.org/ws/2004/08/eventing/IEventingRouter/UnregisterSecondaryService" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="OIBWSFaultFault">
+        <soap:fault name="OIBWSFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetSecondaryServices">
+      <soap:operation soapAction="http://schemas.xmlsoap.org/ws/2004/08/eventing/IEventingRouter/GetSecondaryServices" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="OIBWSFaultFault">
+        <soap:fault name="OIBWSFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DefaultBinding_IEventingSynchronization" type="tns:IEventingSynchronization">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="SynchronizeSubscriptions">
+      <soap:operation soapAction="http://schemas.xmlsoap.org/ws/2004/08/eventing/IEventingSynchronization/SynchronizeSubscriptions" style="document" />
+      <wsdl:input name="SynchronizeSubscriptionsRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="SynchronizeSubscriptionsResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="OIBWSFaultFault">
+        <soap:fault name="OIBWSFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ReportQueueStatisticToPrimary">
+      <soap:operation soapAction="http://schemas.xmlsoap.org/ws/2004/08/eventing/IEventingSynchronization/ReportQueueStatisticToPrimary" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="OIBWSFaultFault">
+        <soap:fault name="OIBWSFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DefaultBinding_INotificationManager" type="tns:INotificationManager">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CancelSubscription">
+      <soap:operation soapAction="CancelSubscription" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DefaultBinding_INotificationManagerSynchronous" type="tns:INotificationManagerSynchronous">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+  </wsdl:binding>
+  <wsdl:binding name="DefaultBinding_IOneWay" type="tns:IOneWay">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="OneWay">
+      <soap:operation soapAction="http://schemas.xmlsoap.org/ws/2004/08/eventing/IOneWay/OneWay" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DefaultBinding_ISubscriptionManager" type="tns:ISubscriptionManager">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreateSubscriptionTopic">
+      <soap:operation soapAction="http://schemas.xmlsoap.org/ws/2004/08/eventing/ISubscriptionManager/CreateSubscriptionTopic" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="OIBWSFaultFault">
+        <soap:fault name="OIBWSFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetAvailableSubscriptionTopics">
+      <soap:operation soapAction="http://schemas.xmlsoap.org/ws/2004/08/eventing/ISubscriptionManager/GetAvailableSubscriptionTopics" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="OIBWSFaultFault">
+        <soap:fault name="OIBWSFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetServiceUtcTime">
+      <soap:operation soapAction="http://schemas.xmlsoap.org/ws/2004/08/eventing/UtcTime" style="document" />
+      <wsdl:input name="UtcTimeRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="UtcTimeResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="OIBWSFaultFault">
+        <soap:fault name="OIBWSFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetStatus">
+      <soap:operation soapAction="http://schemas.xmlsoap.org/ws/2004/08/eventing/GetStatus" style="document" />
+      <wsdl:input name="GetStatusRequest">
+        <soap:header message="tns:GetStatusRequest_Headers" part="Identifier" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetStatusResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="OIBWSFaultFault">
+        <soap:fault name="OIBWSFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetSubscriptions">
+      <soap:operation soapAction="http://schemas.xmlsoap.org/ws/2004/08/eventing/ISubscriptionManager/GetSubscriptions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="OIBWSFaultFault">
+        <soap:fault name="OIBWSFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Pause">
+      <soap:operation soapAction="http://schemas.xmlsoap.org/ws/2004/08/eventing/Pause" style="document" />
+      <wsdl:input name="PauseRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="PauseResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="OIBWSFaultFault">
+        <soap:fault name="OIBWSFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Renew">
+      <soap:operation soapAction="http://schemas.xmlsoap.org/ws/2004/08/eventing/Renew" style="document" />
+      <wsdl:input name="RenewRequest">
+        <soap:header message="tns:RenewRequest_Headers" part="Identifier" use="literal" />
+        <soap:header message="tns:RenewRequest_Headers" part="SubscriptionTopic" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="RenewResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="OIBWSFaultFault">
+        <soap:fault name="OIBWSFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Resume">
+      <soap:operation soapAction="http://schemas.xmlsoap.org/ws/2004/08/eventing/Resume" style="document" />
+      <wsdl:input name="ResumeRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="ResumeResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="OIBWSFaultFault">
+        <soap:fault name="OIBWSFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Subscribe">
+      <soap:operation soapAction="http://schemas.xmlsoap.org/ws/2004/08/eventing/Subscribe" style="document" />
+      <wsdl:input name="SubscribeRequest">
+        <soap:header message="tns:SubscribeRequest_Headers" part="MessageId" use="literal" />
+        <soap:header message="tns:SubscribeRequest_Headers" part="SubscriptionTopic" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="SubscribeResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SupportedDeliveryMode">
+        <soap:fault name="SupportedDeliveryMode" use="literal" />
+      </wsdl:fault>
+      <wsdl:fault name="SupportedDialect">
+        <soap:fault name="SupportedDialect" use="literal" />
+      </wsdl:fault>
+      <wsdl:fault name="OIBWSFaultFault">
+        <soap:fault name="OIBWSFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Unsubscribe">
+      <soap:operation soapAction="http://schemas.xmlsoap.org/ws/2004/08/eventing/Unsubscribe" style="document" />
+      <wsdl:input name="UnsubscribeRequest">
+        <soap:header message="tns:UnsubscribeRequest_Headers" part="Endpoint" use="literal" />
+        <soap:header message="tns:UnsubscribeRequest_Headers" part="Identifier" use="literal" />
+        <soap:header message="tns:UnsubscribeRequest_Headers" part="SubscriptionTopic" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="UnsubscribeResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="OIBWSFaultFault">
+        <soap:fault name="OIBWSFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateSubscription">
+      <soap:operation soapAction="http://schemas.xmlsoap.org/ws/2004/08/eventing/ISubscriptionManager/UpdateSubscription" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="OIBWSFaultFault">
+        <soap:fault name="OIBWSFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ReadSubscriptionSettings">
+      <soap:operation soapAction="http://schemas.xmlsoap.org/ws/2004/08/eventing/ISubscriptionManager/ReadSubscriptionSettings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="OIBWSFaultFault">
+        <soap:fault name="OIBWSFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateSubscriptionSettings">
+      <soap:operation soapAction="http://schemas.xmlsoap.org/ws/2004/08/eventing/ISubscriptionManager/UpdateSubscriptionSettings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="OIBWSFaultFault">
+        <soap:fault name="OIBWSFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+</wsdl:definitions>

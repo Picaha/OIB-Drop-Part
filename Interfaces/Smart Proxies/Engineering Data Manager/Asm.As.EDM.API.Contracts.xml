@@ -1,0 +1,1173 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Asm.As.EDM.API.Contracts</name>
+    </assembly>
+    <members>
+        <member name="T:Asm.As.EDM.API.DataTransfer.IPushHandle">
+            <summary>
+            describing the ID to (SPI) Line Parameter mapping generated during a call to an EDM Push operation.
+            </summary>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.IPushHandle.HandleId">
+            <summary>
+            Gets the handle id.
+            </summary>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.IPushHandle.Tokens">
+            <summary>
+            Gets the push ids associated with the line.
+            </summary>
+        </member>
+        <member name="T:Asm.As.EDM.API.DataTransfer.PushHandle">
+            <summary>
+            Class describing the ID to (SPI) Line Parameter mapping generated during a call to an EDM Push operation.
+            </summary>
+        </member>
+        <member name="M:Asm.As.EDM.API.DataTransfer.PushHandle.#ctor(System.String,System.Collections.Generic.IEnumerable{Asm.As.EDM.API.DataTransfer.PushIdToken})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.EDM.API.DataTransfer.PushIdToken" /> class.
+            </summary>
+            <param name="handleId">The Id of the handle.</param>
+            <param name="tokens">The tokens describing the Id mapping.</param>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.PushHandle.HandleId">
+            <summary>
+            Gets the handle id.
+            </summary>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.PushHandle.Tokens">
+            <summary>
+            Gets the push ids associated with the line.
+            </summary>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.PushHandle.DebuggerDisplayString">
+            <summary>
+            Gets the debugger display string.
+            </summary>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.PushHandle.ExtensionData">
+            <summary>
+            Gets or sets the structure that contains extra data.
+            </summary>
+            <returns>
+            An <see cref="T:System.Runtime.Serialization.ExtensionDataObject" /> that contains data that is not recognized
+            as belonging to the data contract.
+            </returns>
+        </member>
+        <member name="M:Asm.As.EDM.API.DataTransfer.PushHandle.GetAllPushIds">
+            <summary>
+            Gets all push ids.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Asm.As.EDM.API.DataTransfer.IPushIdToken">
+            <summary>
+            describing a single EDM data push instance.
+            </summary>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.IPushIdToken.ParameterName">
+            <summary>
+            Gets the name.
+            </summary>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.IPushIdToken.Host">
+            <summary>
+            Gets the host name.
+            </summary>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.IPushIdToken.EdmLineAlias">
+            <summary>
+            Gets the EDM line alias.
+            </summary>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.IPushIdToken.PushId">
+            <summary>
+            Gets the ids.
+            </summary>
+        </member>
+        <member name="T:Asm.As.EDM.API.DataTransfer.PushIdToken">
+            <summary>
+            Class describing a single EDM data push instance.
+            </summary>
+        </member>
+        <member name="M:Asm.As.EDM.API.DataTransfer.PushIdToken.#ctor">
+            <summary>
+            Prevents a default instance of the <see cref="T:Asm.As.EDM.API.DataTransfer.PushIdToken" /> class from being created.
+            </summary>
+        </member>
+        <member name="M:Asm.As.EDM.API.DataTransfer.PushIdToken.#ctor(System.String,System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.EDM.API.DataTransfer.PushIdToken" /> class.
+            </summary>
+            <param name="strId">The id.</param>
+            <param name="strParameter">User supplied line parameter.</param>
+            <param name="strAlias">The EDM line alias.</param>
+            <param name="strHost">The host name of the EDM Line Server.</param>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.PushIdToken.ParameterName">
+            <summary>
+            Gets the name.
+            </summary>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.PushIdToken.Host">
+            <summary>
+            Gets the host name.
+            </summary>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.PushIdToken.EdmLineAlias">
+            <summary>
+            Gets the EDM line alias.
+            </summary>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.PushIdToken.PushId">
+            <summary>
+            Gets the ids.
+            </summary>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.PushIdToken.DebuggerDisplayString">
+            <summary>
+            Gets the debugger display string.
+            </summary>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.PushIdToken.ExtensionData">
+            <summary>
+            Gets or sets the structure that contains extra data.
+            </summary>
+            <returns>
+            An <see cref="T:System.Runtime.Serialization.ExtensionDataObject" /> that contains data that is not recognized
+            as belonging to the data contract.
+            </returns>
+        </member>
+        <member name="T:Asm.As.EDM.API.DataTransfer.IPushParameter">
+            <summary>
+            containing the parameters used to configure an EDM Push operation.
+            Specifying a list of objects to transfer is required; It is recommended to also set a reasonable value for
+            "Comment" and "DisplayName".
+            </summary>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.IPushParameter.Comment">
+            <summary>
+            Gets or sets the comment (normally describing the reason or source of the push operation).
+            The comment is displayed in the client status window and saved to the status database.
+            </summary>
+            <value>
+            The comment.
+            </value>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.IPushParameter.DisplayName">
+            <summary>
+            Gets or sets the display name.
+            The display name is displayed in the client status window and saved to the status database.
+            </summary>
+            <value>
+            The display name.
+            </value>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.IPushParameter.Objects">
+            <summary>
+            Gets or sets the list of objects to transfer. The objects are specified with their FullyTypePath (e.g.
+            Component:EDM\Test\1234).
+            Note: All objects transferred with a single push operation must have the same ObjectServer type
+            </summary>
+            <value>
+            The objects.
+            </value>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.IPushParameter.ObjectTypesToOverwrite">
+            <summary>
+            Gets or sets the object types to overwrite.
+            </summary>
+            <value>
+            The object types to overwrite.
+            </value>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.IPushParameter.Settings">
+            <summary>
+            Gets or sets the <see cref="T:Asm.As.EDM.API.DataTransfer.PushSettings" /> to use during the push operation.
+            </summary>
+            <value>
+            The settings.
+            </value>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.IPushParameter.TemplateName">
+            <summary>
+            Gets or sets the name of the EDM ApplicationTemplate to use.
+            </summary>
+            <value>
+            The name of the template to use.
+            </value>
+        </member>
+        <member name="T:Asm.As.EDM.API.DataTransfer.PushParameter">
+            <summary>
+            Data class containing the parameters used to configure an EDM Push operation.
+            Specifying a list of objects to transfer is required; It is recommended to also set a reasonable value for
+            "Comment" and "DisplayName".
+            The Settings property is initialized to contain useful default values.
+            </summary>
+        </member>
+        <member name="M:Asm.As.EDM.API.DataTransfer.PushParameter.#ctor(Asm.As.EDM.API.DataTransfer.PushSettings,System.String,System.String,System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.EDM.API.DataTransfer.PushParameter" /> class.
+            </summary>
+            <param name="settings">The <see cref="T:Asm.As.EDM.API.DataTransfer.PushSettings" /> to use during the push operation.</param>
+            <param name="strDisplayName">
+            Display name of the push (displayed in the client status window and saved to the status
+            database).
+            </param>
+            <param name="strComment">A comment describing the reason of push operation.</param>
+            <param name="objects">The objects to transfer (must be Server Objects and must have the same ObjectServerType).</param>
+            <param name="overwriting">The objects to overwrite.</param>
+        </member>
+        <member name="M:Asm.As.EDM.API.DataTransfer.PushParameter.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.EDM.API.DataTransfer.PushParameter" /> class.
+            </summary>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.PushParameter.DebuggerDisplayString">
+            <summary>
+            Gets the debugger display string.
+            </summary>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.PushParameter.ExtensionData">
+            <summary>
+            Gets or sets the structure that contains extra data.
+            </summary>
+            <returns>
+            An <see cref="T:System.Runtime.Serialization.ExtensionDataObject" /> that contains data that is not recognized
+            as belonging to the data contract.
+            </returns>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.PushParameter.Comment">
+            <summary>
+            Gets or sets the comment (normally describing the reason or source of the push operation).
+            The comment is displayed in the client status window and saved to the status database.
+            </summary>
+            <value>
+            The comment.
+            </value>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.PushParameter.DisplayName">
+            <summary>
+            Gets or sets the display name.
+            The display name is displayed in the client status window and saved to the status database.
+            </summary>
+            <value>
+            The display name.
+            </value>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.PushParameter.Objects">
+            <summary>
+            Gets or sets the list of objects to transfer. The objects are specified with their FullyTypePath (e.g.
+            Component:EDM\Test\1234).
+            Note: All objects transferred with a single push operation must have the same ObjectServer type
+            </summary>
+            <value>
+            The objects.
+            </value>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.PushParameter.ObjectTypesToOverwrite">
+            <summary>
+            Gets or sets the object types to overwrite.
+            </summary>
+            <value>
+            The object types to overwrite.
+            </value>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.PushParameter.Settings">
+            <summary>
+            Gets or sets the <see cref="T:Asm.As.EDM.API.DataTransfer.PushSettings" /> to use during the push operation.
+            </summary>
+            <value>
+            The settings.
+            </value>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.PushParameter.TemplateName">
+            <summary>
+            Gets or sets the name of the EDM ApplicationTemplate to use.
+            </summary>
+            <value>
+            The name of the template to use.
+            </value>
+        </member>
+        <member name="M:Asm.As.EDM.API.DataTransfer.PushParameter.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
+        <member name="M:Asm.As.EDM.API.DataTransfer.PushParameter.OnDeserialized(System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Called when the object has been deserialized (and creates the default settings if the serialized object had a null
+            settings value).
+            </summary>
+            <param name="context">The context.</param>
+        </member>
+        <member name="T:Asm.As.EDM.API.DataTransfer.IPushResult">
+            <summary>
+            representing the result of a EDM Data Transfer (Push) operation.
+            </summary>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.IPushResult.Duration">
+            <summary>
+            Gets or sets the duration of the Push-Operation.
+            </summary>
+            <value>
+            The duration.
+            </value>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.IPushResult.Id">
+            <summary>
+            Gets or sets the Id-Token.
+            </summary>
+            <value>
+            The id.
+            </value>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.IPushResult.StatusInfo">
+            <summary>
+            Gets the <see cref="T:Asm.As.EDM.API.DataTransfer.PushStatusInformation" />, that contains the details about the status of the Push-Operation
+            when it finished.
+            </summary>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.IPushResult.Success">
+            <summary>
+            Gets or sets a value indicating whether this Push-Operation was success.
+            </summary>
+            <value>
+            <c>true</c> if success; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.IPushResult.Token">
+            <summary>
+            Gets or sets the token.
+            </summary>
+            <value>
+            The PushIdToken associated with the push operation.
+            </value>
+        </member>
+        <member name="T:Asm.As.EDM.API.DataTransfer.PushResult">
+            <summary>
+            Data class representing the result of a EDM Data Transfer (Push) operation.
+            </summary>
+        </member>
+        <member name="M:Asm.As.EDM.API.DataTransfer.PushResult.#ctor(Asm.As.EDM.API.DataTransfer.PushStatusInformation,Asm.As.EDM.API.DataTransfer.PushIdToken)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.EDM.API.DataTransfer.PushResult" /> class.
+            The instance is initialized from the <see cref="T:Asm.As.EDM.API.DataTransfer.PushStatusInformation" /> object.
+            </summary>
+            <param name="status">The <see cref="T:Asm.As.EDM.API.DataTransfer.PushStatusInformation" /> used to initialize the result.</param>
+            <param name="token">The <see cref="T:Asm.As.EDM.API.DataTransfer.PushIdToken" /> token of the push.</param>
+        </member>
+        <member name="M:Asm.As.EDM.API.DataTransfer.PushResult.#ctor(Asm.As.EDM.API.DataTransfer.PushStatusInformation)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.EDM.API.DataTransfer.PushResult" /> class.
+            The instance is initialized from the <see cref="T:Asm.As.EDM.API.DataTransfer.PushStatusInformation" /> object.
+            </summary>
+            <param name="status">The <see cref="T:Asm.As.EDM.API.DataTransfer.PushStatusInformation" /> used to initialize the result.</param>
+        </member>
+        <member name="M:Asm.As.EDM.API.DataTransfer.PushResult.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.EDM.API.DataTransfer.PushResult" /> class.
+            </summary>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.PushResult.DebuggerDisplayString">
+            <summary>
+            Gets the debugger display string.
+            </summary>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.PushResult.ExtensionData">
+            <summary>
+            Gets or sets the structure that contains extra data.
+            </summary>
+            <returns>
+            An <see cref="T:System.Runtime.Serialization.ExtensionDataObject" /> that contains data that is not recognized
+            as belonging to the data contract.
+            </returns>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.PushResult.Duration">
+            <summary>
+            Gets or sets the duration of the Push-Operation.
+            </summary>
+            <value>
+            The duration.
+            </value>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.PushResult.Id">
+            <summary>
+            Gets or sets the Id-Token.
+            </summary>
+            <value>
+            The id.
+            </value>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.PushResult.StatusInfo">
+            <summary>
+            Gets the <see cref="T:Asm.As.EDM.API.DataTransfer.PushStatusInformation" />, that contains the details about the status of the Push-Operation
+            when it finished.
+            </summary>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.PushResult.Success">
+            <summary>
+            Gets or sets a value indicating whether this Push-Operation was success.
+            </summary>
+            <value>
+            <c>true</c> if success; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.PushResult.Token">
+            <summary>
+            Gets or sets the token.
+            </summary>
+            <value>
+            The PushIdToken associated with the push operation.
+            </value>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.PushResult.Status">
+            <summary>
+            Gets the <see cref="T:Asm.As.EDM.API.DataTransfer.PushStatus" /> of the Push-Operation.
+            </summary>
+        </member>
+        <member name="M:Asm.As.EDM.API.DataTransfer.PushResult.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.EDM.API.DataTransfer.IPushSettings">
+            <summary>
+            describing the Settings for an EDM Data Push Operation.
+            </summary>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.IPushSettings.AllowDelay">
+            <summary>
+            Gets or sets a value indicating whether to allow the line operator to delay the push operation (only valid if
+            RequireConfirmation is set).
+            </summary>
+            <value>
+            <c>true</c> if delays are allowed; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.IPushSettings.AllowReject">
+            <summary>
+            Gets or sets a value indicating whether to allow the line operator to reject the push operation (only valid if
+            RequireConfirmation is set).
+            </summary>
+            <value>
+            <c>true</c> if rejections are allowed; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.IPushSettings.EnableLineDataConflictChecks">
+            <summary>
+            Gets or sets a value indicating whether to enable the "line data conflict check" feature (See EDM documentation for
+            details).
+            </summary>
+            <value>
+            <c>true</c> if the "line data conflict check" feature is enabled; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.IPushSettings.RequireConfirmation">
+            <summary>
+            Gets or sets a value indicating whether the line operator confirmation must confirm the push operation (the Push is
+            thus delayed until the line operator has confirmed / rejected the operation).
+            </summary>
+            <value>
+            <c>true</c> if the line operator has to confirm the push operation; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.IPushSettings.UseClearingPoolObjectListProtection">
+            <summary>
+            Gets or sets a value indicating whether all objects present in the Clearing Pool are protected from overwriting
+            when the data import is performed ("do not overwrite with master version").
+            </summary>
+            <value>
+            <c>true</c> if "Clearing pool object list protection" feature is enabled; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.IPushSettings.WaitForPredecedingPushesToComplete">
+            <summary>
+            Gets or sets a value indicating whether the push operation shall wait for any other pushes to complete.
+            </summary>
+            <value>
+            <c>true</c> if the push operation will wait for preceding pushes to complete; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.IPushSettings.ReplaceSimilarPushes">
+            <summary>
+            Gets or sets a value indicating whether to replace or keep similar pushes.
+            </summary>
+            <value>
+            <c>true</c> if similar pushes are replaced; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="T:Asm.As.EDM.API.DataTransfer.PushSettings">
+            <summary>
+            Data class describing the Settings for an EDM Data Push Operation.
+            A newly created instance represents the default settings.
+            </summary>
+        </member>
+        <member name="M:Asm.As.EDM.API.DataTransfer.PushSettings.#ctor(System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.EDM.API.DataTransfer.PushSettings" /> class.
+            </summary>
+            <param name="bAllowDelay">
+            if set to <c>true</c> allow the line operator to delay the push operation (only valid if
+            bRequireConfirmation is set).
+            </param>
+            <param name="bAllowReject">
+            if set to <c>true</c> allow the line operator to reject the push operation (only valid if
+            bRequireConfirmation is set).
+            </param>
+            <param name="bEnableLineDataConflictChecks">
+            if set to <c>true</c> enable the "line data conflict check" feature (See
+            EDM documentation for details).
+            </param>
+            <param name="bRequireConfirmation">
+            if set to <c>true</c> line operator confirmation is requested (and thus the Push is
+            delayed until the line operator has confirmed / rejected the operation).
+            </param>
+            <param name="bUseClearingPoolObjectListProtection">
+            if set to <c>true</c> all objects present in the Clearing Pool when
+            the import is performed will not be overwritten.
+            </param>
+            <param name="bWaitForPredecedingPushesToComplete">
+            if set to <c>true</c> if the push operation shall wait for any other
+            pushes to complete before.
+            </param>
+        </member>
+        <member name="M:Asm.As.EDM.API.DataTransfer.PushSettings.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.EDM.API.DataTransfer.PushSettings" /> class.
+            </summary>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.PushSettings.DebuggerDisplayString">
+            <summary>
+            Gets the debugger display string.
+            </summary>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.PushSettings.ExtensionData">
+            <summary>
+            Gets or sets the structure that contains extra data.
+            </summary>
+            <returns>
+            An <see cref="T:System.Runtime.Serialization.ExtensionDataObject" /> that contains data that is not recognized
+            as belonging to the data contract.
+            </returns>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.PushSettings.AllowDelay">
+            <summary>
+            Gets or sets a value indicating whether to allow the line operator to delay the push operation (only valid if
+            RequireConfirmation is set).
+            </summary>
+            <value>
+            <c>true</c> if delays are allowed; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.PushSettings.AllowReject">
+            <summary>
+            Gets or sets a value indicating whether to allow the line operator to reject the push operation (only valid if
+            RequireConfirmation is set).
+            </summary>
+            <value>
+            <c>true</c> if rejections are allowed; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.PushSettings.EnableLineDataConflictChecks">
+            <summary>
+            Gets or sets a value indicating whether to enable the "line data conflict check" feature (See EDM documentation for
+            details).
+            </summary>
+            <value>
+            <c>true</c> if the "line data conflict check" feature is enabled; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.PushSettings.RequireConfirmation">
+            <summary>
+            Gets or sets a value indicating whether the line operator confirmation must confirm the push operation (the Push is
+            thus delayed until the line operator has confirmed / rejected the operation).
+            </summary>
+            <value>
+            <c>true</c> if the line operator has to confirm the push operation; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.PushSettings.UseClearingPoolObjectListProtection">
+            <summary>
+            Gets or sets a value indicating whether all objects present in the Clearing Pool are protected from overwriting
+            when the data import is performed.
+            </summary>
+            <value>
+            <c>true</c> if "Clearing pool object list protection" feature is enabled; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.PushSettings.WaitForPredecedingPushesToComplete">
+            <summary>
+            Gets or sets a value indicating whether the push operation shall wait for any other pushes to complete.
+            </summary>
+            <value>
+            <c>true</c> if the push operation will wait for preceding pushes to complete; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.PushSettings.ReplaceSimilarPushes">
+            <summary>
+            Gets or sets a value indicating whether to replace or keep similar pushes.
+            </summary>
+            <value>
+            <c>true</c> if similar pushes are replaced; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="T:Asm.As.EDM.API.DataTransfer.NamespaceDoc">
+            <summary>
+            The <see cref="N:Asm.As.EDM.API.DataTransfer"/> namespace contains the service contracts of the Data Transfer API ("Push-API") for SIPLACE pro objects
+            </summary>
+        </member>
+        <member name="T:Asm.As.EDM.API.DataTransfer.IEdmDataPush">
+            <summary>
+            Interface used to describe the ServiceContract of the EDM Data Transfer API for Push operations.
+            </summary>
+        </member>
+        <member name="M:Asm.As.EDM.API.DataTransfer.IEdmDataPush.StartDataPush(Asm.As.EDM.API.DataTransfer.PushParameter,System.String)">
+            <summary>
+            Starts a data push with the specified parameters.
+            </summary>
+            <param name="parameter">The <see cref="T:Asm.As.EDM.API.DataTransfer.PushParameter" /> to use.</param>
+            <param name="lineServer">
+            The EDM line server to push the data to (may be specified as EDM Line Alias, SPI Line (with the "Line:" prefix) or
+            as Hostname (with the "Host:" prefix)).
+            Note: The EDM Line Alias must exist / The SPI Line must be assigned to a EDM Line Server / the Host must correspond
+            to an EDM Line Alias in the EDM Machine Configuration.
+            </param>
+            <returns>The ID Token of the push operation (used in status queries or to cancel the operation)</returns>
+        </member>
+        <member name="M:Asm.As.EDM.API.DataTransfer.IEdmDataPush.StartMultiLineDataPush(Asm.As.EDM.API.DataTransfer.PushParameter,System.String[])">
+            <summary>
+            Starts a data push and transfers the same data to multiple lines (this has the advantage the the data is only
+            exported once, which reduces the performance consumption on the EDM-Master server and ensures that the same data is
+            pushed to all line servers).
+            </summary>
+            <param name="parameter">The <see cref="T:Asm.As.EDM.API.DataTransfer.PushParameter" /> to use.</param>
+            <param name="lineServers">
+            The EDM line servers to push the data to (may be specified as EDM Line Alias, SPI Line (with the "Line:" prefix) or
+            as Hostname (with the "Host:" prefix)).
+            Note: The EDM Line Alias must exist / the SPI Line must be assigned to a EDM Line Server / the Host must correspond
+            to an EDM Line Alias in the EDM Machine Configuration for all specified line servers.
+            </param>
+            <returns>
+            A List of ID Token of the push operations corresponding to the specified Line Servers (used in status queries
+            or to cancel the operation)
+            </returns>
+        </member>
+        <member name="M:Asm.As.EDM.API.DataTransfer.IEdmDataPush.GetCurrentStatus(System.String)">
+            <summary>
+            Query the the current status of a Push Operation.
+            </summary>
+            <param name="id">The Id-Token (obtained from the Start(MultiLIne)DataPush-Call.</param>
+            <returns>A PushStatusInformation object containing the current status</returns>
+        </member>
+        <member name="M:Asm.As.EDM.API.DataTransfer.IEdmDataPush.CancelDataTransfer(System.String)">
+            <summary>
+            Cancels a push operation.
+            </summary>
+            <param name="id">The Id-Token (obtained from the Start(MultiLIne)DataPush-Call.</param>
+            <returns>True, if the operation was canceled, false otherwise</returns>
+        </member>
+        <member name="M:Asm.As.EDM.API.DataTransfer.IEdmDataPush.GetEdmVersion">
+            <summary>
+            Gets the EDM version used by the API Server.
+            </summary>
+            <returns>An <c>EdmVersionData</c> containing the version information </returns>
+        </member>
+        <member name="M:Asm.As.EDM.API.DataTransfer.IEdmDataPush.GetTemplateList">
+            <summary>
+            Get information of all EDM ApplicationTemplates currently known at the server.
+            </summary>
+            <returns>A TemplateInfo object for each known template.</returns>
+        </member>
+        <member name="M:Asm.As.EDM.API.DataTransfer.IEdmDataPush.GetEdmLineServersForSpiLine(System.String,System.Boolean)">
+            <summary>
+            Gets the all EDM line servers that is associated with the specified SPI Line.
+            </summary>
+            <param name="strLinePath">The SPI line path.</param>
+            <param name="bMatchAllTag">if set to <c>true</c> also return line servers that are assigned to the special line [ALL].</param>
+            <returns>
+            A list of all EDM line servers that is associated with the specified SPI Line.
+            </returns>
+        </member>
+        <member name="M:Asm.As.EDM.API.DataTransfer.IEdmDataPush.GetDefaultSettingsFromConfig">
+            <summary>
+            Yields push settings according the current configuration on the EDM Master computer (which hosts the endpoint).
+            </summary>
+            <returns>A <c>PushSettings</c> object which may be used to configure subsequent data pushes</returns>
+        </member>
+        <member name="T:Asm.As.EDM.API.DataTransfer.IEdmPushStatusCallback">
+            <summary>
+            Callback interface for status updates from the EDM DataTransfer (Push) web Service.
+            </summary>
+        </member>
+        <member name="M:Asm.As.EDM.API.DataTransfer.IEdmPushStatusCallback.StatusUpdated(Asm.As.EDM.API.DataTransfer.PushStatusInformation)">
+            <summary>
+            Called if the status of a push operation is updated.
+            </summary>
+            <param name="status">
+            An <see cref="T:Asm.As.EDM.API.DataTransfer.PushStatusInformation" /> object containing the current status of the push
+            operation.
+            </param>
+        </member>
+        <member name="T:Asm.As.EDM.API.DataTransfer.PushStatus">
+            <summary>
+            Enumeration of all known states of the EDM Data Push Operation.
+            </summary>
+        </member>
+        <member name="F:Asm.As.EDM.API.DataTransfer.PushStatus.Unknown">
+            <summary>
+            Status is unknown (default)
+            </summary>
+        </member>
+        <member name="F:Asm.As.EDM.API.DataTransfer.PushStatus.Custom">
+            <summary>
+            Indicates a custom value (which is found in the StatusText)
+            </summary>
+        </member>
+        <member name="F:Asm.As.EDM.API.DataTransfer.PushStatus.Initiated">
+            <summary>
+            The operation has been initialed
+            </summary>
+        </member>
+        <member name="F:Asm.As.EDM.API.DataTransfer.PushStatus.Acknowledged">
+            <summary>
+            The operation has been acknowledged by the line server
+            </summary>
+        </member>
+        <member name="F:Asm.As.EDM.API.DataTransfer.PushStatus.Successful">
+            <summary>
+            The operation was performed successfully
+            </summary>
+        </member>
+        <member name="F:Asm.As.EDM.API.DataTransfer.PushStatus.Processing">
+            <summary>
+            The operation is being processed by the line server
+            </summary>
+        </member>
+        <member name="F:Asm.As.EDM.API.DataTransfer.PushStatus.Failed">
+            <summary>
+            The operation has failed
+            </summary>
+        </member>
+        <member name="F:Asm.As.EDM.API.DataTransfer.PushStatus.Expired">
+            <summary>
+            The data has expired
+            </summary>
+        </member>
+        <member name="F:Asm.As.EDM.API.DataTransfer.PushStatus.WaitingForUserInput">
+            <summary>
+            The operation is waiting for user input
+            </summary>
+        </member>
+        <member name="F:Asm.As.EDM.API.DataTransfer.PushStatus.Accepted">
+            <summary>
+            The operation has been accepted by the user
+            </summary>
+        </member>
+        <member name="F:Asm.As.EDM.API.DataTransfer.PushStatus.Delayed">
+            <summary>
+            The operation has been delayed by the user
+            </summary>
+        </member>
+        <member name="F:Asm.As.EDM.API.DataTransfer.PushStatus.Rejected">
+            <summary>
+            The operation has be rejected by the user
+            </summary>
+        </member>
+        <member name="F:Asm.As.EDM.API.DataTransfer.PushStatus.Interrupted">
+            <summary>
+            The operation was interrupted unexpectedly
+            </summary>
+        </member>
+        <member name="F:Asm.As.EDM.API.DataTransfer.PushStatus.Recovered">
+            <summary>
+            The operation was recovered from temporary storage
+            </summary>
+        </member>
+        <member name="F:Asm.As.EDM.API.DataTransfer.PushStatus.Outdated">
+            <summary>
+            The item is no longer valid and will be replaced
+            </summary>
+        </member>
+        <member name="F:Asm.As.EDM.API.DataTransfer.PushStatus.Canceled">
+            <summary>
+            The item has been (explicitly) canceled.
+            </summary>
+        </member>
+        <member name="F:Asm.As.EDM.API.DataTransfer.PushStatus.Waiting">
+            <summary>
+            The item is currently waiting for some condition
+            </summary>
+        </member>
+        <member name="F:Asm.As.EDM.API.DataTransfer.PushStatus.TimedOut">
+            <summary>
+            The item has reached a timeout
+            </summary>
+        </member>
+        <member name="T:Asm.As.EDM.API.DataTransfer.PushStatusInformation">
+            <summary>
+            Data class containing information about the status of an EDM Data Transfer (Push) Operation.
+            </summary>
+        </member>
+        <member name="M:Asm.As.EDM.API.DataTransfer.PushStatusInformation.#ctor(System.String,Asm.As.EDM.API.DataTransfer.PushStatus,System.DateTime,System.String,System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.EDM.API.DataTransfer.PushStatusInformation" /> class.
+            </summary>
+            <param name="id">The Id-Token of the push operation.</param>
+            <param name="status">The current status of the push operation.</param>
+            <param name="timestamp">The timestamp of the status change.</param>
+            <param name="strAdditionalInfo">The additional information about the status change.</param>
+            <param name="strDisplayName">Display name of the push operation.</param>
+            <param name="strComment">The comment entered at the line server, if any.</param>
+            <param name="strEdmLineAlias">The line server used to push data</param>
+        </member>
+        <member name="M:Asm.As.EDM.API.DataTransfer.PushStatusInformation.#ctor(System.String,Asm.As.EDM.API.DataTransfer.PushStatus,System.DateTime)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.EDM.API.DataTransfer.PushStatusInformation" /> class.
+            </summary>
+            <param name="id">The Id-Token of the push operation.</param>
+            <param name="status">The current status of the push operation.</param>
+            <param name="timestamp">The timestamp of the status change.</param>
+        </member>
+        <member name="M:Asm.As.EDM.API.DataTransfer.PushStatusInformation.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.EDM.API.DataTransfer.PushStatusInformation" /> class.
+            </summary>
+            <param name="id">The Id-Token of the Push-Operation</param>
+        </member>
+        <member name="M:Asm.As.EDM.API.DataTransfer.PushStatusInformation.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.EDM.API.DataTransfer.PushStatusInformation" /> class.
+            </summary>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.PushStatusInformation.ExtensionData">
+            <summary>
+            Gets or sets the structure that contains extra data.
+            </summary>
+            <returns>
+            An <see cref="T:System.Runtime.Serialization.ExtensionDataObject" /> that contains data that is not recognized
+            as belonging to the data contract.
+            </returns>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.PushStatusInformation.Id">
+            <summary>
+            Gets or sets the Id-Token.
+            </summary>
+            <value>
+            The id.
+            </value>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.PushStatusInformation.IsFailure">
+            <summary>
+            Gets a value indicating whether this represents a failed push operation.
+            </summary>
+            <value>
+            <c>true</c> if this instance represents a failed push operation; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.PushStatusInformation.IsFinished">
+            <summary>
+            Gets a value indicating whether this represents a finished (failed or successful) push operation.
+            </summary>
+            <value>
+            <c>true</c> if this instance represents a finished (failed or successful) push operation; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.PushStatusInformation.IsSuccess">
+            <summary>
+            Gets a value indicating whether this represents a successful push operation.
+            </summary>
+            <value>
+            <c>true</c> if this instance represents a successful push operation; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.PushStatusInformation.IsWaiting">
+            <summary>
+            Determines whether the specified status is waiting.
+            </summary>
+            <returns>
+            <c>true</c> if the specified status is waiting; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.PushStatusInformation.Status">
+            <summary>
+            Gets or sets the <see cref="T:Asm.As.EDM.API.DataTransfer.PushStatus" /> of the oush operation.
+            </summary>
+            <value>
+            The status.
+            </value>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.PushStatusInformation.Timestamp">
+            <summary>
+            Gets or sets the timestamp.
+            </summary>
+            <value>
+            The timestamp.
+            </value>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.PushStatusInformation.AdditionalInformation">
+            <summary>
+            Gets or sets the additional information.
+            </summary>
+            <value>
+            The additional information.
+            </value>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.PushStatusInformation.DisplayName">
+            <summary>
+            Gets or sets the display name.
+            </summary>
+            <value>
+            The display name.
+            </value>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.PushStatusInformation.LineServerComment">
+            <summary>
+            Gets or sets the line server comment.
+            </summary>
+            <value>
+            The line server comment.
+            </value>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.PushStatusInformation.EdmLineAlias">
+            <summary>
+            Gets or sets the EDM line server name.
+            </summary>
+            <value>
+            The EDM line server name.
+            </value>
+        </member>
+        <member name="M:Asm.As.EDM.API.DataTransfer.PushStatusInformation.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.EDM.API.LineServerInfo">
+            <summary>
+            Class providing some basic information about an EDM ApplicationTemplate.
+            </summary>
+        </member>
+        <member name="M:Asm.As.EDM.API.LineServerInfo.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.EDM.API.LineServerInfo" /> class.
+            </summary>
+        </member>
+        <member name="M:Asm.As.EDM.API.LineServerInfo.#ctor(System.String,System.String,System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.EDM.API.LineServerInfo" /> class.
+            </summary>
+            <param name="alias">The EDM line alias.</param>
+            <param name="host">The host.</param>
+            <param name="strServerType">Type of the EDM server type.</param>
+            <param name="spiLines">The associated SPI lines.</param>
+        </member>
+        <member name="P:Asm.As.EDM.API.LineServerInfo.LineServerAlias">
+            <summary>
+            Gets the line server alias.
+            </summary>
+            <value>
+            The line server alias.
+            </value>
+        </member>
+        <member name="P:Asm.As.EDM.API.LineServerInfo.HostName">
+            <summary>
+            Gets the name of the host.
+            </summary>
+            <value>
+            The name of the host.
+            </value>
+        </member>
+        <member name="P:Asm.As.EDM.API.LineServerInfo.SpiLines">
+            <summary>
+            Gets the associated SPI lines.
+            Note: The [ALL] is used to indicated that all SPI lines are associated with the EDM line server.
+            </summary>
+            <value>
+            The SPI lines associated with the Line Server.
+            </value>
+        </member>
+        <member name="P:Asm.As.EDM.API.LineServerInfo.ServerType">
+            <summary>
+            Gets the EDM type of the server.
+            </summary>
+            <value>
+            The type of the server.
+            </value>
+        </member>
+        <member name="P:Asm.As.EDM.API.LineServerInfo.DebuggerDisplayString">
+            <summary>
+            Gets a readable debugger display string.
+            </summary>
+        </member>
+        <member name="M:Asm.As.EDM.API.LineServerInfo.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.EDM.API.TemplateInfo">
+            <summary>
+            Class providing some basic information about an EDM ApplicationTemplate.
+            </summary>
+        </member>
+        <member name="P:Asm.As.EDM.API.TemplateInfo.Name">
+            <summary>
+            Gets or sets the name of the template.
+            </summary>
+            <value>
+            The name of the template.
+            </value>
+        </member>
+        <member name="P:Asm.As.EDM.API.TemplateInfo.ObjectType">
+            <summary>
+            Gets or sets the type of the object of the template.
+            </summary>
+            <value>
+            The type of the object of the template.
+            </value>
+        </member>
+        <member name="P:Asm.As.EDM.API.TemplateInfo.Mode">
+            <summary>
+            Gets or sets the download mode of the template.
+            </summary>
+            <value>
+            The mode.
+            </value>
+        </member>
+        <member name="P:Asm.As.EDM.API.TemplateInfo.LineServers">
+            <summary>
+            Gets or sets the associated line servers.
+            Note: The [ALL] is used to indicated that the template is valid for all line server.
+            </summary>
+            <value>
+            The line servers associated with the template (or [ALL] if the template is valid for all line servers).
+            </value>
+        </member>
+        <member name="P:Asm.As.EDM.API.TemplateInfo.DebuggerDisplayString">
+            <summary>
+            Gets a readable debugger display string.
+            </summary>
+        </member>
+        <member name="M:Asm.As.EDM.API.TemplateInfo.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.EDM.API.NamespaceDoc">
+            <summary>
+            The <see cref="N:Asm.As.EDM.API"/> namespace contains some basic definitions for the Data Transfer (Push-) API
+            </summary>
+        </member>
+        <member name="T:Asm.As.EDM.API.EdmApiConstants">
+            <summary>
+            Static helper class containing the default values of some of the EDM Push API default values.
+            </summary>
+        </member>
+        <member name="F:Asm.As.EDM.API.EdmApiConstants.EdmProductName">
+            <summary>
+            The name of the product
+            </summary>
+        </member>
+        <member name="F:Asm.As.EDM.API.EdmApiConstants.EdmDataTransferApiVersion">
+            <summary>
+            The Version of the EDM data transfer API
+            </summary>
+        </member>
+        <member name="F:Asm.As.EDM.API.EdmApiConstants.EdmDataTransferApiServiceName">
+            <summary>
+            The name of EDM Data Transfer (Push) API Web Service
+            </summary>
+        </member>
+        <member name="F:Asm.As.EDM.API.EdmApiConstants.EdmApiNamespace">
+            <summary>
+            The (Web-Service) Namespace for all EDM DataTransfer (Push) API classes.
+            </summary>
+        </member>
+        <member name="F:Asm.As.EDM.API.EdmApiConstants.EdmDataTransferApiEndpointName">
+            <summary>
+            The endpoint name for the EDM Push Web-Service
+            </summary>
+        </member>
+        <member name="F:Asm.As.EDM.API.EdmApiConstants.EdmDataTransferApiDefaultTcpPort">
+            <summary>
+            The default TCP Port of the EDM Web-Service
+            </summary>
+        </member>
+        <member name="F:Asm.As.EDM.API.EdmApiConstants.EdmDataTransferApiDefaultHttpPort">
+            <summary>
+            The default HTTP Port of the EDM Web-Service
+            </summary>
+        </member>
+        <member name="T:Asm.As.EDM.API.EdmVersionData">
+            <summary>
+            Data class storing the version information provided by the EDM API.
+            </summary>
+        </member>
+        <member name="F:Asm.As.EDM.API.EdmVersionData.UndefinedVersion">
+            <summary>
+            Version returned if the corresponding data is unavailable.
+            </summary>
+        </member>
+        <member name="P:Asm.As.EDM.API.EdmVersionData.DebuggerDisplayString">
+            <summary>
+            Gets the debugger display string.
+            </summary>
+        </member>
+        <member name="P:Asm.As.EDM.API.EdmVersionData.ExtensionData">
+            <summary>
+            Gets or sets the structure that contains extra data.
+            </summary>
+            <returns>
+            An <see cref="T:System.Runtime.Serialization.ExtensionDataObject" /> that contains data that is not recognized
+            as belonging to the data contract.
+            </returns>
+        </member>
+        <member name="P:Asm.As.EDM.API.EdmVersionData.EdmVersion">
+            <summary>
+            Gets or sets the EDM version.
+            </summary>
+            <value>
+            The EDM version.
+            </value>
+        </member>
+        <member name="P:Asm.As.EDM.API.EdmVersionData.PushApiVersion">
+            <summary>
+            Gets or sets the EDM Data Transfer (Push) API version.
+            </summary>
+            <value>
+            The EDM Data Transfer (Push) API version.
+            </value>
+        </member>
+        <member name="P:Asm.As.EDM.API.EdmVersionData.SpiVersion">
+            <summary>
+            Gets or sets the SIPLACE SPI version.
+            </summary>
+            <value>
+            The SIPLACE SPI version.
+            </value>
+        </member>
+        <member name="P:Asm.As.EDM.API.EdmVersionData.XmlVersion">
+            <summary>
+            Gets or sets the XML version.
+            </summary>
+            <value>
+            The XML version.
+            </value>
+        </member>
+    </members>
+</doc>

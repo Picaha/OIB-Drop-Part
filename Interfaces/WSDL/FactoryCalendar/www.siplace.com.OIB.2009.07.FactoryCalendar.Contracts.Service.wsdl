@@ -1,0 +1,613 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:tns="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" targetNamespace="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service/Imports">
+      <xsd:import namespace="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service" />
+      <xsd:import namespace="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Data" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import namespace="http://www.siplace.com/OIB/2016/07/FactoryCalendar/Contracts/Data" />
+      <xsd:import namespace="http://www.siplace.com/OIB/2010/05/FactoryCalendarEvents/Contracts/Service" />
+      <xsd:import namespace="http://www.siplace.com/OIB/2010/06/ProductionCapability/Contracts/Service" />
+      <xsd:import namespace="http://www.wbf.org/xml/b2mml-v0400" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="GetCalendarModelRequest" />
+  <wsdl:message name="GetCalendarModelResponse">
+    <wsdl:part name="CalendarModel" element="tns:CalendarModel" />
+  </wsdl:message>
+  <wsdl:message name="FactoryCalendar_LoadModel_FactoryCalendarFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q1="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Data" element="q1:FactoryCalendarFault" />
+  </wsdl:message>
+  <wsdl:message name="AddAppointmentRequest">
+    <wsdl:part name="Appointment" element="tns:Appointment" />
+  </wsdl:message>
+  <wsdl:message name="AddAppointmentResponse">
+    <wsdl:part name="Appointment" element="tns:Appointment" />
+  </wsdl:message>
+  <wsdl:message name="FactoryCalendar_AddAppointment_FactoryCalendarFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q2="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Data" element="q2:FactoryCalendarFault" />
+  </wsdl:message>
+  <wsdl:message name="DeleteAppointmentRequest">
+    <wsdl:part name="Appointment" element="tns:Appointment" />
+  </wsdl:message>
+  <wsdl:message name="DeleteAppointmentResponse" />
+  <wsdl:message name="FactoryCalendar_DeleteAppointment_FactoryCalendarFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q3="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Data" element="q3:FactoryCalendarFault" />
+  </wsdl:message>
+  <wsdl:message name="UpdateAppointmentRequest">
+    <wsdl:part name="Appointment" element="tns:Appointment" />
+  </wsdl:message>
+  <wsdl:message name="UpdateAppointmentResponse">
+    <wsdl:part name="Appointment" element="tns:Appointment" />
+  </wsdl:message>
+  <wsdl:message name="FactoryCalendar_UpdateAppointment_FactoryCalendarFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q4="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Data" element="q4:FactoryCalendarFault" />
+  </wsdl:message>
+  <wsdl:message name="SaveOptionsRequest">
+    <wsdl:part name="CalendarOptions" element="tns:CalendarOptions" />
+  </wsdl:message>
+  <wsdl:message name="SaveOptionsResponse" />
+  <wsdl:message name="FactoryCalendar_SaveOptions_FactoryCalendarFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q5="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Data" element="q5:FactoryCalendarFault" />
+  </wsdl:message>
+  <wsdl:message name="GetTeamsRequest" />
+  <wsdl:message name="GetTeamsResponse">
+    <wsdl:part name="Teams" element="tns:Teams" />
+  </wsdl:message>
+  <wsdl:message name="FactoryCalendar_GetTeams_FactoryCalendarFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q6="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Data" element="q6:FactoryCalendarFault" />
+  </wsdl:message>
+  <wsdl:message name="GetResourcesRequest" />
+  <wsdl:message name="GetResourcesResponse">
+    <wsdl:part name="Resources" element="tns:Resources" />
+  </wsdl:message>
+  <wsdl:message name="FactoryCalendar_GetResources_FactoryCalendarFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q7="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Data" element="q7:FactoryCalendarFault" />
+  </wsdl:message>
+  <wsdl:message name="UpdateTeamRequest">
+    <wsdl:part name="Team" element="tns:Team" />
+  </wsdl:message>
+  <wsdl:message name="UpdateTeamResponse">
+    <wsdl:part name="Team" element="tns:Team" />
+  </wsdl:message>
+  <wsdl:message name="FactoryCalendar_UpdateTeam_FactoryCalendarFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q8="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Data" element="q8:FactoryCalendarFault" />
+  </wsdl:message>
+  <wsdl:message name="DeleteTeamRequest">
+    <wsdl:part name="Team" element="tns:Team" />
+  </wsdl:message>
+  <wsdl:message name="DeleteTeamResponse" />
+  <wsdl:message name="FactoryCalendar_DeleteTeam_FactoryCalendarFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q9="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Data" element="q9:FactoryCalendarFault" />
+  </wsdl:message>
+  <wsdl:message name="UpdateResourceRequest">
+    <wsdl:part name="Resource" element="tns:Resource" />
+  </wsdl:message>
+  <wsdl:message name="UpdateResourceResponse">
+    <wsdl:part name="Resource" element="tns:Resource" />
+  </wsdl:message>
+  <wsdl:message name="FactoryCalendar_UpdateResource_FactoryCalendarFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q10="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Data" element="q10:FactoryCalendarFault" />
+  </wsdl:message>
+  <wsdl:message name="DeleteResourceRequest">
+    <wsdl:part name="Resource" element="tns:Resource" />
+  </wsdl:message>
+  <wsdl:message name="DeleteResourceResponse" />
+  <wsdl:message name="FactoryCalendar_DeleteResource_FactoryCalendarFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q11="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Data" element="q11:FactoryCalendarFault" />
+  </wsdl:message>
+  <wsdl:message name="AddTeamRequest">
+    <wsdl:part name="Team" element="tns:Team" />
+  </wsdl:message>
+  <wsdl:message name="AddTeamResponse">
+    <wsdl:part name="Team" element="tns:Team" />
+  </wsdl:message>
+  <wsdl:message name="FactoryCalendar_AddTeam_FactoryCalendarFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q12="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Data" element="q12:FactoryCalendarFault" />
+  </wsdl:message>
+  <wsdl:message name="AddResourceRequest">
+    <wsdl:part name="Resource" element="tns:Resource" />
+  </wsdl:message>
+  <wsdl:message name="AddResourceResponse">
+    <wsdl:part name="Resource" element="tns:Resource" />
+  </wsdl:message>
+  <wsdl:message name="FactoryCalendar_AddResource_FactoryCalendarFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q13="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Data" element="q13:FactoryCalendarFault" />
+  </wsdl:message>
+  <wsdl:message name="CheckAliveRequest" />
+  <wsdl:message name="CheckAliveResponse">
+    <wsdl:part name="ProcessId" element="tns:ProcessId" />
+  </wsdl:message>
+  <wsdl:message name="FactoryCalendar_CheckAlive_FactoryCalendarFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q14="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Data" element="q14:FactoryCalendarFault" />
+  </wsdl:message>
+  <wsdl:message name="GetCustomStatesRequest" />
+  <wsdl:message name="GetCustomStatesResponse">
+    <wsdl:part name="CustomStates" element="tns:CustomStates" />
+  </wsdl:message>
+  <wsdl:message name="FactoryCalendar_GetCustomStates_FactoryCalendarFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q15="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Data" element="q15:FactoryCalendarFault" />
+  </wsdl:message>
+  <wsdl:message name="DeleteCustomStateRequest">
+    <wsdl:part name="CustomState" element="tns:CustomState" />
+  </wsdl:message>
+  <wsdl:message name="DeleteCustomStateResponse">
+    <wsdl:part name="CustomState" element="tns:CustomState" />
+  </wsdl:message>
+  <wsdl:message name="FactoryCalendar_DeleteCustomState_FactoryCalendarFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q16="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Data" element="q16:FactoryCalendarFault" />
+  </wsdl:message>
+  <wsdl:message name="AddCustomStateRequest">
+    <wsdl:part name="CustomState" element="tns:CustomState" />
+  </wsdl:message>
+  <wsdl:message name="AddCustomStateResponse">
+    <wsdl:part name="CustomState" element="tns:CustomState" />
+  </wsdl:message>
+  <wsdl:message name="FactoryCalendar_AddCustomState_FactoryCalendarFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q17="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Data" element="q17:FactoryCalendarFault" />
+  </wsdl:message>
+  <wsdl:message name="UpdateCustomStateRequest">
+    <wsdl:part name="CustomState" element="tns:CustomState" />
+  </wsdl:message>
+  <wsdl:message name="UpdateCustomStateResponse">
+    <wsdl:part name="CustomState" element="tns:CustomState" />
+  </wsdl:message>
+  <wsdl:message name="FactoryCalendar_UpdateCustomState_FactoryCalendarFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q18="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Data" element="q18:FactoryCalendarFault" />
+  </wsdl:message>
+  <wsdl:message name="GetGroupReasonsRequest" />
+  <wsdl:message name="GetGroupReasonsResponse">
+    <wsdl:part name="GroupReasons" element="tns:GroupReasons" />
+  </wsdl:message>
+  <wsdl:message name="FactoryCalendar_GetGroupReasons_FactoryCalendarFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q19="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Data" element="q19:FactoryCalendarFault" />
+  </wsdl:message>
+  <wsdl:message name="AddGroupReasonRequest">
+    <wsdl:part name="GroupReason" element="tns:GroupReason" />
+  </wsdl:message>
+  <wsdl:message name="AddGroupReasonResponse">
+    <wsdl:part name="GroupReason" element="tns:GroupReason" />
+  </wsdl:message>
+  <wsdl:message name="FactoryCalendar_AddGroupReason_FactoryCalendarFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q20="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Data" element="q20:FactoryCalendarFault" />
+  </wsdl:message>
+  <wsdl:message name="DeleteGroupReasonRequest">
+    <wsdl:part name="GroupReason" element="tns:GroupReason" />
+  </wsdl:message>
+  <wsdl:message name="DeleteGroupReasonResponse">
+    <wsdl:part name="GroupReason" element="tns:GroupReason" />
+  </wsdl:message>
+  <wsdl:message name="FactoryCalendar_DeleteGroupReason_FactoryCalendarFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q21="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Data" element="q21:FactoryCalendarFault" />
+  </wsdl:message>
+  <wsdl:message name="UpdateGroupReasonRequest">
+    <wsdl:part name="GroupReason" element="tns:GroupReason" />
+  </wsdl:message>
+  <wsdl:message name="UpdateGroupReasonResponse">
+    <wsdl:part name="GroupReason" element="tns:GroupReason" />
+  </wsdl:message>
+  <wsdl:message name="FactoryCalendar_UpdateGroupReason_FactoryCalendarFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q22="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Data" element="q22:FactoryCalendarFault" />
+  </wsdl:message>
+  <wsdl:message name="UpdateNotificationMessage">
+    <wsdl:part name="parameters" element="tns:UpdateNotificationMessage" />
+  </wsdl:message>
+  <wsdl:message name="UpdateNotificationMessage_Headers">
+    <wsdl:part name="SubscriptionTopic" element="tns:SubscriptionTopic" />
+  </wsdl:message>
+  <wsdl:message name="ITransactionNotificationDuplex_TransactionComplete_OutputMessage" />
+  <wsdl:portType name="FactoryCalendar">
+    <wsdl:operation name="LoadModel">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service/FactoryCalendar/LoadModel" name="GetCalendarModelRequest" message="tns:GetCalendarModelRequest" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service/FactoryCalendar/LoadModelResponse" name="GetCalendarModelResponse" message="tns:GetCalendarModelResponse" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service/FactoryCalendar/LoadModelFactoryCalendarFaultFault" name="FactoryCalendarFaultFault" message="tns:FactoryCalendar_LoadModel_FactoryCalendarFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddAppointment">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service/FactoryCalendar/AddAppointment" name="AddAppointmentRequest" message="tns:AddAppointmentRequest" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service/FactoryCalendar/AddAppointmentResponse" name="AddAppointmentResponse" message="tns:AddAppointmentResponse" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service/FactoryCalendar/AddAppointmentFactoryCalendarFaultFault" name="FactoryCalendarFaultFault" message="tns:FactoryCalendar_AddAppointment_FactoryCalendarFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAppointment">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service/FactoryCalendar/DeleteAppointment" name="DeleteAppointmentRequest" message="tns:DeleteAppointmentRequest" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service/FactoryCalendar/DeleteAppointmentResponse" name="DeleteAppointmentResponse" message="tns:DeleteAppointmentResponse" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service/FactoryCalendar/DeleteAppointmentFactoryCalendarFaultFault" name="FactoryCalendarFaultFault" message="tns:FactoryCalendar_DeleteAppointment_FactoryCalendarFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAppointment">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service/FactoryCalendar/UpdateAppointment" name="UpdateAppointmentRequest" message="tns:UpdateAppointmentRequest" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service/FactoryCalendar/UpdateAppointmentResponse" name="UpdateAppointmentResponse" message="tns:UpdateAppointmentResponse" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service/FactoryCalendar/UpdateAppointmentFactoryCalendarFaultFault" name="FactoryCalendarFaultFault" message="tns:FactoryCalendar_UpdateAppointment_FactoryCalendarFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveOptions">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service/FactoryCalendar/SaveOptions" name="SaveOptionsRequest" message="tns:SaveOptionsRequest" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service/FactoryCalendar/SaveOptionsResponse" name="SaveOptionsResponse" message="tns:SaveOptionsResponse" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service/FactoryCalendar/SaveOptionsFactoryCalendarFaultFault" name="FactoryCalendarFaultFault" message="tns:FactoryCalendar_SaveOptions_FactoryCalendarFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTeams">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service/FactoryCalendar/GetTeams" name="GetTeamsRequest" message="tns:GetTeamsRequest" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service/FactoryCalendar/GetTeamsResponse" name="GetTeamsResponse" message="tns:GetTeamsResponse" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service/FactoryCalendar/GetTeamsFactoryCalendarFaultFault" name="FactoryCalendarFaultFault" message="tns:FactoryCalendar_GetTeams_FactoryCalendarFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetResources">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service/FactoryCalendar/GetResources" name="GetResourcesRequest" message="tns:GetResourcesRequest" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service/FactoryCalendar/GetResourcesResponse" name="GetResourcesResponse" message="tns:GetResourcesResponse" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service/FactoryCalendar/GetResourcesFactoryCalendarFaultFault" name="FactoryCalendarFaultFault" message="tns:FactoryCalendar_GetResources_FactoryCalendarFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTeam">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service/FactoryCalendar/UpdateTeam" name="UpdateTeamRequest" message="tns:UpdateTeamRequest" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service/FactoryCalendar/UpdateTeamResponse" name="UpdateTeamResponse" message="tns:UpdateTeamResponse" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service/FactoryCalendar/UpdateTeamFactoryCalendarFaultFault" name="FactoryCalendarFaultFault" message="tns:FactoryCalendar_UpdateTeam_FactoryCalendarFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTeam">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service/FactoryCalendar/DeleteTeam" name="DeleteTeamRequest" message="tns:DeleteTeamRequest" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service/FactoryCalendar/DeleteTeamResponse" name="DeleteTeamResponse" message="tns:DeleteTeamResponse" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service/FactoryCalendar/DeleteTeamFactoryCalendarFaultFault" name="FactoryCalendarFaultFault" message="tns:FactoryCalendar_DeleteTeam_FactoryCalendarFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateResource">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service/FactoryCalendar/UpdateResource" name="UpdateResourceRequest" message="tns:UpdateResourceRequest" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service/FactoryCalendar/UpdateResourceResponse" name="UpdateResourceResponse" message="tns:UpdateResourceResponse" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service/FactoryCalendar/UpdateResourceFactoryCalendarFaultFault" name="FactoryCalendarFaultFault" message="tns:FactoryCalendar_UpdateResource_FactoryCalendarFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteResource">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service/FactoryCalendar/DeleteResource" name="DeleteResourceRequest" message="tns:DeleteResourceRequest" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service/FactoryCalendar/DeleteResourceResponse" name="DeleteResourceResponse" message="tns:DeleteResourceResponse" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service/FactoryCalendar/DeleteResourceFactoryCalendarFaultFault" name="FactoryCalendarFaultFault" message="tns:FactoryCalendar_DeleteResource_FactoryCalendarFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddTeam">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service/FactoryCalendar/AddTeam" name="AddTeamRequest" message="tns:AddTeamRequest" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service/FactoryCalendar/AddTeamResponse" name="AddTeamResponse" message="tns:AddTeamResponse" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service/FactoryCalendar/AddTeamFactoryCalendarFaultFault" name="FactoryCalendarFaultFault" message="tns:FactoryCalendar_AddTeam_FactoryCalendarFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddResource">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service/FactoryCalendar/AddResource" name="AddResourceRequest" message="tns:AddResourceRequest" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service/FactoryCalendar/AddResourceResponse" name="AddResourceResponse" message="tns:AddResourceResponse" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service/FactoryCalendar/AddResourceFactoryCalendarFaultFault" name="FactoryCalendarFaultFault" message="tns:FactoryCalendar_AddResource_FactoryCalendarFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckAlive">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service/FactoryCalendar/CheckAlive" name="CheckAliveRequest" message="tns:CheckAliveRequest" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service/FactoryCalendar/CheckAliveResponse" name="CheckAliveResponse" message="tns:CheckAliveResponse" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service/FactoryCalendar/CheckAliveFactoryCalendarFaultFault" name="FactoryCalendarFaultFault" message="tns:FactoryCalendar_CheckAlive_FactoryCalendarFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomStates">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2016/07/FactoryCalendar/Contracts/Service/FactoryCalendar/GetCustomStates" name="GetCustomStatesRequest" message="tns:GetCustomStatesRequest" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service/FactoryCalendar/GetCustomStatesResponse" name="GetCustomStatesResponse" message="tns:GetCustomStatesResponse" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service/FactoryCalendar/GetCustomStatesFactoryCalendarFaultFault" name="FactoryCalendarFaultFault" message="tns:FactoryCalendar_GetCustomStates_FactoryCalendarFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCustomState">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2016/07/FactoryCalendar/Contracts/Service/FactoryCalendar/DeleteCustomState" name="DeleteCustomStateRequest" message="tns:DeleteCustomStateRequest" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service/FactoryCalendar/DeleteCustomStateResponse" name="DeleteCustomStateResponse" message="tns:DeleteCustomStateResponse" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service/FactoryCalendar/DeleteCustomStateFactoryCalendarFaultFault" name="FactoryCalendarFaultFault" message="tns:FactoryCalendar_DeleteCustomState_FactoryCalendarFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddCustomState">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2016/07/FactoryCalendar/Contracts/Service/FactoryCalendar/AddCustomState" name="AddCustomStateRequest" message="tns:AddCustomStateRequest" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service/FactoryCalendar/AddCustomStateResponse" name="AddCustomStateResponse" message="tns:AddCustomStateResponse" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service/FactoryCalendar/AddCustomStateFactoryCalendarFaultFault" name="FactoryCalendarFaultFault" message="tns:FactoryCalendar_AddCustomState_FactoryCalendarFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCustomState">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2016/07/FactoryCalendar/Contracts/Service/FactoryCalendar/UpdateResource" name="UpdateCustomStateRequest" message="tns:UpdateCustomStateRequest" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service/FactoryCalendar/UpdateCustomStateResponse" name="UpdateCustomStateResponse" message="tns:UpdateCustomStateResponse" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service/FactoryCalendar/UpdateCustomStateFactoryCalendarFaultFault" name="FactoryCalendarFaultFault" message="tns:FactoryCalendar_UpdateCustomState_FactoryCalendarFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGroupReasons">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2016/07/FactoryCalendar/Contracts/Service/FactoryCalendar/GetGroupReasons" name="GetGroupReasonsRequest" message="tns:GetGroupReasonsRequest" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service/FactoryCalendar/GetGroupReasonsResponse" name="GetGroupReasonsResponse" message="tns:GetGroupReasonsResponse" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service/FactoryCalendar/GetGroupReasonsFactoryCalendarFaultFault" name="FactoryCalendarFaultFault" message="tns:FactoryCalendar_GetGroupReasons_FactoryCalendarFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddGroupReason">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2016/07/FactoryCalendar/Contracts/Service/FactoryCalendar/AddGroupReason" name="AddGroupReasonRequest" message="tns:AddGroupReasonRequest" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service/FactoryCalendar/AddGroupReasonResponse" name="AddGroupReasonResponse" message="tns:AddGroupReasonResponse" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service/FactoryCalendar/AddGroupReasonFactoryCalendarFaultFault" name="FactoryCalendarFaultFault" message="tns:FactoryCalendar_AddGroupReason_FactoryCalendarFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteGroupReason">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2016/07/FactoryCalendar/Contracts/Service/FactoryCalendar/DeleteGroupReason" name="DeleteGroupReasonRequest" message="tns:DeleteGroupReasonRequest" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service/FactoryCalendar/DeleteGroupReasonResponse" name="DeleteGroupReasonResponse" message="tns:DeleteGroupReasonResponse" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service/FactoryCalendar/DeleteGroupReasonFactoryCalendarFaultFault" name="FactoryCalendarFaultFault" message="tns:FactoryCalendar_DeleteGroupReason_FactoryCalendarFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateGroupReason">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2016/07/FactoryCalendar/Contracts/Service/FactoryCalendar/UpdateGroupReason" name="UpdateGroupReasonRequest" message="tns:UpdateGroupReasonRequest" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service/FactoryCalendar/UpdateGroupReasonResponse" name="UpdateGroupReasonResponse" message="tns:UpdateGroupReasonResponse" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service/FactoryCalendar/UpdateGroupReasonFactoryCalendarFaultFault" name="FactoryCalendarFaultFault" message="tns:FactoryCalendar_UpdateGroupReason_FactoryCalendarFaultFault_FaultMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ITransactionNotificationDuplex">
+    <wsdl:operation name="TransactionComplete">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service/ITransactionNotificationDuplex/TransactionComplete" name="UpdateNotificationMessage" message="tns:UpdateNotificationMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service/ITransactionNotificationDuplex/TransactionCompleteResponse" message="tns:ITransactionNotificationDuplex_TransactionComplete_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ITransactionNotificationOneWay">
+    <wsdl:operation name="TransactionCompleteOneWay">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service/ITransactionNotificationOneWay/TransactionCompleteOneWay" name="UpdateNotificationMessage" message="tns:UpdateNotificationMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DefaultBinding_FactoryCalendar" type="tns:FactoryCalendar">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="LoadModel">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service/FactoryCalendar/LoadModel" style="document" />
+      <wsdl:input name="GetCalendarModelRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetCalendarModelResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="FactoryCalendarFaultFault">
+        <soap:fault name="FactoryCalendarFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="AddAppointment">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service/FactoryCalendar/AddAppointment" style="document" />
+      <wsdl:input name="AddAppointmentRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="AddAppointmentResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="FactoryCalendarFaultFault">
+        <soap:fault name="FactoryCalendarFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAppointment">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service/FactoryCalendar/DeleteAppointment" style="document" />
+      <wsdl:input name="DeleteAppointmentRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="DeleteAppointmentResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="FactoryCalendarFaultFault">
+        <soap:fault name="FactoryCalendarFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAppointment">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service/FactoryCalendar/UpdateAppointment" style="document" />
+      <wsdl:input name="UpdateAppointmentRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="UpdateAppointmentResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="FactoryCalendarFaultFault">
+        <soap:fault name="FactoryCalendarFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="SaveOptions">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service/FactoryCalendar/SaveOptions" style="document" />
+      <wsdl:input name="SaveOptionsRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="SaveOptionsResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="FactoryCalendarFaultFault">
+        <soap:fault name="FactoryCalendarFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetTeams">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service/FactoryCalendar/GetTeams" style="document" />
+      <wsdl:input name="GetTeamsRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetTeamsResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="FactoryCalendarFaultFault">
+        <soap:fault name="FactoryCalendarFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetResources">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service/FactoryCalendar/GetResources" style="document" />
+      <wsdl:input name="GetResourcesRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetResourcesResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="FactoryCalendarFaultFault">
+        <soap:fault name="FactoryCalendarFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTeam">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service/FactoryCalendar/UpdateTeam" style="document" />
+      <wsdl:input name="UpdateTeamRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="UpdateTeamResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="FactoryCalendarFaultFault">
+        <soap:fault name="FactoryCalendarFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTeam">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service/FactoryCalendar/DeleteTeam" style="document" />
+      <wsdl:input name="DeleteTeamRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="DeleteTeamResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="FactoryCalendarFaultFault">
+        <soap:fault name="FactoryCalendarFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateResource">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service/FactoryCalendar/UpdateResource" style="document" />
+      <wsdl:input name="UpdateResourceRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="UpdateResourceResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="FactoryCalendarFaultFault">
+        <soap:fault name="FactoryCalendarFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteResource">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service/FactoryCalendar/DeleteResource" style="document" />
+      <wsdl:input name="DeleteResourceRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="DeleteResourceResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="FactoryCalendarFaultFault">
+        <soap:fault name="FactoryCalendarFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="AddTeam">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service/FactoryCalendar/AddTeam" style="document" />
+      <wsdl:input name="AddTeamRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="AddTeamResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="FactoryCalendarFaultFault">
+        <soap:fault name="FactoryCalendarFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="AddResource">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service/FactoryCalendar/AddResource" style="document" />
+      <wsdl:input name="AddResourceRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="AddResourceResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="FactoryCalendarFaultFault">
+        <soap:fault name="FactoryCalendarFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="CheckAlive">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service/FactoryCalendar/CheckAlive" style="document" />
+      <wsdl:input name="CheckAliveRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="CheckAliveResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="FactoryCalendarFaultFault">
+        <soap:fault name="FactoryCalendarFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomStates">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2016/07/FactoryCalendar/Contracts/Service/FactoryCalendar/GetCustomStates" style="document" />
+      <wsdl:input name="GetCustomStatesRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetCustomStatesResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="FactoryCalendarFaultFault">
+        <soap:fault name="FactoryCalendarFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCustomState">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2016/07/FactoryCalendar/Contracts/Service/FactoryCalendar/DeleteCustomState" style="document" />
+      <wsdl:input name="DeleteCustomStateRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="DeleteCustomStateResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="FactoryCalendarFaultFault">
+        <soap:fault name="FactoryCalendarFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="AddCustomState">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2016/07/FactoryCalendar/Contracts/Service/FactoryCalendar/AddCustomState" style="document" />
+      <wsdl:input name="AddCustomStateRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="AddCustomStateResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="FactoryCalendarFaultFault">
+        <soap:fault name="FactoryCalendarFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCustomState">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2016/07/FactoryCalendar/Contracts/Service/FactoryCalendar/UpdateResource" style="document" />
+      <wsdl:input name="UpdateCustomStateRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="UpdateCustomStateResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="FactoryCalendarFaultFault">
+        <soap:fault name="FactoryCalendarFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetGroupReasons">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2016/07/FactoryCalendar/Contracts/Service/FactoryCalendar/GetGroupReasons" style="document" />
+      <wsdl:input name="GetGroupReasonsRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetGroupReasonsResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="FactoryCalendarFaultFault">
+        <soap:fault name="FactoryCalendarFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="AddGroupReason">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2016/07/FactoryCalendar/Contracts/Service/FactoryCalendar/AddGroupReason" style="document" />
+      <wsdl:input name="AddGroupReasonRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="AddGroupReasonResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="FactoryCalendarFaultFault">
+        <soap:fault name="FactoryCalendarFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteGroupReason">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2016/07/FactoryCalendar/Contracts/Service/FactoryCalendar/DeleteGroupReason" style="document" />
+      <wsdl:input name="DeleteGroupReasonRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="DeleteGroupReasonResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="FactoryCalendarFaultFault">
+        <soap:fault name="FactoryCalendarFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateGroupReason">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2016/07/FactoryCalendar/Contracts/Service/FactoryCalendar/UpdateGroupReason" style="document" />
+      <wsdl:input name="UpdateGroupReasonRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="UpdateGroupReasonResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="FactoryCalendarFaultFault">
+        <soap:fault name="FactoryCalendarFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DefaultBinding_ITransactionNotificationDuplex" type="tns:ITransactionNotificationDuplex">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="TransactionComplete">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service/ITransactionNotificationDuplex/TransactionComplete" style="document" />
+      <wsdl:input name="UpdateNotificationMessage">
+        <soap:header message="tns:UpdateNotificationMessage_Headers" part="SubscriptionTopic" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DefaultBinding_ITransactionNotificationOneWay" type="tns:ITransactionNotificationOneWay">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="TransactionCompleteOneWay">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service/ITransactionNotificationOneWay/TransactionCompleteOneWay" style="document" />
+      <wsdl:input name="UpdateNotificationMessage">
+        <soap:header message="tns:UpdateNotificationMessage_Headers" part="SubscriptionTopic" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+  </wsdl:binding>
+</wsdl:definitions>

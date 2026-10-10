@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/Arrays" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" />
+  <xs:complexType name="ArrayOfanyType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="anyType" nillable="true" type="xs:anyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfanyType" nillable="true" type="tns:ArrayOfanyType" />
+  <xs:complexType name="ArrayOfKeyValueOfstringComponentKnownButNotSetUpsNE8QCPJ">
+    <xs:annotation>
+      <xs:appinfo>
+        <IsDictionary xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsDictionary>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="KeyValueOfstringComponentKnownButNotSetUpsNE8QCPJ">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Key" nillable="true" type="xs:string" />
+            <xs:element name="Value" nillable="true" xmlns:q1="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q1:ComponentKnownButNotSetUp" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfKeyValueOfstringComponentKnownButNotSetUpsNE8QCPJ" nillable="true" type="tns:ArrayOfKeyValueOfstringComponentKnownButNotSetUpsNE8QCPJ" />
+  <xs:complexType name="ArrayOfKeyValueOfstringComponentNotKnownAtAllsNE8QCPJ">
+    <xs:annotation>
+      <xs:appinfo>
+        <IsDictionary xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsDictionary>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="KeyValueOfstringComponentNotKnownAtAllsNE8QCPJ">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Key" nillable="true" type="xs:string" />
+            <xs:element name="Value" nillable="true" xmlns:q2="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q2:ComponentNotKnownAtAll" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfKeyValueOfstringComponentNotKnownAtAllsNE8QCPJ" nillable="true" type="tns:ArrayOfKeyValueOfstringComponentNotKnownAtAllsNE8QCPJ" />
+  <xs:complexType name="ArrayOfKeyValueOfstringComponentSetUpOnWrongTablesNE8QCPJ">
+    <xs:annotation>
+      <xs:appinfo>
+        <IsDictionary xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsDictionary>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="KeyValueOfstringComponentSetUpOnWrongTablesNE8QCPJ">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Key" nillable="true" type="xs:string" />
+            <xs:element name="Value" nillable="true" xmlns:q3="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q3:ComponentSetUpOnWrongTable" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfKeyValueOfstringComponentSetUpOnWrongTablesNE8QCPJ" nillable="true" type="tns:ArrayOfKeyValueOfstringComponentSetUpOnWrongTablesNE8QCPJ" />
+  <xs:complexType name="ArrayOfstring">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfstring" nillable="true" type="tns:ArrayOfstring" />
+  <xs:complexType name="ArrayOfKeyValueOfstringTheHermesStandardNotificationsNE8QCPJ">
+    <xs:annotation>
+      <xs:appinfo>
+        <IsDictionary xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsDictionary>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="KeyValueOfstringTheHermesStandardNotificationsNE8QCPJ">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Key" nillable="true" type="xs:string" />
+            <xs:element name="Value" nillable="true" xmlns:q4="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q4:TheHermesStandardNotification" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfKeyValueOfstringTheHermesStandardNotificationsNE8QCPJ" nillable="true" type="tns:ArrayOfKeyValueOfstringTheHermesStandardNotificationsNE8QCPJ" />
+  <xs:complexType name="ArrayOfKeyValueOfstringTheHermesStandardConfigurationsNE8QCPJ">
+    <xs:annotation>
+      <xs:appinfo>
+        <IsDictionary xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsDictionary>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="KeyValueOfstringTheHermesStandardConfigurationsNE8QCPJ">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Key" nillable="true" type="xs:string" />
+            <xs:element name="Value" nillable="true" xmlns:q5="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q5:TheHermesStandardConfiguration" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfKeyValueOfstringTheHermesStandardConfigurationsNE8QCPJ" nillable="true" type="tns:ArrayOfKeyValueOfstringTheHermesStandardConfigurationsNE8QCPJ" />
+</xs:schema>

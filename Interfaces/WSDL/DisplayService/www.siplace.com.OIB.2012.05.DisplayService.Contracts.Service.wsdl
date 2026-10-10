@@ -1,0 +1,783 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:tns="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" targetNamespace="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/Imports">
+      <xsd:import namespace="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Message" />
+      <xsd:import namespace="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Data" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import namespace="http://schemas.xmlsoap.org/ws/2004/08/addressing" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import namespace="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ClientRegistrationRequest">
+    <wsdl:part name="parameters" xmlns:q1="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Message" element="q1:ClientRegistrationRequest" />
+  </wsdl:message>
+  <wsdl:message name="ClientRegistrationResponse">
+    <wsdl:part name="parameters" xmlns:q2="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Message" element="q2:ClientRegistrationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDisplayService_RegisterClient_DisplayServiceFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q3="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Data" element="q3:DisplayServiceFault" />
+  </wsdl:message>
+  <wsdl:message name="ClientUnregistrationRequest">
+    <wsdl:part name="parameters" xmlns:q4="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Message" element="q4:ClientUnregistrationRequest" />
+  </wsdl:message>
+  <wsdl:message name="ClientUnregistrationResponse">
+    <wsdl:part name="parameters" xmlns:q5="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Message" element="q5:ClientUnregistrationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDisplayService_UnregisterClient_DisplayServiceFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q6="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Data" element="q6:DisplayServiceFault" />
+  </wsdl:message>
+  <wsdl:message name="SendMessageRequest">
+    <wsdl:part name="parameters" xmlns:q7="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Message" element="q7:SendMessageRequest" />
+  </wsdl:message>
+  <wsdl:message name="SendMessageResponse">
+    <wsdl:part name="parameters" xmlns:q8="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Message" element="q8:SendMessageResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDisplayService_SendMessage_DSMessageDeliveryFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q9="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Data" element="q9:DSMessageDeliveryFault" />
+  </wsdl:message>
+  <wsdl:message name="UpdateMessageRequest">
+    <wsdl:part name="parameters" xmlns:q10="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Message" element="q10:UpdateMessageRequest" />
+  </wsdl:message>
+  <wsdl:message name="UpdateMessageResponse">
+    <wsdl:part name="parameters" xmlns:q11="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Message" element="q11:UpdateMessageResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDisplayService_UpdateMessage_DSMessageDeliveryFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q12="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Data" element="q12:DSMessageDeliveryFault" />
+  </wsdl:message>
+  <wsdl:message name="RevokeMessageRequest">
+    <wsdl:part name="parameters" xmlns:q13="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Message" element="q13:RevokeMessageRequest" />
+  </wsdl:message>
+  <wsdl:message name="RevokeMessageResponse">
+    <wsdl:part name="parameters" xmlns:q14="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Message" element="q14:RevokeMessageResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDisplayService_RevokeMessage_DSMessageDeliveryFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q15="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Data" element="q15:DSMessageDeliveryFault" />
+  </wsdl:message>
+  <wsdl:message name="IDisplayService_GetAllViewers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllViewers" />
+  </wsdl:message>
+  <wsdl:message name="IDisplayService_GetAllViewers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllViewersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDisplayService_GetAllViewers_DisplayServiceFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q16="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Data" element="q16:DisplayServiceFault" />
+  </wsdl:message>
+  <wsdl:message name="GetMessageStatesRequest">
+    <wsdl:part name="parameters" xmlns:q17="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Message" element="q17:GetMessageStatesRequest" />
+  </wsdl:message>
+  <wsdl:message name="GetMessageStatesResponse">
+    <wsdl:part name="parameters" xmlns:q18="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Message" element="q18:GetMessageStatesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDisplayService_GetMessageStates_DisplayServiceFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q19="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Data" element="q19:DisplayServiceFault" />
+  </wsdl:message>
+  <wsdl:message name="PingRequest">
+    <wsdl:part name="parameters" xmlns:q20="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Message" element="q20:PingRequest" />
+  </wsdl:message>
+  <wsdl:message name="PingResponse">
+    <wsdl:part name="parameters" xmlns:q21="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Message" element="q21:PingResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDisplayService_Ping_DisplayServiceFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q22="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Data" element="q22:DisplayServiceFault" />
+  </wsdl:message>
+  <wsdl:message name="ViewerRegistrationRequest">
+    <wsdl:part name="parameters" xmlns:q23="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Message" element="q23:ViewerRegistrationRequest" />
+  </wsdl:message>
+  <wsdl:message name="ViewerRegistrationResponse">
+    <wsdl:part name="parameters" xmlns:q24="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Message" element="q24:ViewerRegistrationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDisplayServiceAdmin_RegisterViewer_DisplayServiceFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q25="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Data" element="q25:DisplayServiceFault" />
+  </wsdl:message>
+  <wsdl:message name="ViewerUnregistrationRequest">
+    <wsdl:part name="parameters" xmlns:q26="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Message" element="q26:ViewerUnregistrationRequest" />
+  </wsdl:message>
+  <wsdl:message name="ViewerUnregistrationResponse">
+    <wsdl:part name="parameters" xmlns:q27="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Message" element="q27:ViewerUnregistrationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDisplayServiceAdmin_UnregisterViewer_DisplayServiceFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q28="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Data" element="q28:DisplayServiceFault" />
+  </wsdl:message>
+  <wsdl:message name="ViewerUpdateRequest">
+    <wsdl:part name="parameters" xmlns:q29="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Message" element="q29:ViewerUpdateRequest" />
+  </wsdl:message>
+  <wsdl:message name="ViewerUpdateResponse">
+    <wsdl:part name="parameters" xmlns:q30="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Message" element="q30:ViewerUpdateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDisplayServiceAdmin_UpdateViewerRegistration_DisplayServiceFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q31="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Data" element="q31:DisplayServiceFault" />
+  </wsdl:message>
+  <wsdl:message name="GetViewersRequest">
+    <wsdl:part name="parameters" xmlns:q32="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Message" element="q32:GetViewersRequest" />
+  </wsdl:message>
+  <wsdl:message name="GetViewersResponse">
+    <wsdl:part name="parameters" xmlns:q33="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Message" element="q33:GetViewersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDisplayServiceAdmin_GetViewers_DisplayServiceFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q34="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Data" element="q34:DisplayServiceFault" />
+  </wsdl:message>
+  <wsdl:message name="GetClientsRequest">
+    <wsdl:part name="parameters" xmlns:q35="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Message" element="q35:GetClientsRequest" />
+  </wsdl:message>
+  <wsdl:message name="GetClientsResponse">
+    <wsdl:part name="parameters" xmlns:q36="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Message" element="q36:GetClientsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDisplayServiceAdmin_GetClients_DisplayServiceFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q37="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Data" element="q37:DisplayServiceFault" />
+  </wsdl:message>
+  <wsdl:message name="IDisplayServiceAdmin_UnregisterClient_DisplayServiceFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q38="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Data" element="q38:DisplayServiceFault" />
+  </wsdl:message>
+  <wsdl:message name="IDisplayServiceAdmin_Ping_DisplayServiceFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q39="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Data" element="q39:DisplayServiceFault" />
+  </wsdl:message>
+  <wsdl:message name="GetAllMessagesRequest">
+    <wsdl:part name="parameters" xmlns:q40="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Message" element="q40:GetAllMessagesRequest" />
+  </wsdl:message>
+  <wsdl:message name="GetAllMessagesResponse">
+    <wsdl:part name="parameters" xmlns:q41="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Message" element="q41:GetAllMessagesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDisplayServiceAdmin_GetAllMessages_DisplayServiceFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q42="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Data" element="q42:DisplayServiceFault" />
+  </wsdl:message>
+  <wsdl:message name="IDisplayServiceAdmin_GetMessageStates_DisplayServiceFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q43="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Data" element="q43:DisplayServiceFault" />
+  </wsdl:message>
+  <wsdl:message name="UpdateViewerRegistrationsFromControlledStationsRequest">
+    <wsdl:part name="parameters" xmlns:q44="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Message" element="q44:UpdateViewerRegistrationsFromControlledStationsRequest" />
+  </wsdl:message>
+  <wsdl:message name="UpdateViewerRegistrationsFromControlledStationsResponse">
+    <wsdl:part name="parameters" xmlns:q45="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Message" element="q45:UpdateViewerRegistrationsFromControlledStationsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDisplayServiceAdmin_UpdateViewerRegistrationsFromControlledStations_DisplayServiceFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q46="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Data" element="q46:DisplayServiceFault" />
+  </wsdl:message>
+  <wsdl:message name="IsViewerRegisteredRequest">
+    <wsdl:part name="parameters" xmlns:q47="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Message" element="q47:IsViewerRegisteredRequest" />
+  </wsdl:message>
+  <wsdl:message name="IsViewerRegisteredResponse">
+    <wsdl:part name="parameters" xmlns:q48="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Message" element="q48:IsViewerRegisteredResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDisplayServiceAdmin_IsViewerRegistered_DisplayServiceFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q49="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Data" element="q49:DisplayServiceFault" />
+  </wsdl:message>
+  <wsdl:message name="IDisplayServiceAdmin_ChannelPing_InputMessage">
+    <wsdl:part name="parameters" element="tns:ChannelPing" />
+  </wsdl:message>
+  <wsdl:message name="IDisplayServiceAdmin_ChannelPing_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ChannelPingResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAdminSettingsRequest">
+    <wsdl:part name="parameters" xmlns:q50="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Message" element="q50:GetAdminSettingsRequest" />
+  </wsdl:message>
+  <wsdl:message name="GetAdminSettingsResponse">
+    <wsdl:part name="parameters" xmlns:q51="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Message" element="q51:GetAdminSettingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDisplayServiceAdmin_GetAdminSettings_DisplayServiceFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q52="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Data" element="q52:DisplayServiceFault" />
+  </wsdl:message>
+  <wsdl:message name="UpdateAdminSettingsRequest">
+    <wsdl:part name="parameters" xmlns:q53="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Message" element="q53:UpdateAdminSettingsRequest" />
+  </wsdl:message>
+  <wsdl:message name="UpdateAdminSettingsResponse">
+    <wsdl:part name="parameters" xmlns:q54="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Message" element="q54:UpdateAdminSettingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDisplayServiceAdmin_UpdateAdminSettings_DisplayServiceFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q55="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Data" element="q55:DisplayServiceFault" />
+  </wsdl:message>
+  <wsdl:message name="IDisplayServiceAdmin_RevokeMessageAdmin_DisplayServiceFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q56="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Data" element="q56:DisplayServiceFault" />
+  </wsdl:message>
+  <wsdl:message name="IDisplayServiceAdmin_UnregisterClientAdmin_DisplayServiceFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q57="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Data" element="q57:DisplayServiceFault" />
+  </wsdl:message>
+  <wsdl:message name="ConfirmationReceivedRequest">
+    <wsdl:part name="parameters" xmlns:q58="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Message" element="q58:ConfirmationReceivedRequest" />
+  </wsdl:message>
+  <wsdl:message name="ConfirmationReceivedResponse">
+    <wsdl:part name="parameters" xmlns:q59="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Message" element="q59:ConfirmationReceivedResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDisplayServiceCallback_ConfirmationReceived_DisplayServiceFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q60="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Data" element="q60:DisplayServiceFault" />
+  </wsdl:message>
+  <wsdl:message name="IDisplayServiceCallback_Ping_DisplayServiceFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q61="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Data" element="q61:DisplayServiceFault" />
+  </wsdl:message>
+  <wsdl:message name="IDisplayServiceDispatcher_Ping_DisplayServiceFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q62="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Data" element="q62:DisplayServiceFault" />
+  </wsdl:message>
+  <wsdl:message name="SendDispatcherMessageRequest">
+    <wsdl:part name="parameters" xmlns:q63="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Message" element="q63:SendDispatcherMessageRequest" />
+  </wsdl:message>
+  <wsdl:message name="SendDispatcherMessageResponse">
+    <wsdl:part name="parameters" xmlns:q64="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Message" element="q64:SendDispatcherMessageResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDisplayServiceDispatcher_SendDispatcherMessage_DisplayServiceFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q65="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Data" element="q65:DisplayServiceFault" />
+  </wsdl:message>
+  <wsdl:message name="RevokeDispatcherMessageRequest">
+    <wsdl:part name="parameters" xmlns:q66="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Message" element="q66:RevokeDispatcherMessageRequest" />
+  </wsdl:message>
+  <wsdl:message name="RevokeDispatcherMessageResponse">
+    <wsdl:part name="parameters" xmlns:q67="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Message" element="q67:RevokeDispatcherMessageResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDisplayServiceDispatcher_RevokeDispatcherMessage_DisplayServiceFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q68="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Data" element="q68:DisplayServiceFault" />
+  </wsdl:message>
+  <wsdl:message name="UpdateDispatcherMessageRequest">
+    <wsdl:part name="parameters" xmlns:q69="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Message" element="q69:UpdateDispatcherMessageRequest" />
+  </wsdl:message>
+  <wsdl:message name="UpdateDispatcherMessageResponse">
+    <wsdl:part name="parameters" xmlns:q70="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Message" element="q70:UpdateDispatcherMessageResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDisplayServiceDispatcher_UpdateDispatcherMessage_DisplayServiceFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q71="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Data" element="q71:DisplayServiceFault" />
+  </wsdl:message>
+  <wsdl:message name="IDisplayServiceDispatcher_ChannelPingDispatcher_InputMessage">
+    <wsdl:part name="parameters" element="tns:ChannelPingDispatcher" />
+  </wsdl:message>
+  <wsdl:message name="IDisplayServiceDispatcher_ChannelPingDispatcher_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ChannelPingDispatcherResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IDisplayService">
+    <wsdl:operation name="RegisterClient">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayService/RegisterClient" name="ClientRegistrationRequest" message="tns:ClientRegistrationRequest" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayService/RegisterClientResponse" name="ClientRegistrationResponse" message="tns:ClientRegistrationResponse" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayService/RegisterClientDisplayServiceFaultFault" name="DisplayServiceFaultFault" message="tns:IDisplayService_RegisterClient_DisplayServiceFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UnregisterClient">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayService/UnregisterClient" name="ClientUnregistrationRequest" message="tns:ClientUnregistrationRequest" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayService/UnregisterClientResponse" name="ClientUnregistrationResponse" message="tns:ClientUnregistrationResponse" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayService/UnregisterClientDisplayServiceFaultFault" name="DisplayServiceFaultFault" message="tns:IDisplayService_UnregisterClient_DisplayServiceFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SendMessage">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayService/SendMessage" name="SendMessageRequest" message="tns:SendMessageRequest" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayService/SendMessageResponse" name="SendMessageResponse" message="tns:SendMessageResponse" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayService/SendMessageDSMessageDeliveryFaultFault" name="DSMessageDeliveryFaultFault" message="tns:IDisplayService_SendMessage_DSMessageDeliveryFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateMessage">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayService/UpdateMessage" name="UpdateMessageRequest" message="tns:UpdateMessageRequest" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayService/UpdateMessageResponse" name="UpdateMessageResponse" message="tns:UpdateMessageResponse" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayService/UpdateMessageDSMessageDeliveryFaultFault" name="DSMessageDeliveryFaultFault" message="tns:IDisplayService_UpdateMessage_DSMessageDeliveryFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RevokeMessage">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayService/RevokeMessage" name="RevokeMessageRequest" message="tns:RevokeMessageRequest" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayService/RevokeMessageResponse" name="RevokeMessageResponse" message="tns:RevokeMessageResponse" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayService/RevokeMessageDSMessageDeliveryFaultFault" name="DSMessageDeliveryFaultFault" message="tns:IDisplayService_RevokeMessage_DSMessageDeliveryFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllViewers">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayService/GetAllViewers" message="tns:IDisplayService_GetAllViewers_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayService/GetAllViewersResponse" message="tns:IDisplayService_GetAllViewers_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayService/GetAllViewersDisplayServiceFaultFault" name="DisplayServiceFaultFault" message="tns:IDisplayService_GetAllViewers_DisplayServiceFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMessageStates">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayService/GetMessageStates" name="GetMessageStatesRequest" message="tns:GetMessageStatesRequest" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayService/GetMessageStatesResponse" name="GetMessageStatesResponse" message="tns:GetMessageStatesResponse" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayService/GetMessageStatesDisplayServiceFaultFault" name="DisplayServiceFaultFault" message="tns:IDisplayService_GetMessageStates_DisplayServiceFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Ping">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayService/Ping" name="PingRequest" message="tns:PingRequest" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayService/PingResponse" name="PingResponse" message="tns:PingResponse" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayService/PingDisplayServiceFaultFault" name="DisplayServiceFaultFault" message="tns:IDisplayService_Ping_DisplayServiceFaultFault_FaultMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IDisplayServiceAdmin">
+    <wsdl:operation name="RegisterViewer">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceAdmin/RegisterViewer" name="ViewerRegistrationRequest" message="tns:ViewerRegistrationRequest" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceAdmin/RegisterViewerResponse" name="ViewerRegistrationResponse" message="tns:ViewerRegistrationResponse" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceAdmin/RegisterViewerDisplayServiceFaultFault" name="DisplayServiceFaultFault" message="tns:IDisplayServiceAdmin_RegisterViewer_DisplayServiceFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UnregisterViewer">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceAdmin/UnregisterViewer" name="ViewerUnregistrationRequest" message="tns:ViewerUnregistrationRequest" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceAdmin/UnregisterViewerResponse" name="ViewerUnregistrationResponse" message="tns:ViewerUnregistrationResponse" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceAdmin/UnregisterViewerDisplayServiceFaultFault" name="DisplayServiceFaultFault" message="tns:IDisplayServiceAdmin_UnregisterViewer_DisplayServiceFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateViewerRegistration">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceAdmin/UpdateViewerRegistration" name="ViewerUpdateRequest" message="tns:ViewerUpdateRequest" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceAdmin/UpdateViewerRegistrationResponse" name="ViewerUpdateResponse" message="tns:ViewerUpdateResponse" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceAdmin/UpdateViewerRegistrationDisplayServiceFaultFault" name="DisplayServiceFaultFault" message="tns:IDisplayServiceAdmin_UpdateViewerRegistration_DisplayServiceFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetViewers">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceAdmin/GetViewers" name="GetViewersRequest" message="tns:GetViewersRequest" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceAdmin/GetViewersResponse" name="GetViewersResponse" message="tns:GetViewersResponse" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceAdmin/GetViewersDisplayServiceFaultFault" name="DisplayServiceFaultFault" message="tns:IDisplayServiceAdmin_GetViewers_DisplayServiceFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetClients">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceAdmin/GetClients" name="GetClientsRequest" message="tns:GetClientsRequest" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceAdmin/GetClientsResponse" name="GetClientsResponse" message="tns:GetClientsResponse" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceAdmin/GetClientsDisplayServiceFaultFault" name="DisplayServiceFaultFault" message="tns:IDisplayServiceAdmin_GetClients_DisplayServiceFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UnregisterClient">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceAdmin/UnregisterClient" name="ClientUnregistrationRequest" message="tns:ClientUnregistrationRequest" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceAdmin/UnregisterClientResponse" name="ClientUnregistrationResponse" message="tns:ClientUnregistrationResponse" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceAdmin/UnregisterClientDisplayServiceFaultFault" name="DisplayServiceFaultFault" message="tns:IDisplayServiceAdmin_UnregisterClient_DisplayServiceFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Ping">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceAdmin/Ping" name="PingRequest" message="tns:PingRequest" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceAdmin/PingResponse" name="PingResponse" message="tns:PingResponse" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceAdmin/PingDisplayServiceFaultFault" name="DisplayServiceFaultFault" message="tns:IDisplayServiceAdmin_Ping_DisplayServiceFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllMessages">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceAdmin/GetAllMessages" name="GetAllMessagesRequest" message="tns:GetAllMessagesRequest" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceAdmin/GetAllMessagesResponse" name="GetAllMessagesResponse" message="tns:GetAllMessagesResponse" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceAdmin/GetAllMessagesDisplayServiceFaultFault" name="DisplayServiceFaultFault" message="tns:IDisplayServiceAdmin_GetAllMessages_DisplayServiceFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMessageStates">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceAdmin/GetMessageStates" name="GetMessageStatesRequest" message="tns:GetMessageStatesRequest" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceAdmin/GetMessageStatesResponse" name="GetMessageStatesResponse" message="tns:GetMessageStatesResponse" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceAdmin/GetMessageStatesDisplayServiceFaultFault" name="DisplayServiceFaultFault" message="tns:IDisplayServiceAdmin_GetMessageStates_DisplayServiceFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateViewerRegistrationsFromControlledStations">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceAdmin/UpdateViewerRegistrationsFromControlledStations" name="UpdateViewerRegistrationsFromControlledStationsRequest" message="tns:UpdateViewerRegistrationsFromControlledStationsRequest" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceAdmin/UpdateViewerRegistrationsFromControlledStationsResponse" name="UpdateViewerRegistrationsFromControlledStationsResponse" message="tns:UpdateViewerRegistrationsFromControlledStationsResponse" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceAdmin/UpdateViewerRegistrationsFromControlledStationsDisplayServiceFaultFault" name="DisplayServiceFaultFault" message="tns:IDisplayServiceAdmin_UpdateViewerRegistrationsFromControlledStations_DisplayServiceFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IsViewerRegistered">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceAdmin/IsViewerRegistered" name="IsViewerRegisteredRequest" message="tns:IsViewerRegisteredRequest" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceAdmin/IsViewerRegisteredResponse" name="IsViewerRegisteredResponse" message="tns:IsViewerRegisteredResponse" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceAdmin/IsViewerRegisteredDisplayServiceFaultFault" name="DisplayServiceFaultFault" message="tns:IDisplayServiceAdmin_IsViewerRegistered_DisplayServiceFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ChannelPing">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceAdmin/ChannelPing" message="tns:IDisplayServiceAdmin_ChannelPing_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceAdmin/ChannelPingResponse" message="tns:IDisplayServiceAdmin_ChannelPing_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAdminSettings">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceAdmin/GetAdminSettings" name="GetAdminSettingsRequest" message="tns:GetAdminSettingsRequest" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceAdmin/GetAdminSettingsResponse" name="GetAdminSettingsResponse" message="tns:GetAdminSettingsResponse" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceAdmin/GetAdminSettingsDisplayServiceFaultFault" name="DisplayServiceFaultFault" message="tns:IDisplayServiceAdmin_GetAdminSettings_DisplayServiceFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAdminSettings">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceAdmin/UpdateAdminSettings" name="UpdateAdminSettingsRequest" message="tns:UpdateAdminSettingsRequest" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceAdmin/UpdateAdminSettingsResponse" name="UpdateAdminSettingsResponse" message="tns:UpdateAdminSettingsResponse" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceAdmin/UpdateAdminSettingsDisplayServiceFaultFault" name="DisplayServiceFaultFault" message="tns:IDisplayServiceAdmin_UpdateAdminSettings_DisplayServiceFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RevokeMessageAdmin">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceAdmin/RevokeMessageAdmin" name="RevokeMessageRequest" message="tns:RevokeMessageRequest" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceAdmin/RevokeMessageAdminResponse" name="RevokeMessageResponse" message="tns:RevokeMessageResponse" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceAdmin/RevokeMessageAdminDisplayServiceFaultFault" name="DisplayServiceFaultFault" message="tns:IDisplayServiceAdmin_RevokeMessageAdmin_DisplayServiceFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UnregisterClientAdmin">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceAdmin/UnregisterClientAdmin" name="ClientUnregistrationRequest" message="tns:ClientUnregistrationRequest" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceAdmin/UnregisterClientAdminResponse" name="ClientUnregistrationResponse" message="tns:ClientUnregistrationResponse" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceAdmin/UnregisterClientAdminDisplayServiceFaultFault" name="DisplayServiceFaultFault" message="tns:IDisplayServiceAdmin_UnregisterClientAdmin_DisplayServiceFaultFault_FaultMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IDisplayServiceCallback">
+    <wsdl:operation name="ConfirmationReceived">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceCallback/ConfirmationReceived" name="ConfirmationReceivedRequest" message="tns:ConfirmationReceivedRequest" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceCallback/ConfirmationReceivedResponse" name="ConfirmationReceivedResponse" message="tns:ConfirmationReceivedResponse" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceCallback/ConfirmationReceivedDisplayServiceFaultFault" name="DisplayServiceFaultFault" message="tns:IDisplayServiceCallback_ConfirmationReceived_DisplayServiceFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Ping">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceCallback/Ping" name="PingRequest" message="tns:PingRequest" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceCallback/PingResponse" name="PingResponse" message="tns:PingResponse" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceCallback/PingDisplayServiceFaultFault" name="DisplayServiceFaultFault" message="tns:IDisplayServiceCallback_Ping_DisplayServiceFaultFault_FaultMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IDisplayServiceDispatcher">
+    <wsdl:operation name="Ping">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceDispatcher/Ping" name="PingRequest" message="tns:PingRequest" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceDispatcher/PingResponse" name="PingResponse" message="tns:PingResponse" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceDispatcher/PingDisplayServiceFaultFault" name="DisplayServiceFaultFault" message="tns:IDisplayServiceDispatcher_Ping_DisplayServiceFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SendDispatcherMessage">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceDispatcher/SendDispatcherMessage" name="SendDispatcherMessageRequest" message="tns:SendDispatcherMessageRequest" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceDispatcher/SendDispatcherMessageResponse" name="SendDispatcherMessageResponse" message="tns:SendDispatcherMessageResponse" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceDispatcher/SendDispatcherMessageDisplayServiceFaultFault" name="DisplayServiceFaultFault" message="tns:IDisplayServiceDispatcher_SendDispatcherMessage_DisplayServiceFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RevokeDispatcherMessage">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceDispatcher/RevokeDispatcherMessage" name="RevokeDispatcherMessageRequest" message="tns:RevokeDispatcherMessageRequest" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceDispatcher/RevokeDispatcherMessageResponse" name="RevokeDispatcherMessageResponse" message="tns:RevokeDispatcherMessageResponse" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceDispatcher/RevokeDispatcherMessageDisplayServiceFaultFault" name="DisplayServiceFaultFault" message="tns:IDisplayServiceDispatcher_RevokeDispatcherMessage_DisplayServiceFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDispatcherMessage">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceDispatcher/UpdateDispatcherMessage" name="UpdateDispatcherMessageRequest" message="tns:UpdateDispatcherMessageRequest" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceDispatcher/UpdateDispatcherMessageResponse" name="UpdateDispatcherMessageResponse" message="tns:UpdateDispatcherMessageResponse" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceDispatcher/UpdateDispatcherMessageDisplayServiceFaultFault" name="DisplayServiceFaultFault" message="tns:IDisplayServiceDispatcher_UpdateDispatcherMessage_DisplayServiceFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ChannelPingDispatcher">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceDispatcher/ChannelPingDispatcher" message="tns:IDisplayServiceDispatcher_ChannelPingDispatcher_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceDispatcher/ChannelPingDispatcherResponse" message="tns:IDisplayServiceDispatcher_ChannelPingDispatcher_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DefaultBinding_IDisplayService" type="tns:IDisplayService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="RegisterClient">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayService/RegisterClient" style="document" />
+      <wsdl:input name="ClientRegistrationRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="ClientRegistrationResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="DisplayServiceFaultFault">
+        <soap:fault name="DisplayServiceFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="UnregisterClient">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayService/UnregisterClient" style="document" />
+      <wsdl:input name="ClientUnregistrationRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="ClientUnregistrationResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="DisplayServiceFaultFault">
+        <soap:fault name="DisplayServiceFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="SendMessage">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayService/SendMessage" style="document" />
+      <wsdl:input name="SendMessageRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="SendMessageResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="DSMessageDeliveryFaultFault">
+        <soap:fault name="DSMessageDeliveryFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateMessage">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayService/UpdateMessage" style="document" />
+      <wsdl:input name="UpdateMessageRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="UpdateMessageResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="DSMessageDeliveryFaultFault">
+        <soap:fault name="DSMessageDeliveryFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="RevokeMessage">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayService/RevokeMessage" style="document" />
+      <wsdl:input name="RevokeMessageRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="RevokeMessageResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="DSMessageDeliveryFaultFault">
+        <soap:fault name="DSMessageDeliveryFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllViewers">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayService/GetAllViewers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="DisplayServiceFaultFault">
+        <soap:fault name="DisplayServiceFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetMessageStates">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayService/GetMessageStates" style="document" />
+      <wsdl:input name="GetMessageStatesRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetMessageStatesResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="DisplayServiceFaultFault">
+        <soap:fault name="DisplayServiceFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Ping">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayService/Ping" style="document" />
+      <wsdl:input name="PingRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="PingResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="DisplayServiceFaultFault">
+        <soap:fault name="DisplayServiceFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DefaultBinding_IDisplayServiceAdmin" type="tns:IDisplayServiceAdmin">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="RegisterViewer">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceAdmin/RegisterViewer" style="document" />
+      <wsdl:input name="ViewerRegistrationRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="ViewerRegistrationResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="DisplayServiceFaultFault">
+        <soap:fault name="DisplayServiceFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="UnregisterViewer">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceAdmin/UnregisterViewer" style="document" />
+      <wsdl:input name="ViewerUnregistrationRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="ViewerUnregistrationResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="DisplayServiceFaultFault">
+        <soap:fault name="DisplayServiceFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateViewerRegistration">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceAdmin/UpdateViewerRegistration" style="document" />
+      <wsdl:input name="ViewerUpdateRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="ViewerUpdateResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="DisplayServiceFaultFault">
+        <soap:fault name="DisplayServiceFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetViewers">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceAdmin/GetViewers" style="document" />
+      <wsdl:input name="GetViewersRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetViewersResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="DisplayServiceFaultFault">
+        <soap:fault name="DisplayServiceFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetClients">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceAdmin/GetClients" style="document" />
+      <wsdl:input name="GetClientsRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetClientsResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="DisplayServiceFaultFault">
+        <soap:fault name="DisplayServiceFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="UnregisterClient">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceAdmin/UnregisterClient" style="document" />
+      <wsdl:input name="ClientUnregistrationRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="ClientUnregistrationResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="DisplayServiceFaultFault">
+        <soap:fault name="DisplayServiceFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Ping">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceAdmin/Ping" style="document" />
+      <wsdl:input name="PingRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="PingResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="DisplayServiceFaultFault">
+        <soap:fault name="DisplayServiceFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllMessages">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceAdmin/GetAllMessages" style="document" />
+      <wsdl:input name="GetAllMessagesRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetAllMessagesResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="DisplayServiceFaultFault">
+        <soap:fault name="DisplayServiceFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetMessageStates">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceAdmin/GetMessageStates" style="document" />
+      <wsdl:input name="GetMessageStatesRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetMessageStatesResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="DisplayServiceFaultFault">
+        <soap:fault name="DisplayServiceFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateViewerRegistrationsFromControlledStations">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceAdmin/UpdateViewerRegistrationsFromControlledStations" style="document" />
+      <wsdl:input name="UpdateViewerRegistrationsFromControlledStationsRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="UpdateViewerRegistrationsFromControlledStationsResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="DisplayServiceFaultFault">
+        <soap:fault name="DisplayServiceFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="IsViewerRegistered">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceAdmin/IsViewerRegistered" style="document" />
+      <wsdl:input name="IsViewerRegisteredRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="IsViewerRegisteredResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="DisplayServiceFaultFault">
+        <soap:fault name="DisplayServiceFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ChannelPing">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceAdmin/ChannelPing" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAdminSettings">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceAdmin/GetAdminSettings" style="document" />
+      <wsdl:input name="GetAdminSettingsRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetAdminSettingsResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="DisplayServiceFaultFault">
+        <soap:fault name="DisplayServiceFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAdminSettings">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceAdmin/UpdateAdminSettings" style="document" />
+      <wsdl:input name="UpdateAdminSettingsRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="UpdateAdminSettingsResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="DisplayServiceFaultFault">
+        <soap:fault name="DisplayServiceFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="RevokeMessageAdmin">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceAdmin/RevokeMessageAdmin" style="document" />
+      <wsdl:input name="RevokeMessageRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="RevokeMessageResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="DisplayServiceFaultFault">
+        <soap:fault name="DisplayServiceFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="UnregisterClientAdmin">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceAdmin/UnregisterClientAdmin" style="document" />
+      <wsdl:input name="ClientUnregistrationRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="ClientUnregistrationResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="DisplayServiceFaultFault">
+        <soap:fault name="DisplayServiceFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DefaultBinding_IDisplayServiceCallback" type="tns:IDisplayServiceCallback">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ConfirmationReceived">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceCallback/ConfirmationReceived" style="document" />
+      <wsdl:input name="ConfirmationReceivedRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="ConfirmationReceivedResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="DisplayServiceFaultFault">
+        <soap:fault name="DisplayServiceFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Ping">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceCallback/Ping" style="document" />
+      <wsdl:input name="PingRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="PingResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="DisplayServiceFaultFault">
+        <soap:fault name="DisplayServiceFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DefaultBinding_IDisplayServiceDispatcher" type="tns:IDisplayServiceDispatcher">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Ping">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceDispatcher/Ping" style="document" />
+      <wsdl:input name="PingRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="PingResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="DisplayServiceFaultFault">
+        <soap:fault name="DisplayServiceFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="SendDispatcherMessage">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceDispatcher/SendDispatcherMessage" style="document" />
+      <wsdl:input name="SendDispatcherMessageRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="SendDispatcherMessageResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="DisplayServiceFaultFault">
+        <soap:fault name="DisplayServiceFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="RevokeDispatcherMessage">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceDispatcher/RevokeDispatcherMessage" style="document" />
+      <wsdl:input name="RevokeDispatcherMessageRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="RevokeDispatcherMessageResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="DisplayServiceFaultFault">
+        <soap:fault name="DisplayServiceFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDispatcherMessage">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceDispatcher/UpdateDispatcherMessage" style="document" />
+      <wsdl:input name="UpdateDispatcherMessageRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="UpdateDispatcherMessageResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="DisplayServiceFaultFault">
+        <soap:fault name="DisplayServiceFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ChannelPingDispatcher">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Service/IDisplayServiceDispatcher/ChannelPingDispatcher" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+</wsdl:definitions>

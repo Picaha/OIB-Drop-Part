@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/ASM.AS.Oib.BoardGateKeeper.Contracts.Data" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/ASM.AS.Oib.BoardGateKeeper.Contracts.Data" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/Asm.As.Oib.BoardGateKeeper.Contracts.Data" />
+  <xs:complexType name="VirtualInkspotHandlingData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="SubPanelStates" nillable="true" xmlns:q1="http://schemas.datacontract.org/2004/07/Asm.As.Oib.BoardGateKeeper.Contracts.Data" type="q1:ArrayOfSubPanelState" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="VirtualInkspotHandlingData" nillable="true" type="tns:VirtualInkspotHandlingData" />
+</xs:schema>

@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.siplace.com/OIB/2008/05/ConfigurationManager/Contracts/Message" elementFormDefault="qualified" targetNamespace="http://www.siplace.com/OIB/2008/05/ConfigurationManager/Contracts/Message" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://www.siplace.com/OIB/2008/05/ConfigurationManager/Contracts/Data" />
+  <xs:element name="ObjectCreatedReportRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ObjectCreatedReport" nillable="true" xmlns:q1="http://www.siplace.com/OIB/2008/05/ConfigurationManager/Contracts/Data" type="q1:ObjectCreatedReport" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObjectDeletedReportRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ObjectDeletedReport" nillable="true" xmlns:q2="http://www.siplace.com/OIB/2008/05/ConfigurationManager/Contracts/Data" type="q2:ObjectDeletedReport" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

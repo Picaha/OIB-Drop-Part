@@ -1,0 +1,281 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ASM.AS.OIB.WS.Common</name>
+    </assembly>
+    <members>
+        <member name="T:Asm.As.Oib.WS.Common.Constants">
+            <summary>
+            Constants name space definitions for this service.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.WS.Common.Constants.NamespaceUriData">
+            <summary>
+            URI name space for this data contracs in this service
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.WS.Common.Constants.NamespaceUriService">
+            <summary>
+            URI name space for this service contracts of this service.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.WS.Common.Constants.NamespaceUriMessage">
+            <summary>
+            URI name space for this service contracts of this service.
+            </summary>
+        </member>
+        <member name="T:Asm.As.Oib.WS.Common.Faults.OIBWSFault">
+            <summary>
+            This is the Fault Class for the errors occurring in the WS Framework from OIB.
+            This fault is inherited from the general OIBFault.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.WS.Common.Faults.OIBWSFault.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.WS.Common.Faults.OIBWSFault" /> class.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.WS.Common.Faults.OIBWSFault.#ctor(System.Int32,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.WS.Common.Faults.OIBWSFault" /> class.
+            </summary>
+            <param name="errorCode">The error code.</param>
+            <param name="strExtendedMessage">The STR extended message.</param>
+        </member>
+        <member name="P:Asm.As.Oib.WS.Common.Faults.OIBWSFault.ErrorCode">
+            <summary>
+            The error to be used, when an system error or business error occurred.
+            <list type="table">
+            <listheader>
+            <term>Value</term>
+            <description>Error Description</description>
+            </listheader>
+            <item>
+            <term>100000</term>
+            <description>This is a generic system error</description>
+            </item>
+            <item>
+            <term>100001</term>
+            <description>
+            The application for the OIB adapter is not running.
+            Especially the Setup Center application might not run, when the adapter is accessing
+            the application functionality. Please restart the application.
+            </description>
+            </item>
+            <item>
+            <term>200000</term>
+            <description>This is a generic business error</description>
+            </item>
+            </list>
+            <item>
+            <term>200001</term>
+            <description>The secondary eventing registration cannot be unregistered since there are event sources using this secondary service</description>
+            </item>
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Asm.As.Oib.WS.Common.Faults.OIBWSFault.ExtendedMessage">
+            <summary>
+            This is a error message in a human readable form.
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:Asm.As.Oib.WS.Common.Faults.OIBWSFault.ToString">
+            <inheritdoc />
+        </member>
+        <member name="T:Asm.As.Oib.WS.Common.Faults.Types.InvalidMessage">
+            <summary>
+            Any Invalid Message
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.WS.Common.Faults.Types.InvalidMessage.SubCode">
+            <summary>
+            Fault subcode for an invalid message
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.WS.Common.Faults.Types.InvalidMessage.Reason">
+            <summary>
+            Fault reson code for an invalid message
+            </summary>
+        </member>
+        <member name="T:Asm.As.Oib.WS.Common.Objects.CompressionHelper">
+            <summary>
+                Helper Class for handling Compression/Decompression of XML strings specifically.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.WS.Common.Objects.CompressionHelper.Decompress(System.Byte[])">
+            <summary>
+                Get an Xml (string) from a compressed stream of bytes.
+            </summary>
+            <param name="bytesCompressed">A compressed byte array</param>
+            <returns>String (XML) uncompressed</returns>
+        </member>
+        <member name="M:Asm.As.Oib.WS.Common.Objects.CompressionHelper.DecompressBytes(System.Byte[])">
+            <summary>
+                Get an uncompressed byte[] from a compressed stream of bytes.
+            </summary>
+            <param name="bytesCompressed">A compressed byte array</param>
+            <returns>String (XML) uncompressed</returns>
+        </member>
+        <member name="M:Asm.As.Oib.WS.Common.Objects.CompressionHelper.Compress(System.String@)">
+            <summary>
+                Compress a string (XML) into an array of bytes
+            </summary>
+            <param name="strXml">XML data or any string</param>
+            <returns>A compressed byte array of the string passed in.</returns>
+        </member>
+        <member name="M:Asm.As.Oib.WS.Common.Objects.CompressionHelper.Compress(System.Byte[]@)">
+            <summary>
+                Compress a byte array.
+            </summary>
+            <param name="buffer">The array of bytes to compress.</param>
+            <returns>
+                A compressed byte array of the array passed in.
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.WS.Common.Objects.CompressionHelper.ShouldCompress(System.String@)">
+            <summary>
+                Check if a string should be compressed. This is a little bit of guess work but basically,
+                if the string is greater than 2k in size it is ideal for compression.
+                Just to compress a couple of characters has about a 1k overhead so shouldn't compress everything.
+            </summary>
+            <param name="strXml">The string to possibly compress.</param>
+            <returns>True if the string should be compressed, false otherwise.</returns>
+        </member>
+        <member name="M:Asm.As.Oib.WS.Common.Objects.CompressionHelper.ShouldCompress(System.Byte[]@)">
+            <summary>
+                Check if a array of bytes should be compressed. This is a little bit of guess work but basically,
+                if the string is greater than 2k in size it is ideal for compression.
+                Just to compress a couple of characters has about a 1k overhead so shouldn't compress everything.
+            </summary>
+            <param name="bytes">The array of bytes to possibly compress.</param>
+            <returns>True if the array should be compressed, false otherwise.</returns>
+        </member>
+        <member name="M:Asm.As.Oib.WS.Common.Objects.CompressionHelper.ReadAllBytesFromStream(System.IO.Compression.GZipStream,System.IO.MemoryStream)">
+            <summary>
+                Helper method to read out a compressed stream into a uncompressed memory stream
+            </summary>
+            <param name="zipStream">Compressed stream</param>
+            <param name="streamUncompressed">Uncompressed memory stream</param>
+        </member>
+        <member name="T:Asm.As.Oib.WS.Common.Objects.Convert">
+            <summary>
+            Helper Class for converting object to and from XML.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.WS.Common.Objects.Convert.ObjectToXml(System.Object)">
+            <summary>
+            Serialize object into the XmlElement
+            </summary>
+            <param name="resource">Any object that can be serialized</param>
+            <returns>Serialized XmlElement from the provided object</returns>
+        </member>
+        <member name="M:Asm.As.Oib.WS.Common.Objects.Convert.ObjectToXmlAnyElement(System.Object)">
+            <summary>
+            Serialize object into the xml wrapper
+            </summary>
+            <param name="resource">Any object that can be serialized</param>
+            <returns>Serialized XmlElement from the provided object</returns>
+        </member>
+        <member name="M:Asm.As.Oib.WS.Common.Objects.Convert.ObjectToXmlString(System.Object)">
+            <summary>
+            Serialize object into the Xml String
+            </summary>
+            <param name="resource">Any object that can be serialized</param>
+            <returns>Serialized XmlElement string from the provided object</returns>
+        </member>
+        <member name="M:Asm.As.Oib.WS.Common.Objects.Convert.ToChildXmlElement(System.Xml.XmlElement,System.String)">
+            <summary>
+            Convert an object that is represented in an Xml String (probably from an InnerXml or OuterXml call)
+            </summary>
+            <param name="elementParent">The element parent.</param>
+            <param name="strChildElementTagName">Name of the STR child element tag.</param>
+            <returns>Child XmlElement given the tag name</returns>
+        </member>
+        <member name="M:Asm.As.Oib.WS.Common.Objects.Convert.ToChildXmlElement(System.Xml.XmlElement,System.String,System.Boolean)">
+            <summary>
+            Convert an object that is represented in an Xml String (probably from an InnerXml or OuterXml call
+            </summary>
+            <param name="elementParent">The element parent.</param>
+            <param name="strChildElementTagName">Name of the STR child element tag.</param>
+            <param name="bInnerXml">if set to <c>true</c> [b inner XML].</param>
+            <returns>Child XmlElement given the tag name</returns>
+        </member>
+        <member name="M:Asm.As.Oib.WS.Common.Objects.Convert.XmlChildElementToObject``1(System.Xml.XmlElement,System.String)">
+            <summary>
+            Convert an object that is represented in an Xml String (probably from an InnerXml or OuterXml call)
+            </summary>
+            <typeparam name="T">Type of return object</typeparam>
+            <param name="elementParent">The element parent.</param>
+            <param name="strChildElementTagName">Name of the STR child element tag.</param>
+            <returns>The Typed object given the XmlElement </returns>
+        </member>
+        <member name="M:Asm.As.Oib.WS.Common.Objects.Convert.XmlChildElementToObject``1(System.Xml.XmlElement,System.String,System.Boolean)">
+            <summary>
+            Convert an object that is represented in an Xml String (probably from an InnerXml or OuterXml call)
+            </summary>
+            <typeparam name="T">Type of return object</typeparam>
+            <param name="elementParent">The element parent.</param>
+            <param name="strChildElementTagName">Name of the STR child element tag.</param>
+            <param name="bUnnamed">if set to <c>true</c> [b unnamed].</param>
+            <returns>The Typed object given the XmlElement </returns>
+        </member>
+        <member name="M:Asm.As.Oib.WS.Common.Objects.Convert.XmlChildElementToObject``1(System.Xml.XmlElement,System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Convert an object that is represented in an Xml String (probably from an InnerXml or OuterXml call)
+            </summary>
+            <typeparam name="T">Type of return object</typeparam>
+            <param name="elementParent">The element parent.</param>
+            <param name="strChildElementTagName">Name of the STR child element tag.</param>
+            <param name="bUnnamed">if set to <c>true</c> [b unnamed].</param>
+            <param name="bInnerXml">if set to <c>true</c> [b inner XML].</param>
+            <returns>The Typed object given the XmlElement </returns>
+        </member>
+        <member name="M:Asm.As.Oib.WS.Common.Objects.Convert.XmlToObject``1(System.Object)">
+            <summary>
+            Converts a resource in XML format into an object of type T.
+            </summary>
+            <typeparam name="T">Type to return</typeparam>
+            <param name="resource">Any object that can be serialized</param>
+            <returns>Object of type T</returns>
+        </member>
+        <member name="M:Asm.As.Oib.WS.Common.Objects.Convert.XmlToObject``1(System.String)">
+            <summary>
+            Convert an object that is represented in an Xml String (probably from an InnerXml or OuterXml call
+            </summary>
+            <typeparam name="T">The Type of object to convert to</typeparam>
+            <param name="strXml">The string representation of the XML element</param>
+            <returns>The deserialized object</returns>
+        </member>
+        <member name="M:Asm.As.Oib.WS.Common.Objects.Convert.XmlToObject``1(System.Xml.XmlElement,System.Boolean)">
+            <summary>
+            Convert an object that is represented in an Xml String (probably from an InnerXml or OuterXml call
+            </summary>
+            <typeparam name="T">Type of return object</typeparam>
+            <param name="elementNamed">The element named.</param>
+            <param name="bUnnamed">if set to <c>true</c> [b unnamed].</param>
+            <returns>The Typed object given the XmlElement </returns>
+        </member>
+        <member name="M:Asm.As.Oib.WS.Common.Objects.Convert.XmlToObject``1(System.Xml.XmlElement,System.Boolean,System.Boolean)">
+            <summary>
+            Convert an object that is represented in an Xml String (probably from an InnerXml or OuterXml call
+            </summary>
+            <typeparam name="T">Type of return object</typeparam>
+            <param name="elementNamed">The element named.</param>
+            <param name="bUnnamed">if set to <c>true</c> [b unnamed].</param>
+            <param name="bInnerXml">if set to <c>true</c> [b inner XML].</param>
+            <returns>The Typed object given the XmlElement </returns>
+        </member>
+        <member name="T:Asm.As.Oib.WS.Common.Objects.Helper">
+            <summary>
+            Helper Class for generating some Message for tracing
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.WS.Common.Objects.Helper.ShowMe(System.Object)">
+            <summary>
+            Shows the object as a XML serialized resource object.
+            </summary>
+            <param name="resource">The resource.</param>
+        </member>
+    </members>
+</doc>

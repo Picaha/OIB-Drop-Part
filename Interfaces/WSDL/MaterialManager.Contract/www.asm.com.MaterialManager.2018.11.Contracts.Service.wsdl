@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:tns="http://www.asm.com/MaterialManager/2018/11/Contracts/Service" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" targetNamespace="http://www.asm.com/MaterialManager/2018/11/Contracts/Service" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.asm.com/MaterialManager/2018/11/Contracts/Service/Imports">
+      <xsd:import namespace="http://www.asm.com/MaterialManager/2018/11/Contracts/Message" />
+      <xsd:import namespace="http://www.asm.com/MaterialManager/2018/11/Contracts/Service" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import namespace="http://www.asm.com/MaterialManager/2018/11/Contracts/Data" />
+      <xsd:import namespace="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/Asm.As.MaterialManager.Contracts.Contracts.Data" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="MaterialManagerMessageRequest">
+    <wsdl:part name="parameters" xmlns:q1="http://www.asm.com/MaterialManager/2018/11/Contracts/Message" element="q1:MaterialManagerMessageRequest" />
+  </wsdl:message>
+  <wsdl:message name="MaterialManagerMessageRequest_Headers">
+    <wsdl:part name="MessageId" element="tns:MsgId" />
+    <wsdl:part name="SubscriptionTopic" element="tns:SubscriptionTopic" />
+  </wsdl:message>
+  <wsdl:message name="IMaterialManagerEventsDuplex_Publish_OutputMessage" />
+  <wsdl:portType name="IMaterialManagerEventsDuplex">
+    <wsdl:operation name="Publish">
+      <wsdl:input wsaw:Action="http://www.asm.com/MaterialManager/2018/11/Contracts/Service\Publish" name="MaterialManagerMessageRequest" message="tns:MaterialManagerMessageRequest" />
+      <wsdl:output wsaw:Action="http://www.asm.com/MaterialManager/2018/11/Contracts/Service/IMaterialManagerEventsDuplex/PublishResponse" message="tns:IMaterialManagerEventsDuplex_Publish_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IMaterialManagerEventsOneWay">
+    <wsdl:operation name="Publish">
+      <wsdl:input wsaw:Action="http://www.asm.com/MaterialManager/2018/11/Contracts/Service\Publish" name="MaterialManagerMessageRequest" message="tns:MaterialManagerMessageRequest" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DefaultBinding_IMaterialManagerEventsDuplex" type="tns:IMaterialManagerEventsDuplex">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Publish">
+      <soap:operation soapAction="http://www.asm.com/MaterialManager/2018/11/Contracts/Service\Publish" style="document" />
+      <wsdl:input name="MaterialManagerMessageRequest">
+        <soap:header message="tns:MaterialManagerMessageRequest_Headers" part="MessageId" use="literal" />
+        <soap:header message="tns:MaterialManagerMessageRequest_Headers" part="SubscriptionTopic" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DefaultBinding_IMaterialManagerEventsOneWay" type="tns:IMaterialManagerEventsOneWay">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Publish">
+      <soap:operation soapAction="http://www.asm.com/MaterialManager/2018/11/Contracts/Service\Publish" style="document" />
+      <wsdl:input name="MaterialManagerMessageRequest">
+        <soap:header message="tns:MaterialManagerMessageRequest_Headers" part="MessageId" use="literal" />
+        <soap:header message="tns:MaterialManagerMessageRequest_Headers" part="SubscriptionTopic" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+  </wsdl:binding>
+</wsdl:definitions>

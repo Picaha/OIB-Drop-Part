@@ -1,0 +1,1813 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" elementFormDefault="qualified" targetNamespace="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/Asm.As.Oib.SiplaceSetupCenter.Contracts.Data" />
+  <xs:complexType name="PingRequest">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:element name="PingRequest" nillable="true" type="tns:PingRequest" />
+  <xs:complexType name="PingResponse">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:element name="PingResponse" nillable="true" type="tns:PingResponse" />
+  <xs:complexType name="VerifyPrinterToolRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PrinterTool" nillable="true" type="tns:PrinterTool" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="VerifyPrinterToolRequest" nillable="true" type="tns:VerifyPrinterToolRequest" />
+  <xs:complexType name="PrinterTool">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:PrinterVerificationItem">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Machine" nillable="true" type="tns:MachineLocator" />
+          <xs:element minOccurs="0" name="ProductInfo" nillable="true" type="tns:ProductInfo" />
+          <xs:element minOccurs="0" name="SetupPath" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="PrinterTool" nillable="true" type="tns:PrinterTool" />
+  <xs:complexType name="PrinterVerificationItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Barcode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PrinterValidationStatus" type="xs:int" />
+      <xs:element minOccurs="0" name="VerificationItemId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="VerificationRequired" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PrinterVerificationItem" nillable="true" type="tns:PrinterVerificationItem" />
+  <xs:complexType name="MachineLocator">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="MachineId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MachineName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LineName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MachineType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LinePath" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MachineLocator" nillable="true" type="tns:MachineLocator" />
+  <xs:complexType name="ProductInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ConveyorLane" type="xs:int" />
+      <xs:element minOccurs="0" name="DateModified" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ProductId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ProductName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProductInfo" nillable="true" type="tns:ProductInfo" />
+  <xs:complexType name="VerifyPrinterToolResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PrinterTool" nillable="true" type="tns:PrinterTool" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="VerifyPrinterToolResponse" nillable="true" type="tns:VerifyPrinterToolResponse" />
+  <xs:complexType name="VerifyPrinterMaterialRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PrinterMaterial" nillable="true" type="tns:PrinterMaterial" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="VerifyPrinterMaterialRequest" nillable="true" type="tns:VerifyPrinterMaterialRequest" />
+  <xs:complexType name="PrinterMaterial">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:PrinterVerificationItem">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Machine" nillable="true" type="tns:MachineLocator" />
+          <xs:element minOccurs="0" name="ProductInfo" nillable="true" type="tns:ProductInfo" />
+          <xs:element minOccurs="0" name="SetupPath" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="PrinterMaterial" nillable="true" type="tns:PrinterMaterial" />
+  <xs:complexType name="VerifyPrinterMaterialResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PrinterMaterial" nillable="true" type="tns:PrinterMaterial" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="VerifyPrinterMaterialResponse" nillable="true" type="tns:VerifyPrinterMaterialResponse" />
+  <xs:complexType name="GetNozzleMaintenanceStatusRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="NozzlesRequest" nillable="true" type="tns:ArrayOfNozzle" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetNozzleMaintenanceStatusRequest" nillable="true" type="tns:GetNozzleMaintenanceStatusRequest" />
+  <xs:complexType name="ArrayOfNozzle">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Nozzle" nillable="true" type="tns:Nozzle" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfNozzle" nillable="true" type="tns:ArrayOfNozzle" />
+  <xs:complexType name="Nozzle">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Type" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Nozzle" nillable="true" type="tns:Nozzle" />
+  <xs:complexType name="GetNozzleMaintenanceStatusResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="NozzlesResponse" nillable="true" type="tns:ArrayOfNozzleState" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetNozzleMaintenanceStatusResponse" nillable="true" type="tns:GetNozzleMaintenanceStatusResponse" />
+  <xs:complexType name="ArrayOfNozzleState">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="NozzleState" nillable="true" type="tns:NozzleState" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfNozzleState" nillable="true" type="tns:ArrayOfNozzleState" />
+  <xs:complexType name="NozzleState">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Status" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="NozzleState" nillable="true" type="tns:NozzleState" />
+  <xs:complexType name="GetFeederMaintenanceStatusRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FeederLocations" nillable="true" type="tns:ArrayOfFeederLocation" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetFeederMaintenanceStatusRequest" nillable="true" type="tns:GetFeederMaintenanceStatusRequest" />
+  <xs:complexType name="ArrayOfFeederLocation">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="FeederLocation" nillable="true" type="tns:FeederLocation" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfFeederLocation" nillable="true" type="tns:ArrayOfFeederLocation" />
+  <xs:complexType name="FeederLocation">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:TableLocation">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="FeederId" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="FeederType" type="xs:int" />
+          <xs:element name="Track" type="xs:int" />
+          <xs:element minOccurs="0" name="FeederTypeSpiOid" type="xs:int" />
+          <xs:element minOccurs="0" name="Divisions" nillable="true" type="tns:ArrayOfDivision" />
+          <xs:element minOccurs="0" name="TargetTrack" type="xs:int" />
+          <xs:element minOccurs="0" name="CartridgeId" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CassetteId" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CassetteLevel" type="xs:int" />
+          <xs:element minOccurs="0" name="TargetLine" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="TargetLocation" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="TargetSetup" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="TargetStation" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="FeederTypeSpiOidLong" nillable="true" type="xs:long" />
+          <xs:element minOccurs="0" name="TrayCarrierId" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="FeederLocation" nillable="true" type="tns:FeederLocation" />
+  <xs:complexType name="TableLocation">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DockingStation" nillable="true" type="tns:DockingStation" />
+      <xs:element name="Location" type="xs:int" />
+      <xs:element minOccurs="0" name="Machine" nillable="true" type="tns:MachineLocator" />
+      <xs:element minOccurs="0" name="TableId" nillable="true" type="xs:string" />
+      <xs:element name="TableState" type="xs:int" />
+      <xs:element minOccurs="0" name="Device" type="xs:int" />
+      <xs:element minOccurs="0" name="IsConstantTable" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TableLocation" nillable="true" type="tns:TableLocation" />
+  <xs:complexType name="DockingStation">
+    <xs:sequence>
+      <xs:element name="DockingStationId" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DockingStation" nillable="true" type="tns:DockingStation" />
+  <xs:complexType name="ArrayOfDivision">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Division" nillable="true" type="tns:Division" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDivision" nillable="true" type="tns:ArrayOfDivision" />
+  <xs:complexType name="Division">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CycleCount" type="xs:int" />
+      <xs:element minOccurs="0" name="DivisionNumber" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Division" nillable="true" type="tns:Division" />
+  <xs:complexType name="GetFeederMaintenanceStatusResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FeederMaintenanceStatusInfos" nillable="true" type="tns:ArrayOfFeederMaintenanceStatusInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetFeederMaintenanceStatusResponse" nillable="true" type="tns:GetFeederMaintenanceStatusResponse" />
+  <xs:complexType name="ArrayOfFeederMaintenanceStatusInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="FeederMaintenanceStatusInfo" nillable="true" type="tns:FeederMaintenanceStatusInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfFeederMaintenanceStatusInfo" nillable="true" type="tns:ArrayOfFeederMaintenanceStatusInfo" />
+  <xs:complexType name="FeederMaintenanceStatusInfo">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:FeederLocation">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Reason" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ResultState" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="FeederMaintenanceStatusInfo" nillable="true" type="tns:FeederMaintenanceStatusInfo" />
+  <xs:complexType name="GetMaterialReuseStatusRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="MaterialReuseRequestDataList" nillable="true" type="tns:ArrayOfMaterialReuseRequestData" />
+      <xs:element minOccurs="0" name="DockingAreaLocationId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetMaterialReuseStatusRequest" nillable="true" type="tns:GetMaterialReuseStatusRequest" />
+  <xs:complexType name="ArrayOfMaterialReuseRequestData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MaterialReuseRequestData" nillable="true" type="tns:MaterialReuseRequestData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMaterialReuseRequestData" nillable="true" type="tns:ArrayOfMaterialReuseRequestData" />
+  <xs:complexType name="MaterialReuseRequestData">
+    <xs:sequence>
+      <xs:element name="PackagingUnitLocation" nillable="true" type="tns:PackagingUnitLocation" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MaterialReuseRequestData" nillable="true" type="tns:MaterialReuseRequestData" />
+  <xs:complexType name="PackagingUnitLocation">
+    <xs:sequence>
+      <xs:element name="ComponentLocation" nillable="true" type="tns:ComponentLocation" />
+      <xs:element minOccurs="0" name="PackagingUnit" nillable="true" type="tns:PackagingUnit" />
+      <xs:element minOccurs="0" name="Operator" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LinePath" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MachineId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SetupPath" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StationPath" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PackagingUnitLocation" nillable="true" type="tns:PackagingUnitLocation" />
+  <xs:complexType name="ComponentLocation">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:FeederLocation">
+        <xs:sequence>
+          <xs:element name="Division" type="xs:int" />
+          <xs:element minOccurs="0" name="Level" type="xs:int" />
+          <xs:element minOccurs="0" name="StationTrack" type="xs:int" />
+          <xs:element minOccurs="0" name="Tower" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ComponentLocation" nillable="true" type="tns:ComponentLocation" />
+  <xs:complexType name="PackagingUnit">
+    <xs:sequence>
+      <xs:element name="BatchId" nillable="true" type="xs:string" />
+      <xs:element name="Comment" nillable="true" type="xs:string" />
+      <xs:element name="ComponentBarcode" nillable="true" type="xs:string" />
+      <xs:element name="ComponentName" nillable="true" type="xs:string" />
+      <xs:element name="ExpiryDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Extra1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Extra2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Extra3" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LockInfos" nillable="true" type="tns:ArrayOfLockInfo" />
+      <xs:element name="Manufacturer" nillable="true" type="xs:string" />
+      <xs:element name="ManufacturerDate" type="xs:dateTime" />
+      <xs:element name="MsdLevel" type="xs:int" />
+      <xs:element name="MsdOpenDate" type="xs:dateTime" />
+      <xs:element name="OriginalQuantity" type="xs:int" />
+      <xs:element name="Quantity" type="xs:int" />
+      <xs:element minOccurs="0" name="SplicedPackagingUnit" nillable="true" type="tns:PackagingUnit" />
+      <xs:element name="Supplier" nillable="true" type="xs:string" />
+      <xs:element name="UID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BatchPackagingUnit" nillable="true" type="tns:PackagingUnit" />
+      <xs:element minOccurs="0" name="ConsumptionDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="GreyZone" type="xs:int" />
+      <xs:element minOccurs="0" name="LastProductionDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="AdditionalPartInformation" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Batch2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BrightnessClass" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ManufactureLocation" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ManufacturePartNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OrderingCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PurchaseOrderNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RevisionLevel" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RoHS" type="xs:int" />
+      <xs:element minOccurs="0" name="Serial" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShippingNoteNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SupplierData" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ComponentBarcodeFragment" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CreateDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DateCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Extra4" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Extra5" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReorderCount" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PackagingUnit" nillable="true" type="tns:PackagingUnit" />
+  <xs:complexType name="ArrayOfLockInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="LockInfo" nillable="true" type="tns:LockInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfLockInfo" nillable="true" type="tns:ArrayOfLockInfo" />
+  <xs:complexType name="LockInfo">
+    <xs:sequence>
+      <xs:element name="Date" type="xs:dateTime" />
+      <xs:element name="Message" nillable="true" type="xs:string" />
+      <xs:element name="Reason" type="xs:int" />
+      <xs:element name="Source" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LockInfo" nillable="true" type="tns:LockInfo" />
+  <xs:complexType name="GetMaterialReuseStatusResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="MaterialReuseResponseData" nillable="true" type="tns:ArrayOfMaterialReuseResponseData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetMaterialReuseStatusResponse" nillable="true" type="tns:GetMaterialReuseStatusResponse" />
+  <xs:complexType name="ArrayOfMaterialReuseResponseData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MaterialReuseResponseData" nillable="true" type="tns:MaterialReuseResponseData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMaterialReuseResponseData" nillable="true" type="tns:ArrayOfMaterialReuseResponseData" />
+  <xs:complexType name="MaterialReuseResponseData">
+    <xs:sequence>
+      <xs:element name="PackagingUnitLocation" nillable="true" type="tns:PackagingUnitLocation" />
+      <xs:element name="ReuseStatus" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MaterialReuseResponseData" nillable="true" type="tns:MaterialReuseResponseData" />
+  <xs:complexType name="ComponentLevelIndicatorThresholdChangedReport">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ComponentLevelIndicatorThresholdData" nillable="true" type="tns:ComponentLevelIndicatorThresholdData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ComponentLevelIndicatorThresholdChangedReport" nillable="true" type="tns:ComponentLevelIndicatorThresholdChangedReport" />
+  <xs:complexType name="ComponentLevelIndicatorThresholdData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ComponentLevelIndicatorThresholds" nillable="true" type="tns:ArrayOfComponentLevelIndicatorThreshold" />
+      <xs:element minOccurs="0" name="LinePath" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MachineId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StationPath" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StationType" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ComponentLevelIndicatorThresholdData" nillable="true" type="tns:ComponentLevelIndicatorThresholdData" />
+  <xs:complexType name="ArrayOfComponentLevelIndicatorThreshold">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ComponentLevelIndicatorThreshold" nillable="true" type="tns:ComponentLevelIndicatorThreshold" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfComponentLevelIndicatorThreshold" nillable="true" type="tns:ArrayOfComponentLevelIndicatorThreshold" />
+  <xs:complexType name="ComponentLevelIndicatorThreshold">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AppliesToFeederCodes" nillable="true" xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q1:ArrayOfint" />
+      <xs:element minOccurs="0" name="AppliesToFeederType" type="xs:int" />
+      <xs:element minOccurs="0" name="EmptyMeasureUnit" type="xs:int" />
+      <xs:element minOccurs="0" name="EmptyThreshold" type="xs:int" />
+      <xs:element minOccurs="0" name="LowMeasureUnit" type="xs:int" />
+      <xs:element minOccurs="0" name="LowThreshold" type="xs:int" />
+      <xs:element minOccurs="0" name="DeactivateConsiderAltSpareTracks" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ReorderConsiderAltSpareTracks" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ReorderMeasureUnit" type="xs:int" />
+      <xs:element minOccurs="0" name="ReorderThreshold" type="xs:int" />
+      <xs:element minOccurs="0" name="WarningConsiderAltSpareTracks" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ComponentLevelIndicatorThreshold" nillable="true" type="tns:ComponentLevelIndicatorThreshold" />
+  <xs:complexType name="ConfigurationChangedReport">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Configuration" nillable="true" type="tns:Configuration" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ConfigurationChangedReport" nillable="true" type="tns:ConfigurationChangedReport" />
+  <xs:complexType name="Configuration">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DockingStationConfiguration" nillable="true" type="tns:DockingStationConfiguration" />
+      <xs:element name="HostName" nillable="true" type="xs:string" />
+      <xs:element name="LineConfigurations" nillable="true" type="tns:ArrayOfLineConfiguration" />
+      <xs:element minOccurs="0" name="OnlineVerificationConfiguration" nillable="true" type="tns:OnlineVerification" />
+      <xs:element minOccurs="0" name="ProductVersion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AdapterVersion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StockLocationServiceActive" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ActiveScannerConfigurations" nillable="true" type="tns:ArrayOfActiveScannerConfiguration" />
+      <xs:element minOccurs="0" name="HostIpAddresses" nillable="true" xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q2:ArrayOfstring" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Configuration" nillable="true" type="tns:Configuration" />
+  <xs:complexType name="DockingStationConfiguration">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DockingStations" nillable="true" type="tns:ArrayOfDockingStation" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DockingStationConfiguration" nillable="true" type="tns:DockingStationConfiguration" />
+  <xs:complexType name="ArrayOfDockingStation">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DockingStation" nillable="true" type="tns:DockingStation" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDockingStation" nillable="true" type="tns:ArrayOfDockingStation" />
+  <xs:complexType name="ArrayOfLineConfiguration">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="LineConfiguration" nillable="true" type="tns:LineConfiguration" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfLineConfiguration" nillable="true" type="tns:ArrayOfLineConfiguration" />
+  <xs:complexType name="LineConfiguration">
+    <xs:sequence>
+      <xs:element name="LineName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Machines" nillable="true" type="tns:ArrayOfMachineLocator" />
+      <xs:element minOccurs="0" name="PrinterConfigurations" nillable="true" type="tns:ArrayOfPrinterConfiguration" />
+      <xs:element minOccurs="0" name="IsAutomaticReorderActivated" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsAutomaticReorderOnlyOnConstantTablesActivated" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsFeederSubstitutionAllowed" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsRandomFeederSetupForOfflineVerificationAllowed" type="xs:boolean" />
+      <xs:element minOccurs="0" name="MachineConfigurations" nillable="true" type="tns:ArrayOfMachineConfiguration" />
+      <xs:element minOccurs="0" name="MatrixTrayChangerManagementOption" type="xs:int" />
+      <xs:element minOccurs="0" name="WafflePackChangerManagementOption" type="xs:int" />
+      <xs:element minOccurs="0" name="LinePath" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LineConfiguration" nillable="true" type="tns:LineConfiguration" />
+  <xs:complexType name="ArrayOfMachineLocator">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MachineLocator" nillable="true" type="tns:MachineLocator" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMachineLocator" nillable="true" type="tns:ArrayOfMachineLocator" />
+  <xs:complexType name="ArrayOfPrinterConfiguration">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PrinterConfiguration" nillable="true" type="tns:PrinterConfiguration" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPrinterConfiguration" nillable="true" type="tns:ArrayOfPrinterConfiguration" />
+  <xs:complexType name="PrinterConfiguration">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="MachineId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PrinterPath" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PrinterType" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PrinterConfiguration" nillable="true" type="tns:PrinterConfiguration" />
+  <xs:complexType name="ArrayOfMachineConfiguration">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MachineConfiguration" nillable="true" type="tns:MachineConfiguration" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMachineConfiguration" nillable="true" type="tns:ArrayOfMachineConfiguration" />
+  <xs:complexType name="MachineConfiguration">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ComponentLevelIndicatorThresholds" nillable="true" type="tns:ArrayOfComponentLevelIndicatorThreshold" />
+      <xs:element minOccurs="0" name="IsMsdVerificationEnabled" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="MachineLocator" nillable="true" type="tns:MachineLocator" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MachineConfiguration" nillable="true" type="tns:MachineConfiguration" />
+  <xs:complexType name="OnlineVerification">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IsSpliceMonitorActive" type="xs:int" />
+      <xs:element minOccurs="0" name="MissingSpliceThresholdPercent" type="xs:int" />
+      <xs:element minOccurs="0" name="MissingSpliceThresholdNumberOfItems" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OnlineVerification" nillable="true" type="tns:OnlineVerification" />
+  <xs:complexType name="ArrayOfActiveScannerConfiguration">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ActiveScannerConfiguration" nillable="true" type="tns:ActiveScannerConfiguration" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfActiveScannerConfiguration" nillable="true" type="tns:ArrayOfActiveScannerConfiguration" />
+  <xs:complexType name="ActiveScannerConfiguration">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PortNumber" type="xs:int" />
+      <xs:element name="ScannerType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SerialPortName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Timeout" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ActiveScannerConfiguration" nillable="true" type="tns:ActiveScannerConfiguration" />
+  <xs:complexType name="FeederPlacedReport">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FactoryLocation" nillable="true" type="xs:string" />
+      <xs:element name="FeederLocations" nillable="true" type="tns:ArrayOfFeederLocation" />
+      <xs:element minOccurs="0" name="TimeStamp" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FeederPlacedReport" nillable="true" type="tns:FeederPlacedReport" />
+  <xs:complexType name="FeederRemovedReport">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FactoryLocation" nillable="true" type="xs:string" />
+      <xs:element name="FeederLocations" nillable="true" type="tns:ArrayOfFeederLocation" />
+      <xs:element minOccurs="0" name="TimeStamp" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FeederRemovedReport" nillable="true" type="tns:FeederRemovedReport" />
+  <xs:complexType name="LockStateChangedReport">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FactoryLocation" nillable="true" type="xs:string" />
+      <xs:element name="PackagingUnits" nillable="true" type="tns:ArrayOfPackagingUnit" />
+      <xs:element minOccurs="0" name="TimeStamp" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LockStateChangedReport" nillable="true" type="tns:LockStateChangedReport" />
+  <xs:complexType name="ArrayOfPackagingUnit">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PackagingUnit" nillable="true" type="tns:PackagingUnit" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPackagingUnit" nillable="true" type="tns:ArrayOfPackagingUnit" />
+  <xs:complexType name="MaterialMovedReport">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FactoryLocation" nillable="true" type="xs:string" />
+      <xs:element name="MaterialMovementData" nillable="true" type="tns:ArrayOfMaterialMoveData" />
+      <xs:element minOccurs="0" name="TimeStamp" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MaterialMovedReport" nillable="true" type="tns:MaterialMovedReport" />
+  <xs:complexType name="ArrayOfMaterialMoveData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MaterialMoveData" nillable="true" type="tns:MaterialMoveData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMaterialMoveData" nillable="true" type="tns:ArrayOfMaterialMoveData" />
+  <xs:complexType name="MaterialMoveData">
+    <xs:sequence>
+      <xs:element name="Action" type="xs:int" />
+      <xs:element name="Line" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PackagingUnitLocation" nillable="true" type="tns:PackagingUnitLocation" />
+      <xs:element name="Setup" nillable="true" type="xs:string" />
+      <xs:element name="Source" type="xs:int" />
+      <xs:element name="TimeStamp" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Operator" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MaterialMoveData" nillable="true" type="tns:MaterialMoveData" />
+  <xs:complexType name="MaterialReorderReport">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FactoryLocation" nillable="true" type="xs:string" />
+      <xs:element name="Reorders" nillable="true" type="tns:ArrayOfMaterialReorderData" />
+      <xs:element minOccurs="0" name="TimeStamp" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MaterialReorderReport" nillable="true" type="tns:MaterialReorderReport" />
+  <xs:complexType name="ArrayOfMaterialReorderData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MaterialReorderData" nillable="true" type="tns:MaterialReorderData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMaterialReorderData" nillable="true" type="tns:ArrayOfMaterialReorderData" />
+  <xs:complexType name="MaterialReorderData">
+    <xs:sequence>
+      <xs:element name="Component" nillable="true" type="xs:string" />
+      <xs:element name="ComponentLocation" nillable="true" type="tns:ComponentLocation" />
+      <xs:element name="Line" nillable="true" type="xs:string" />
+      <xs:element name="TimeStamp" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="IsSpliceChainAllowed" type="xs:boolean" />
+      <xs:element minOccurs="0" name="AlternativeComponentNames" nillable="true" xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q3:ArrayOfstring" />
+      <xs:element minOccurs="0" name="ApprovedMaterialData" nillable="true" type="tns:ApprovedMaterialData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MaterialReorderData" nillable="true" type="tns:MaterialReorderData" />
+  <xs:complexType name="ApprovedMaterialData">
+    <xs:sequence>
+      <xs:element name="ApprovedFieldValues" nillable="true" xmlns:q4="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q4:ArrayOfstring" />
+      <xs:element name="MaterialVerificationFieldType" type="xs:int" />
+      <xs:element name="MaterialVerificationFieldTypeString" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ApprovedMaterialData" nillable="true" type="tns:ApprovedMaterialData" />
+  <xs:complexType name="MessagesReceivedReport">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FactoryLocation" nillable="true" type="xs:string" />
+      <xs:element name="Messages" nillable="true" xmlns:q5="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q5:ArrayOfstring" />
+      <xs:element minOccurs="0" name="TimeStamp" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MessagesReceivedReport" nillable="true" type="tns:MessagesReceivedReport" />
+  <xs:complexType name="NewRecipeActiveReport">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ActiveRecipe" nillable="true" type="tns:ActiveRecipe" />
+      <xs:element minOccurs="0" name="ActiveSetup" nillable="true" type="tns:ActiveSetup" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="NewRecipeActiveReport" nillable="true" type="tns:NewRecipeActiveReport" />
+  <xs:complexType name="ActiveRecipe">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BarcodeReaderPosition" type="xs:int" />
+      <xs:element minOccurs="0" name="ConveyorLanePosition" type="xs:int" />
+      <xs:element minOccurs="0" name="ConveyorStopperPosition" type="xs:int" />
+      <xs:element minOccurs="0" name="PcbBarcode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PcbIndividualId" type="xs:int" />
+      <xs:element minOccurs="0" name="PcbPath" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PcbSide" type="xs:int" />
+      <xs:element minOccurs="0" name="ProcessingAreaPosition" type="xs:int" />
+      <xs:element minOccurs="0" name="ProcessingMode" type="xs:int" />
+      <xs:element minOccurs="0" name="RecipePath" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ActiveRecipe" nillable="true" type="tns:ActiveRecipe" />
+  <xs:complexType name="ActiveSetup">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="LinePath" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SetupPath" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StationPath" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ActiveSetup" nillable="true" type="tns:ActiveSetup" />
+  <xs:complexType name="NewSetupActiveReport">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FactoryLocation" nillable="true" type="xs:string" />
+      <xs:element name="SetupName" nillable="true" type="xs:string" />
+      <xs:element name="StationName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TimeStamp" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Machine" nillable="true" type="tns:MachineLocator" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="NewSetupActiveReport" nillable="true" type="tns:NewSetupActiveReport" />
+  <xs:complexType name="NewSetupControlDataRequestedReport">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="LinePath" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MachineId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SetupPath" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StationPath" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="NewSetupControlDataRequestedReport" nillable="true" type="tns:NewSetupControlDataRequestedReport" />
+  <xs:complexType name="PackagingQuantityChangedReport">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FactoryLocation" nillable="true" type="xs:string" />
+      <xs:element name="PackagingUnitQuantities" nillable="true" type="tns:ArrayOfPackagingUnitQuantityData" />
+      <xs:element minOccurs="0" name="TimeStamp" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PackagingQuantityChangedReport" nillable="true" type="tns:PackagingQuantityChangedReport" />
+  <xs:complexType name="ArrayOfPackagingUnitQuantityData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PackagingUnitQuantityData" nillable="true" type="tns:PackagingUnitQuantityData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPackagingUnitQuantityData" nillable="true" type="tns:ArrayOfPackagingUnitQuantityData" />
+  <xs:complexType name="PackagingUnitQuantityData">
+    <xs:sequence>
+      <xs:element name="ComponentLocation" nillable="true" type="tns:ComponentLocation" />
+      <xs:element name="Date" type="xs:dateTime" />
+      <xs:element name="PackagingUnit" nillable="true" type="tns:PackagingUnit" />
+      <xs:element name="QuanityCorrection" type="xs:int" />
+      <xs:element name="Source" type="xs:int" />
+      <xs:element name="StationQuantityChangeReason" type="xs:int" />
+      <xs:element minOccurs="0" name="Operator" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PackagingUnitQuantityData" nillable="true" type="tns:PackagingUnitQuantityData" />
+  <xs:complexType name="PackagingUnitConsumedReport">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FactoryLocation" nillable="true" type="xs:string" />
+      <xs:element name="PackagingUnits" nillable="true" type="tns:ArrayOfPackagingUnit" />
+      <xs:element minOccurs="0" name="TimeStamp" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="PackagingUnitLocations" nillable="true" type="tns:ArrayOfPackagingUnitLocation" />
+      <xs:element minOccurs="0" name="RemainingPackagingUnitLocations" nillable="true" type="tns:ArrayOfPackagingUnitLocation" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PackagingUnitConsumedReport" nillable="true" type="tns:PackagingUnitConsumedReport" />
+  <xs:complexType name="ArrayOfPackagingUnitLocation">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PackagingUnitLocation" nillable="true" type="tns:PackagingUnitLocation" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPackagingUnitLocation" nillable="true" type="tns:ArrayOfPackagingUnitLocation" />
+  <xs:complexType name="PackagingUnitCreatedReport">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FactoryLocation" nillable="true" type="xs:string" />
+      <xs:element name="PackagingUnitManagementDataList" nillable="true" type="tns:ArrayOfPackagingUnitManagementData" />
+      <xs:element minOccurs="0" name="TimeStamp" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PackagingUnitCreatedReport" nillable="true" type="tns:PackagingUnitCreatedReport" />
+  <xs:complexType name="ArrayOfPackagingUnitManagementData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PackagingUnitManagementData" nillable="true" type="tns:PackagingUnitManagementData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPackagingUnitManagementData" nillable="true" type="tns:ArrayOfPackagingUnitManagementData" />
+  <xs:complexType name="PackagingUnitManagementData">
+    <xs:sequence>
+      <xs:element name="Date" type="xs:dateTime" />
+      <xs:element name="PackagingUnit" nillable="true" type="tns:PackagingUnit" />
+      <xs:element name="Source" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PackagingUnitManagementData" nillable="true" type="tns:PackagingUnitManagementData" />
+  <xs:complexType name="PackagingUnitDeletedReport">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FactoryLocation" nillable="true" type="xs:string" />
+      <xs:element name="PackagingUnitManagementDataList" nillable="true" type="tns:ArrayOfPackagingUnitManagementData" />
+      <xs:element minOccurs="0" name="TimeStamp" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PackagingUnitDeletedReport" nillable="true" type="tns:PackagingUnitDeletedReport" />
+  <xs:complexType name="PackagingUnitUpdatedReport">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FactoryLocation" nillable="true" type="xs:string" />
+      <xs:element name="PackagingUnitManagementDataList" nillable="true" type="tns:ArrayOfPackagingUnitManagementData" />
+      <xs:element minOccurs="0" name="TimeStamp" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PackagingUnitUpdatedReport" nillable="true" type="tns:PackagingUnitUpdatedReport" />
+  <xs:complexType name="PrinterCapabilitiesChangedReport">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PrinterCapabilitiesData" nillable="true" type="tns:PrinterCapabilitiesData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PrinterCapabilitiesChangedReport" nillable="true" type="tns:PrinterCapabilitiesChangedReport" />
+  <xs:complexType name="PrinterCapabilitiesData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="SetupPath" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PrinterCapabilitiesData" nillable="true" type="tns:PrinterCapabilitiesData" />
+  <xs:complexType name="PrinterConsumablesUpdatedReport">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PrinterConsumableData" nillable="true" type="tns:PrinterConsumableData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PrinterConsumablesUpdatedReport" nillable="true" type="tns:PrinterConsumablesUpdatedReport" />
+  <xs:complexType name="PrinterConsumableData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="LinePath" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MachineId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PrinterConsumables" nillable="true" type="tns:ArrayOfPrinterConsumable" />
+      <xs:element minOccurs="0" name="PrinterPath" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PrinterType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SetupPath" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PrinterConsumableData" nillable="true" type="tns:PrinterConsumableData" />
+  <xs:complexType name="ArrayOfPrinterConsumable">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PrinterConsumable" nillable="true" type="tns:PrinterConsumable" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPrinterConsumable" nillable="true" type="tns:ArrayOfPrinterConsumable" />
+  <xs:complexType name="PrinterConsumable">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ConsumableId" type="xs:int" />
+      <xs:element minOccurs="0" name="ConsumableName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FillLevel" type="xs:int" />
+      <xs:element minOccurs="0" name="PrinterValidationStatus" type="xs:int" />
+      <xs:element minOccurs="0" name="ValidationStatus" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PrinterConsumable" nillable="true" type="tns:PrinterConsumable" />
+  <xs:complexType name="PrinterCoverClosedReport">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Machine" nillable="true" type="tns:MachineLocator" />
+      <xs:element minOccurs="0" name="SetupPath" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PrinterCoverClosedReport" nillable="true" type="tns:PrinterCoverClosedReport" />
+  <xs:complexType name="PrinterCoverOpenedReport">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Machine" nillable="true" type="tns:MachineLocator" />
+      <xs:element minOccurs="0" name="SetupPath" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PrinterCoverOpenedReport" nillable="true" type="tns:PrinterCoverOpenedReport" />
+  <xs:complexType name="PrinterDeviceStateChangedReport">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PrinterDeviceStateData" nillable="true" type="tns:PrinterDeviceStateData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PrinterDeviceStateChangedReport" nillable="true" type="tns:PrinterDeviceStateChangedReport" />
+  <xs:complexType name="PrinterDeviceStateData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="LinePath" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MachineId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PrinterDeviceState" nillable="true" type="tns:PrinterDeviceState" />
+      <xs:element minOccurs="0" name="PrinterPath" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PrinterType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SetupPath" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PrinterDeviceStateData" nillable="true" type="tns:PrinterDeviceStateData" />
+  <xs:complexType name="PrinterDeviceState">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CoverState" type="xs:int" />
+      <xs:element minOccurs="0" name="DeviceActivity" type="xs:int" />
+      <xs:element minOccurs="0" name="DeviceState" type="xs:int" />
+      <xs:element minOccurs="0" name="EmergencyStopState" type="xs:int" />
+      <xs:element minOccurs="0" name="PowerState" type="xs:int" />
+      <xs:element minOccurs="0" name="PrinterErrorDetails" nillable="true" type="tns:PrinterErrorDetails" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PrinterDeviceState" nillable="true" type="tns:PrinterDeviceState" />
+  <xs:complexType name="PrinterErrorDetails">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorDescription" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ErrorNumber" type="xs:int" />
+      <xs:element minOccurs="0" name="SeverityLevel" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PrinterErrorDetails" nillable="true" type="tns:PrinterErrorDetails" />
+  <xs:complexType name="PrinterMaterialUnverifiedReport">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PrinterMaterial" nillable="true" type="tns:PrinterMaterial" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PrinterMaterialUnverifiedReport" nillable="true" type="tns:PrinterMaterialUnverifiedReport" />
+  <xs:complexType name="PrinterMaterialVerifiedReport">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PrinterMaterial" nillable="true" type="tns:PrinterMaterial" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PrinterMaterialVerifiedReport" nillable="true" type="tns:PrinterMaterialVerifiedReport" />
+  <xs:complexType name="PrinterRecipeVerifiedReport">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Machine" nillable="true" type="tns:MachineLocator" />
+      <xs:element minOccurs="0" name="PrinterProductInfo" nillable="true" type="tns:ProductInfo" />
+      <xs:element minOccurs="0" name="SetupPath" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PrinterRecipeVerifiedReport" nillable="true" type="tns:PrinterRecipeVerifiedReport" />
+  <xs:complexType name="PrinterToolUnverifiedReport">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PrinterTool" nillable="true" type="tns:PrinterTool" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PrinterToolUnverifiedReport" nillable="true" type="tns:PrinterToolUnverifiedReport" />
+  <xs:complexType name="PrinterToolVerifiedReport">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PrinterTool" nillable="true" type="tns:PrinterTool" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PrinterToolVerifiedReport" nillable="true" type="tns:PrinterToolVerifiedReport" />
+  <xs:complexType name="SetupChangedReport">
+    <xs:sequence>
+      <xs:element name="ComponentLocationStates" nillable="true" type="tns:ArrayOfComponentLocationState" />
+      <xs:element minOccurs="0" name="FactoryLocation" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TimeStamp" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SetupChangedReport" nillable="true" type="tns:SetupChangedReport" />
+  <xs:complexType name="ArrayOfComponentLocationState">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ComponentLocationState" nillable="true" type="tns:ComponentLocationState" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfComponentLocationState" nillable="true" type="tns:ArrayOfComponentLocationState" />
+  <xs:complexType name="ComponentLocationState">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:PackagingUnitLocation">
+        <xs:sequence>
+          <xs:element name="MachineControllerState" type="xs:int" />
+          <xs:element name="ValidationStatus" type="xs:int" />
+          <xs:element minOccurs="0" name="FillingLevelState" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="IsCliThresholdActive" type="xs:boolean" />
+          <xs:element minOccurs="0" name="RescanIsRequired" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="0" name="RescanRemainingTime" nillable="true" type="ser:duration" />
+          <xs:element minOccurs="0" name="ShiftChangeIsRequired" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="0" name="ShiftChangeRemainingTime" nillable="true" type="ser:duration" />
+          <xs:element minOccurs="0" name="RemainingBoardsAndTime" nillable="true" xmlns:q6="http://schemas.datacontract.org/2004/07/Asm.As.Oib.SiplaceSetupCenter.Contracts.Data" type="q6:RemainingBoardsAndTime" />
+          <xs:element minOccurs="0" name="RunTrackEmpty" type="xs:boolean" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ComponentLocationState" nillable="true" type="tns:ComponentLocationState" />
+  <xs:complexType name="SetupPreparationForStationLocationCompletedReport">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FactoryLocation" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TimeStamp" type="xs:dateTime" />
+      <xs:element name="VerifiedStationLocation" nillable="true" type="tns:VerifiedStationLocation" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SetupPreparationForStationLocationCompletedReport" nillable="true" type="tns:SetupPreparationForStationLocationCompletedReport" />
+  <xs:complexType name="VerifiedStationLocation">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:TableLocation">
+        <xs:sequence>
+          <xs:element name="CompletionMethod" type="xs:int" />
+          <xs:element minOccurs="0" name="SetupPath" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="VerifiedStationLocation" nillable="true" type="tns:VerifiedStationLocation" />
+  <xs:complexType name="SpliceChainSplitReport">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FactoryLocation" nillable="true" type="xs:string" />
+      <xs:element name="SpliceChainSplitList" nillable="true" type="tns:ArrayOfSpliceChainSplit" />
+      <xs:element minOccurs="0" name="TimeStamp" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SpliceChainSplitReport" nillable="true" type="tns:SpliceChainSplitReport" />
+  <xs:complexType name="ArrayOfSpliceChainSplit">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SpliceChainSplit" nillable="true" type="tns:SpliceChainSplit" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSpliceChainSplit" nillable="true" type="tns:ArrayOfSpliceChainSplit" />
+  <xs:complexType name="SpliceChainSplit">
+    <xs:sequence>
+      <xs:element name="Remaining" nillable="true" type="tns:PackagingUnit" />
+      <xs:element name="Split" nillable="true" type="tns:PackagingUnit" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SpliceChainSplit" nillable="true" type="tns:SpliceChainSplit" />
+  <xs:complexType name="TablePlacedReport">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FactoryLocation" nillable="true" type="xs:string" />
+      <xs:element name="TableLocations" nillable="true" type="tns:ArrayOfTableLocation" />
+      <xs:element minOccurs="0" name="TimeStamp" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TablePlacedReport" nillable="true" type="tns:TablePlacedReport" />
+  <xs:complexType name="ArrayOfTableLocation">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TableLocation" nillable="true" type="tns:TableLocation" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTableLocation" nillable="true" type="tns:ArrayOfTableLocation" />
+  <xs:complexType name="TableRemovedReport">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FactoryLocation" nillable="true" type="xs:string" />
+      <xs:element name="TableLocations" nillable="true" type="tns:ArrayOfTableLocation" />
+      <xs:element minOccurs="0" name="TimeStamp" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TableRemovedReport" nillable="true" type="tns:TableRemovedReport" />
+  <xs:complexType name="ArrayOfExternalControlResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ExternalControlResult" nillable="true" type="tns:ExternalControlResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfExternalControlResult" nillable="true" type="tns:ArrayOfExternalControlResult" />
+  <xs:complexType name="ExternalControlResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Messages" nillable="true" type="tns:ArrayOfExternalControlResultMessage" />
+      <xs:element minOccurs="0" name="PackagingUnit" nillable="true" type="tns:PackagingUnit" />
+      <xs:element name="ResultState" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ExternalControlResult" nillable="true" type="tns:ExternalControlResult" />
+  <xs:complexType name="ArrayOfExternalControlResultMessage">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ExternalControlResultMessage" nillable="true" type="tns:ExternalControlResultMessage" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfExternalControlResultMessage" nillable="true" type="tns:ArrayOfExternalControlResultMessage" />
+  <xs:complexType name="ExternalControlResultMessage">
+    <xs:sequence>
+      <xs:element name="Message" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ExternalControlResultMessage" nillable="true" type="tns:ExternalControlResultMessage" />
+  <xs:complexType name="GetPackagingUnitControlStatusExtendedRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PackagingUnitLocations" nillable="true" type="tns:ArrayOfPackagingUnitLocation" />
+      <xs:element minOccurs="0" name="Reason" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetPackagingUnitControlStatusExtendedRequest" nillable="true" type="tns:GetPackagingUnitControlStatusExtendedRequest" />
+  <xs:complexType name="GetPackagingUnitControlStatusExtendedResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ExternalControlResults" nillable="true" type="tns:ArrayOfExternalControlResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetPackagingUnitControlStatusExtendedResponse" nillable="true" type="tns:GetPackagingUnitControlStatusExtendedResponse" />
+  <xs:complexType name="ComponentStatusRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Components" nillable="true" type="tns:ArrayOfComponent" />
+      <xs:element minOccurs="0" name="LinePath" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MachineId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SetupPath" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StationPath" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ComponentStatusRequest" nillable="true" type="tns:ComponentStatusRequest" />
+  <xs:complexType name="ArrayOfComponent">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Component" nillable="true" type="tns:Component" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfComponent" nillable="true" type="tns:ArrayOfComponent" />
+  <xs:complexType name="Component">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ComponentStatus" nillable="true" type="tns:ArrayOfComponentStatus" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Component" nillable="true" type="tns:Component" />
+  <xs:complexType name="ArrayOfComponentStatus">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ComponentStatus" nillable="true" type="tns:ComponentStatus" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfComponentStatus" nillable="true" type="tns:ArrayOfComponentStatus" />
+  <xs:complexType name="ComponentStatus">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ComponentBarcode">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="VerificationStatus" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ComponentStatus" nillable="true" type="tns:ComponentStatus" />
+  <xs:complexType name="ComponentBarcode">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Barcode" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ComponentBarcode" nillable="true" type="tns:ComponentBarcode" />
+  <xs:complexType name="ComponentStatusResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Components" nillable="true" type="tns:ArrayOfComponent" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ComponentStatusResponse" nillable="true" type="tns:ComponentStatusResponse" />
+  <xs:complexType name="TrayCarrierMappingDataRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="LinePath" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MachineId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SetupPath" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StationPath" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TrayCarrierIds" nillable="true" xmlns:q7="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q7:ArrayOfstring" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TrayCarrierMappingDataRequest" nillable="true" type="tns:TrayCarrierMappingDataRequest" />
+  <xs:complexType name="TrayCarrierMappingDataResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="TrayCarrierMappingDataResults" nillable="true" type="tns:ArrayOfTrayCarrierMappingDataResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TrayCarrierMappingDataResponse" nillable="true" type="tns:TrayCarrierMappingDataResponse" />
+  <xs:complexType name="ArrayOfTrayCarrierMappingDataResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TrayCarrierMappingDataResult" nillable="true" type="tns:TrayCarrierMappingDataResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTrayCarrierMappingDataResult" nillable="true" type="tns:ArrayOfTrayCarrierMappingDataResult" />
+  <xs:complexType name="TrayCarrierMappingDataResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:TrayCarrierMappingData">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Messages" nillable="true" xmlns:q8="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q8:ArrayOfstring" />
+          <xs:element minOccurs="0" name="ResultState" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="TrayCarrierMappingDataResult" nillable="true" type="tns:TrayCarrierMappingDataResult" />
+  <xs:complexType name="TrayCarrierMappingData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="MappingData" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TrayCarrierId" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TrayCarrierMappingData" nillable="true" type="tns:TrayCarrierMappingData" />
+  <xs:complexType name="UpdateTrayCarrierMappingDataRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="LinePath" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MachineId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SetupPath" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StationPath" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TrayCarrierMappingData" nillable="true" type="tns:ArrayOfTrayCarrierMappingData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UpdateTrayCarrierMappingDataRequest" nillable="true" type="tns:UpdateTrayCarrierMappingDataRequest" />
+  <xs:complexType name="ArrayOfTrayCarrierMappingData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TrayCarrierMappingData" nillable="true" type="tns:TrayCarrierMappingData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTrayCarrierMappingData" nillable="true" type="tns:ArrayOfTrayCarrierMappingData" />
+  <xs:complexType name="ArrayOfComponentLocation">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ComponentLocation" nillable="true" type="tns:ComponentLocation" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfComponentLocation" nillable="true" type="tns:ArrayOfComponentLocation" />
+  <xs:complexType name="MachineSetup">
+    <xs:sequence>
+      <xs:element name="MachineLocator" nillable="true" type="tns:MachineLocator" />
+      <xs:element name="Tables" nillable="true" type="tns:ArrayOfTable" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MachineSetup" nillable="true" type="tns:MachineSetup" />
+  <xs:complexType name="ArrayOfTable">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Table" nillable="true" type="tns:Table" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTable" nillable="true" type="tns:ArrayOfTable" />
+  <xs:complexType name="Table">
+    <xs:sequence>
+      <xs:element name="ComponentLocationStates" nillable="true" type="tns:ArrayOfComponentLocationState" />
+      <xs:element minOccurs="0" name="TableID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TableType" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Table" nillable="true" type="tns:Table" />
+  <xs:complexType name="ArrayOfPackagingUnitResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PackagingUnitResult" nillable="true" type="tns:PackagingUnitResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPackagingUnitResult" nillable="true" type="tns:ArrayOfPackagingUnitResult" />
+  <xs:complexType name="PackagingUnitResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Messages" nillable="true" type="tns:ArrayOfPackagingUnitResultMessage" />
+      <xs:element minOccurs="0" name="PackagingUnit" nillable="true" type="tns:PackagingUnit" />
+      <xs:element name="ResultState" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PackagingUnitResult" nillable="true" type="tns:PackagingUnitResult" />
+  <xs:complexType name="ArrayOfPackagingUnitResultMessage">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PackagingUnitResultMessage" nillable="true" type="tns:PackagingUnitResultMessage" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPackagingUnitResultMessage" nillable="true" type="tns:ArrayOfPackagingUnitResultMessage" />
+  <xs:complexType name="PackagingUnitResultMessage">
+    <xs:sequence>
+      <xs:element name="Message" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PackagingUnitResultMessage" nillable="true" type="tns:PackagingUnitResultMessage" />
+  <xs:complexType name="CheckConnectionStateRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CheckIsAdapterConnectedToCore" type="xs:boolean" />
+      <xs:element minOccurs="0" name="CheckIsAdapterConnectedToSC" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ForceUpdateCoreConnectionState" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CheckConnectionStateRequest" nillable="true" type="tns:CheckConnectionStateRequest" />
+  <xs:complexType name="CheckConnectionStateResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AdapterToCoreStateChangeDetected" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="AdapterToSCStateChangeDetected" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="IsAdapterConnectedToCore" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsConnectedToSC" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="SetupCenterAdapterProcessId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CheckConnectionStateResponse" nillable="true" type="tns:CheckConnectionStateResponse" />
+  <xs:complexType name="ArrayOfComponentLocationResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ComponentLocationResult" nillable="true" type="tns:ComponentLocationResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfComponentLocationResult" nillable="true" type="tns:ArrayOfComponentLocationResult" />
+  <xs:complexType name="ComponentLocationResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ComponentLocation" nillable="true" type="tns:ComponentLocation" />
+      <xs:element minOccurs="0" name="Messages" nillable="true" type="tns:ArrayOfPackagingUnitResultMessage" />
+      <xs:element name="ResultState" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ComponentLocationResult" nillable="true" type="tns:ComponentLocationResult" />
+  <xs:complexType name="GetOfflineSetupRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="SetupPath" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetOfflineSetupRequest" nillable="true" type="tns:GetOfflineSetupRequest" />
+  <xs:complexType name="GetOfflineSetupResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="MachineSetups" nillable="true" type="tns:ArrayOfMachineSetup" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetOfflineSetupResponse" nillable="true" type="tns:GetOfflineSetupResponse" />
+  <xs:complexType name="ArrayOfMachineSetup">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MachineSetup" nillable="true" type="tns:MachineSetup" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMachineSetup" nillable="true" type="tns:ArrayOfMachineSetup" />
+  <xs:complexType name="PackagingUnitLocationResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Results" nillable="true" type="tns:ArrayOfPackagingUnitLocationResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PackagingUnitLocationResponse" nillable="true" type="tns:PackagingUnitLocationResponse" />
+  <xs:complexType name="ArrayOfPackagingUnitLocationResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PackagingUnitLocationResult" nillable="true" type="tns:PackagingUnitLocationResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPackagingUnitLocationResult" nillable="true" type="tns:ArrayOfPackagingUnitLocationResult" />
+  <xs:complexType name="PackagingUnitLocationResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Messages" nillable="true" type="tns:ArrayOfPackagingUnitResultMessage" />
+      <xs:element minOccurs="0" name="PackagingUnitLocation" nillable="true" type="tns:PackagingUnitLocation" />
+      <xs:element minOccurs="0" name="ResultState" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PackagingUnitLocationResult" nillable="true" type="tns:PackagingUnitLocationResult" />
+  <xs:complexType name="ComponentLocationResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Results" nillable="true" type="tns:ArrayOfComponentLocationResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ComponentLocationResponse" nillable="true" type="tns:ComponentLocationResponse" />
+  <xs:complexType name="PackagingUnitResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Results" nillable="true" type="tns:ArrayOfPackagingUnitResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PackagingUnitResponse" nillable="true" type="tns:PackagingUnitResponse" />
+  <xs:complexType name="GetActiveSetupAndRecipeResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ActiveSetupsAndRecipes" nillable="true" xmlns:q9="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q9:ArrayOfKeyValueOfstringActiveSetupAndRecipeResultPGILFW9p" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetActiveSetupAndRecipeResponse" nillable="true" type="tns:GetActiveSetupAndRecipeResponse" />
+  <xs:complexType name="ActiveSetupAndRecipeResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ActiveSetupAndRecipe">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Messages" nillable="true" xmlns:q10="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q10:ArrayOfstring" />
+          <xs:element minOccurs="0" name="ResultState" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ActiveSetupAndRecipeResult" nillable="true" type="tns:ActiveSetupAndRecipeResult" />
+  <xs:complexType name="ActiveSetupAndRecipe">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ActiveSetup" nillable="true" type="tns:ActiveSetup" />
+      <xs:element minOccurs="0" name="ConveyorLanes" nillable="true" xmlns:q11="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q11:ArrayOfKeyValueOfintConveyorLanePGILFW9p" />
+      <xs:element minOccurs="0" name="MachineId" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ActiveSetupAndRecipe" nillable="true" type="tns:ActiveSetupAndRecipe" />
+  <xs:complexType name="ConveyorLane">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ConveyorLanePosition" type="xs:int" />
+      <xs:element minOccurs="0" name="ProcessingAreas" nillable="true" xmlns:q12="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q12:ArrayOfKeyValueOfintProcessingAreaPGILFW9p" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ConveyorLane" nillable="true" type="tns:ConveyorLane" />
+  <xs:complexType name="ProcessingArea">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ActiveRecipe" nillable="true" type="tns:ActiveRecipe" />
+      <xs:element minOccurs="0" name="ProcessingAreaPosition" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProcessingArea" nillable="true" type="tns:ProcessingArea" />
+  <xs:complexType name="GetComponentLevelIndicatorThresholdsResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ComponentLevelIndicatorThresholdDataResponses" nillable="true" xmlns:q13="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q13:ArrayOfKeyValueOfstringComponentLevelIndicatorThresholdDataResultPGILFW9p" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetComponentLevelIndicatorThresholdsResponse" nillable="true" type="tns:GetComponentLevelIndicatorThresholdsResponse" />
+  <xs:complexType name="ComponentLevelIndicatorThresholdDataResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ComponentLevelIndicatorThresholdData">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Messages" nillable="true" xmlns:q14="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q14:ArrayOfstring" />
+          <xs:element minOccurs="0" name="ResultState" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ComponentLevelIndicatorThresholdDataResult" nillable="true" type="tns:ComponentLevelIndicatorThresholdDataResult" />
+  <xs:complexType name="GetPrinterConsumablesResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PrinterConsumableDataResults" nillable="true" xmlns:q15="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q15:ArrayOfKeyValueOfstringPrinterConsumableDataResultPGILFW9p" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetPrinterConsumablesResponse" nillable="true" type="tns:GetPrinterConsumablesResponse" />
+  <xs:complexType name="PrinterConsumableDataResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:PrinterConsumableData">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Messages" nillable="true" xmlns:q16="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q16:ArrayOfstring" />
+          <xs:element minOccurs="0" name="ResultState" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="PrinterConsumableDataResult" nillable="true" type="tns:PrinterConsumableDataResult" />
+  <xs:complexType name="GetPrinterDeviceStateResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PrinterDeviceStateDataResults" nillable="true" xmlns:q17="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q17:ArrayOfKeyValueOfstringPrinterDeviceStateDataResultPGILFW9p" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetPrinterDeviceStateResponse" nillable="true" type="tns:GetPrinterDeviceStateResponse" />
+  <xs:complexType name="PrinterDeviceStateDataResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:PrinterDeviceStateData">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Messages" nillable="true" xmlns:q18="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q18:ArrayOfstring" />
+          <xs:element minOccurs="0" name="ResultState" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="PrinterDeviceStateDataResult" nillable="true" type="tns:PrinterDeviceStateDataResult" />
+  <xs:complexType name="UnverifyPrinterMaterialRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PrinterMaterials" nillable="true" type="tns:ArrayOfPrinterMaterial" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UnverifyPrinterMaterialRequest" nillable="true" type="tns:UnverifyPrinterMaterialRequest" />
+  <xs:complexType name="ArrayOfPrinterMaterial">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PrinterMaterial" nillable="true" type="tns:PrinterMaterial" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPrinterMaterial" nillable="true" type="tns:ArrayOfPrinterMaterial" />
+  <xs:complexType name="UnverifyPrinterMaterialResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="UnverifyPrinterMaterialResults" nillable="true" type="tns:ArrayOfUnverifyPrinterMaterialResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UnverifyPrinterMaterialResponse" nillable="true" type="tns:UnverifyPrinterMaterialResponse" />
+  <xs:complexType name="ArrayOfUnverifyPrinterMaterialResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="UnverifyPrinterMaterialResult" nillable="true" type="tns:UnverifyPrinterMaterialResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfUnverifyPrinterMaterialResult" nillable="true" type="tns:ArrayOfUnverifyPrinterMaterialResult" />
+  <xs:complexType name="UnverifyPrinterMaterialResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Messages" nillable="true" xmlns:q19="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q19:ArrayOfstring" />
+      <xs:element minOccurs="0" name="PrinterMaterial" nillable="true" type="tns:PrinterMaterial" />
+      <xs:element minOccurs="0" name="ResultState" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UnverifyPrinterMaterialResult" nillable="true" type="tns:UnverifyPrinterMaterialResult" />
+  <xs:complexType name="UnverifyPrinterToolRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PrinterTools" nillable="true" type="tns:ArrayOfPrinterTool" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UnverifyPrinterToolRequest" nillable="true" type="tns:UnverifyPrinterToolRequest" />
+  <xs:complexType name="ArrayOfPrinterTool">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PrinterTool" nillable="true" type="tns:PrinterTool" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPrinterTool" nillable="true" type="tns:ArrayOfPrinterTool" />
+  <xs:complexType name="UnverifyPrinterToolResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="UnverifyPrinterToolResults" nillable="true" type="tns:ArrayOfUnverifyPrinterToolResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UnverifyPrinterToolResponse" nillable="true" type="tns:UnverifyPrinterToolResponse" />
+  <xs:complexType name="ArrayOfUnverifyPrinterToolResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="UnverifyPrinterToolResult" nillable="true" type="tns:UnverifyPrinterToolResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfUnverifyPrinterToolResult" nillable="true" type="tns:ArrayOfUnverifyPrinterToolResult" />
+  <xs:complexType name="UnverifyPrinterToolResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Messages" nillable="true" xmlns:q20="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q20:ArrayOfstring" />
+      <xs:element minOccurs="0" name="PrinterTool" nillable="true" type="tns:PrinterTool" />
+      <xs:element minOccurs="0" name="ResultState" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UnverifyPrinterToolResult" nillable="true" type="tns:UnverifyPrinterToolResult" />
+  <xs:complexType name="GetPrinterCapabilitiesRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="MachineIds" nillable="true" xmlns:q21="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q21:ArrayOfstring" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetPrinterCapabilitiesRequest" nillable="true" type="tns:GetPrinterCapabilitiesRequest" />
+  <xs:complexType name="GetPrinterCapabilitiesResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="GetPrinterCapabilitiesResults" nillable="true" xmlns:q22="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q22:ArrayOfKeyValueOfstringGetPrinterCapabilitiesResultPGILFW9p" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetPrinterCapabilitiesResponse" nillable="true" type="tns:GetPrinterCapabilitiesResponse" />
+  <xs:complexType name="GetPrinterCapabilitiesResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Messages" nillable="true" xmlns:q23="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q23:ArrayOfstring" />
+      <xs:element minOccurs="0" name="ResultState" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetPrinterCapabilitiesResult" nillable="true" type="tns:GetPrinterCapabilitiesResult" />
+  <xs:complexType name="LockOnlineFeedersRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="LockFeederLocationInfos" nillable="true" type="tns:ArrayOfLockFeederLocationInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LockOnlineFeedersRequest" nillable="true" type="tns:LockOnlineFeedersRequest" />
+  <xs:complexType name="ArrayOfLockFeederLocationInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="LockFeederLocationInfo" nillable="true" type="tns:LockFeederLocationInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfLockFeederLocationInfo" nillable="true" type="tns:ArrayOfLockFeederLocationInfo" />
+  <xs:complexType name="LockFeederLocationInfo">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:FeederLocation">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Reason" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="LockFeederLocationInfo" nillable="true" type="tns:LockFeederLocationInfo" />
+  <xs:complexType name="LockOnlineFeedersResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="LockOnlineFeedersResults" nillable="true" type="tns:ArrayOfLockOnlineFeedersResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LockOnlineFeedersResponse" nillable="true" type="tns:LockOnlineFeedersResponse" />
+  <xs:complexType name="ArrayOfLockOnlineFeedersResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="LockOnlineFeedersResult" nillable="true" type="tns:LockOnlineFeedersResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfLockOnlineFeedersResult" nillable="true" type="tns:ArrayOfLockOnlineFeedersResult" />
+  <xs:complexType name="LockOnlineFeedersResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="LockFeederLocationInfo" nillable="true" type="tns:LockFeederLocationInfo" />
+      <xs:element minOccurs="0" name="Messages" nillable="true" xmlns:q24="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q24:ArrayOfstring" />
+      <xs:element minOccurs="0" name="ResultState" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LockOnlineFeedersResult" nillable="true" type="tns:LockOnlineFeedersResult" />
+  <xs:complexType name="UnlockOnlineFeedersRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FeederLocations" nillable="true" type="tns:ArrayOfFeederLocation" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UnlockOnlineFeedersRequest" nillable="true" type="tns:UnlockOnlineFeedersRequest" />
+  <xs:complexType name="UnlockOnlineFeedersResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="UnlockOnlineFeedersResults" nillable="true" type="tns:ArrayOfUnlockOnlineFeedersResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UnlockOnlineFeedersResponse" nillable="true" type="tns:UnlockOnlineFeedersResponse" />
+  <xs:complexType name="ArrayOfUnlockOnlineFeedersResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="UnlockOnlineFeedersResult" nillable="true" type="tns:UnlockOnlineFeedersResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfUnlockOnlineFeedersResult" nillable="true" type="tns:ArrayOfUnlockOnlineFeedersResult" />
+  <xs:complexType name="UnlockOnlineFeedersResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FeederLocation" nillable="true" type="tns:FeederLocation" />
+      <xs:element minOccurs="0" name="Messages" nillable="true" xmlns:q25="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q25:ArrayOfstring" />
+      <xs:element minOccurs="0" name="ResultState" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UnlockOnlineFeedersResult" nillable="true" type="tns:UnlockOnlineFeedersResult" />
+  <xs:complexType name="TearDownPackaginUnitsRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PackagingUnitUIDs" nillable="true" xmlns:q26="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q26:ArrayOfstring" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TearDownPackaginUnitsRequest" nillable="true" type="tns:TearDownPackaginUnitsRequest" />
+  <xs:complexType name="GetPackagingUnitMountLocationRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PackagingUnits" nillable="true" type="tns:ArrayOfPackagingUnit" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetPackagingUnitMountLocationRequest" nillable="true" type="tns:GetPackagingUnitMountLocationRequest" />
+  <xs:complexType name="GetPackagingUnitMountLocationResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PackagingUnitMountLocations" nillable="true" xmlns:q27="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q27:ArrayOfKeyValueOfPackagingUnitPackagingUnitMountLocationj9n5l1Mu" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetPackagingUnitMountLocationResponse" nillable="true" type="tns:GetPackagingUnitMountLocationResponse" />
+  <xs:complexType name="PackagingUnitMountLocation">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ComponentLocation" nillable="true" type="tns:ComponentLocation" />
+      <xs:element minOccurs="0" name="FeederLocation" nillable="true" type="tns:FeederLocation" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PackagingUnitMountLocation" nillable="true" type="tns:PackagingUnitMountLocation" />
+  <xs:complexType name="SetThresholdActivationRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ThresholdActivationData" nillable="true" type="tns:ArrayOfThresholdActivationData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SetThresholdActivationRequest" nillable="true" type="tns:SetThresholdActivationRequest" />
+  <xs:complexType name="ArrayOfThresholdActivationData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ThresholdActivationData" nillable="true" type="tns:ThresholdActivationData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfThresholdActivationData" nillable="true" type="tns:ArrayOfThresholdActivationData" />
+  <xs:complexType name="ThresholdActivationData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Activate" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Device" type="xs:int" />
+      <xs:element minOccurs="0" name="Division" type="xs:int" />
+      <xs:element minOccurs="0" name="Level" type="xs:int" />
+      <xs:element minOccurs="0" name="Location" type="xs:int" />
+      <xs:element minOccurs="0" name="MachineId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ThresholdActivationType" type="xs:int" />
+      <xs:element minOccurs="0" name="Tower" type="xs:int" />
+      <xs:element minOccurs="0" name="Track" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ThresholdActivationData" nillable="true" type="tns:ThresholdActivationData" />
+  <xs:complexType name="SetThresholdActivationResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ThresholdActivations" nillable="true" type="tns:ArrayOfThresholdActivationData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SetThresholdActivationResponse" nillable="true" type="tns:SetThresholdActivationResponse" />
+  <xs:complexType name="GetStockLocationRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ComponentPaths" nillable="true" xmlns:q28="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q28:ArrayOfstring" />
+      <xs:element minOccurs="0" name="LinePath" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetStockLocationRequest" nillable="true" type="tns:GetStockLocationRequest" />
+  <xs:complexType name="GetStockLocationResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="LinePath" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StockLocations" nillable="true" xmlns:q29="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q29:ArrayOfKeyValueOfstringStockLocationPGILFW9p" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetStockLocationResponse" nillable="true" type="tns:GetStockLocationResponse" />
+  <xs:complexType name="StockLocation">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ComponentPath" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StockLocationIdentifier" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="StockLocation" nillable="true" type="tns:StockLocation" />
+  <xs:complexType name="GetVerficationStatusRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="MachineIds" nillable="true" xmlns:q30="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q30:ArrayOfstring" />
+      <xs:element minOccurs="0" name="WithComponentPositions" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetVerficationStatusRequest" nillable="true" type="tns:GetVerficationStatusRequest" />
+  <xs:complexType name="GetVerficationStatusResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="VerificationStateStations" nillable="true" xmlns:q31="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q31:ArrayOfKeyValueOfstringStationPGILFW9p" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetVerficationStatusResponse" nillable="true" type="tns:GetVerficationStatusResponse" />
+  <xs:complexType name="Station">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:MachineLocator">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="StationLocations" nillable="true" type="tns:ArrayOfStationLocation" />
+          <xs:element minOccurs="0" name="VerificationStatus" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Station" nillable="true" type="tns:Station" />
+  <xs:complexType name="ArrayOfStationLocation">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="StationLocation" nillable="true" type="tns:StationLocation" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfStationLocation" nillable="true" type="tns:ArrayOfStationLocation" />
+  <xs:complexType name="StationLocation">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Devices" nillable="true" type="tns:ArrayOfDevice" />
+      <xs:element minOccurs="0" name="LocationNumber" type="xs:int" />
+      <xs:element minOccurs="0" name="VerificationStatus" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="StationLocation" nillable="true" type="tns:StationLocation" />
+  <xs:complexType name="ArrayOfDevice">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Device" nillable="true" type="tns:Device" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDevice" nillable="true" type="tns:ArrayOfDevice" />
+  <xs:complexType name="Device">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ComponentPositions" nillable="true" type="tns:ArrayOfComponentPosition" />
+      <xs:element minOccurs="0" name="DeviceNumber" type="xs:int" />
+      <xs:element minOccurs="0" name="TableId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="VerificationStatus" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Device" nillable="true" type="tns:Device" />
+  <xs:complexType name="ArrayOfComponentPosition">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ComponentPosition" nillable="true" type="tns:ComponentPosition" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfComponentPosition" nillable="true" type="tns:ArrayOfComponentPosition" />
+  <xs:complexType name="ComponentPosition">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BarcodeTrack" type="xs:int" />
+      <xs:element minOccurs="0" name="Division" type="xs:int" />
+      <xs:element minOccurs="0" name="FeederType" type="xs:int" />
+      <xs:element minOccurs="0" name="FeederTypeSpiOid" type="xs:long" />
+      <xs:element minOccurs="0" name="Level" type="xs:int" />
+      <xs:element minOccurs="0" name="Tower" type="xs:int" />
+      <xs:element minOccurs="0" name="Track" type="xs:int" />
+      <xs:element minOccurs="0" name="VerificationStatus" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ComponentPosition" nillable="true" type="tns:ComponentPosition" />
+  <xs:complexType name="GetPackagingUnitLocationsOnTablesRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="TableIds" nillable="true" xmlns:q32="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q32:ArrayOfstring" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetPackagingUnitLocationsOnTablesRequest" nillable="true" type="tns:GetPackagingUnitLocationsOnTablesRequest" />
+  <xs:complexType name="GetPackagingUnitLocationsOnTablesResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PackagingUnitLocationListOnTables" nillable="true" xmlns:q33="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q33:ArrayOfKeyValueOfstringArrayOfPackagingUnitLocationPGILFW9p" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetPackagingUnitLocationsOnTablesResponse" nillable="true" type="tns:GetPackagingUnitLocationsOnTablesResponse" />
+  <xs:complexType name="GetPackagingUnitLocationsOnFeedersRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FeederIds" nillable="true" xmlns:q34="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q34:ArrayOfstring" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetPackagingUnitLocationsOnFeedersRequest" nillable="true" type="tns:GetPackagingUnitLocationsOnFeedersRequest" />
+  <xs:complexType name="GetPackagingUnitLocationsOnFeedersResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PackagingUnitLocationsOnFeeders" nillable="true" xmlns:q35="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q35:ArrayOfKeyValueOfstringPackagingUnitLocationPGILFW9p" />
+      <xs:element minOccurs="0" name="PackagingUnitLocationListOnFeeders" nillable="true" xmlns:q36="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q36:ArrayOfKeyValueOfstringArrayOfPackagingUnitLocationPGILFW9p" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetPackagingUnitLocationsOnFeedersResponse" nillable="true" type="tns:GetPackagingUnitLocationsOnFeedersResponse" />
+  <xs:complexType name="GetPackagingUnitLocationsInCartridgesRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CartridgeIds" nillable="true" xmlns:q37="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q37:ArrayOfstring" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetPackagingUnitLocationsInCartridgesRequest" nillable="true" type="tns:GetPackagingUnitLocationsInCartridgesRequest" />
+  <xs:complexType name="GetPackagingUnitLocationsInCartridgesResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PackagingUnitLocationsInCartridges" nillable="true" xmlns:q38="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q38:ArrayOfKeyValueOfstringPackagingUnitLocationPGILFW9p" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetPackagingUnitLocationsInCartridgesResponse" nillable="true" type="tns:GetPackagingUnitLocationsInCartridgesResponse" />
+  <xs:complexType name="GetPackagingUnitLocationsInCassettesRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CassetteIds" nillable="true" xmlns:q39="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q39:ArrayOfstring" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetPackagingUnitLocationsInCassettesRequest" nillable="true" type="tns:GetPackagingUnitLocationsInCassettesRequest" />
+  <xs:complexType name="GetPackagingUnitLocationsInCassettesResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PackagingUnitLocationsInCassettes" nillable="true" xmlns:q40="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q40:ArrayOfKeyValueOfstringArrayOfPackagingUnitLocationPGILFW9p" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetPackagingUnitLocationsInCassettesResponse" nillable="true" type="tns:GetPackagingUnitLocationsInCassettesResponse" />
+  <xs:complexType name="GetPackagingUnitLocationsInTrayCarriersRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="TrayCarrierIds" nillable="true" xmlns:q41="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q41:ArrayOfstring" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetPackagingUnitLocationsInTrayCarriersRequest" nillable="true" type="tns:GetPackagingUnitLocationsInTrayCarriersRequest" />
+  <xs:complexType name="GetPackagingUnitLocationsInTrayCarriersResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PackagingUnitLocationsInTrayCarriers" nillable="true" xmlns:q42="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q42:ArrayOfKeyValueOfstringArrayOfPackagingUnitLocationPGILFW9p" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetPackagingUnitLocationsInTrayCarriersResponse" nillable="true" type="tns:GetPackagingUnitLocationsInTrayCarriersResponse" />
+  <xs:complexType name="IsMachineReadyForMoveInChangeoverTablesRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="MachineId" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="IsMachineReadyForMoveInChangeoverTablesRequest" nillable="true" type="tns:IsMachineReadyForMoveInChangeoverTablesRequest" />
+  <xs:complexType name="IsMachineReadyForMoveInChangeoverTablesResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Messages" nillable="true" xmlns:q43="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q43:ArrayOfstring" />
+      <xs:element minOccurs="0" name="ResultState" type="xs:int" />
+      <xs:element minOccurs="0" name="TableLocationsMoveIn" nillable="true" type="tns:ArrayOfTableLocationMoveIn" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="IsMachineReadyForMoveInChangeoverTablesResponse" nillable="true" type="tns:IsMachineReadyForMoveInChangeoverTablesResponse" />
+  <xs:complexType name="ArrayOfTableLocationMoveIn">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TableLocationMoveIn" nillable="true" type="tns:TableLocationMoveIn" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTableLocationMoveIn" nillable="true" type="tns:ArrayOfTableLocationMoveIn" />
+  <xs:complexType name="TableLocationMoveIn">
+    <xs:sequence>
+      <xs:element name="ErrorCode" type="xs:int" />
+      <xs:element name="IsReadyToMoveIn" type="xs:boolean" />
+      <xs:element name="TableLocation" nillable="true" type="tns:TableLocation" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TableLocationMoveIn" nillable="true" type="tns:TableLocationMoveIn" />
+  <xs:complexType name="IsMachineReadyForMoveOutChangeoverTablesRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="MachineId" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="IsMachineReadyForMoveOutChangeoverTablesRequest" nillable="true" type="tns:IsMachineReadyForMoveOutChangeoverTablesRequest" />
+  <xs:complexType name="IsMachineReadyForMoveOutChangeoverTablesResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Messages" nillable="true" xmlns:q44="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q44:ArrayOfstring" />
+      <xs:element minOccurs="0" name="ResultState" type="xs:int" />
+      <xs:element minOccurs="0" name="TableLocationsMoveOut" nillable="true" type="tns:ArrayOfTableLocationMoveOut" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="IsMachineReadyForMoveOutChangeoverTablesResponse" nillable="true" type="tns:IsMachineReadyForMoveOutChangeoverTablesResponse" />
+  <xs:complexType name="ArrayOfTableLocationMoveOut">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TableLocationMoveOut" nillable="true" type="tns:TableLocationMoveOut" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTableLocationMoveOut" nillable="true" type="tns:ArrayOfTableLocationMoveOut" />
+  <xs:complexType name="TableLocationMoveOut">
+    <xs:sequence>
+      <xs:element name="ErrorCode" type="xs:int" />
+      <xs:element name="IsReadyToMoveOut" type="xs:boolean" />
+      <xs:element name="TableLocation" nillable="true" type="tns:TableLocation" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TableLocationMoveOut" nillable="true" type="tns:TableLocationMoveOut" />
+  <xs:complexType name="RegisterChangeoverTableRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DeviceNumber" type="xs:int" />
+      <xs:element minOccurs="0" name="LocationNumber" type="xs:int" />
+      <xs:element minOccurs="0" name="MachineId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TableId" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RegisterChangeoverTableRequest" nillable="true" type="tns:RegisterChangeoverTableRequest" />
+  <xs:complexType name="RegisterChangeoverTableResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Messages" nillable="true" xmlns:q45="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q45:ArrayOfstring" />
+      <xs:element minOccurs="0" name="ResultState" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RegisterChangeoverTableResponse" nillable="true" type="tns:RegisterChangeoverTableResponse" />
+  <xs:complexType name="MoveChangeoverTableIntoStationLocationRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DeviceNumber" type="xs:int" />
+      <xs:element minOccurs="0" name="LocationNumber" type="xs:int" />
+      <xs:element minOccurs="0" name="MachineId" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MoveChangeoverTableIntoStationLocationRequest" nillable="true" type="tns:MoveChangeoverTableIntoStationLocationRequest" />
+  <xs:complexType name="MoveChangeoverTableIntoStationLocationResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorCode" type="xs:int" />
+      <xs:element minOccurs="0" name="Messages" nillable="true" xmlns:q46="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q46:ArrayOfstring" />
+      <xs:element minOccurs="0" name="ResultState" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MoveChangeoverTableIntoStationLocationResponse" nillable="true" type="tns:MoveChangeoverTableIntoStationLocationResponse" />
+  <xs:complexType name="MoveChangeoverTableOutOfStationLocationRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DeviceNumber" type="xs:int" />
+      <xs:element minOccurs="0" name="LocationNumber" type="xs:int" />
+      <xs:element minOccurs="0" name="MachineId" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MoveChangeoverTableOutOfStationLocationRequest" nillable="true" type="tns:MoveChangeoverTableOutOfStationLocationRequest" />
+  <xs:complexType name="MoveChangeoverTableOutOfStationLocationResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorCode" type="xs:int" />
+      <xs:element minOccurs="0" name="Messages" nillable="true" xmlns:q47="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q47:ArrayOfstring" />
+      <xs:element minOccurs="0" name="ResultState" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MoveChangeoverTableOutOfStationLocationResponse" nillable="true" type="tns:MoveChangeoverTableOutOfStationLocationResponse" />
+  <xs:complexType name="GetChangeOverTablesOfActiveSetupRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="MachineIds" nillable="true" xmlns:q48="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q48:ArrayOfstring" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetChangeOverTablesOfActiveSetupRequest" nillable="true" type="tns:GetChangeOverTablesOfActiveSetupRequest" />
+  <xs:complexType name="GetChangeOverTablesOfActiveSetupResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="MachineTableLocations" nillable="true" xmlns:q49="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q49:ArrayOfKeyValueOfstringArrayOfTableLocationPGILFW9p" />
+      <xs:element minOccurs="0" name="Messages" nillable="true" xmlns:q50="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q50:ArrayOfstring" />
+      <xs:element minOccurs="0" name="ResultState" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetChangeOverTablesOfActiveSetupResponse" nillable="true" type="tns:GetChangeOverTablesOfActiveSetupResponse" />
+  <xs:complexType name="GetWaferMapRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="WaferId" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetWaferMapRequest" nillable="true" type="tns:GetWaferMapRequest" />
+  <xs:complexType name="GetWaferMapResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="WaferId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WaferMap" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetWaferMapResponse" nillable="true" type="tns:GetWaferMapResponse" />
+  <xs:complexType name="UpdateWaferMapRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="WaferId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WaferMap" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UpdateWaferMapRequest" nillable="true" type="tns:UpdateWaferMapRequest" />
+</xs:schema>

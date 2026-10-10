@@ -1,0 +1,268 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/Arrays" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" />
+  <xs:complexType name="ArrayOfint">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="int" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfint" nillable="true" type="tns:ArrayOfint" />
+  <xs:complexType name="ArrayOfstring">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfstring" nillable="true" type="tns:ArrayOfstring" />
+  <xs:complexType name="ArrayOfKeyValueOfstringMachineSetupPGILFW9p">
+    <xs:annotation>
+      <xs:appinfo>
+        <IsDictionary xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsDictionary>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="KeyValueOfstringMachineSetupPGILFW9p">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Key" nillable="true" type="xs:string" />
+            <xs:element name="Value" nillable="true" xmlns:q1="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q1:MachineSetup" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfKeyValueOfstringMachineSetupPGILFW9p" nillable="true" type="tns:ArrayOfKeyValueOfstringMachineSetupPGILFW9p" />
+  <xs:complexType name="ArrayOfKeyValueOfstringActiveSetupAndRecipeResultPGILFW9p">
+    <xs:annotation>
+      <xs:appinfo>
+        <IsDictionary xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsDictionary>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="KeyValueOfstringActiveSetupAndRecipeResultPGILFW9p">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Key" nillable="true" type="xs:string" />
+            <xs:element name="Value" nillable="true" xmlns:q2="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q2:ActiveSetupAndRecipeResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfKeyValueOfstringActiveSetupAndRecipeResultPGILFW9p" nillable="true" type="tns:ArrayOfKeyValueOfstringActiveSetupAndRecipeResultPGILFW9p" />
+  <xs:complexType name="ArrayOfKeyValueOfintConveyorLanePGILFW9p">
+    <xs:annotation>
+      <xs:appinfo>
+        <IsDictionary xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsDictionary>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="KeyValueOfintConveyorLanePGILFW9p">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Key" type="xs:int" />
+            <xs:element name="Value" nillable="true" xmlns:q3="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q3:ConveyorLane" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfKeyValueOfintConveyorLanePGILFW9p" nillable="true" type="tns:ArrayOfKeyValueOfintConveyorLanePGILFW9p" />
+  <xs:complexType name="ArrayOfKeyValueOfintProcessingAreaPGILFW9p">
+    <xs:annotation>
+      <xs:appinfo>
+        <IsDictionary xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsDictionary>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="KeyValueOfintProcessingAreaPGILFW9p">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Key" type="xs:int" />
+            <xs:element name="Value" nillable="true" xmlns:q4="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q4:ProcessingArea" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfKeyValueOfintProcessingAreaPGILFW9p" nillable="true" type="tns:ArrayOfKeyValueOfintProcessingAreaPGILFW9p" />
+  <xs:complexType name="ArrayOfKeyValueOfstringComponentLevelIndicatorThresholdDataResultPGILFW9p">
+    <xs:annotation>
+      <xs:appinfo>
+        <IsDictionary xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsDictionary>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="KeyValueOfstringComponentLevelIndicatorThresholdDataResultPGILFW9p">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Key" nillable="true" type="xs:string" />
+            <xs:element name="Value" nillable="true" xmlns:q5="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q5:ComponentLevelIndicatorThresholdDataResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfKeyValueOfstringComponentLevelIndicatorThresholdDataResultPGILFW9p" nillable="true" type="tns:ArrayOfKeyValueOfstringComponentLevelIndicatorThresholdDataResultPGILFW9p" />
+  <xs:complexType name="ArrayOfKeyValueOfstringPrinterConsumableDataResultPGILFW9p">
+    <xs:annotation>
+      <xs:appinfo>
+        <IsDictionary xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsDictionary>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="KeyValueOfstringPrinterConsumableDataResultPGILFW9p">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Key" nillable="true" type="xs:string" />
+            <xs:element name="Value" nillable="true" xmlns:q6="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q6:PrinterConsumableDataResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfKeyValueOfstringPrinterConsumableDataResultPGILFW9p" nillable="true" type="tns:ArrayOfKeyValueOfstringPrinterConsumableDataResultPGILFW9p" />
+  <xs:complexType name="ArrayOfKeyValueOfstringPrinterDeviceStateDataResultPGILFW9p">
+    <xs:annotation>
+      <xs:appinfo>
+        <IsDictionary xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsDictionary>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="KeyValueOfstringPrinterDeviceStateDataResultPGILFW9p">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Key" nillable="true" type="xs:string" />
+            <xs:element name="Value" nillable="true" xmlns:q7="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q7:PrinterDeviceStateDataResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfKeyValueOfstringPrinterDeviceStateDataResultPGILFW9p" nillable="true" type="tns:ArrayOfKeyValueOfstringPrinterDeviceStateDataResultPGILFW9p" />
+  <xs:complexType name="ArrayOfKeyValueOfstringGetPrinterCapabilitiesResultPGILFW9p">
+    <xs:annotation>
+      <xs:appinfo>
+        <IsDictionary xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsDictionary>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="KeyValueOfstringGetPrinterCapabilitiesResultPGILFW9p">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Key" nillable="true" type="xs:string" />
+            <xs:element name="Value" nillable="true" xmlns:q8="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q8:GetPrinterCapabilitiesResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfKeyValueOfstringGetPrinterCapabilitiesResultPGILFW9p" nillable="true" type="tns:ArrayOfKeyValueOfstringGetPrinterCapabilitiesResultPGILFW9p" />
+  <xs:complexType name="ArrayOfKeyValueOfPackagingUnitPackagingUnitMountLocationj9n5l1Mu">
+    <xs:annotation>
+      <xs:appinfo>
+        <IsDictionary xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsDictionary>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="KeyValueOfPackagingUnitPackagingUnitMountLocationj9n5l1Mu">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Key" nillable="true" xmlns:q9="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q9:PackagingUnit" />
+            <xs:element name="Value" nillable="true" xmlns:q10="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q10:PackagingUnitMountLocation" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfKeyValueOfPackagingUnitPackagingUnitMountLocationj9n5l1Mu" nillable="true" type="tns:ArrayOfKeyValueOfPackagingUnitPackagingUnitMountLocationj9n5l1Mu" />
+  <xs:complexType name="ArrayOfKeyValueOfstringStockLocationPGILFW9p">
+    <xs:annotation>
+      <xs:appinfo>
+        <IsDictionary xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsDictionary>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="KeyValueOfstringStockLocationPGILFW9p">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Key" nillable="true" type="xs:string" />
+            <xs:element name="Value" nillable="true" xmlns:q11="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q11:StockLocation" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfKeyValueOfstringStockLocationPGILFW9p" nillable="true" type="tns:ArrayOfKeyValueOfstringStockLocationPGILFW9p" />
+  <xs:complexType name="ArrayOfKeyValueOfstringStationPGILFW9p">
+    <xs:annotation>
+      <xs:appinfo>
+        <IsDictionary xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsDictionary>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="KeyValueOfstringStationPGILFW9p">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Key" nillable="true" type="xs:string" />
+            <xs:element name="Value" nillable="true" xmlns:q12="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q12:Station" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfKeyValueOfstringStationPGILFW9p" nillable="true" type="tns:ArrayOfKeyValueOfstringStationPGILFW9p" />
+  <xs:complexType name="ArrayOfKeyValueOfstringArrayOfPackagingUnitLocationPGILFW9p">
+    <xs:annotation>
+      <xs:appinfo>
+        <IsDictionary xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsDictionary>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="KeyValueOfstringArrayOfPackagingUnitLocationPGILFW9p">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Key" nillable="true" type="xs:string" />
+            <xs:element name="Value" nillable="true" xmlns:q13="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q13:ArrayOfPackagingUnitLocation" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfKeyValueOfstringArrayOfPackagingUnitLocationPGILFW9p" nillable="true" type="tns:ArrayOfKeyValueOfstringArrayOfPackagingUnitLocationPGILFW9p" />
+  <xs:complexType name="ArrayOfKeyValueOfstringPackagingUnitLocationPGILFW9p">
+    <xs:annotation>
+      <xs:appinfo>
+        <IsDictionary xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsDictionary>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="KeyValueOfstringPackagingUnitLocationPGILFW9p">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Key" nillable="true" type="xs:string" />
+            <xs:element name="Value" nillable="true" xmlns:q14="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q14:PackagingUnitLocation" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfKeyValueOfstringPackagingUnitLocationPGILFW9p" nillable="true" type="tns:ArrayOfKeyValueOfstringPackagingUnitLocationPGILFW9p" />
+  <xs:complexType name="ArrayOfKeyValueOfstringArrayOfTableLocationPGILFW9p">
+    <xs:annotation>
+      <xs:appinfo>
+        <IsDictionary xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsDictionary>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="KeyValueOfstringArrayOfTableLocationPGILFW9p">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Key" nillable="true" type="xs:string" />
+            <xs:element name="Value" nillable="true" xmlns:q15="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q15:ArrayOfTableLocation" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfKeyValueOfstringArrayOfTableLocationPGILFW9p" nillable="true" type="tns:ArrayOfKeyValueOfstringArrayOfTableLocationPGILFW9p" />
+</xs:schema>

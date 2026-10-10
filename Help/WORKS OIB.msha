@@ -1,0 +1,20 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>WORKS Operations Information Broker</title>
+</head>
+<body class="vendor-book">
+    <div class="details">
+        <span class="vendor">ASMPT</span>
+        <span class="locale">en-us</span>
+        <span class="product">WORKS Operations Information Broker</span>
+        <span class="name">WORKS Operations Information Broker</span>
+    </div>
+    <div class="package-list">
+        <div class="package">
+            <!-- NOTE: The "name" span value cannot contain any periods! -->
+            <span class="name">WORKS OIB</span>
+            <a class="current-link" href="WORKS OIB.mshc">WORKS OIB.mshc</a>
+        </div>
+    </div>
+</body>
+</html>

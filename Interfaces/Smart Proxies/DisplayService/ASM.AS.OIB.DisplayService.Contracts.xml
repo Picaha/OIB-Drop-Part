@@ -1,0 +1,2911 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ASM.AS.OIB.DisplayService.Contracts</name>
+    </assembly>
+    <members>
+        <member name="T:Asm.As.Oib.DisplayService.Contracts.Constants">
+            <summary>
+            Constants name space definitions for this service.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Constants.NamespaceUriData">
+            <summary>
+            URI name space for this data contracts in this service
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Constants.NamespaceUriService">
+            <summary>
+            URI name space for this service contracts of this service.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Constants.NamespaceUriMessage">
+            <summary>
+            URI name space for this message contracts of this service.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Constants.ContractsVersion">
+            <summary>
+            The contracts version
+            </summary>
+        </member>
+        <member name="T:Asm.As.Oib.DisplayService.Contracts.Data.Answer">
+            <summary>
+            Holds all details about a client that need to be known by the service
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Data.Answer.#ctor(System.String,System.Collections.Generic.List{System.String})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Data.Answer"/> class.
+            </summary>
+            <param name="answer">The answer.</param>
+            <param name="subanswers">The subanswers.</param>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Data.Answer.#ctor(System.String,System.Collections.Generic.List{System.String},System.Guid)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Data.Answer"/> class.
+            </summary>
+            <param name="answer">The answer.</param>
+            <param name="subanswers">The subanswers.</param>
+            <param name="answerID">The answer id.</param>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Data.Answer.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Data.Answer"/> class.
+            </summary>
+            <param name="answer">The answer.</param>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Data.Answer.#ctor(System.String,System.Guid)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Data.Answer"/> class.
+            </summary>
+            <param name="answer">The answer.</param>
+            <param name="answerID">The answer id.</param>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Data.Answer.#ctor(System.String,System.Collections.Generic.List{Asm.As.Oib.DisplayService.Contracts.Data.SubAnswer})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Data.Answer"/> class.
+            </summary>
+            <param name="answer">The answer.</param>
+            <param name="subanswers">The subanswers.</param>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Data.Answer.#ctor(System.String,System.Collections.Generic.List{Asm.As.Oib.DisplayService.Contracts.Data.SubAnswer},System.Guid)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Data.Answer"/> class.
+            </summary>
+            <param name="answer">The answer.</param>
+            <param name="subanswers">The subanswers.</param>
+            <param name="answerID">The answer id.</param>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Data.Answer.AnswerText">
+            <summary>
+            Text for this answer
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Data.Answer.SubAnswers">
+            <summary>
+            Sub-Answers. Optional
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Data.Answer.AnswerID">
+            <summary>
+            Answer ID. Optional
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Data.Answer.SubAnswersNew">
+            <summary>
+            Sub-Answers. Optional
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Contracts.Data.Answer.Guid">
+            <summary>
+            Gets the GUID.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Data.Answer.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.DisplayService.Contracts.Data.ClientRegistration">
+            <summary>
+            Holds all details about a client that need to be known by the service
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Data.ClientRegistration.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Data.ClientRegistration"/> class.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Data.ClientRegistration.#ctor(Asm.As.Oib.DisplayService.Contracts.Messages.ClientRegistrationRequest)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Data.ClientRegistration"/> class.
+            </summary>
+            <param name="req">The req.</param>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Data.ClientRegistration.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Data.ClientRegistration"/> class.
+            </summary>
+            <param name="clientName">Name of the client.</param>
+            <param name="clientGuid">The client GUID.</param>
+            <param name="callback">The callback.</param>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Data.ClientRegistration.#ctor(System.String,System.String,System.ServiceModel.EndpointAddress)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Data.ClientRegistration"/> class.
+            </summary>
+            <param name="clientName">Name of the client.</param>
+            <param name="clientGuid">The client GUID.</param>
+            <param name="callbackAddress">The callback.</param>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Data.ClientRegistration.ClientName">
+            <summary>
+            Name of the client. Must be less or equal to 1000 characters.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Data.ClientRegistration.ClientGUID">
+            <summary>
+            Client GUID. Used for identifying the client in the DS System.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Data.ClientRegistration.CallbackAddress">
+            <summary>
+            Address of the callback service that is hosted by the client proxy.
+            The callback service must implement IDisplayServiceCallback
+            String length must be less or equal to 1000 characters and it must represent a valid Uri
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Contracts.Data.ClientRegistration.LastActive">
+            <summary>
+            Gets or sets a value that indicates when was the last activity of the client,
+            for instance registered itself, received a message successfully, send an answer, etc.
+            </summary>
+            <remarks>
+            This value is in UTC, please convert to local time before displaying to users!
+            </remarks>
+            <value>
+            The date time value of the last activity of the registered viewer
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Contracts.Data.ClientRegistration.CallbackEndpointSerializable">
+            <summary>
+            The Endpoint for the Client callback address, in a serializable form.
+            String length of serialized address must be less or equal to 1000 characters and it must represent a valid Uri
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Contracts.Data.ClientRegistration.Guid">
+            <summary>
+            Gets the GUID (if the ClientGUID property represents a valid Guid). If there is an invalid or empty ClientGUID, Guid.Empty is returned
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Contracts.Data.ClientRegistration.ClientReceivedConfirmation">
+            <summary>
+            Gets or sets a value indicating whether [client received confirmation].
+            </summary>
+            <value>
+            	<c>true</c> if [client received confirmation]; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Contracts.Data.ClientRegistration.EffectiveCallbackAddress">
+            <summary>
+            Returns the effective callback EndpointAddress. In case the proxy (6.3 and higher) provided
+            CallbackEndpointSerializable (which can contain an Endpoint Identity for secure callbacks),
+            this is returned, otherwise it is created using the CallbackAddress uri.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Contracts.Data.ClientRegistration.EffectiveCallbackEndpointSerializable">
+            <summary>
+            Returns the effective callback EndpointAddress. In case the proxy (6.3 and higher) provided
+            CallbackEndpointSerializable (which can contain an Endpoint Identity for secure callbacks),
+            this is returned, otherwise it is created using the CallbackAddress uri.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Data.ClientRegistration.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.DisplayService.Contracts.Data.DisplayServiceAdminSettings">
+            <summary>
+            Holds all details about a client that need to be known by the service
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Data.DisplayServiceAdminSettings.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Data.ClientRegistration"/> class.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Data.DisplayServiceAdminSettings.#ctor(System.UInt16)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Data.DisplayServiceAdminSettings"/> class.
+            </summary>
+            <param name="maxClientExpiry">Client expiration period in days.</param>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Data.DisplayServiceAdminSettings.#ctor(System.UInt16,System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Data.DisplayServiceAdminSettings"/> class.
+            </summary>
+            <param name="maxClientExpiry">Client expiration period in days.</param>
+            <param name="databaseName">OIB Database Name</param>
+            <param name="databaseInstance"> OIB Database SQL Server Instance Name</param>
+            <param name="coreHostName">OIB Core Computer Name</param>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Contracts.Data.DisplayServiceAdminSettings.MaxClientExpiry">
+            <summary>
+            Max. client expiration period in days.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Contracts.Data.DisplayServiceAdminSettings.DatabaseName">
+            <summary>
+            OIB Database Name
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Contracts.Data.DisplayServiceAdminSettings.DatabaseInstance">
+            <summary>
+            OIB Database SQL Server Instance Name
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Contracts.Data.DisplayServiceAdminSettings.OIBCoreHostName">
+            <summary>
+            OIB Core Computer Name
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Data.DisplayServiceAdminSettings.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.DisplayService.Contracts.Data.Message">
+            <summary>
+            Holds details about message delivery states for a viewer.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Data.Message.ClientRegistration">
+            <summary>
+            Client Registration of the sending client
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Data.Message.MessageText">
+            <summary>
+            Message text
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Data.Message.ExtendedDescription">
+            <summary>
+            Extended description
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Data.Message.ExtendedDescriptionDefault">
+            <summary>
+            If set to true the extended description will be expanded when the message is displayed at the viewer.
+            Default is false.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Data.Message.AcknowledgementType">
+            <summary>
+            Acknowledgment Type
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Data.Message.CallbackRequested">
+            <summary>
+            If set to true, the service will forward any confirmations of viewers to this client.
+            Default is true.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Data.Message.Priority">
+            <summary>
+            Used by viewers to sort messages, this is an integer with values from 0 to 100. 
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Data.Message.SeverityLevel">
+            <summary>
+            Used by viewers to display an optional icon next to the message.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Data.Message.CreationTimeUTC">
+            <summary>
+            Creation Time of the message in UTC
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Data.Message.MessageGUID">
+            <summary>
+            Message GUID (created by DB)
+            Can be used to update or revoke the message later on.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Data.Message.Answers">
+            <summary>
+            Supported answers
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Data.Message.DefaultAnswerIndex">
+            <summary>
+            In case of given sub-answers the index of the default index of the main answer.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Contracts.Data.Message.Guid">
+            <summary>
+            Gets the GUID.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Data.Message.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.DisplayService.Contracts.Data.MessageDeliveryDetails">
+            <summary>
+            Holds details about message delivery states for a viewer.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Data.MessageDeliveryDetails.#ctor(Asm.As.Oib.DisplayService.Contracts.Data.ViewerRegistration)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Data.MessageDeliveryDetails"/> class.
+            </summary>
+            <param name="viewer">The viewer.</param>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Data.MessageDeliveryDetails.ViewerRegistration">
+            <summary>
+            The viewer that returned an error.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Data.MessageDeliveryDetails.ExecptionMessage">
+            <summary>
+            The exception message that was returned.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Data.MessageDeliveryDetails.DeliveredSuccessfully">
+            <summary>
+            If true, the message was delivered successfully to the viewer
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Data.MessageDeliveryDetails.AnswerReceived">
+            <summary>
+            If true, an answer was received from this viewer
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Data.MessageDeliveryDetails.Answer">
+            <summary>
+            The answer that was returned.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Data.MessageDeliveryDetails.SubAnswer">
+            <summary>
+            The sub-answer that was returned.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Data.MessageDeliveryDetails.ConfirmationForwardedSuccessfully">
+            <summary>
+            If true, the confirmation was forwarded successfully to the client
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Contracts.Data.MessageDeliveryDetails.ConfirmationForwardedSuccessfullyNullable">
+            <summary>
+            If true, the confirmation was forwarded successfully to the client
+            [true] confirmation was forwarded successfully to the client
+            [false] confirmation was not successfully forwarded to the client
+            [null] after sending a message, viewer has not confirmed yet
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Contracts.Data.MessageDeliveryDetails.ConfirmationForwarded">
+            <summary>
+            Can be used in internal logic
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Data.MessageDeliveryDetails.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.DisplayService.Contracts.Data.MessageState">
+            <summary>
+            Holds details about a pending message and its state.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Data.MessageState.#ctor(Asm.As.Oib.DisplayService.Contracts.Data.Message)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Data.MessageState"/> class.
+            </summary>
+            <param name="msg">The message.</param>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Data.MessageState.DeliveryDetails">
+            <summary>
+            Delivery details for the message
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Data.MessageState.Message">
+            <summary>
+            Message text
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Data.MessageState.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.DisplayService.Contracts.Data.SubAnswer">
+            <summary>
+            Holds all details about a client that need to be known by the service
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Data.SubAnswer.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Data.SubAnswer"/> class.
+            </summary>
+            <param name="subanswer">The subanswer.</param>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Data.SubAnswer.#ctor(System.String,System.Guid)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Data.SubAnswer"/> class.
+            </summary>
+            <param name="subanswer">The subanswer.</param>
+            <param name="subanswerID">The subanswer id.</param>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Data.SubAnswer.SubAnswerText">
+            <summary>
+            Text for this subanswer
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Data.SubAnswer.SubAnswerID">
+            <summary>
+            SubAnswer ID. Optional
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Data.SubAnswer.TextEditable">
+            <summary>
+            If set to true, the message text is editable at the viewer
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Contracts.Data.SubAnswer.Guid">
+            <summary>
+            Gets the GUID.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Data.SubAnswer.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.DisplayService.Contracts.Data.Types.AcknowledgementType">
+            <summary>
+            AcknowledgementType, what options are there so that the message can be removed again.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Data.Types.AcknowledgementType.Originator">
+            <summary>
+            Message can be acknowledged only by the sending client.
+            To remove (acknowledge) it, the sender needs to call the RevokeMessage method.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Data.Types.AcknowledgementType.OneReceiver">
+            <summary>
+            Message can be acknowledged by a confirmation on the receiver
+            As soon as it was confirmed by at least one receiver, it is removed (acknowledged)
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Data.Types.AcknowledgementType.AllReceivers">
+            <summary>
+            Message must be acknowledged by all receivers.
+            Only when it was confirmed by all receivers, it is removed (acknowledged)
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Data.Types.AcknowledgementType.Reserved1">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Data.Types.AcknowledgementType.Reserved2">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Data.Types.AcknowledgementType.Reserved3">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Data.Types.AcknowledgementType.Reserved4">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Data.Types.AcknowledgementType.Reserved5">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Data.Types.AcknowledgementType.Reserved6">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Data.Types.AcknowledgementType.Reserved7">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Data.Types.AcknowledgementType.Reserved8">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Data.Types.AcknowledgementType.Reserved9">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Data.Types.AcknowledgementType.Reserved10">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="T:Asm.As.Oib.DisplayService.Contracts.Data.Types.SeverityLevel">
+            <summary>
+            Used for displaying an ICON next to the messsage at the viewer
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Data.Types.SeverityLevel.None">
+            <summary>
+            None. No specific severity.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Data.Types.SeverityLevel.Info">
+            <summary>
+            Informational Message
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Data.Types.SeverityLevel.Warning">
+            <summary>
+            Warning type message
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Data.Types.SeverityLevel.Error">
+            <summary>
+            Error type message
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Data.Types.SeverityLevel.Undefined">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Data.Types.SeverityLevel.Reserved1">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Data.Types.SeverityLevel.Reserved2">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Data.Types.SeverityLevel.Reserved3">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Data.Types.SeverityLevel.Reserved4">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Data.Types.SeverityLevel.Reserved5">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Data.Types.SeverityLevel.Reserved6">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Data.Types.SeverityLevel.Reserved7">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Data.Types.SeverityLevel.Reserved8">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Data.Types.SeverityLevel.Reserved9">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Data.Types.SeverityLevel.Reserved10">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="T:Asm.As.Oib.DisplayService.Contracts.Data.Types.ViewerIdentification">
+            <summary>
+            Defines how a viewer is identitfied
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Data.Types.ViewerIdentification.Explicit">
+            <summary>
+            Viewers are identified by the ViewerRegistrations explitely
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Data.Types.ViewerIdentification.StationPath">
+            <summary>
+            Viewers are identified by the SIPLACE Pro Station Path.
+            The DS Service will look up the corresponding ViewerRegistration before forwarding the call to the Dispatchers.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Data.Types.ViewerIdentification.LinePathFirstStation">
+            <summary>
+            The Viewer is identified by the SIPLACE Pro Line Path. The first viewer in the given Line will be looked up.
+            The DS Service will look up the corresponding ViewerRegistration before forwarding the call to the Dispatchers.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Data.Types.ViewerIdentification.LinePathAllStations">
+            <summary>
+            The Viewers are identified by the SIPLACE Pro Line Path. All viewers in the given Line will be looked up.
+            The DS Service will look up the corresponding ViewerRegistration before forwarding the call to the Dispatchers.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Data.Types.ViewerIdentification.Reserved1">
+            <summary>
+            LinePathNoStations: Only the LineControl computer viewer will be addressed, no other station viewers that might be registered for that line.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Data.Types.ViewerIdentification.Reserved2">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Data.Types.ViewerIdentification.Reserved3">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Data.Types.ViewerIdentification.Reserved4">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Data.Types.ViewerIdentification.Reserved5">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Data.Types.ViewerIdentification.Reserved6">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Data.Types.ViewerIdentification.Reserved7">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Data.Types.ViewerIdentification.Reserved8">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Data.Types.ViewerIdentification.Reserved9">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Data.Types.ViewerIdentification.Reserved10">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="T:Asm.As.Oib.DisplayService.Contracts.Data.ViewerRegistration">
+            <summary>
+            Holds details about a viewer.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Data.ViewerRegistration.#ctor(System.Guid,System.String,System.String,System.String,System.Collections.Generic.List{System.String},System.String,System.String,System.String,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Data.ViewerRegistration" /> class.
+            </summary>
+            <param name="viewerGUID">The viewer GUID.</param>
+            <param name="viewerAddress">The viewer address.</param>
+            <param name="dispatcherAddress">The dispatcher address.</param>
+            <param name="computerName">Name of the computer.</param>
+            <param name="ipAddresses">The ip addresses.</param>
+            <param name="siplaceProStationPath">The siplace pro station path.</param>
+            <param name="siplaceProLinePath">The siplace pro line path.</param>
+            <param name="siplaceProDatabaseId">The siplace pro database id.</param>
+            <param name="siplaceProStationOID">The siplace pro station OID.</param>
+            <param name="siplaceProLineOID">The siplace pro line OID.</param>
+            <param name="indexInLine">The index in line.</param>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Data.ViewerRegistration.#ctor(System.Guid,System.String,System.String,System.String,System.Collections.Generic.List{System.String},System.String,System.String,System.String,System.Int32,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Data.ViewerRegistration" /> class.
+            </summary>
+            <param name="viewerGUID">The viewer GUID.</param>
+            <param name="viewerAddress">The viewer address.</param>
+            <param name="dispatcherAddress">The dispatcher address.</param>
+            <param name="computerName">Name of the computer.</param>
+            <param name="ipAddresses">The ip addresses.</param>
+            <param name="siplaceProStationPath">The siplace pro station path.</param>
+            <param name="siplaceProLinePath">The siplace pro line path.</param>
+            <param name="siplaceProDatabaseId">The siplace pro database id.</param>
+            <param name="siplaceProStationOID">The siplace pro station OID.</param>
+            <param name="siplaceProLineOID">The siplace pro line OID.</param>
+            <param name="indexInLine">The index in line.</param>
+            <param name="isStationViewer">if set to <c>true</c> [is station viewer].</param>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Data.ViewerRegistration.#ctor(System.Guid,System.String,System.String,System.String,System.Collections.Generic.List{System.String},System.String,System.String,System.String,System.Int32,System.Int32,System.Int32,System.Boolean,System.Nullable{System.Int32})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Data.ViewerRegistration" /> class.
+            </summary>
+            <param name="viewerGUID">The viewer GUID.</param>
+            <param name="viewerAddress">The viewer address.</param>
+            <param name="dispatcherAddress">The dispatcher address.</param>
+            <param name="computerName">Name of the computer.</param>
+            <param name="ipAddresses">The ip addresses.</param>
+            <param name="siplaceProStationPath">The siplace pro station path.</param>
+            <param name="siplaceProLinePath">The siplace pro line path.</param>
+            <param name="siplaceProDatabaseId">The siplace pro database id.</param>
+            <param name="siplaceProStationOID">The siplace pro station OID.</param>
+            <param name="siplaceProLineOID">The siplace pro line OID.</param>
+            <param name="indexInLine">The index in line.</param>
+            <param name="isStationViewer">if set to <c>true</c> [is station viewer].</param>
+            <param name="stationType">Type of the station. 0: SIPLACE Station, 1: Printer, 2: Generic Device </param>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Data.ViewerRegistration.#ctor(System.Guid,System.String,System.String,System.String,System.Collections.Generic.List{System.String},System.String,System.String,System.String,System.Int64,System.Int64,System.Int32,System.Boolean,System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Data.ViewerRegistration" /> class.
+            </summary>
+            <param name="viewerGUID">The viewer GUID.</param>
+            <param name="viewerAddress">The viewer address.</param>
+            <param name="dispatcherAddress">The dispatcher address.</param>
+            <param name="computerName">Name of the computer.</param>
+            <param name="ipAddresses">The ip addresses.</param>
+            <param name="siplaceProStationPath">The siplace pro station path.</param>
+            <param name="siplaceProLinePath">The siplace pro line path.</param>
+            <param name="siplaceProDatabaseId">The siplace pro database id.</param>
+            <param name="siplaceProStationOID">The siplace pro station OID.</param>
+            <param name="siplaceProLineOID">The siplace pro line OID.</param>
+            <param name="indexInLine">The index in line.</param>
+            <param name="isStationViewer">if set to <c>true</c> [is station viewer].</param>
+            <param name="stationType">Type of the station. 0: SIPLACE Station, 1: Printer, 2: Generic Device</param>
+            <param name="deviceInLinePosition">The device in line position.</param>
+            <param name="deviceVerticalPositionInLine">The device vertical position in line.</param>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Data.ViewerRegistration.#ctor(System.Guid,System.String,System.String,System.String,System.Collections.Generic.List{System.String},System.String,System.String,System.String,System.Int64,System.Int64,System.Int32,System.Boolean,System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Data.ViewerRegistration" /> class.
+            </summary>
+            <param name="viewerGUID">The viewer GUID.</param>
+            <param name="viewerAddress">The viewer address.</param>
+            <param name="dispatcherAddress">The dispatcher address.</param>
+            <param name="computerName">Name of the computer.</param>
+            <param name="ipAddresses">The ip addresses.</param>
+            <param name="siplaceProStationPath">The siplace pro station path.</param>
+            <param name="siplaceProLinePath">The siplace pro line path.</param>
+            <param name="siplaceProDatabaseId">The siplace pro database id.</param>
+            <param name="siplaceProStationOID">The siplace pro station OID.</param>
+            <param name="siplaceProLineOID">The siplace pro line OID.</param>
+            <param name="indexInLine">The index in line.</param>
+            <param name="isStationViewer">if set to <c>true</c> [is station viewer].</param>
+            <param name="stationType">Type of the station. 0: SIPLACE Station, 1: Printer, 2: Generic Device</param>
+            <param name="deviceInLinePosition">The device in line position.</param>
+            <param name="deviceVerticalPositionInLine">The device vertical position in line.</param>
+            <param name="isSsiStationViewer">if set to <c>true</c> [is SSI (Sirio) station viewer].</param>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Data.ViewerRegistration.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Data.ViewerRegistration"/> class.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Data.ViewerRegistration.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Data.ViewerRegistration"/> class.
+            </summary>
+            <param name="viewerGUID">The viewer GUID.</param>
+            <param name="viewerAddress">The viewer address.</param>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Data.ViewerRegistration.IPAddresses">
+            <summary>
+            IP Addresses of the Viewer (Station) computer.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Contracts.Data.ViewerRegistration.ComputerName">
+            <summary>
+            ComputerName of the Viewer.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Contracts.Data.ViewerRegistration.EndpointAddress">
+            <summary>
+            Endpoint Address of the Viewer Service that receives the message.
+            This contains the IP Address, not the host name!
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Contracts.Data.ViewerRegistration.DispatcherEndpointAddress">
+            <summary>
+            Endpoint Address of the Dispatcher Service that is responsible for this viewer.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Contracts.Data.ViewerRegistration.ViewerGUID">
+            <summary>
+            Viewer GUID. Used for identifying the Viewer in the DS System.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Contracts.Data.ViewerRegistration.SIPLACEProStationPath">
+            <summary>
+            SIPLACE Pro Path of the station
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Contracts.Data.ViewerRegistration.SIPLACEProLinePath">
+            <summary>
+            SIPLACE Pro Path of the line
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Contracts.Data.ViewerRegistration.SIPLACEProStationIndexInLine">
+            <summary>
+            SIPLACE Pro Index of the Station in the Line.
+            Only valid for stations.
+            -1 for Printers, GenericLineDevices and InspectionSystems
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Contracts.Data.ViewerRegistration.SIPLACEProStationOID">
+            <summary>
+            SIPLACE Pro OID of the station
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Contracts.Data.ViewerRegistration.SIPLACEProLineOID">
+            <summary>
+            SIPLACE Pro OID of the line
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Contracts.Data.ViewerRegistration.SIPLACEProDatabaseId">
+            <summary>
+            SIPLACE Pro Database ID
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Contracts.Data.ViewerRegistration.StationType">
+            <summary>
+            Type of the station
+            
+            0: SIPLACE Station
+            1: Printer
+            2: Generic Device
+            3: InspectionSystem
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Data.ViewerRegistration.IsStationViewer">
+            <summary>
+            If true, this Viewer is located on a SIPLACE station.
+            If false, it is located on a line computer and responsible for a line.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Contracts.Data.ViewerRegistration.SIPLACEProStationOID_Long">
+            <summary>
+            SIPLACE Pro OID of the station
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Contracts.Data.ViewerRegistration.SIPLACEProLineOID_Long">
+            <summary>
+            SIPLACE Pro OID of the line
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Contracts.Data.ViewerRegistration.DeviceInLinePosition">
+            <summary>
+            Gets or sets the device in line position.
+            This is the 1 based horizontal position in the line
+            </summary>
+            <value>
+            The device in line position.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Contracts.Data.ViewerRegistration.DeviceVerticalPositionInLine">
+            <summary>
+            Gets or sets the device vertical position in line.
+            Currently supported:
+            1: device is connected to first conveyor (right) or to both conveyors
+            2: device is only connected to left conveyor
+            </summary>
+            <value>
+            The device vertical position in line.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Contracts.Data.ViewerRegistration.IsSsiStationViewer">
+            <summary>
+            Gets or sets a value whether if the built in station software display viewer is used
+            Software version lower than  712 : The OIB Display viewer is used
+            Software version greater or equal than  712 : The station software diplay viewer is used (SSI interface)
+            </summary>
+            <value>
+            [True] if new SSI viewer is used, else otherwise
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Contracts.Data.ViewerRegistration.LastActive">
+            <summary>
+            Gets or sets a value that indicates when was the last activity of the viewer,
+            for instance registered itself, received a message successfully, send an answer, etc.
+            </summary>
+            <value>
+            The date time value of the last activity of the registered viewer
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Contracts.Data.ViewerRegistration.StationTypeString">
+            <summary>
+            Gets Station as String
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Contracts.Data.ViewerRegistration.IsStationViewerValue">
+            <summary>
+            If true, this Viewer is located on a station or printer.
+            If false, it is located on a line computer and responsible for a line.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Contracts.Data.ViewerRegistration.StationTypeValue">
+            <summary>
+            Type of the station. 
+            0: SIPLACE Station
+            1: Printer
+            2: Generic Device
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Contracts.Data.ViewerRegistration.DeviceInLinePositionValue">
+            <summary>
+            Gets the device in line position value.
+            </summary>
+            <value>
+            The device in line position value.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Contracts.Data.ViewerRegistration.DeviceVerticalPositionInLineValue">
+            <summary>
+            Gets the device vertical position in line value.
+            </summary>
+            <value>
+            The device vertical position in line value.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Contracts.Data.ViewerRegistration.IPAddressesString">
+            <summary>
+            Gets the IP addresses string.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Contracts.Data.ViewerRegistration.RealIPAddresses">
+            <summary>
+            Gets the IP addresses ad real list of IPAddress objects.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Contracts.Data.ViewerRegistration.Guid">
+            <summary>
+            Gets the GUID.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Contracts.Data.ViewerRegistration.MessagesDeliveredSuccessfully">
+            <summary>
+            Gets or sets a value indicating whether [messages are delivered successfully].
+            </summary>
+            <value>
+            	<c>true</c> if [messages are delivered successfully]; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Data.ViewerRegistration.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.DisplayService.Contracts.Messages.ClientRegistrationRequest">
+            <summary>
+            This is the ClientRegistrationRequest object, which is passed to the service for a client registration
+            It contains all values that the service needs to process the registration
+            /// </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.ClientRegistrationRequest.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Messages.ClientRegistrationRequest"/> class.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.ClientRegistrationRequest.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Messages.ClientRegistrationRequest"/> class.
+            </summary>
+            <param name="clientName">Name of the client.</param>
+            <param name="callbackAddress">The callback address.</param>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.ClientRegistrationRequest.#ctor(System.String,System.Guid,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Messages.ClientRegistrationRequest"/> class.
+            </summary>
+            <param name="clientName">Name of the client.</param>
+            <param name="clientGUID">The client GUID.</param>
+            <param name="callbackAddress">The callback address.</param>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.ClientRegistrationRequest.#ctor(System.String,System.Guid,System.ServiceModel.EndpointAddress)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Messages.ClientRegistrationRequest"/> class.
+            </summary>
+            <param name="clientName">Name of the client.</param>
+            <param name="clientGUID">The client GUID.</param>
+            <param name="callbackAddress">The callback address as endpoint address object, can be used with identity and is then serialized</param>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.ClientRegistrationRequest.#ctor(System.String,System.ServiceModel.EndpointAddress)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Messages.ClientRegistrationRequest"/> class.
+            </summary>
+            <param name="clientName">Name of the client.</param>
+            <param name="callbackAddress">The callback address as endpoint address object, can be used with identity and is then serialized</param>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.ClientRegistrationRequest.Client">
+            <summary>
+            Name of the client. Must not be existing yet in case a new client registration is created.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.ClientRegistrationRequest.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.DisplayService.Contracts.Messages.ClientRegistrationResponse">
+            <summary>
+            This is the ClientRegistrationResponse object, which is passed to the client  
+            after a registration was succesfull.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.ClientRegistrationResponse.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Messages.ClientRegistrationRequest"/> class.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.ClientRegistrationResponse.#ctor(Asm.As.Oib.DisplayService.Contracts.Messages.ClientRegistrationRequest)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Messages.ClientRegistrationResponse"/> class.
+            </summary>
+            <param name="req">The req.</param>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.ClientRegistrationResponse.ClientRegistration">
+            <summary>
+            Client Registration
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.ClientRegistrationResponse.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.DisplayService.Contracts.Messages.ClientUnregistrationRequest">
+            <summary>
+            This is the ClientUnregistrationRequest object, which is passed to the service for a client deregistration
+            It contains all values that the service needs to process the deregistration
+            /// </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.ClientUnregistrationRequest.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Messages.ClientUnregistrationRequest"/> class.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.ClientUnregistrationRequest.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Messages.ClientUnregistrationRequest"/> class.
+            </summary>
+            <param name="clientGUID">The client GUID.</param>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.ClientUnregistrationRequest.ClientGUID">
+            <summary>
+            Client GUID. Used for identifying the client in the DS System.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Contracts.Messages.ClientUnregistrationRequest.Guid">
+            <summary>
+            Gets the GUID.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.ClientUnregistrationRequest.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.DisplayService.Contracts.Messages.ClientUnregistrationResponse">
+            <summary>
+            This is the ClientUnregistrationResponse object, which is passed to the client
+            after a registration was successful.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.ClientUnregistrationResponse.Unregistered">
+            <summary>
+            True, if unregistration was successful
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.ClientUnregistrationResponse.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.DisplayService.Contracts.Messages.ConfirmationReceivedRequest">
+            <summary>
+            This is the ConfirmationReceivedRequest object, which is passed from the Viewer to a client when a message was confirmed by a user at the viewer.
+            /// </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.ConfirmationReceivedRequest.Answer">
+            <summary>
+            The Answer that was confirmed, only filled out if an answer was given by that viewer
+            </summary>
+            <value></value>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.ConfirmationReceivedRequest.MessageDeleted">
+            <summary>
+            True, if the message was deleted by this confirmation
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.ConfirmationReceivedRequest.Viewer">
+            <summary>
+            Viewer that this answer comes from
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.ConfirmationReceivedRequest.OriginalMessage">
+            <summary>
+            Original Message 
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.ConfirmationReceivedRequest.ThisViewerDeleted">
+            <summary>
+            True, if this viewer was deleted
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.ConfirmationReceivedRequest.SubAnswer">
+            <summary>
+            The SubAnswer that was confirmed, only filled out if an subanswer was given by that viewer
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.ConfirmationReceivedRequest.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.DisplayService.Contracts.Messages.ConfirmationReceivedResponse">
+            <summary>
+            This is the ConfirmationReceivedResponse object, which is passed back from the client to the service.
+            ///
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Contracts.Messages.ConfirmationReceivedResponse.ViewerGUID">
+            <summary>
+            Viewer GUID. Used for identifying the Viewer in the DS System.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.ConfirmationReceivedResponse.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.DisplayService.Contracts.Messages.GetAdminSettingsRequest">
+            <summary>
+            Object that is required for getting specific administration settings
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.GetAdminSettingsRequest.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Messages.GetAdminSettingsRequest"/> class.
+            </summary>
+        </member>
+        <member name="T:Asm.As.Oib.DisplayService.Contracts.Messages.GetAdminSettingsResponse">
+            <summary>
+            Object that is returned when getting specific administration settings
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.GetAdminSettingsResponse.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Messages.GetAdminSettingsResponse" /> class.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.GetAdminSettingsResponse.#ctor(Asm.As.Oib.DisplayService.Contracts.Data.DisplayServiceAdminSettings)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Messages.GetAdminSettingsResponse" /> class.
+            </summary>
+            <param name="settings">The display service administration settings.</param>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Contracts.Messages.GetAdminSettingsResponse.AdminSettings">
+            <summary>
+            List of all viewers
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.GetAdminSettingsResponse.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.DisplayService.Contracts.Messages.IsViewerRegisteredResponse">
+            <summary>
+            This is the IsViewerRegisteredResponse object, which is passed to the client  
+            after a registration was succesfull.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.IsViewerRegisteredResponse.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Messages.ViewerRegistrationResponse"/> class.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.IsViewerRegisteredResponse.#ctor(Asm.As.Oib.DisplayService.Contracts.Data.ViewerRegistration)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Messages.ViewerRegistrationResponse"/> class.
+            </summary>
+            <param name="viewer">The viewer.</param>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.IsViewerRegisteredResponse.ViewerRegistration">
+            <summary>
+            Viewer Registration
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.IsViewerRegisteredResponse.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.DisplayService.Contracts.Messages.IsViewerRegisteredRequest">
+            <summary>
+            This is the IsViewerRegisteredRequest object, which is passed to the service for a client registration
+            It contains all values that the service needs to process the registration
+            /// </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.IsViewerRegisteredRequest.Viewer">
+            <summary>
+            ViewerRegistration
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.IsViewerRegisteredRequest.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.DisplayService.Contracts.Messages.UpdateAdminSettingsRequest">
+            <summary>
+            This is the RevokeMessageRequest object, which is passed to the service for a Revoke Message command
+            /// </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.UpdateAdminSettingsRequest.Settings">
+            <summary>
+            Administration settings
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.UpdateAdminSettingsRequest.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.DisplayService.Contracts.Messages.UpdateAdminSettingsResponse">
+            <summary>
+            This is the RevokeMessageRequest object, which is passed to the service for a Revoke Message command
+            /// </summary>
+        </member>
+        <member name="T:Asm.As.Oib.DisplayService.Contracts.Messages.UpdateDispatcherMessageResponse">
+            <summary>
+            This is the RevokeMessageRequest object, which is passed to the service for a Revoke Message command
+            /// </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.UpdateDispatcherMessageResponse.DeliveryDetails">
+            <summary>
+            Deivery Details
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.UpdateDispatcherMessageResponse.Message">
+            <summary>
+            Message
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.UpdateDispatcherMessageResponse.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.DisplayService.Contracts.Messages.UpdateDispatcherMessageRequest">
+            <summary>
+            This is the RevokeMessageRequest object, which is passed to the service for a Revoke Message command
+            /// </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.UpdateDispatcherMessageRequest.Message">
+            <summary>
+            Message text
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.UpdateDispatcherMessageRequest.Viewers">
+            <summary>
+            Viewers that this message should be displayed at
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.UpdateDispatcherMessageRequest.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.DisplayService.Contracts.Messages.RevokeDispatcherMessageResponse">
+            <summary>
+            This is the RevokeMessageRequest object, which is passed to the service for a Revoke Message command
+            /// </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.RevokeDispatcherMessageResponse.DeliveryDetails">
+            <summary>
+            Deivery Details
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.RevokeDispatcherMessageResponse.Message">
+            <summary>
+            Message
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.RevokeDispatcherMessageResponse.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.DisplayService.Contracts.Messages.RevokeDispatcherMessageRequest">
+            <summary>
+            This is the RevokeMessageRequest object, which is passed to the service for a Revoke Message command
+            /// </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.RevokeDispatcherMessageRequest.Viewers">
+            <summary>
+            Viewers that this message should be displayed at
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.RevokeDispatcherMessageRequest.MessageGuid">
+            <summary>
+            Message Guid
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.RevokeDispatcherMessageRequest.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.DisplayService.Contracts.Messages.GetAllMessagesRequest">
+            <summary>
+            Object that is required for getting all message states for a client
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.GetAllMessagesRequest.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Messages.GetAllMessagesRequest"/> class.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.GetAllMessagesRequest.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Messages.GetAllMessagesRequest"/> class.
+            </summary>
+            <param name="guid">The GUID.</param>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.GetAllMessagesRequest.ViewerGuid">
+            <summary>
+            Viewer Guid.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.GetAllMessagesRequest.CalledByViewer">
+            <summary>
+            Viewer Guid.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Contracts.Messages.GetAllMessagesRequest.Guid">
+            <summary>
+            Gets the GUID.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.GetAllMessagesRequest.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.DisplayService.Contracts.Messages.GetAllMessagesResponse">
+            <summary>
+            Object that is required for getting all message states for a client
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.GetAllMessagesResponse.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Messages.GetAllMessagesResponse"/> class.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.GetAllMessagesResponse.Messages">
+            <summary>
+            Messages
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.GetAllMessagesResponse.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.DisplayService.Contracts.Messages.GetClientsRequest">
+            <summary>
+            Object that is required for getting specific clients
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.GetClientsRequest.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Messages.GetClientsRequest"/> class.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.GetClientsRequest.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Messages.GetClientsRequest"/> class.
+            </summary>
+            <param name="clientName">Name of the client.</param>
+            <param name="clientGUID">The client GUID.</param>
+            <param name="callbackAddress">The callback address.</param>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.GetClientsRequest.#ctor(System.String,System.String,System.ServiceModel.EndpointAddress)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Messages.GetClientsRequest"/> class.
+            </summary>
+            <param name="clientName">Name of the client.</param>
+            <param name="clientGUID">The client GUID.</param>
+            <param name="callbackAsEndpointAddress">The callback address.</param>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.GetClientsRequest.Client">
+            <summary>
+            Client Name.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.GetClientsRequest.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.DisplayService.Contracts.Messages.GetClientsResponse">
+            <summary>
+            Object that is returned when getting specific clients
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.GetClientsResponse.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Messages.GetClientsResponse"/> class.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.GetClientsResponse.#ctor(System.Collections.Generic.List{Asm.As.Oib.DisplayService.Contracts.Data.ClientRegistration})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Messages.GetViewersResponse"/> class.
+            </summary>
+            <param name="clients">The clients.</param>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.GetClientsResponse.ClientsArray">
+            <summary>
+            List of all viewers
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Contracts.Messages.GetClientsResponse.Clients">
+            <summary>
+            Gets or sets the ClientRegistrations.
+            </summary>
+            <value>
+            The clients.
+            </value>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.GetClientsResponse.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.DisplayService.Contracts.Messages.GetViewersRequest">
+            <summary>
+            Object that is required for getting specific viewers
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.GetViewersRequest.ComputerName">
+            <summary>
+            ComputerName of the Viewer.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.GetViewersRequest.IPAddress">
+            <summary>
+            IP Address of the Viewer.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.GetViewersRequest.EndpointAddress">
+            <summary>
+            Endpoint Address of the Viewer Service that receives the message.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.GetViewersRequest.DispatcherEndpointAddress">
+            <summary>
+            Endpoint Address of the Dispatcher Service that is responsible for this viewer.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.GetViewersRequest.ViewerGUID">
+            <summary>
+            Viewer GUID. Used for identifying the Viewer in the DS System.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.GetViewersRequest.SIPLACEProStationPath">
+            <summary>
+            SIPLACE Pro Path of the station
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.GetViewersRequest.SIPLACEProLinePath">
+            <summary>
+            SIPLACE Pro Path of the line
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.GetViewersRequest.SIPLACEProStationIndexInLine">
+            <summary>
+            SIPLACE Pro Index of the Station in the Line
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.GetViewersRequest.SIPLACEProStationOID">
+            <summary>
+            SIPLACE Pro OID of the station
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.GetViewersRequest.SIPLACEProLineOID">
+            <summary>
+            SIPLACE Pro OID of the line
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.GetViewersRequest.SIPLACEProDatabaseId">
+            <summary>
+            SIPLACE Pro Database ID
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Contracts.Messages.GetViewersRequest.StationType">
+            <summary>
+            Type of the station
+            0: SIPLACE Station
+            1: Printer
+            2: Generic Device
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Contracts.Messages.GetViewersRequest.SIPLACEProStationOID_Long">
+            <summary>
+            SIPLACE Pro OID of the station
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Contracts.Messages.GetViewersRequest.SIPLACEProLineOID_Long">
+            <summary>
+            SIPLACE Pro OID of the line
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Contracts.Messages.GetViewersRequest.Guid">
+            <summary>
+            Gets the GUID.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Contracts.Messages.GetViewersRequest.LineOID">
+            <summary>
+            Gets the line OID either from the SIPLACEProLineOID_Long or from SIPLACEProLineOID (old clients) in case SIPLACEProLineOID_Long is not filled
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Contracts.Messages.GetViewersRequest.StationOID">
+            <summary>
+            Gets the station OID either from the SIPLACEProStationOID_Long or from SIPLACEProStationOID (old clients) in case SIPLACEProStationOID_Long is not filled
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.GetViewersRequest.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.DisplayService.Contracts.Messages.GetViewersResponse">
+            <summary>
+            Object that is returned when getting specific viewers
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.GetViewersResponse.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Messages.GetViewersResponse"/> class.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.GetViewersResponse.#ctor(System.Collections.Generic.List{Asm.As.Oib.DisplayService.Contracts.Data.ViewerRegistration})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Messages.GetViewersResponse"/> class.
+            </summary>
+            <param name="viewers">The viewers.</param>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.GetViewersResponse.Viewers">
+            <summary>
+            List of all viewers
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.GetViewersResponse.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.DisplayService.Contracts.Messages.SendDispatcherMessageRequest">
+            <summary>
+            This is the RevokeMessageRequest object, which is passed to the service for a Revoke Message command
+            /// </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.SendDispatcherMessageRequest.ClientRegistration">
+            <summary>
+            Client Registration of the sending client
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.SendDispatcherMessageRequest.Viewers">
+            <summary>
+            Viewers that this message should be displayed at
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.SendDispatcherMessageRequest.Message">
+            <summary>
+            Message 
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.SendDispatcherMessageRequest.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.DisplayService.Contracts.Messages.SendDispatcherMessageResponse">
+            <summary>
+            This is the RevokeMessageRequest object, which is passed to the service for a Revoke Message command
+            /// </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.SendDispatcherMessageResponse.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Messages.SendDispatcherMessageResponse"/> class.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.SendDispatcherMessageResponse.#ctor(Asm.As.Oib.DisplayService.Contracts.Data.Message)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Messages.SendDispatcherMessageResponse"/> class.
+            </summary>
+            <param name="message">The message.</param>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.SendDispatcherMessageResponse.DeliveryDetails">
+            <summary>
+            Deivery Details
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.SendDispatcherMessageResponse.Message">
+            <summary>
+            Message
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.SendDispatcherMessageResponse.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.DisplayService.Contracts.Messages.UpdateViewerRegistrationsFromControlledStationsRequest">
+            <summary>
+            This is the ClientRegistrationRequest object, which is passed to the service for a client registration
+            It contains all values that the service needs to process the registration
+            /// </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.UpdateViewerRegistrationsFromControlledStationsRequest.ControlledStations">
+            <summary>
+            Controlled Station Viewer Registrations
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.UpdateViewerRegistrationsFromControlledStationsRequest.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.DisplayService.Contracts.Messages.UpdateViewerRegistrationsFromControlledStationsResponse">
+            <summary>
+            This is the ClientRegistrationRequest object, which is passed to the service for a client registration
+            It contains all values that the service needs to process the registration
+            /// </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.UpdateViewerRegistrationsFromControlledStationsResponse.UpdatedViewerRegistrations">
+            <summary>
+            Updated ViewerRegistrations
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.UpdateViewerRegistrationsFromControlledStationsResponse.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.DisplayService.Contracts.Messages.ViewerUnregistrationResponse">
+            <summary>
+            This is the ViewerUnregistrationResponse object, which is passed to the client 
+            after a registration was succesfull.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.ViewerUnregistrationResponse.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Messages.ViewerUnregistrationResponse"/> class.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.ViewerUnregistrationResponse.#ctor(System.Guid,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Messages.ViewerUnregistrationResponse"/> class.
+            </summary>
+            <param name="id">The id.</param>
+            <param name="deleted">if set to <c>true</c> [deleted].</param>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Contracts.Messages.ViewerUnregistrationResponse.Deleted">
+            <summary>
+            Gets or sets a value indicating whether this <see cref="T:Asm.As.Oib.DisplayService.Contracts.Data.ViewerRegistration"/> is deleted.
+            </summary>
+            <value>
+              <c>true</c> if deleted; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.ViewerUnregistrationResponse.ViewerGUID">
+            <summary>
+            Viewer GUID. Used for identifying the Viewer in the DS System.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.ViewerUnregistrationResponse.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.DisplayService.Contracts.Messages.ViewerUnregistrationRequest">
+            <summary>
+            This is the ViewerUnregistrationRequest object, which is passed to the service for a client deregistration
+            It contains all values that the service needs to process the deregistration
+            /// </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.ViewerUnregistrationRequest.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Messages.ViewerUnregistrationRequest"/> class.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.ViewerUnregistrationRequest.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Messages.ViewerUnregistrationRequest"/> class.
+            </summary>
+            <param name="viewerGUID">The viewer GUID.</param>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.ViewerUnregistrationRequest.ViewerGUID">
+            <summary>
+            Viewer GUID. Used for identifying the client in the DS System.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Contracts.Messages.ViewerUnregistrationRequest.Guid">
+            <summary>
+            Gets the GUID.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.ViewerUnregistrationRequest.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.DisplayService.Contracts.Messages.ViewerRegistrationResponse">
+            <summary>
+            This is the ViewerRegistrationResponse object, which is passed to the client  
+            after a registration was succesfull.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.ViewerRegistrationResponse.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Messages.ViewerRegistrationResponse"/> class.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.ViewerRegistrationResponse.#ctor(Asm.As.Oib.DisplayService.Contracts.Data.ViewerRegistration)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Messages.ViewerRegistrationResponse"/> class.
+            </summary>
+            <param name="viewer">The viewer.</param>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.ViewerRegistrationResponse.ViewerRegistration">
+            <summary>
+            Viewer Registration
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.ViewerRegistrationResponse.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.DisplayService.Contracts.Messages.ViewerRegistrationRequest">
+            <summary>
+            This is the ViewerRegistrationRequest object, which is passed to the service for a client registration
+            It contains all values that the service needs to process the registration
+            /// </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.ViewerRegistrationRequest.Viewer">
+            <summary>
+            ViewerRegistration
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.ViewerRegistrationRequest.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.DisplayService.Contracts.Messages.GetMessageStatesRequest">
+            <summary>
+            Object that is required for getting all message states for a client
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.GetMessageStatesRequest.ClientRegistration">
+            <summary>
+            Client Registration
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.GetMessageStatesRequest.MessageGuid">
+            <summary>
+            Message GUID
+            Optional; if provided, then only the Message States of this message will be returned
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.GetMessageStatesRequest.ViewerGuid">
+            <summary>
+            Viewer GUID
+            Optional; if provided, then only the Message States of this viewer will be returned
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Contracts.Messages.GetMessageStatesRequest.Guid">
+            <summary>
+            Gets the GUID.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Contracts.Messages.GetMessageStatesRequest.GuidViewer">
+            <summary>
+            Gets the ViewerGUID.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.GetMessageStatesRequest.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.DisplayService.Contracts.Messages.GetMessageStatesResponse">
+            <summary>
+            Return object that holds all message states.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.GetMessageStatesResponse.MessageStates">
+            <summary>
+            States for all sent messages of a defined client
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.GetMessageStatesResponse.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.DisplayService.Contracts.Messages.PingRequest">
+            <summary>
+            PingRequest
+            /// </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.PingRequest.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Messages.PingRequest"/> class.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.PingRequest.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Messages.PingRequest"/> class.
+            </summary>
+            <param name="name">Name of the client.</param>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.PingRequest.#ctor(System.String,System.Guid,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Messages.PingRequest"/> class.
+            </summary>
+            <param name="name">Name of the client.</param>
+            <param name="guid">The client GUID.</param>
+            <param name="address">The callback address.</param>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.PingRequest.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Messages.PingRequest"/> class.
+            </summary>
+            <param name="name">Name of the client.</param>
+            <param name="guid">The client GUID.</param>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.PingRequest.Name">
+            <summary>
+            Name of the client.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.PingRequest.GUID">
+            <summary>
+            Client GUID.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.PingRequest.Address">
+            <summary>
+            Address of the callback service that is hosted by the client proxy.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Contracts.Messages.PingRequest.Guid">
+            <summary>
+            Gets the GUID.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.PingRequest.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.DisplayService.Contracts.Messages.PingResponse">
+            <summary>
+            PingResponse
+            /// </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.PingResponse.ProcessId">
+            <summary>
+            The Process ID of the DS Service
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.PingResponse.ClientNoMoreRegistered">
+            <summary>
+            True if client registration were removed or doesn't exist anymore
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.PingResponse.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.DisplayService.Contracts.Messages.RevokeMessageResponse">
+            <summary>
+            This is the RevokeMessageResponse object, which is passed back to the client
+            /// </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.RevokeMessageResponse.MessageGuid">
+            <summary>
+            Message Guid
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Contracts.Messages.RevokeMessageResponse.Revoked">
+            <summary>
+            Gets or sets a value indicating whether the message is revoked.
+            </summary>
+            <value>
+              <c>true</c> if revoked; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.RevokeMessageResponse.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.DisplayService.Contracts.Messages.RevokeMessageRequest">
+            <summary>
+            This is the RevokeMessageRequest object, which is passed to the service for a Revoke Message command
+            /// </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.RevokeMessageRequest.MessageGUID">
+            <summary>
+            Message GUID (created by DB)
+            Can be used to update or revoke the message later on.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Contracts.Messages.RevokeMessageRequest.Guid">
+            <summary>
+            Gets the GUID.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.RevokeMessageRequest.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.DisplayService.Contracts.Messages.UpdateMessageRequest">
+            <summary>
+            This is the UpdateMessageRequest object, which is passed to the service for an update message command
+            /// </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.UpdateMessageRequest.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Messages.UpdateMessageRequest"/> class.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.UpdateMessageRequest.#ctor(System.String,System.String,System.String,System.Int32,Asm.As.Oib.DisplayService.Contracts.Data.Types.SeverityLevel)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Messages.UpdateMessageRequest"/> class.
+            </summary>
+            <param name="messageGUID">Message GUID.</param>
+            <param name="updatedMessageText">Updated message text.</param>
+            <param name="updatedExtendedDescription">Updated extended description.</param>
+            <param name="updatedPriority">Updated priority.</param>
+            <param name="updatedSeverityLevel">Updated severity level.</param>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.UpdateMessageRequest.#ctor(System.String,System.String,System.String,System.Boolean,System.Int32,Asm.As.Oib.DisplayService.Contracts.Data.Types.SeverityLevel)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Messages.UpdateMessageRequest" /> class.
+            </summary>
+            <param name="messageGUID">Message GUID.</param>
+            <param name="updatedMessageText">Updated message text.</param>
+            <param name="updatedExtendedDescription">Updated extended description.</param>
+            <param name="updatedExtendedDescriptionDefault">if set to <c>true</c> [updated extended description default].</param>
+            <param name="updatedPriority">Updated priority.</param>
+            <param name="updatedSeverityLevel">Updated severity level.</param>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.UpdateMessageRequest.#ctor(System.String,System.String,System.String,System.Nullable{System.Boolean},System.Int32,Asm.As.Oib.DisplayService.Contracts.Data.Types.SeverityLevel)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Messages.UpdateMessageRequest" /> class.
+            </summary>
+            <param name="messageGUID">Message GUID.</param>
+            <param name="updatedMessageText">Updated message text.</param>
+            <param name="updatedExtendedDescription">Updated extended description.</param>
+            <param name="updatedExtendedDescriptionDefault">if set to <c>true</c> [updated extended description default].</param>
+            <param name="updatedPriority">Updated priority.</param>
+            <param name="updatedSeverityLevel">Updated severity level.</param>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.UpdateMessageRequest.Message">
+            <summary>
+            Message text
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.UpdateMessageRequest.DoNotUpdateExtendedDescriptionDefault">
+            <summary>
+            Extended Description should be shown as default was NOT updated
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.UpdateMessageRequest.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.DisplayService.Contracts.Messages.UpdateMessageResponse">
+            <summary>
+            This is the UpdateMessageResponse object, which is passed back to the client 
+            /// </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.UpdateMessageResponse.MessageGuid">
+            <summary>
+            Message guid
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.UpdateMessageResponse.DeliveryDetails">
+            <summary>
+            Viewers that this message should be displayed at
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.UpdateMessageResponse.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.DisplayService.Contracts.Messages.SendMessageRequest">
+            <summary>
+            This is the SendMessageRequest object, which is passed to the service for a send message command
+            /// </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.SendMessageRequest.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Messages.SendMessageRequest"/> class.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.SendMessageRequest.#ctor(Asm.As.Oib.DisplayService.Contracts.Data.Types.ViewerIdentification,System.Collections.Generic.List{Asm.As.Oib.DisplayService.Contracts.Data.ViewerRegistration},System.String,System.String,Asm.As.Oib.DisplayService.Contracts.Data.Types.AcknowledgementType,System.Boolean,System.Int32,Asm.As.Oib.DisplayService.Contracts.Data.Types.SeverityLevel,System.Collections.Generic.List{Asm.As.Oib.DisplayService.Contracts.Data.Answer})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Messages.SendMessageRequest"/> class.
+            </summary>
+            <param name="viewerIdentification">Viewer identification.</param>
+            <param name="viewerRegistrations">Given viewer registrations.</param>
+            <param name="messageText">Message text.</param>
+            <param name="extendedDescription">Extended description.</param>
+            <param name="answers">Supported answers.</param>
+            <param name="acknowledgementType">Acknowledgement type.</param>
+            <param name="callbackRequest">Callback request.</param>
+            <param name="priority">Priority.</param>
+            <param name="severityLevel">Severity level.</param>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.SendMessageRequest.#ctor(Asm.As.Oib.DisplayService.Contracts.Data.Types.ViewerIdentification,System.String,System.String,System.String,Asm.As.Oib.DisplayService.Contracts.Data.Types.AcknowledgementType,System.Boolean,System.Int32,Asm.As.Oib.DisplayService.Contracts.Data.Types.SeverityLevel,System.Collections.Generic.List{Asm.As.Oib.DisplayService.Contracts.Data.Answer},System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Messages.SendMessageRequest"/> class.
+            </summary>
+            <param name="viewerIdentification">Viewer identification.</param>
+            <param name="path">Given station or line path.</param>
+            <param name="messageText">Message text.</param>
+            <param name="extendedDescription">Extended description.</param>
+            <param name="acknowledgementType">Acknowledgement type.</param>
+            <param name="callbackRequest">Callback request.</param>
+            <param name="priority">Priority.</param>
+            <param name="severityLevel">Severity level.</param>
+            <param name="answers">Supported answers.</param>
+            <param name="siplaceProDbId">The siplace pro db id.</param>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.SendMessageRequest.#ctor(Asm.As.Oib.DisplayService.Contracts.Data.Types.ViewerIdentification,System.Collections.Generic.List{Asm.As.Oib.DisplayService.Contracts.Data.ViewerRegistration},System.String,System.String,Asm.As.Oib.DisplayService.Contracts.Data.Types.AcknowledgementType,System.Boolean,System.Int32,Asm.As.Oib.DisplayService.Contracts.Data.Types.SeverityLevel,System.Collections.Generic.List{Asm.As.Oib.DisplayService.Contracts.Data.Answer},System.Int32,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Messages.SendMessageRequest"/> class.
+            </summary>
+            <param name="viewerIdentification">Viewer identification.</param>
+            <param name="viewerRegistrations">Given viewer registrations.</param>
+            <param name="messageText">Message text.</param>
+            <param name="extendedDescription">Extended description.</param>
+            <param name="answers">Supported answers.</param>
+            <param name="acknowledgementType">Acknowledgement type.</param>
+            <param name="callbackRequest">Callback request.</param>
+            <param name="priority">Priority.</param>
+            <param name="severityLevel">Severity level.</param>
+            <param name="defaultAnswerIndex">Default index for answer selection.</param>
+            <param name="extendedDescriptionDefault">Default for expand of extended description.</param>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.SendMessageRequest.#ctor(Asm.As.Oib.DisplayService.Contracts.Data.Types.ViewerIdentification,System.String,System.String,System.String,Asm.As.Oib.DisplayService.Contracts.Data.Types.AcknowledgementType,System.Boolean,System.Int32,Asm.As.Oib.DisplayService.Contracts.Data.Types.SeverityLevel,System.Collections.Generic.List{Asm.As.Oib.DisplayService.Contracts.Data.Answer},System.String,System.Int32,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Messages.SendMessageRequest"/> class.
+            </summary>
+            <param name="viewerIdentification">Viewer identification.</param>
+            <param name="path">Given station or line path.</param>
+            <param name="messageText">Message text.</param>
+            <param name="extendedDescription">Extended description.</param>
+            <param name="acknowledgementType">Acknowledgement type.</param>
+            <param name="callbackRequest">Callback request.</param>
+            <param name="priority">Priority.</param>
+            <param name="severityLevel">Severity level.</param>
+            <param name="answers">Supported answers.</param>
+            <param name="siplaceProDbId">The siplace pro db id.</param>
+            <param name="defaultAnswerIndex">Default index for answer selection.</param>
+            <param name="extendedDescriptionDefault">Default for expand of extended description.</param>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.SendMessageRequest.#ctor(Asm.As.Oib.DisplayService.Contracts.Data.Types.ViewerIdentification,System.Collections.Generic.List{Asm.As.Oib.DisplayService.Contracts.Data.ViewerRegistration},System.String,System.String,System.String,Asm.As.Oib.DisplayService.Contracts.Data.Types.AcknowledgementType,System.Boolean,System.Int32,Asm.As.Oib.DisplayService.Contracts.Data.Types.SeverityLevel,System.Collections.Generic.List{Asm.As.Oib.DisplayService.Contracts.Data.Answer},System.String,System.Int32,System.Boolean,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Messages.SendMessageRequest"/> class.
+            </summary>
+            <param name="viewerIdentification">Viewer identification.</param>
+            <param name="viewerRegistrations">Given viewer registrations.</param>
+            <param name="path">Given station or line path.</param>
+            <param name="messageText">Message text.</param>
+            <param name="extendedDescription">Extended description.</param>
+            <param name="acknowledgementType">Acknowledgement type.</param>
+            <param name="callbackRequest">Callback request.</param>
+            <param name="priority">Priority.</param>
+            <param name="severityLevel">Severity level.</param>
+            <param name="answers">Supported answers.</param>
+            <param name="siplaceProDbId">The siplace pro db id.</param>
+            <param name="defaultAnswerIndex">Default index for answer selection.</param>
+            <param name="extendedDescriptionDefault">Default for expand of extended description.</param>
+            <param name="sendToLineControlViewerAsWell">if set to <c>true</c> the message is also displayed on the line control viewer if there is one registered for that line.</param>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.SendMessageRequest.#ctor(Asm.As.Oib.DisplayService.Contracts.Data.Types.ViewerIdentification,System.Collections.Generic.List{Asm.As.Oib.DisplayService.Contracts.Data.ViewerRegistration},System.String,System.String,System.String,Asm.As.Oib.DisplayService.Contracts.Data.Types.AcknowledgementType,System.Boolean,System.Int32,Asm.As.Oib.DisplayService.Contracts.Data.Types.SeverityLevel,System.Collections.Generic.List{Asm.As.Oib.DisplayService.Contracts.Data.Answer},System.String,System.Int32,System.Boolean,System.Boolean,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Messages.SendMessageRequest" /> class.
+            </summary>
+            <param name="viewerIdentification">Viewer identification.</param>
+            <param name="viewerRegistrations">Given viewer registrations.</param>
+            <param name="path">Given station or line path.</param>
+            <param name="messageText">Message text.</param>
+            <param name="extendedDescription">Extended description.</param>
+            <param name="acknowledgementType">Acknowledgement type.</param>
+            <param name="callbackRequest">Callback request.</param>
+            <param name="priority">Priority.</param>
+            <param name="severityLevel">Severity level.</param>
+            <param name="answers">Supported answers.</param>
+            <param name="siplaceProDbId">The siplace pro db id.</param>
+            <param name="defaultAnswerIndex">Default index for answer selection.</param>
+            <param name="extendedDescriptionDefault">Default for expand of extended description.</param>
+            <param name="sendToLineControlViewerAsWell">if set to <c>true</c> the message is also displayed on the line control viewer if there is one registered for that line.</param>
+            <param name="stationType">Type of the station. 0: SIPLACE Station, 1: Printer, 2: Generic Device </param>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.SendMessageRequest.Message">
+            <summary>
+            Message to send
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.SendMessageRequest.ClientRegistration">
+            <summary>
+            Client Registration of the sending client. Set automatically in the proxy layer.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.SendMessageRequest.ViewerIdentification">
+            <summary>
+            Specifies how to resolve the viewers.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.SendMessageRequest.Viewers">
+            <summary>
+            Viewers that this message should be displayed at
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.SendMessageRequest.Path">
+            <summary>
+            Path identifies the viewers where this message should be displayed at.
+            Is used for ViewerIdentification.StationPath, LinePathFirstStation or LinePathAllStations
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.SendMessageRequest.DatabaseId">
+            <summary>
+            Optional SIPLACE Pro DB Id. In an EDM case when you connect to different databases and
+            there are lines / stations with the same name in the databases, you need to specify the 
+            database Id. Otherwise sending of the message will fail since the viewer cannot be identified.
+            Is used for ViewerIdentification.StationPath, LinePathFirstStation or LinePathAllStations
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.SendMessageRequest.SendToLineControlViewerAsWell">
+            <summary>
+            If set to <c>true</c> the message is also displayed on the line control viewer if there is one registered for that line.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Contracts.Messages.SendMessageRequest.StationType">
+            <summary>
+            Type of the station
+            
+            0: SIPLACE Station
+            1: Printer
+            2: Generic Device
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.SendMessageRequest.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.DisplayService.Contracts.Messages.SendMessageResponse">
+            <summary>
+            This is the SendMessageResponse object, which is passed back to the client.
+            It contains all details about the delivery status for the viewers and the created message.
+            /// </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.SendMessageResponse.DeliveryDetails">
+            <summary>
+            Viewers that this message should be displayed at
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.SendMessageResponse.Message">
+            <summary>
+            Message text
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.SendMessageResponse.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.DisplayService.Contracts.Messages.StationInLine">
+            <summary>
+            This is StationInLine object.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.StationInLine.StationOID">
+            <summary>
+            OID of the Station
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.StationInLine.StationPath">
+            <summary>
+            StationPath
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.StationInLine.IndexInLine">
+            <summary>
+            Index of the device in the line
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Contracts.Messages.StationInLine.StationType">
+            <summary>
+            Type of the station
+            
+            0: SIPLACE Station
+            1: Printer
+            2: Generic Device
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Contracts.Messages.StationInLine.StationOID_Long">
+            <summary>
+            OID of the Station
+            </summary>
+        </member>
+        <member name="T:Asm.As.Oib.DisplayService.Contracts.Messages.ViewerUpdateRequest">
+            <summary>
+            This is the ViewerUnregistrationResponse object, which is passed to the client 
+            after a registration was successful.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.ViewerUpdateRequest.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Messages.ViewerUpdateRequest"/> class.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.ViewerUpdateRequest.#ctor(Asm.As.Oib.DisplayService.Contracts.Data.ViewerRegistration)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Messages.ViewerUpdateRequest"/> class.
+            </summary>
+            <param name="viewerRegistration">The viewer registration.</param>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.ViewerUpdateRequest.#ctor(System.Boolean,System.String,System.Int32,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Messages.ViewerRegistrationResponse" /> class.
+            </summary>
+            <param name="isStation">if set to <c>true</c> [is station].</param>
+            <param name="objectPath">The object path.</param>
+            <param name="OID">The OID.</param>
+            <param name="dbID">The db ID.</param>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.ViewerUpdateRequest.#ctor(System.Boolean,System.String,System.Int32,System.String,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Messages.ViewerRegistrationResponse" /> class.
+            </summary>
+            <param name="isStation">if set to <c>true</c> [is station].</param>
+            <param name="objectPath">The object path.</param>
+            <param name="OID">The OID.</param>
+            <param name="dbID">The db ID.</param>
+            <param name="stationType">Type of the station. 0: SIPLACE Station, 1: Printer, 2: Generic Device </param>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.ViewerUpdateRequest.#ctor(System.Boolean,System.String,System.Int64,System.String,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Messages.ViewerRegistrationResponse" /> class.
+            </summary>
+            <param name="isStation">if set to <c>true</c> [is station].</param>
+            <param name="objectPath">The object path.</param>
+            <param name="oid">The OID.</param>
+            <param name="dbID">The db ID.</param>
+            <param name="stationType">Type of the station. 0: SIPLACE Station, 1: Printer, 2: Generic Device </param>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.ViewerUpdateRequest.#ctor(System.String,System.Int32,System.String,System.Collections.Generic.IEnumerable{System.Collections.ArrayList})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Messages.ViewerUpdateRequest"/> class.
+            </summary>
+            <param name="objectPath">The object path.</param>
+            <param name="OID">The OID.</param>
+            <param name="dbID">The db ID.</param>
+            <param name="list">The list.</param>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.ViewerUpdateRequest.#ctor(System.String,System.Int64,System.String,System.Collections.Generic.IEnumerable{System.Collections.ArrayList})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Messages.ViewerUpdateRequest"/> class.
+            </summary>
+            <param name="objectPath">The object path.</param>
+            <param name="OID">The OID.</param>
+            <param name="dbID">The db ID.</param>
+            <param name="list">The list.</param>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.ViewerUpdateRequest.IsObjectNameChange">
+            <summary>
+            True, if the object's name has changed
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.ViewerUpdateRequest.IsStation">
+            <summary>
+            True, if the object is a Station, false, if it is a Line
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.ViewerUpdateRequest.ObjectOID">
+            <summary>
+            OID of the object
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.ViewerUpdateRequest.DatabaseId">
+            <summary>
+            True, if the object's name has changed
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.ViewerUpdateRequest.ObjectPath">
+            <summary>
+            Object's Path
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.ViewerUpdateRequest.StationInLines">
+            <summary>
+            StationInLine objects (filled out if IsObjectNameChange=false)
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.ViewerUpdateRequest.ViewerRegistration">
+            <summary>
+            ViewerRegistration if this is set, the Update will just trigger an Update of the whole Registration
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Contracts.Messages.ViewerUpdateRequest.StationType">
+            <summary>
+            Type of the station
+            
+            0: SIPLACE Station
+            1: Printer
+            2: Generic Device
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Contracts.Messages.ViewerUpdateRequest.ObjectOID_Long">
+            <summary>
+            OID of the object
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Contracts.Messages.ViewerUpdateRequest.HostName">
+            <summary>
+            OID of the object
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.ViewerUpdateRequest.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.DisplayService.Contracts.Messages.ViewerUpdateResponse">
+            <summary>
+            This is the ViewerUnregistrationResponse object, which is passed to the client 
+            after a registration was succesfull.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.ViewerUpdateResponse.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Messages.ViewerUpdateResponse"/> class.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.ViewerUpdateResponse.#ctor(System.Collections.Generic.List{Asm.As.Oib.DisplayService.Contracts.Data.ViewerRegistration})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Messages.ViewerRegistrationResponse"/> class.
+            </summary>
+            <param name="viewers">The viewers.</param>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.ViewerUpdateResponse.#ctor(Asm.As.Oib.DisplayService.Contracts.Data.ViewerRegistration)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Messages.ViewerRegistrationResponse"/> class.
+            </summary>
+            <param name="viewer">The viewer.</param>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Messages.ViewerUpdateResponse.UpdatedViewerRegistrations">
+            <summary>
+            Viewer Registrations that were updated
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Messages.ViewerUpdateResponse.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.DisplayService.Contracts.Faults.DisplayServiceFault">
+            <summary>
+            Fault class that will be thrown by DisplayService service.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Faults.DisplayServiceFault.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Faults.DisplayServiceFault" /> class.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Faults.DisplayServiceFault.#ctor(System.Int32,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Faults.DisplayServiceFault" /> class.
+            </summary>
+            <param name="errorCode">The error code.</param>
+            <param name="strExtendedMessage">The STR extended message.</param>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Contracts.Faults.DisplayServiceFault.ErrorCode">
+            <summary>
+            The error to be used, when an system error or business error occurred.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Contracts.Faults.DisplayServiceFault.ExtendedMessage">
+            <summary>
+            This is a error message in a human readable form.
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Faults.DisplayServiceFault.ToString">
+            <inheritdoc />
+        </member>
+        <member name="T:Asm.As.Oib.DisplayService.Contracts.Faults.DSMessageDeliveryFault">
+            <summary>
+            Fault class that will be thrown by DisplayService service when calling methods that need to be
+            delivered to one or more viewers.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Faults.DSMessageDeliveryFault.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Faults.DSMessageDeliveryFault" /> class.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Faults.DSMessageDeliveryFault.#ctor(System.Int32,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Faults.DSMessageDeliveryFault" /> class.
+            </summary>
+            <param name="errorCode">The error code.</param>
+            <param name="strExtendedMessage">The STR extended message.</param>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Faults.DSMessageDeliveryFault.#ctor(System.Int32,System.String,System.Collections.Generic.List{Asm.As.Oib.DisplayService.Contracts.Data.MessageDeliveryDetails})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Contracts.Faults.DSMessageDeliveryFault" /> class.
+            </summary>
+            <param name="errorCode">The error code.</param>
+            <param name="strExtendedMessage">The STR extended message.</param>
+            <param name="details">The details.</param>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Contracts.Faults.DSMessageDeliveryFault.DeliveryDetails">
+            <summary>
+            Details for a failed message delivery.
+            Contains an entry for each failed delivery to one viewer
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Faults.DSMessageDeliveryFault.ToString">
+            <inheritdoc />
+        </member>
+        <member name="T:Asm.As.Oib.DisplayService.Contracts.Faults.ErrorCodes">
+            <summary>
+            The error codes for the Display Service
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Faults.ErrorCodes.Default">
+            <summary>
+            Unknown default error code
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Contracts.Faults.ErrorCodes.NonUniqueName">
+            <summary>
+            Name entered to save is not unique
+            </summary>
+        </member>
+        <member name="T:Asm.As.Oib.DisplayService.Contracts.Service.IDisplayService">
+            <summary>
+            The Display Service Interface exposes methods the clients can use to register themselves 
+            and to send messages to viewers and revoke them again.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Service.IDisplayService.RegisterClient(Asm.As.Oib.DisplayService.Contracts.Messages.ClientRegistrationRequest)">
+            <summary>
+            Registers a DS client.
+            Returns a new registration in case the client is unknown.
+            If a client Id is passed in and that is known, the existing client registration will be updated.
+            </summary>
+            <param name="request">ClientRegistrationRequest</param>
+            <returns>ClientRegistrationResponse</returns>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Service.IDisplayService.UnregisterClient(Asm.As.Oib.DisplayService.Contracts.Messages.ClientUnregistrationRequest)">
+            <summary>
+            Unregisters a client. All pending message requests will be deleted.
+            </summary>
+            <param name="request">ClientUnregistrationRequest</param>
+            <returns>ClientUnregistrationResponse</returns>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Service.IDisplayService.SendMessage(Asm.As.Oib.DisplayService.Contracts.Messages.SendMessageRequest)">
+            <summary>
+            Sends a message to a list of viewers.
+            </summary>
+            <param name="request">SendMessageRequest</param>
+            <returns>SendMessageResponse</returns>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Service.IDisplayService.UpdateMessage(Asm.As.Oib.DisplayService.Contracts.Messages.UpdateMessageRequest)">
+            <summary>
+            Updates a message. The update will be deployed to all viewers the message was sent to.
+            </summary>
+            <param name="request">UpdateMessageRequest</param>
+            <returns>UpdateMessageResponse</returns>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Service.IDisplayService.RevokeMessage(Asm.As.Oib.DisplayService.Contracts.Messages.RevokeMessageRequest)">
+            <summary>
+            Revokes a message. The message will be deleted from all the viewers it was shown on.
+            </summary>
+            <param name="request">RevokeMessageRequest</param>
+            <returns>RevokeMessageResponse</returns>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Service.IDisplayService.GetAllViewers">
+            <summary>
+            Gets all viewers that are registered in the DS
+            </summary>
+            <returns>ViewerRegistration</returns>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Service.IDisplayService.GetMessageStates(Asm.As.Oib.DisplayService.Contracts.Messages.GetMessageStatesRequest)">
+            <summary>
+            Gets the message states from all viewers for a specific message and a specific client.
+            In case the message id is not provided, it gets all message states for all messages from the prided viewer.
+            </summary>
+            <param name="request">GetMessageStatesRequest</param>
+            <returns>GetMessageStatesResponse</returns>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Service.IDisplayService.Ping(Asm.As.Oib.DisplayService.Contracts.Messages.PingRequest)">
+            <summary>
+            Ping method to see if the DS Service is reachable.
+            </summary>
+            <param name="request">PingRequest</param>
+            <returns>PingResponse</returns>
+        </member>
+        <member name="T:Asm.As.Oib.DisplayService.Contracts.Service.IDisplayServiceAdmin">
+            <summary>
+            The Display Service Interface exposes methods tha clients can use to register themselves 
+            and to send messages to viewers and revoke them again.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Service.IDisplayServiceAdmin.RegisterViewer(Asm.As.Oib.DisplayService.Contracts.Messages.ViewerRegistrationRequest)">
+            <summary>
+            Registers a viewer and adds it to the database
+            </summary>
+            <param name="request">ViewerRegistrationRequest</param>
+            <returns>ViewerRegistrationResponse</returns>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Service.IDisplayServiceAdmin.UnregisterViewer(Asm.As.Oib.DisplayService.Contracts.Messages.ViewerUnregistrationRequest)">
+            <summary>
+            Unergsiters a viewer and deletes it from the database
+            </summary>
+            <param name="request">ViewerUnregistrationRequest</param>
+            <returns>ViewerUnregistrationResponse</returns>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Service.IDisplayServiceAdmin.UpdateViewerRegistration(Asm.As.Oib.DisplayService.Contracts.Messages.ViewerUpdateRequest)">
+            <summary>
+            Updates the viewer registration.
+            </summary>
+            <param name="request">ViewerUpdateRequest</param>
+            <returns>ViewerUpdateResponse</returns>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Service.IDisplayServiceAdmin.GetViewers(Asm.As.Oib.DisplayService.Contracts.Messages.GetViewersRequest)">
+            <summary>
+            Gets viewers that match the search criteria
+            </summary>
+            <param name="request">The request including the search criteria.</param>
+            <returns>
+            GetViewersResponse
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Service.IDisplayServiceAdmin.GetClients(Asm.As.Oib.DisplayService.Contracts.Messages.GetClientsRequest)">
+            <summary>
+            Gets clients that match the search criteria
+            </summary>
+            <param name="request">The request including the search criteria.</param>
+            <returns>
+            GetClientsResponse
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Service.IDisplayServiceAdmin.UnregisterClient(Asm.As.Oib.DisplayService.Contracts.Messages.ClientUnregistrationRequest)">
+            <summary>
+            Unregisters a client. All pending message requests will be deleted.
+            </summary>
+            <param name="request">ClientUnregistrationRequest</param>
+            <returns>ClientUnregistrationResponse</returns>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Service.IDisplayServiceAdmin.Ping(Asm.As.Oib.DisplayService.Contracts.Messages.PingRequest)">
+            <summary>
+            Ping method to see if the DS Service is reachable.
+            </summary>
+            <param name="request">PingRequest</param>
+            <returns>PingResponse</returns>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Service.IDisplayServiceAdmin.GetAllMessages(Asm.As.Oib.DisplayService.Contracts.Messages.GetAllMessagesRequest)">
+            <summary>
+            Gets all pending messages for a viewer
+            </summary>
+            <param name="request">GetAllMessagesRequest</param>
+            <returns>GetAllMessagesResponse</returns>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Service.IDisplayServiceAdmin.GetMessageStates(Asm.As.Oib.DisplayService.Contracts.Messages.GetMessageStatesRequest)">
+            <summary>
+            Gets the message states from all viewers for a specific message and a specific client.
+            In case the message id is not provided, it gets all message states for all messages from the prided viewer.
+            In case the client is not provided, it gets all message states for all clients.
+            </summary>
+            <param name="request">GetMessageStatesRequest</param>
+            <returns>GetMessageStatesResponse</returns>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Service.IDisplayServiceAdmin.UpdateViewerRegistrationsFromControlledStations(Asm.As.Oib.DisplayService.Contracts.Messages.UpdateViewerRegistrationsFromControlledStationsRequest)">
+            <summary>
+            Updates the viewer registrations from a list of currently controlled
+            stations of a particular dispatcher / lc adapter.
+            </summary>
+            <param name="request">ViewerUpdateRequest</param>
+            <returns>
+            UpdateViewerRegistrationsFromControlledStationsResponse
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Service.IDisplayServiceAdmin.IsViewerRegistered(Asm.As.Oib.DisplayService.Contracts.Messages.IsViewerRegisteredRequest)">
+            <summary>
+            Registers a viewer and adds it to the database
+            </summary>
+            <param name="request">ViewerRegistrationRequest</param>
+            <returns>ViewerRegistrationResponse</returns>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Service.IDisplayServiceAdmin.ChannelPing">
+            <summary>
+            Used for keeping the channel alive in case there is a stateful firewall
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Service.IDisplayServiceAdmin.GetAdminSettings(Asm.As.Oib.DisplayService.Contracts.Messages.GetAdminSettingsRequest)">
+            <summary>
+            Gets viewers that match the search criteria
+            </summary>
+            <param name="request">The request including the search criteria.</param>
+            <returns>
+            GetViewersResponse
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Service.IDisplayServiceAdmin.UpdateAdminSettings(Asm.As.Oib.DisplayService.Contracts.Messages.UpdateAdminSettingsRequest)">
+            <summary>
+            Updates the viewer registration.
+            </summary>
+            <param name="request">ViewerUpdateRequest</param>
+            <returns>ViewerUpdateResponse</returns>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Service.IDisplayServiceAdmin.RevokeMessageAdmin(Asm.As.Oib.DisplayService.Contracts.Messages.RevokeMessageRequest)">
+            <summary>
+            Revoke a message from the admin gui.
+            </summary>
+            <param name="request">ViewerUpdateRequest</param>
+            <returns>ViewerUpdateResponse</returns>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Service.IDisplayServiceAdmin.UnregisterClientAdmin(Asm.As.Oib.DisplayService.Contracts.Messages.ClientUnregistrationRequest)">
+            <summary>
+            Unregister a client from the admin gui.
+            </summary>
+            <param name="request">ViewerUpdateRequest</param>
+            <returns>ViewerUpdateResponse</returns>
+        </member>
+        <member name="T:Asm.As.Oib.DisplayService.Contracts.Service.IDisplayServiceCallback">
+            <summary>
+            The Display Service Callback Interface exposes methods that the service will call when delivering confirmations from the viewers
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Service.IDisplayServiceCallback.ConfirmationReceived(Asm.As.Oib.DisplayService.Contracts.Messages.ConfirmationReceivedRequest)">
+            <summary>
+            Confirmations the received.
+            </summary>
+            <param name="request">The request.</param>
+            <returns>ConfirmationReceivedResponse</returns>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Service.IDisplayServiceCallback.Ping(Asm.As.Oib.DisplayService.Contracts.Messages.PingRequest)">
+            <summary>
+            Ping method to see if the Service is reachable.
+            </summary>
+            <param name="request">PingRequest</param>
+            <returns>PingResponse</returns>
+        </member>
+        <member name="T:Asm.As.Oib.DisplayService.Contracts.Service.IDisplayServiceDispatcher">
+            <summary>
+            The Display Service Interface exposes methods tha clients can use to register themselves 
+            and to send messages to viewers and revoke them again.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Service.IDisplayServiceDispatcher.Ping(Asm.As.Oib.DisplayService.Contracts.Messages.PingRequest)">
+            <summary>
+            Ping method to see if the Viewer is reachable.
+            This is called when the Viewer registers itself to see if we can reach it.
+            </summary>
+            <param name="request">PingRequest</param>
+            <returns>PingResponse</returns>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Service.IDisplayServiceDispatcher.SendDispatcherMessage(Asm.As.Oib.DisplayService.Contracts.Messages.SendDispatcherMessageRequest)">
+            <summary>
+            Sends the message to the dispatcher.
+            </summary>
+            <param name="request">The request.</param>
+            <returns>SendDispatcherMessageResponse</returns>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Service.IDisplayServiceDispatcher.RevokeDispatcherMessage(Asm.As.Oib.DisplayService.Contracts.Messages.RevokeDispatcherMessageRequest)">
+            <summary>
+            Revokes the message to the dispatcher.
+            </summary>
+            <param name="request">The request.</param>
+            <returns>RevokeDispatcherMessageResponse</returns>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Service.IDisplayServiceDispatcher.UpdateDispatcherMessage(Asm.As.Oib.DisplayService.Contracts.Messages.UpdateDispatcherMessageRequest)">
+            <summary>
+            Updates the message to the dispatcher.
+            </summary>
+            <param name="request">The request.</param>
+            <returns>UpdateDispatcherMessageResponse</returns>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Contracts.Service.IDisplayServiceDispatcher.ChannelPing">
+            <summary>
+            Used for keeping the channel alive in case there is a stateful firewall
+            </summary>
+        </member>
+    </members>
+</doc>

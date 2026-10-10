@@ -1,0 +1,91 @@
+{
+  "Products": [],
+  "AllowableValues": [],
+  "RoleClaimTypes": [],
+  "Roles": [
+     {
+      "Id": 1001,
+      "Name": "User Management Administrators"
+    },
+    {
+      "Id": 1002,
+      "Name": "User Managers"
+    },
+    {
+      "Id": 1003,
+      "Name": "OIB Gui Administrator Users"
+    }
+  ],
+  "Accounts": [
+    {
+      "Id": 1,
+      "Name": "Peter Unemployed",
+      "Description": "Code Grinder",
+      "WindowsUserNames": [
+        "peterun",
+        "nonextistingdomain\\nonexistinguser"
+      ],
+      "UserNamePasswords": [
+        {
+          "UserName": "UnemployedPeter",
+          "InitialPassword": "nogood"
+        },
+        {
+          "UserName": "TestUser",
+          "InitialPassword": "U$seTest89%"
+        }
+      ],
+      "RoleIds": [
+        1005
+      ],
+      "EmailAddress": "peter.unemployed@nocompany.com"
+    },
+    {
+      "Id": 2,
+      "Name": "Daniel Anderson",
+      "Description": "Banking Analyst",
+      "WindowsUserNames": [
+        "anderson"
+      ],
+      "RoleIds": [
+        1002
+      ],
+      "EmailAddress": "daniel.anderps.com"
+    },
+    {
+      "Id": 3,
+      "Name": "Betty Sanchez",
+      "Description": "Customer Service Account Manager",
+
+      "WindowsUserNames": [
+        "sanchezbe"
+      ],
+      "RoleIds": [
+        1003,
+        1004
+      ]
+    },
+    {
+      "Id": 4,
+      "Name": "ASM SW Operator",
+      "Description": "Modified Description for operator account",
+      "UserNamePasswords": [
+        {
+          "UserName": "TestUserName1",
+          "InitialPassword": "Th€P@ssw0rd"
+        },
+        {
+          "UserName": "TestUser",
+          "InitialPassword": "U$seTest89%"
+        }
+      ],
+      "WindowsUserNames": [
+        "anderson"
+      ],
+      "RoleIds": [
+        1004
+      ]
+    }
+  ],
+  "IsSyncImport": false
+}

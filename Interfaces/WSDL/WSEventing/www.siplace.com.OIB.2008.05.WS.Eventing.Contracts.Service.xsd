@@ -1,0 +1,215 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Service" elementFormDefault="qualified" targetNamespace="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Service" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://schemas.xmlsoap.org/ws/2004/08/eventing" />
+  <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:import namespace="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Data" />
+  <xs:element name="AddEventSource">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="request" nillable="true" xmlns:q1="http://schemas.xmlsoap.org/ws/2004/08/eventing" type="q1:AddEventSourceRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddEventSourceResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AddEventSourceResult" nillable="true" xmlns:q2="http://schemas.xmlsoap.org/ws/2004/08/eventing" type="q2:AddEventSourceResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetEventSources">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="request" nillable="true" xmlns:q3="http://schemas.xmlsoap.org/ws/2004/08/eventing" type="q3:GetEventSourcesRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetEventSourcesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetEventSourcesResult" nillable="true" xmlns:q4="http://schemas.xmlsoap.org/ws/2004/08/eventing" type="q4:GetEventSourcesResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetNotificationEndpoints">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="request" nillable="true" xmlns:q5="http://schemas.xmlsoap.org/ws/2004/08/eventing" type="q5:GetNotificationEndpointsRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetNotificationEndpointsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetNotificationEndpointsResult" nillable="true" xmlns:q6="http://schemas.xmlsoap.org/ws/2004/08/eventing" type="q6:GetNotificationEndpointsResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLeastUsedEndpoint">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="request" nillable="true" xmlns:q7="http://schemas.xmlsoap.org/ws/2004/08/eventing" type="q7:GetLeastUsedEndpointRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLeastUsedEndpointResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetLeastUsedEndpointResult" nillable="true" xmlns:q8="http://schemas.xmlsoap.org/ws/2004/08/eventing" type="q8:GetLeastUsedEndpointResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveEventSource">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="request" nillable="true" xmlns:q9="http://schemas.xmlsoap.org/ws/2004/08/eventing" type="q9:RemoveEventSourceRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveEventSourceResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="RemoveEventSourceResult" nillable="true" xmlns:q10="http://schemas.xmlsoap.org/ws/2004/08/eventing" type="q10:RemoveEventSourceResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveNotificationEndpoint">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="request" nillable="true" xmlns:q11="http://schemas.xmlsoap.org/ws/2004/08/eventing" type="q11:RemoveNotificationEndpointRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveNotificationEndpointResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="RemoveNotificationEndpointResult" nillable="true" xmlns:q12="http://schemas.xmlsoap.org/ws/2004/08/eventing" type="q12:RemoveNotificationEndpointResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateEventSource">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="request" nillable="true" xmlns:q13="http://schemas.xmlsoap.org/ws/2004/08/eventing" type="q13:UpdateEventSourceRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateEventSourceResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="UpdateEventSourceResult" nillable="true" xmlns:q14="http://schemas.xmlsoap.org/ws/2004/08/eventing" type="q14:UpdateEventSourceResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckAlive">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckAliveResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CheckAliveResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllQueues">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllQueuesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetAllQueuesResult" nillable="true" xmlns:q15="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q15:ArrayOfKeyValueOfEndpointReferenceTypeReceiverQueueikO6SOAe" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLiveQueues">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLiveQueuesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetLiveQueuesResult" nillable="true" xmlns:q16="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q16:ArrayOfKeyValueOfEndpointReferenceTypeReceiverQueueikO6SOAe" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetReceiverQueue">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="strEndpoint" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetReceiverQueueResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetReceiverQueueResult" nillable="true" xmlns:q17="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Data" type="q17:ReceiverQueue" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PauseQueue">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="queue" nillable="true" xmlns:q18="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Data" type="q18:ReceiverQueue" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PauseQueueResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveMessage">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="message" nillable="true" xmlns:q19="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Data" type="q19:QueuedMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveMessageResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RestartQueue">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="queue" nillable="true" xmlns:q20="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Data" type="q20:ReceiverQueue" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RestartQueueResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ResumeQueue">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="queue" nillable="true" xmlns:q21="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Data" type="q21:ReceiverQueue" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ResumeQueueResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Ping">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateSubscriptionTopic">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="strTopic" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Identifier" nillable="true" xmlns:q22="http://schemas.xmlsoap.org/ws/2004/08/eventing" type="q22:Identifier" />
+</xs:schema>

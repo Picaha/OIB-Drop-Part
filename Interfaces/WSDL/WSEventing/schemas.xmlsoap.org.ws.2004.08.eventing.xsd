@@ -1,0 +1,609 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.xmlsoap.org/ws/2004/08/eventing" elementFormDefault="qualified" targetNamespace="http://schemas.xmlsoap.org/ws/2004/08/eventing" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:import namespace="http://schemas.xmlsoap.org/ws/2004/08/addressing" />
+  <xs:import namespace="http://schemas.microsoft.com/serviceModel/2004/05/xpathfilter/" />
+  <xs:import namespace="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Data" />
+  <xs:element name="BatchSendRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="BatchDataBody" nillable="true" xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q1:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BatchSendResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="AddEventSourceRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="EventSource" nillable="true" type="tns:EventSource" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AddEventSourceRequest" nillable="true" type="tns:AddEventSourceRequest" />
+  <xs:complexType name="EventSource">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ComputerName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EventTopics" nillable="true" xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q2:ArrayOfstring" />
+      <xs:element minOccurs="0" name="IsSecureEndpoint" type="xs:boolean" />
+      <xs:element minOccurs="0" name="NotifyEndpoint" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SenderIdentifier" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EventSource" nillable="true" type="tns:EventSource" />
+  <xs:complexType name="AddEventSourceResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="EventSourceWasAdded" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AddEventSourceResponse" nillable="true" type="tns:AddEventSourceResponse" />
+  <xs:complexType name="GetEventSourcesRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="EndpointAddress" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RequestType" type="xs:int" />
+      <xs:element minOccurs="0" name="SenderIdentifier" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetEventSourcesRequest" nillable="true" type="tns:GetEventSourcesRequest" />
+  <xs:complexType name="GetEventSourcesResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="EventSources" nillable="true" type="tns:ArrayOfEventSource" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetEventSourcesResponse" nillable="true" type="tns:GetEventSourcesResponse" />
+  <xs:complexType name="ArrayOfEventSource">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EventSource" nillable="true" type="tns:EventSource" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfEventSource" nillable="true" type="tns:ArrayOfEventSource" />
+  <xs:complexType name="GetNotificationEndpointsRequest">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:element name="GetNotificationEndpointsRequest" nillable="true" type="tns:GetNotificationEndpointsRequest" />
+  <xs:complexType name="GetNotificationEndpointsResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="NotifyEndpoints" nillable="true" type="tns:ArrayOfNotifyEndpoint" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetNotificationEndpointsResponse" nillable="true" type="tns:GetNotificationEndpointsResponse" />
+  <xs:complexType name="ArrayOfNotifyEndpoint">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="NotifyEndpoint" nillable="true" type="tns:NotifyEndpoint" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfNotifyEndpoint" nillable="true" type="tns:ArrayOfNotifyEndpoint" />
+  <xs:complexType name="NotifyEndpoint">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="EndpointAddress" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsSecure" type="xs:boolean" />
+      <xs:element minOccurs="0" name="UsedByNumberOfSenders" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="NotifyEndpoint" nillable="true" type="tns:NotifyEndpoint" />
+  <xs:complexType name="GetLeastUsedEndpointRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="InterfaceType" type="xs:int" />
+      <xs:element minOccurs="0" name="IsSecure" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ProtocolTypes" type="xs:int" />
+      <xs:element minOccurs="0" name="Reliability" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetLeastUsedEndpointRequest" nillable="true" type="tns:GetLeastUsedEndpointRequest" />
+  <xs:complexType name="GetLeastUsedEndpointResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AllNotifyEndpoints" nillable="true" type="tns:ArrayOfNotifyEndpoint" />
+      <xs:element minOccurs="0" name="LeastUsedNotifyEndpoint" nillable="true" type="tns:NotifyEndpoint" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetLeastUsedEndpointResponse" nillable="true" type="tns:GetLeastUsedEndpointResponse" />
+  <xs:complexType name="RemoveEventSourceRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="SenderIdentifier" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RemoveEventSourceRequest" nillable="true" type="tns:RemoveEventSourceRequest" />
+  <xs:complexType name="RemoveEventSourceResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="EventSourceWasFoundAndRemoved" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RemoveEventSourceResponse" nillable="true" type="tns:RemoveEventSourceResponse" />
+  <xs:complexType name="RemoveNotificationEndpointRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="EndpointAddress" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RemoveNotificationEndpointRequest" nillable="true" type="tns:RemoveNotificationEndpointRequest" />
+  <xs:complexType name="RemoveNotificationEndpointResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="EndpointWasFoundAndRemoved" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RemoveNotificationEndpointResponse" nillable="true" type="tns:RemoveNotificationEndpointResponse" />
+  <xs:complexType name="UpdateEventSourceRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="EventSource" nillable="true" type="tns:EventSource" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UpdateEventSourceRequest" nillable="true" type="tns:UpdateEventSourceRequest" />
+  <xs:complexType name="UpdateEventSourceResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="EndpointWasFoundAndUpdated" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UpdateEventSourceResponse" nillable="true" type="tns:UpdateEventSourceResponse" />
+  <xs:complexType name="Identifier">
+    <xs:sequence>
+      <xs:element name="Value" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Identifier" nillable="true" type="tns:Identifier" />
+  <xs:complexType name="ArrayOfSubscription">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Subscription" nillable="true" type="tns:Subscription" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSubscription" nillable="true" type="tns:ArrayOfSubscription" />
+  <xs:complexType name="Subscription">
+    <xs:sequence>
+      <xs:element name="Delivery" nillable="true" type="tns:Delivery" />
+      <xs:element minOccurs="0" name="EndTo" nillable="true" xmlns:q3="http://schemas.xmlsoap.org/ws/2004/08/addressing" type="q3:EndpointReferenceType" />
+      <xs:element name="Expires" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Filter" nillable="true" xmlns:q4="http://schemas.microsoft.com/serviceModel/2004/05/xpathfilter/" type="q4:XPathMessageFilter" />
+      <xs:element minOccurs="0" name="IsReadOnly" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Manager" nillable="true" type="tns:SubscriptionManager" />
+      <xs:element minOccurs="0" name="Topic" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Paused" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Dead" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ClientAppName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ClientProcessInfo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ClientApplicationCompany" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ClientApplicationCopyright" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ClientApplicationProductName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ClientApplicationVersion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsAsmClient" nillable="true" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Subscription" nillable="true" type="tns:Subscription" />
+  <xs:complexType name="Delivery">
+    <xs:sequence>
+      <xs:element name="DeliveryMode" nillable="true" type="xs:string" />
+      <xs:element name="NotifyTo" nillable="true" xmlns:q5="http://schemas.xmlsoap.org/ws/2004/08/addressing" type="q5:EndpointReferenceType" />
+      <xs:element minOccurs="0" name="IsSecure" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Delivery" nillable="true" type="tns:Delivery" />
+  <xs:complexType name="SubscriptionManager">
+    <xs:sequence>
+      <xs:element name="EndpointAddress" nillable="true" xmlns:q6="http://schemas.xmlsoap.org/ws/2004/08/addressing" type="q6:EndpointReferenceType" />
+      <xs:element name="Identifier" nillable="true" type="tns:Identifier" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SubscriptionManager" nillable="true" type="tns:SubscriptionManager" />
+  <xs:element name="RegisterSecondaryService">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="request" nillable="true" xmlns:q7="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Data" type="q7:SecondaryNode" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RegisterSecondaryServiceResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="RegisterSecondaryServiceResult" nillable="true" xmlns:q8="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Data" type="q8:SecondaryRegistrationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UnregisterSecondaryService">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="request" nillable="true" xmlns:q9="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Data" type="q9:SecondaryNode" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UnregisterSecondaryServiceResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="UnregisterSecondaryServiceResult" nillable="true" xmlns:q10="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Data" type="q10:SecondaryRegistrationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSecondaryServices">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="request" nillable="true" type="tns:GetSecondaryServicesRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="GetSecondaryServicesRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ActiveOnly" nillable="true" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetSecondaryServicesRequest" nillable="true" type="tns:GetSecondaryServicesRequest" />
+  <xs:element name="GetSecondaryServicesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetSecondaryServicesResult" nillable="true" xmlns:q11="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Data" type="q11:GetSecondaryServicesResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SynchronizeSubscriptionsRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ImmediateCall" type="xs:boolean" />
+        <xs:element minOccurs="0" name="OriginatingComputerName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Settings" nillable="true" type="tns:SubscriptionSettingsRequestResult" />
+        <xs:element minOccurs="0" name="SynchronizeSubscriptions" nillable="true" xmlns:q12="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Data" type="q12:ArrayOfReceiverQueue" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="SubscriptionSettingsRequestResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="MaxSubscriptionExpiry" type="xs:unsignedShort" />
+      <xs:element minOccurs="0" name="UseSubscriptionExpiry" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SubscriptionSettingsRequestResult" nillable="true" type="tns:SubscriptionSettingsRequestResult" />
+  <xs:element name="SynchronizeSubscriptionsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CoreProcessId" type="xs:int" />
+        <xs:element minOccurs="0" name="Settings" nillable="true" type="tns:SubscriptionSettingsRequestResult" />
+        <xs:element minOccurs="0" name="SynchronizeResult" nillable="true" xmlns:q13="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q13:ArrayOfKeyValueOfstringTupleOfstringReceiverQueuerQOA_PmEkU6ho3Bhd" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReportQueueStatisticToPrimary">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="queueStatisticReport" nillable="true" xmlns:q14="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Data" type="q14:QueueStatisticReport" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReportQueueStatisticToPrimaryResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ReportQueueStatisticToPrimaryResult" nillable="true" xmlns:q15="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Data" type="q15:QueueStatisticResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CancelSubscription">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="code" nillable="true" type="xs:anyURI" />
+        <xs:element minOccurs="0" name="reason" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="culturename" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateSubscriptionTopic">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="strTopic" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateSubscriptionTopicResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAvailableSubscriptionTopics">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAvailableSubscriptionTopicsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetAvailableSubscriptionTopicsResult" nillable="true" xmlns:q16="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q16:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UtcTimeRequest">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UtcTimeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="UtcTimeResult" type="xs:dateTime" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetStatusRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetStatusBody" nillable="true" type="tns:GetStatus" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="GetStatus">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:element name="GetStatus" nillable="true" type="tns:GetStatus" />
+  <xs:element name="GetStatusResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetStatusResponse" nillable="true" type="tns:GetStatusResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="GetStatusResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Expires" nillable="true" type="tns:Expires" />
+      <xs:element minOccurs="0" name="Subscription" nillable="true" type="tns:Subscription" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetStatusResult" nillable="true" type="tns:GetStatusResult" />
+  <xs:complexType name="Expires">
+    <xs:sequence>
+      <xs:element name="Value" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Expires" nillable="true" type="tns:Expires" />
+  <xs:element name="GetSubscriptions">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="searchCriteria" nillable="true" type="tns:SubscriptionDescriptor" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="SubscriptionDescriptor">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Created" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Endpoint" nillable="true" xmlns:q17="http://schemas.xmlsoap.org/ws/2004/08/addressing" type="q17:EndpointReferenceType" />
+      <xs:element minOccurs="0" name="Expires" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Id" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Topic" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Updated" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SubscriptionDescriptor" nillable="true" type="tns:SubscriptionDescriptor" />
+  <xs:element name="GetSubscriptionsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetSubscriptionsResult" nillable="true" type="tns:ArrayOfSubscription" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PauseRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Pause" nillable="true" type="tns:Pause" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="Pause">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Identifier" nillable="true" type="tns:Identifier" />
+      <xs:element minOccurs="0" name="SubscriptionTopic" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Pause" nillable="true" type="tns:Pause" />
+  <xs:element name="PauseResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="PauseResponse" nillable="true" type="tns:PauseResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="PauseResult">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:element name="PauseResult" nillable="true" type="tns:PauseResult" />
+  <xs:element name="RenewRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Renew" nillable="true" type="tns:Renew" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="Renew">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Expires" nillable="true" type="tns:Expires" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Renew" nillable="true" type="tns:Renew" />
+  <xs:element name="RenewResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="RenewResponse" nillable="true" type="tns:RenewResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="RenewResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Subscription" nillable="true" type="tns:Subscription" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RenewResult" nillable="true" type="tns:RenewResult" />
+  <xs:element name="ResumeRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Resume" nillable="true" type="tns:Resume" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="Resume">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Identifier" nillable="true" type="tns:Identifier" />
+      <xs:element minOccurs="0" name="SubscriptionTopic" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Resume" nillable="true" type="tns:Resume" />
+  <xs:element name="ResumeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ResumeResponse" nillable="true" type="tns:ResumeResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ResumeResult">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:element name="ResumeResult" nillable="true" type="tns:ResumeResult" />
+  <xs:element name="SubscribeRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Subscribe" nillable="true" type="tns:Subscribe" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="Subscribe">
+    <xs:sequence>
+      <xs:element name="Delivery" nillable="true" type="tns:Delivery" />
+      <xs:element minOccurs="0" name="EndTo" nillable="true" xmlns:q18="http://schemas.xmlsoap.org/ws/2004/08/addressing" type="q18:EndpointReferenceType" />
+      <xs:element name="Expires" nillable="true" type="tns:Expires" />
+      <xs:element minOccurs="0" name="Filter" nillable="true" xmlns:q19="http://schemas.microsoft.com/serviceModel/2004/05/xpathfilter/" type="q19:XPathMessageFilter" />
+      <xs:element minOccurs="0" name="FilterDialect" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ClientAppName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Subscribe" nillable="true" type="tns:Subscribe" />
+  <xs:element name="SubscribeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SubscribeResponse" nillable="true" type="tns:SubscribeResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="SubscribeResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AlreadyExists" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Expires" nillable="true" type="tns:Expires" />
+      <xs:element minOccurs="0" name="SubscriptionManager" nillable="true" type="tns:SubscriptionManager" />
+      <xs:element minOccurs="0" name="Delivery" nillable="true" type="tns:Delivery" />
+      <xs:element minOccurs="0" name="Subscription" nillable="true" type="tns:Subscription" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SubscribeResult" nillable="true" type="tns:SubscribeResult" />
+  <xs:complexType name="SupportedDeliveryMode">
+    <xs:sequence>
+      <xs:element name="Modes" nillable="true" xmlns:q20="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q20:ArrayOfstring" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SupportedDeliveryMode" nillable="true" type="tns:SupportedDeliveryMode" />
+  <xs:complexType name="SupportedDialect">
+    <xs:sequence>
+      <xs:element name="Dialects" nillable="true" xmlns:q21="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q21:ArrayOfstring" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SupportedDialect" nillable="true" type="tns:SupportedDialect" />
+  <xs:element name="UnsubscribeRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="UnsubscribeBody" nillable="true" type="tns:Unsubscribe" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="Unsubscribe">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:element name="Unsubscribe" nillable="true" type="tns:Unsubscribe" />
+  <xs:element name="Endpoint" nillable="true" xmlns:q22="http://schemas.xmlsoap.org/ws/2004/08/addressing" type="q22:EndpointReferenceType" />
+  <xs:element name="UnsubscribeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SubscriptionFoundAndDeleted" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateSubscription">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="request" nillable="true" xmlns:q23="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Data" type="q23:UpdateSubscriptionRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateSubscriptionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="UpdateSubscriptionResult" nillable="true" xmlns:q24="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Data" type="q24:UpdateSubscriptionResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReadSubscriptionSettings">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReadSubscriptionSettingsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ReadSubscriptionSettingsResult" nillable="true" type="tns:SubscriptionSettingsRequestResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateSubscriptionSettings">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="subscriptionSettings" nillable="true" type="tns:SubscriptionSettingsRequestResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateSubscriptionSettingsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="UpdateSubscriptionSettingsResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UnsubscribeBody" nillable="true" type="tns:Unsubscribe" />
+  <xs:element name="RenewSecondaryRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Subscription" nillable="true" type="tns:Subscription" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RenewSecondaryResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="RenewResponse" nillable="true" type="tns:RenewResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UnsubscribeSecondaryRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="UnsubscribeBody" nillable="true" type="tns:Unsubscribe" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UnsubscribeSecondaryResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SubscriptionFoundAndDeleted" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="SubscriptionSettingsSecondary">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:SubscriptionSettingsRequestResult">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="SubscriptionSettingsSecondary" nillable="true" type="tns:SubscriptionSettingsSecondary" />
+  <xs:element name="SubscribeSecondaryRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Subscribe" nillable="true" type="tns:Subscribe" />
+        <xs:element minOccurs="0" name="Subscription" nillable="true" type="tns:Subscription" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SubscribeSecondaryResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SubscribeResponse" nillable="true" type="tns:SubscribeResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

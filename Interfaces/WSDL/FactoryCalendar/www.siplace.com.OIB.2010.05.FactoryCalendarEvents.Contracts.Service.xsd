@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.siplace.com/OIB/2010/05/FactoryCalendarEvents/Contracts/Service" elementFormDefault="qualified" targetNamespace="http://www.siplace.com/OIB/2010/05/FactoryCalendarEvents/Contracts/Service" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Data" />
+  <xs:import namespace="http://www.siplace.com/OIB/2016/07/FactoryCalendar/Contracts/Data" />
+  <xs:element name="Appointment" nillable="true" xmlns:q1="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Data" type="q1:Appointment" />
+  <xs:element name="Resource" nillable="true" xmlns:q2="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Data" type="q2:Resource" />
+  <xs:element name="Team" nillable="true" xmlns:q3="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Data" type="q3:Team" />
+  <xs:element name="Options" nillable="true" xmlns:q4="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Data" type="q4:CalendarOptions" />
+  <xs:element name="CustomState" nillable="true" xmlns:q5="http://www.siplace.com/OIB/2016/07/FactoryCalendar/Contracts/Data" type="q5:CustomState" />
+</xs:schema>

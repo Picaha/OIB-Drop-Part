@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.siplace.com/OIB/2012/03/Traceability/Contracts/Message" elementFormDefault="qualified" targetNamespace="http://www.siplace.com/OIB/2012/03/Traceability/Contracts/Message" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://www.siplace.com/OIB/2012/03/Traceability/Contracts/Data" />
+  <xs:element name="ProcessDataRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="BoardMeasuredData" nillable="true" xmlns:q1="http://www.siplace.com/OIB/2012/03/Traceability/Contracts/Data" type="q1:ProcessDataBoardMeasured" />
+        <xs:element minOccurs="0" name="ContextId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="LinePath" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="ProductionAbortedData" nillable="true" xmlns:q2="http://www.siplace.com/OIB/2012/03/Traceability/Contracts/Data" type="q2:ProcessDataProductionAborted" />
+        <xs:element minOccurs="0" name="ProductionEndedData" nillable="true" xmlns:q3="http://www.siplace.com/OIB/2012/03/Traceability/Contracts/Data" type="q3:ProcessDataProductionEnded" />
+        <xs:element minOccurs="0" name="ProductionProgressData" nillable="true" xmlns:q4="http://www.siplace.com/OIB/2012/03/Traceability/Contracts/Data" type="q4:ProcessDataProductionProgress" />
+        <xs:element minOccurs="0" name="ProductionStartedData" nillable="true" xmlns:q5="http://www.siplace.com/OIB/2012/03/Traceability/Contracts/Data" type="q5:ProcessDataProductionStarted" />
+        <xs:element minOccurs="0" name="StationPath" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TraceabilityDataRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="TraceabilityData" nillable="true" xmlns:q6="http://www.siplace.com/OIB/2012/03/Traceability/Contracts/Data" type="q6:TraceabilityData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

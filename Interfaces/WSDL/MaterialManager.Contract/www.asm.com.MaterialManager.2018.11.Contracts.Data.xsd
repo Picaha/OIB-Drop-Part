@@ -1,0 +1,229 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.asm.com/MaterialManager/2018/11/Contracts/Data" elementFormDefault="qualified" targetNamespace="http://www.asm.com/MaterialManager/2018/11/Contracts/Data" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/Asm.As.MaterialManager.Contracts.Contracts.Data" />
+  <xs:import namespace="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" />
+  <xs:complexType name="ArrayOfMaterialManagerEventData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MaterialManagerEventData" nillable="true" type="tns:MaterialManagerEventData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMaterialManagerEventData" nillable="true" type="tns:ArrayOfMaterialManagerEventData" />
+  <xs:complexType name="MaterialManagerEventData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="EventType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MasterData" nillable="true" type="tns:MasterDataEventData" />
+      <xs:element minOccurs="0" name="MaterialManagement" nillable="true" type="tns:MaterialManagementEventData" />
+      <xs:element minOccurs="0" name="MaterialRequirement" nillable="true" type="tns:MaterialRequirementEventData" />
+      <xs:element minOccurs="0" name="Picking" nillable="true" type="tns:PickingEventData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MaterialManagerEventData" nillable="true" type="tns:MaterialManagerEventData" />
+  <xs:complexType name="MasterDataEventData">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:MaterialManagerEventBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Manufacturer" nillable="true" type="tns:Manufacturer" />
+          <xs:element minOccurs="0" name="MaterialClass" nillable="true" type="tns:MaterialClass" />
+          <xs:element minOccurs="0" name="MaterialDefinition" nillable="true" type="tns:MaterialDefinition" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="MasterDataEventData" nillable="true" type="tns:MasterDataEventData" />
+  <xs:complexType name="MaterialManagerEventBase">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Action" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Operator" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Reason" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SourceID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SourceType" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MaterialManagerEventBase" nillable="true" type="tns:MaterialManagerEventBase" />
+  <xs:complexType name="Manufacturer">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Comment" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ManufacturerMaterialID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ManufacturerName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Manufacturer" nillable="true" type="tns:Manufacturer" />
+  <xs:complexType name="MaterialClass">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Comment" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GroupID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ID" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MaterialClass" nillable="true" type="tns:MaterialClass" />
+  <xs:complexType name="MaterialDefinition">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BrightnessClassType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ErpPartNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="InternalPartNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MaterialClass" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MaterialReuseType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MaterialType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MsdLevel" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PackageManagement" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsBGA" type="xs:boolean" />
+      <xs:element minOccurs="0" name="MaximumThickness" type="xs:double" />
+      <xs:element minOccurs="0" name="MinimumThickness" type="xs:double" />
+      <xs:element minOccurs="0" name="ShelfLife" nillable="true" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MaterialDefinition" nillable="true" type="tns:MaterialDefinition" />
+  <xs:complexType name="MaterialManagementEventData">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:MaterialManagerEventBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CurrentMaterialInformation" nillable="true" type="tns:ArrayOfMaterialInformation" />
+          <xs:element minOccurs="0" name="PreviousMaterialInformation" nillable="true" type="tns:ArrayOfMaterialInformation" />
+          <xs:element minOccurs="0" name="MaterialManagementPostingInformation" nillable="true" xmlns:q1="http://schemas.datacontract.org/2004/07/Asm.As.MaterialManager.Contracts.Contracts.Data" type="q1:MaterialManagementPostingInformation" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="MaterialManagementEventData" nillable="true" type="tns:MaterialManagementEventData" />
+  <xs:complexType name="ArrayOfMaterialInformation">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MaterialInformation" nillable="true" type="tns:MaterialInformation" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMaterialInformation" nillable="true" type="tns:ArrayOfMaterialInformation" />
+  <xs:complexType name="MaterialInformation">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Expiration" nillable="true" type="tns:ExpirationInformation" />
+      <xs:element minOccurs="0" name="Incoming" nillable="true" type="tns:IncomingInformation" />
+      <xs:element minOccurs="0" name="MaterialManagerLocation" nillable="true" type="tns:MaterialManagerLocation" />
+      <xs:element minOccurs="0" name="MaterialReuse" nillable="true" type="tns:MaterialReuseInformation" />
+      <xs:element minOccurs="0" name="MoistureSensitivity" nillable="true" type="tns:MoistureSensitivityInformation" />
+      <xs:element minOccurs="0" name="PackagingUnit" nillable="true" xmlns:q2="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q2:PackagingUnit" />
+      <xs:element minOccurs="0" name="PhysicalState" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsBGA" type="xs:boolean" />
+      <xs:element minOccurs="0" name="MaximumThickness" type="xs:double" />
+      <xs:element minOccurs="0" name="MinimumThickness" type="xs:double" />
+      <xs:element minOccurs="0" name="SealingDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ShelfLife" nillable="true" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MaterialInformation" nillable="true" type="tns:MaterialInformation" />
+  <xs:complexType name="ExpirationInformation">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="RemainingExpirationTime" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="State" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ExpirationInformation" nillable="true" type="tns:ExpirationInformation" />
+  <xs:complexType name="IncomingInformation">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BatchID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ErpReceivingInformation" nillable="true" type="tns:ErpReceivingInformation" />
+      <xs:element minOccurs="0" name="Username" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="IncomingInformation" nillable="true" type="tns:IncomingInformation" />
+  <xs:complexType name="ErpReceivingInformation">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="OrderID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OrderPosition" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TransportJob" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TransportJobPosition" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ErpReceivingInformation" nillable="true" type="tns:ErpReceivingInformation" />
+  <xs:complexType name="MaterialManagerLocation">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="LastTableID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Line" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Path" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SetupLocation" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StorageBin" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StorageBinSize" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TableID" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MaterialManagerLocation" nillable="true" type="tns:MaterialManagerLocation" />
+  <xs:complexType name="MaterialReuseInformation">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ReuseState" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MaterialReuseInformation" nillable="true" type="tns:MaterialReuseInformation" />
+  <xs:complexType name="MoistureSensitivityInformation">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Environment" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PackagingState" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RemainingMsdTime" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="State" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BakeInProcess" type="xs:boolean" />
+      <xs:element minOccurs="0" name="BakingFinishTime" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="RemainingRebakes" nillable="true" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MoistureSensitivityInformation" nillable="true" type="tns:MoistureSensitivityInformation" />
+  <xs:complexType name="MaterialRequirementEventData">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:MaterialManagerEventBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ApprovalState" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="BondID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="DueDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="EndTime" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Hostname" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="MaterialRequirementListID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="MsdContent" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="OrderID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="OrderLocation" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PositionCount" type="xs:int" />
+          <xs:element minOccurs="0" name="PositionCountDone" type="xs:int" />
+          <xs:element minOccurs="0" name="PositionCountPartiallyDone" type="xs:int" />
+          <xs:element minOccurs="0" name="ReorderCount" type="xs:int" />
+          <xs:element minOccurs="0" name="SetupPath" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="StartTime" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="StationLocation" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="StationName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="SupplyStorageZone" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="TargetLocation" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Type" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Customer1" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Customer2" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Customer3" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Customer4" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Customer5" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="MaterialRequirementEventData" nillable="true" type="tns:MaterialRequirementEventData" />
+  <xs:complexType name="PickingEventData">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:MaterialManagerEventBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CreateDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="MaterialRequirementListID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="OpenPositionCount" type="xs:int" />
+          <xs:element minOccurs="0" name="OpenPositionCountWithErrors" type="xs:int" />
+          <xs:element minOccurs="0" name="OrderLocation" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PackagingUnitID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PickListID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Source" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="SourceInstance" type="xs:int" />
+          <xs:element minOccurs="0" name="SourceLocation" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="StationLocation" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="StationName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="TargetLocation" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Type" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Customer1" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Customer2" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Customer3" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Customer4" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Customer5" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="PickingEventData" nillable="true" type="tns:PickingEventData" />
+</xs:schema>

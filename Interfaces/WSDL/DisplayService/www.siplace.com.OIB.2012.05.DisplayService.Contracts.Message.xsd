@@ -1,0 +1,344 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Message" elementFormDefault="qualified" targetNamespace="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Message" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Data" />
+  <xs:element name="ClientRegistrationRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Client" nillable="true" xmlns:q1="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Data" type="q1:ClientRegistration" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ClientRegistrationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ClientRegistration" nillable="true" xmlns:q2="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Data" type="q2:ClientRegistration" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ClientUnregistrationRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ClientGUID" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ClientUnregistrationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Unregistered" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SendMessageRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ClientRegistration" nillable="true" xmlns:q3="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Data" type="q3:ClientRegistration" />
+        <xs:element minOccurs="0" name="DatabaseId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Message" nillable="true" xmlns:q4="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Data" type="q4:Message" />
+        <xs:element minOccurs="0" name="Path" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="SendToLineControlViewerAsWell" type="xs:boolean" />
+        <xs:element minOccurs="0" name="StationType" nillable="true" type="xs:int" />
+        <xs:element minOccurs="0" name="ViewerIdentification" xmlns:q5="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Data" type="q5:ViewerIdentification" />
+        <xs:element minOccurs="0" name="Viewers" nillable="true" xmlns:q6="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Data" type="q6:ArrayOfViewerRegistration" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SendMessageResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DeliveryDetails" nillable="true" xmlns:q7="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Data" type="q7:ArrayOfMessageDeliveryDetails" />
+        <xs:element minOccurs="0" name="Message" nillable="true" xmlns:q8="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Data" type="q8:Message" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateMessageRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DoNotUpdateExtendedDescriptionDefault" type="xs:boolean" />
+        <xs:element minOccurs="0" name="Message" nillable="true" xmlns:q9="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Data" type="q9:Message" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateMessageResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DeliveryDetails" nillable="true" xmlns:q10="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Data" type="q10:ArrayOfMessageDeliveryDetails" />
+        <xs:element minOccurs="0" name="MessageGuid" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RevokeMessageRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="MessageGUID" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RevokeMessageResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="MessageGuid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Revoked" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMessageStatesRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ClientRegistration" nillable="true" xmlns:q11="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Data" type="q11:ClientRegistration" />
+        <xs:element minOccurs="0" name="MessageGuid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="ViewerGuid" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMessageStatesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="MessageStates" nillable="true" xmlns:q12="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Data" type="q12:ArrayOfMessageState" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PingRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Address" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="GUID" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PingResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ClientNoMoreRegistered" type="xs:boolean" />
+        <xs:element minOccurs="0" name="ProcessId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ViewerRegistrationRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Viewer" nillable="true" xmlns:q13="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Data" type="q13:ViewerRegistration" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ViewerRegistrationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ViewerRegistration" nillable="true" xmlns:q14="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Data" type="q14:ViewerRegistration" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ViewerUnregistrationRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ViewerGUID" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ViewerUnregistrationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Deleted" type="xs:boolean" />
+        <xs:element minOccurs="0" name="ViewerGUID" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ViewerUpdateRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DatabaseId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="IsObjectNameChange" type="xs:boolean" />
+        <xs:element minOccurs="0" name="IsStation" type="xs:boolean" />
+        <xs:element minOccurs="0" name="ObjectOID" type="xs:int" />
+        <xs:element minOccurs="0" name="ObjectPath" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="StationInLines" nillable="true" xmlns:q15="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Data" type="q15:ArrayOfStationInLine" />
+        <xs:element minOccurs="0" name="StationType" type="xs:int" />
+        <xs:element minOccurs="0" name="ViewerRegistration" nillable="true" xmlns:q16="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Data" type="q16:ViewerRegistration" />
+        <xs:element minOccurs="0" name="ObjectOID_Long" type="xs:long" />
+        <xs:element minOccurs="0" name="HostName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ViewerUpdateResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetViewersRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ComputerName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="DispatcherEndpointAddress" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="EndpointAddress" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="IPAddress" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="SIPLACEProDatabaseId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="SIPLACEProLineOID" type="xs:int" />
+        <xs:element minOccurs="0" name="SIPLACEProLinePath" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="SIPLACEProStationIndexInLine" type="xs:int" />
+        <xs:element minOccurs="0" name="SIPLACEProStationOID" type="xs:int" />
+        <xs:element minOccurs="0" name="SIPLACEProStationPath" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="StationType" nillable="true" type="xs:int" />
+        <xs:element minOccurs="0" name="ViewerGUID" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="SIPLACEProLineOID_Long" nillable="true" type="xs:long" />
+        <xs:element minOccurs="0" name="SIPLACEProStationOID_Long" nillable="true" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetViewersResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Viewers" nillable="true" xmlns:q17="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Data" type="q17:ArrayOfViewerRegistration" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetClientsRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Client" nillable="true" xmlns:q18="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Data" type="q18:ClientRegistration" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetClientsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ClientsArray" nillable="true" xmlns:q19="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Data" type="q19:ArrayOfClientRegistration" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllMessagesRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ViewerGuid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="CalledByViewer" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllMessagesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Messages" nillable="true" xmlns:q20="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Data" type="q20:ArrayOfMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateViewerRegistrationsFromControlledStationsRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ControlledStations" nillable="true" xmlns:q21="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Data" type="q21:ArrayOfViewerRegistration" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateViewerRegistrationsFromControlledStationsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="UpdatedViewerRegistrations" nillable="true" xmlns:q22="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Data" type="q22:ArrayOfViewerRegistration" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IsViewerRegisteredRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Viewer" nillable="true" xmlns:q23="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Data" type="q23:ViewerRegistration" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IsViewerRegisteredResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ViewerRegistration" nillable="true" xmlns:q24="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Data" type="q24:ViewerRegistration" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAdminSettingsRequest">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAdminSettingsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AdminSettings" nillable="true" xmlns:q25="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Data" type="q25:DisplayServiceAdminSettings" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateAdminSettingsRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Settings" nillable="true" xmlns:q26="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Data" type="q26:DisplayServiceAdminSettings" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateAdminSettingsResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ConfirmationReceivedRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Answer" nillable="true" xmlns:q27="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Data" type="q27:Answer" />
+        <xs:element minOccurs="0" name="MessageDeleted" type="xs:boolean" />
+        <xs:element minOccurs="0" name="OriginalMessage" nillable="true" xmlns:q28="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Data" type="q28:Message" />
+        <xs:element minOccurs="0" name="ThisViewerDeleted" type="xs:boolean" />
+        <xs:element minOccurs="0" name="Viewer" nillable="true" xmlns:q29="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Data" type="q29:ViewerRegistration" />
+        <xs:element minOccurs="0" name="SubAnswer" nillable="true" xmlns:q30="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Data" type="q30:SubAnswer" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ConfirmationReceivedResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ViewerGUID" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SendDispatcherMessageRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ClientRegistration" nillable="true" xmlns:q31="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Data" type="q31:ClientRegistration" />
+        <xs:element minOccurs="0" name="Message" nillable="true" xmlns:q32="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Data" type="q32:Message" />
+        <xs:element minOccurs="0" name="Viewers" nillable="true" xmlns:q33="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Data" type="q33:ArrayOfViewerRegistration" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SendDispatcherMessageResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DeliveryDetails" nillable="true" xmlns:q34="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Data" type="q34:ArrayOfMessageDeliveryDetails" />
+        <xs:element minOccurs="0" name="Message" nillable="true" xmlns:q35="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Data" type="q35:Message" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RevokeDispatcherMessageRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="MessageGuid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Viewers" nillable="true" xmlns:q36="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Data" type="q36:ArrayOfViewerRegistration" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RevokeDispatcherMessageResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DeliveryDetails" nillable="true" xmlns:q37="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Data" type="q37:ArrayOfMessageDeliveryDetails" />
+        <xs:element minOccurs="0" name="Message" nillable="true" xmlns:q38="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Data" type="q38:Message" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateDispatcherMessageRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Message" nillable="true" xmlns:q39="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Data" type="q39:Message" />
+        <xs:element minOccurs="0" name="Viewers" nillable="true" xmlns:q40="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Data" type="q40:ArrayOfViewerRegistration" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateDispatcherMessageResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DeliveryDetails" nillable="true" xmlns:q41="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Data" type="q41:ArrayOfMessageDeliveryDetails" />
+        <xs:element minOccurs="0" name="Message" nillable="true" xmlns:q42="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Data" type="q42:Message" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Data" elementFormDefault="qualified" targetNamespace="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Data" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://schemas.xmlsoap.org/ws/2004/08/addressing" />
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/System.Collections.Generic" />
+  <xs:import namespace="http://schemas.xmlsoap.org/ws/2004/08/eventing" />
+  <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:import namespace="http://schemas.microsoft.com/serviceModel/2004/05/xpathfilter/" />
+  <xs:complexType name="ReceiverQueue">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Endpoint" nillable="true" xmlns:q1="http://schemas.xmlsoap.org/ws/2004/08/addressing" type="q1:EndpointReferenceType" />
+      <xs:element minOccurs="0" name="Messages" nillable="true" xmlns:q2="http://schemas.datacontract.org/2004/07/System.Collections.Generic" type="q2:QueueOfQueuedMessagefDZL9Gpu" />
+      <xs:element minOccurs="0" name="Status" type="tns:QueueStatus" />
+      <xs:element minOccurs="0" name="Subscriptions" nillable="true" xmlns:q3="http://schemas.xmlsoap.org/ws/2004/08/eventing" type="q3:ArrayOfSubscription" />
+      <xs:element minOccurs="0" name="HasQueue" type="xs:boolean" />
+      <xs:element minOccurs="0" name="MessageCount" type="xs:int" />
+      <xs:element minOccurs="0" name="LastSuccessfulSend" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="LastReceivedMessage" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="LastResult" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Paused" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ErrorCount" type="xs:int" />
+      <xs:element minOccurs="0" name="IncomingMessageCount" type="xs:int" />
+      <xs:element minOccurs="0" name="MaxMessageCountForAllSubscriptionsQuota" type="xs:int" />
+      <xs:element minOccurs="0" name="MaxMessageCountForSubscriptionQuota" type="xs:int" />
+      <xs:element minOccurs="0" name="MaxMessageSizeQuota" type="xs:int" />
+      <xs:element minOccurs="0" name="OutgoingMessageCount" type="xs:int" />
+      <xs:element minOccurs="0" name="ExceptionReason" type="xs:int" />
+      <xs:element minOccurs="0" name="IsOibInternalQueue" type="xs:boolean" />
+      <xs:element minOccurs="0" name="LastUnsuccessfulSentMessage" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="MaxMegabytesForAllPushSubcriptionsQuota" type="xs:int" />
+      <xs:element minOccurs="0" name="MaxMegabytesForPushSubcriptionQuota" type="xs:int" />
+      <xs:element minOccurs="0" name="MaxMessageCountForPushSubscriptionQuota" type="xs:int" />
+      <xs:element minOccurs="0" name="ReliableBinding" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ServiceStartTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="MaxRemainingDataQuota" type="xs:long" />
+      <xs:element minOccurs="0" name="MessagesThrownAwaySinceLastRestart" type="xs:int" />
+      <xs:element minOccurs="0" name="TotalStoredMessageCount" type="xs:long" />
+      <xs:element minOccurs="0" name="DatabaseInstance" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ClientAppName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ClientProcessInfo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DatabaseName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EventingHostName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsPrimary" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsSubQueue" type="xs:boolean" />
+      <xs:element minOccurs="0" name="MultiEventingReceiverQueues" nillable="true" xmlns:q4="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q4:ArrayOfKeyValueOfstringReceiverQueuerQOA_PmEk" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ReceiverQueue" nillable="true" type="tns:ReceiverQueue" />
+  <xs:complexType name="ArrayOfQueuedMessage">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="QueuedMessage" nillable="true" type="tns:QueuedMessage" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfQueuedMessage" nillable="true" type="tns:ArrayOfQueuedMessage" />
+  <xs:complexType name="QueuedMessage">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Endpoint" nillable="true" xmlns:q5="http://schemas.xmlsoap.org/ws/2004/08/addressing" type="q5:EndpointReferenceType" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="IsCompressed" type="xs:boolean" />
+      <xs:element minOccurs="0" name="MessageText" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SubscriptionId" nillable="true" xmlns:q6="http://schemas.xmlsoap.org/ws/2004/08/eventing" type="q6:Identifier" />
+      <xs:element minOccurs="0" name="TimeStamp" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DebugMessageId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Stamp2" type="xs:long" />
+      <xs:element minOccurs="0" name="Id_Long" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="QueuedMessage" nillable="true" type="tns:QueuedMessage" />
+  <xs:simpleType name="QueueStatus">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Active" />
+      <xs:enumeration value="Disabled" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="QueueStatus" nillable="true" type="tns:QueueStatus" />
+  <xs:complexType name="SecondaryNode">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AbsoluteUri" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsConnected" type="xs:boolean" />
+      <xs:element minOccurs="0" name="NotificationManagerEndpoints" nillable="true" xmlns:q7="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q7:ArrayOfKeyValueOfstringboolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SecondaryNode" nillable="true" type="tns:SecondaryNode" />
+  <xs:complexType name="SecondaryRegistrationResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IsRegisteredNow" type="xs:boolean" />
+      <xs:element minOccurs="0" name="RegistrationStatusChanged" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SecondaryRegistrationResult" nillable="true" type="tns:SecondaryRegistrationResult" />
+  <xs:complexType name="GetSecondaryServicesResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="SecondaryNodes" nillable="true" type="tns:ArrayOfSecondaryNode" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetSecondaryServicesResult" nillable="true" type="tns:GetSecondaryServicesResult" />
+  <xs:complexType name="ArrayOfSecondaryNode">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SecondaryNode" nillable="true" type="tns:SecondaryNode" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSecondaryNode" nillable="true" type="tns:ArrayOfSecondaryNode" />
+  <xs:complexType name="ArrayOfReceiverQueue">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ReceiverQueue" nillable="true" type="tns:ReceiverQueue" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfReceiverQueue" nillable="true" type="tns:ArrayOfReceiverQueue" />
+  <xs:complexType name="QueueStatisticReport">
+    <xs:sequence>
+      <xs:element name="Host" nillable="true" type="xs:string" />
+      <xs:element name="QueueStatistic" nillable="true" xmlns:q8="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q8:ArrayOfKeyValueOfstringReceiverQueuerQOA_PmEk" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="QueueStatisticReport" nillable="true" type="tns:QueueStatisticReport" />
+  <xs:complexType name="QueueStatisticResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CoreProcessId" type="xs:int" />
+      <xs:element minOccurs="0" name="IsAccepted" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="QueueStatisticResult" nillable="true" type="tns:QueueStatisticResult" />
+  <xs:complexType name="UpdateSubscriptionRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ClearFilter" type="xs:boolean" />
+      <xs:element minOccurs="0" name="DeliveryMode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EndpointAddress" nillable="true" xmlns:q9="http://schemas.xmlsoap.org/ws/2004/08/addressing" type="q9:EndpointReferenceType" />
+      <xs:element minOccurs="0" name="Filter" nillable="true" xmlns:q10="http://schemas.microsoft.com/serviceModel/2004/05/xpathfilter/" type="q10:XPathMessageFilter" />
+      <xs:element minOccurs="0" name="GuidString" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ClientAppName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsSecure" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UpdateSubscriptionRequest" nillable="true" type="tns:UpdateSubscriptionRequest" />
+  <xs:complexType name="UpdateSubscriptionResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="UpdatedSubscription" nillable="true" xmlns:q11="http://schemas.xmlsoap.org/ws/2004/08/eventing" type="q11:Subscription" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UpdateSubscriptionResponse" nillable="true" type="tns:UpdateSubscriptionResponse" />
+  <xs:complexType name="UpdateSubscriptionSecondaryRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="UpdatedSubscriptionFromPrimary" nillable="true" xmlns:q12="http://schemas.xmlsoap.org/ws/2004/08/eventing" type="q12:Subscription" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UpdateSubscriptionSecondaryRequest" nillable="true" type="tns:UpdateSubscriptionSecondaryRequest" />
+</xs:schema>

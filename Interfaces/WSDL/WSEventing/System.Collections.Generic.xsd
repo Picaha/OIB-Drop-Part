@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/System.Collections.Generic" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/System.Collections.Generic" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Data" />
+  <xs:complexType name="QueueOfQueuedMessagefDZL9Gpu">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="QueueOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/System.Collections.Generic" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="QueuedMessage" Namespace="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Data" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="_array" nillable="true" xmlns:q1="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Data" type="q1:ArrayOfQueuedMessage" />
+      <xs:element name="_head" type="xs:int" />
+      <xs:element name="_size" type="xs:int" />
+      <xs:element name="_tail" type="xs:int" />
+      <xs:element name="_version" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="QueueOfQueuedMessagefDZL9Gpu" nillable="true" type="tns:QueueOfQueuedMessagefDZL9Gpu" />
+</xs:schema>

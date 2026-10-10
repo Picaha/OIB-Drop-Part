@@ -1,0 +1,2964 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ASM.AS.OIB.SiplaceSetupCenter.Proxy</name>
+    </assembly>
+    <members>
+        <member name="T:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Interfaces.IConfigure">
+            <summary>
+            Interface to configure the adapter to the OIB Core
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Interfaces.IConfigure.ConfigureByEndpoint(System.String,System.String)">
+            <summary>
+            For COM clients who need to be able to configure the endpoint dynamically
+            </summary>
+            <param name="strEndpoint">Endpoint address</param>
+            <param name="strBinding">Binding</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Interfaces.IConfigure.ConfigureByConfiguration(System.String)">
+            <summary>
+            For COM clients who need to be able to configure the endpoint dynamically
+            </summary>
+            <param name="strEndpoinConfigurationName">Endpoint configuration Name</param>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Interfaces.IConfigure.EndpointAddress">
+            <summary>
+            Configured Endpoint Address
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Interfaces.IConfigure.SubscribeToCoreEvents(System.String)">
+            <summary>
+            Subscribe to the events sent from the Core Eventing
+            </summary>
+            <param name="coreComputerName">Host name of the computer, where the SIPLACE OB is located.</param>
+            <returns>success, if the subscriptions could be done</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Interfaces.IConfigure.SubscribeToCoreEvents(System.String,System.String)">
+            <summary>
+            Subscribe to the events sent from the Core Eventing
+            </summary>
+            <param name="coreComputerName">The host name of the SIPLACE Core</param>
+            <param name="strCallbackName">Name of the callback endpoint used for getting the events.
+            The CallbackName is a part of the callback endpoint address:
+            CallbackName: "SiplaceSetupCenterNotify" --> resulting Callback Endpoint Address: "http://MachineName:1405/SiplaceSetupCenterNotify/"</param>
+            <returns>
+            success, if the subscriptions could be done
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Interfaces.IConfigure.SubscribeToCoreEvents(System.String,System.String,System.Boolean)">
+            <summary>
+            Subscribe to the events sent from the Core Eventing
+            </summary>
+            <param name="coreComputerName">The host name of the SIPLACE Core</param>
+            <param name="strCallbackName">Name of the callback endpoint used for getting the events.
+            The CallbackName is a part of the callback endpoint address:
+            CallbackName: "SiplaceSetupCenterNotify" --> resulting Callback Endpoint Address: "http://MachineName:1405/SiplaceSetupCenterNotify/"</param>
+            <param name="bUnsubscribeWhenDisposing">If true, the Subscription will not be unsubscribed when Disposing</param>
+            <returns>
+            success, if the subscriptions could be done
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Interfaces.IConfigure.SubscribeToCoreEvents(System.String,System.String,System.Int32)">
+            <summary>
+            Subscribe to the events sent from the Core Eventing
+            </summary>
+            <param name="coreComputerName">The host name of the SIPLACE Core</param>
+            <param name="strCallbackName">Name of the callback endpoint used for getting the events.
+            The CallbackName is a part of the callback endpoint address:
+            CallbackName: "SiplaceSetupCenterNotify" --> resulting Callback Endpoint Address: "http://MachineName:1405/SiplaceSetupCenterNotify/"
+            </param>
+            <param name="nPortNumber">Port Number for callback</param>
+            <returns>
+            success, if the subscriptions could be done
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Interfaces.IConfigure.SubscribeToCoreEvents(System.String,System.String,System.Int32,System.Boolean)">
+            <summary>
+            Subscribe to the events sent from the Core Eventing
+            </summary>
+            <param name="coreComputerName">The host name of the SIPLACE Core</param>
+            <param name="strCallbackName">Name of the callback endpoint used for getting the events.
+            The CallbackName is a part of the callback endpoint address:
+            CallbackName: "SiplaceSetupCenterNotify" --> resulting Callback Endpoint Address: "http://MachineName:1405/SiplaceSetupCenterNotify/"
+            </param>
+            <param name="nPortNumber">Port Number for callback</param>
+            <param name="bUnsubscribeWhenDisposing">If true, the Subscription will not be unsubscribed when Disposing</param>
+            <returns>
+            success, if the subscriptions could be done
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Interfaces.IConfigure.UnsubscribeToCoreEvents">
+            <summary>
+            Explicitly unsubscribe from the events sent from the Core Eventing. The only way to 
+            unsubscribe if you set the bUnsubscribeWhenDisposing to false in method SubscribeToCoreEvents.
+            </summary>
+        </member>
+        <member name="T:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Interfaces.ISiplaceSetupCenter">
+            <summary>
+            This is the service interface for the integration of Setup Center functionality.
+             </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Interfaces.ISiplaceSetupCenter.IsConnected">
+            <summary>
+            The ping function performs a check, if the connection to the underlying 
+            system components is alive or not
+            </summary>
+            <returns>
+            <c>true</c>, if all system components are operational
+            <c>false</c>, if any component is not operational.
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Interfaces.ISiplaceSetupCenter.Set(Asm.As.Oib.SiplaceSetupCenter.Contracts.Data.PackagingUnitLocation[])">
+            <summary>
+            Put PackagingUnit(s) in online verification.
+            A mixed mode between Unique ID mode and ICL mode within one setup is invalid.
+            </summary>
+            <param name="packagingUnitLocations">PackagingUnit(s) to set.</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Interfaces.ISiplaceSetupCenter.Refill(Asm.As.Oib.SiplaceSetupCenter.Contracts.Data.PackagingUnitLocation[])">
+            <summary>
+            Refill PackagingUnit(s) in online verification.
+            </summary>
+            <param name="packagingUnitLocations">PackagingUnit(s) to refill (ArrayList value type: PackagingUnitLocation).</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Interfaces.ISiplaceSetupCenter.TearDown(System.String,Asm.As.Oib.SiplaceSetupCenter.Contracts.Data.ComponentLocation[])">
+            <summary>
+            Tear down the specified PackagingUnit(s) within the mentioned setup.
+            </summary>
+            <param name="strSetup">The related setup full path.</param>
+            <param name="componentLocations">Component location(s) to tear down.</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Interfaces.ISiplaceSetupCenter.GetReducedActualSetup(System.String)">
+            <summary>
+            Method delivers the actual physical setup (verified feeders/packaging units on the station tables) 
+            filtered by the target setup from SIPLACE Pro. If Setup Center is being used in partial setup mode 
+            this data is being filtered by the components of the partial setup. A partial setup includes the 
+            components of one or more recipes being selected in Line Control GUI in partial setup 
+            mode (Line Controls support the partial setup setting "Off", "Manual recipe selection" or 
+            "Automatic selection of downloaded recipe"). In case a component is set-up multiple times, 
+            all occurrences are part of this data even if the line does not use all of them. 
+            </summary>
+            <param name="machineId">The machine to consider.</param>
+            <returns>The actual setup of the specified machine.</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Interfaces.ISiplaceSetupCenter.Update(Asm.As.Oib.SiplaceSetupCenter.Contracts.Data.PackagingUnit[])">
+            <summary>
+            Update the specified packaging unit(s).
+            </summary>
+            <remarks>
+            All packaging unit properties can be updated excluding <see cref="P:Asm.As.Oib.SiplaceSetupCenter.Contracts.Data.PackagingUnit.UID"/> and <see cref="P:Asm.As.Oib.SiplaceSetupCenter.Contracts.Data.PackagingUnit.LastProductionDate"/>.
+            The <see cref="P:Asm.As.Oib.SiplaceSetupCenter.Contracts.Data.PackagingUnit.SplicedPackagingUnit"/> property will be also updated including all properties of the spliced packaging unit.
+            <br/>
+            The packaging unit won't be updated when it is in use "Online" (on a machine).
+            <br/>
+            All errors which occurred during execution can be get with <see cref="M:Asm.As.Oib.SiplaceSetupCenter.Contracts.Service.ISiplaceSetupCenterNotifyDuplex.MessagesReceived(Asm.As.Oib.SiplaceSetupCenter.Contracts.Message.MessagesReceivedReportRequest)"/> or <see cref="M:Asm.As.Oib.SiplaceSetupCenter.Contracts.Service.ISiplaceSetupCenterNotifyOneWay.MessagesReceived(Asm.As.Oib.SiplaceSetupCenter.Contracts.Message.MessagesReceivedReportRequest)"/> callbacks.
+            </remarks>
+            <param name="packagingUnits">Packaging unit(s), which contain the new values of all packaging unit's properties.</param>
+            <returns>
+            The list of successful updated packaging unit(s) (first packaging unit of the splice chain).
+            Otherwise <c>null</c>, if operation was aborted because of a null reference.
+            Packaging units, which couldn't be updated, are not in this list.
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Interfaces.ISiplaceSetupCenter.Get(Asm.As.Oib.SiplaceSetupCenter.Contracts.Data.PackagingUnit[])">
+            <summary>
+            Gets the first packaging unit of the splice chain, which contains the corresponding UID.
+            </summary>
+            <param name="packagingUnits">The first packaging unit of the splice chain.</param>
+            <returns>
+            The list of result of the operation for these packaging units
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Interfaces.ISiplaceSetupCenter.Create(Asm.As.Oib.SiplaceSetupCenter.Contracts.Data.PackagingUnit[])">
+            <summary>
+            Creates new packaging units.
+            </summary>
+            <remarks>
+            Check and creates new packaging units in the Setup Center database. This command can be use to import packaging units
+            before the Set or Refill action.
+            If the packaging unit already exists, the packaging unit won't be created.
+            All errors which occurred during execution can be get with <see cref="M:Asm.As.Oib.SiplaceSetupCenter.Contracts.Service.ISiplaceSetupCenterNotifyDuplex.MessagesReceived(Asm.As.Oib.SiplaceSetupCenter.Contracts.Message.MessagesReceivedReportRequest)"/> or <see cref="M:Asm.As.Oib.SiplaceSetupCenter.Contracts.Service.ISiplaceSetupCenterNotifyOneWay.MessagesReceived(Asm.As.Oib.SiplaceSetupCenter.Contracts.Message.MessagesReceivedReportRequest)"/> callbacks.
+            </remarks>
+            <param name="packagingUnits">The new packaging unit</param>
+            <returns>
+            The list of result of the operation for these packaging units
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Interfaces.ISiplaceSetupCenter.Delete(Asm.As.Oib.SiplaceSetupCenter.Contracts.Data.PackagingUnit[])">
+            <summary>
+            Deletes the packaging units with the corresponding UID.
+            </summary>
+            <remarks>
+            If the packaging unit is in use or mounted to a feeder, the packaging unit won't be deleted.
+            Otherwise the delete operation will be forced, even if the packaging unit is part of a splice chain.
+            In this case, the whole splice chain will be deleted.
+            All errors which occurred during execution can be get with <see cref="M:Asm.As.Oib.SiplaceSetupCenter.Contracts.Service.ISiplaceSetupCenterNotifyDuplex.MessagesReceived(Asm.As.Oib.SiplaceSetupCenter.Contracts.Message.MessagesReceivedReportRequest)"/> or <see cref="M:Asm.As.Oib.SiplaceSetupCenter.Contracts.Service.ISiplaceSetupCenterNotifyOneWay.MessagesReceived(Asm.As.Oib.SiplaceSetupCenter.Contracts.Message.MessagesReceivedReportRequest)"/> callbacks.
+            </remarks>
+            <param name="packagingUnits">The packaging unit with the corresponding UID</param>
+            <returns>
+            The list of result of the operation for these packaging units
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Interfaces.ISiplaceSetupCenter.Activate(Asm.As.Oib.SiplaceSetupCenter.Contracts.Data.ComponentLocation[])">
+            <summary>
+            Activates a deactivated track at the station. If the track is already active at the station, nothing will happen. 
+            </summary>
+            <remarks>
+            This command is not available for all tray feeders.
+            </remarks>
+            <param name="componentLocations">The locations which have to be activated.</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Interfaces.ISiplaceSetupCenter.Deactivate(Asm.As.Oib.SiplaceSetupCenter.Contracts.Data.ComponentLocation[],System.String)">
+            <summary>
+            Deactivates an active track at the station. If the track is already deactivated, nothing will happen.
+            </summary>
+            <remarks>
+            This command is not available for all tray feeders and for all stations of platform I and II.
+            The deactivation of a track can be removed by the operator directly at the station
+            (depends from settings) or via Setup Center.
+            </remarks>
+            <param name="componentLocations">The locations which have to be activated.</param>
+            <param name="reason">The reason.</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Interfaces.ISiplaceSetupCenter.Lock(Asm.As.Oib.SiplaceSetupCenter.Contracts.Data.PackagingUnit[],System.String)">
+            <summary>
+            Locks material (The unlock is only possible by an external system again). 
+            Lock can’t be avoided at the station. This functionality is an enhancement of Activate regarding priority.
+            </summary>
+            <remarks>
+            This command is only available for stations of platform II+ and Sirio and in the offline area. 
+            The lock is permanent and cannot be removed by an operator at the station or via Setup Center. 
+            Locked material cannot be torn down, set, refilled or activated.
+            </remarks>
+            <param name="puIDs">The packaging units which give the corresponding UID.</param>
+            <param name="reason">A text which give the operator what is the reason of the lock.</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Interfaces.ISiplaceSetupCenter.Unlock(Asm.As.Oib.SiplaceSetupCenter.Contracts.Data.PackagingUnit[])">
+            <summary>
+            Unlocks material, which was locked by an external system before. 
+            This functionality is an enhancement of Deactivate regarding priority.
+            </summary>
+            <remarks>
+            This command is only available for stations of platform II+ and Sirio and in the offline area.
+            </remarks>
+            <param name="puIDs">The packaging units which give the corresponding UID.</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Interfaces.ISiplaceSetupCenter.SetMessageLevel(System.Int32)">
+            <summary>
+            Level of detail for messages, sent from Setup Center to client applications. 
+            The execution of this remote method changes the setting within Setup Center. 
+            Therefore the change of the message level concerns all client applications connected Setup Center.
+            </summary>
+            <remarks>
+            <list type="table">
+            <listheader>
+            <term>Value</term>
+            <description>Description</description>
+            </listheader>
+            <item>
+            <term>1</term>
+            <description>Fatal.</description>
+            </item>
+            <item>
+            <term>2</term>
+            <description>Error.</description>
+            </item>
+            <item>
+            <term>3</term>
+            <description>Warn.</description>
+            </item>
+            <item>
+            <term>4</term>
+            <description>Info.</description>
+            </item>
+            <item>
+            <term>5</term>
+            <description>Debug.</description>
+            </item>
+            </list>            
+            </remarks>
+            <param name="messageLevel">Level of detail for messages from Setup Center.</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Interfaces.ISiplaceSetupCenter.GetDatabaseName">
+            <summary>
+            Get the database instance name, where the data for this service endpoint is stored. In the deployment
+            of SetupCenter, there can be one database for several service endpoints
+            </summary>
+            <returns>Name of the database</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Interfaces.ISiplaceSetupCenter.GetConfiguration">
+            <summary>
+            Gets the configuration for the lines and docking station in setup center instance.
+            </summary>
+            <returns>
+            The Configuration class holding the description of the Configuration valid for this Instance of Setup Center.
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Interfaces.ISiplaceSetupCenter.FireInstantFeederPlacedEvents(Asm.As.OIB.SiplaceSetupCenter.Proxy.Business.Types.VerificationType)">
+            <summary>
+            Initiates the InstantFeederPlaced events from SetupCenter by
+            selecting all currently placed feeders in the ActualSetup 
+            (online, offline or both depending of given verificationType argument)
+            </summary>
+            <param name="verificationType">The specified verification mode</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Interfaces.ISiplaceSetupCenter.GetPackagingUnitLocation(Asm.As.Oib.SiplaceSetupCenter.Contracts.Data.PackagingUnit[])">
+             <summary>
+             Gets the current packaging unit location.
+             Only works with Setup Center 6.3 and higher.
+             </summary>
+             <param name="packagingUnits">The packaging unit with the corresponding UID</param>
+             <returns>List of ComponentLocationResult
+             Contains the ComponentLocation if the packaging unit is mounted online or offline. 
+                 If the packaging unit is not mounted the value is null.
+                 The TableState attribute in ComponentLocation indicates whether a packaging unit is online, offline.  
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Interfaces.ISiplaceSetupCenter.UpdateSinglePackagingUnit(Asm.As.Oib.SiplaceSetupCenter.Contracts.Data.PackagingUnit[])">
+             <summary>
+             Adjust all attributes of the packaging unit except the ones listed below for online mounted packaging units.
+             Only works with Setup Center 6.3 and higher.
+             </summary>
+             <remarks>
+             This method allows an update of every packaging unit regardless of the packaging unit status (unmounted, offline or online mounted).
+             If a packaging unit chain is supplied then only the first packaging unit will be updated.
+             The method will update all packaging unit attributes if the packaging unit is not mounted online.
+             If the packaging unit is mounted online then the method will only update the packaging unit attributes not listed in the exception list below. 
+             The following attributes of the packaging unit cannot be updated if it is mounted online:
+             [ComponentName], [ComponentBarcode], [ComponentBarcodeFragment], [OriginalQuantity], [Quantity], [GreyZone], 
+             [DepletedDate], [LastProductionDate], [BatchId], [Batch2], [BrightnessClass]
+             </remarks>
+             <param name="packagingUnits">Packaging unit(s) containing the new attribute values.</param>
+             <returns>
+             List of PackagingUnitResults:
+             Each PackagingUnitResult contains the updated packaging unit in case of success, otherwise null.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Interfaces.ISiplaceSetupCenterNotify">
+            <summary>
+            This interfaces is the sink interface for COM clients.
+            Implement this and call AtlAdvise(); to get events from the SetupCenter.
+            </summary>
+        </member>
+        <member name="T:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SubscriptionStateInvalidDetails">
+            <summary>
+            SubscriptionStateInvalidDetails
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SubscriptionStateInvalidDetails.#ctor(Asm.As.Oib.WS.Eventing.Contracts.Data.Subscription)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SubscriptionStateInvalidDetails"/> class.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SubscriptionStateInvalidDetails.Subscription">
+            <summary>
+            Gets the subscription.
+            </summary>
+            <value>
+            The subscription.
+            </value>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SubscriptionStateInvalidDetails.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SubscriptionDescription">
+            <summary>
+            SubscriptionDescription. Can be used to describe how the subscription should look like.
+            Supports now filters for either LinePath or FactoryLocation.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SubscriptionDescription.CoreComputerName">
+            <summary>
+            Gets or sets the host name of the SIPLACE Core.
+            </summary>
+            <value>
+            The host name of the SIPLACE Core.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SubscriptionDescription.CorePortNumber">
+            <summary>
+            Gets or sets the core port number.
+            </summary>
+            <value>
+            The core port number.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SubscriptionDescription.UseCoreTcpPort">
+            <summary>
+            Gets or sets a value indicating whether [use core TCP port].
+            </summary>
+            <value>
+            <c>true</c> if [use core TCP port]; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SubscriptionDescription.CallbackName">
+            <summary>
+            Gets or sets the CallbackName. It is a part of the callback endpoint address:
+            CallbackName: "SiplaceSetupCenterNotify" --&gt; resulting Callback Endpoint Address:
+            "http://MachineName:1405/SiplaceSetupCenterNotify/"
+            </summary>
+            <value>
+            The name of the callback.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SubscriptionDescription.CallbackPortNumber">
+            <summary>
+            Gets or sets the callback port number.
+            </summary>
+            <value>
+            The callback port number.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SubscriptionDescription.UseCallbackTcpPort">
+            <summary>
+            Gets or sets a value indicating whether [use callback TCP port].
+            </summary>
+            <value>
+            <c>true</c> if [use callback TCP port]; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SubscriptionDescription.CallbackCertificateStoreLocation">
+            <summary>
+            StoreLocation.LocalMachine or StoreLocation.CurrentUser
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SubscriptionDescription.CallbackCertificateX509FindType">
+            <summary>
+            One of the X509FindType enum values (e.g. X509FindType.FindBySubjectDistinguishedName). The CallbackCertificateValue must match 
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SubscriptionDescription.CallbackCertificateStoreName">
+            <summary>
+            StoreName (typically StoreName.My)
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SubscriptionDescription.CallbackCertificateValue">
+            <summary>
+            Something like "CN=ASM.SW.Service"
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SubscriptionDescription.GatewayComputer">
+            <summary>
+            Gateway hostname when OIB Setup Center Smart Proxy is hosted in a Cluster Environment
+            </summary>
+            <remarks>
+            If provided, this value overwrites the value provided in the App.config.
+            </remarks>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SubscriptionDescription.CallbackGatewayPort">
+            <summary>
+            Callback gateway port number when OIB Setup Center Smart Proxy is hosted in a Cluster Environment
+            </summary>
+            <remarks>
+            If provided, this value overwrites the value provided in the App.config.
+            </remarks>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SubscriptionDescription.SetCertificateForCallback(System.Security.Cryptography.X509Certificates.StoreLocation,System.Security.Cryptography.X509Certificates.X509FindType,System.Security.Cryptography.X509Certificates.StoreName,System.String)">
+            <summary>
+            Sets the certificate for the callback service. Either specify the values in the app.config or use this method here.
+            Asm.As.Oib.SetupCenter.Proxy.CallbackCertificateStoreName, Asm.As.Oib.SetupCenter.Proxy.CallbackCertificateStoreLocation, Asm.As.Oib.SetupCenter.Proxy.CallbackCertificateX509FindType,
+            Asm.As.Oib.SetupCenter.Proxy.CallbackCertificateValue
+            </summary>
+            <param name="storeLocation">The store location.</param>
+            <param name="findType">Type of the find.</param>
+            <param name="storeName">Name of the store.</param>
+            <param name="findValue">The find value.</param>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SubscriptionDescription.NonPermanentSubscription">
+            <summary>
+            Gets or sets a value indicating whether [non permanent subscription].
+            </summary>
+            <value>
+            <c>true</c> if [non permanent subscription]; otherwise, <c>false</c>.
+            </value>
+            <remarks>
+            This function supports permanent and non permanent subscriptions.
+            Non Permanent subscriptions are valid for 6 hours and will be refreshed 3 every hours.
+            The events will be un-subscribed when Disposed. This means that crashes from
+            programs will leave a subscription and a collecting mechanism which will be
+            removed after 6 hours.
+            <br />
+            Permanent subscriptions are forever and have to be explicitly un-subscribed.
+            The application can subscribe after a restart and receive all events between
+            to application start.
+            </remarks>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SubscriptionDescription.SubscriptionIdString">
+            <summary>
+            Gets or sets the subscription identifier string.
+            If this is specified, it is searched for a subscription with that ID and in case it is found, it will be renewed
+            and/or modified in case the callback endpoint or filter was changed.
+            </summary>
+            <value>
+            The subscription identifier string.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SubscriptionDescription.FilterDataType">
+            <summary>
+            Gets or sets the type of the filter data.
+            </summary>
+            <value>
+            The type of the filter data.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SubscriptionDescription.FilterStrings">
+            <summary>
+            Gets or sets the filter(s). If more than one filter is specified, the filter will be applied with logical OR.
+            For the logic when using FilterDataType.FactoryLocation see its documentation.
+            </summary>
+            <value>
+            The filter strings.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SubscriptionDescription.FilterIsCaseInvariant">
+            <summary>
+            Gets a value indicating whether [filter is case invariant].
+            </summary>
+            <value>
+            <c>true</c> if [filter is case invariant]; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="T:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.FilterDataType">
+            <summary>
+            The XPathFilter data type to be used to create the XPathFilters
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.FilterDataType.None">
+            <summary>
+            No filter applied
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.FilterDataType.FactoryLocation">
+            <summary>
+            The Path of the Factory Layout object that the setup center adapter is configured to.
+            The naming convention is as following:
+            Assigned Factory Layout Element Path: "Enterprise:Sample Site:Central Area:ProductionLine_1:Siplace Pro Line 1"
+            (can be seen in OIB Factory Explorer GUI)
+            This FactoryLocation Property: "Sample Site.Central Area.ProductionLine_1.Siplace Pro Line 1"
+            This means that the Enterprise part of the path is stripped off and the ':'s are replaced by '.'s.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.FilterDataType.LinePath">
+            <summary>
+            The SIPLACE Pro Line Full Path
+            </summary>
+        </member>
+        <member name="T:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.ConnectionStateDetails">
+            <summary>
+            ConnectionStateDetails
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.ConnectionStateDetails.StateChangeServiceToApplication">
+            <summary>
+            Gets the state change service to application.
+            </summary>
+            <value>
+            The state change service to application.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.ConnectionStateDetails.StateChangeServiceToApplicationDetectedUTC">
+            <summary>
+            Gets the DateTime in UTC when the state change service to application was detected.
+            </summary>
+            <value>
+            The DateTime in UTC when the state change service to application was detected.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.ConnectionStateDetails.StateChangeServiceToCore">
+            <summary>
+            Gets the state change service to core.
+            </summary>
+            <value>
+            The state change service to core.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.ConnectionStateDetails.StateChangeServiceToCoreDetectedUTC">
+            <summary>
+            Gets the DateTime in UTC when the state change service to core was detected.
+            </summary>
+            <value>
+            The DateTime in UTC when the state change service to core was detected.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.ConnectionStateDetails.StateChangeProxyToService">
+            <summary>
+            Gets the state change proxy to service.
+            </summary>
+            <value>
+            The state change proxy to service.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.ConnectionStateDetails.StateChangeProxyToServiceDetectedUTC">
+            <summary>
+            Gets the DateTime in UTC when the state change proxy to service was detected.
+            </summary>
+            <value>
+            The DateTime in UTC when the state change proxy to service was detected.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.ConnectionStateDetails.StateChangeProxyToCore">
+            <summary>
+            Gets the state change proxy to core.
+            </summary>
+            <value>
+            The state change proxy to core.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.ConnectionStateDetails.StateChangeProxyToCoreDetectedUTC">
+            <summary>
+            Gets the DateTime in UTC when the state change proxy to core was detected.
+            </summary>
+            <value>
+            The DateTime in UTC when the state change proxy to core was detected.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.ConnectionStateDetails.CurrentlyConnectedServiceToApplication">
+            <summary>
+            Current connection State from service to application.
+            Null in case state is unknown. True if connected.
+            </summary>
+            <value>
+            The currently connected service to application.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.ConnectionStateDetails.CurrentlyConnectedServiceToCore">
+            <summary>
+            Current connection State from service to core.
+            Null in case state is unknown. True if connected.
+            </summary>
+            <value>
+            The currently connected service to core.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.ConnectionStateDetails.CurrentlyConnectedProxyToService">
+            <summary>
+            Current connection State from proxy to service.
+            Null in case state is unknown. True if connected.
+            </summary>
+            <value>
+            The currently connected proxy to service.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.ConnectionStateDetails.CurrentlyConnectedProxyToCore">
+            <summary>
+            Current connection State from proxy to core.
+            Null in case state is unknown. True if connected.
+            </summary>
+            <value>
+            Current connection State from proxy to core.
+            </value>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.ConnectionStateDetails.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.FeederPlacedEvent">
+            <summary>
+            This is the callback interface for the SetupCenter, when ever a feeder was placed
+            </summary>
+            <param name="request">The request.</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.FeederRemovedEvent">
+            <summary>
+            This is the callback interface for the SetupCenter, when ever a feeder was removed
+            </summary>
+            <param name="request">The request.</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.MessagesReceivedEvent">
+            <summary>
+            This is the callback interface for the SetupCenter, when ever a message was send from Setup Center
+            </summary>
+            <param name="request">The request.</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.NewSetupActiveEvent">
+            <summary>
+            This is the callback interface for the SetupCenter, when ever a new setup description is active on a station
+            </summary>
+            <param name="request">The request.</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.PackagingQuantityChangedEvent">
+            <summary>
+            This is the callback interface for the SetupCenter, when ever a packaging unit was changed
+            </summary>
+            <param name="request">The request.</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SetupChangedEvent">
+            <summary>
+            This is the callback interface for the SetupCenter, when ever a physical setup was changed on the station
+            </summary>
+            <param name="request">The request.</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.MaterialReorderedEvent">
+            <summary>
+            This is the callback interface for the SetupCenter, when ever a reorder was initiated on the line
+            </summary>
+            <param name="request">The request.</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.PackagingUnitConsumedEvent">
+            <summary>
+            Method will be called by Setup Center, if a packaging unit is consumed by the station
+            (grey-zone finished) or by Setup Center
+            (in packaging unit chain two packaging units with quantity zero exist).
+            </summary>
+            <param name="request">The request.</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.MaterialMovedEvent">
+            <summary>
+            Method will be called by Setup Center, if a packaging unit (chain) is moved, due to an action.
+            The action can be for instance a set, refill, tear down.
+            </summary>
+            <param name="request">The request.</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.TablePlacedEvent">
+            <summary>
+            Method will be called by Setup Center, if a table is placed online or offline.
+            In case of offline, the event means only physical placement of the table.
+            If table management is activated, processing is not possible until this table is announced.
+            In case of offline, the table id is only set, if the table is already announced.
+            </summary>
+            <param name="request">The request.</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.TableRemovedEvent">
+            <summary>
+            Method will be called by Setup Center, if a table is placed online or offline.
+            </summary>
+            <param name="request">The request.</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.PackagingUnitCreatedEvent">
+            <summary>
+            Method will be called by Setup Center, if a packaging unit was newly created in database by Setup Center or SCI.
+            </summary>
+            <param name="request">The request.</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.PackagingUnitUpdatedEvent">
+            <summary>
+            Method will be called by Setup Center, if a packaging was updated in database by Setup Center or SCI.
+            </summary>
+            <param name="request">The request.</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.PackagingUnitDeletedEvent">
+            <summary>
+            Method will be called by Setup Center, if a packaging unit was deleted in database by Setup Center or SCI.
+            </summary>
+            <param name="request">The request.</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.LockStateChangedEvent">
+            <summary>
+            Method will be called by Setup Center, if the lock state of a packaging unit has changed..
+            </summary>
+            <param name="request">The request.</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SpliceChainSplitEvent">
+            <summary>
+            Method will be called by SetupCenter, if a packaging unit splice chain has been split into two splice chains.
+            Note: If a packaging unit splice chain will be implicitly split by a set or refill via SCI, this event will not occur ( see initializing execution of set, refill).
+            </summary>
+            <param name="request">The request.</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.InstantFeederPlacedEvent">
+            <summary>
+            This is the callback interface for the SetupCenter, when ever a feeder was placed to the line or docking station.
+            This event will be sent immediately and without any verification context
+            </summary>
+            <param name="request">Locations of the feeders, which have been placed
+            offline area: beside the feeder properties only the docking station ID and the track will be set
+            online area:  beside the feeder properties only the machine ID and the track will be set</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.InstantFeederRemovedEvent">
+            <summary>
+            This is the callback interface for the SetupCenter, when ever a feeder was removed
+            </summary>
+            <param name="request">Locations of the feeders, which have been removed
+            offline area: beside the feeder properties only the docking station ID and the track will be set
+            online area:  beside the feeder properties only the machine ID and the track will be set</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.ConnectionStateChangedEvent">
+            <summary>
+            This event is fired whenever a connection state change is detected
+            </summary>
+            <param name="args">The <see cref="T:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.ConnectionStateDetails" /> instance containing the event data.</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SubscriptionStateInvalidEvent">
+            <summary>
+            This event is fired whenever this proxy detects that its subscription was disabled.
+            The proxy tries to enable the subscription again by calling Renew. In case there
+            is still a persistent problem with delivering the events to this proxy (network problem)
+            then you will still not get any events and the subscription will get disabled again after a while.
+            </summary>
+            <param name="args">The <see cref="T:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SubscriptionStateInvalidDetails" /> instance containing the event data.</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.NewRecipeActiveEvent">
+            <summary>
+            Event will be raised, if there is a new recipe active on a station of the line.
+            This will be only executed, if the machine reports back a new active recipe to Setup Center.
+            The event will be fired independently for each conveyor lane and for each processing area.
+            If the machine consists of 2 conveyor lanes and 2 processing areas then 4 events will be
+            fired after recipe change (2 events for conveyor lane 1 and 2 events for conveyor lane 2)
+            irrespective of whether both conveyor lanes contain the same recipe or not.
+            </summary>
+            <param name="args">The arguments.</param>
+            <remarks>
+            This event is currently only supported by SIRIO Version &gt;= 709 and Setup Center &gt;= 8.0
+            </remarks>
+        </member>
+        <member name="T:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.PrinterConsumablesUpdatedEvent">
+            <summary>
+            The PrinterConsumablesUpdated event indicates fill level changes of the specified printer consumables.
+            </summary>
+            <param name="args">The arguments.</param>
+            <remarks>
+            This event is currently only supported Setup Center &gt;= 8.0
+            </remarks>
+        </member>
+        <member name="T:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.ComponentLevelIndicatorThresholdChangedEvent">
+            <summary>
+            The event will be raised if the component level indicator threshold is changed.
+            This event is only supported for SIRIO stations.
+            </summary>
+            <param name="args">The arguments.</param>
+            <remarks>
+            This event is currently only supported Setup Center &gt;= 8.0
+            </remarks>
+        </member>
+        <member name="T:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.PrinterDeviceStateChangedEvent">
+            <summary>
+            The printer device state changed event will report the current state of the printer if the state is changed.
+            </summary>
+            <param name="args">The arguments.</param>
+            <remarks>
+            This event is currently only supported Setup Center &gt;= 8.0
+            </remarks>
+        </member>
+        <member name="T:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.PrinterRecipeVerifiedEvent">
+            <summary>
+            The printer recipe verified event will be fired by the printer if a recipe is successfully verified by the MES system.
+            </summary>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.PrinterMaterialVerifiedEvent">
+            <summary>
+            The material verified event will be fired by the printer if a material is verified by the operator.
+            </summary>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.PrinterToolVerifiedEvent">
+            <summary>
+            The tool verified event will be fired by the printer if a tool is verified by the operator.
+            </summary>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.PrinterMaterialUnverifiedEvent">
+            <summary>
+            The material unverified event will be fired by the printer if a material is unverified by the MES system.
+            </summary>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.PrinterToolUnverifiedEvent">
+            <summary>
+            The tool unverified event will be fired by the printer if a tool is unverified by the MES system.
+            </summary>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.PrinterCoverOpenedEvent">
+            <summary>
+            The cover opened event is fired if the operator opens the printer cover.
+            </summary>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.PrinterCoverClosedEvent">
+            <summary>
+            The cover closed event is fired if the operator closes the printer cover.
+            </summary>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.PrinterCapabilitiesChangedEvent">
+            <summary>
+            The printer capability changed event will be fired by the printer after startup and after changes
+            </summary>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.ConfigurationChangedEvent">
+             <summary>
+             The configuration changed event will be fired whenever the configuration of a setup center instance changes.
+             The configuration class will contain the following settings:
+             <br />
+                OnlineVerificationConfiguration: The general settings for online verification of the Setup Center instance like IsSpliceMonitorActive, MissingSpliceThresholdPercent, MissingSpliceThresholdNumberOfItems.
+            
+             <br />
+                LineConfigurations: For each line the settings for the line like IsFeederSubstitutionAllowed, IsAutomaticReorderActivated, IsRandomFeederSetupForOfflineVerificationAllowed etc.
+                    MachineConfigurations: For each station in the line the machine settings like MachineId, MachineName, MachineType, IsMsdVerificationEnabled and ComponentLevelIndicatorThresholds.
+                    PrinterConfigurations: For each printer in the line the printer settings like MachineId, PrinterPath, PrinterType.
+            
+             <br />
+                DockingStationConfiguration: Contains the configuration for docking stations
+                    DockingStations: For each configured docking station contains the DockingStationId.
+             </summary>
+             <remarks>
+             This event is currently only supported Setup Center &gt;= 8.1
+             </remarks>
+        </member>
+        <member name="T:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.NewSetupControlDataRequestedEvent">
+            <summary>
+            Event is fired by Setup Center when the station requests new setup control data
+            (on NewSetupActive and when the station (re-)connects). 
+            It informs the MES that the station got new control data.
+            </summary>
+            <param name="args">The arguments.</param>
+            <remarks>
+            This event is currently only supported Setup Center &gt;= 9.4
+            </remarks>
+        </member>
+        <member name="T:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SetupPreparationForStationLocationCompletedEvent">
+            <summary>
+            This event is fired when the setup preparation for a station location is completed in pre-setup area.
+            </summary>
+            <param name="request">The request.</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter">
+            <summary>
+            This is the smart proxy class for the Setup Center Proxy
+            </summary>
+        </member>
+        <member name="E:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.NewSetupControlDataRequested">
+            <summary>
+            Event is fired by Setup Center when the station requests new setup control data
+            (on NewSetupActive and when the station (re-)connects). 
+            It informs the MES that the station got new control data.
+            </summary>
+            <remarks>
+            This event is currently only supported Setup Center &gt;= 9.4
+            </remarks>
+        </member>
+        <member name="E:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.ConfigurationChanged">
+             <summary>
+             The configuration changed event will be fired whenever the configuration of a setup center instance changes.
+             The configuration class will contain the following settings:
+             <br />
+                OnlineVerificationConfiguration: The general settings for online verification of the Setup Center instance like IsSpliceMonitorActive, MissingSpliceThresholdPercent, MissingSpliceThresholdNumberOfItems.
+            
+             <br />
+                LineConfigurations: For each line the settings for the line like IsFeederSubstitutionAllowed, IsAutomaticReorderActivated, IsRandomFeederSetupForOfflineVerificationAllowed etc.
+                    MachineConfigurations: For each station in the line the machine settings like MachineId, MachineName, MachineType, IsMsdVerificationEnabled and ComponentLevelIndicatorThresholds.
+                    PrinterConfigurations: For each printer in the line the printer settings like MachineId, PrinterPath, PrinterType.
+            
+             <br />
+                DockingStationConfiguration: Contains the configuration for docking stations
+                    DockingStations: For each configured docking station contains the DockingStationId.
+             </summary>
+             <remarks>
+             This event is currently only supported Setup Center &gt;= 8.1
+             </remarks>
+        </member>
+        <member name="E:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.PrinterRecipeVerified">
+            <summary>
+            The printer recipe verified event will be fired by the printer if a recipe is successfully verified by the MES system.
+            </summary>
+            <remarks>
+            This event is currently only supported Setup Center &gt;= 8.1
+            </remarks>
+        </member>
+        <member name="E:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.PrinterMaterialVerified">
+            <summary>
+            The material verified event will be fired by the printer if a material is verified by the operator.
+            </summary>
+            <remarks>
+            This event is currently only supported Setup Center &gt;= 8.1
+            </remarks>
+        </member>
+        <member name="E:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.PrinterToolVerified">
+            <summary>
+            The tool verified event will be fired by the printer if a tool is verified by the operator.
+            </summary>
+            <remarks>
+            This event is currently only supported Setup Center &gt;= 8.1
+            </remarks>
+        </member>
+        <member name="E:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.PrinterMaterialUnverified">
+            <summary>
+            The material unverified event will be fired by the printer if a material is unverified by the MES system.
+            </summary>
+            <remarks>
+            This event is currently only supported Setup Center &gt;= 8.1
+            </remarks>
+        </member>
+        <member name="E:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.PrinterToolUnverified">
+            <summary>
+            The tool unverified event will be fired by the printer if a tool is unverified by the MES system.
+            </summary>
+            <remarks>
+            This event is currently only supported Setup Center &gt;= 8.1
+            </remarks>
+        </member>
+        <member name="E:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.PrinterCoverOpened">
+            <summary>
+            The cover opened event is fired if the operator opens the printer cover.
+            </summary>
+            <remarks>
+            This event is currently only supported Setup Center &gt;= 8.1
+            </remarks>
+        </member>
+        <member name="E:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.PrinterCoverClosed">
+            <summary>
+            The cover opened event is fired if the operator closes the printer cover.
+            </summary>
+            <remarks>
+            This event is currently only supported Setup Center &gt;= 8.1
+            </remarks>
+        </member>
+        <member name="E:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.PrinterCapabilitiesChanged">
+            <summary>
+            The printer capability changed event will be fired by the printer after startup and after changes
+            </summary>
+            <remarks>
+            This event is currently only supported Setup Center &gt;= 8.1
+            </remarks>
+        </member>
+        <member name="E:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.PrinterDeviceStateChanged">
+            <summary>
+            The printer device state changed event will report the current state of the printer if the state is changed.
+            </summary>
+            <remarks>
+            This event is currently only supported Setup Center &gt;= 8.0
+            </remarks>
+        </member>
+        <member name="E:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.ComponentLevelIndicatorThresholdChanged">
+            <summary>
+            The event will be raised if the component level indicator threshold is changed.
+            This event is only supported for SIRIO stations.
+            </summary>
+            <remarks>
+            This event is currently only supported Setup Center &gt;= 8.0
+            </remarks>
+        </member>
+        <member name="E:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.PrinterConsumablesUpdated">
+            <summary>
+            The printer consumables update event indicates fill level changes of the specified printer consumables.
+            </summary>
+            <remarks>
+            This event is currently only supported Setup Center &gt;= 8.0
+            </remarks>
+        </member>
+        <member name="E:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.NewRecipeActive">
+            <summary>
+            Event will be raised, if there is a new recipe active on a station of the line.
+            This will be only executed, if the machine reports back a new active recipe to Setup Center.
+            The event will be fired independently for each conveyor lane and for each processing area.
+            If the machine consists of 2 conveyor lanes and 2 processing areas then 4 events will be
+            fired after recipe change (2 events for conveyor lane 1 and 2 events for conveyor lane 2)
+            irrespective of whether both conveyor lanes contain the same recipe or not.
+            </summary>
+            <remarks>
+            This event is currently only supported by SIRIO Version &gt;= 709 and Setup Center &gt;= 8.0
+            </remarks>
+        </member>
+        <member name="E:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.FeederPlaced">
+            <summary>
+            Occurs when the feeder is placed
+            </summary>
+        </member>
+        <member name="E:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.FeederRemoved">
+            <summary>
+            This is the callback interface for the SetupCenter, whenever a feeder was removed
+            </summary>
+        </member>
+        <member name="E:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.MessagesReceived">
+            <summary>
+            This is the callback interface for the SetupCenter, whenever a message was send from Setup Center
+            </summary>
+        </member>
+        <member name="E:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.NewSetupActive">
+            <summary>
+            This is the callback interface for the SetupCenter, whenever a new setup description is active on a station
+            </summary>
+        </member>
+        <member name="E:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.PackagingQuantityChanged">
+            <summary>
+            This is the callback interface for the SetupCenter, whenever the quantity of a packaging unit was changed
+            </summary>
+        </member>
+        <member name="E:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.SetupChanged">
+            <summary>
+            This is the callback interface for the SetupCenter, whenever a physical setup was changed on the station
+            </summary>
+        </member>
+        <member name="E:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.MaterialReordered">
+            <summary>
+            This is the callback interface for the SetupCenter, whenever a reorder was initiated on the line
+            </summary>
+        </member>
+        <member name="E:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.PackagingUnitConsumed">
+            <summary>
+            Method will be called by Setup Center, if a packaging unit is consumed by the station
+            (grey-zone finished) or by Setup Center
+            (in packaging unit chain two packaging units with quantity zero exist).
+            </summary>
+        </member>
+        <member name="E:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.MaterialMoved">
+            <summary>
+            Method will be called by Setup Center, if a packaging unit (chain) is moved, due to an action.
+            The action can be for instance a set, refill, tear down.
+            </summary>
+        </member>
+        <member name="E:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.TablePlaced">
+            <summary>
+            Method will be called by Setup Center, if a table is placed online or offline.
+            In case of offline, the event means only physical placement of the table.
+            If table management is activated, processing is not possible until this table is announced.
+            In case of offline, the table id is only set, if the table is already announced.
+            </summary>
+        </member>
+        <member name="E:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.TableRemoved">
+            <summary>
+            Method will be called by Setup Center, if a table is removed online or offline.
+            </summary>
+        </member>
+        <member name="E:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.PackagingUnitCreated">
+            <summary>
+            Method will be called by Setup Center, if a packaging unit was newly created in database by Setup Center or SCI.
+            </summary>
+        </member>
+        <member name="E:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.PackagingUnitUpdated">
+            <summary>
+            Method will be called by Setup Center, if a packaging was updated in database by Setup Center or SCI.
+            </summary>
+        </member>
+        <member name="E:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.PackagingUnitDeleted">
+            <summary>
+            Method will be called by Setup Center, if a packaging unit was deleted in database by Setup Center or SCI.
+            </summary>
+        </member>
+        <member name="E:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.LockStateChanged">
+            <summary>
+            Method will be called by Setup Center, if the lock state of a packaging unit has changed.
+            </summary>
+        </member>
+        <member name="E:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.SpliceChainSplit">
+            <summary>
+            Method will be called by SetupCenter, if a packaging unit splice chain has been split into two splice chains.
+            Note: If a packaging unit splice chain will be implicitly split by a set or refill via SCI, this event will not occur ( see initializing execution of set, refill).
+            </summary>
+        </member>
+        <member name="E:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.InstantFeederPlaced">
+            <summary>
+            Occurs when feeders are placed to the line or docking station.
+            This event will be sent immediately and without any verification context
+            </summary>
+        </member>
+        <member name="E:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.InstantFeederRemoved">
+            <summary>
+            Occurs when feeders are removed from the line or docking station.
+            This event will be sent immediately and without any verification context
+            </summary>
+        </member>
+        <member name="E:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.ConnectionStateChanged">
+            <summary>
+            Occurs when the proxy detects a connection state change.
+            </summary>
+        </member>
+        <member name="E:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.SubscriptionStateInvalid">
+            <summary>
+            Occurs whenever this proxy detects that its subscription was disabled.
+            The proxy tries to enable the subscription again by calling Renew. In case there
+            is still a persistent problem with delivering the events to this proxy (network problem)
+            then you will still not get any events and the subscription will get disabled again after a while.
+            </summary>
+        </member>
+        <member name="E:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.SetupPreparationForStationLocationCompleted">
+            <summary>
+            Occurs when the setup preparation for a station location is completed in pre-setup area.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter._factory">
+            <summary>
+            The _factory
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter._proxy">
+            <summary>
+            The _proxy
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.s_nCheckAliveFrequency">
+            <summary>
+            The _n check alive frequency
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter._checkConnectionStateTimer">
+            <summary>
+            The _check connection state timer
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter._connectionCheckLock">
+            <summary>
+            The s_ connection check lock
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter._oibCoreComputerName">
+            <summary>
+            The _oib core computer name
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter._oibCorePort">
+            <summary>
+            The _oib core port
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter._useCoreTcpEndpoint">
+            <summary>
+            The _use core TCP endpoint
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter._useCoreSecureEndpoints">
+            <summary>
+            The _use core TCP endpoint
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter._callbackPort">
+            <summary>
+            The _callback port
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter._useCallbackTcpEndpoint">
+            <summary>
+            The _use callback TCP endpoint
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter._callbackName">
+            <summary>
+            The _callback name
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter._callbackUri">
+            <summary>
+            The _callback URI
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter._callBackHostThreadId">
+            <summary>
+            The _setup center notify receiver
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter._callbackEndpointGateway">
+            <summary>
+            Callback endpoint gateway address when OIB Setup Center Smart Proxy is hosted in a Cluster Environment
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter._subscription">
+            <summary>
+            The _id
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter._nonPermanentSubscription">
+            <summary>
+            The _non permanent subscription
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter._subscriptionTimer">
+            <summary>
+            The _subscription timer
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter._lastRenewDateTime">
+            <summary>
+            The last renew date time
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.SubscriptionTopic">
+            <summary>
+            The subscription topic
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter._factorySubscriptionManager">
+            <summary>
+            The subscription manager factory
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter._disposed">
+            <summary>
+            The _disposed
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter._syncContext">
+            <summary>
+            Current SynchronizationContext when constructing this class
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter" /> class.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter" /> class.
+            </summary>
+            <param name="endpointConfigurationName">Name of the endpoint configuration.</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.#ctor(System.ServiceModel.EndpointAddress,System.ServiceModel.Channels.Binding)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter" /> class.
+            </summary>
+            <param name="endpointAddress">The endpoint address.</param>
+            <param name="binding">Optional: the binding. Can be null. In this case the binding is automatically created</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.#ctor(System.String,System.Int32,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter" /> class.
+            </summary>
+            <param name="coreComputerName">Name of the core computer.</param>
+            <param name="corePortNumber">The core port number.</param>
+            <param name="useCoreTcpPort">if set to <c>true</c> [use core TCP port].</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.#ctor(System.String,System.String,System.Int32,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter" /> class.
+            </summary>
+            <param name="endpointConfigurationName">Name of the endpoint configuration.</param>
+            <param name="coreComputerName">Name of the core computer.</param>
+            <param name="corePortNumber">The core port number.</param>
+            <param name="useCoreTcpPort">if set to <c>true</c> [use core TCP port].</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.#ctor(System.ServiceModel.EndpointAddress,System.ServiceModel.Channels.Binding,System.String,System.Int32,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter" /> class.
+            </summary>
+            <param name="endpointAddress">The endpoint address.</param>
+            <param name="binding">Optional: the binding. Can be null. In this case the binding is automatically created</param>
+            <param name="coreComputerName">Name of the core computer.</param>
+            <param name="corePortNumber">The core port number.</param>
+            <param name="useCoreTcpPort">if set to <c>true</c> [use core TCP port].</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.#ctor(System.ServiceModel.EndpointAddress,System.ServiceModel.Channels.Binding,System.String,System.Int32,System.Boolean,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter" /> class.
+            </summary>
+            <param name="endpointAddress">The endpoint address.</param>
+            <param name="binding">Optional: the binding. Can be null. In this case the binding is automatically created</param>
+            <param name="coreComputerName">Name of the core computer.</param>
+            <param name="corePortNumber">The core port number.</param>
+            <param name="useCoreTcpPort">if set to <c>true</c> [use core TCP port].</param>
+            <param name="alwaysCheckCoreConnection">if set to <c>true</c> [always check core connection].</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.#ctor(System.ServiceModel.EndpointAddress,System.ServiceModel.Channels.Binding,System.String,System.Int32,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter" /> class.
+            </summary>
+            <param name="endpointAddress">The endpoint address.</param>
+            <param name="binding">Optional: the binding. Can be null. In this case the binding is automatically created</param>
+            <param name="coreComputerName">Name of the core computer.</param>
+            <param name="corePortNumber">The core port number.</param>
+            <param name="useCoreTcpPort">if set to <c>true</c> [use core TCP port].</param>
+            <param name="alwaysCheckCoreConnection">if set to <c>true</c> [always check core connection].</param>
+            <param name="useSecureCoreEndpoints">if true, uses the secure communication endpoints for connecting to OIB core services</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.#ctor(System.ServiceModel.EndpointAddress,System.ServiceModel.Channels.Binding,System.String,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter" /> class.
+            </summary>
+            <param name="endpointAddress">The endpoint address.</param>
+            <param name="binding">Optional: the binding. Can be null. In this case the binding is automatically created</param>
+            <param name="coreComputerName">Name of the core computer.</param>
+            <param name="useCoreTcpPort">if set to <c>true</c> [use core TCP port].</param>
+            <remarks>
+            This constructor will use the standard core ports 1405 (http) or 1406 (tcp) depending on the value of useCoreTcpPort.
+            </remarks>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.#ctor(System.ServiceModel.EndpointAddress,System.ServiceModel.Channels.Binding,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter" /> class.
+            </summary>
+            <param name="endpointAddress">The endpoint address.</param>
+            <param name="binding">Optional: the binding. Can be null. In this case the binding is automatically created</param>
+            <param name="coreComputerName">Name of the core computer.</param>
+            <remarks>
+            This constructor will use the standard core port 1405 and http core endpoint.
+            </remarks>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.Finalize">
+            <summary>
+            Finalizer
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.MarshalEventsToObjectCreatorThread">
+            <summary>
+            If true, all Events will be fired on the thread that created this Object.
+            This is helpful if you use the Events to update the UI.
+            In order for that to work correctly, you need a SynchronizationContext.Current
+            when the SiplaceSetupCenter class is created (if this was done on the UI thread, then the SynchronizationContext.Current
+            is there by default).
+            The default value of this property is true.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.ProductVersion">
+            <summary>
+            Gets the product version (Setup Center Version).
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.AdapterVersion">
+            <summary>
+            Gets the adapter version (OIB SC Adapter Version).
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.EndpointAddress">
+            <summary>
+            The endpoint address of the SC Adapter that this class is using
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.SubscriptionTimeout">
+            <summary>
+            The TimeSpan, which is added to the current time when renewing the subscription to Setup Center Events
+            This is only used when bNonPermanentSubscription is true when calling SubscribeToCoreEvents.
+            The value must be greater or equal than one hour. The subscription is renewed every TimeSpan/3 hours.
+            I.e. you provide 6 hours, the SC proxy renews the subscription every 2 hours.
+            </summary>
+            <value>
+            The subscription timeout.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.CallbackAddress">
+            <summary>
+            CallbackAddress URI for the WCF event receiver
+            </summary>
+            <value>
+            The callback address.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.SubscriptionId">
+            <summary>
+            Gets the subscription id.
+            </summary>
+            <value>
+            The subscription id.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.FilterDataType">
+            <summary>
+            Gets the type of the filter data.
+            </summary>
+            <value>
+            The type of the filter data.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.FilterStrings">
+            <summary>
+            Gets the filter(s). If more than one filter is specified, the filter will be applied with logical OR.
+            </summary>
+            <value>
+            The filter strings.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.FilterIsCaseInvariant">
+            <summary>
+            Gets a value indicating whether the filter is case invariant.
+            </summary>
+            <value>
+            <c>true</c> if the filter is case invariant; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.CheckConnectionStateFrequency">
+            <summary>
+            Gets or sets the check alive frequency in ms.
+            This value must be greater or equal to 10 seconds (10000) and less or equal to 1 hour (3600000).
+            Default value is 60000 (1 minute)
+            Can also be set in the application configuration file appSettings like so, value is in milliseconds:
+            <add key="Asm.As.Oib.SetupCenter.Proxy.CheckConnectionStateFrequency" value="60000" />
+            </summary>
+            <value>
+            The check alive frequency in ms.
+            </value>
+            <exception cref="T:System.ArgumentOutOfRangeException">value;The CheckAliveFrequency must be greater or equal to 10 seconds (10000) and less or equal to 30 minutes (1800000).</exception>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.CurrentStateServiceToApplication">
+            <summary>
+            Gets the current connection state of the SC OIB Adapter to the SC application.
+            </summary>
+            <value>
+            The current state service to application.
+            If null, the state is unknown.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.CurrentStateServiceToCore">
+            <summary>
+            Gets the current connection state of the SC OIB Adapter to the OIB Core.
+            </summary>
+            <value>
+            The current state service to core.
+            If null, the state is unknown.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.CurrentStateProxyToService">
+            <summary>
+            Gets the current connection state of this SC Proxy to the OIB SC Adapter.
+            </summary>
+            <value>
+            The current state Proxy to Adapter.
+            If null, the state is unknown.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.CurrentStateProxyToCore">
+            <summary>
+            Gets the current connection state of this SC Proxy to the OIB Core.
+            </summary>
+            <value>
+            The current state Proxy to Core.
+            If null, the state is unknown.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.OIBCoreComputerName">
+            <summary>
+            Gets the name of the core computer from the configuration.
+            If this is set, then the proxy will automatically subscribe for the events.
+            </summary>
+            <value>
+            The name of the oib core computer.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.OIBCorePort">
+            <summary>
+            Gets the port number of the core computer from the configuration. Default is the default http port 1406.
+            </summary>
+            <value>
+            The oib core port.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.UseCoreTcpEndpoint">
+            <summary>
+            Gets a value indicating whether to use a TCP endpoint to connect to the core.
+            Default is false.
+            </summary>
+            <value>
+              <c>true</c> if [use core TCP endpoint]; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.UseSecureCoreEndpoints">
+            <summary>
+            Gets a value indicating whether to use a secure endpoint to connect to the core.
+            Default is false.
+            </summary>
+            <value>
+              <c>true</c> if [use core TCP endpoint]; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.UseCallbackTcpEndpoint">
+            <summary>
+            Gets a value indicating whether to use a TCP endpoint to host the callback for the events.
+            Default is false.
+            </summary>
+            <value>
+            <c>true</c> if [use callback TCP endpoint]; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.CallbackName">
+            <summary>
+            Gets the name of the callback endpoint used for getting the events.
+            If you set this, this will be used for the callback endpoint address,
+            otherwise a default endpoint address will be used and a guid appended.
+            The CallbackName is a part of the callback endpoint address:
+            CallbackName: "SiplaceSetupCenterNotify"
+            Callback Endpoint Address: "http://MachineName:1405/SiplaceSetupCenterNotify/"
+            </summary>
+            <value>
+            The name of the callback.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.CallbackEndpointGateway">
+            <summary>
+            Callback endpoint gateway address defined in App.config if OIB Setup Center Smart Proxy is hosted in a Cluster Environment.
+            Callback gateway port number  is defined in App.config if OIB Setup Center Smart Proxy is hosted in a Cluster Environment.
+            </summary>
+            <remarks>
+            This value is overwritten if the Gateway Hostname and Port Number are provided in the <seealso cref="T:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SubscriptionDescription"/>.
+            </remarks>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.CallbackPort">
+            <summary>
+            Gets the port number for the callback endpoint used for getting the events.
+            If you set this, this will be used for the callback endpoint address,
+            otherwise a default port number of 65535 will be used.
+            The CallbackPort is a part of the callback endpoint address:
+            CallbackPort: "33333"
+            Callback Endpoint Address: "http://MachineName:33333/SiplaceSetupCenterNotify/"
+            </summary>
+            <value>
+            The callback port.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.GlobalServiceEndpoint">
+            <summary>
+            Gets the global service endpoint.
+            </summary>
+            <value>
+            The global service endpoint.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.ReceiveTimeout">
+            <summary>
+            Gets the receive timeout.
+            </summary>
+            <value>
+            The receive timeout.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.OpenTimeout">
+            <summary>
+            Gets the open timeout.
+            </summary>
+            <value>
+            The open timeout.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.CloseTimeout">
+            <summary>
+            Gets the close timeout.
+            </summary>
+            <value>
+            The close timeout.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.SendTimeout">
+            <summary>
+            Gets the send timeout.
+            </summary>
+            <value>
+            The send timeout.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.UseTcpPortSharingServiceForCallback">
+            <summary>
+            Gets or sets a value indicating whether to use the TCP port sharing service for the event callback.
+            Can also be adjusted in the app.config   Asm.As.Oib.Proxies.TcpPortSharingEnabled
+            Is false by default if not set in app.config
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.AllowDifferentPortForCallback">
+            <summary>
+            Gets or sets the allow different port for callback.
+            </summary>
+            <value>
+            The allow different port for callback.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.ClientApplicationName">
+            <summary>
+            Gets or sets the name of your client application.
+            This is used when the subscription for events is made and then can be seen in SubscriptionAdmin.
+            It is initialized with the current process name, but can be set by the application so it contains
+            a more human-readable value.
+            </summary>
+            <value>
+            The name of the client application.
+            </value>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.SetCertificateForClientAuthentication(System.Security.Cryptography.X509Certificates.StoreLocation,System.Security.Cryptography.X509Certificates.X509FindType,System.Security.Cryptography.X509Certificates.StoreName,System.String)">
+            <summary>
+            Sets the client certificate parameters for authentication to the SetupCenterService.
+            Needs to be provided in case OIB services require a client certificate.
+            </summary>
+            <param name="storeLocation">The store location.</param>
+            <param name="findType">Type of the find.</param>
+            <param name="storeName">Name of the store.</param>
+            <param name="findValue">The find value.</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.HasAdapterLicense">
+            <summary>
+            Checks if an Line Control adapter license is available.
+            </summary>
+            <returns>
+            True, if license is available.
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.IsConnected">
+            <summary>
+            Checks if the Adapter is connected to the Setup Center Application
+            and if the SC Application is connected to the Database
+            </summary>
+            <returns>
+            <c>true</c>, if all system components are connected
+            <c>false</c>, if any component is not operational.
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.GetReducedActualSetup(System.String)">
+            <summary>
+            Method delivers the actual physical setup (verified feeders/packaging units on the station tables)
+            filtered by the target setup from SIPLACE Pro. If Setup Center is being used in partial setup mode
+            this data is being filtered by the components of the partial setup. A partial setup includes the
+            components of one or more recipes being selected in Line Control GUI in partial setup
+            mode (Line Controls support the partial setup setting "Off", "Manual recipe selection" or
+            "Automatic selection of downloaded recipe"). In case a component is set-up multiple times,
+            all occurrences are part of this data even if the line does not use all of them.
+            </summary>
+            <param name="machineId">The machine to consider.</param>
+            <returns>
+            The actual setup of the specified machine.
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.GetReducedActualSetups(System.Collections.Generic.List{System.String})">
+            <summary>
+            Method delivers the actual physical setups filtered by the target setup for the specified machine(s).
+            Return values only contains setup information for configured and online station(s).
+            </summary>
+            <param name="machineIds">The machine(s) to consider.</param>
+            <returns>
+            The actual setups of the specified machine(s). MachineSetup may be null if machine Id is not found.
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.GetActualSetups(System.Collections.Generic.List{System.String})">
+            <summary>
+            Method delivers the actual physical setups *unfiltered* for the specified machine(s).
+            Return values only contains setup information for configured and online station(s).
+            This method only works when used with Setup Center 7.1 or higher!
+            </summary>
+            <param name="machineIds">The machine(s) to consider.</param>
+            <returns>
+            The actual setups of the specified machine(s). MachineSetup may be null if machine Id is not found.
+            </returns>
+            <remarks>
+            This method only works when used with Setup Center 7.1 or higher!
+            </remarks>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.GetOfflineSetup(Asm.As.Oib.SiplaceSetupCenter.Contracts.Data.GetOfflineSetupRequest)">
+            <summary>
+            Method delivers the offline setup for the specified setup path.
+            </summary>
+            <param name="request">The path of the setup that is requested.</param>
+            <returns>
+            The actual machine setup with the packaging units for the specified setup.
+            May be empty if the setup path is invalid or unknown.
+            </returns>
+            <remarks>
+            This method only works when used with Setup Center 9.6 SP2 or higher!
+            </remarks>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.Create(Asm.As.Oib.SiplaceSetupCenter.Contracts.Data.PackagingUnit[])">
+            <summary>
+            Creates new packaging units.
+            </summary>
+            <param name="packagingUnits">The new packaging unit</param>
+            <returns>
+            The list of result of the operation for these packaging units
+            </returns>
+            <remarks>
+            Check and creates new packaging units in the Setup Center database. This command can be use to import packaging units
+            before the Set or Refill action.
+            If the packaging unit already exists, the packaging unit won't be created.
+            All errors which occurred during execution can be get with <see cref="E:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.MessagesReceived" /> event.
+            </remarks>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.SetMessageLevel(System.Int32)">
+            <summary>
+            Level of detail for messages, sent from Setup Center to client applications.
+            The execution of this remote method changes the setting within Setup Center.
+            Therefore the change of the message level concerns all client applications connected Setup Center.
+            </summary>
+            <param name="messageLevel">Level of detail for messages from Setup Center.</param>
+            <remarks>
+            <list type="table">
+              <listheader>
+                <term>Value</term>
+                <description>Description</description>
+              </listheader>
+              <item>
+                <term>1</term>
+                <description>Fatal.</description>
+              </item>
+              <item>
+                <term>2</term>
+                <description>Error.</description>
+              </item>
+              <item>
+                <term>3</term>
+                <description>Warn.</description>
+              </item>
+              <item>
+                <term>4</term>
+                <description>Info.</description>
+              </item>
+              <item>
+                <term>5</term>
+                <description>Debug.</description>
+              </item>
+            </list>
+            </remarks>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.GetDatabaseName">
+            <summary>
+            Get the database instance name, where the data for this service endpoint is stored. In the deployment
+            of SetupCenter, there can be one database for several service endpoints
+            </summary>
+            <returns>
+            Name of the database
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.Set(Asm.As.Oib.SiplaceSetupCenter.Contracts.Data.PackagingUnitLocation[])">
+            <summary>
+            Put PackagingUnit(s) in online verification.
+            A mixed mode between Unique ID mode and ICL mode within one setup is invalid.
+            Throws an exception in case one or more packaging units could not be set.
+            </summary>
+            <param name="packagingUnitLocations">PackagingUnit(s) to set.</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.Refill(Asm.As.Oib.SiplaceSetupCenter.Contracts.Data.PackagingUnitLocation[])">
+            <summary>
+            Refill PackagingUnit(s) in online verification.
+            Throws an exception in case one or more packaging units could not be refilled.
+            </summary>
+            <param name="packagingUnitLocations">PackagingUnit(s) to refill (ArrayList value type: PackagingUnitLocation).</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.TearDown(System.String,Asm.As.Oib.SiplaceSetupCenter.Contracts.Data.ComponentLocation[])">
+            <summary>
+            Tear down the specified PackagingUnit(s) within the mentioned setup.
+            Throws an exception in case one or more packaging units could not be torn down.
+            </summary>
+            <param name="strSetup">The related setup full path.</param>
+            <param name="componentLocations">Component location(s) to tear down.</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.TearDownPackaginUnits(Asm.As.Oib.SiplaceSetupCenter.Contracts.Data.TearDownPackaginUnitsRequest)">
+            <summary>
+            Tear down the specified PackagingUnit(s).
+            </summary>
+            <param name="request">The request contain the packaging unit IDs.</param>
+            <returns>PackagingUnitResponse</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.Update(Asm.As.Oib.SiplaceSetupCenter.Contracts.Data.PackagingUnit[])">
+            <summary>
+            Adjust all attributes of the packaging unit. In case of a packaging unit chain all packaging units in the chain will be updated.
+            </summary>
+            <param name="packagingUnits">Packaging unit(s), which contain the new values of all packaging unit's properties.</param>
+            <returns>
+            The list of successful updated packaging unit(s) (first packaging unit of the splice chain).
+            Otherwise <c>null</c>, if operation was aborted because of a null reference.
+            Packaging units, which couldn't be updated, are not in this list.
+            </returns>
+            <remarks>
+            All packaging unit properties can be updated excluding <see cref="P:Asm.As.Oib.SiplaceSetupCenter.Contracts.Data.PackagingUnit.UID" /> and <see cref="P:Asm.As.Oib.SiplaceSetupCenter.Contracts.Data.PackagingUnit.LastProductionDate" />.
+            The <see cref="P:Asm.As.Oib.SiplaceSetupCenter.Contracts.Data.PackagingUnit.SplicedPackagingUnit" /> property will be also updated including all properties of the spliced packaging unit.
+            <br />
+            Online mounted packaging unit cannot be updated. An attempt to update an online mounted packaging unit will through an exception.
+            Offline mounted packaging units can be updated. In case of packaging unit chains the whole chain has to be supplied otherwise
+            the chain will automatically be split!
+            <br />
+            All errors which occurred during execution can be get with <see cref="E:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.MessagesReceived" /> event.
+            </remarks>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.Get(Asm.As.Oib.SiplaceSetupCenter.Contracts.Data.PackagingUnit[])">
+            <summary>
+            Gets the first packaging unit of the splice chain (including the splice chain), which contains the corresponding UID.
+            </summary>
+            <param name="packagingUnits">The first packaging unit of the splice chain.</param>
+            <returns>
+            The list of result of the operation for these packaging units
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.Delete(Asm.As.Oib.SiplaceSetupCenter.Contracts.Data.PackagingUnit[])">
+            <summary>
+            Deletes the packaging units with the corresponding UID.
+            </summary>
+            <param name="packagingUnits">The packaging unit with the corresponding UID</param>
+            <returns>
+            The list of result of the operation for these packaging units
+            </returns>
+            <remarks>
+            If the packaging unit is in use or mounted to a feeder, the packaging unit won't be deleted.
+            Otherwise the delete operation will be forced, even if the packaging unit is part of a splice chain.
+            In this case, the whole splice chain will be deleted.
+            </remarks>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.Activate(Asm.As.Oib.SiplaceSetupCenter.Contracts.Data.ComponentLocation[])">
+            <summary>
+            Activates a deactivated track at the station. If the track is already active at the station, nothing will happen.
+            Throws an exception in case one or more packaging units could not be activated.
+            </summary>
+            <param name="componentLocations">The locations which have to be activated.</param>
+            <remarks>
+            This command is not available for all tray feeders.
+            </remarks>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.Deactivate(Asm.As.Oib.SiplaceSetupCenter.Contracts.Data.ComponentLocation[],System.String)">
+            <summary>
+            Deactivates an active track at the station. If the track is already deactivated, nothing will happen.
+            Throws and exception in case one or more packaging units could not be deactivated.
+            </summary>
+            <param name="componentLocations">The locations which have to be activated.</param>
+            <param name="reason">The reason.</param>
+            <remarks>
+            This command is not available for all tray feeders and for all stations of platform I and II.
+            The deactivation of a track can be removed by the operator directly at the station
+            (depends from settings) or via Setup Center.
+            </remarks>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.Lock(Asm.As.Oib.SiplaceSetupCenter.Contracts.Data.PackagingUnit[],System.String)">
+            <summary>
+            Locks material (The unlock is only possible by an external system again).
+            Lock can’t be avoided at the station. This functionality is an enhancement of Activate regarding priority.
+            Throws an exception in case one or more packaging units could not be locked.
+            </summary>
+            <param name="puIDs">The packaging units which give the corresponding UID.</param>
+            <param name="reason">A text which give the operator what is the reason of the lock.</param>
+            <remarks>
+            This command is only available for stations of platform II+ and Sirio and in the offline area.
+            The lock is permanent and cannot be removed by an operator at the station or via Setup Center.
+            Locked material cannot be torn down, set, refilled or activated.
+            </remarks>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.Unlock(Asm.As.Oib.SiplaceSetupCenter.Contracts.Data.PackagingUnit[])">
+            <summary>
+            Unlocks material, which was locked by an external system before.
+            This functionality is an enhancement of Deactivate regarding priority.
+            Throws an exception in case one or more packaging units could not be unlocked.
+            </summary>
+            <param name="puIDs">The packaging units which give the corresponding UID.</param>
+            <remarks>
+            This command is only available for stations of platform II+ and Sirio and in the offline area.
+            </remarks>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.GetConfiguration">
+            <summary>
+            Gets the configuration of this Setup Center instance. It provides line configurations
+            as well as the configured docking stations.
+            The configuration class will contain the following settings:
+            <br />
+            OnlineVerificationConfiguration: The general settings for online verification of the Setup Center instance like IsSpliceMonitorActive, MissingSpliceThresholdPercent, MissingSpliceThresholdNumberOfItems.
+            <br />
+            LineConfigurations: For each line the settings for the line like IsFeederSubstitutionAllowed, IsAutomaticReorderActivated, IsRandomFeederSetupForOfflineVerificationAllowed etc.
+            MachineConfigurations: For each station in the line the machine settings like MachineId, MachineName, MachineType, IsMsdVerificationEnabled and ComponentLevelIndicatorThresholds.
+            PrinterConfigurations: For each printer in the line the printer settings like MachineId, PrinterPath, PrinterType.
+            <br />
+            DockingStationConfiguration: Contains the configuration for docking stations
+            DockingStations: For each configured docking station contains the DockingStationId.
+            </summary>
+            <returns>
+            The Configuration class holding the description of the Configuration valid for this Instance of Setup Center.
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.FireInstantFeederPlacedEvents(Asm.As.OIB.SiplaceSetupCenter.Proxy.Business.Types.VerificationType)">
+            <summary>
+            Initiates the InstantFeederPlaced events from SetupCenter by
+            selecting all currently placed feeders in the ActualSetup
+            (online, offline or both depending of given verificationType argument)
+            </summary>
+            <param name="verificationType">The specified verification mode</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.GetPackagingUnitLocation(Asm.As.Oib.SiplaceSetupCenter.Contracts.Data.PackagingUnit[])">
+            <summary>
+            Gets the current packaging unit location.
+            Only works with Setup Center 6.3 and higher.
+            </summary>
+            <param name="packagingUnits">The packaging unit with the corresponding UID</param>
+            <returns>
+            List of ComponentLocationResult
+            Contains the ComponentLocation if the packaging unit is mounted online or offline.
+            If the packaging unit is not mounted the value is null.
+            The TableState attribute in ComponentLocation indicates whether a packaging unit is online, offline.
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.UpdateSinglePackagingUnit(Asm.As.Oib.SiplaceSetupCenter.Contracts.Data.PackagingUnit[])">
+            <summary>
+            Adjust all attributes of the packaging unit except the ones listed below for online mounted packaging units.
+            Only works with Setup Center 6.3 and higher.
+            </summary>
+            <param name="packagingUnits">Packaging unit(s) containing the new attribute values.</param>
+            <returns>
+            List of PackagingUnitResults:
+            Each PackagingUnitResult contains the updated packaging unit in case of success, otherwise null.
+            </returns>
+            <remarks>
+            This method allows an update of every packaging unit regardless of the packaging unit status (unmounted, offline or online mounted).
+            If a packaging unit chain is supplied then only the first packaging unit will be updated.
+            The method will update all packaging unit attributes if the packaging unit is not mounted online.
+            If the packaging unit is mounted online then the method will only update the packaging unit attributes not listed in the exception list below.
+            The following attributes of the packaging unit cannot be updated if it is mounted online:
+            [ComponentName], [ComponentBarcode], [ComponentBarcodeFragment], [OriginalQuantity], [Quantity], [GreyZone],
+            [DepletedDate], [LastProductionDate], [BatchId], [Batch2], [BrightnessClass]
+            </remarks>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.SetPackagingUnits(System.Collections.Generic.List{Asm.As.Oib.SiplaceSetupCenter.Contracts.Data.PackagingUnitLocation})">
+            <summary>
+            Put PackagingUnit(s) in online verification.
+            A mixed mode between Unique ID mode and ICL mode within one setup is invalid.
+            </summary>
+            <param name="packagingUnitLocations">PackagingUnit(s) to set.</param>
+            <returns>PackagingUnitLocationResponse</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.RefillPackagingUnits(System.Collections.Generic.List{Asm.As.Oib.SiplaceSetupCenter.Contracts.Data.PackagingUnitLocation})">
+            <summary>
+            Refill PackagingUnit(s) in on line verification.
+            </summary>
+            <param name="packagingUnitLocations">PackagingUnit(s) to refill (ArrayList value type: PackagingUnitLocation).</param>
+            <returns>PackagingUnitLocationResponse</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.TearDownComponentLocations(System.Collections.Generic.List{Asm.As.Oib.SiplaceSetupCenter.Contracts.Data.ComponentLocation})">
+            <summary>
+            Tear down the specified PackagingUnit(s) within the mentioned setup.
+            </summary>
+            <param name="componentLocations">Component location(s) to tear down.</param>
+            <returns>ComponentLocationResponse</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.ActivateComponentLocations(System.Collections.Generic.List{Asm.As.Oib.SiplaceSetupCenter.Contracts.Data.ComponentLocation})">
+            <summary>
+            Activates a deactivated track at the station. If the track is already active at the station, nothing will happen.
+            </summary>
+            <param name="componentLocations">The locations which have to be activated.</param>
+            <returns>ComponentLocationResponse</returns>
+            <remarks>
+            This command is not available for all tray feeders.
+            </remarks>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.DeactivateComponentLocations(System.Collections.Generic.List{Asm.As.Oib.SiplaceSetupCenter.Contracts.Data.ComponentLocation},System.String)">
+            <summary>
+            Deactivates an active track at the station. If the track is already deactivated, nothing will happen.
+            Throws an exception in case one or more packaging units could not be deactivated.
+            </summary>
+            <param name="componentLocations">The locations which have to be deactivated.</param>
+            <param name="reason">The reason.</param>
+            <returns>ComponentLocationResponse</returns>
+            <remarks>
+            This command is not available for all tray feeders and for all stations of platform I and II.
+            The deactivation of a track can be removed by the operator directly at the station
+            (depends from settings) or via Setup Center.
+            </remarks>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.LockPackagingUnits(System.Collections.Generic.List{Asm.As.Oib.SiplaceSetupCenter.Contracts.Data.PackagingUnit},System.String)">
+            <summary>
+            Locks material (The unlock is only possible by an external system again).
+            Lock can’t be avoided at the station. This functionality is an enhancement of
+            Activate regarding priority.
+            </summary>
+            <param name="puIDs">The packaging units which give the corresponding UID.</param>
+            <param name="reason">A text which give the operator what is the reason of the lock.</param>
+            <returns>PackagingUnitResponse</returns>
+            <remarks>
+            This command is available for stations released for forced setup verification with
+            Setup Center and in the offline area.
+            The lock is permanent and cannot be removed by an operator at the station or via Setup Center.
+            Only the affected packaging units have to be assigned. If splice chains are assigned,
+            only the first packaging units will be recognized. Spliced packaging units will be ignored.
+            The lock will be persisted and is marked with Reason=0 and Source = 4 in the LockInfo object.
+            </remarks>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.UnlockPackagingUnits(System.Collections.Generic.List{Asm.As.Oib.SiplaceSetupCenter.Contracts.Data.PackagingUnit})">
+            <summary>
+            Unlocks material, which was locked by an external system before.
+            This functionality is an enhancement of Deactivate regarding priority.
+            </summary>
+            <param name="puIDs">The packaging units which give the corresponding UID.</param>
+            <returns>PackagingUnitResponse</returns>
+            <remarks>
+            This command is only available for stations of platform II+ and Sirio and in the offline area.
+            The lock will be persisted and is marked with Reason=0 and Source = 4 in the LockInfo object.
+            </remarks>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.GetConnectionStateDetails">
+            <summary>
+            Gets the connection state details.
+            </summary>
+            <returns>
+            ConnectionStateDetails
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.GetActiveSetupAndRecipe(System.Collections.Generic.List{System.String})">
+            <summary>
+            Method delivers the active setup and the active recipe for the specified machine IDs.
+            The active recipe information is only available for SIRIO Version &gt;= 709
+            Return values only contains active setup information for configured and online station(s).
+            </summary>
+            <param name="machineIds">The machine(s) to consider.</param>
+            <returns>
+            The active setup and recipe (only SIRIO) of the specified machine(s).
+            </returns>
+            <remarks>
+            This method will only deliver results for Setup Center 8.0 or higher!
+            </remarks>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.GetComponentLevelIndicatorThresholds(System.Collections.Generic.List{System.String})">
+            <summary>
+            Method delivers the component level indicator thresholds for the specified machine(s).
+            Return values only contains setup information for configured and online station(s).
+            This method is only supported for SIRIO stations.
+            </summary>
+            <param name="machineIds">The machine(s) to consider.</param>
+            <returns>
+            The component level indicator thresholds of the specified machine(s).
+            </returns>
+            <remarks>
+            This method will only deliver results for Setup Center 8.0 or higher!
+            </remarks>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.GetPrinterConsumables(System.Collections.Generic.List{System.String})">
+            <summary>
+            Gets the printer consumables for the specified printers.
+            </summary>
+            <param name="machineIds">The list of printer IDs for which the consumables should be retrieved.</param>
+            <returns>
+            Returns the list of printer consumables for each printer identifier that was passed in.
+            </returns>
+            <remarks>
+            This method will only deliver results for Setup Center 8.0 or higher!
+            </remarks>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.GetPrinterDeviceState(System.Collections.Generic.List{System.String})">
+            <summary>
+            Gets the printer device state for the specified printers.
+            </summary>
+            <param name="machineIds">The list of printer IDs for which device state should be retrieved.</param>
+            <returns>
+            Returns the printer device state for each printer identifier that was passed in.
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.UnverifyPrinterMaterial(Asm.As.Oib.SiplaceSetupCenter.Contracts.Data.UnverifyPrinterMaterialRequest)">
+            <summary>
+            UnverifyPrinterMaterial allows external systems to set the validation status to unverified for a material on the specified printer.
+            The printer will then set the validation status of the material to unverified and therefore force a new verification.
+            </summary>
+            <param name="request">The request.</param>
+            <returns>
+            The Result state will contain the response of the printer or communication error if the printer cannot be reached.
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.UnverifyPrinterTool(Asm.As.Oib.SiplaceSetupCenter.Contracts.Data.UnverifyPrinterToolRequest)">
+            <summary>
+            UnverifyPrinterTool allows external systems to set the validation status to unverified for a tool on the specified printer.
+            The printer will then set the validation status of the tool to unverified and therefore force a new verification.
+            </summary>
+            <param name="request">The request.</param>
+            <returns>
+            The Result state will contain the response of the printer or communication error if the printer cannot be reached.
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.GetVerficationStatus(Asm.As.Oib.SiplaceSetupCenter.Contracts.Data.GetVerficationStatusRequest)">
+            <summary>
+            Method delivers the verification status for stations, station locations and devices.
+            If the option WithComponentPositions is set to true the detailed verification status
+            per component position is provided as well.
+            </summary>
+            <param name="request">The request containing the machine(s) to consider and a flag
+            if detailed validation status per component positions has to be provided.</param>
+            <returns>
+            The verification status information for the specified machine(s).
+            </returns>
+            <remarks>
+            This method is only supported for Setup Center 9.4 and higher. 
+            </remarks>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.GetPrinterCapabilities(Asm.As.Oib.SiplaceSetupCenter.Contracts.Data.GetPrinterCapabilitiesRequest)">
+            <summary>
+            The GetPrinterCapabilities method retrieves the capabilities of the specified printer.
+            </summary>
+            <remarks>
+            This method will only deliver results for Setup Center 8.1 or higher!
+            </remarks>
+            <param name="request">The request.</param>
+            <returns>
+            The Result state will contain the response of the printer or communication error if the printer cannot be reached.
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.LockOnlineFeeders(Asm.As.Oib.SiplaceSetupCenter.Contracts.Data.LockOnlineFeedersRequest)">
+            <summary>
+            Locks the feeders for online verification.
+            </summary>
+            <param name="request">
+            Specifies the feeders and their locations to be locked. 
+            In this case it is mandatory to fill the following attributes of the LockFeederLocationInfo class:
+                Machine.LineName, 
+                Machine.MachineId, 
+                Location, 
+                Device, 
+                Track,
+                FeederId
+                FeederType (FeederCode)
+            </param>
+            <returns>
+            The Result will contain the response (for each location if the feeder is successfully locked) 
+            or communication error if the operation cannot be done.
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.UnlockOnlineFeeders(Asm.As.Oib.SiplaceSetupCenter.Contracts.Data.UnlockOnlineFeedersRequest)">
+            <summary>
+            Unlocks the specified feeders for online verification.
+            </summary>
+            <param name="request">
+            Specifies the feeders and their locations to be unlocked. 
+            In this case it is mandatory to fill the following attributes of the FeederLocation class:
+                Machine.LineName, 
+                Machine.MachineId, 
+                Location, 
+                Device, 
+                Track,
+                FeederId
+                FeederType (FeederCode)
+            </param>
+            <returns>
+            The Result will contain the response (for each location if the feeder is successfully unlocked) 
+            or communication error if the operation cannot be done.
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.GetPackagingUnitMountLocation(Asm.As.Oib.SiplaceSetupCenter.Contracts.Data.GetPackagingUnitMountLocationRequest)">
+             <summary>
+             Gets the current packaging unit mount location. 
+             Returns a PackagingUnitMountLocation object for each packaging unit.
+             If the packaging unit is mounted online or offline then the ComponentLocation in the PackagingUnitMountLocation is filled.
+             If the packaging unit is only mounted on a feeder then the ComponentLocation in the PackagingUnitMountLocation is null and the FeederLocation in the PackagingUnitMountLocation is filled.
+             If the packaging unit is not mounted at all the OutValue of the result is null.
+             </summary>
+             <remarks>
+             This method will only deliver results for Setup Center 9.2 or higher!
+             </remarks>
+             <param name="request">The list of packaging units to get the mount location for</param>
+             <returns>
+             GetPackagingUnitMountLocationResponse containing the mount locations.
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.SetThresholdActivation(Asm.As.Oib.SiplaceSetupCenter.Contracts.Data.SetThresholdActivationRequest)">
+            <summary>
+            Sets the threshold activation data.
+            </summary>
+            <param name="request">The request.</param>
+            <returns>
+            The return value specifies if the threshold activation data was applied successfully.
+            </returns>
+            <remarks>
+            This method is only supported for Setup Center 9.4 and higher and stations with SW 712 and higher. 
+            </remarks>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.GetStockLocation(Asm.As.Oib.SiplaceSetupCenter.Contracts.Data.GetStockLocationRequest)">
+            <summary>
+            Gets the stock location for the specified components of the specified line.
+            </summary>
+            <param name="request">The request.</param>
+            <returns>
+            The return value specifies the stock location for each component
+            </returns>
+            <remarks>
+            This method is only supported for Setup Center 9.4 and higher and if StockLocationService is active. 
+            You can see if the StockLocationService is active by looking at the Configuration.StockLocationServiceActive property
+            </remarks>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.GetPackagingUnitLocationsOnTables(Asm.As.Oib.SiplaceSetupCenter.Contracts.Data.GetPackagingUnitLocationsOnTablesRequest)">
+            <summary>
+            Gets the packaging unit locations for a given list of table ids
+            Returns collection of PackagingUnitLocations object for each table id.
+            </summary>
+            <param name="request">The request containing the list of table ids</param>
+            <returns></returns>
+            <remarks>
+            This method is only supported for Setup Center 10.1 and higher. 
+            </remarks> 
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.GetPackagingUnitLocationsOnFeeders(Asm.As.Oib.SiplaceSetupCenter.Contracts.Data.GetPackagingUnitLocationsOnFeedersRequest)">
+             <summary>
+             Gets the packaging unit locations for a given list of feeder ids
+             Returns a PackagingUnitLocation object for each feeder id.
+             If the packaging unit on the feeder is mounted online or offline the ComponentLocation in the PackagingUnitLocation is filled.
+             If the packaging unit is kitted to the feeder then only the available attributes in the ComponentLocation are filled.
+             If there is no packaging unit mounted on the feeder the PackagingUnitLocation is null.
+             </summary>
+             <param name="request">The request containing the list of feeder ids</param>
+             <returns>
+             The return values specifies the PackagingUnitLocation for each feeder id:
+                 If the packaging unit on the feeder is mounted online or offline the ComponentLocation in the PackagingUnitLocation is filled.
+                 If the packaging unit is kitted to the feeder then only the available attributes in the ComponentLocation are filled.
+                 If there is no packaging unit mounted on the feeder the PackagingUnitLocation is null.
+            </returns>
+             <remarks>
+             This method is only supported for Setup Center 9.6 and higher. 
+             </remarks>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.GetPackagingUnitLocationsInCartridges(Asm.As.Oib.SiplaceSetupCenter.Contracts.Data.GetPackagingUnitLocationsInCartridgesRequest)">
+             <summary>
+             Gets the packaging unit locations for a given list of cartridge ids
+             Returns a PackagingUnitLocation object for each cartridge id.
+             If the packaging unit in the cartridge is mounted online or offline the ComponentLocation in the PackagingUnitLocation is filled.
+             If the packaging unit is kitted to the cartridge then only the available attributes in the ComponentLocation are filled.
+             If there is no packaging unit mounted in the cartridge the PackagingUnitLocation is null.
+             </summary>
+             <param name="request">The request containing the list of cartridge ids</param>
+             <returns>
+             The return values specifies the PackagingUnitLocation for each cartridge id:
+                 If the packaging unit in the cartridge is mounted online or offline the ComponentLocation in the PackagingUnitLocation is filled.
+                 If the packaging unit is kitted to the cartridge then only the available attributes in the ComponentLocation are filled.
+                 If there is no packaging unit mounted in the cartridge the PackagingUnitLocation is null.
+            </returns>
+             <remarks>
+             This method is only supported for Setup Center 9.6 and higher. 
+             </remarks>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.GetPackagingUnitLocationsInCassettes(Asm.As.Oib.SiplaceSetupCenter.Contracts.Data.GetPackagingUnitLocationsInCassettesRequest)">
+             <summary>
+             Gets the packaging unit locations for a given list of cassette ids
+             Returns a list of PackagingUnitLocation objects for each cassette id.
+             If no packaging units are mounted on a cassette the list is empty.
+             Otherwise for each packaging unit in a cassette a PackagingUnitLocation is contained in the list.
+             If the packaging unit in the cassette is mounted online or offline the ComponentLocation in the PackagingUnitLocation is filled.
+             If the packaging unit is kitted to the cassette then only the available attributes in the ComponentLocation are filled.
+             </summary>
+             <param name="request">The request containing the list of cassette ids</param>
+             <returns>
+             The return values specifies the list of PackagingUnitLocation for each cassette id:
+                 If no packaging units are mounted on a cassette the list is empty.
+                 Otherwise for each packaging unit in a cassette a PackagingUnitLocation is contained in the list.
+                     If the packaging unit in the cassette is mounted online or offline the ComponentLocation in the PackagingUnitLocation is filled.
+                     If the packaging unit is kitted to the cassette then only the available attributes in the ComponentLocation are filled.
+            </returns>
+             <remarks>
+             This method is only supported for Setup Center 9.6 and higher. 
+             </remarks>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.GetPackagingUnitLocationsInTrayCarriers(Asm.As.Oib.SiplaceSetupCenter.Contracts.Data.GetPackagingUnitLocationsInTrayCarriersRequest)">
+             <summary>
+             Gets the packaging unit locations for a given list of tray carrier ids
+             Returns a list of PackagingUnitLocation objects for each tray carrier id.
+             If no packaging units are mounted on a tray carrier the list is empty.
+             Otherwise for each packaging unit in a tray carrier a PackagingUnitLocation is contained in the list.
+             If the packaging unit in the tray carrier is mounted online or offline the ComponentLocation in the PackagingUnitLocation is filled.
+             If the packaging unit is kitted to the tray carrier then only the available attributes in the ComponentLocation are filled.
+             </summary>
+             <param name="request">The request containing the list of tray carrier ids</param>
+             <returns>
+             The return values specifies the list of PackagingUnitLocation for each tray carrier id:
+                 If no packaging units are mounted on a tray carrier the list is empty.
+                 Otherwise for each packaging unit in a tray carrier a PackagingUnitLocation is contained in the list.
+                     If the packaging unit in the tray carrier is mounted online or offline the ComponentLocation in the PackagingUnitLocation is filled.
+                     If the packaging unit is kitted to the tray carrier then only the available attributes in the ComponentLocation are filled.
+            </returns>
+             <remarks>
+             This method is only supported for Setup Center 9.6 and higher. 
+             </remarks>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.IsMachineReadyForMoveInChangeoverTables(Asm.As.Oib.SiplaceSetupCenter.Contracts.Data.IsMachineReadyForMoveInChangeoverTablesRequest)">
+            <summary>
+            Gets the machine status for setup changeover.
+            After a setup change and new setup active event from Setup Center this method can be called to determine
+            if it is possible and safe to move out the old changeover tables from machine.
+            </summary>
+            <param name="request">The request object containing the machine ID</param>
+            <returns>Response containing a list of TableLocations that contain the Property IsReadyToMoveIn</returns>
+            <remarks>
+            This method is only supported for Setup Center 9.8 and higher. 
+            </remarks>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.IsMachineReadyForMoveOutChangeoverTables(Asm.As.Oib.SiplaceSetupCenter.Contracts.Data.IsMachineReadyForMoveOutChangeoverTablesRequest)">
+            <summary>
+            Gets the machine status for COT removal after setup changeover.
+            After a setup change and new setup active event from Setup Center this method can be called to determine
+            if it is possible and safe to move out the old changeover tables from machine.
+            </summary>
+            <param name="request">The request object containing the machine ID</param>
+            <returns>Response containing a list of TableLocations that contain the Property IsReadyToMoveOut</returns>
+            <remarks>
+            This method is only supported for Setup Center 9.8 and higher. 
+            </remarks>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.RegisterChangeoverTable(Asm.As.Oib.SiplaceSetupCenter.Contracts.Data.RegisterChangeoverTableRequest)">
+            <summary>
+            Registers the specified changeover table (COT) to the specified station location.
+            Before calling this function the COT has to be placed into the location.
+            </summary>
+            <param name="request">Request object containing the Machine ID, Station location number" and table Id</param>
+            <returns>
+            The Result.ResultItems contain a ResultItem. The ResultItem.State indicates if the operation was successful.
+            The ResultItem.State contains the following values:
+            1 : OK
+            2 : Error
+            In case of error the ResultItem.Messages will contain the reason of the failure.
+            </returns>
+            <remarks>
+            This method is only supported for Setup Center 9.8 and higher. 
+            </remarks>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.MoveChangeoverTableIntoStationLocation(Asm.As.Oib.SiplaceSetupCenter.Contracts.Data.MoveChangeoverTableIntoStationLocationRequest)">
+            <summary>
+            Moves the specified changeover table (COT) into the specified station location.
+            Before calling this function the COT has to be placed into the location so that the machine
+            can pull in it automatically.
+            </summary>
+            <param name="request">Request object containing the Machine ID and Station location number</param>
+            <returns>
+            The Result.ResultItems contain a ResultItem. The ResultItem.State indicates if the operation was successful.
+            The ResultItem.State contains the following values:
+            1 : OK
+            2 : Error
+            In case of error the ResultItem.Messages will contain the reason of the failure.
+            </returns>
+            <remarks>
+            This method is only supported for Setup Center 9.8 and higher. 
+            </remarks>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.MoveChangeoverTableOutOfStationLocation(Asm.As.Oib.SiplaceSetupCenter.Contracts.Data.MoveChangeoverTableOutOfStationLocationRequest)">
+            <summary>
+            Moves the specified changeover table (COT) out of the specified station location.
+            After this function is successfully completed the COT can be removed from location
+            </summary>
+            <param name="request">Request object containing the Machine ID and Station location number</param>
+            <returns>
+            The Result.ResultItems contain a ResultItem. The ResultItem.State indicates if the operation was successful.
+            The ResultItem.State contains the following values:
+            1 : OK
+            2 : Error
+            In case of error the ResultItem.Messages will contain the reason of the failure.
+            </returns>
+            <remarks>
+            This method is only supported for Setup Center 9.8 and higher. 
+            </remarks>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.GetChangeOverTablesOfActiveSetup(Asm.As.Oib.SiplaceSetupCenter.Contracts.Data.GetChangeOverTablesOfActiveSetupRequest)">
+            <summary>
+            Gets the changeover table (COT) information of the active recipe.
+            If the prepared COTs are not already registered this function will return the prepared COTs.
+            If a location has no COT then it will be omitted in the returned list!
+            The logic is:
+            1. If a COT is registered to a station location then return it
+            2. Otherwise check if a COT is prepared in pre-setup area for the active setup and return it.
+            3. Otherwise return null.
+            </summary>
+            <param name="request">Request object containing a list of machine IDs</param>
+            <returns>Result object containing a list of TableLocations per machine id</returns>
+            <remarks>
+            This method is only supported for Setup Center 9.8 and higher. 
+            </remarks>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.Dispose(System.Boolean)">
+            <summary>
+            Releases unmanaged and - optionally - managed resources.
+            </summary>
+            <param name="bDisposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.ReleaseProxy">
+            <summary>
+            Releases the proxy.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.ConfigureByEndpoint(System.String,System.String)">
+            <summary>
+            Configure the proxy to the adapter with a binding
+            </summary>
+            <param name="strEndpoint">This is the endpoint description in form of an URL.</param>
+            <param name="strBinding">
+            Binding name (optional). If this is not provided, a proper default binding is used for hosting the callback.
+            Possible values are: "WSHttpBinding", "NetMsmqBinding", "NetNamedPipeBinding", "NetTcpBinding", or string.Empty or null
+            </param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.ConfigureByConfiguration(System.String)">
+            <summary>
+            Configure the proxy to the adapter with the configuration from the application config
+            </summary>
+            <param name="strEndpoinConfigurationName">This is the name of the communication configuration to be used
+            by this proxy. This configuration name must be part of the application config file of the calling application.</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.SubscribeToCoreEvents(System.String)">
+            <summary>
+            Subscribe to the events being sent by the Core Eventing
+            <remarks>
+            This function supports non permanent subscriptions.
+            Non Permanent subscriptions are valid for 6 hours and will be refreshed 3 every hours.
+            The events will be un-subscribed when Disposed. This means that crashes from
+            programs will leave a subscription and a collecting mechanism which will be
+            removed after 6 hours.
+            </remarks>
+            </summary>
+            <param name="coreComputerName">The host name of the OIB Core computer</param>
+            <returns>
+            success, if the subscriptions could be done
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.SubscribeToCoreEvents(System.String,System.String)">
+            <summary>
+            Subscribe to the events being sent by the Core Eventing
+            </summary>
+            <param name="coreComputerName">The host name of the SIPLACE Core</param>
+            <param name="strCallbackName">Name of the callback endpoint used for getting the events.
+            The CallbackName is a part of the callback endpoint address:
+            CallbackName: "SiplaceSetupCenterNotify" --&gt; resulting Callback Endpoint Address: "http://MachineName:1405/SiplaceSetupCenterNotify/"</param>
+            <returns>
+            success, if the subscriptions could be done
+            </returns>
+            <remarks>
+            This function supports non permanent subscriptions.
+            Non Permanent subscriptions are valid for 6 hours and will be refreshed 3 every hours.
+            The events will be un-subscribed when Disposed. This means that crashes from
+            programs will leave a subscription and a collecting mechanism which will be
+            removed after 6 hours.
+            </remarks>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.SubscribeToCoreEvents(System.String,System.String,System.Boolean)">
+            <summary>
+            Subscribe to the events being sent by the Core Eventing
+            </summary>
+            <param name="coreComputerName">The host name of the SIPLACE Core</param>
+            <param name="strCallbackName">Name of the callback endpoint used for getting the events.
+            The CallbackName is a part of the callback endpoint address:
+            CallbackName: "SiplaceSetupCenterNotify" --&gt; resulting Callback Endpoint Address: "http://MachineName:1405/SiplaceSetupCenterNotify/"</param>
+            <param name="bNonPermanentSubscribtion">If true, the Subscription will not be permanent.</param>
+            <returns>
+            success, if the subscriptions could be done
+            </returns>
+            <remarks>
+            This function supports permanent and non permanent subscriptions.
+            Non Permanent subscriptions are valid for 6 hours and will be refreshed 3 every hours.
+            The events will be un-subscribed when Disposed. This means that crashes from
+            programs will leave a subscription and a collecting mechanism which will be
+            removed after 6 hours.
+            <br />
+            Permanent subscriptions are forever and have to be explicitly un-subscribed.
+            The application can subscribe after a restart and receive all events between
+            to application start.
+            </remarks>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.SubscribeToCoreEvents(System.String,System.String,System.Int32)">
+            <summary>
+            Subscribe to the events being sent by the Core Eventing
+            </summary>
+            <param name="coreComputerName">The host name of the SIPLACE Core</param>
+            <param name="strCallbackName">Name of the callback endpoint used for getting the events.
+            The CallbackName is a part of the callback endpoint address:
+            CallbackName: "SiplaceSetupCenterNotify" --&gt; resulting Callback Endpoint Address: "http://MachineName:1405/SiplaceSetupCenterNotify/"</param>
+            <param name="nPortNumber">Port Number for callback</param>
+            <returns>
+            success, if the subscriptions could be done
+            </returns>
+            <remarks>
+            This function supports non permanent subscriptions.
+            Non Permanent subscriptions are valid for 6 hours and will be refreshed 3 every hours.
+            The events will be un-subscribed when Disposed. This means that crashes from
+            programs will leave a subscription and a collecting mechanism which will be
+            removed after 6 hours.
+            </remarks>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.SubscribeToCoreEvents(System.String,System.String,System.Int32,System.Boolean)">
+            <summary>
+            Subscribe to the events being sent by the Core Eventing
+            </summary>
+            <param name="coreComputerName">The host name of the SIPLACE Core</param>
+            <param name="strCallbackName">Name of the callback endpoint used for getting the events.
+            The CallbackName is a part of the callback endpoint address:
+            CallbackName: "SiplaceSetupCenterNotify" --&gt; resulting Callback Endpoint Address: "http://MachineName:1405/SiplaceSetupCenterNotify/"</param>
+            <param name="callbackPortNumber">Port Number for callback</param>
+            <param name="bNonPermanentSubscribtion">If true, the Subscription will not be permanent.</param>
+            <returns>
+            success, if the subscriptions could be done
+            </returns>
+            <remarks>
+            This function supports permanent and non permanent subscriptions.
+            Non Permanent subscriptions are valid for 6 hours and will be refreshed 3 every hours.
+            The events will be un-subscribed when Disposed. This means that crashes from
+            programs will leave a subscription and a collecting mechanism which will be
+            removed after 6 hours.
+            Permanent subscriptions are forever and have to be explicitly un-subscribed.
+            The application can subscribe after a restart and receive all events between
+            to application start.
+            </remarks>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.SubscribeToCoreEventsExtended(System.String,System.Int32,System.Boolean,System.Int32,System.Boolean)">
+            <summary>
+            Subscribe to the events being sent by the Core Eventing
+            <remarks>
+            This function supports non permanent subscriptions.
+            Non Permanent subscriptions are valid for 6 hours and will be refreshed 3 every hours.
+            The events will be un-subscribed when Disposed. This means that crashes from
+            programs will leave a subscription and a collecting mechanism which will be
+            removed after 6 hours.
+            </remarks>
+            </summary>
+            <param name="coreComputerName">The host name of the SIPLACE Core</param>
+            <param name="corePortNumber">The core port number.</param>
+            <param name="useCoreTcpPort">if set to <c>true</c> [use core TCP port].</param>
+            <param name="callbackPortNumber">The callback port number.</param>
+            <param name="useCallbackTcpPort">if set to <c>true</c> [use callback TCP port].</param>
+            <returns>
+            success, if the subscriptions could be done
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.SubscribeToCoreEventsExtended(System.String,System.Int32,System.Boolean,System.String,System.Int32,System.Boolean)">
+            <summary>
+            Subscribe to the events being sent by the Core Eventing
+            </summary>
+            <param name="coreComputerName">The host name of the SIPLACE Core</param>
+            <param name="corePortNumber">The core port number.</param>
+            <param name="useCoreTcpPort">if set to <c>true</c> [use core TCP port].</param>
+            <param name="strCallbackName">Name of the callback endpoint used for getting the events.
+            The CallbackName is a part of the callback endpoint address:
+            CallbackName: "SiplaceSetupCenterNotify" --&gt; resulting Callback Endpoint Address: "http://MachineName:1405/SiplaceSetupCenterNotify/"</param>
+            <param name="callbackPortNumber">The callback port number.</param>
+            <param name="useCallbackTcpPort">if set to <c>true</c> [use callback TCP port].</param>
+            <returns>
+            success, if the subscriptions could be done
+            </returns>
+            <remarks>
+            This function supports non permanent subscriptions.
+            Non Permanent subscriptions are valid for 6 hours and will be refreshed 3 every hours.
+            The events will be un-subscribed when Disposed. This means that crashes from
+            programs will leave a subscription and a collecting mechanism which will be
+            removed after 6 hours.
+            </remarks>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.SubscribeToCoreEventsExtended(System.String,System.Int32,System.Boolean,System.String,System.Int32,System.Boolean,System.Boolean)">
+            <summary>
+            Subscribe to the events being sent by the Core Eventing
+            </summary>
+            <param name="coreComputerName">The host name of the SIPLACE Core</param>
+            <param name="corePortNumber">The core port number.</param>
+            <param name="useCoreTcpPort">if set to <c>true</c> [use core TCP port].</param>
+            <param name="strCallbackName">Name of the callback endpoint used for getting the events.
+            The CallbackName is a part of the callback endpoint address:
+            CallbackName: "SiplaceSetupCenterNotify" --&gt; resulting Callback Endpoint Address: "http://MachineName:1405/SiplaceSetupCenterNotify/"</param>
+            <param name="callbackPortNumber">The callback port number.</param>
+            <param name="useCallbackTcpPort">if set to <c>true</c> [use callback TCP port].</param>
+            <param name="bNonPermanentSubscribtion">If true, the Subscription will not be permanent.</param>
+            <returns>
+            success, if the subscriptions could be done
+            </returns>
+            <remarks>
+            This function supports permanent and non permanent subscriptions.
+            Non Permanent subscriptions are valid for 6 hours and will be refreshed 3 every hours.
+            The events will be un-subscribed when Disposed. This means that crashes from
+            programs will leave a subscription and a collecting mechanism which will be
+            removed after 6 hours.
+            <br />
+            Permanent subscriptions are forever and have to be explicitly un-subscribed.
+            The application can subscribe after a restart and receive all events between
+            to application start.
+            </remarks>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.SubscribeToCoreEvents(Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SubscriptionDescription)">
+            <summary>
+            Subscribes to core events.
+            </summary>
+            <param name="description">The description.</param>
+            <returns>SubscriptionDescription which now contains the subscription Id as well</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.UnsubscribeToCoreEvents">
+            <summary>
+            Explicitly unsubscribe from the events sent from the Core Eventing. The only way to
+            unsubscribe if you set the bUnsubscribeWhenDisposing to false in method SubscribeToCoreEvents.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.GetConnectionStateDetails(System.Boolean)">
+            <summary>
+            Gets the connection state details.
+            </summary>
+            <returns>
+            ConnectionStateDetails
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.GetSubscriptionManager">
+            <summary>
+            Gets the subscription manager.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.GetSubscriptionManagerFactory">
+            <summary>
+            Gets the subscription manager.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.InternalSubscribeToCoreEvents(Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SubscriptionDescription)">
+            <summary>
+            Internals the subscribe to core events.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.InternalUnsubscribeFromCoreEvents">
+            <summary>
+            Internals the unsubscribe from core events.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.CheckConnectionStateTimerOnElapsed(System.Object,System.Timers.ElapsedEventArgs)">
+            <summary>
+            Checks the connection state timer on elapsed.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="elapsedEventArgs">The <see cref="T:System.Timers.ElapsedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.SubscriptionTimerElapsed(System.Object,System.Timers.ElapsedEventArgs)">
+            <summary>
+            Handles the Elapsed event of the m_subscriptionTimer control.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">The <see cref="T:System.Timers.ElapsedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.GetProxy">
+            <summary>
+            Gets the proxy.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.CheckDisposed">
+            <summary>
+            Checks the disposed status.
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">SiplaceSetupCenter</exception>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.Initialize(System.Boolean)">
+            <summary>
+            Initializes the specified with subscription.
+            </summary>
+            <param name="withSubscription">if set to <c>true</c> [with subscription].</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.CheckForCallbackFromConfig">
+            <summary>
+            Checks for callback from configuration.
+            </summary>
+            <exception cref="T:System.ComponentModel.LicenseException"></exception>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.CheckForSubscriptionFromConfig">
+            <summary>
+            Checks for subscription from configuration.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.BuildCallBackUri">
+            <summary>
+            Builds the call back URI.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SiplaceSetupCenter.StartConnectionCheckTimer">
+            <summary>
+            Starts the connection check timer.
+            </summary>
+        </member>
+        <member name="T:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Types.ConnectionStateChange">
+            <summary>
+            ConnectionStateChange
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Types.ConnectionStateChange.NoChange">
+            <summary>
+            No changes to before
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Types.ConnectionStateChange.Disconnected">
+            <summary>
+            Changed from connected to disconnected
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Types.ConnectionStateChange.Connected">
+            <summary>
+            Changed from disconnected to connected
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.ProxyEndpointHelper.OIBCoreName">
+            <summary>
+            Gets the name of the core computer from the configuration.
+            If this is set, then the proxy will automatically subscribe for the events.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.ProxyEndpointHelper.OIBCorePort">
+            <summary>
+            Gets the port number of the core computer from the configuration. Default is the default http port 1405.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.ProxyEndpointHelper.UseCoreTcpEndpoint">
+            <summary>
+            Gets a value indicating whether to use a TCP endpoint to connect to the core.
+            Default is false.
+            </summary>
+            <value>
+            <c>true</c> if [use core TCP endpoint]; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.ProxyEndpointHelper.UseCallbackTcpEndpoint">
+            <summary>
+            Gets a value indicating whether to use a TCP endpoint to host the callback for the events.
+            Default is false.
+            </summary>
+            <value>
+            <c>true</c> if [use callback TCP endpoint]; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.ProxyEndpointHelper.CallbackName">
+            <summary>
+            Gets the name of the callback endpoint used for getting the events.
+            If you set this, this will be used for the callback endpoint address,
+            otherwise a default endpoint address will be used and a guid appended.
+            The CallbackName is a part of the callback endpoint address:
+            CallbackName: "SiplaceSetupCenterNotify"
+            Callback Endpoint Address: "http://MachineName:1405/SiplaceSetupCenterNotify/"
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.ProxyEndpointHelper.CallbackGatewayPort">
+            <summary>
+            Callback gateway port number  is defined in App.config if OIB Setup Center Smart Proxy is hosted in a Cluster Environment.
+            </summary>
+            <remarks>
+            This value is overwritten by <seealso cref="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.Business.Objects.SubscriptionDescription.CallbackGatewayPort"/> is provided.
+            </remarks>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.ProxyEndpointHelper.CallbackPort">
+            <summary>
+            Gets the port number for the callback endpoint used for getting the events.
+            If you set this, this will be used for the callback endpoint address,
+            otherwise a default port number of 45535 will be used.
+            The CallbackPort is a part of the callback endpoint address:
+            CallbackPort: "33333"
+            Callback Endpoint Address: "http://MachineName:33333/SiplaceSetupCenterNotify/"
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.ProxyEndpointHelper.CallbackCertificateValue">
+            <summary>
+            Something like "CN=ASM.SW.Service"
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.ProxyEndpointHelper.CallbackCertificateCommonName">
+            <summary>
+            Something like "ASM.SW.Service"
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.ProxyEndpointHelper.CallbackCertificateStoreLocation">
+            <summary>
+            StoreLocation.LocalMachine or StoreLocation.CurrentUser
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.ProxyEndpointHelper.CallbackCertificateX509FindType">
+            <summary>
+            One of the X509FindType enum values (e.g. X509FindType.FindBySubjectDistinguishedName). The CallbackCertificateValue must match 
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.ProxyEndpointHelper.CallbackCertificateStoreName">
+            <summary>
+            StoreName (typically StoreName.My)
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.ProxyEndpointHelper.ClientCertificateValue">
+            <summary>
+            Something like "CN=ASM.SW.Client"
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.ProxyEndpointHelper.ClientCertificateCommonName">
+            <summary>
+            Something like "ASM.SW.Client"
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.ProxyEndpointHelper.ClientCertificateStoreLocation">
+            <summary>
+            StoreLocation.LocalMachine or StoreLocation.CurrentUser
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.ProxyEndpointHelper.ClientCertificateX509FindType">
+            <summary>
+            One of the X509FindType enum values (e.g. X509FindType.FindBySubjectDistinguishedName). The CallbackCertificateValue must match 
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.ProxyEndpointHelper.ClientCertificateStoreName">
+            <summary>
+            StoreName (typically StoreName.My)
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.ProxyEndpointHelper.GlobalServiceEndpoint">
+            <summary>
+            Gets the global service endpoint.
+            </summary>
+            <value>The global service endpoint.</value>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.ProxyEndpointHelper.ReceiveTimeout">
+            <summary>
+            Gets the receive timeout.
+            </summary>
+            <value>The receive timeout.</value>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.ProxyEndpointHelper.OpenTimeout">
+            <summary>
+            Gets the open timeout.
+            </summary>
+            <value>The open timeout.</value>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.ProxyEndpointHelper.CloseTimeout">
+            <summary>
+            Gets the close timeout.
+            </summary>
+            <value>The close timeout.</value>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.ProxyEndpointHelper.SendTimeout">
+            <summary>
+            Gets the send timeout.
+            </summary>
+            <value>The send timeout.</value>
+        </member>
+        <member name="P:Asm.As.Oib.SiplaceSetupCenter.Proxy.ProxyEndpointHelper.SubscriptionTimeout">
+            <summary>
+            Gets the subscription timeout.
+            </summary>
+            <value>The subscription timeout.</value>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.ProxyEndpointHelper.GetChannelFactory``1(System.String)">
+            <summary>
+            Gets the channel factory.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="strName">Name of the STR.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Asm.As.Oib.SiplaceSetupCenter.Proxy.ProxyInstaller">
+            <summary>
+            This is a helper class for installing the Proxy on a traget machine
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.ProxyInstaller.#ctor">
+            <summary>
+            Constructor for the helper class
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.ProxyInstaller.ProxyInstaller_BeforeInstall(System.Object,System.Configuration.Install.InstallEventArgs)">
+            <summary>
+            This is the callback called during installation and registration of this proxy.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplaceSetupCenter.Proxy.ProxyInstaller.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.ProxyInstaller.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplaceSetupCenter.Proxy.ProxyInstaller.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:Asm.As.OIB.SiplaceSetupCenter.Proxy.Business.Types.VerificationType">
+            <summary>
+            This enumeration indicates whether the client needs data for online verification or offline verification or both.
+            </summary>
+        </member>
+        <member name="F:Asm.As.OIB.SiplaceSetupCenter.Proxy.Business.Types.VerificationType.Offline">
+            <summary>
+            Send data for offline verification
+            </summary>
+        </member>
+        <member name="F:Asm.As.OIB.SiplaceSetupCenter.Proxy.Business.Types.VerificationType.Online">
+            <summary>
+            Send data for online verification
+            </summary>
+        </member>
+        <member name="F:Asm.As.OIB.SiplaceSetupCenter.Proxy.Business.Types.VerificationType.Both">
+            <summary>
+            Send data for online and offline verification
+            </summary>
+        </member>
+    </members>
+</doc>

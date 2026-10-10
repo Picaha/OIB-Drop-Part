@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Data" elementFormDefault="qualified" targetNamespace="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Data" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://www.siplace.com/OIB/2008/05/ConfigurationManager/Contracts/Data" />
+  <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:complexType name="ServiceDescription">
+    <xs:sequence>
+      <xs:element name="Configurations" nillable="true" xmlns:q1="http://www.siplace.com/OIB/2008/05/ConfigurationManager/Contracts/Data" type="q1:ArrayOfIsa95Base" />
+      <xs:element name="Description" nillable="true" type="xs:string" />
+      <xs:element name="Grouped" type="xs:boolean" />
+      <xs:element name="ID" nillable="true" type="xs:int" />
+      <xs:element name="MetadataEndpoints" nillable="true" xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q2:ArrayOfanyURI" />
+      <xs:element name="Product" nillable="true" type="xs:string" />
+      <xs:element name="ServiceName" nillable="true" type="xs:string" />
+      <xs:element name="ServiceVersion" nillable="true" type="xs:string" />
+      <xs:element name="Version" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="EquipmentConnectorEndpoint" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Configuration" nillable="true" xmlns:q3="http://www.siplace.com/OIB/2008/05/ConfigurationManager/Contracts/Data" type="q3:Isa95Base" />
+      <xs:element minOccurs="0" name="FactoryElementId" type="xs:int" />
+      <xs:element minOccurs="0" name="OIBInternalService" type="xs:boolean" />
+      <xs:element minOccurs="0" name="GlobalService" type="xs:boolean" />
+      <xs:element minOccurs="0" name="HealthCheckEndpoint" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OrderIndex" type="xs:int" />
+      <xs:element minOccurs="0" name="DeactivateHealthCheck" type="xs:boolean" />
+      <xs:element minOccurs="0" name="BaseUri" nillable="true" type="xs:anyURI" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ServiceDescription" nillable="true" type="tns:ServiceDescription" />
+  <xs:complexType name="ServiceLocatorFault">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorCode" type="xs:int" />
+      <xs:element minOccurs="0" name="ExtendedMessage" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ServiceLocatorFault" nillable="true" type="tns:ServiceLocatorFault" />
+  <xs:complexType name="ArrayOfServiceDescription">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ServiceDescription" nillable="true" type="tns:ServiceDescription" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfServiceDescription" nillable="true" type="tns:ArrayOfServiceDescription" />
+  <xs:complexType name="ServiceMatchCriteria">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Endpoint" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Grouped" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Product" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RESTEndpoint" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ServiceName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ServiceVersion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CustomProperties" nillable="true" xmlns:q4="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q4:ArrayOfKeyValueOfstringstring" />
+      <xs:element minOccurs="0" name="SIPLACEProDBId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SIPLACEProOID" type="xs:int" />
+      <xs:element minOccurs="0" name="SIPLACEProObjectType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SIPLACEProPath" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DoNotReturnDefaultServices" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ConfigurationToStartWithSearching" type="xs:int" />
+      <xs:element minOccurs="0" name="CheckGrouped" type="xs:boolean" />
+      <xs:element minOccurs="0" name="SearchForEndpointSubstring" type="xs:boolean" />
+      <xs:element minOccurs="0" name="SearchForRESTEndpointSubstring" type="xs:boolean" />
+      <xs:element minOccurs="0" name="SIPLACEProOID_Long" type="xs:long" />
+      <xs:element minOccurs="0" name="HealthCheckEndpoint" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SearchForHealthCheckEndpointSubstring" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ServiceMatchCriteria" nillable="true" type="tns:ServiceMatchCriteria" />
+</xs:schema>

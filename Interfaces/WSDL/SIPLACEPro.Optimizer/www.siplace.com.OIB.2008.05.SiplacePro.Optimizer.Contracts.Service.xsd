@@ -1,0 +1,925 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service" elementFormDefault="qualified" targetNamespace="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" />
+  <xs:element name="ClusterOptimizationComplete2">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="nSuccess" type="xs:int" />
+        <xs:element minOccurs="0" name="strClientInstanceId" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ClusterProgress2">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="dRunTime" type="xs:double" />
+        <xs:element minOccurs="0" name="lPercent" type="xs:int" />
+        <xs:element minOccurs="0" name="strClientInstanceId" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ClusterState2">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="stateCode" xmlns:q1="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" type="q1:ClusterOptState" />
+        <xs:element minOccurs="0" name="stringparam" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="strClientInstanceId" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ClusterState2Response">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ResultErrorClusterCount2">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="dRunTime" type="xs:double" />
+        <xs:element minOccurs="0" name="lErrorCount" type="xs:int" />
+        <xs:element minOccurs="0" name="lWarningCount" type="xs:int" />
+        <xs:element minOccurs="0" name="lInfoCount" type="xs:int" />
+        <xs:element minOccurs="0" name="bWriteOK" type="xs:boolean" />
+        <xs:element minOccurs="0" name="strClientInstanceId" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ResultSolutionCharacteristics2">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="xmlCharacteristics" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="strClientInstanceId" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SessionTerminated2">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="strClientInstanceId" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="OptimizationComplete2">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="bComplete" type="xs:boolean" />
+        <xs:element minOccurs="0" name="strClientInstanceId" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="OptimizationProgress2">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="optProgressType" xmlns:q2="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" type="q2:OptProgressType" />
+        <xs:element minOccurs="0" name="dRunTime" type="xs:double" />
+        <xs:element minOccurs="0" name="nPercent" type="xs:int" />
+        <xs:element minOccurs="0" name="dProductionTime" type="xs:double" />
+        <xs:element minOccurs="0" name="dAverageUtilization" type="xs:double" />
+        <xs:element minOccurs="0" name="lPlacementRate" type="xs:int" />
+        <xs:element minOccurs="0" name="strClientInstanceId" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="OptimizationResult2">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="dRunTime" type="xs:double" />
+        <xs:element minOccurs="0" name="dProductionTime" type="xs:double" />
+        <xs:element minOccurs="0" name="dAverageUtilization" type="xs:double" />
+        <xs:element minOccurs="0" name="lPlacementRate" type="xs:int" />
+        <xs:element minOccurs="0" name="nErrorCount" type="xs:int" />
+        <xs:element minOccurs="0" name="nWarningCount" type="xs:int" />
+        <xs:element minOccurs="0" name="nInfoCount" type="xs:int" />
+        <xs:element minOccurs="0" name="strResultComment" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="bOptimizationSuccessful" type="xs:boolean" />
+        <xs:element minOccurs="0" name="strClientInstanceId" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="OptimizationResult2Response">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="OptimizationState2">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="eStateCode" xmlns:q3="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" type="q3:OptKernelState" />
+        <xs:element minOccurs="0" name="strStateComment" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="bIsStopPossible" type="xs:boolean" />
+        <xs:element minOccurs="0" name="strClientInstanceId" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ClusterOptimizationComplete3">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="args" nillable="true" xmlns:q4="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" type="q4:ClusterOptCompleteArgs" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ClusterProgress3">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="args" nillable="true" xmlns:q5="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" type="q5:ClusterOptProgressArgs" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ClusterState3">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="args" nillable="true" xmlns:q6="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" type="q6:ClusterOptStateArgs" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ClusterState3Response">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ResultErrorClusterCount3">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="args" nillable="true" xmlns:q7="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" type="q7:ClusterOptResultErrorCountArgs" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ResultSolutionCharacteristics3">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="args" nillable="true" xmlns:q8="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" type="q8:ClusterOptResultArgs" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SessionTerminated3">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="args" nillable="true" xmlns:q9="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" type="q9:ClusterOptSessionTerminatedArgs" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="OptimizationComplete3">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="args" nillable="true" xmlns:q10="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" type="q10:OptCompleteArgs" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="OptimizationProgress3">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="args" nillable="true" xmlns:q11="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" type="q11:OptProgressArgs" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="OptimizationResult3">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="args" nillable="true" xmlns:q12="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" type="q12:OptResultArgs" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="OptimizationResult3Response">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="OptimizationState3">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="args" nillable="true" xmlns:q13="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" type="q13:OptStateArgs" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="get_CurrentUser">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="get_CurrentUserResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="get_CurrentUserResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="get_MaxOIDInfo">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="get_MaxOIDInfoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="get_MaxOIDInfoResult" nillable="true" xmlns:q14="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" type="q14:OIDInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetConfiguration">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="fullpath" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="type" xmlns:q15="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" type="q15:ObjectType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetConfigurationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetConfigurationResult" nillable="true" xmlns:q16="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" type="q16:OptimizationParameters" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetConfiguration2">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="nOID" type="xs:int" />
+        <xs:element minOccurs="0" name="type" xmlns:q17="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" type="q17:ObjectType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetConfiguration2Response">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetConfiguration2Result" nillable="true" xmlns:q18="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" type="q18:OptimizationParameters" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetConfiguration2_Long">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="nOID" type="xs:long" />
+        <xs:element minOccurs="0" name="type" xmlns:q19="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" type="q19:ObjectType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetConfiguration2_LongResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetConfiguration2_LongResult" nillable="true" xmlns:q20="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" type="q20:OptimizationParameters" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LogonUser">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="bstrUserID" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="bstrPassword" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="bJustCheckPassword" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LogonUserResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="LogonUserResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveConfiguration">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="parameters" nillable="true" xmlns:q21="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" type="q21:OptimizationParameters" />
+        <xs:element minOccurs="0" name="fullpath" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="type" xmlns:q22="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" type="q22:ObjectType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveConfigurationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SaveConfigurationResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveConfiguration2">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="parameters" nillable="true" xmlns:q23="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" type="q23:OptimizationParameters" />
+        <xs:element minOccurs="0" name="nOID" type="xs:int" />
+        <xs:element minOccurs="0" name="type" xmlns:q24="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" type="q24:ObjectType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveConfiguration2Response">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SaveConfiguration2Result" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveConfiguration2_Long">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="parameters" nillable="true" xmlns:q25="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" type="q25:OptimizationParameters" />
+        <xs:element minOccurs="0" name="nOID" type="xs:long" />
+        <xs:element minOccurs="0" name="type" xmlns:q26="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" type="q26:ObjectType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveConfiguration2_LongResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SaveConfiguration2_LongResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAdapterTimeZone">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAdapterTimeZoneResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetAdapterTimeZoneResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetServiceState">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetServiceStateResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetServiceStateResult" nillable="true" xmlns:q27="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" type="q27:OptimizerServiceState" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDatabaseIdForClusterOptimizer">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDatabaseIdForClusterOptimizerResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetDatabaseIdForClusterOptimizerResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetProductVersionForClusterOptimizer">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetProductVersionForClusterOptimizerResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetProductVersionForClusterOptimizerResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StartClustering">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="fullpath" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="strEndpointAddress" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="strBinding" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StartClusteringResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StartClustering2">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="nOID" type="xs:int" />
+        <xs:element minOccurs="0" name="strEndpointAddress" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="strBinding" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StartClustering2Response">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StartClustering2WithClientId">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="nOID" type="xs:int" />
+        <xs:element minOccurs="0" name="strEndpointAddress" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="strBinding" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="strClientInstanceId" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StartClustering2WithClientIdResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StartClustering2WithClientId_Long">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="nOID" type="xs:long" />
+        <xs:element minOccurs="0" name="strEndpointAddress" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="strBinding" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="strClientInstanceId" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StartClustering2WithClientId_LongResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StartClustering2WithClientId2">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="nOID" type="xs:int" />
+        <xs:element minOccurs="0" name="strEndpointAddress" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="strBinding" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="strClientInstanceId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="bOnlyUseNewCallbacks" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StartClustering2WithClientId2Response">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StartClustering2WithClientId2_Long">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="nOID" type="xs:long" />
+        <xs:element minOccurs="0" name="strEndpointAddress" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="strBinding" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="strClientInstanceId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="bOnlyUseNewCallbacks" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StartClustering2WithClientId2_LongResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StartClusteringWithClientId">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="fullpath" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="strEndpointAddress" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="strBinding" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="strClientInstanceId" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StartClusteringWithClientIdResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StartClusteringWithClientId2">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="fullpath" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="strEndpointAddress" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="strBinding" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="strClientInstanceId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="bOnlyUseNewCallbacks" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StartClusteringWithClientId2Response">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ClusterOptimizationComplete">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="nSuccess" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ClusterProgress">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="dRunTime" type="xs:double" />
+        <xs:element minOccurs="0" name="lPercent" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ClusterState">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="stateCode" xmlns:q28="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" type="q28:ClusterOptState" />
+        <xs:element minOccurs="0" name="stringparam" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ResultErrorClusterCount">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="dRunTime" type="xs:double" />
+        <xs:element minOccurs="0" name="lErrorCount" type="xs:int" />
+        <xs:element minOccurs="0" name="lWarningCount" type="xs:int" />
+        <xs:element minOccurs="0" name="lInfoCount" type="xs:int" />
+        <xs:element minOccurs="0" name="bWriteOK" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ResultSolutionCharacteristics">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="xmlCharacteristics" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SessionTerminated">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDatabaseIdForOptimizer">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDatabaseIdForOptimizerResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetDatabaseIdForOptimizerResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetProductVersionForOptimizer">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetProductVersionForOptimizerResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetProductVersionForOptimizerResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Cancel">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CancelResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckIntegrity">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="recipeName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="integrityCheckMode" xmlns:q29="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" type="q29:IntegrityCheckMode" />
+        <xs:element minOccurs="0" name="repartMode" xmlns:q30="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" type="q30:ICPlacePosReparMode" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckIntegrityResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CheckIntegrityResult" xmlns:q31="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" type="q31:IntegrityCheckResult" />
+        <xs:element minOccurs="0" name="OpimizerMessages" nillable="true" xmlns:q32="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" type="q32:ArrayOfOptimizerMessage" />
+        <xs:element minOccurs="0" name="nErrorCount" type="xs:int" />
+        <xs:element minOccurs="0" name="nWarningCount" type="xs:int" />
+        <xs:element minOccurs="0" name="nInfoCount" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckIntegrity2">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="recipeOID" type="xs:int" />
+        <xs:element minOccurs="0" name="integrityCheckMode" xmlns:q33="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" type="q33:IntegrityCheckMode" />
+        <xs:element minOccurs="0" name="repartMode" xmlns:q34="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" type="q34:ICPlacePosReparMode" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckIntegrity2Response">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CheckIntegrity2Result" xmlns:q35="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" type="q35:IntegrityCheckResult" />
+        <xs:element minOccurs="0" name="OpimizerMessages" nillable="true" xmlns:q36="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" type="q36:ArrayOfOptimizerMessage" />
+        <xs:element minOccurs="0" name="nErrorCount" type="xs:int" />
+        <xs:element minOccurs="0" name="nWarningCount" type="xs:int" />
+        <xs:element minOccurs="0" name="nInfoCount" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckIntegrity2_Long">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="recipeOID" type="xs:long" />
+        <xs:element minOccurs="0" name="integrityCheckMode" xmlns:q37="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" type="q37:IntegrityCheckMode" />
+        <xs:element minOccurs="0" name="repartMode" xmlns:q38="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" type="q38:ICPlacePosReparMode" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckIntegrity2_LongResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CheckIntegrity2_LongResult" xmlns:q39="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" type="q39:IntegrityCheckResult" />
+        <xs:element minOccurs="0" name="OpimizerMessages" nillable="true" xmlns:q40="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" type="q40:ArrayOfOptimizerMessage" />
+        <xs:element minOccurs="0" name="nErrorCount" type="xs:int" />
+        <xs:element minOccurs="0" name="nWarningCount" type="xs:int" />
+        <xs:element minOccurs="0" name="nInfoCount" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOptimizerMessages">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ObjectName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="objectType" xmlns:q41="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" type="q41:ObjectType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOptimizerMessagesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetOptimizerMessagesResult" nillable="true" xmlns:q42="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" type="q42:ArrayOfOptimizerMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOptimizerMessages2">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="nOID" type="xs:int" />
+        <xs:element minOccurs="0" name="objectType" xmlns:q43="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" type="q43:ObjectType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOptimizerMessages2Response">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetOptimizerMessages2Result" nillable="true" xmlns:q44="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" type="q44:ArrayOfOptimizerMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOptimizerMessages2_Long">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="nOID" type="xs:long" />
+        <xs:element minOccurs="0" name="objectType" xmlns:q45="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" type="q45:ObjectType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOptimizerMessages2_LongResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetOptimizerMessages2_LongResult" nillable="true" xmlns:q46="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" type="q46:ArrayOfOptimizerMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOptimizerResultsForRecipe">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ObjectName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOptimizerResultsForRecipeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetOptimizerResultsForRecipeResult" nillable="true" xmlns:q47="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" type="q47:RecipeDataRecipe" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOptimizerResultsForRecipe2">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="nOID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOptimizerResultsForRecipe2Response">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetOptimizerResultsForRecipe2Result" nillable="true" xmlns:q48="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" type="q48:RecipeDataRecipe" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOptimizerResultsForRecipe2_Long">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="nOID" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOptimizerResultsForRecipe2_LongResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetOptimizerResultsForRecipe2_LongResult" nillable="true" xmlns:q49="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" type="q49:RecipeDataRecipe" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="HasAdapterLicense">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="HasAdapterLicenseResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="HasAdapterLicenseResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadSpotx">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="request" nillable="true" xmlns:q50="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" type="q50:LoadSpotxRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadSpotxResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="LoadSpotxResult" nillable="true" xmlns:q51="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" type="q51:LoadSpotxResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveSpotx">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="request" nillable="true" xmlns:q52="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" type="q52:SaveSpotxRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveSpotxResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SaveSpotxResult" nillable="true" xmlns:q53="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" type="q53:SaveSpotxResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Start">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="fullpath" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="strEndpointAddress" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="strBinding" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StartResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Start2">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="nOID" type="xs:int" />
+        <xs:element minOccurs="0" name="strEndpointAddress" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="strBinding" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Start2Response">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Start2WithClientId">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="nOID" type="xs:int" />
+        <xs:element minOccurs="0" name="strEndpointAddress" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="strBinding" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="strClientInstanceId" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Start2WithClientIdResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StartExt">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="fullpath" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="runtimeParam" xmlns:q54="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" type="q54:OptimizerRuntimeParameter" />
+        <xs:element minOccurs="0" name="strEndpointAddress" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="strBinding" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="strClientInstanceId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="bOnlyUseNewCallbacks" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StartExtResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StartExt2">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="nOID" type="xs:int" />
+        <xs:element minOccurs="0" name="runtimeParam" xmlns:q55="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" type="q55:OptimizerRuntimeParameter" />
+        <xs:element minOccurs="0" name="strEndpointAddress" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="strBinding" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="strClientInstanceId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="bOnlyUseNewCallbacks" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StartExt2Response">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StartExt2_Long">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="nOID" type="xs:long" />
+        <xs:element minOccurs="0" name="runtimeParam" xmlns:q56="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" type="q56:OptimizerRuntimeParameter" />
+        <xs:element minOccurs="0" name="strEndpointAddress" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="strBinding" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="strClientInstanceId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="bOnlyUseNewCallbacks" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StartExt2_LongResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StartWithClientId">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="fullpath" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="strEndpointAddress" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="strBinding" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="strClientInstanceId" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StartWithClientIdResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Stop">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StopResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="OptimizationComplete">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="bComplete" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="OptimizationProgress">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="optProgressType" xmlns:q57="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" type="q57:OptProgressType" />
+        <xs:element minOccurs="0" name="dRunTime" type="xs:double" />
+        <xs:element minOccurs="0" name="nPercent" type="xs:int" />
+        <xs:element minOccurs="0" name="dProductionTime" type="xs:double" />
+        <xs:element minOccurs="0" name="dAverageUtilization" type="xs:double" />
+        <xs:element minOccurs="0" name="lPlacementRate" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="OptimizationResult">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="dRunTime" type="xs:double" />
+        <xs:element minOccurs="0" name="dProductionTime" type="xs:double" />
+        <xs:element minOccurs="0" name="dAverageUtilization" type="xs:double" />
+        <xs:element minOccurs="0" name="lPlacementRate" type="xs:int" />
+        <xs:element minOccurs="0" name="nErrorCount" type="xs:int" />
+        <xs:element minOccurs="0" name="nWarningCount" type="xs:int" />
+        <xs:element minOccurs="0" name="nInfoCount" type="xs:int" />
+        <xs:element minOccurs="0" name="strResultComment" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="bOptimizationSuccessful" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="OptimizationState">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="eStateCode" xmlns:q58="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" type="q58:OptKernelState" />
+        <xs:element minOccurs="0" name="strStateComment" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="bIsStopPossible" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

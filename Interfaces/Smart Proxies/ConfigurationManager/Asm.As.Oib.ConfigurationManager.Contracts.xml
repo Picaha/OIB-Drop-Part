@@ -1,0 +1,3033 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ASM.AS.OIB.ConfigurationManager.Contracts</name>
+    </assembly>
+    <members>
+        <member name="T:Asm.As.Oib.ConfigurationManager.Contracts.Constants">
+            <summary>
+            Constants name space definitions for this service.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Constants.NamespaceUriData">
+            <summary>
+            URI name space for this data contracts in this service
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Constants.NamespaceUriService">
+            <summary>
+            URI name space for this service contracts of this service.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Constants.NamespaceUriMessage">
+            <summary>
+            URI name space for this message contracts of this service.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Constants.ObjectCreatedTopic">
+            <summary>
+            The topic for the object created event of the ConfigurationManager.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Constants.ObjectDeletedTopic">
+            <summary>
+            The topic for the object deleted event of the ConfigurationManager.
+            </summary>
+        </member>
+        <member name="T:Asm.As.Oib.ConfigurationManager.Contracts.Data.Area">
+            <summary>
+            A physical, geographical or logical grouping determined by the site. 
+            It may contain work cells, production lines and storage zones.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.Area.#ctor">
+            <summary>
+            Constructor of the Area object.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.ConfigurationManager.Contracts.Data.Area.ProductionLines">
+            <summary>
+            List of lines related to that area.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.ConfigurationManager.Contracts.Data.Area.WorkCells">
+            <summary>
+            List of WorkCells related to that area.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.ConfigurationManager.Contracts.Data.Area.StorageZones">
+            <summary>
+            List of StorageZones related to that area.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.Area.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.ConfigurationManager.Contracts.Data.ConfigurationManager">
+            <summary>
+            This is the configuration manager object, which is passed to the client for 
+            client side operations on the configuration manager.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.ConfigurationManager._externalReferencesManager">
+             <summary>
+            Object holding external references to Isa95 objects.
+             </summary>
+        </member>
+        <member name="P:Asm.As.Oib.ConfigurationManager.Contracts.Data.ConfigurationManager.Enterprise">
+            <summary>
+            This is the enterprise described by this configuration.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.ConfigurationManager.Contracts.Data.ConfigurationManager.ExternalReferencesManager">
+            <summary>
+            This is the enterprise described by this configuration.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.ConfigurationManager.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.ConfigurationManager.Contracts.Data.ExternalReferences">
+            <summary>
+            Class containing a list of referenced Isa95 objects
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.ExternalReferences.m_ReferencedObjects">
+            <summary>
+            List of referenced Isa95 objects.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.ConfigurationManager.Contracts.Data.ExternalReferences.ReferencedObjects">
+            <summary>
+            list of referenced Isa95 objects.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.ExternalReferences.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.ConfigurationManager.Contracts.Data.GetCMServiceDetailsResponse">
+            <summary>
+            GetCMServiceDetailsResponse
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.GetCMServiceDetailsResponse.DatabaseInstance">
+            <summary>
+            The database instance
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.GetCMServiceDetailsResponse.DatabaseName">
+            <summary>
+            The database name
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.ConfigurationManager.Contracts.Data.GetCMServiceDetailsResponse.OIBVersion">
+            <summary>
+            OIB Build Number
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.GetCMServiceDetailsResponse.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.ConfigurationManager.Contracts.Data.GetCMServiceDetailsRequest">
+            <summary>
+            GetCMServiceDetailsRequest
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.GetCMServiceDetailsRequest.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.NotificationUserPacket">
+            <summary>
+            Class used in Transaction Notifications.
+            Contains information about all operations in one transaction.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.NotificationUserPacket.ClientEndpoint">
+            <summary>
+            Client Endpoint (of the initiating client)
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.NotificationUserPacket.ClientId">
+            <summary>
+            Client Id (guid)
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.NotificationUserPacket.ListUpdates">
+            <summary>
+            List of all the Updates in order of execution
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.NotificationUserPacket.TransactionId">
+            <summary>
+            Transaction Id
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.NotificationUserPacket.ServiceLocatorUpdates">
+            <summary>
+            List of all the Service Locator Updates in order of execution
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.NotificationUserPacket.UserAccountName">
+            <summary>
+            User Account Name if provided.
+            This is from OIB User Manager and contains the name of the account that made the changes of this update.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.NotificationUserPacket.ContextId">
+            <summary>
+            Internal
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.NotificationUserPacket.ClientInfo">
+            <summary>
+            Internal
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.NotificationUserPacket.OperationName">
+            <summary>
+            Internal
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.NotificationUserPacket.#ctor(System.Collections.Generic.List{Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.UpdatePackage})">
+            <summary>
+            Constructor
+            </summary>
+            <param name="list">List of all Update Package objects</param>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.NotificationUserPacket.#ctor(System.Collections.Generic.List{Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.UpdatePackage},System.Boolean)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="list">List of all Update Package objects</param>
+            <param name="isConfigurationManager">if set to <c>true</c> [is configuration manager].</param>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.NotificationUserPacket.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.NotificationUserPacketDto">
+            <summary>
+            The DTO for the serialized NotificationUserPacket
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.NotificationUserPacketDto.SerializedNotificationUserPacket">
+            <summary>
+            Serialized NotificationUserPacket.
+            Build for compatibility, we use the DataContractSerializer to serialize the NotificationUserPacket and send it as a string.
+            </summary>
+        </member>
+        <member name="T:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.NotificationUserPacketSerializer">
+            <summary>
+            The serializer for the NotificationUserPacket
+            uses DataContractSerializer
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.NotificationUserPacketSerializer.Serialize(Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.NotificationUserPacket)">
+            <summary>
+            Serializes the specified packet.
+            </summary>
+            <param name="packet">The packet.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.NotificationUserPacketSerializer.Deserialize(System.String)">
+            <summary>
+            Deserializes the specified serialized packet.
+            </summary>
+            <param name="serializedPacket">The serialized packet.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.UpdateType">
+            <summary>
+            UpdateType enumeration. Used when Proxy processes updates.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.UpdateType.None">
+            <summary>
+            None, should not be used
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.UpdateType.UpdateObject">
+            <summary>
+            UpdateObject
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.UpdateType.AddList">
+            <summary>
+            AddList
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.UpdateType.DeleteList">
+            <summary>
+            DeleteList
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.UpdateType.SwapList">
+            <summary>
+            SwapList
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.UpdateType.ClearList">
+            <summary>
+            ClearList
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.UpdateType.MoveList">
+            <summary>
+            MoveList
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.UpdateType.AddDictionary">
+            <summary>
+            AddDictionary
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.UpdateType.DeleteDictionary">
+            <summary>
+            DeleteDictionary
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.UpdateType.ClearDictionary">
+            <summary>
+            ClearDictionary
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.UpdateType.AddSet">
+            <summary>
+            AddSet
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.UpdateType.DeleteSet">
+            <summary>
+            DeleteSet
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.UpdateType.ClearSet">
+            <summary>
+            ClearSet
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.UpdateType.RearrangeList">
+            <summary>
+            RearrangeList
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.UpdateType.Reserved_1">
+            <summary>
+            Create Service Description object
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.UpdateType.Reserved_2">
+            <summary>
+            Delete Service Description object
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.UpdateType.Reserved_3">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.UpdateType.Reserved_4">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.UpdateType.Reserved_5">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.UpdateType.Reserved_6">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.UpdateType.Reserved_7">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.UpdateType.Reserved_8">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.UpdateType.Reserved_9">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.UpdateType.Reserved_10">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="T:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.PropertyIds">
+            <summary>
+            Property Id enum
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.PropertyIds.None">
+            <summary>
+            None, should not be used
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.PropertyIds.Isa95Base_Name">
+            <summary>
+            Isa95Base_Name
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.PropertyIds.Isa95Base_Comment">
+            <summary>
+            Isa95Base_Comment
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.PropertyIds.Isa95Base_ExtensionData">
+            <summary>
+            Isa95Base_ExtensionData
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.PropertyIds.Isa95Base_ExtensionSchema">
+            <summary>
+            Isa95Base_ExtensionSchema
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.PropertyIds.ServiceDescription_ServiceName">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.PropertyIds.ServiceDescription_ServiceVersion">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.PropertyIds.ServiceDescription_Product">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.PropertyIds.ServiceDescription_Description">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.PropertyIds.ServiceDescription_Grouped">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.PropertyIds.ServiceDescription_EquipmentConnectorEndpoint">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.PropertyIds.ServiceDescription_FactoryElementId">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.PropertyIds.ServiceDescription_OIBInternalService">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.PropertyIds.ServiceDescription_GlobalService">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.PropertyIds.ServiceDescription_HealthCheckEndpoint">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.PropertyIds.ServiceDescription_OrderIndex">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.PropertyIds.ServiceDescription_DeactivateHealthCheck">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.PropertyIds.ServiceDescription_BaseUri">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="T:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.AssociationIds">
+            <summary>
+            Association Id enum
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.AssociationIds.None">
+            <summary>
+            None, should not be used
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.AssociationIds.Isa95Base_Predecessors">
+            <summary>
+            Not functional: Isa95Base_Predecessors
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.AssociationIds.Isa95Base_Successors">
+            <summary>
+            Not functional: Isa95Base_Successors
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.AssociationIds.Isa95Base_CustomAttributes">
+            <summary>
+            Isa95Base_CustomAttributes
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.AssociationIds.Enterise_Sites">
+            <summary>
+            Enterise_Sites
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.AssociationIds.Site_Areas">
+            <summary>
+            RSite_Areas
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.AssociationIds.Site_ProductionLines">
+            <summary>
+            Site_ProductionLines
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.AssociationIds.Site_WorkCells">
+            <summary>
+            Site_WorkCells
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.AssociationIds.Area_ProductionLines">
+            <summary>
+            Area_ProductionLines
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.AssociationIds.Area_WorkCells">
+            <summary>
+            Area_WorkCells
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.AssociationIds.Area_StorageZones">
+            <summary>
+            Area_StorageZones
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.AssociationIds.ProductionLine_WorkCells">
+            <summary>
+            ProductionLine_WorkCells
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.AssociationIds.WorkCell_SubWorkCells">
+            <summary>
+            WorkCell_SubWorkCells
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.AssociationIds.StorageZone_StorageUnits">
+            <summary>
+            StorageZone_StorageUnits
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.AssociationIds.ExternalReferencesManager_ReferencesOfClient">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.AssociationIds.ExternalReferences_ReferencedObjects">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.AssociationIds.Reserved_1">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.AssociationIds.Reserved_2">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.AssociationIds.Reserved_3">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.AssociationIds.Reserved_4">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.AssociationIds.Reserved_5">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.AssociationIds.Reserved_6">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.AssociationIds.Reserved_7">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.AssociationIds.Reserved_8">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.AssociationIds.Reserved_9">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.AssociationIds.Reserved_10">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.AssociationIds.Reserved_11">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.AssociationIds.Reserved_12">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.AssociationIds.Reserved_13">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.AssociationIds.Reserved_14">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.AssociationIds.Reserved_15">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.AssociationIds.Reserved_16">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.AssociationIds.Reserved_17">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.AssociationIds.Reserved_18">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.AssociationIds.Reserved_19">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.AssociationIds.Reserved_20">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="T:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.VarType">
+            <summary>
+            Variant Type enum
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.VarType.None">
+            <summary>
+            None, should never be used
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.VarType.Int">
+            <summary>
+            Integer
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.VarType.Double">
+            <summary>
+            Double
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.VarType.DateTime">
+            <summary>
+            DateTime
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.VarType.String">
+            <summary>
+            String
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.VarType.Bool">
+            <summary>
+            Bool
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.VarType.ReferenceType">
+            <summary>
+            Reference Type
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.VarType.Reserved_1">
+            <summary>
+            Used for a list of PersistBase objects that have been deleted
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.VarType.Reserved_2">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.VarType.Reserved_3">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.VarType.Reserved_4">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.VarType.Reserved_5">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.VarType.Reserved_6">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.VarType.Reserved_7">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.VarType.Reserved_8">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.VarType.Reserved_9">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.VarType.Reserved_10">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="T:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.PropertyUpdate">
+            <summary>
+            Class holding details about property updates
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.PropertyUpdate.m_newVal">
+            <summary>
+            New Value
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.PropertyUpdate.m_oldVal">
+            <summary>
+            Old Value
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.PropertyUpdate.m_PropertyId">
+            <summary>
+            Property Id
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.PropertyUpdate.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.AssociationUpdate">
+            <summary>
+            Class holding details for collection updates
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.AssociationUpdate.m_AssociationId">
+            <summary>
+            Association Id
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.AssociationUpdate.m_dictIndexes">
+            <summary>
+            Dictionary of moved indexes (used when a batch of indexes change)
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.AssociationUpdate.m_Key">
+            <summary>
+            Key object (used when collection is a dictionary)
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.AssociationUpdate.m_nIndex">
+            <summary>
+            First Index (used when swapping or moving items)
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.AssociationUpdate.m_nIndex2">
+            <summary>
+            Second Index (used when swapping or moving items)
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.AssociationUpdate.m_Value">
+            <summary>
+            Value object
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.AssociationUpdate.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.CMVariant">
+            <summary>
+            Class acting as a container for reference and value type objects
+            This should avoid boxing and unboxing.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.CMVariant.BoolValue">
+            <summary>
+            Boolean Value
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.CMVariant.DateTimeValue">
+            <summary>
+            DateTime Value
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.CMVariant.DoubleValue">
+            <summary>
+            Double Value
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.CMVariant.IntValue">
+            <summary>
+            Integer Value
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.CMVariant.ReferenceTypeValue">
+            <summary>
+            Reference Type Value (any kind of .Net reference Type object)
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.CMVariant.StringValue">
+            <summary>
+            String Value
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.CMVariant.Type">
+            <summary>
+            Variant Type
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.CMVariant.DeletedObjects">
+            <summary>
+            Deleted Objects (only to be used internally CM -> SL), this is why there is no DataMember on this
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.CMVariant.op_Equality(Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.CMVariant,Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.CMVariant)">
+            <summary>
+            Equality operator
+            </summary>
+            <param name="left">Left operand</param>
+            <param name="right">Right operand</param>
+            <returns>True, if equal</returns>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.CMVariant.op_Inequality(Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.CMVariant,Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.CMVariant)">
+            <summary>
+            Unequal operator
+            </summary>
+            <param name="left">Left operand</param>
+            <param name="right">Right operand</param>
+            <returns>True, if not equal</returns>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.CMVariant.#ctor(System.Int32)">
+            <summary>
+            Constructor which assigns an Integer Value
+            </summary>
+            <param name="value">Integer Value</param>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.CMVariant.#ctor(System.Double)">
+            <summary>
+            Constructor which assigns a double Value
+            </summary>
+            <param name="value">double Value</param>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.CMVariant.#ctor(System.DateTime)">
+            <summary>
+            Constructor which assigns a DateTime Value
+            </summary>
+            <param name="value">DateTime Value</param>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.CMVariant.#ctor(System.String)">
+            <summary>
+            Constructor which assigns a string Value
+            </summary>
+            <param name="value">string Value</param>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.CMVariant.#ctor(System.Boolean)">
+            <summary>
+            Constructor which assigns an boolean Value
+            </summary>
+            <param name="value">boolean Value</param>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.CMVariant.#ctor(Asm.As.Oib.ConfigurationManager.Contracts.Data.PersistBase)">
+            <summary>
+            Constructor which assigns an PersistBase object (as reference type value)
+            </summary>
+            <param name="value">PersistBase object</param>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.CMVariant.#ctor(System.Collections.Generic.List{Asm.As.Oib.ConfigurationManager.Contracts.Data.PersistBase})">
+            <summary>
+            Constructor which assigns an PersistBase object (as reference type value)
+            </summary>
+            <param name="deletedObjects">PersistBase object</param>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.CMVariant.#ctor(System.Object)">
+            <summary>
+            Constructor which determines the type automatically and assigns the value
+            </summary>
+            <param name="value">object to assign</param>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.CMVariant.Set(System.Int32)">
+            <summary>
+            Set this instance to an integer value
+            </summary>
+            <param name="value">integer value</param>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.CMVariant.Set(System.Double)">
+            <summary>
+            Set this instance to a double value
+            </summary>
+            <param name="value">double value</param>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.CMVariant.Set(System.DateTime)">
+            <summary>
+            Set this instance to a DateTime value
+            </summary>
+            <param name="value">DateTime value</param>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.CMVariant.Set(System.String)">
+            <summary>
+            Set this instance to a string value
+            </summary>
+            <param name="value">string value</param>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.CMVariant.Set(System.Boolean)">
+            <summary>
+            Set this instance to a boolean value
+            </summary>
+            <param name="value">boolean value</param>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.CMVariant.Set(System.Object)">
+            <summary>
+            Set this instance to a reference type value
+            </summary>
+            <param name="value">Reference type value</param>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.CMVariant.GetHashCode">
+            <summary>
+            Returns a hash code for this instance.
+            </summary>
+            <returns>
+            A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table. 
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.CMVariant.Equals(System.Object)">
+            <summary>
+            Determines whether the specified <see cref="T:System.Object" /> is equal to this instance.
+            </summary>
+            <param name="obj">The <see cref="T:System.Object" /> to compare with this instance.</param>
+            <returns>
+            <c>true</c> if the specified <see cref="T:System.Object" /> is equal to this instance; otherwise, <c>false</c>.
+            </returns>
+            <exception cref="T:System.NullReferenceException">
+            The <paramref name="obj" /> parameter is null.
+            </exception>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.CMVariant.Equals(Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.CMVariant)">
+            <summary>
+            Determines whether the specified CMVariant is equal to this instance.
+            </summary>
+            <param name="var">The CMVariant to compare with this instance.</param>
+            <returns>
+            <c>true</c> if the specified CMVariant is equal to this instance; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.CMVariant.ToString">
+            <summary>
+            Returns a string representation of that object
+            </summary>
+            <returns>String</returns>
+        </member>
+        <member name="T:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.UpdatePackage">
+            <summary>
+            Class holding details about one Update action
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.UpdatePackage.m_AssociationUpdate">
+            <summary>
+            Association Update object (filled if Update relates to collections)
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.UpdatePackage.m_NewVersion">
+            <summary>
+            New version number of this object
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.UpdatePackage.m_Object">
+            <summary>
+            Updated Object
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.UpdatePackage.m_OldVersion">
+            <summary>
+            Old version number of this object
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.UpdatePackage.m_ParentObject">
+            <summary>
+            Parent object
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.UpdatePackage.m_PropertyUpdate">
+            <summary>
+            Property Update object (filled if Update relates to properties)
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.UpdatePackage.m_Type">
+            <summary>
+            Type of the Update
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.UpdatePackage.VariantParentObject">
+            <summary>
+            Parent object (filled in case of SL AssociationId updates)
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.UpdatePackage.#ctor(Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.UpdateType,Asm.As.Oib.ConfigurationManager.Contracts.Data.PersistBase,Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.CMVariant,Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.AssociationIds,Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.CMVariant,Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.CMVariant,System.Int32,System.Int32)">
+            <summary>
+            Constructor used with Dictionary Updates
+            </summary>
+            <param name="type">Update Type</param>
+            <param name="parent">Parent Object</param>
+            <param name="obj">Updated Object</param>
+            <param name="aid">Association Id</param>
+            <param name="Key">Key object</param>
+            <param name="Value">Value object</param>
+            <param name="NewVersion">New Version Number</param>
+            <param name="OldVersion">Old Version Number</param>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.UpdatePackage.#ctor(Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.UpdateType,Asm.As.Oib.ConfigurationManager.Contracts.Data.PersistBase,Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.CMVariant,Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.AssociationIds,System.Collections.Generic.Dictionary{System.Int32,System.Int32},System.Int32,System.Int32)">
+            <summary>
+            Constructor used with List rearrangements (collection) Updates
+            </summary>
+            <param name="type">UpdateType</param>
+            <param name="parent">Parent Object</param>
+            <param name="obj">Updated Object</param>
+            <param name="aid">Association Id</param>
+            <param name="dictIndexes">Dictionary of moved indexes</param>
+            <param name="NewVersion">New Version Number</param>
+            <param name="OldVersion">Old Version Number</param>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.UpdatePackage.#ctor(Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.UpdateType,Asm.As.Oib.ConfigurationManager.Contracts.Data.PersistBase,Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.CMVariant,Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.AssociationIds,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Constructor used with CM Association (collection) Updates
+            </summary>
+            <param name="type">Update Type</param>
+            <param name="parent">Parent Object</param>
+            <param name="obj">Updated Object</param>
+            <param name="aid">Association Id</param>
+            <param name="nIndex1">First Index</param>
+            <param name="nIndex2">Second Index</param>
+            <param name="NewVersion">New Version Number</param>
+            <param name="OldVersion">Old Version Number</param>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.UpdatePackage.#ctor(Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.UpdateType,Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.CMVariant,Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.CMVariant,Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.AssociationIds,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Constructor used with ServiceLocator Association (collection) Updates
+            </summary>
+            <param name="type">Update Type</param>
+            <param name="parentObject">The parent object.</param>
+            <param name="obj">Updated Object</param>
+            <param name="aid">Association Id</param>
+            <param name="nIndex1">First Index</param>
+            <param name="nIndex2">Second Index</param>
+            <param name="NewVersion">New Version Number</param>
+            <param name="OldVersion">Old Version Number</param>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.UpdatePackage.#ctor(Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.UpdateType,Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.CMVariant)">
+            <summary>
+            Constructor used with Create/Delete Service Description objects
+            </summary>
+            <param name="type">Update Type</param>
+            <param name="obj">Updated Object</param>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.UpdatePackage.#ctor(Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.UpdateType,Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.CMVariant,Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.PropertyIds,Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.CMVariant,Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.CMVariant,System.Int32,System.Int32)">
+            <summary>
+            Constructor used with Property Updates
+            </summary>
+            <param name="type">Update Type</param>
+            <param name="obj">Updated Object</param>
+            <param name="pid">Property Id</param>
+            <param name="newVal">New Value</param>
+            <param name="oldVal">Old Value</param>
+            <param name="NewVersion">New Version Number</param>
+            <param name="OldVersion">Old Version Number</param>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.UpdatePackage.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.ConfigurationManager.Contracts.Data.ObjectCreatedReport">
+            <summary>
+            This report will be send, when the factory layout is changed by deleting a
+            element in the factory layout structure.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.ObjectCreatedReport.m_nID">
+            <summary>
+            Id of the elements which was deleted.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.ObjectCreatedReport.m_strName">
+            <summary>
+            Name of the element deleted.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.ObjectCreatedReport.m_strPath">
+            <summary>
+            Full path name of the element in the factory structure.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.ObjectCreatedReport.m_nObjectType">
+            <summary>
+            Object type of the element. 
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.ObjectCreatedReport.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.ConfigurationManager.Contracts.Data.Enterprise">
+            <summary>
+            The root node of the factory model describing the company at which this OIB installation is deployed.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.Enterprise.#ctor">
+            <summary>
+            Constructor of the enterprise element.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.ConfigurationManager.Contracts.Data.Enterprise.Sites">
+            <summary>
+            List of Sites in this enterprise.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.Enterprise.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.ConfigurationManager.Contracts.Data.ObjectType">
+            <summary>
+            Object type for the elements types in the configuration manager used for the factory
+            configuration.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.ObjectType.None">
+            <summary>
+            Undefined element
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.ObjectType.WorkCell">
+            <summary>
+            The element type for WorkCell
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.ObjectType.ProductionLine">
+            <summary>
+            The element type for a line
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.ObjectType.Area">
+            <summary>
+            The element type for a area
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.ObjectType.Site">
+            <summary>
+            The element type for a site
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.ObjectType.Enterprise">
+            <summary>
+            The element type for an enterprise
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.ObjectType.StorageZone">
+            <summary>
+            The element type for a Storage Zone
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.ObjectType.StorageUnit">
+            <summary>
+            The element type for a Storage Module
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.ObjectType.ExternalReferencesManager">
+            <summary>
+            The element type for the ExternalReferencesManager object
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.ObjectType.ExternalReferences">
+            <summary>
+            The element type for an ExternalReferences object
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.ObjectType.Reserved_1">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.ObjectType.Reserved_2">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.ObjectType.Reserved_3">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.ObjectType.Reserved_4">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.ObjectType.Reserved_5">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.ObjectType.Reserved_6">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.ObjectType.Reserved_7">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.ObjectType.Reserved_8">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.ObjectType.Reserved_9">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.ObjectType.Reserved_10">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="T:Asm.As.Oib.ConfigurationManager.Contracts.Data.Isa95Base">
+            <summary>
+            This object is the representation of the common set of data for all ISA 95 based elements
+            in a factory layout.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Isa95Base.m_CustomAttributes">
+            <summary>
+            Custom Attributes, a Dictionary of type string, string
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Isa95Base.m_nObjectType">
+            <summary>
+            Object Type (Area, Site, etc.)
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Isa95Base.m_Predecessors">
+            <summary>
+            List of Predecessors of this object.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Isa95Base.m_strComment">
+            <summary>
+            Comment of the Isa95 Element
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Isa95Base.m_strExtensionData">
+            <summary>
+            Extension Data clients can use to store additional data
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Isa95Base.m_strExtensionSchema">
+            <summary>
+            Extension Schema clients can use to store additional data
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Isa95Base.m_strName">
+            <summary>
+            Name of the Isa95 Element
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Isa95Base.m_strPath">
+            <summary>
+            Path of the Isa95 Element, containing all the names of objects in the object hierarchy
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Isa95Base.m_Successors">
+            <summary>
+            Not functional: List of Successors of this object.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.Isa95Base.m_WorkCells">
+            <summary>
+            Child Work Cells
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.ConfigurationManager.Contracts.Data.Isa95Base.Name">
+            <summary>
+            Name of the factory configuration element.
+            This is the short name of the element and need not be unique
+            in the overall factory, but unique inside the list of the
+            parent element.
+            Maximum length is 1000 characters.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.ConfigurationManager.Contracts.Data.Isa95Base.Comment">
+            <summary>
+            Some comment for this element.
+            Maximum length is 1000 characters.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.ConfigurationManager.Contracts.Data.Isa95Base.CustomAttributes">
+            <summary>
+            A list of custom attributes stored as a pair of name and value.
+            Maximum length of the Key is 1000 characters, max length of Value unlimited
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.ConfigurationManager.Contracts.Data.Isa95Base.ObjectType">
+            <summary>
+            Object type of this element.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.ConfigurationManager.Contracts.Data.Isa95Base.Path">
+            <summary>
+            Object full path in the factory configuration. This is
+            unique for the overall factory configuration.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.ConfigurationManager.Contracts.Data.Isa95Base.ExtensionData">
+            <summary>
+            Extension Data clients can use to store additional data
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.ConfigurationManager.Contracts.Data.Isa95Base.ExtensionSchema">
+            <summary>
+            Extension Schema clients can use to store additional data
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.ConfigurationManager.Contracts.Data.Isa95Base.Predecessors">
+            <summary>
+            Not functional: List of Predecessors of this object.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.ConfigurationManager.Contracts.Data.Isa95Base.Successors">
+            <summary>
+            Not functional: List of Successors of this object.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.Isa95Base.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.ConfigurationManager.Contracts.Data.ProductionLine">
+            <summary>
+            A Production Line may be defined as any element of the equipment hierarchy under an area. 
+            It is the ISA 95 representation for discrete production of a Line.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.ProductionLine.#ctor">
+            <summary>
+            Construcor of the line
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.ConfigurationManager.Contracts.Data.ProductionLine.WorkCells">
+            <summary>
+            The list of WorkCell for this line.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.ProductionLine.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.ConfigurationManager.Contracts.Data.ListCollection`1">
+            <summary>
+            This is a general list of factory configuration elements.
+            </summary>
+            <typeparam name="T">Type of the factory configuration element</typeparam>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.ListCollection`1.m_List">
+            <summary>
+            The m_ list
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.ListCollection`1.#ctor">
+            <summary>
+            Constructor for the list collection
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.ListCollection`1.#ctor(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Constructor for the list collection
+            </summary>
+            <param name="array">Array of factory elelements</param>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.ListCollection`1.Add(`0)">
+            <summary>
+            Add a factory element into the collection
+            </summary>
+            <param name="item">Factory element</param>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.ListCollection`1.Remove(`0)">
+            <summary>
+            Remove an factory element from the collection.
+            </summary>
+            <param name="item">Factory element</param>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.ListCollection`1.ToArray">
+            <summary>
+            Convert the list collection to an array of Factory element
+            </summary>
+            <returns>
+            array of Factory element
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.ListCollection`1.Clear">
+            <summary>
+            Clear the collection of Factory elements
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.ListCollection`1.System#Collections#Generic#IEnumerable{T}#GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through a collection.
+            </summary>
+            <returns>
+            An IEnumerator (of T) that can be used to iterate through the collection.
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.ListCollection`1.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            Get the enumerator of the list collection.
+            </summary>
+            <returns>
+            An IEnumerator that can be used to iterate through the collection.
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.ListCollection`1.IndexOf(`0)">
+            <summary>
+            Returns the zero-based index of the first occurrence of a
+            value in the ListCollection (of T) or in a portion of it.
+            </summary>
+            <param name="item">The object to locate in the List (of T). The value can be a null reference for reference types.</param>
+            <returns>
+            index of the element
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.ListCollection`1.Insert(System.Int32,`0)">
+            <summary>
+            Insert the element of type factory elelment in the collection at defined index
+            </summary>
+            <param name="index">Index where to insert</param>
+            <param name="item">factory element</param>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.ListCollection`1.RemoveAt(System.Int32)">
+            <summary>
+            Remove factory elelement at defined index in the collection.
+            </summary>
+            <param name="index">The zero-based index of the element to remove.</param>
+        </member>
+        <member name="P:Asm.As.Oib.ConfigurationManager.Contracts.Data.ListCollection`1.Item(System.Int32)">
+            <summary>
+            Index accessor
+            </summary>
+            <value>
+            The  item (of T).
+            </value>
+            <param name="index">index of elelemtn in this collection.</param>
+            <returns>
+            factory elelemtn.
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.ListCollection`1.Contains(`0)">
+            <summary>
+            Method to check of the element is part of the collection.
+            </summary>
+            <param name="item">factory element</param>
+            <returns>
+            true, if elelemnt is part of the collection
+            false, it elelemtn is not part of the collection
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.ListCollection`1.CopyTo(`0[],System.Int32)">
+            <summary>
+            Copies the entire List (of T) to a compatible one-dimensional array,
+            starting at the specified index of the target array.
+            </summary>
+            <param name="array">The one-dimensional Array that is the destination of the elements
+            copied from ListCollection (of T). The Array must have zero-based indexing.</param>
+            <param name="arrayIndex">The zero-based index in array at which copying begins.</param>
+        </member>
+        <member name="P:Asm.As.Oib.ConfigurationManager.Contracts.Data.ListCollection`1.Count">
+            <summary>
+            Count the number of elements in the collection.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.ConfigurationManager.Contracts.Data.ListCollection`1.IsReadOnly">
+            <summary>
+            Returns if the collection is read only.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.ListCollection`1.System#Collections#Generic#ICollection{T}#Remove(`0)">
+            <summary>
+            Remove the element from the collection.
+            </summary>
+            <param name="item">elelemtn</param>
+            <returns>
+            true, if successful
+            false, if not successfully.
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.ListCollection`1.CopyTo(System.Array,System.Int32)">
+            <summary>
+            Copies the entire Array to a compatible one-dimensional array,
+            starting at the specified index of the target array.
+            </summary>
+            <param name="array">The one-dimensional Array that is the destination of the elements
+            copied from ListCollection (of T). The Array must have zero-based indexing.</param>
+            <param name="index">The zero-based index in array at which copying begins.</param>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.ListCollection`1.Add(System.Object)">
+            <summary>
+            Adds the specified value.
+            </summary>
+            <param name="value">The value.</param>
+            <returns>Index at which the object was added.</returns>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.ListCollection`1.Contains(System.Object)">
+            <summary>
+            Determines whether [contains] [the specified value].
+            </summary>
+            <param name="value">The value.</param>
+            <returns>True, in case object is in collection, otherwise false.</returns>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.ListCollection`1.IndexOf(System.Object)">
+            <summary>
+            Indexes the of.
+            </summary>
+            <param name="value">The value.</param>
+            <returns>Index at which the object is in the collection. -1 in case it is not in the collection</returns>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.ListCollection`1.Insert(System.Int32,System.Object)">
+            <summary>
+            Inserts the specified index.
+            </summary>
+            <param name="index">The index.</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.ListCollection`1.Remove(System.Object)">
+            <summary>
+            Removes the specified value.
+            </summary>
+            <param name="value">The value.</param>
+        </member>
+        <member name="P:Asm.As.Oib.ConfigurationManager.Contracts.Data.ListCollection`1.IsSynchronized">
+            <summary>
+            Gets a value indicating whether access to the ICollection is synchronized (thread safe).
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.ConfigurationManager.Contracts.Data.ListCollection`1.SyncRoot">
+            <summary>
+            Gets an object that can be used to synchronize access to the ICollection.
+            </summary>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="P:Asm.As.Oib.ConfigurationManager.Contracts.Data.ListCollection`1.IsFixedSize">
+            <summary>
+            Gets a value indicating whether the <see cref="T:System.Collections.IList" /> has a fixed size.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.ConfigurationManager.Contracts.Data.ListCollection`1.System#Collections#IList#Item(System.Int32)">
+            <summary>
+            Gets or sets the <see cref="T:System.Object"/> at the specified index.
+            </summary>
+            <value>
+            The <see cref="T:System.Object"/>.
+            </value>
+            <param name="index">The index.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Asm.As.Oib.ConfigurationManager.Contracts.Data.ObjectDeletedReport">
+            <summary>
+            This report will be send, when the factory layout is changed by deleting a
+            element in the factory layout structure.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.ObjectDeletedReport.m_nID">
+            <summary>
+            Id of the elements which was deleted.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.ObjectDeletedReport.m_strName">
+            <summary>
+            Name of the element deleted.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.ObjectDeletedReport.m_strPath">
+            <summary>
+            Full path name of the element in the factory structure.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.ObjectDeletedReport.m_nObjectType">
+            <summary>
+            Object type of the element. 
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.ObjectDeletedReport.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.ConfigurationManager.Contracts.Data.PersistBase">
+            <summary>
+            This is the base class, for all element types, which can be persisted in the 
+            service database.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.PersistBase.m_Parent">
+            <summary>
+            Store the pointer to the parent persistable object.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.PersistBase.m_ParentOID">
+            <summary>
+            Store the pointer to the parent persistable object.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.PersistBase.m_nObjectTypeBase">
+            <summary>
+            Object Type (Area, Site, etc.)
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.ConfigurationManager.Contracts.Data.PersistBase.ID">
+            <summary>
+            This is the ID assigned by the persistent layer and must not be set 
+            during any creation operation on the client side of the service.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.ConfigurationManager.Contracts.Data.PersistBase.Version">
+            <summary>
+            This is the version of the persistent element. 
+            This version must not be set during any creation 
+            operation on the client side of the service.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.ConfigurationManager.Contracts.Data.PersistBase.Parent">
+            <summary>
+            Parent Object
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.ConfigurationManager.Contracts.Data.PersistBase.ParentOID">
+            <summary>
+            OID of the Parent object
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.ConfigurationManager.Contracts.Data.PersistBase.ObjectTypeBase">
+            <summary>
+            Object type of this element.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.ConfigurationManager.Contracts.Data.PersistBase.OID">
+            <summary>
+            The integer OID or -1 if not in database yet
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.PersistBase.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.ConfigurationManager.Contracts.Data.ServiceDescription">
+            <summary>
+            This is the description object for the service.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.ConfigurationManager.Contracts.Data.ServiceDescription.ServiceName">
+            <summary>
+            The name of the Service
+            </summary>
+            <value>
+            The name of the service.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.ConfigurationManager.Contracts.Data.ServiceDescription.ServiceVersion">
+            <summary>
+            The version of the service instance.
+            </summary>
+            <value>
+            The service version.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.ConfigurationManager.Contracts.Data.ServiceDescription.Product">
+            <summary>
+            The Product that the service is exposing. i.e. SIPLACEPro V4.1
+            </summary>
+            <value>
+            The product.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.ConfigurationManager.Contracts.Data.ServiceDescription.Description">
+            <summary>
+            A description of the service.
+            </summary>
+            <value>
+            The description.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.ConfigurationManager.Contracts.Data.ServiceDescription.Grouped">
+            <summary>
+            This indicates whether the service locator should aggregate the endpoints when another endpoint
+            has been registered for a service with the same name and version on a host.  If false the endpoint
+            will replace any existing endpoints that are registered.
+            </summary>
+            <value>
+            <c>true</c> if grouped; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.ConfigurationManager.Contracts.Data.ServiceDescription.MetadataEndpoints">
+            <summary>
+            A list of endpoint that are provided by the service.
+            </summary>
+            <value>
+            The metadata endpoints.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.ConfigurationManager.Contracts.Data.ServiceDescription.Configurations">
+            <summary>
+            A list of object from the Configuration Manager that this service is configured for.
+            This list is just for compatibility with older clients. Please use Configuration instead. The object model will only
+            support ONE configuration.
+            </summary>
+            <value>
+            The configurations.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.ConfigurationManager.Contracts.Data.ServiceDescription.ID">
+            <summary>
+            The unique id of this ServiceDescription object.
+            </summary>
+            <value>
+            The identifier.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.ConfigurationManager.Contracts.Data.ServiceDescription.Version">
+            <summary>
+            The version of this service description object.
+            </summary>
+            <value>
+            The version.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.ConfigurationManager.Contracts.Data.ServiceDescription.EquipmentConnectorEndpoint">
+            <summary>
+            If the service implements IEquipmentConnector, this is the endpoint address.
+            </summary>
+            <value>
+            The equipment connector endpoint.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.ConfigurationManager.Contracts.Data.ServiceDescription.Configuration">
+            <summary>
+            The Configuration Manager object that this service is configured for.
+            </summary>
+            <value>
+            The configuration.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.ConfigurationManager.Contracts.Data.ServiceDescription.FactoryElementId">
+            <summary>
+            The Id of the Configuration Manager object that this service is configured for.
+            </summary>
+            <value>
+            The factory element identifier.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.ConfigurationManager.Contracts.Data.ServiceDescription.OIBInternalService">
+            <summary>
+            Indicates if this service is an OIB internal service (such as Configuration Manager, etc.)
+            </summary>
+            <value>
+            <c>true</c> if [oib internal service]; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.ConfigurationManager.Contracts.Data.ServiceDescription.GlobalService">
+            <summary>
+            Indicates that this service is a global service i.e. it makes no sense to configure it for a Factory Element
+            </summary>
+            <value>
+            <c>true</c> if [global service]; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.ConfigurationManager.Contracts.Data.ServiceDescription.HealthCheckEndpoint">
+            <summary>
+            The MEX HealthCheck endpoint for this service
+            </summary>
+            <value>
+            The health check MEX endpoint.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.ConfigurationManager.Contracts.Data.ServiceDescription.OrderIndex">
+            <summary>
+            The order index of this service
+            </summary>
+            <value>
+            The index of the order.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.ConfigurationManager.Contracts.Data.ServiceDescription.DeactivateHealthCheck">
+            <summary>
+            Indicates if health check is disabled for this service.
+            </summary>
+            <value>
+            Indicates if health check is disabled for this service.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.ConfigurationManager.Contracts.Data.ServiceDescription.BaseUri">
+            <summary>
+            The base Uri of REST interface that is provided by the service.
+            </summary>
+            <value>
+            The base Uri of the REST interface.
+            </value>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.ServiceDescription.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.ServiceDescription.Equals(System.Object)">
+            <summary>
+            Determines whether the specified <see cref="T:System.Object" />, is equal to this instance.
+            </summary>
+            <param name="obj">The <see cref="T:System.Object" /> to compare with this instance.</param>
+            <returns>
+            <c>true</c> if the specified <see cref="T:System.Object" /> is equal to this instance; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.ServiceDescription.GetHashCode">
+            <summary>
+            Serves as a hash function for a particular type.
+            </summary>
+            <returns>
+            A hash code for the current <see cref="T:System.Object" />.
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.ServiceDescription.op_Equality(Asm.As.Oib.ConfigurationManager.Contracts.Data.ServiceDescription,Asm.As.Oib.ConfigurationManager.Contracts.Data.ServiceDescription)">
+            <summary>
+            Implements the operator ==.
+            </summary>
+            <param name="left">The left.</param>
+            <param name="right">The right.</param>
+            <returns>
+            The result of the operator.
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.ServiceDescription.op_Inequality(Asm.As.Oib.ConfigurationManager.Contracts.Data.ServiceDescription,Asm.As.Oib.ConfigurationManager.Contracts.Data.ServiceDescription)">
+            <summary>
+            Implements the operator !=.
+            </summary>
+            <param name="left">The left.</param>
+            <param name="right">The right.</param>
+            <returns>
+            The result of the operator.
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.ServiceDescription.Equals(Asm.As.Oib.ConfigurationManager.Contracts.Data.ServiceDescription)">
+            <summary>
+            Indicates whether the current object is equal to another object of the same type.
+            Compares the ServiceName, ServiceVersion, Product, Grouped and ComputerName of Mex Endpoints
+            </summary>
+            <param name="desc">An object to compare with this object.</param>
+            <returns>
+            true if the current object is equal to the other parameter; otherwise, false.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.ConfigurationManager.Contracts.Data.Site">
+            <summary>
+            A site is a physical, logical or geographical grouping determined by the enterprise. 
+            It may contain areas, production lines and work cells.
+            A geographical location and main production capability usually identifies a site.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.Site.#ctor">
+            <summary>
+            Constructor for the site object.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.ConfigurationManager.Contracts.Data.Site.WorkCells">
+            <summary>
+            List of WorkCells directly related to that site.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.ConfigurationManager.Contracts.Data.Site.ProductionLines">
+            <summary>
+            List of production lines directly related to the site.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.ConfigurationManager.Contracts.Data.Site.Areas">
+            <summary>
+            List of areas related to that site.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.Site.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.ConfigurationManager.Contracts.Data.StorageUnit">
+            <summary>
+            A StorageUnit is any element under the Storage Zone equipment hierarchy. 
+            StorageUnit is the smallest element to be scheduled in the Level 3 functions.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.StorageUnit.#ctor">
+            <summary>
+            constructor of the StorageUnit element.
+            </summary>
+        </member>
+        <member name="T:Asm.As.Oib.ConfigurationManager.Contracts.Data.StorageZone">
+            <summary>
+            A StorageZone is an element under the area equipment hierarchy.
+            It can contain one ore StorageUnits.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.StorageZone.#ctor">
+            <summary>
+            Construcor of the line
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.ConfigurationManager.Contracts.Data.StorageZone.StorageUnits">
+            <summary>
+            The list of StorageUnits for this StorageZone.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.StorageZone.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.ConfigurationManager.Contracts.Data.ExternalReferencesManager">
+            <summary>
+            Manager object for setting external references.
+            This is used to prevent deletion of objects that are used from outside of OIB.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Data.ExternalReferencesManager.m_ReferencesOfClient">
+            <summary>
+            Dictionary that clients can use to put their external references to
+            Isa95 objects in.
+            Key is a describing string of the client, Value is a list of referenced
+            Isa95 objects.
+            Example: ("LES Adapter", List(WorkCell "1", StorageUnit "2",...))
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.ConfigurationManager.Contracts.Data.ExternalReferencesManager.ReferencesOfClient">
+            <summary>
+            Dictionary that clients can use to put their external references to
+            Isa95 objects in.
+            Key is a describing string of the client, Value is ExternalReferences class
+            Example: ("LES Adapter", List(WorkCell "1", StorageUnit "2",...))
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.ExternalReferencesManager.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.ConfigurationManager.Contracts.Data.WorkCell">
+            <summary>
+            A WorkCell is any element under the line equipment hierarchy. 
+            WorkCell is the smallest element to be scheduled in the Level 3 functions.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.WorkCell.#ctor">
+            <summary>
+            constructor of the WorkCell element.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.ConfigurationManager.Contracts.Data.WorkCell.SubWorkCells">
+            <summary>
+            List of subWorkCells which are related to this WorkCell.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Data.WorkCell.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.ConfigurationManager.Contracts.Faults.ConfigurationManagerFault">
+            <summary>
+            Only fault class that will be thrown by ConfigurationManager service.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Faults.ConfigurationManagerFault.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.ConfigurationManager.Contracts.Faults.ConfigurationManagerFault" /> class.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Faults.ConfigurationManagerFault.#ctor(System.Int32,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.ConfigurationManager.Contracts.Faults.ConfigurationManagerFault" /> class.
+            </summary>
+            <param name="errorCode">The error code.</param>
+            <param name="strExtendedMessage">The STR extended message.</param>
+        </member>
+        <member name="P:Asm.As.Oib.ConfigurationManager.Contracts.Faults.ConfigurationManagerFault.ErrorCode">
+            <summary>
+            The error to be used, when an system error or business error occurred.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Asm.As.Oib.ConfigurationManager.Contracts.Faults.ConfigurationManagerFault.ExtendedMessage">
+            <summary>
+            This is a error message in a human readable form.
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Faults.ConfigurationManagerFault.ToString">
+            <inheritdoc />
+        </member>
+        <member name="T:Asm.As.Oib.ConfigurationManager.Contracts.Faults.ErrorCodes">
+            <summary>
+            The error codes fopr the Configuration Manager service
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Faults.ErrorCodes.Default">
+            <summary>
+            Unknown default error code
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ConfigurationManager.Contracts.Faults.ErrorCodes.NonUniqueName">
+            <summary>
+            Name entered to save is not unique
+            </summary>
+        </member>
+        <member name="T:Asm.As.Oib.ConfigurationManager.Contracts.Message.ObjectCreatedReportOneWayRequest">
+            <summary>
+            This defines the event which is send for notifications of creation of factory elements in the 
+            factory configuration.
+            </summary>
+        </member>
+        <member name="T:Asm.As.Oib.ConfigurationManager.Contracts.Message.ObjectDeletedReportOneWayRequest">
+            <summary>
+            This defines the event which is send for notifications of deletion of factory elements in the 
+            factory configuration.
+            </summary>
+        </member>
+        <member name="T:Asm.As.Oib.ConfigurationManager.Contracts.Message.ObjectCreatedReportRequest">
+            <summary>
+            This defines the event which is send for notifications of creation of factory elements in the
+            factory configuration.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Message.ObjectCreatedReportRequest.#ctor">
+            <summary>
+            Constructor of the ObjectDeletedReportRequest
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Message.ObjectCreatedReportRequest.#ctor(Asm.As.Oib.ConfigurationManager.Contracts.Data.ObjectCreatedReport)">
+            <summary>
+            Constructor of the ObjectDeletedReportRequest
+            </summary>
+            <param name="objectCreatedReport">The object created report.</param>
+        </member>
+        <member name="P:Asm.As.Oib.ConfigurationManager.Contracts.Message.ObjectCreatedReportRequest.ObjectCreatedReport">
+            <summary>
+            Gets or sets the resource of this event.
+            </summary>
+            <value>The resource.</value>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Message.ObjectCreatedReportRequest.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.ConfigurationManager.Contracts.Message.ObjectDeletedReportRequest">
+            <summary>
+            This defines the event which is send for notifications of deletion of factory elements in the
+            factory configuration.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Message.ObjectDeletedReportRequest.#ctor">
+            <summary>
+            Constructor of the ObjectDeletedReportRequest
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Message.ObjectDeletedReportRequest.#ctor(Asm.As.Oib.ConfigurationManager.Contracts.Data.ObjectDeletedReport)">
+            <summary>
+            Constructor of the ObjectDeletedReportRequest
+            </summary>
+            <param name="objectDeletedReport">ObjectDeletedReport describing the content</param>
+        </member>
+        <member name="P:Asm.As.Oib.ConfigurationManager.Contracts.Message.ObjectDeletedReportRequest.ObjectDeletedReport">
+            <summary>
+            Gets or sets the resource of this event.
+            </summary>
+            <value>The resource.</value>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Message.ObjectDeletedReportRequest.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.ConfigurationManager.Contracts.Service.IArea">
+            <summary>
+            Interface for accessing properties of the Area
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.IArea.ProductionLinesAdd(System.Int32,System.Int32@)">
+            <summary>
+            Creates a new ProductionLine and adds it to an Area
+            </summary>
+            <param name="nOid">The OID of the current object instance</param>
+            <param name="nVersion">Current Version of object</param>
+            <returns>ProductionLine</returns>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.IArea.ProductionLinesRemove(System.Int32,System.Int32,System.Int32@)">
+            <summary>
+            List of lines related to that area.
+            </summary>
+            <param name="nOid">The OID of the current object instance</param>
+            <param name="nIndex">This index to remove from the collection.</param>
+            <param name="nVersion">Current Version of object</param>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.IArea.ProductionLinesClear(System.Int32,System.Int32@)">
+            <summary>
+            List of lines related to that area.
+            </summary>
+            <param name="nOid">The OID of the current object instance</param>
+            <param name="nVersion">Current Version of object</param>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.IArea.ProductionLinesSwap(System.Int32,System.Int32,System.Int32,System.Int32@)">
+            <summary>
+            List of lines related to that area.
+            </summary>
+            <param name="nOid">The OID of the current object instance</param>
+            <param name="nIndex1">The index of the first object to swap</param>
+            <param name="nIndex2">The index of the first object to swap</param>
+            <param name="nVersion">Current Version of object</param>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.IArea.ProductionLinesMove(System.Int32,System.Int32,System.Int32,System.Int32@)">
+            <summary>
+            List of lines related to that area.
+            </summary>
+            <param name="nOid">The OID of the current object instance</param>
+            <param name="nIndexFrom">The current index of the object (position)</param>
+            <param name="nIndexTo">The new index (position) of the object.</param>
+            <param name="nVersion">Current Version of object</param>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.IArea.WorkCellsAdd(System.Int32,System.Int32@)">
+            <summary>
+            List of WorkCells related to that area.
+            </summary>
+            <param name="nOid">The OID of the current object instance</param>
+            <param name="nVersion">Current Version of object</param>
+            <returns>WorkCell</returns>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.IArea.WorkCellsRemove(System.Int32,System.Int32,System.Int32@)">
+            <summary>
+            List of WorkCells related to that area.
+            </summary>
+            <param name="nOid">The OID of the current object instance</param>
+            <param name="nIndex">This index to remove from the collection.</param>
+            <param name="nVersion">Current Version of object</param>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.IArea.WorkCellsClear(System.Int32,System.Int32@)">
+            <summary>
+            List of WorkCells related to that area.
+            </summary>
+            <param name="nOid">The OID of the current object instance</param>
+            <param name="nVersion">Current Version of object</param>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.IArea.WorkCellsSwap(System.Int32,System.Int32,System.Int32,System.Int32@)">
+            <summary>
+            List of WorkCells related to that area.
+            </summary>
+            <param name="nOid">The OID of the current object instance</param>
+            <param name="nIndex1">The index of the first object to swap</param>
+            <param name="nIndex2">The index of the first object to swap</param>
+            <param name="nVersion">Current Version of object</param>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.IArea.WorkCellsMove(System.Int32,System.Int32,System.Int32,System.Int32@)">
+            <summary>
+            List of WorkCells related to that area.
+            </summary>
+            <param name="nOid">The OID of the current object instance</param>
+            <param name="nIndexFrom">The current index of the object (position)</param>
+            <param name="nIndexTo">The new index (position) of the object.</param>
+            <param name="nVersion">Current Version of object</param>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.IArea.StorageZonesAdd(System.Int32,System.Int32@)">
+            <summary>
+            List of StorageZones related to that area.
+            </summary>
+            <param name="nOid">The OID of the current object instance</param>
+            <param name="nVersion">Current Version of object</param>
+            <returns>StorageZone</returns>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.IArea.StorageZonesRemove(System.Int32,System.Int32,System.Int32@)">
+            <summary>
+            List of StorageZones related to that area.
+            </summary>
+            <param name="nOid">The OID of the current object instance</param>
+            <param name="nIndex">This index to remove from the collection.</param>
+            <param name="nVersion">Current Version of object</param>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.IArea.StorageZonesClear(System.Int32,System.Int32@)">
+            <summary>
+            List of StorageZones related to that area.
+            </summary>
+            <param name="nOid">The OID of the current object instance</param>
+            <param name="nVersion">Current Version of object</param>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.IArea.StorageZonesSwap(System.Int32,System.Int32,System.Int32,System.Int32@)">
+            <summary>
+            List of StorageZones related to that area.
+            </summary>
+            <param name="nOid">The OID of the current object instance</param>
+            <param name="nIndex1">The index of the first object to swap</param>
+            <param name="nIndex2">The index of the first object to swap</param>
+            <param name="nVersion">Current Version of object</param>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.IArea.StorageZonesMove(System.Int32,System.Int32,System.Int32,System.Int32@)">
+            <summary>
+            List of StorageZones related to that area.
+            </summary>
+            <param name="nOid">The OID of the current object instance</param>
+            <param name="nIndexFrom">The current index of the object (position)</param>
+            <param name="nIndexTo">The new index (position) of the object.</param>
+            <param name="nVersion">Current Version of object</param>
+        </member>
+        <member name="T:Asm.As.Oib.ConfigurationManager.Contracts.Service.IEnterprise">
+            <summary>
+            Interface for accessing properties of the Enterprise
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.IEnterprise.SitesAdd(System.Int32,System.Int32@)">
+            <summary>
+            List of Sites in this enterprise.
+            </summary>
+            <param name="nOid">The OID of the current object instance</param>
+            <param name="nVersion">Current Version of object</param>
+            <returns>Site</returns>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.IEnterprise.SitesRemove(System.Int32,System.Int32,System.Int32@)">
+            <summary>
+            List of Sites in this enterprise.
+            </summary>
+            <param name="nOid">The OID of the current object instance</param>
+            <param name="nIndex">This index to remove from the collection.</param>
+            <param name="nVersion">Current Version of object</param>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.IEnterprise.SitesClear(System.Int32,System.Int32@)">
+            <summary>
+            List of Sites in this enterprise.
+            </summary>
+            <param name="nOid">The OID of the current object instance</param>
+            <param name="nVersion">Current Version of object</param>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.IEnterprise.SitesSwap(System.Int32,System.Int32,System.Int32,System.Int32@)">
+            <summary>
+            List of Sites in this enterprise.
+            </summary>
+            <param name="nOid">The OID of the current object instance</param>
+            <param name="nIndex1">The index of the first object to swap</param>
+            <param name="nIndex2">The index of the first object to swap</param>
+            <param name="nVersion">Current Version of object</param>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.IEnterprise.SitesMove(System.Int32,System.Int32,System.Int32,System.Int32@)">
+            <summary>
+            List of Sites in this enterprise.
+            </summary>
+            <param name="nOid">The OID of the current object instance</param>
+            <param name="nIndexFrom">The current index of the object (position)</param>
+            <param name="nIndexTo">The new index (position) of the object.</param>
+            <param name="nVersion">Current Version of object</param>
+        </member>
+        <member name="T:Asm.As.Oib.ConfigurationManager.Contracts.Service.IExternalReferences">
+            <summary>
+            Interface for accessing properties of the External References
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.IExternalReferences.Isa95BaseAdd(System.Int32,System.Int32,Asm.As.Oib.ConfigurationManager.Contracts.Data.ObjectType,System.Int32@)">
+            <summary>
+            List of Isa95Base of this object.
+            </summary>
+            <param name="nOid">The OID of the current object instance</param>
+            <param name="nIsa95BaseOid">The OID of the Isa95Base object instance</param>
+            <param name="type">The Object Type of the added Isa95Base</param>
+            <param name="nVersion">Current Version of object</param>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.IExternalReferences.Isa95BaseRemove(System.Int32,System.Int32,Asm.As.Oib.ConfigurationManager.Contracts.Data.ObjectType,System.Int32@)">
+            <summary>
+            List of Isa95Base of this object.
+            </summary>
+            <param name="nOid">The OID of the current object instance</param>
+            <param name="nRemoveOID">This OID to remove from the collection.</param>
+            <param name="type">The Object Type of the removed Isa95Base</param>
+            <param name="nVersion">Current Version of object</param>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.IExternalReferences.Isa95BaseClear(System.Int32,System.Int32@)">
+            <summary>
+            List of Isa95Base of this object.
+            </summary>
+            <param name="nOid">The OID of the current object instance</param>
+            <param name="nVersion">Current Version of object</param>
+        </member>
+        <member name="T:Asm.As.Oib.ConfigurationManager.Contracts.Service.IExternalReferencesManager">
+            <summary>
+            Interface for accessing properties of the ExternalReferencesManager
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.IExternalReferencesManager.ReferencesOfClientAdd(System.Int32,System.String,System.Int32@)">
+            <summary>
+            A list of custom attributes stored as a pair of name and value.
+            </summary>
+            <param name="nOid">The OID of the Object.</param>
+            <param name="key">This key to add to the collection.</param>
+            <param name="nVersion">Current Version of object</param>
+            <returns>ExternalReferences</returns>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.IExternalReferencesManager.ReferencesOfClientRemove(System.Int32,System.String,System.Int32@)">
+            <summary>
+            A list of custom attributes stored as a pair of name and value.
+            </summary>
+            <param name="nOid">The OID of the Object.</param>
+            <param name="key1">This key to remove from the collection.</param>
+            <param name="nVersion">Current Version of object</param>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.IExternalReferencesManager.ReferencesOfClientClear(System.Int32,System.Int32@)">
+            <summary>
+            A list of custom attributes stored as a pair of name and value.
+            </summary>
+            <param name="nOid">The OID of the Object.</param>
+            <param name="nVersion">Current Version of object</param>
+        </member>
+        <member name="T:Asm.As.Oib.ConfigurationManager.Contracts.Service.IIsa95Base">
+            <summary>
+            Interface for accessing properties of the Isa95Base
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.IIsa95Base.get_Name(System.Int32)">
+            <summary>
+            Name of the factory configuration element.
+            This is the short name of the element and must not be unique
+            in the overall factory, but unique inside the list of the
+            parent element.
+            Maximum length is 1000 characters.
+            </summary>
+            <param name="nOID">The n OID.</param>
+            <returns>Name of the factory configuration element.</returns>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.IIsa95Base.set_Name(System.Int32,System.String,System.Int32@)">
+            <summary>
+            Name of the factory configuration element.
+            This is the short name of the element and must not be unique
+            in the overall factory, but unique inside the list of the
+            parent element.
+            Maximum length is 1000 characters.
+            </summary>
+            <param name="nOID">The n OID.</param>
+            <param name="strName">Name of the STR.</param>
+            <param name="nVersion">The n version.</param>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.IIsa95Base.get_Comment(System.Int32)">
+            <summary>
+            Some comment for this element.
+            Maximum length is 1000 characters.
+            </summary>
+            <param name="nOID">The n OID.</param>
+            <returns>Some comment for this element.</returns>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.IIsa95Base.set_Comment(System.Int32,System.String,System.Int32@)">
+            <summary>
+            Some comment for this element.
+            Maximum length is 1000 characters.
+            </summary>
+            <param name="nOID">The n OID.</param>
+            <param name="strComment">The STR comment.</param>
+            <param name="nVersion">The n version.</param>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.IIsa95Base.get_Path(System.Int32)">
+            <summary>
+            Object full path in the factory configuration. This is
+            unique for the overall factory configuration.
+            </summary>
+            <param name="nOID">The n OID.</param>
+            <returns>Object full path in the factory configuration.</returns>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.IIsa95Base.get_ExtensionData(System.Int32)">
+            <summary>
+            Extension Data clients can use to store additional data
+            </summary>
+            <param name="nOID">The n OID.</param>
+            <returns>Extension Data</returns>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.IIsa95Base.set_ExtensionData(System.Int32,System.String,System.Int32@)">
+            <summary>
+            Extension Data clients can use to store additional data
+            </summary>
+            <param name="nOID">The n OID.</param>
+            <param name="strName">Name of the STR.</param>
+            <param name="nVersion">The n version.</param>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.IIsa95Base.get_ExtensionSchema(System.Int32)">
+            <summary>
+            Extension Schema clients can use to store additional data
+            </summary>
+            <param name="nOID">The n OID.</param>
+            <returns>Extension Schema</returns>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.IIsa95Base.set_ExtensionSchema(System.Int32,System.String,System.Int32@)">
+            <summary>
+            Extension Schema clients can use to store additional data
+            </summary>
+            <param name="nOID">The n OID.</param>
+            <param name="strName">Name of the STR.</param>
+            <param name="nVersion">The n version.</param>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.IIsa95Base.CustomAttributesAdd(System.Int32,System.String,System.String,System.Int32@)">
+            <summary>
+            A list of custom attributes stored as a pair of name and value.
+            </summary>
+            <param name="nOid">The OID of the Object.</param>
+            <param name="key">This key to add to the collection.</param>
+            <param name="value">This value to add to the collection.</param>
+            <param name="nVersion">Current Version of object</param>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.IIsa95Base.CustomAttributesRemove(System.Int32,System.String,System.Int32@)">
+            <summary>
+            A list of custom attributes stored as a pair of name and value.
+            </summary>
+            <param name="nOid">The OID of the Object.</param>
+            <param name="key1">This key to remove from the collection.</param>
+            <param name="nVersion">Current Version of object</param>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.IIsa95Base.CustomAttributesClear(System.Int32,System.Int32@)">
+            <summary>
+            A list of custom attributes stored as a pair of name and value.
+            </summary>
+            <param name="nOid">The OID of the Object.</param>
+            <param name="nVersion">Current Version of object</param>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.IIsa95Base.PredecessorsAdd(System.Int32,System.Int32,Asm.As.Oib.ConfigurationManager.Contracts.Data.ObjectType,System.Int32@)">
+            <summary>
+            Not functional: Add object to Predecessors List.
+            </summary>
+            <param name="nOid">The OID of the current object instance</param>
+            <param name="nPredecessorOid">The OID of the predecessor object instance</param>
+            <param name="type">The Object Type of the added predecessor</param>
+            <param name="nVersion">Current Version of object</param>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.IIsa95Base.PredecessorsRemove(System.Int32,System.Int32,System.Int32@)">
+            <summary>
+            No functional: Remove object from Predecessors List.
+            </summary>
+            <param name="nOid">The OID of the current object instance</param>
+            <param name="nRemoveOID">This OID to remove from the collection.</param>
+            <param name="nVersion">Current Version of object</param>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.IIsa95Base.PredecessorsClear(System.Int32,System.Int32@)">
+            <summary>
+            Not functional: Clear Predecessors list.
+            </summary>
+            <param name="nOid">The OID of the current object instance</param>
+            <param name="nVersion">Current Version of object</param>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.IIsa95Base.SuccessorsAdd(System.Int32,System.Int32,Asm.As.Oib.ConfigurationManager.Contracts.Data.ObjectType,System.Int32@)">
+            <summary>
+            Not functional: Add object to Successors List.
+            </summary>
+            <param name="nOid">The OID of the current object instance</param>
+            <param name="nSuccessorOid">The OID of the successor object instance</param>
+            <param name="type">The Object Type of the added successor</param>
+            <param name="nVersion">Current Version of object</param>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.IIsa95Base.SuccessorsRemove(System.Int32,System.Int32,System.Int32@)">
+            <summary>
+            Not functional: Remove object from Successors List.
+            </summary>
+            <param name="nOid">The OID of the current object instance</param>
+            <param name="nRemoveOID">This OID to remove from the collection.</param>
+            <param name="nVersion">Current Version of object</param>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.IIsa95Base.SuccessorsClear(System.Int32,System.Int32@)">
+            <summary>
+            No functional: Clear Successors List.
+            </summary>
+            <param name="nOid">The OID of the current object instance</param>
+            <param name="nVersion">Current Version of object</param>
+        </member>
+        <member name="T:Asm.As.Oib.ConfigurationManager.Contracts.Service.IConfigurationManager">
+            <summary>
+            The configuration manager service can create and maintain the factory layout.
+            The factory layout is based on terms and definitions of the ISA 95 standard.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.IConfigurationManager.Load">
+            <summary>
+            Loads the configuration manager object (factory layout) from the database.
+            </summary>
+            <returns>Configuration Manager data structure</returns>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.IConfigurationManager.LoadNi">
+            <summary>
+            This method loads the factory layout.
+            It will also fill out the Parent properties of all Isa95Base objects. 
+            The method is Not Interoperable (Ni) with all clients.
+            </summary>
+            <returns>Configuration Manager data structure</returns>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.IConfigurationManager.Save(Asm.As.Oib.ConfigurationManager.Contracts.Data.ConfigurationManager)">
+            <summary>
+            Save a configuration manager object (factory layout) back to the database.
+            </summary>
+            <param name="configurationManager">Configuration manager object</param>
+            <returns>True, if succeeded</returns>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.IConfigurationManager.GetObjectName(System.Int32,Asm.As.Oib.ConfigurationManager.Contracts.Data.ObjectType)">
+            <summary>
+            Get the name of an object with and dedicated ID and a defined object type.
+            </summary>
+            <param name="nOID">ID of the element in the database.</param>
+            <param name="nOT">Type of the object.</param>
+            <returns>Name of the object</returns>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.IConfigurationManager.GetObjectId(System.String,Asm.As.Oib.ConfigurationManager.Contracts.Data.ObjectType)">
+            <summary>
+            Get the object id of an object passing in the name and a defined object type.
+            </summary>
+            <param name="strObjectName">Name of the object</param>
+            <param name="nOT">Object type</param>
+            <returns>The internal ID of the element.</returns>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.IConfigurationManager.GetObject(System.Int32)">
+            <summary>
+            Get an object instance for a factory element.
+            </summary>
+            <param name="nOID">ID of the element.</param>
+            <returns>Description of the Isa95Base version of the element.</returns>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.IConfigurationManager.GetObjectIdByPath(System.String,Asm.As.Oib.ConfigurationManager.Contracts.Data.ObjectType)">
+            <summary>
+            Get the object id of an object passing in the name and a defined object type.
+            </summary>
+            <param name="strObjectPath">Path of the object</param>
+            <param name="nOT">Object type</param>
+            <returns>The internal ID of the element.</returns>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.IConfigurationManager.GetParent(Asm.As.Oib.ConfigurationManager.Contracts.Data.Isa95Base)">
+            <summary>
+            Get the parent of the specified object.
+            </summary>
+            <param name="configurationObject">The object whose parent is to be returned.</param>
+            <returns>Instance of the parent.</returns>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.IConfigurationManager.LoadExternalReferences">
+            <summary>
+            This method loads the factory layout.
+            It will also fill out the Parent properties of all Isa95Base objects. 
+            The method is Not Interoperable (Ni) with all clients.
+            </summary>
+            <returns>Configuration Manager data structure</returns>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.IConfigurationManager.GetCMServiceDetails(Asm.As.Oib.ConfigurationManager.Contracts.Data.GetCMServiceDetailsRequest)">
+            <summary>
+            Gets the cm service details like the database instance name.
+            </summary>
+            <param name="request">The request.</param>
+            <returns>The response</returns>
+        </member>
+        <member name="T:Asm.As.Oib.ConfigurationManager.Contracts.Service.IPersistBase">
+            <summary>
+            Interface for accessing properties of the PersistBase
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.IPersistBase.get_ObjectType(System.Int32)">
+            <summary>
+            Object type of this element.
+            </summary>
+            <param name="nOID">The OID.</param>
+            <returns>ObjectType enum of object</returns>
+        </member>
+        <member name="T:Asm.As.Oib.ConfigurationManager.Contracts.Service.IProductionLine">
+            <summary>
+            Interface for accessing properties of the ProductionLine
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.IProductionLine.WorkCellsAdd(System.Int32,System.Int32@)">
+            <summary>
+            List of WorkCells in this ProductionLine.
+            </summary>
+            <param name="nOid">The OID of the current object instance</param>
+            <param name="nVersion">Current Version of object</param>
+            <returns>WorkCell</returns>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.IProductionLine.WorkCellsRemove(System.Int32,System.Int32,System.Int32@)">
+            <summary>
+            List of WorkCells in this ProductionLine.
+            </summary>
+            <param name="nOid">The OID of the current object instance</param>
+            <param name="nIndex">This index to remove from the collection.</param>
+            <param name="nVersion">Current Version of object</param>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.IProductionLine.WorkCellsClear(System.Int32,System.Int32@)">
+            <summary>
+            List of WorkCells in this ProductionLine.
+            </summary>
+            <param name="nOid">The OID of the current object instance</param>
+            <param name="nVersion">Current Version of object</param>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.IProductionLine.WorkCellsSwap(System.Int32,System.Int32,System.Int32,System.Int32@)">
+            <summary>
+            List of WorkCells in this ProductionLine.
+            </summary>
+            <param name="nOid">The OID of the current object instance</param>
+            <param name="nIndex1">The index of the first object to swap</param>
+            <param name="nIndex2">The index of the first object to swap</param>
+            <param name="nVersion">Current Version of object</param>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.IProductionLine.WorkCellsMove(System.Int32,System.Int32,System.Int32,System.Int32@)">
+            <summary>
+            List of WorkCells in this ProductionLine.
+            </summary>
+            <param name="nOid">The OID of the current object instance</param>
+            <param name="nIndexFrom">The current index of the object (position)</param>
+            <param name="nIndexTo">The new index (position) of the object.</param>
+            <param name="nVersion">Current Version of object</param>
+        </member>
+        <member name="T:Asm.As.Oib.ConfigurationManager.Contracts.Service.ISite">
+            <summary>
+            Interface for accessing properties of the Site
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.ISite.WorkCellsAdd(System.Int32,System.Int32@)">
+            <summary>
+            List of WorkCells in this site.
+            </summary>
+            <param name="nOid">The OID of the current object instance</param>
+            <param name="nVersion">Current Version of object</param>
+            <returns>WorkCell</returns>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.ISite.WorkCellsRemove(System.Int32,System.Int32,System.Int32@)">
+            <summary>
+            List of WorkCells in this site.
+            </summary>
+            <param name="nOid">The OID of the current object instance</param>
+            <param name="nIndex">This index to remove from the collection.</param>
+            <param name="nVersion">Current Version of object</param>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.ISite.WorkCellsClear(System.Int32,System.Int32@)">
+            <summary>
+            List of WorkCells in this site.
+            </summary>
+            <param name="nOid">The OID of the current object instance</param>
+            <param name="nVersion">Current Version of object</param>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.ISite.WorkCellsSwap(System.Int32,System.Int32,System.Int32,System.Int32@)">
+            <summary>
+            List of WorkCells in this site.
+            </summary>
+            <param name="nOid">The OID of the current object instance</param>
+            <param name="nIndex1">The index of the first object to swap</param>
+            <param name="nIndex2">The index of the first object to swap</param>
+            <param name="nVersion">Current Version of object</param>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.ISite.WorkCellsMove(System.Int32,System.Int32,System.Int32,System.Int32@)">
+            <summary>
+            List of WorkCells in this site.
+            </summary>
+            <param name="nOid">The OID of the current object instance</param>
+            <param name="nIndexFrom">The current index of the object (position)</param>
+            <param name="nIndexTo">The new index (position) of the object.</param>
+            <param name="nVersion">Current Version of object</param>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.ISite.ProductionLinesAdd(System.Int32,System.Int32@)">
+            <summary>
+            List of ProductionLine in this site.
+            </summary>
+            <param name="nOid">The OID of the current object instance</param>
+            <param name="nVersion">Current Version of object</param>
+            <returns>ProductionLine</returns>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.ISite.ProductionLinesRemove(System.Int32,System.Int32,System.Int32@)">
+            <summary>
+            List of ProductionLine in this site.
+            </summary>
+            <param name="nOid">The OID of the current object instance</param>
+            <param name="nIndex">This index to remove from the collection.</param>
+            <param name="nVersion">Current Version of object</param>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.ISite.ProductionLinesClear(System.Int32,System.Int32@)">
+            <summary>
+            List of ProductionLine in this site.
+            </summary>
+            <param name="nOid">The OID of the current object instance</param>
+            <param name="nVersion">Current Version of object</param>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.ISite.ProductionLinesSwap(System.Int32,System.Int32,System.Int32,System.Int32@)">
+            <summary>
+            List of ProductionLine in this site.
+            </summary>
+            <param name="nOid">The OID of the current object instance</param>
+            <param name="nIndex1">The index of the first object to swap</param>
+            <param name="nIndex2">The index of the first object to swap</param>
+            <param name="nVersion">Current Version of object</param>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.ISite.ProductionLinesMove(System.Int32,System.Int32,System.Int32,System.Int32@)">
+            <summary>
+            List of ProductionLine in this site.
+            </summary>
+            <param name="nOid">The OID of the current object instance</param>
+            <param name="nIndexFrom">The current index of the object (position)</param>
+            <param name="nIndexTo">The new index (position) of the object.</param>
+            <param name="nVersion">Current Version of object</param>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.ISite.AreasAdd(System.Int32,System.Int32@)">
+            <summary>
+            List of Area in this site.
+            </summary>
+            <param name="nOid">The OID of the current object instance</param>
+            <param name="nVersion">Current Version of object</param>
+            <returns>Area</returns>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.ISite.AreasRemove(System.Int32,System.Int32,System.Int32@)">
+            <summary>
+            List of Area in this site.
+            </summary>
+            <param name="nOid">The OID of the current object instance</param>
+            <param name="nIndex">This index to remove from the collection.</param>
+            <param name="nVersion">Current Version of object</param>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.ISite.AreasClear(System.Int32,System.Int32@)">
+            <summary>
+            List of Area in this site.
+            </summary>
+            <param name="nOid">The OID of the current object instance</param>
+            <param name="nVersion">Current Version of object</param>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.ISite.AreasSwap(System.Int32,System.Int32,System.Int32,System.Int32@)">
+            <summary>
+            List of Area in this site.
+            </summary>
+            <param name="nOid">The OID of the current object instance</param>
+            <param name="nIndex1">The index of the first object to swap</param>
+            <param name="nIndex2">The index of the first object to swap</param>
+            <param name="nVersion">Current Version of object</param>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.ISite.AreasMove(System.Int32,System.Int32,System.Int32,System.Int32@)">
+            <summary>
+            List of Area in this site.
+            </summary>
+            <param name="nOid">The OID of the current object instance</param>
+            <param name="nIndexFrom">The current index of the object (position)</param>
+            <param name="nIndexTo">The new index (position) of the object.</param>
+            <param name="nVersion">Current Version of object</param>
+        </member>
+        <member name="T:Asm.As.Oib.ConfigurationManager.Contracts.Service.IStorageUnit">
+            <summary>
+            Interface for accessing properties of the StorageUnit
+            </summary>
+        </member>
+        <member name="T:Asm.As.Oib.ConfigurationManager.Contracts.Service.IStorageZone">
+            <summary>
+            Interface for accessing properties of the StorageZone
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.IStorageZone.StorageUnitsAdd(System.Int32,System.Int32@)">
+            <summary>
+            List of  Sub StorageUnits in this StorageZone.
+            </summary>
+            <param name="nOid">The OID of the current object instance</param>
+            <param name="nVersion">Current Version of object</param>
+            <returns>StorageUnit</returns>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.IStorageZone.StorageUnitsRemove(System.Int32,System.Int32,System.Int32@)">
+            <summary>
+            List of  Sub StorageUnits in this StorageZone.
+            </summary>
+            <param name="nOid">The OID of the current object instance</param>
+            <param name="nIndex">This index to remove from the collection.</param>
+            <param name="nVersion">Current Version of object</param>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.IStorageZone.StorageUnitsClear(System.Int32,System.Int32@)">
+            <summary>
+            List of  Sub StorageUnits in this StorageZone.
+            </summary>
+            <param name="nOid">The OID of the current object instance</param>
+            <param name="nVersion">Current Version of object</param>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.IStorageZone.StorageUnitsSwap(System.Int32,System.Int32,System.Int32,System.Int32@)">
+            <summary>
+            List of  Sub StorageUnits in this StorageZone.
+            </summary>
+            <param name="nOid">The OID of the current object instance</param>
+            <param name="nIndex1">The index of the first object to swap</param>
+            <param name="nIndex2">The index of the first object to swap</param>
+            <param name="nVersion">Current Version of object</param>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.IStorageZone.StorageUnitsMove(System.Int32,System.Int32,System.Int32,System.Int32@)">
+            <summary>
+            List of  Sub StorageUnits in this StorageZone.
+            </summary>
+            <param name="nOid">The OID of the current object instance</param>
+            <param name="nIndexFrom">The current index of the object (position)</param>
+            <param name="nIndexTo">The new index (position) of the object.</param>
+            <param name="nVersion">Current Version of object</param>
+        </member>
+        <member name="T:Asm.As.Oib.ConfigurationManager.Contracts.Service.IWorkCell">
+            <summary>
+            Interface for accessing properties of the WorkCell
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.IWorkCell.WorkCellsAdd(System.Int32,System.Int32@)">
+            <summary>
+            Creates a new WorkCell and adds it to a WorkCell
+            </summary>
+            <param name="nOid">The OID of the current object instance</param>
+            <param name="nVersion">Current Version of object</param>
+            <returns>WorkCell</returns>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.IWorkCell.WorkCellsRemove(System.Int32,System.Int32,System.Int32@)">
+            <summary>
+            List of  Sub WorkCells in this WorkCell.
+            </summary>
+            <param name="nOid">The OID of the current object instance</param>
+            <param name="nIndex">This index to remove from the collection.</param>
+            <param name="nVersion">Current Version of object</param>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.IWorkCell.WorkCellsClear(System.Int32,System.Int32@)">
+            <summary>
+            List of  Sub WorkCells in this WorkCell.
+            </summary>
+            <param name="nOid">The OID of the current object instance</param>
+            <param name="nVersion">Current Version of object</param>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.IWorkCell.WorkCellsSwap(System.Int32,System.Int32,System.Int32,System.Int32@)">
+            <summary>
+            List of  Sub WorkCells in this WorkCell.
+            </summary>
+            <param name="nOid">The OID of the current object instance</param>
+            <param name="nIndex1">The index of the first object to swap</param>
+            <param name="nIndex2">The index of the first object to swap</param>
+            <param name="nVersion">Current Version of object</param>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.IWorkCell.WorkCellsMove(System.Int32,System.Int32,System.Int32,System.Int32@)">
+            <summary>
+            List of  Sub WorkCells in this WorkCells.
+            </summary>
+            <param name="nOid">The OID of the current object instance</param>
+            <param name="nIndexFrom">The current index of the object (position)</param>
+            <param name="nIndexTo">The new index (position) of the object.</param>
+            <param name="nVersion">Current Version of object</param>
+        </member>
+        <member name="T:Asm.As.Oib.ConfigurationManager.Contracts.Service.Notifications.IInternalPostUpdates">
+            <summary>
+            IInternalPostUpdates used for posting SL object updates to the CM TransactionNotificationService
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.Notifications.IInternalPostUpdates.PostServiceLocatorUpdates(Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.NotificationUserPacket)">
+            <summary>
+            Posts the service locator updates.
+            </summary>
+            <param name="packet">The packet.</param>
+        </member>
+        <member name="T:Asm.As.Oib.ConfigurationManager.Contracts.Service.Notifications.ITransactionNotificationService">
+            <summary>
+            Interface for starting/stopping notifications of updates.
+            Used by the Proxy assembly.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.Notifications.ITransactionNotificationService.Start(System.String,System.String)">
+            <summary>
+            Starts the notification service.
+            </summary>
+            <param name="strEndpointAddress"> Endpoint to send notifications to.</param>
+            <param name="strBinding">Name of the binding configuration to use for sending notifications.</param>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.Notifications.ITransactionNotificationService.Stop">
+            <summary>
+            Stops sending events to the client.
+            </summary>
+        </member>
+        <member name="T:Asm.As.Oib.ConfigurationManager.Contracts.Service.Notifications.ITransactionNotificationServiceCallback">
+            <summary>
+            Callback interface that needs to be implemented by the consumer of updates
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Service.Notifications.ITransactionNotificationServiceCallback.TransactionComplete(Asm.As.Oib.ConfigurationManager.Contracts.Data.Notifications.NotificationUserPacket)">
+            <summary>
+            Called when a transaction completed
+            </summary>
+            <param name="packet">Contains all information about operations executed in this transaction</param>
+        </member>
+        <member name="T:Asm.As.Oib.ConfigurationManager.Contracts.Eventing.IObjectCreatedReceiver">
+            <summary>
+            Interface for object created events for objects managed by the Configuration Manager 
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Eventing.IObjectCreatedReceiver.ObjectCreatedReport(Asm.As.Oib.ConfigurationManager.Contracts.Message.ObjectCreatedReportRequest)">
+            <summary>
+            Object created events. 
+            </summary>
+            <param name="request">ObjectDeletedReportRequest object describing the event.</param>
+        </member>
+        <member name="T:Asm.As.Oib.ConfigurationManager.Contracts.Eventing.IObjectDeletedReceiver">
+            <summary>
+            Interface for deletion events for objects managed by the Configuration Manager 
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Eventing.IObjectDeletedReceiver.ObjectDeletedReport(Asm.As.Oib.ConfigurationManager.Contracts.Message.ObjectDeletedReportRequest)">
+            <summary>
+            Object deleted event.
+            </summary>
+            <param name="request">ObjectDeletedReportRequest object describing the event.</param>
+        </member>
+        <member name="T:Asm.As.Oib.ConfigurationManager.Contracts.Eventing.IObjectCreated">
+            <summary>
+            Interface for object created events for objects managed by the Configuration Manager. 
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Eventing.IObjectCreated.ObjectCreatedReport(Asm.As.Oib.ConfigurationManager.Contracts.Message.ObjectCreatedReportRequest)">
+            <summary>
+            Object created event. 
+            </summary>
+            <param name="request">ObjectDeletedReportRequest object describing the event.</param>
+        </member>
+        <member name="T:Asm.As.Oib.ConfigurationManager.Contracts.Eventing.IObjectDeleted">
+            <summary>
+            Interface for deletion events for objects managed by the Configuration Manager 
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.ConfigurationManager.Contracts.Eventing.IObjectDeleted.ObjectDeletedReport(Asm.As.Oib.ConfigurationManager.Contracts.Message.ObjectDeletedReportRequest)">
+            <summary>
+            Object deleted event.
+            </summary>
+            <param name="request">ObjectDeletedReportRequest object describing the event.</param>
+        </member>
+    </members>
+</doc>

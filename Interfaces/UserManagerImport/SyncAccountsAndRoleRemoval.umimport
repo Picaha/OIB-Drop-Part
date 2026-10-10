@@ -1,0 +1,60 @@
+{
+  "Products": [],
+  "AllowableValues": [],
+  "RoleClaimTypes": [],
+  "Roles": [
+    {
+      "Id": 1001,
+      "Name": "User Management Administrators"
+    },
+    {
+      "Id": 1002,
+      "Name": "User Managers"
+    },
+    {
+      "Id": 1003,
+      "Name": "OIB Gui Administrator Users"
+    },
+    {
+      "Id": 1004,
+      "Name": "Setup Center Operator"
+    }
+  ],
+  "Accounts": [
+    {
+      "Id": 2,
+      "Name": "Daniel Anderson",
+      "Description": "Banking Analyst",
+      "UserNamePasswords": [
+        {
+          "UserName": "DanielAnderson",
+          "InitialPassword": "Dan$P@ssw0rdModified"
+        }
+      ],
+      "RoleIds": [
+        1004
+      ]
+    },
+    {
+      "Id": 1,
+      "Name": "Peter Unemployed",
+      "Description": "Code Grinder",
+      "WindowsUserNames": [
+        "peterun"
+      ],
+      "UserNamePasswords": [
+        {
+          "UserName": "UnemployedPeter",
+          "InitialPassword": "Extremely$ecretPW123"
+        }
+      ],
+      "RoleIds": [
+        1003
+      ],
+      "EmailAddress": "peter.unemployed@nocompany.com"
+    }
+  ],
+  "IsSyncImport": true,
+  "RemoveRoleAssignmentsFromAccounts": true
+
+}

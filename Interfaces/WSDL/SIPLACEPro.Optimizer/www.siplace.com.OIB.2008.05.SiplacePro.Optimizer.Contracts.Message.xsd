@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Message" elementFormDefault="qualified" targetNamespace="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Message" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" />
+  <xs:element name="OptimizerStoppedReportRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="OptimizerStoppedReport" nillable="true" xmlns:q1="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" type="q1:OptimizerStoppedReport" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="OptimizerStartedReportRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="OptimizerStartedReport" nillable="true" xmlns:q2="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" type="q2:OptimizerStartedReport" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

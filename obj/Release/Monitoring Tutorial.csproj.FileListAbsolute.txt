@@ -1,0 +1,57 @@
+D:\Software by Picha\P&P\RealTime-Drop\OIB\Monitoring Tutorial R24 - Autorun-newdisgn\bin\Release\Monitoring Tutorial R24 - Autorun.exe.config
+D:\Software by Picha\P&P\RealTime-Drop\OIB\Monitoring Tutorial R24 - Autorun-newdisgn\bin\Release\Monitoring Tutorial R24 - Autorun.exe.manifest
+D:\Software by Picha\P&P\RealTime-Drop\OIB\Monitoring Tutorial R24 - Autorun-newdisgn\bin\Release\Monitoring Tutorial R24 - Autorun.application
+D:\Software by Picha\P&P\RealTime-Drop\OIB\Monitoring Tutorial R24 - Autorun-newdisgn\bin\Release\Monitoring Tutorial R24 - Autorun.exe
+D:\Software by Picha\P&P\RealTime-Drop\OIB\Monitoring Tutorial R24 - Autorun-newdisgn\bin\Release\Monitoring Tutorial R24 - Autorun.pdb
+D:\Software by Picha\P&P\RealTime-Drop\OIB\Monitoring Tutorial R24 - Autorun-newdisgn\bin\Release\Asm.As.Oib.Common.dll
+D:\Software by Picha\P&P\RealTime-Drop\OIB\Monitoring Tutorial R24 - Autorun-newdisgn\bin\Release\Asm.As.Oib.Common.Proxy.dll
+D:\Software by Picha\P&P\RealTime-Drop\OIB\Monitoring Tutorial R24 - Autorun-newdisgn\bin\Release\Asm.As.Oib.Monitoring.Contracts.dll
+D:\Software by Picha\P&P\RealTime-Drop\OIB\Monitoring Tutorial R24 - Autorun-newdisgn\bin\Release\Asm.As.Oib.Monitoring.Proxy.dll
+D:\Software by Picha\P&P\RealTime-Drop\OIB\Monitoring Tutorial R24 - Autorun-newdisgn\bin\Release\Asm.As.Oib.WS.Common.dll
+D:\Software by Picha\P&P\RealTime-Drop\OIB\Monitoring Tutorial R24 - Autorun-newdisgn\bin\Release\Asm.As.Oib.WS.Eventing.Contracts.dll
+D:\Software by Picha\P&P\RealTime-Drop\OIB\Monitoring Tutorial R24 - Autorun-newdisgn\bin\Release\Npgsql.dll
+D:\Software by Picha\P&P\RealTime-Drop\OIB\Monitoring Tutorial R24 - Autorun-newdisgn\bin\Release\System.Threading.Tasks.Extensions.dll
+D:\Software by Picha\P&P\RealTime-Drop\OIB\Monitoring Tutorial R24 - Autorun-newdisgn\bin\Release\ASM.AS.OIB.UserManagement.Proxy.dll
+D:\Software by Picha\P&P\RealTime-Drop\OIB\Monitoring Tutorial R24 - Autorun-newdisgn\bin\Release\ASM.AS.OIB.UserManagement.Common.dll
+D:\Software by Picha\P&P\RealTime-Drop\OIB\Monitoring Tutorial R24 - Autorun-newdisgn\bin\Release\Newtonsoft.Json.dll
+D:\Software by Picha\P&P\RealTime-Drop\OIB\Monitoring Tutorial R24 - Autorun-newdisgn\bin\Release\Asm.As.Oib.Common.pdb
+D:\Software by Picha\P&P\RealTime-Drop\OIB\Monitoring Tutorial R24 - Autorun-newdisgn\bin\Release\Asm.As.Oib.Common.Proxy.pdb
+D:\Software by Picha\P&P\RealTime-Drop\OIB\Monitoring Tutorial R24 - Autorun-newdisgn\bin\Release\Asm.As.Oib.Monitoring.Contracts.pdb
+D:\Software by Picha\P&P\RealTime-Drop\OIB\Monitoring Tutorial R24 - Autorun-newdisgn\bin\Release\Asm.As.Oib.Monitoring.Contracts.xml
+D:\Software by Picha\P&P\RealTime-Drop\OIB\Monitoring Tutorial R24 - Autorun-newdisgn\bin\Release\Asm.As.Oib.Monitoring.Proxy.pdb
+D:\Software by Picha\P&P\RealTime-Drop\OIB\Monitoring Tutorial R24 - Autorun-newdisgn\bin\Release\Asm.As.Oib.Monitoring.Proxy.xml
+D:\Software by Picha\P&P\RealTime-Drop\OIB\Monitoring Tutorial R24 - Autorun-newdisgn\bin\Release\Asm.As.Oib.WS.Common.pdb
+D:\Software by Picha\P&P\RealTime-Drop\OIB\Monitoring Tutorial R24 - Autorun-newdisgn\bin\Release\Asm.As.Oib.WS.Common.xml
+D:\Software by Picha\P&P\RealTime-Drop\OIB\Monitoring Tutorial R24 - Autorun-newdisgn\bin\Release\Asm.As.Oib.WS.Eventing.Contracts.pdb
+D:\Software by Picha\P&P\RealTime-Drop\OIB\Monitoring Tutorial R24 - Autorun-newdisgn\bin\Release\Asm.As.Oib.WS.Eventing.Contracts.xml
+D:\Software by Picha\P&P\RealTime-Drop\OIB\Monitoring Tutorial R24 - Autorun-newdisgn\bin\Release\Npgsql.xml
+D:\Software by Picha\P&P\RealTime-Drop\OIB\Monitoring Tutorial R24 - Autorun-newdisgn\bin\Release\System.Threading.Tasks.Extensions.xml
+D:\Software by Picha\P&P\RealTime-Drop\OIB\Monitoring Tutorial R24 - Autorun-newdisgn\bin\Release\ASM.AS.OIB.UserManagement.Proxy.pdb
+D:\Software by Picha\P&P\RealTime-Drop\OIB\Monitoring Tutorial R24 - Autorun-newdisgn\bin\Release\ASM.AS.OIB.UserManagement.Proxy.xml
+D:\Software by Picha\P&P\RealTime-Drop\OIB\Monitoring Tutorial R24 - Autorun-newdisgn\bin\Release\ASM.AS.OIB.UserManagement.Common.pdb
+D:\Software by Picha\P&P\RealTime-Drop\OIB\Monitoring Tutorial R24 - Autorun-newdisgn\bin\Release\ASM.AS.OIB.UserManagement.Common.xml
+D:\Software by Picha\P&P\RealTime-Drop\OIB\Monitoring Tutorial R24 - Autorun-newdisgn\bin\Release\cs\Asm.As.Oib.Monitoring.Proxy.resources.dll
+D:\Software by Picha\P&P\RealTime-Drop\OIB\Monitoring Tutorial R24 - Autorun-newdisgn\bin\Release\de\Asm.As.Oib.Monitoring.Proxy.resources.dll
+D:\Software by Picha\P&P\RealTime-Drop\OIB\Monitoring Tutorial R24 - Autorun-newdisgn\bin\Release\es-MX\Asm.As.Oib.Monitoring.Proxy.resources.dll
+D:\Software by Picha\P&P\RealTime-Drop\OIB\Monitoring Tutorial R24 - Autorun-newdisgn\bin\Release\et\Asm.As.Oib.Monitoring.Proxy.resources.dll
+D:\Software by Picha\P&P\RealTime-Drop\OIB\Monitoring Tutorial R24 - Autorun-newdisgn\bin\Release\fr\Asm.As.Oib.Monitoring.Proxy.resources.dll
+D:\Software by Picha\P&P\RealTime-Drop\OIB\Monitoring Tutorial R24 - Autorun-newdisgn\bin\Release\hu\Asm.As.Oib.Monitoring.Proxy.resources.dll
+D:\Software by Picha\P&P\RealTime-Drop\OIB\Monitoring Tutorial R24 - Autorun-newdisgn\bin\Release\it\Asm.As.Oib.Monitoring.Proxy.resources.dll
+D:\Software by Picha\P&P\RealTime-Drop\OIB\Monitoring Tutorial R24 - Autorun-newdisgn\bin\Release\ja\Asm.As.Oib.Monitoring.Proxy.resources.dll
+D:\Software by Picha\P&P\RealTime-Drop\OIB\Monitoring Tutorial R24 - Autorun-newdisgn\bin\Release\ko\Asm.As.Oib.Monitoring.Proxy.resources.dll
+D:\Software by Picha\P&P\RealTime-Drop\OIB\Monitoring Tutorial R24 - Autorun-newdisgn\bin\Release\pl\Asm.As.Oib.Monitoring.Proxy.resources.dll
+D:\Software by Picha\P&P\RealTime-Drop\OIB\Monitoring Tutorial R24 - Autorun-newdisgn\bin\Release\pt\Asm.As.Oib.Monitoring.Proxy.resources.dll
+D:\Software by Picha\P&P\RealTime-Drop\OIB\Monitoring Tutorial R24 - Autorun-newdisgn\bin\Release\ru\Asm.As.Oib.Monitoring.Proxy.resources.dll
+D:\Software by Picha\P&P\RealTime-Drop\OIB\Monitoring Tutorial R24 - Autorun-newdisgn\bin\Release\th\Asm.As.Oib.Monitoring.Proxy.resources.dll
+D:\Software by Picha\P&P\RealTime-Drop\OIB\Monitoring Tutorial R24 - Autorun-newdisgn\bin\Release\zh-CHS\Asm.As.Oib.Monitoring.Proxy.resources.dll
+D:\Software by Picha\P&P\RealTime-Drop\OIB\Monitoring Tutorial R24 - Autorun-newdisgn\bin\Release\zh-CHT\Asm.As.Oib.Monitoring.Proxy.resources.dll
+D:\Software by Picha\P&P\RealTime-Drop\OIB\Monitoring Tutorial R24 - Autorun-newdisgn\obj\Release\Monitoring Tutorial.csproj.AssemblyReference.cache
+D:\Software by Picha\P&P\RealTime-Drop\OIB\Monitoring Tutorial R24 - Autorun-newdisgn\obj\Release\Monitoring Tutorial R24 - Autorun.exe.config
+D:\Software by Picha\P&P\RealTime-Drop\OIB\Monitoring Tutorial R24 - Autorun-newdisgn\obj\Release\OIB.Tutorial.Form1.resources
+D:\Software by Picha\P&P\RealTime-Drop\OIB\Monitoring Tutorial R24 - Autorun-newdisgn\obj\Release\Monitoring Tutorial.csproj.GenerateResource.cache
+D:\Software by Picha\P&P\RealTime-Drop\OIB\Monitoring Tutorial R24 - Autorun-newdisgn\obj\Release\Monitoring Tutorial.csproj.CoreCompileInputs.cache
+D:\Software by Picha\P&P\RealTime-Drop\OIB\Monitoring Tutorial R24 - Autorun-newdisgn\obj\Release\Monitoring Tutorial R24 - Autorun.exe.manifest
+D:\Software by Picha\P&P\RealTime-Drop\OIB\Monitoring Tutorial R24 - Autorun-newdisgn\obj\Release\Monitoring Tutorial R24 - Autorun.application
+D:\Software by Picha\P&P\RealTime-Drop\OIB\Monitoring Tutorial R24 - Autorun-newdisgn\obj\Release\Monitori.98EC40A7.Up2Date
+D:\Software by Picha\P&P\RealTime-Drop\OIB\Monitoring Tutorial R24 - Autorun-newdisgn\obj\Release\Monitoring Tutorial R24 - Autorun.exe
+D:\Software by Picha\P&P\RealTime-Drop\OIB\Monitoring Tutorial R24 - Autorun-newdisgn\obj\Release\Monitoring Tutorial R24 - Autorun.pdb

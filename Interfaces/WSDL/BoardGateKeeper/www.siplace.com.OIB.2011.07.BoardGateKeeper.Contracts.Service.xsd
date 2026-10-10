@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.siplace.com/OIB/2011/07/BoardGateKeeper/Contracts/Service" elementFormDefault="qualified" targetNamespace="http://www.siplace.com/OIB/2011/07/BoardGateKeeper/Contracts/Service" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://www.siplace.com/OIB/2011/07/BoardGateKeeper/Contracts/Data" />
+  <xs:element name="BgkLineConfigurationsRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="data" nillable="true" xmlns:q1="http://www.siplace.com/OIB/2011/07/BoardGateKeeper/Contracts/Data" type="q1:LineConfigurationRequestData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BgkLineConfigurationsRequestResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="BgkLineConfigurationsRequestResult" nillable="true" xmlns:q2="http://www.siplace.com/OIB/2011/07/BoardGateKeeper/Contracts/Data" type="q2:LineConfigurationRequestResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="BoardNotificationServerFault">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorCode" type="xs:int" />
+      <xs:element minOccurs="0" name="ExtendedMessage" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BoardNotificationServerFault" nillable="true" type="tns:BoardNotificationServerFault" />
+  <xs:element name="BoardFailed">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="data" nillable="true" xmlns:q3="http://www.siplace.com/OIB/2011/07/BoardGateKeeper/Contracts/Data" type="q3:BoardFailedData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BoardFailedResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="BoardNotificationFault">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorCode" type="xs:int" />
+      <xs:element minOccurs="0" name="ExtendedMessage" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BoardNotificationFault" nillable="true" type="tns:BoardNotificationFault" />
+  <xs:element name="BoardReleased">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="data" nillable="true" xmlns:q4="http://www.siplace.com/OIB/2011/07/BoardGateKeeper/Contracts/Data" type="q4:BoardReleasedData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BoardReleasedResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BoardRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="data" nillable="true" xmlns:q5="http://www.siplace.com/OIB/2011/07/BoardGateKeeper/Contracts/Data" type="q5:BoardRequestData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BoardRequestResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="BoardRequestResult" nillable="true" xmlns:q6="http://www.siplace.com/OIB/2011/07/BoardGateKeeper/Contracts/Data" type="q6:BoardRequestResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Ping">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PingResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="PingResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ScannerConnectionStateChanged">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="data" nillable="true" xmlns:q7="http://www.siplace.com/OIB/2011/07/BoardGateKeeper/Contracts/Data" type="q7:ScannerConnectionChangedData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ScannerConnectionStateChangedResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LineConfigurationChanged">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="lineConfiguration" nillable="true" xmlns:q8="http://www.siplace.com/OIB/2011/07/BoardGateKeeper/Contracts/Data" type="q8:LineConfiguration" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LineConfigurationChangedResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.asm.com/MaterialManager/2018/11/Contracts/Message" elementFormDefault="qualified" targetNamespace="http://www.asm.com/MaterialManager/2018/11/Contracts/Message" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://www.asm.com/MaterialManager/2018/11/Contracts/Service" />
+  <xs:element name="MaterialManagerMessageRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" xmlns:q1="http://www.asm.com/MaterialManager/2018/11/Contracts/Service" ref="q1:EventCreationTime" />
+        <xs:element minOccurs="0" xmlns:q2="http://www.asm.com/MaterialManager/2018/11/Contracts/Service" ref="q2:MaterialManagerEvents" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

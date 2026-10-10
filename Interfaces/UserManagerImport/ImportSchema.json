@@ -1,0 +1,247 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "Products": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Id": {
+            "type": "integer",
+            "required": true
+          },
+          "Name": {
+            "type": "string",
+            "maxLength": 250,
+            "required": true
+          },
+          "Description": {
+            "type": "string",
+            "maxLength": 250
+          },
+          "Version": {
+            "type": "string",
+            "maxLength": 250,
+            "required": true
+          },
+          "Company": {
+            "type": "string",
+            "maxLength": 250,
+            "required": true
+          },
+          "UniqueIdentifier": {
+            "type": "string",
+            "maxLength": 250,
+            "required": true
+          }
+        }
+      },
+      "required": true
+    },
+    "AllowableValues": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Id": {
+            "type": "integer",
+            "required": true
+          },
+          "Value": {
+            "type": "string",
+            "required": true
+          }
+        }
+      },
+      "required": true
+    },
+    "Accounts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Id": {
+            "type": "integer",
+            "required": true
+          },
+          "Name": {
+            "type": "string",
+            "maxLength": 250,
+            "required": true
+          },
+          "Description": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 250,
+            "required": true
+          },
+          "WindowsUserNames": {
+            "type": "array",
+            "items": [
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "CustomLogonUserIds": {
+            "type": "array",
+            "items": [
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "UserNamePasswords": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "UserName": {
+                  "type": "string",
+                  "required": true
+                },
+                "InitialPassword": {
+                  "type": "string",
+                  "required": true
+                }
+              }
+            }
+          },
+          "SimpleUserNamePasswords": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "UserName": {
+                  "type": "string",
+                  "required": true
+                },
+                "InitialPassword": {
+                  "type": "string",
+                  "required": true,
+                  "minLength": 1,
+                  "maxLength": 64
+                }
+              }
+            }
+          },
+          "RoleIds": {
+            "type": "array",
+            "items": [
+              {
+                "type": "integer"
+              }
+            ]
+          },
+          "EmailAddress": {
+            "type": "string",
+            "maxLength": 250
+          }
+        }
+      },
+      "required": true
+    },
+    "RoleClaimTypes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Id": {
+            "type": "integer",
+            "required": true
+          },
+          "Name": {
+            "type": "string",
+            "maxLength": 250,
+            "required": true
+          },
+          "DisplayName": {
+            "type": "string",
+            "maxLength": 250,
+            "required": true
+          },
+          "Description": {
+            "type": "string",
+            "maxLength": 250
+          },
+          "ProductId": {
+            "type": "integer",
+            "required": true
+          },
+          "ClaimValueType": {
+            "type": "integer",
+            "required": true,
+            "enum": [ 0, 1, 2, 3, 4, 5 ]
+          },
+          "AllowableValueIds": {
+            "type": "array",
+            "items": [
+              {
+                "type": "integer"
+              }
+            ]
+          }
+        }
+      },
+      "required": true
+    },
+    "Roles": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Id": {
+            "type": "integer",
+            "required": true
+          },
+          "Name": {
+            "type": "string",
+            "required": true,
+            "maxLength": 250
+          },
+          "Description": {
+            "type": "string",
+            "maxLength": 250
+          },
+          "RoleClaims": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "ClaimValue": {
+                  "type": "string",
+                  "required": true
+                },
+                "ClaimTypeId": {
+                  "type": "integer",
+                  "required": true
+                }
+              }
+            }
+          },
+          "AdGroupName": {
+            "type": "string",
+            "maxLength": 250
+          }
+        }
+      },
+      "required": true
+    },
+    "IsSyncImport": {
+      "type": "boolean",
+      "required": false
+    },
+    "RemoveRoleAssignmentsFromAccounts": {
+      "type": "boolean",
+      "required": false
+    }
+  },
+  "allOf": [
+    { "required": [ "Products" ] },
+    { "required": [ "AllowableValues" ] },
+    { "required": [ "ClaimTypes" ] },
+    { "required": [ "Accounts" ] },
+    { "required": [ "Roles" ] }
+  ]
+}

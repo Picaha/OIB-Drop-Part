@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service" elementFormDefault="qualified" targetNamespace="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Data" />
+  <xs:import namespace="http://www.siplace.com/OIB/2016/07/FactoryCalendar/Contracts/Data" />
+  <xs:element name="CalendarModel" nillable="true" xmlns:q1="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Data" type="q1:CalendarModel" />
+  <xs:element name="Appointment" nillable="true" xmlns:q2="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Data" type="q2:Appointment" />
+  <xs:element name="CalendarOptions" nillable="true" xmlns:q3="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Data" type="q3:CalendarOptions" />
+  <xs:element name="Teams" nillable="true" xmlns:q4="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Data" type="q4:Teams" />
+  <xs:element name="Resources" nillable="true" xmlns:q5="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Data" type="q5:Resources" />
+  <xs:element name="Team" nillable="true" xmlns:q6="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Data" type="q6:Team" />
+  <xs:element name="Resource" nillable="true" xmlns:q7="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Data" type="q7:Resource" />
+  <xs:element name="ProcessId" type="xs:int" />
+  <xs:element name="CustomStates" nillable="true" xmlns:q8="http://www.siplace.com/OIB/2016/07/FactoryCalendar/Contracts/Data" type="q8:CustomStates" />
+  <xs:element name="CustomState" nillable="true" xmlns:q9="http://www.siplace.com/OIB/2016/07/FactoryCalendar/Contracts/Data" type="q9:CustomState" />
+  <xs:element name="GroupReasons" nillable="true" xmlns:q10="http://www.siplace.com/OIB/2016/07/FactoryCalendar/Contracts/Data" type="q10:GroupReasons" />
+  <xs:element name="GroupReason" nillable="true" xmlns:q11="http://www.siplace.com/OIB/2016/07/FactoryCalendar/Contracts/Data" type="q11:GroupReason" />
+  <xs:element name="UpdateNotificationMessage">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="NotificationPacket" nillable="true" xmlns:q12="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Data" type="q12:NotificationPacket" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SubscriptionTopic" nillable="true" type="xs:string" />
+</xs:schema>

@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:tns="http://www.siplace.com/OIB/2011/07/BoardGateKeeper/Contracts/Service" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" targetNamespace="http://www.siplace.com/OIB/2011/07/BoardGateKeeper/Contracts/Service" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.siplace.com/OIB/2011/07/BoardGateKeeper/Contracts/Service/Imports">
+      <xsd:import namespace="http://www.siplace.com/OIB/2011/07/BoardGateKeeper/Contracts/Service" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import namespace="http://www.siplace.com/OIB/2011/07/BoardGateKeeper/Contracts/Data" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/ASM.AS.Oib.BoardGateKeeper.Contracts.Data" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/Asm.As.Oib.BoardGateKeeper.Contracts.Data" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IBoardNotificationServer_BgkLineConfigurationsRequest_InputMessage">
+    <wsdl:part name="parameters" element="tns:BgkLineConfigurationsRequest" />
+  </wsdl:message>
+  <wsdl:message name="IBoardNotificationServer_BgkLineConfigurationsRequest_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BgkLineConfigurationsRequestResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBoardNotificationServer_BgkLineConfigurationsRequest_BoardNotificationServerFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:BoardNotificationServerFault" />
+  </wsdl:message>
+  <wsdl:message name="IBoardNotification_BoardFailed_InputMessage">
+    <wsdl:part name="parameters" element="tns:BoardFailed" />
+  </wsdl:message>
+  <wsdl:message name="IBoardNotification_BoardFailed_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BoardFailedResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBoardNotification_BoardFailed_BoardNotificationFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:BoardNotificationFault" />
+  </wsdl:message>
+  <wsdl:message name="IBoardNotification_BoardReleased_InputMessage">
+    <wsdl:part name="parameters" element="tns:BoardReleased" />
+  </wsdl:message>
+  <wsdl:message name="IBoardNotification_BoardReleased_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BoardReleasedResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBoardNotification_BoardReleased_BoardNotificationFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:BoardNotificationFault" />
+  </wsdl:message>
+  <wsdl:message name="IBoardNotification_BoardRequest_InputMessage">
+    <wsdl:part name="parameters" element="tns:BoardRequest" />
+  </wsdl:message>
+  <wsdl:message name="IBoardNotification_BoardRequest_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BoardRequestResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBoardNotification_BoardRequest_BoardNotificationFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:BoardNotificationFault" />
+  </wsdl:message>
+  <wsdl:message name="IBoardNotification_Ping_InputMessage">
+    <wsdl:part name="parameters" element="tns:Ping" />
+  </wsdl:message>
+  <wsdl:message name="IBoardNotification_Ping_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PingResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBoardNotification_Ping_BoardNotificationFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:BoardNotificationFault" />
+  </wsdl:message>
+  <wsdl:message name="IBoardNotification_ScannerConnectionStateChanged_InputMessage">
+    <wsdl:part name="parameters" element="tns:ScannerConnectionStateChanged" />
+  </wsdl:message>
+  <wsdl:message name="IBoardNotification_ScannerConnectionStateChanged_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ScannerConnectionStateChangedResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBoardNotification_ScannerConnectionStateChanged_BoardNotificationFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:BoardNotificationFault" />
+  </wsdl:message>
+  <wsdl:message name="IBoardNotification_LineConfigurationChanged_InputMessage">
+    <wsdl:part name="parameters" element="tns:LineConfigurationChanged" />
+  </wsdl:message>
+  <wsdl:message name="IBoardNotification_LineConfigurationChanged_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LineConfigurationChangedResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBoardNotification_LineConfigurationChanged_BoardNotificationFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:BoardNotificationFault" />
+  </wsdl:message>
+  <wsdl:portType name="IBoardNotificationServer">
+    <wsdl:operation name="BgkLineConfigurationsRequest">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2011/07/BoardGateKeeper/Contracts/Service/IBoardNotificationServer/BgkLineConfigurationsRequest" message="tns:IBoardNotificationServer_BgkLineConfigurationsRequest_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2011/07/BoardGateKeeper/Contracts/Service/IBoardNotificationServer/BgkLineConfigurationsRequestResponse" message="tns:IBoardNotificationServer_BgkLineConfigurationsRequest_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2011/07/BoardGateKeeper/Contracts/Service/IBoardNotificationServer/BgkLineConfigurationsRequestBoardNotificationServerFaultFault" name="BoardNotificationServerFaultFault" message="tns:IBoardNotificationServer_BgkLineConfigurationsRequest_BoardNotificationServerFaultFault_FaultMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IBoardNotification">
+    <wsdl:operation name="BoardFailed">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2011/07/BoardGateKeeper/Contracts/Service/IBoardNotification/BoardFailed" message="tns:IBoardNotification_BoardFailed_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2011/07/BoardGateKeeper/Contracts/Service/IBoardNotification/BoardFailedResponse" message="tns:IBoardNotification_BoardFailed_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2011/07/BoardGateKeeper/Contracts/Service/IBoardNotification/BoardFailedBoardNotificationFaultFault" name="BoardNotificationFaultFault" message="tns:IBoardNotification_BoardFailed_BoardNotificationFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BoardReleased">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2011/07/BoardGateKeeper/Contracts/Service/IBoardNotification/BoardReleased" message="tns:IBoardNotification_BoardReleased_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2011/07/BoardGateKeeper/Contracts/Service/IBoardNotification/BoardReleasedResponse" message="tns:IBoardNotification_BoardReleased_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2011/07/BoardGateKeeper/Contracts/Service/IBoardNotification/BoardReleasedBoardNotificationFaultFault" name="BoardNotificationFaultFault" message="tns:IBoardNotification_BoardReleased_BoardNotificationFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BoardRequest">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2011/07/BoardGateKeeper/Contracts/Service/IBoardNotification/BoardRequest" message="tns:IBoardNotification_BoardRequest_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2011/07/BoardGateKeeper/Contracts/Service/IBoardNotification/BoardRequestResponse" message="tns:IBoardNotification_BoardRequest_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2011/07/BoardGateKeeper/Contracts/Service/IBoardNotification/BoardRequestBoardNotificationFaultFault" name="BoardNotificationFaultFault" message="tns:IBoardNotification_BoardRequest_BoardNotificationFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Ping">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2011/07/BoardGateKeeper/Contracts/Service/IBoardNotification/Ping" message="tns:IBoardNotification_Ping_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2011/07/BoardGateKeeper/Contracts/Service/IBoardNotification/PingResponse" message="tns:IBoardNotification_Ping_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2011/07/BoardGateKeeper/Contracts/Service/IBoardNotification/PingBoardNotificationFaultFault" name="BoardNotificationFaultFault" message="tns:IBoardNotification_Ping_BoardNotificationFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ScannerConnectionStateChanged">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2011/07/BoardGateKeeper/Contracts/Service/IBoardNotification/ScannerConnectionStateChanged" message="tns:IBoardNotification_ScannerConnectionStateChanged_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2011/07/BoardGateKeeper/Contracts/Service/IBoardNotification/ScannerConnectionStateChangedResponse" message="tns:IBoardNotification_ScannerConnectionStateChanged_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2011/07/BoardGateKeeper/Contracts/Service/IBoardNotification/ScannerConnectionStateChangedBoardNotificationFaultFault" name="BoardNotificationFaultFault" message="tns:IBoardNotification_ScannerConnectionStateChanged_BoardNotificationFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LineConfigurationChanged">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2011/07/BoardGateKeeper/Contracts/Service/IBoardNotification/LineConfigurationChanged" message="tns:IBoardNotification_LineConfigurationChanged_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2011/07/BoardGateKeeper/Contracts/Service/IBoardNotification/LineConfigurationChangedResponse" message="tns:IBoardNotification_LineConfigurationChanged_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2011/07/BoardGateKeeper/Contracts/Service/IBoardNotification/LineConfigurationChangedBoardNotificationFaultFault" name="BoardNotificationFaultFault" message="tns:IBoardNotification_LineConfigurationChanged_BoardNotificationFaultFault_FaultMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DefaultBinding_IBoardNotificationServer" type="tns:IBoardNotificationServer">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="BgkLineConfigurationsRequest">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2011/07/BoardGateKeeper/Contracts/Service/IBoardNotificationServer/BgkLineConfigurationsRequest" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="BoardNotificationServerFaultFault">
+        <soap:fault name="BoardNotificationServerFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DefaultBinding_IBoardNotification" type="tns:IBoardNotification">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="BoardFailed">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2011/07/BoardGateKeeper/Contracts/Service/IBoardNotification/BoardFailed" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="BoardNotificationFaultFault">
+        <soap:fault name="BoardNotificationFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="BoardReleased">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2011/07/BoardGateKeeper/Contracts/Service/IBoardNotification/BoardReleased" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="BoardNotificationFaultFault">
+        <soap:fault name="BoardNotificationFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="BoardRequest">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2011/07/BoardGateKeeper/Contracts/Service/IBoardNotification/BoardRequest" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="BoardNotificationFaultFault">
+        <soap:fault name="BoardNotificationFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Ping">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2011/07/BoardGateKeeper/Contracts/Service/IBoardNotification/Ping" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="BoardNotificationFaultFault">
+        <soap:fault name="BoardNotificationFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ScannerConnectionStateChanged">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2011/07/BoardGateKeeper/Contracts/Service/IBoardNotification/ScannerConnectionStateChanged" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="BoardNotificationFaultFault">
+        <soap:fault name="BoardNotificationFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="LineConfigurationChanged">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2011/07/BoardGateKeeper/Contracts/Service/IBoardNotification/LineConfigurationChanged" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="BoardNotificationFaultFault">
+        <soap:fault name="BoardNotificationFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+</wsdl:definitions>

@@ -1,0 +1,600 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://www.siplace.com/OIB/2008/05/ConfigurationManager/Contracts/Data" elementFormDefault="qualified" targetNamespace="http://www.siplace.com/OIB/2008/05/ConfigurationManager/Contracts/Data" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="ObjectCreatedReport">
+    <xs:sequence>
+      <xs:element name="ID" type="xs:int" />
+      <xs:element name="Name" nillable="true" type="xs:string" />
+      <xs:element name="ObjectType" type="tns:ObjectType" />
+      <xs:element name="Path" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ObjectCreatedReport" nillable="true" type="tns:ObjectCreatedReport" />
+  <xs:simpleType name="ObjectType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="WorkCell" />
+      <xs:enumeration value="ProductionLine" />
+      <xs:enumeration value="Area" />
+      <xs:enumeration value="Site" />
+      <xs:enumeration value="Enterprise" />
+      <xs:enumeration value="StorageZone" />
+      <xs:enumeration value="StorageUnit" />
+      <xs:enumeration value="ExternalReferencesManager" />
+      <xs:enumeration value="ExternalReferences" />
+      <xs:enumeration value="Reserved_1" />
+      <xs:enumeration value="Reserved_2" />
+      <xs:enumeration value="Reserved_3" />
+      <xs:enumeration value="Reserved_4" />
+      <xs:enumeration value="Reserved_5" />
+      <xs:enumeration value="Reserved_6" />
+      <xs:enumeration value="Reserved_7" />
+      <xs:enumeration value="Reserved_8" />
+      <xs:enumeration value="Reserved_9" />
+      <xs:enumeration value="Reserved_10" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ObjectType" nillable="true" type="tns:ObjectType" />
+  <xs:complexType name="ObjectDeletedReport">
+    <xs:sequence>
+      <xs:element name="ID" type="xs:int" />
+      <xs:element name="Name" nillable="true" type="xs:string" />
+      <xs:element name="ObjectType" type="tns:ObjectType" />
+      <xs:element name="Path" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ObjectDeletedReport" nillable="true" type="tns:ObjectDeletedReport" />
+  <xs:complexType name="ConfigurationManagerFault">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorCode" type="xs:int" />
+      <xs:element minOccurs="0" name="ExtendedMessage" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ConfigurationManagerFault" nillable="true" type="tns:ConfigurationManagerFault" />
+  <xs:complexType name="ProductionLine">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Isa95Base">
+        <xs:sequence>
+          <xs:element name="WorkCells" nillable="true" type="tns:WorkCellCollection" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ProductionLine" nillable="true" type="tns:ProductionLine" />
+  <xs:complexType name="Isa95Base">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:PersistBase">
+        <xs:sequence>
+          <xs:element name="Comment" nillable="true" type="xs:string" />
+          <xs:element name="CustomAttributes" nillable="true" xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q1:ArrayOfKeyValueOfstringstring" />
+          <xs:element name="Name" nillable="true" type="xs:string" />
+          <xs:element name="ObjectType" type="tns:ObjectType" />
+          <xs:element name="Path" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ExtensionData" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ExtensionSchema" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Predecessor" nillable="true" xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q2:ArrayOfKeyValueOfintint" />
+          <xs:element minOccurs="0" name="Successors" nillable="true" xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q3:ArrayOfKeyValueOfintint" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Isa95Base" nillable="true" type="tns:Isa95Base" />
+  <xs:complexType name="PersistBase">
+    <xs:sequence>
+      <xs:element name="ID" nillable="true" type="xs:int" />
+      <xs:element name="Version" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Parent" nillable="true" type="tns:PersistBase" />
+      <xs:element minOccurs="0" name="ParentOID" type="xs:int" />
+      <xs:element minOccurs="0" name="ObjectTypeBase" type="tns:ObjectType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PersistBase" nillable="true" type="tns:PersistBase" />
+  <xs:complexType name="Enterprise">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Isa95Base">
+        <xs:sequence>
+          <xs:element name="Sites" nillable="true" type="tns:SiteCollection" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Enterprise" nillable="true" type="tns:Enterprise" />
+  <xs:complexType name="SiteCollection">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="{0}Collection" Namespace="http://www.siplace.com/OIB/2008/05/ConfigurationManager/Contracts/Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="Site" Namespace="http://www.siplace.com/OIB/2008/05/ConfigurationManager/Contracts/Data" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Site" nillable="true" type="tns:Site" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SiteCollection" nillable="true" type="tns:SiteCollection" />
+  <xs:complexType name="Site">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Isa95Base">
+        <xs:sequence>
+          <xs:element name="Areas" nillable="true" type="tns:AreaCollection" />
+          <xs:element name="ProductionLines" nillable="true" type="tns:ProductionLineCollection" />
+          <xs:element name="WorkCells" nillable="true" type="tns:WorkCellCollection" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Site" nillable="true" type="tns:Site" />
+  <xs:complexType name="AreaCollection">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="{0}Collection" Namespace="http://www.siplace.com/OIB/2008/05/ConfigurationManager/Contracts/Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="Area" Namespace="http://www.siplace.com/OIB/2008/05/ConfigurationManager/Contracts/Data" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Area" nillable="true" type="tns:Area" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AreaCollection" nillable="true" type="tns:AreaCollection" />
+  <xs:complexType name="Area">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Isa95Base">
+        <xs:sequence>
+          <xs:element name="ProductionLines" nillable="true" type="tns:ProductionLineCollection" />
+          <xs:element name="StorageZones" nillable="true" type="tns:StorageZoneCollection" />
+          <xs:element name="WorkCells" nillable="true" type="tns:WorkCellCollection" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Area" nillable="true" type="tns:Area" />
+  <xs:complexType name="ProductionLineCollection">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="{0}Collection" Namespace="http://www.siplace.com/OIB/2008/05/ConfigurationManager/Contracts/Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="ProductionLine" Namespace="http://www.siplace.com/OIB/2008/05/ConfigurationManager/Contracts/Data" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ProductionLine" nillable="true" type="tns:ProductionLine" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProductionLineCollection" nillable="true" type="tns:ProductionLineCollection" />
+  <xs:complexType name="StorageZoneCollection">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="{0}Collection" Namespace="http://www.siplace.com/OIB/2008/05/ConfigurationManager/Contracts/Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="StorageZone" Namespace="http://www.siplace.com/OIB/2008/05/ConfigurationManager/Contracts/Data" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="StorageZone" nillable="true" type="tns:StorageZone" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="StorageZoneCollection" nillable="true" type="tns:StorageZoneCollection" />
+  <xs:complexType name="StorageZone">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Isa95Base">
+        <xs:sequence>
+          <xs:element name="StorageUnits" nillable="true" type="tns:StorageUnitCollection" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="StorageZone" nillable="true" type="tns:StorageZone" />
+  <xs:complexType name="StorageUnitCollection">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="{0}Collection" Namespace="http://www.siplace.com/OIB/2008/05/ConfigurationManager/Contracts/Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="StorageUnit" Namespace="http://www.siplace.com/OIB/2008/05/ConfigurationManager/Contracts/Data" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="StorageUnit" nillable="true" type="tns:StorageUnit" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="StorageUnitCollection" nillable="true" type="tns:StorageUnitCollection" />
+  <xs:complexType name="StorageUnit">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Isa95Base">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="StorageUnit" nillable="true" type="tns:StorageUnit" />
+  <xs:complexType name="WorkCell">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Isa95Base">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="SubWorkCells" nillable="true" type="tns:WorkCellCollection" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="WorkCell" nillable="true" type="tns:WorkCell" />
+  <xs:complexType name="WorkCellCollection">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="{0}Collection" Namespace="http://www.siplace.com/OIB/2008/05/ConfigurationManager/Contracts/Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="WorkCell" Namespace="http://www.siplace.com/OIB/2008/05/ConfigurationManager/Contracts/Data" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="WorkCell" nillable="true" type="tns:WorkCell" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WorkCellCollection" nillable="true" type="tns:WorkCellCollection" />
+  <xs:complexType name="ExternalReferences">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:PersistBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ReferencedObjects" nillable="true" xmlns:q4="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q4:ArrayOfKeyValueOfIsa95BaseIsa95Base7n_St2CUi" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ExternalReferences" nillable="true" type="tns:ExternalReferences" />
+  <xs:complexType name="ExternalReferencesManager">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:PersistBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ReferencesOfClient" nillable="true" xmlns:q5="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q5:ArrayOfKeyValueOfstringExternalReferences3nO_PcEgB" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ExternalReferencesManager" nillable="true" type="tns:ExternalReferencesManager" />
+  <xs:complexType name="ConfigurationManager">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:PersistBase">
+        <xs:sequence>
+          <xs:element name="Enterprise" nillable="true" type="tns:Enterprise" />
+          <xs:element minOccurs="0" name="ExternalReferencesManager" nillable="true" type="tns:ExternalReferencesManager" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ConfigurationManager" nillable="true" type="tns:ConfigurationManager" />
+  <xs:complexType name="GetCMServiceDetailsRequest">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:element name="GetCMServiceDetailsRequest" nillable="true" type="tns:GetCMServiceDetailsRequest" />
+  <xs:complexType name="GetCMServiceDetailsResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DatabaseInstance" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DatabaseName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OIBVersion" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetCMServiceDetailsResponse" nillable="true" type="tns:GetCMServiceDetailsResponse" />
+  <xs:complexType name="ServiceDescription">
+    <xs:sequence>
+      <xs:element name="Configurations" nillable="true" type="tns:ArrayOfIsa95Base" />
+      <xs:element name="Description" nillable="true" type="xs:string" />
+      <xs:element name="Grouped" type="xs:boolean" />
+      <xs:element name="ID" nillable="true" type="xs:int" />
+      <xs:element name="MetadataEndpoints" nillable="true" xmlns:q6="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q6:ArrayOfanyURI" />
+      <xs:element name="Product" nillable="true" type="xs:string" />
+      <xs:element name="ServiceName" nillable="true" type="xs:string" />
+      <xs:element name="ServiceVersion" nillable="true" type="xs:string" />
+      <xs:element name="Version" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="EquipmentConnectorEndpoint" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Configuration" nillable="true" type="tns:Isa95Base" />
+      <xs:element minOccurs="0" name="FactoryElementId" type="xs:int" />
+      <xs:element minOccurs="0" name="OIBInternalService" type="xs:boolean" />
+      <xs:element minOccurs="0" name="GlobalService" type="xs:boolean" />
+      <xs:element minOccurs="0" name="HealthCheckEndpoint" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OrderIndex" type="xs:int" />
+      <xs:element minOccurs="0" name="DeactivateHealthCheck" type="xs:boolean" />
+      <xs:element minOccurs="0" name="BaseUri" nillable="true" type="xs:anyURI" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ServiceDescription" nillable="true" type="tns:ServiceDescription" />
+  <xs:complexType name="ArrayOfIsa95Base">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Isa95Base" nillable="true" type="tns:Isa95Base" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfIsa95Base" nillable="true" type="tns:ArrayOfIsa95Base" />
+  <xs:complexType name="NotificationUserPacket">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ClientEndpoint" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ClientId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ListUpdates" nillable="true" type="tns:ArrayOfUpdatePackage" />
+      <xs:element minOccurs="0" name="TransactionId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ServiceLocatorUpdates" nillable="true" type="tns:ArrayOfUpdatePackage" />
+      <xs:element minOccurs="0" name="UserAccountName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ClientInfo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ContextId" nillable="true" type="ser:guid" />
+      <xs:element minOccurs="0" name="OperationName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="NotificationUserPacket" nillable="true" type="tns:NotificationUserPacket" />
+  <xs:complexType name="ArrayOfUpdatePackage">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="UpdatePackage" nillable="true" type="tns:UpdatePackage" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfUpdatePackage" nillable="true" type="tns:ArrayOfUpdatePackage" />
+  <xs:complexType name="UpdatePackage">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="m_AssociationUpdate" nillable="true" type="tns:AssociationUpdate" />
+      <xs:element minOccurs="0" name="m_NewVersion" type="xs:int" />
+      <xs:element minOccurs="0" name="m_Object" nillable="true" type="tns:CMVariant" />
+      <xs:element minOccurs="0" name="m_OldVersion" type="xs:int" />
+      <xs:element minOccurs="0" name="m_ParentObject" nillable="true" type="tns:PersistBase" />
+      <xs:element minOccurs="0" name="m_PropertyUpdate" nillable="true" type="tns:PropertyUpdate" />
+      <xs:element minOccurs="0" name="m_Type" type="tns:UpdateType" />
+      <xs:element minOccurs="0" name="VariantParentObject" nillable="true" type="tns:CMVariant" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UpdatePackage" nillable="true" type="tns:UpdatePackage" />
+  <xs:complexType name="AssociationUpdate">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="m_AssociationId" type="xs:int" />
+      <xs:element minOccurs="0" name="m_Key" nillable="true" type="tns:CMVariant" />
+      <xs:element minOccurs="0" name="m_Value" nillable="true" type="tns:CMVariant" />
+      <xs:element minOccurs="0" name="m_dictIndexes" nillable="true" xmlns:q7="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q7:ArrayOfKeyValueOfintint" />
+      <xs:element minOccurs="0" name="m_nIndex" type="xs:int" />
+      <xs:element minOccurs="0" name="m_nIndex2" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AssociationUpdate" nillable="true" type="tns:AssociationUpdate" />
+  <xs:complexType name="CMVariant">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BoolValue" type="xs:boolean" />
+      <xs:element minOccurs="0" name="DateTimeValue" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DoubleValue" type="xs:double" />
+      <xs:element minOccurs="0" name="IntValue" type="xs:int" />
+      <xs:element minOccurs="0" name="ReferenceTypeValue" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="StringValue" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Type" type="tns:VarType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CMVariant" nillable="true" type="tns:CMVariant" />
+  <xs:simpleType name="VarType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">-1</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Int">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">0</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Double">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DateTime">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="String">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">3</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Bool">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">4</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="ReferenceType" />
+      <xs:enumeration value="Reserved_1" />
+      <xs:enumeration value="Reserved_2" />
+      <xs:enumeration value="Reserved_3" />
+      <xs:enumeration value="Reserved_4" />
+      <xs:enumeration value="Reserved_5" />
+      <xs:enumeration value="Reserved_6" />
+      <xs:enumeration value="Reserved_7" />
+      <xs:enumeration value="Reserved_8" />
+      <xs:enumeration value="Reserved_9" />
+      <xs:enumeration value="Reserved_10" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="VarType" nillable="true" type="tns:VarType" />
+  <xs:complexType name="PropertyUpdate">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="m_PropertyId" type="xs:int" />
+      <xs:element minOccurs="0" name="m_newVal" nillable="true" type="tns:CMVariant" />
+      <xs:element minOccurs="0" name="m_oldVal" nillable="true" type="tns:CMVariant" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PropertyUpdate" nillable="true" type="tns:PropertyUpdate" />
+  <xs:simpleType name="UpdateType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">-1</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="UpdateObject">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">0</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="AddList">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DeleteList">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="SwapList">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">3</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="ClearList">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">4</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="MoveList">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">5</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="AddDictionary">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">6</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DeleteDictionary">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">7</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="ClearDictionary">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">8</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="AddSet">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">9</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DeleteSet">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">10</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="ClearSet">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">11</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="RearrangeList">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">12</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Reserved_1">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">13</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Reserved_2">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">14</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Reserved_3">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">15</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Reserved_4">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">16</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Reserved_5">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">17</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Reserved_6">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">18</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Reserved_7">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">19</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Reserved_8">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">20</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Reserved_9">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">21</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Reserved_10">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">22</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="UpdateType" nillable="true" type="tns:UpdateType" />
+</xs:schema>

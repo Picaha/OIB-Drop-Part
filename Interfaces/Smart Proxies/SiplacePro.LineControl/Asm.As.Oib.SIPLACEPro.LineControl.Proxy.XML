@@ -1,0 +1,2310 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ASM.AS.OIB.SIPLACEPro.LineControl.Proxy</name>
+    </assembly>
+    <members>
+        <member name="T:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Interfaces.IConfigure">
+            <summary>
+            Interface to configure service for COM and other clients which 
+            do not use an application configuration file.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Interfaces.IConfigure.Configure(System.String,System.String)">
+            <summary>
+            For COM clients who need to be able to configure the endpoint dynamically
+            </summary>
+            <param name="strEndpoint">Endpoint address</param>
+            <param name="strBinding">Binding</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Interfaces.IConfigure.Configure(System.String)">
+            <summary>
+            For COM clients who need to be able to configure the endpoint dynamically
+            </summary>
+            <param name="strEndpoinConfigurationName">Endpoint configuration Name</param>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Interfaces.IConfigure.EndpointAddress">
+            <summary>
+            Configured Endpoint Address
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Interfaces.IConfigure.SubscriptionManagerEndpoint">
+            <summary>
+            Subscription Manager Endpoint 
+            Set this when using the DonwloadEventListener without app.config file 
+            Examples:
+            http://computername:1405/Asm.As.Oib.WS.Eventing.Services/SubscriptionManager
+            net.tcp://localhost:1406/Asm.As.Oib.WS.Eventing.Services/SubscriptionManager
+            net.msmq://localhost/private/Asm.As.Oib.WS.Eventing.Services
+            </summary>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Interfaces.IDownloadEventListener">
+            <summary>
+            This is the IDownloadEventListener interface for COM clients.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Interfaces.IDownloadEventListener.StartListener">
+            <summary>
+            Call to start receiving events
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Interfaces.IDownloadEventListener.StartListener(System.String)">
+            <summary>
+            Call to start receiving events
+            </summary>
+            <param name="strCallbackEndpoint">Specify Endpoint (use this if you do not have an App.config file)</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Interfaces.IDownloadEventListener.StopListener">
+            <summary>
+            Call to stop receiving events
+            </summary>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.DownloadExtendedEvent">
+            <summary>
+            Fired when a recipe was downloaded. This does not imply that the recipe is active on the station yet.
+            Note: In case of a job download (barcode mode) this event will not get fired for station software 40x and 50x.
+            In case you want to subscribe to setup downloads, use the SetupDownload Event instead.
+            </summary>
+            <param name="strServiceComputer">Computer Name on which the LineControl Service is running</param>
+            <param name="DownloadTime">UTC Time when download happened</param>
+            <param name="LineName">Line Name which was downloaded to</param>
+            <param name="StationName">Station Name which was downloaded to</param>
+            <param name="Lanes">Conveyor Lane for which the download happened</param>
+            <param name="JobName">Job Name (only filled out if Line is in Barcode Mode)</param>
+            <param name="RecipeName">Recipe Name that was downloaded</param>
+            <param name="ProductionScheduleName">Name of ProductionSchedule (only filled out if line is in normal operation)</param>
+            <param name="ProductionScheduleElementId">ProductionScheduleElementId (only filled out if line is in normal operation)</param>
+            <param name="LineOID">Line OID which was downloaded to</param>
+            <param name="StationOID">Station OID which was downloaded to</param>
+            <param name="JobOID">Job OID (only filled out if Line is in Barcode Mode)</param>
+            <param name="RecipOID">Recipe OID that was downloaded</param>
+            <param name="ProductionScheduleOID">OID of ProductionSchedule (only filled out if line is in normal operation)</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.DownloadExtendedLongEvent">
+            <summary>
+            Fired when a recipe was downloaded. This does not imply that the recipe is active on the station yet.
+            Note: In case of a job download (barcode mode) this event will not get fired for station software 40x and 50x.
+            In case you want to subscribe to setup downloads, use the SetupDownload Event instead.
+            </summary>
+            <param name="strServiceComputer">Computer Name on which the LineControl Service is running</param>
+            <param name="DownloadTime">UTC Time when download happened</param>
+            <param name="LineName">Line Name which was downloaded to</param>
+            <param name="StationName">Station Name which was downloaded to</param>
+            <param name="Lanes">Conveyor Lane for which the download happened</param>
+            <param name="JobName">Job Name (only filled out if Line is in Barcode Mode)</param>
+            <param name="RecipeName">Recipe Name that was downloaded</param>
+            <param name="ProductionScheduleName">Name of ProductionSchedule (only filled out if line is in normal operation)</param>
+            <param name="ProductionScheduleElementId">ProductionScheduleElementId (only filled out if line is in normal operation)</param>
+            <param name="LineOID">Line OID which was downloaded to</param>
+            <param name="StationOID">Station OID which was downloaded to</param>
+            <param name="JobOID">Job OID (only filled out if Line is in Barcode Mode)</param>
+            <param name="RecipOID">Recipe OID that was downloaded</param>
+            <param name="ProductionScheduleOID">OID of ProductionSchedule (only filled out if line is in normal operation)</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.DownloadExtendedNewEvent">
+            <summary>
+            Fired when a recipe was downloaded. This does not imply that the recipe is active on the station yet.
+            Note: In case of a job download (barcode mode) this event will not get fired for station software 40x and 50x.
+            In case you want to subscribe to setup downloads, use the SetupDownload Event instead.
+            </summary>
+            <param name="report">DownloadReport class containing all properties</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.DownloadEvent">
+            <summary>
+            Fired when a recipe was downloaded. This does not imply that the recipe is active on the station yet.
+            Note: In case of a job download (barcode mode) this event will not get fired for station software 40x and 50x.
+            In case you want to subscribe to setup downloads, use the SetupDownload Event instead.
+            </summary>
+            <param name="strServiceComputer">Computer Name on which the LineControl Service is running</param>
+            <param name="DownloadTime">UTC Time when download happened</param>
+            <param name="LineName">Line Name which was downloaded to</param>
+            <param name="StationName">Station Name which was downloaded to</param>
+            <param name="Lanes">Conveyor Lane for which the download happened</param>
+            <param name="JobName">Job Name (only filled out if Line is in Barcode Mode)</param>
+            <param name="RecipeName">Recipe Name that was downloaded</param>
+            <param name="ProductionScheduleName">Name of ProductionSchedule (only filled out if line is in normal operation)</param>
+            <param name="ProductionScheduleElementId">ProductionScheduleElementId (only filled out if line is in normal operation)</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.SetupDownloadEvent">
+            <summary>
+            Fired when a setup was downloaded.
+            </summary>
+            <param name="serviceComputer">Computer Name on which the LineControl Service is running</param>
+            <param name="downloadTime">UTC Time when download happened</param>
+            <param name="linePath">Line Path which was downloaded to</param>
+            <param name="lineOID">Line OID which was downloaded to</param>
+            <param name="fullyTypedDevicePath">
+            Fully Typed Device Path which was downloaded to (Station:Folder\Name or
+            Printer:Folder\Name)
+            </param>
+            <param name="deviceOID">Device OID which was downloaded to</param>
+            <param name="fullyTypedDeviceSetupPath">
+            Fully Typed DeviceSetup Path which was downloaded. (Setup:Folder\Name or
+            PrinterSetup:Folder\Name)
+            </param>
+            <param name="deviceSetupOID">Recipe OID that was downloaded</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.SetupDownloadLongEvent">
+            <summary>
+            Fired when a setup was downloaded.
+            </summary>
+            <param name="serviceComputer">Computer Name on which the LineControl Service is running</param>
+            <param name="downloadTime">UTC Time when download happened</param>
+            <param name="linePath">Line Path which was downloaded to</param>
+            <param name="lineOID">Line OID which was downloaded to</param>
+            <param name="fullyTypedDevicePath">
+            Fully Typed Device Path which was downloaded to (Station:Folder\Name or
+            Printer:Folder\Name)
+            </param>
+            <param name="deviceOID">Device OID which was downloaded to</param>
+            <param name="fullyTypedDeviceSetupPath">
+            Fully Typed DeviceSetup Path which was downloaded. (Setup:Folder\Name or
+            PrinterSetup:Folder\Name)
+            </param>
+            <param name="deviceSetupOID">Recipe OID that was downloaded</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.SetupDownloadNewEvent">
+            <summary>
+            Fired when a setup was downloaded.
+            </summary>
+            <param name="report">SetupDownloadReport containing all properties</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.DownloadEventListener">
+            <summary>
+            Helper class to receive download events
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.DownloadEventListener.MarshalEventsToSessionCreatorThread">
+            <summary>
+            If true, all Events will be fired on the thread that created the Session.
+            This is helpful if you use the Events to update the UI.
+            In order for that to work correctly, you need a SynchronizationContext.Current
+            when the Session is created (if this was done on the UI thread, then the SynchronizationContext.Current
+            is there by default.
+            The default value of this property is true.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.DownloadEventListener.#ctor(Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl)">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.DownloadEventListener.Finalize">
+            <summary>
+            Finalizer
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.DownloadEventListener.SubscriptionTimeout">
+            <summary>
+            Gets or sets the subscription timeout.
+            This class will use this value for creating and renewing subscriptions
+            Default is one day
+            </summary>
+            <value>
+            The subscription timeout.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.DownloadEventListener.CallbackEndpoint">
+            <summary>
+            Gets the callback endpoint that is used for delivering download events.
+            </summary>
+            <value>
+            The callback endpoint.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.DownloadEventListener.CallbackEndpointSetupDownload">
+            <summary>
+            Gets the callback endpoint that is used for delivering setup download events.
+            </summary>
+            <value>
+            The callback endpoint for setup downloads.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.DownloadEventListener.CallbackEndpointGatewayComputer">
+            <summary>
+            Gets the callback endpoint address of the gateway to receive events in a cluster environment like docker.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.DownloadEventListener.CallbackEndpointGatewayPort">
+            <summary>
+            Gets the callback endpoint port of the gateway to receive events in a cluster environment like docker.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.DownloadEventListener.Dispose">
+            <summary>
+            Disposes of this instance.
+            Stops the Listener.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.DownloadEventListener.StartListener">
+            <summary>
+            To start receiving events, call this method.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.DownloadEventListener.StartListener(System.String)">
+            <summary>
+            To start receiving events, call this method.
+            </summary>
+            <param name="strEndpoint">
+            The base endpoint used for the callback receiving the download events.
+            If null is passed in, and CallbackEndpointBase is set, then this is used: CallbackEndpointBase + @"/DownloadReceiver +
+            "\\" + Guid.NewGuid()".
+            If something non-null is passed in, this is used: callbackEndpoint += "\\" + Guid.NewGuid();
+            Note: The port number might change, so in case you want to know the real endpoint, access the CallbackEndpoint property
+            after calling this method.
+            </param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.DownloadEventListener.StartListener(System.Boolean)">
+            <summary>
+            To start receiving events, call this method.
+            </summary>
+            <param name="subscribeToSetupDownloads">
+            If this is set to true, the SetupDownload events will also be fired.
+            </param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.DownloadEventListener.StartListener(System.Boolean,System.String)">
+            <summary>
+            To start receiving events, call this method.
+            </summary>
+            <param name="strEndpoint">
+            The base endpoint used for the callback receiving the download events.
+            If null is passed in, and CallbackEndpointBase is set, then this is used: CallbackEndpointBase + @"/DownloadReceiver +
+            "\\" + Guid.NewGuid()".
+            If something non-null is passed in, this is used: callbackEndpoint += "\\" + Guid.NewGuid();
+            Note: The port number might change, so in case you want to know the real endpoint, access the CallbackEndpoint property
+            after calling this method.
+            </param>
+            <param name="subscribeToSetupDownloads">
+            If this is set to true, the SetupDownload events will also be fired.
+            </param>
+            <remarks>
+            To receive events in a cluster environment like docker, use <see cref="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.DownloadEventListener.SetCallbackEndpointGateway(System.String,System.Int32)"/> to set the gateway computer
+            (e.g. docker engine) to redirect the event to your client application.
+            </remarks>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.DownloadEventListener.StartListener(Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.DownloadListenerParameters)">
+            <summary>
+            To start receiving events, call this method.
+            </summary>
+            <param name="parameters">The DownloadListenerParameters that provide the details about how the subscription(s) for the events shall be created</param>
+            <remarks>
+            To receive events in a cluster environment like docker, use <see cref="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.DownloadEventListener.SetCallbackEndpointGateway(System.String,System.Int32)"/> to set the gateway computer
+            (e.g. docker engine) to redirect the event to your client application.
+            </remarks>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.DownloadEventListener.StartListener(System.Boolean,System.String,Asm.As.Oib.Common.Utilities.ServiceSecurityParameters)">
+            <summary>
+            To start receiving events, call this method.
+            </summary>
+            <param name="strEndpoint">
+            The base endpoint used for the callback receiving the download events.
+            If null is passed in, and CallbackEndpointBase is set, then this is used: CallbackEndpointBase + @"/DownloadReceiver +
+            "\\" + Guid.NewGuid()".
+            If something non-null is passed in, this is used: callbackEndpoint += "\\" + Guid.NewGuid();
+            Note: The port number might change, so in case you want to know the real endpoint, access the CallbackEndpoint property
+            after calling this method.
+            </param>
+            <param name="subscribeToSetupDownloads">
+            If this is set to true, the SetupDownload events will also be fired.
+            </param>
+            <param name="parameters">The service security parameters in case a secure callback should be hosted. If null, the app.config will be checked and used</param>
+            <remarks>
+            To receive events in a cluster environment like docker, use <see cref="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.DownloadEventListener.SetCallbackEndpointGateway(System.String,System.Int32)"/> to set the gateway computer
+            (e.g. docker engine) to redirect the event to your client application.
+            </remarks>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.DownloadEventListener.StopListener">
+            <summary>
+            To stop receiving events, call this method.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.DownloadEventListener.SetCallbackEndpointGateway(System.String,System.Int32)">
+            <summary>
+            Sets the callback gateway computer and its port to use the callback in cluster environments like docker.
+            </summary>
+            <param name="callbackEndpointGatewayComputer">The callback address of the gateway computer which redirects the event to your client application.</param>
+            <param name="callbackEndpointGatewayPort">The callback port of the gateway computer which redirects the event to ýour client application.</param>
+            <example>
+            You can also specify the gateway in your application config by adding the IP adress and the port:
+            		<add key="Asm.As.Oib.Proxies.GatewayComputer" value="a.b.c.d" />
+             		<add key = "Asm.As.Oib.SiplacePro.LineControl.Proxy.CallbackEndpointGatewayPort" value="x" />
+            </example>
+        </member>
+        <member name="E:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.DownloadEventListener.Download">
+            <summary>
+            Fired when a recipe was downloaded. This does not imply that the recipe is active on the station yet.
+            Note: In case of a job download (barcode mode) this event will not get fired for station software 40x and 50x.
+            In case you want to subscribe to setup downloads, use the SetupDownload Event instead.
+            </summary>
+        </member>
+        <member name="E:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.DownloadEventListener.DownloadExtended">
+            <summary>
+            Fired when a recipe was downloaded. This does not imply that the recipe is active on the station yet.
+            Note: In case of a job download (barcode mode) this event will not get fired for station software 40x and 50x.
+            In case you want to subscribe to setup downloads, use the SetupDownload Event instead.
+            </summary>
+        </member>
+        <member name="E:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.DownloadEventListener.DownloadExtendedLong">
+            <summary>
+            Fired when a recipe was downloaded. This does not imply that the recipe is active on the station yet.
+            Note: In case of a job download (barcode mode) this event will not get fired for station software 40x and 50x.
+            In case you want to subscribe to setup downloads, use the SetupDownload Event instead.
+            </summary>
+        </member>
+        <member name="E:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.DownloadEventListener.DownloadExtendedNew">
+            <summary>
+            Fired when a recipe was downloaded. This does not imply that the recipe is active on the station yet.
+            Note: In case of a job download (barcode mode) this event will not get fired for station software 40x and 50x.
+            In case you want to subscribe to setup downloads, use the SetupDownload Event instead.
+            </summary>
+        </member>
+        <member name="E:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.DownloadEventListener.SetupDownloaded">
+            <summary>
+            Fired when a setup was downloaded.
+            </summary>
+        </member>
+        <member name="E:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.DownloadEventListener.SetupDownloadedLong">
+            <summary>
+            Fired when a setup was downloaded.
+            </summary>
+        </member>
+        <member name="E:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.DownloadEventListener.SetupDownloadedNew">
+            <summary>
+            Fired when a setup was downloaded.
+            </summary>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.DownloadListenerParameters">
+            <summary>
+            Contains all parameters for the download listener
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.DownloadListenerParameters.SubscribeToSetupDownloads">
+            <summary>
+            If true, also subscribes to Setup Download Events. IF false, only subscribes to normal Recipe Download Events.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.DownloadListenerParameters.CallbackEndpoint">
+            <summary>
+            Optional. The base endpoint used for the callback receiving the download events.
+            If null is passed in, and CallbackEndpointBase is set, then this is used: CallbackEndpointBase + @"/DownloadReceiver +
+            "\\" + Guid.NewGuid()".
+            If something non-null is passed in, this is used: callbackEndpoint += "\\" + Guid.NewGuid();
+            Note: The port number might change, so in case you want to know the real endpoint, access the CallbackEndpoint property
+            after calling this method.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.DownloadListenerParameters.CallbackSecurityParameters">
+            <summary>
+            Optional. If provided, hosts a secure callback service.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.DownloadListenerParameters.LinePathFilter">
+            <summary>
+            Optional. If null or empty, no filter is applied, otherwise all provided paths are added and 'OR'ed
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.DownloadListenerParameters.FilterIsCaseSensitive">
+            <summary>
+            Optional. If true, the line paths (if provided) are evaluated as case sensitive, otherwise the case does not matter.
+            Default is false.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.DownloadListenerParameters.ToString">
+            <inheritdoc />
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.ServiceUnreachableEvent">
+            <summary>
+            Will be fired whenever the service cannot be reached
+            </summary>
+            <param name="strServiceEndpoint">Service Endpoint</param>
+            <param name="strComment">Comment</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.ServiceReconnectEvent">
+            <summary>
+            Will be fired whenever the service has reestablished connection and can be reached again
+            </summary>
+            <param name="strServiceEndpoint">Service Endpoint</param>
+            <param name="strComment">Comment</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl">
+            <summary>
+            Proxy Class for Line Control
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.MarshalEventsToSessionCreatorThread">
+            <summary>
+            If true, all Events will be fired on the thread that created the LineControl class.
+            This is helpful if you use the Events to update the UI.
+            In order for that to work correctly, you need a SynchronizationContext.Current
+            when the LineControl class is created (if this was done on the UI thread, then the SynchronizationContext.Current
+            is there by default.
+            The default value of this property is true.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.ServiceAlive">
+            <summary>
+            Gets a value indicating whether the service is alive.
+            </summary>
+            <value>
+            <c>true</c> if [service alive]; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.DownloadEventListener">
+            <summary>
+            Exposes the DownloadEventListener class which can be used to receive download events
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.SetCertificateForClientAuthentication(System.Security.Cryptography.X509Certificates.StoreLocation,System.Security.Cryptography.X509Certificates.X509FindType,System.Security.Cryptography.X509Certificates.StoreName,System.String)">
+            <summary>
+            Sets the client certificate parameters for authentication to the LineControlService.
+            Needs to be provided in case OIB services require a client certificate.
+            </summary>
+            <param name="storeLocation">The store location.</param>
+            <param name="findType">Type of the find.</param>
+            <param name="storeName">Name of the store.</param>
+            <param name="findValue">The find value.</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.IsServiceAlive">
+            <summary>
+            Triggers an update of the state and returns the updated ServiceAlive property.
+            </summary>
+            <returns>True , if service is alive, otherwise false</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.ToLocalProxyTime(System.DateTime)">
+            <summary>
+            This method converts DateTime objects retrieved from the LineControl Adapter
+            into the local time. Use this for client-server scenarios where you span over time zones.
+            </summary>
+            <param name="serverTime">Time returned from the adapter</param>
+            <returns>Time converted to local time</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.ToUtcTime(System.DateTime)">
+            <summary>
+            This method converts DateTime objects retrieved from the LineControl Adapter
+            into UTC time. Use this for client-server scenarios where you span over time zones
+            and work uniquely with UTC on your side.
+            </summary>
+            <param name="serverTime">Time returned from the adapter</param>
+            <returns>Time converted to local time</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.Dispose">
+            <summary>
+            Disposes of the Line Control class.
+            </summary>
+        </member>
+        <member name="E:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.ServiceUnreachable">
+            <summary>
+            Will be fired whenever the service cannot be reached
+            </summary>
+        </member>
+        <member name="E:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.ServiceReconnect">
+            <summary>
+            Will be fired whenever the service has reestablished connection and can be reached again
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.Finalize">
+            <summary>
+            Finalizes an instance of the <see cref="T:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl"/> class.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.#ctor">
+            <summary>
+            Default constructor.
+            Uses the configured default endpoint in the application configuration file.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.#ctor(System.String)">
+            <summary>
+            Constructor using the configured endpoint name in the application configuration file.
+            </summary>
+            <param name="endpointConfigurationName">Endpoint Name</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.#ctor(System.ServiceModel.EndpointAddress,System.ServiceModel.Channels.Binding)">
+            <summary>
+            Constructor using the given endpoint address and binding.
+            </summary>
+            <param name="endpointAddress">Endpoint Address of service</param>
+            <param name="binding">
+            Binding to use (optional). If null, then a default binding will be created which corresponds to
+            the endpoint address scheme.
+            </param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.GetTheHermesStandardConfiguration(Asm.As.Oib.SiplacePro.LineControl.Contracts.Data.GetTheHermesStandardConfigurationRequest)">
+            <summary>
+            Gets "The Hermes Standard" communication configuration
+            for all devices of a line
+            </summary>
+            <param name="request">The request.</param>
+            <returns>GetTheHermesStandardConfigurationResult</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.SetTheHermesStandardConfiguration(Asm.As.Oib.SiplacePro.LineControl.Contracts.Data.SetTheHermesStandardConfigurationRequest)">
+            <summary>
+            Downloads "The Hermes Standard" communication configuration to all devices of a line.
+            </summary>
+            <param name="request">The request.</param>
+            <returns>SetTheHermesStandardConfigurationResult</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.CheckTheHermesStandardConfiguration(Asm.As.Oib.SiplacePro.LineControl.Contracts.Data.CheckTheHermesStandardConfigurationRequest)">
+            <summary>
+            Checks "The Hermes Standard" communication configuration for all or for some
+            devices of a line. Returns just a bool, if it is fine or not. 
+            </summary>
+            <param name="request">The request.</param>
+            <returns>CheckTheHermesStandardConfigurationResult</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.StartBarcodeMode(Asm.As.Oib.SiplacePro.LineControl.Contracts.Data.StartBarcodeModeRequest)">
+            <summary>
+            Starts the barcode mode on a specific line.
+            </summary>
+            <param name="request">The StartBarcodeModeRequest.</param>
+            <returns>
+            StartBarcodeModeResult structure
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.IsLineInBarcodeMode(Asm.As.Oib.SiplacePro.LineControl.Contracts.Data.IsLineInBarcodeModeRequest)">
+            <summary>
+            Checks if a given line is operating in barcode mode
+            </summary>
+            <param name="request">The request.</param>
+            <returns>
+            IsLineInBarcodeModeResult
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.PrepareAllActiveRecipesAgain(Asm.As.Oib.SiplacePro.LineControl.Contracts.Data.PrepareAllActiveRecipesAgainRequest)">
+            <summary>
+            Prepares all active recipes again. Only releases the prepared data
+            if no repartitioning of placement positions has been detected in any of the recipes.
+            </summary>
+            <param name="request">The request.</param>
+            <returns>
+            PrepareAllActiveRecipesAgainResult
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.ReDownloadRecipeForBarcodeMode(Asm.As.Oib.SiplacePro.LineControl.Contracts.Data.ReDownloadRecipeForBarcodeModeRequest)">
+            <summary>
+            Re-prepare an already downloaded but modified recipe or prepare another additional recipe for barcode mode.
+            Precondition is that the line runs in barcode mode.
+            </summary>
+            <param name="request">The request.</param>
+            <returns>
+            ReDownloadRecipeForBarcodeModeResult containing the results of the operation
+            </returns>
+            <remarks>
+            The recipe data will be prepared and released (again).
+            This is useful if e.g. the data of a board was changed and need to be updated at the line control server.
+            This is useful too to download another recipe to the printer line segment.
+            </remarks>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.ExternalPressStartButton(Asm.As.Oib.SiplacePro.LineControl.Contracts.Data.ExternalPressStartButtonRequest)">
+            <summary>
+            Use this method to press the start button of the machine by a software module to switch back to production mode.
+            Can be used after automated Change Over Table exchange is completed.
+            Out parameter errorCode:
+            0: Succeeded
+            (Failure error codes are not yet defined)
+            </summary>
+            <param name="request">ExternalPressStartButtonRequest</param>
+            <returns>ExternalPressStartButtonResult</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.Download(Asm.As.Oib.SiplacePro.LineControl.Contracts.Data.DownloadRequest)">
+            <summary>
+            Download the Recipe from the ProductionScheduleElement with the appropriate id in the
+            defined production schedule to the line. If a productionScheduleElementId is specified,
+            then this will be used to find the ProductionScheduleElement, otherwise the nProductionScheduleElementIndex is used.
+            If a ProductionScheduleOID > 0 is specified, it will be used. Otherwise the full path needs to be specified.
+            In order to trigger a download to both lanes, specify the left and right properties and also
+            set the Lanes property to Both.
+            Starting with SIPLACE Pro 14.1, you can also download to the printers in the line. See DownloadRequest.SubLineSelection
+            for details.
+            </summary>
+            <param name="request">The DownloadRequest.</param>
+            <returns>
+            DownloadResult structure
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.GetRecipeForAutoProgramDownload(Asm.As.Oib.SiplacePro.LineControl.Contracts.Data.GetRecipeForAutoProgramDownloadRequest)">
+            <summary>
+            This methods checks which recipe would be downloaded, if first station would request a placement program for a PCB (or
+            a pair of PCBs in synchronous dual conveyor mode).
+            This check is typically done before the PCB is moved into the first station.
+            This method may create a new recipe in synchronous dual conveyor mode, if it can't find an existing one in the job.
+            </summary>
+            <param name="request">The GetRecipeForAutoProgramDownloadRequest.</param>
+            <returns>GetRecipeForAutoProgramDownloadResult containing the Recipe if found.</returns>
+            <remarks>
+            The returned RecipePath is empty, if no recipe could be found or created.
+            An ArgumentOutOfRangeException will be thrown for invalid conveyorLane values None and Both.
+            Argument conveyorLane:
+            - Asynchronous dual conveyor: left lane and right lane is allowed.
+            - Synchronous dual conveyor: Only right lane is allowed, as returned recipe can only be downloaded to right lane.
+            - Single conveyor: Only right lane is allowed.
+            </remarks>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.CheckAlive">
+            <summary>
+            Ping method to check if Service is alive.
+            Throws an exception in case the service is not alive
+            </summary>
+            <returns>Process Id of the Service Process</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.HasAdapterLicense">
+            <summary>
+            Checks if an Line Control adapter license is available.
+            </summary>
+            <returns>True, if license is available.</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.Download(System.String,System.Int32,Asm.As.Oib.SiplacePro.LineControl.Contracts.ConveyorLanes)">
+            <summary>
+            Download the recipe from the ProductionScheduleElement with the appropriate id in the
+            defined production schedule to the line
+            Uses IntegrityCheckMode.AllowHeadStepRecalculation and IntegrityCheckModeForRepartitioning.AllowRepartitioning
+            as default
+            </summary>
+            <param name="strProductionScheduleName">Name of the production schedule</param>
+            <param name="nProductionScheduleElementIndex">Zero based index of the ProductionScheduleElement</param>
+            <param name="nLanes">The conveyor lanes. Either Right, Left or Both</param>
+            <returns>DownloadResult structure</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.StopLine(System.String)">
+            <summary>
+            Stop the line by blocking all input conveyors from the first station in line.
+            Same logic as BlockStationInputConveyor, but without possibility to lock.
+            </summary>
+            <param name="lineName">Full SIPLACE Pro Line path (including Folders)</param>
+            <returns>success</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.StopLineConveyor(System.String,Asm.As.Oib.SiplacePro.LineControl.Contracts.ConveyorLanes)">
+            <summary>
+            Stop the line by blocking the specified input conveyors from the first station in line
+            Same logic as BlockStationInputConveyor with conveyor lane, but without possibility to lock.
+            </summary>
+            <param name="lineName">Full SIPLACE Pro Line path (including Folders)</param>
+            <param name="nLanes">The conveyor lanes. Either Right, Left or Both</param>
+            <returns>success</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.ContinueLine(System.String)">
+            <summary>
+            Releases a block of the first station in line.
+            This command is only useful, if a StopLine was issued before.
+            </summary>
+            <param name="lineName">Full SIPLACE Pro Line path (including Folders)</param>
+            <returns>success</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.ContinueLineConveyor(System.String,Asm.As.Oib.SiplacePro.LineControl.Contracts.ConveyorLanes)">
+            <summary>
+            Releases a block of the first station in line.
+            This command is only useful, if a StopLine was issued before.
+            </summary>
+            <param name="lineName">Full SIPLACE Pro Line path (including Folders)</param>
+            <param name="nLanes">The conveyor lanes. Either Right, Left or Both</param>
+            <returns>success</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.BlockStationInputConveyor(System.String,System.Boolean,System.String)">
+            <summary>
+            Stop the station by blocking all input conveyors of the specified station.
+            Allows to lock the conveyor. Supported with SIPLACE Pro 10.0 or higher.
+            To un-block, use UnBlockStationInputConveyor() method.
+            The lock is only assured by Line Control Server and not the station. Thus an operator at the station can unlock again.
+            </summary>
+            <param name="station">The station name (full path).</param>
+            <param name="bLock">If set to <c>true</c> the conveyor is locked and cannot be unlocked by a new download. If set to false, a new download unlocks the conveyor again.</param>
+            <param name="strBlockingApplicationName">Name of the triggering application</param>
+            <returns>success</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.UnBlockStationInputConveyor(System.String,System.String)">
+            <summary>
+            Unblock all input conveyors of the specified station.
+            Supported with SIPLACE Pro 10.0 or higher.
+            </summary>
+            <param name="station">The station name (full path).</param>
+            <param name="strUnblockingApplicationName">Name of the triggering application</param>
+            <returns>success</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.GetActiveProductionSchedule(System.String)">
+            <summary>
+            Receive the name of the assigned production Schedule
+            </summary>
+            <param name="lineName">Full SIPLACE Pro Line path (including Folders)</param>
+            <returns>Name of the Production Schedule</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.SetActiveProductionSchedule(System.String,System.String)">
+            <summary>
+            Set the active production schedule for a line
+            </summary>
+            <param name="lineName">Full SIPLACE Pro Line path (including Folders)</param>
+            <param name="productionScheduleName">name of production schedule</param>
+            <returns>success</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.GetLineStatus(System.String)">
+            <summary>
+            Get the status description of the line
+            </summary>
+            <param name="lineName">Name of the line</param>
+            <returns>The status of the connections to the machines in the LineControlLineStatus object.</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.GetProductionScheduleByIdentity(Asm.As.Oib.SiplacePro.LineControl.Contracts.Data.LCIdentity,System.Boolean)">
+            <inheritdoc />
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.AppendProductionScheduleElement(System.String,Asm.As.Oib.SiplacePro.LineControl.Contracts.Data.ProductionScheduleElement)">
+            <summary>
+            Appends one production schedule element name on the production schedule
+            </summary>
+            <param name="productionSchedule">Name of the production schedule</param>
+            <param name="element">Production schedule element to add</param>
+            <returns>ID (UUID) of the new ProductionScheduleElement</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.CheckDownloadData(System.String,System.String,System.String,Asm.As.Oib.SiplacePro.LineControl.Contracts.IntegrityCheckMode,System.Boolean)">
+            <summary>
+            Checks the download data.
+            </summary>
+            <param name="lineName">Full SIPLACE Pro Line path (including Folders)</param>
+            <param name="productionSchedule">The production schedule.</param>
+            <param name="productionScheduleElementId">The production schedule element id.</param>
+            <param name="integrityCheckMode">The integrity check mode.</param>
+            <param name="allowRepartitioningInIntegrityCheck">If set to <c>true</c> [allow repartitioning in integrity check].</param>
+            <returns>True, if the Check was successful</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.GetIntegrityCheckMessages(System.String)">
+            <summary>
+            Gets the integrity check messages. This enables the consumer to figure out,
+            which is the reason for a refused feasibility
+            </summary>
+            <param name="recipeName">Full SIPLACE Pro recipe path (including Folders).</param>
+            <returns>List of messages issued in the last integrity check run.</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.CheckDownloadDataArray(System.String,System.String,System.String,Asm.As.Oib.SiplacePro.LineControl.Contracts.IntegrityCheckMode,System.Boolean)">
+            <summary>
+            Checks the download data.
+            </summary>
+            <param name="lineName">Full SIPLACE Pro Line path (including Folders)</param>
+            <param name="productionSchedule">The production schedule.</param>
+            <param name="productionScheduleElementId">The production schedule element id.</param>
+            <param name="integrityCheckMode">The integrity check mode.</param>
+            <param name="allowRepartitioningInIntegrityCheck">If set to <c>true</c> [allow repartitioning in integrity check].</param>
+            <returns>COM compatible Array of Optimizer messages</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.CheckDownloadDataList(System.String,System.String,System.String,Asm.As.Oib.SiplacePro.LineControl.Contracts.IntegrityCheckMode,System.Boolean)">
+            <summary>
+            Checks the download data.
+            </summary>
+            <param name="lineName">Full SIPLACE Pro Line path (including Folders)</param>
+            <param name="productionSchedule">The production schedule.</param>
+            <param name="productionScheduleElementId">The production schedule element id.</param>
+            <param name="integrityCheckMode">The integrity check mode.</param>
+            <param name="allowRepartitioningInIntegrityCheck">If set to <c>true</c> [allow repartitioning in integrity check].</param>
+            <returns>List of Optimizer messages</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.CheckDownloadData2(System.String,System.String,Asm.As.Oib.SiplacePro.LineControl.Contracts.IntegrityCheckMode,System.Boolean)">
+            <summary>
+            Checks the download data.
+            </summary>
+            <param name="lineName">Full SIPLACE Pro Line path (including Folders)</param>
+            <param name="recipeName">Full SIPLACE Pro Recipe path (including Folders)</param>
+            <param name="integrityCheckMode">The integrity check mode.</param>
+            <param name="allowRepartitioningInIntegrityCheck">If set to <c>true</c> [allow repartitioning in integrity check].</param>
+            <returns>List of Optimizer messages</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.CheckDownloadDataArray2(System.String,System.String,Asm.As.Oib.SiplacePro.LineControl.Contracts.IntegrityCheckMode,System.Boolean)">
+            <summary>
+            Checks the download data.
+            </summary>
+            <param name="lineName">Full SIPLACE Pro Line path (including Folders)</param>
+            <param name="recipeName">Full SIPLACE Pro Recipe path (including Folders)</param>
+            <param name="integrityCheckMode">The integrity check mode.</param>
+            <param name="allowRepartitioningInIntegrityCheck">If set to <c>true</c> [allow repartitioning in integrity check].</param>
+            <returns>COM compatible Array of Optimizer messages</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.CheckDownloadDataList2(System.String,System.String,Asm.As.Oib.SiplacePro.LineControl.Contracts.IntegrityCheckMode,System.Boolean)">
+            <summary>
+            Checks the download data.
+            </summary>
+            <param name="lineName">Full SIPLACE Pro Line path (including Folders)</param>
+            <param name="recipeName">Full SIPLACE Pro Recipe path (including Folders)</param>
+            <param name="integrityCheckMode">The integrity check mode.</param>
+            <param name="allowRepartitioningInIntegrityCheck">If set to <c>true</c> [allow repartitioning in integrity check].</param>
+            <returns>List of Optimizer messages</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.GetIntegrityCheckMessagesArray(System.String)">
+            <summary>
+            Gets the integrity check messages. This enables the consumer to figure out,
+            which is the reason for a refused feasibility
+            </summary>
+            <param name="recipeName">Full SIPLACE Pro recipe path (including Folders).</param>
+            <returns>COM compatible Array of messages issued in the last integrity check run.</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.GetIntegrityCheckMessagesList(System.String)">
+            <summary>
+            Gets the integrity check messages. This enables the consumer to figure out,
+            which is the reason for a refused feasibility
+            </summary>
+            <param name="recipeName">Full SIPLACE Pro recipe path (including Folders).</param>
+            <returns>List of messages issued in the last integrity check run.</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.GetProductionSchedule(System.String)">
+            <summary>
+            Get the Production Schedule description
+            </summary>
+            <param name="name">Name of the production schedule</param>
+            <returns>success</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.SetConveyorWidth(System.String,Asm.As.Oib.SiplacePro.LineControl.Contracts.ConveyorLanes,System.Double)">
+            <summary>
+            Sets the width of the conveyor.
+            </summary>
+            <param name="lineName">Name of the line.</param>
+            <param name="nLanes">The conveyor lanes. Either Right, Left or Both</param>
+            <param name="width">The width in mm.</param>
+            <returns>success</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.ReconnectStations(System.String)">
+            <summary>
+            Initiates a reconnect to all station in that line.
+            </summary>
+            <param name="lineName">Name of the line</param>
+            <returns>success of the initiation not the end of the reconnect</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.ReconnectStationsMsg(System.String)">
+            <summary>
+            Initiates a reconnect to all station in that line.
+            In case, the reconnection of one or more stations fails,
+            this call does not return with an exception. The caller has to
+            check for messages of level "Error" to check if the call was successful
+            </summary>
+            <param name="lineName">Name of the line</param>
+            <returns>Download messages</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.Download2(System.String,System.String,Asm.As.Oib.SiplacePro.LineControl.Contracts.ConveyorLanes)">
+            <summary>
+            Download the recipe from the ProductionScheduleElement with the appropriate id in the
+            defined production schedule to the line
+            </summary>
+            <param name="strProductionScheduleName">Name of the production schedule</param>
+            <param name="productionScheduleElementId">The production schedule element id.</param>
+            <param name="nLanes">The conveyor lanes. Either Right, Left or Both</param>
+            <returns>DownloadResult structure</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.CheckDownloadData3(System.String,System.String,System.Int32,Asm.As.Oib.SiplacePro.LineControl.Contracts.IntegrityCheckMode,System.Boolean)">
+            <summary>
+            Checks the download data.
+            </summary>
+            <param name="lineName">Full SIPLACE Pro Line path (including Folders)</param>
+            <param name="productionSchedule">The production schedule.</param>
+            <param name="productionScheduleElementIndex">Zero based index of the ProductionScheduleElement.</param>
+            <param name="integrityCheckMode">The integrity check mode.</param>
+            <param name="allowRepartitioningInIntegrityCheck">If set to <c>true</c> [allow repartitioning in integrity check].</param>
+            <returns>List of Optimizer messages</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.CheckDownloadDataArray3(System.String,System.String,System.Int32,Asm.As.Oib.SiplacePro.LineControl.Contracts.IntegrityCheckMode,System.Boolean)">
+            <summary>
+            Checks the download data.
+            </summary>
+            <param name="lineName">Full SIPLACE Pro Line path (including Folders)</param>
+            <param name="productionSchedule">The production schedule.</param>
+            <param name="productionScheduleElementIndex">Zero based index of the ProductionScheduleElement.</param>
+            <param name="integrityCheckMode">The integrity check mode.</param>
+            <param name="allowRepartitioningInIntegrityCheck">If set to <c>true</c> [allow repartitioning in integrity check].</param>
+            <returns>COM compatible Array of Optimizer messages</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.CheckDownloadDataList3(System.String,System.String,System.Int32,Asm.As.Oib.SiplacePro.LineControl.Contracts.IntegrityCheckMode,System.Boolean)">
+            <summary>
+            Checks the download data.
+            </summary>
+            <param name="lineName">Full SIPLACE Pro Line path (including Folders)</param>
+            <param name="productionSchedule">The production schedule.</param>
+            <param name="productionScheduleElementIndex">Zero based index of the ProductionScheduleElement.</param>
+            <param name="integrityCheckMode">The integrity check mode.</param>
+            <param name="allowRepartitioningInIntegrityCheck">If set to <c>true</c> [allow repartitioning in integrity check].</param>
+            <returns>List of Optimizer messages</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.InitializeDownloadEventSender">
+            <summary>
+            Initializes the download event sender on the service side
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.DownloadIC(System.String,System.Int32,System.String,Asm.As.Oib.SiplacePro.LineControl.Contracts.ConveyorLanes,Asm.As.Oib.SiplacePro.LineControl.Contracts.IntegrityCheckMode,Asm.As.Oib.SiplacePro.LineControl.Contracts.IntegrityCheckModeForRepartitioning,Asm.As.Oib.SiplacePro.LineControl.Contracts.DownloadProcessingOptions)">
+            <summary>
+            Download the recipe from the ProductionScheduleElement with the appropriate id in the
+            defined production schedule to the line. If a productionScheduleElementId is specified,
+            then this will be used to find the ProductionScheduleElement, otherwise the nProductionScheduleElementIndex is used.
+            </summary>
+            <param name="strProductionScheduleName">Name of the production schedule</param>
+            <param name="nProductionScheduleElementIndex">Zero based index of the ProductionScheduleElement</param>
+            <param name="productionScheduleElementId">ProductionScheduleElement ID, if this is empty, Index will be used</param>
+            <param name="nLanes">The conveyor lanes. Either Right, Left or Both</param>
+            <param name="ICMode">Integrity Check Mode</param>
+            <param name="ICRepMode">Integrity Check Repartitioning Mode</param>
+            <param name="options">Processing Options (such as Automatic Width adjustment, etc.) Bit Flag</param>
+            <returns>DownloadResult structure</returns>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.DatabaseId">
+            <summary>
+            Gets the Unique Database Id for the SIPLACE Pro Database
+            Can be used to check if the client works on the same data
+            (e.g. when using different adapters such as Optimizer and SPI)
+            </summary>
+            <returns>Unique Database Id (GUID) for the SIPLACE Pro Database</returns>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.MaxOIDInfo">
+            <summary>
+            A structure containing the information about the maximum OID
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.Download_OID(System.Int32,System.Int32,Asm.As.Oib.SiplacePro.LineControl.Contracts.ConveyorLanes)">
+            <summary>
+            Download the recipe from the ProductionScheduleElement with the appropriate id in the
+            defined production schedule to the line
+            </summary>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+            <param name="productionScheduleOID">OID of the production schedule</param>
+            <param name="nProductionScheduleElementIndex">Zero based index of the ProductionScheduleElement</param>
+            <param name="nLanes">The conveyor lanes. Either Right, Left or Both</param>
+            <returns>DownloadResult structure</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.Download_OID_Long(System.Int64,System.Int32,Asm.As.Oib.SiplacePro.LineControl.Contracts.ConveyorLanes)">
+            <summary>
+            Download the recipe from the ProductionScheduleElement with the appropriate id in the
+            defined production schedule to the line
+            </summary>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+            <param name="productionScheduleOID">OID of the production schedule</param>
+            <param name="nProductionScheduleElementIndex">Zero based index of the ProductionScheduleElement</param>
+            <param name="nLanes">The conveyor lanes. Either Right, Left or Both</param>
+            <returns>DownloadResult structure</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.Download2_OID(System.Int32,System.String,Asm.As.Oib.SiplacePro.LineControl.Contracts.ConveyorLanes)">
+            <summary>
+            Download the recipe from the ProductionScheduleElement with the appropriate id in the
+            defined production schedule to the line
+            </summary>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+            <param name="productionScheduleOID">OID of the production schedule</param>
+            <param name="productionScheduleElementId">The production schedule element id.</param>
+            <param name="nLanes">The conveyor lanes. Either Right, Left or Both</param>
+            <returns>DownloadResult structure</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.Download2_OID_Long(System.Int64,System.String,Asm.As.Oib.SiplacePro.LineControl.Contracts.ConveyorLanes)">
+            <summary>
+            Download the recipe from the ProductionScheduleElement with the appropriate id in the
+            defined production schedule to the line
+            </summary>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+            <param name="productionScheduleOID">OID of the production schedule</param>
+            <param name="productionScheduleElementId">The production schedule element id.</param>
+            <param name="nLanes">The conveyor lanes. Either Right, Left or Both</param>
+            <returns>DownloadResult structure</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.DownloadIC_OID(System.Int32,System.Int32,System.String,Asm.As.Oib.SiplacePro.LineControl.Contracts.ConveyorLanes,Asm.As.Oib.SiplacePro.LineControl.Contracts.IntegrityCheckMode,Asm.As.Oib.SiplacePro.LineControl.Contracts.IntegrityCheckModeForRepartitioning,Asm.As.Oib.SiplacePro.LineControl.Contracts.DownloadProcessingOptions)">
+            <summary>
+            Download the Recipe from the ProductionScheduleElement with the appropriate id in the
+            defined production schedule to the line. If a productionScheduleElementId is specified,
+            then this will be used to find the ProductionScheduleElement, otherwise the nProductionScheduleElementIndex is used.
+            </summary>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+            <param name="productionScheduleOID">OID of the production schedule</param>
+            <param name="nProductionScheduleElementIndex">Zero based index of the ProductionScheduleElement</param>
+            <param name="productionScheduleElementId">ProductionScheduleElement ID, if this is empty, Index will be used</param>
+            <param name="nLanes">The conveyor lanes. Either Right, Left or Both</param>
+            <param name="ICMode">Integrity Check Mode</param>
+            <param name="ICRepMode">Integrity Check Repartitioning Mode</param>
+            <param name="options">Processing Options (such as Automatic Width adjustment, etc.) Bit Flag</param>
+            <returns>DownloadResult structure</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.DownloadIC_OID_Long(System.Int64,System.Int32,System.String,Asm.As.Oib.SiplacePro.LineControl.Contracts.ConveyorLanes,Asm.As.Oib.SiplacePro.LineControl.Contracts.IntegrityCheckMode,Asm.As.Oib.SiplacePro.LineControl.Contracts.IntegrityCheckModeForRepartitioning,Asm.As.Oib.SiplacePro.LineControl.Contracts.DownloadProcessingOptions)">
+            <summary>
+            Download the Recipe from the ProductionScheduleElement with the appropriate id in the
+            defined production schedule to the line. If a productionScheduleElementId is specified,
+            then this will be used to find the ProductionScheduleElement, otherwise the nProductionScheduleElementIndex is used.
+            </summary>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+            <param name="productionScheduleOID">OID of the production schedule</param>
+            <param name="nProductionScheduleElementIndex">Zero based index of the ProductionScheduleElement</param>
+            <param name="productionScheduleElementId">ProductionScheduleElement ID, if this is empty, Index will be used</param>
+            <param name="nLanes">The conveyor lanes. Either Right, Left or Both</param>
+            <param name="ICMode">Integrity Check Mode</param>
+            <param name="ICRepMode">Integrity Check Repartitioning Mode</param>
+            <param name="options">Processing Options (such as Automatic Width adjustment, etc.) Bit Flag</param>
+            <returns>DownloadResult structure</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.StopLine_OID(System.Int32)">
+            <summary>
+            Stop the line by blocking all input conveyors from the first station in line.
+            Same logic as BlockStationInputConveyor, but without possibility to lock.
+            </summary>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+            <param name="lineOID">OID of Line</param>
+            <returns>success</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.StopLine_OID_Long(System.Int64)">
+            <summary>
+            Stop the line by blocking all input conveyors from the first station in line.
+            Same logic as BlockStationInputConveyor, but without possibility to lock.
+            </summary>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+            <param name="lineOID">OID of Line</param>
+            <returns>success</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.StopLineConveyor_OID(System.Int32,Asm.As.Oib.SiplacePro.LineControl.Contracts.ConveyorLanes)">
+            <summary>
+            Stop the line by blocking the specified input conveyors from the first station in line
+            Same logic as BlockStationInputConveyor with conveyor lane, but without possibility to lock.
+            </summary>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+            <param name="lineOID">OID of Line</param>
+            <param name="nLanes">The conveyor lanes. Either Right, Left or Both</param>
+            <returns>success</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.StopLineConveyor_OID_Long(System.Int64,Asm.As.Oib.SiplacePro.LineControl.Contracts.ConveyorLanes)">
+            <summary>
+            Stop the line by blocking the specified input conveyors from the first station in line
+            Same logic as BlockStationInputConveyor with conveyor lane, but without possibility to lock.
+            </summary>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+            <param name="lineOID">OID of Line</param>
+            <param name="nLanes">The conveyor lanes. Either Right, Left or Both</param>
+            <returns>success</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.ContinueLine_OID(System.Int32)">
+            <summary>
+            Releases a block of the first station in line.
+            This command is only useful, if a StopLine was issued before.
+            </summary>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+            <param name="lineOID">OID of Line</param>
+            <returns>success</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.ContinueLine_OID_Long(System.Int64)">
+            <summary>
+            Releases a block of the first station in line.
+            This command is only useful, if a StopLine was issued before.
+            </summary>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+            <param name="lineOID">OID of Line</param>
+            <returns>success</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.ContinueLineConveyor_OID(System.Int32,Asm.As.Oib.SiplacePro.LineControl.Contracts.ConveyorLanes)">
+            <summary>
+            Releases a block of the first station in line.
+            This command is only useful, if a StopLine was issued before.
+            </summary>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+            <param name="lineOID">OID of Line</param>
+            <param name="nLanes">The conveyor lanes. Either Right, Left or Both</param>
+            <returns>success</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.ContinueLineConveyor_OID_Long(System.Int64,Asm.As.Oib.SiplacePro.LineControl.Contracts.ConveyorLanes)">
+            <summary>
+            Releases a block of the first station in line.
+            This command is only useful, if a StopLine was issued before.
+            </summary>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+            <param name="lineOID">OID of Line</param>
+            <param name="nLanes">The conveyor lanes. Either Right, Left or Both</param>
+            <returns>success</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.SetConveyorWidth_OID(System.Int32,Asm.As.Oib.SiplacePro.LineControl.Contracts.ConveyorLanes,System.Double)">
+            <summary>
+            Sets the width of the conveyor.
+            </summary>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+            <param name="lineOID">OID of Line</param>
+            <param name="nLanes">The conveyor lanes. Either Right, Left or Both</param>
+            <param name="width">The width in mm.</param>
+            <returns>success</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.SetConveyorWidth_OID_Long(System.Int64,Asm.As.Oib.SiplacePro.LineControl.Contracts.ConveyorLanes,System.Double)">
+            <summary>
+            Sets the width of the conveyor.
+            </summary>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+            <param name="lineOID">OID of Line</param>
+            <param name="nLanes">The conveyor lanes. Either Right, Left or Both</param>
+            <param name="width">The width in mm.</param>
+            <returns>success</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.BlockStationInputConveyor_OID(System.Int32,System.Boolean,System.String)">
+            <summary>
+            Stop the station by blocking all input conveyors of the specified station.
+            Allows to lock the conveyor. Supported with SIPLACE Pro 10.0 or higher.
+            To un-block, use UnBlockStationInputConveyor() method.
+            The lock is only assured by Line Control Server and not the station. Thus an operator at the station can unlock again.
+            </summary>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+            <param name="stationOID">OID of station</param>
+            <param name="bLock">If set to <c>true</c> the conveyor is locked and cannot be unlocked by a new download. If set to false, a new download unlocks the conveyor again.</param>
+            <param name="strBlockingApplicationName">String to be displayed in the Line Control GUIApplication.</param>
+            <returns>success</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.BlockStationInputConveyor_OID_Long(System.Int64,System.Boolean,System.String)">
+            <summary>
+            Stop the station by blocking all input conveyors of the specified station.
+            Allows to lock the conveyor. Supported with SIPLACE Pro 10.0 or higher.
+            To un-block, use UnBlockStationInputConveyor() method.
+            The lock is only assured by Line Control Server and not the station. Thus an operator at the station can unlock again.
+            </summary>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+            <param name="stationOID">OID of station</param>
+            <param name="bLock">If set to <c>true</c> the conveyor is locked and cannot be unlocked by a new download. If set to false, a new download unlocks the conveyor again.</param>
+            <param name="strBlockingApplicationName">String to be displayed in the Line Control GUIApplication.</param>
+            <returns>success</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.UnBlockStationInputConveyor_OID(System.Int32,System.String)">
+            <summary>
+            Unblock all input conveyors of the specified station.
+            Supported with SIPLACE Pro 10.0 or higher.
+            </summary>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+            <param name="stationOID">OID of station</param>
+            <param name="strUnblockingApplicationName">Name of the application that requests unblocking).</param>
+            <returns>success</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.UnBlockStationInputConveyor_OID_Long(System.Int64,System.String)">
+            <summary>
+            Unblock all input conveyors of the specified station.
+            Supported with SIPLACE Pro 10.0 or higher.
+            </summary>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+            <param name="stationOID">OID of station</param>
+            <param name="strUnblockingApplicationName">Name of the application that requests unblocking).</param>
+            <returns>success</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.ReconnectStations_OID(System.Int32)">
+            <summary>
+            Initiates a reconnects to all station in that line.
+            This call is asynchronous.
+            </summary>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+            <param name="lineOID">OID of Line</param>
+            <returns>success of the initiation not the end of the reconnect</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.ReconnectStations_OID_Long(System.Int64)">
+            <summary>
+            Initiates a reconnects to all station in that line.
+            This call is asynchronous.
+            </summary>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+            <param name="lineOID">OID of Line</param>
+            <returns>success of the initiation not the end of the reconnect</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.ReconnectStationsMsg_OID(System.Int32)">
+            <summary>
+            Initiates a reconnects to all station in that line.
+            This call is asynchronous.
+            </summary>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+            <param name="lineOID">OID of Line</param>
+            <returns>Download messages</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.ReconnectStationsMsg_OID_Long(System.Int64)">
+            <summary>
+            Initiates a reconnects to all station in that line.
+            This call is asynchronous.
+            </summary>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+            <param name="lineOID">OID of Line</param>
+            <returns>Download messages</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.GetActiveProductionSchedule_OID(System.Int32)">
+            <summary>
+            Receive the name of the assigned production Schedule
+            </summary>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+            <param name="lineOID">OID of Line</param>
+            <returns>Name of the Production Schedule</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.GetActiveProductionSchedule_OID_Long(System.Int64)">
+            <summary>
+            Receive the name of the assigned production Schedule
+            </summary>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+            <param name="lineOID">OID of Line</param>
+            <returns>Name of the Production Schedule</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.SetActiveProductionSchedule_OID(System.Int32,System.Int32)">
+            <summary>
+            Set the active production schedule for a line
+            </summary>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+            <param name="lineOID">OID of Line</param>
+            <param name="productionScheduleOID">OID of production schedule</param>
+            <returns>success</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.SetActiveProductionSchedule_OID_Long(System.Int64,System.Int64)">
+            <summary>
+            Set the active production schedule for a line
+            </summary>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+            <param name="lineOID">OID of Line</param>
+            <param name="productionScheduleOID">OID of production schedule</param>
+            <returns>success</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.GetLineStatus_OID(System.Int32)">
+            <summary>
+            Get the status description of the line
+            </summary>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+            <param name="lineOID">OID of the line</param>
+            <returns>The status of the connections to the machines in the LineControlLineStatus object.</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.GetLineStatus_OID_Long(System.Int64)">
+            <summary>
+            Get the status description of the line
+            </summary>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+            <param name="lineOID">OID of the line</param>
+            <returns>The status of the connections to the machines in the LineControlLineStatus object.</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.GetProductionSchedule_OID(System.Int32)">
+            <summary>
+            Get the Production Schedule description
+            </summary>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+            <param name="productionScheduleOID">OID of production schedule.</param>
+            <returns>success</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.GetProductionSchedule_OID_Long(System.Int64)">
+            <summary>
+            Get the Production Schedule description
+            </summary>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+            <param name="productionScheduleOID">OID of production schedule.</param>
+            <returns>success</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.AppendProductionScheduleElement_OID(System.Int32,Asm.As.Oib.SiplacePro.LineControl.Contracts.Data.ProductionScheduleElement)">
+            <summary>
+            Appends one production schedule element name on the production schedule
+            </summary>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+            <param name="productionScheduleOID">OID of production schedule.</param>
+            <param name="element">Production schedule element to add</param>
+            <returns>ID (UUID) of the new ProductionScheduleElement</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.AppendProductionScheduleElement_OID_Long(System.Int64,Asm.As.Oib.SiplacePro.LineControl.Contracts.Data.ProductionScheduleElement)">
+            <summary>
+            Appends one production schedule element name on the production schedule
+            </summary>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+            <param name="productionScheduleOID">OID of production schedule.</param>
+            <param name="element">Production schedule element to add</param>
+            <returns>ID (UUID) of the new ProductionScheduleElement</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.CheckDownloadData_OID(System.Int32,System.Int32,System.String,Asm.As.Oib.SiplacePro.LineControl.Contracts.IntegrityCheckMode,System.Boolean)">
+            <summary>
+            Checks the download data.
+            </summary>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+            <param name="lineOID">OID of Line</param>
+            <param name="productionScheduleOID">OID of production schedule.</param>
+            <param name="productionScheduleElementId">The production schedule element id.</param>
+            <param name="integrityCheckMode">The integrity check mode.</param>
+            <param name="allowRepartitioningInIntegrityCheck">If set to <c>true</c> [allow repartitioning in integrity check].</param>
+            <returns>List of Optimizer messages</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.CheckDownloadData_OID_Long(System.Int64,System.Int64,System.String,Asm.As.Oib.SiplacePro.LineControl.Contracts.IntegrityCheckMode,System.Boolean)">
+            <summary>
+            Checks the download data.
+            </summary>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+            <param name="lineOID">OID of Line</param>
+            <param name="productionScheduleOID">OID of production schedule.</param>
+            <param name="productionScheduleElementId">The production schedule element id.</param>
+            <param name="integrityCheckMode">The integrity check mode.</param>
+            <param name="allowRepartitioningInIntegrityCheck">If set to <c>true</c> [allow repartitioning in integrity check].</param>
+            <returns>List of Optimizer messages</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.CheckDownloadData2_OID(System.Int32,System.Int32,Asm.As.Oib.SiplacePro.LineControl.Contracts.IntegrityCheckMode,System.Boolean)">
+            <summary>
+            Checks the download data.
+            </summary>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+            <param name="lineOID">OID of Line</param>
+            <param name="recipeOID">OID of Recipe</param>
+            <param name="integrityCheckMode">The integrity check mode.</param>
+            <param name="allowRepartitioningInIntegrityCheck">If set to <c>true</c> [allow repartitioning in integrity check].</param>
+            <returns>List of Optimizer messages</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.CheckDownloadData2_OID_Long(System.Int64,System.Int64,Asm.As.Oib.SiplacePro.LineControl.Contracts.IntegrityCheckMode,System.Boolean)">
+            <summary>
+            Checks the download data.
+            </summary>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+            <param name="lineOID">OID of Line</param>
+            <param name="recipeOID">OID of Recipe</param>
+            <param name="integrityCheckMode">The integrity check mode.</param>
+            <param name="allowRepartitioningInIntegrityCheck">If set to <c>true</c> [allow repartitioning in integrity check].</param>
+            <returns>List of Optimizer messages</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.CheckDownloadData3_OID(System.Int32,System.Int32,System.Int32,Asm.As.Oib.SiplacePro.LineControl.Contracts.IntegrityCheckMode,System.Boolean)">
+            <summary>
+            Checks the download data.
+            </summary>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+            <param name="lineOID">OID of Line</param>
+            <param name="productionScheduleOID">OID of production schedule.</param>
+            <param name="productionScheduleElementIndex">Zero based index of the ProductionScheduleElement.</param>
+            <param name="integrityCheckMode">The integrity check mode.</param>
+            <param name="allowRepartitioningInIntegrityCheck">If set to <c>true</c> [allow repartitioning in integrity check].</param>
+            <returns>List of Optimizer messages</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.CheckDownloadData3_OID_Long(System.Int64,System.Int64,System.Int32,Asm.As.Oib.SiplacePro.LineControl.Contracts.IntegrityCheckMode,System.Boolean)">
+            <summary>
+            Checks the download data.
+            </summary>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+            <param name="lineOID">OID of Line</param>
+            <param name="productionScheduleOID">OID of production schedule.</param>
+            <param name="productionScheduleElementIndex">Zero based index of the ProductionScheduleElement.</param>
+            <param name="integrityCheckMode">The integrity check mode.</param>
+            <param name="allowRepartitioningInIntegrityCheck">If set to <c>true</c> [allow repartitioning in integrity check].</param>
+            <returns>List of Optimizer messages</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.GetIntegrityCheckMessages_OID(System.Int32)">
+            <summary>
+            Gets the integrity check messages. This enables the consumer to figure out,
+            which is the reason for a refused feasibility
+            </summary>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+            <param name="recipeOID">OID of Recipe</param>
+            <returns>List of messages issued in the last integrity check run.</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.GetIntegrityCheckMessages_OID_Long(System.Int64)">
+            <summary>
+            Gets the integrity check messages. This enables the consumer to figure out,
+            which is the reason for a refused feasibility
+            </summary>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+            <param name="recipeOID">OID of Recipe</param>
+            <returns>List of messages issued in the last integrity check run.</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.CheckDownloadDataArray_OID(System.Int32,System.Int32,System.String,Asm.As.Oib.SiplacePro.LineControl.Contracts.IntegrityCheckMode,System.Boolean)">
+            <summary>
+            Checks the download data.
+            </summary>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+            <param name="lineOID">OID of Line</param>
+            <param name="productionScheduleOID">OID of production schedule.</param>
+            <param name="productionScheduleElementId">The production schedule element id.</param>
+            <param name="integrityCheckMode">The integrity check mode.</param>
+            <param name="allowRepartitioningInIntegrityCheck">If set to <c>true</c> [allow repartitioning in integrity check].</param>
+            <returns>COM compatible Array of Optimizer messages</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.CheckDownloadDataArray2_OID(System.Int32,System.Int32,Asm.As.Oib.SiplacePro.LineControl.Contracts.IntegrityCheckMode,System.Boolean)">
+            <summary>
+            Checks the download data.
+            </summary>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+            <param name="lineOID">OID of Line</param>
+            <param name="recipeOID">OID of Recipe</param>
+            <param name="integrityCheckMode">The integrity check mode.</param>
+            <param name="allowRepartitioningInIntegrityCheck">If set to <c>true</c> [allow repartitioning in integrity check].</param>
+            <returns>COM compatible Array of Optimizer messages</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.CheckDownloadDataArray3_OID(System.Int32,System.Int32,System.Int32,Asm.As.Oib.SiplacePro.LineControl.Contracts.IntegrityCheckMode,System.Boolean)">
+            <summary>
+            Checks the download data.
+            </summary>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+            <param name="lineOID">OID of Line</param>
+            <param name="productionScheduleOID">OID of production schedule.</param>
+            <param name="productionScheduleElementIndex">Zero based index of the ProductionScheduleElement.</param>
+            <param name="integrityCheckMode">The integrity check mode.</param>
+            <param name="allowRepartitioningInIntegrityCheck">If set to <c>true</c> [allow repartitioning in integrity check].</param>
+            <returns>COM compatible Array of Optimizer messages</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.CheckDownloadDataList_OID(System.Int32,System.Int32,System.String,Asm.As.Oib.SiplacePro.LineControl.Contracts.IntegrityCheckMode,System.Boolean)">
+            <summary>
+            Checks the download data.
+            </summary>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+            <param name="lineOID">OID of Line</param>
+            <param name="productionScheduleOID">OID of production schedule.</param>
+            <param name="productionScheduleElementId">The production schedule element id.</param>
+            <param name="integrityCheckMode">The integrity check mode.</param>
+            <param name="allowRepartitioningInIntegrityCheck">If set to <c>true</c> [allow repartitioning in integrity check].</param>
+            <returns>List of Optimizer messages</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.CheckDownloadDataList2_OID(System.Int32,System.Int32,Asm.As.Oib.SiplacePro.LineControl.Contracts.IntegrityCheckMode,System.Boolean)">
+            <summary>
+            Checks the download data.
+            </summary>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+            <param name="lineOID">OID of Line</param>
+            <param name="recipeOID">OID of Recipe</param>
+            <param name="integrityCheckMode">The integrity check mode.</param>
+            <param name="allowRepartitioningInIntegrityCheck">If set to <c>true</c> [allow repartitioning in integrity check].</param>
+            <returns>List of Optimizer messages</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.CheckDownloadDataList3_OID(System.Int32,System.Int32,System.Int32,Asm.As.Oib.SiplacePro.LineControl.Contracts.IntegrityCheckMode,System.Boolean)">
+            <summary>
+            Checks the download data.
+            </summary>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+            <param name="lineOID">OID of Line</param>
+            <param name="productionScheduleOID">OID of production schedule.</param>
+            <param name="productionScheduleElementIndex">Zero based index of the ProductionScheduleElement.</param>
+            <param name="integrityCheckMode">The integrity check mode.</param>
+            <param name="allowRepartitioningInIntegrityCheck">If set to <c>true</c> [allow repartitioning in integrity check].</param>
+            <returns>List of Optimizer messages</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.GetIntegrityCheckMessagesArray_OID(System.Int32)">
+            <summary>
+            Gets the integrity check messages. This enables the consumer to figure out,
+            which is the reason for a refused feasibility
+            </summary>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+            <param name="recipeOID">OID of recipe.</param>
+            <returns>COM compatible Array of messages issued in the last integrity check run.</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.GetIntegrityCheckMessagesList_OID(System.Int32)">
+            <summary>
+            Gets the integrity check messages. This enables the consumer to figure out,
+            which is the reason for a refused feasibility
+            </summary>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+            <param name="recipeOID">OID of recipe.</param>
+            <returns>List of messages issued in the last integrity check run.</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.GetProductionSchedules(System.String)">
+            <summary>
+            Gets all ProductionSchedules in a specific Folder.
+            Pass in "*" if you want to get all ProductionSchedules of the system
+            </summary>
+            <param name="FolderPath">Folder Path</param>
+            <returns>List of ProductionSchedules</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.GetProductionSchedulesList(System.String)">
+            <summary>
+            Gets all ProductionSchedules in a specific Folder.
+            Pass in "*" if you want to get all ProductionSchedules of the system
+            </summary>
+            <param name="FolderPath">Folder Path</param>
+            <returns>List of ProductionSchedules</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.GetProductionSchedulesArray(System.String)">
+            <summary>
+            Gets all ProductionSchedules in a specific Folder.
+            Pass in "*" if you want to get all ProductionSchedules of the system
+            </summary>
+            <param name="FolderPath">Folder Path</param>
+            <returns>Array of ProductionSchedules</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.SetProxyVersion(System.Int32[])">
+            <summary>
+            Can be used by the Proxy to set its version number
+            </summary>
+            <param name="arrVersionNumbers">Version numbers (such as {1,3,1,44})</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.GetAdapterTimeZone">
+            <summary>
+            Gets the TimeZoneInfo for the adapter computer
+            Used when converting DateTime objects on the proxy from adapter time to
+            Proxy local time.
+            </summary>
+            <returns>Serialized TimeZoneInfo of adapter</returns>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.ProductVersion">
+            <summary>
+            Gets the Product Version of SIPLACE Pro
+            </summary>
+            <returns>Product Version of SIPLACE Pro, e.g. 7.1.1.2</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.LogonUser(System.String,System.String,System.Boolean)">
+            <summary>
+            This will take a User ID and password as input and attempt to log and set CurrentUser in case bJustCheckPassword is set
+            to false.
+            In case bJustCheckPassword is set to true, only the password for the given User will be checked.
+            </summary>
+            <param name="bstrUserID">The user id of the user to log on.</param>
+            <param name="bstrPassword">The password of the user trying to log on.</param>
+            <param name="bJustCheckPassword">A flag indicating if the system should just verify the password.</param>
+            <returns>See Summary for details. This method will return a type bool with default value of false</returns>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.CurrentUser">
+            <summary>
+            The user who is currently logged in to the system.  The system runs under the privileges granted to the group that the
+            user belongs to.
+            </summary>
+            <returns>Returns the currently logged on User Name.</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.ExternalStopOperation(System.String,System.String)">
+            <summary>
+            Stop station operation by external application.
+            For station versions which don't support stopping after the current placement cycle (less than 605.01) an exception
+            will be raised.
+            </summary>
+            <param name="stationPath">Full SIPLACE Pro Path of Station</param>
+            <param name="strDetails">The reason for stopping the operation (production).</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.ExternalStopOperation_OID(System.Int32,System.String)">
+            <summary>
+            Stop station operation by external application.
+            For station versions which don't support stopping after the current placement cycle (less than 605.01) an exception
+            will be raised.
+            </summary>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+            <param name="stationOID">OID of Station</param>
+            <param name="strDetails">The reason for stopping the operation (production).</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.ExternalStopOperation_OID_Long(System.Int64,System.String)">
+            <summary>
+            Stop station operation by external application.
+            For station versions which don't support stopping after the current placement cycle (less than 605.01) an exception
+            will be raised.
+            </summary>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+            <param name="stationOID">OID of Station</param>
+            <param name="strDetails">The reason for stopping the operation (production).</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.DownloadIC2(System.String,System.Int32,System.String,Asm.As.Oib.SiplacePro.LineControl.Contracts.ConveyorLanes,Asm.As.Oib.SiplacePro.LineControl.Contracts.IntegrityCheckMode,Asm.As.Oib.SiplacePro.LineControl.Contracts.IntegrityCheckModeForRepartitioning,Asm.As.Oib.SiplacePro.LineControl.Contracts.DownloadProcessingOptions,System.Boolean,Asm.As.Oib.SiplacePro.LineControl.Contracts.UpdateModeComponentLibrary,Asm.As.Oib.SiplacePro.LineControl.Contracts.Data.MissingComponents@,System.Collections.Generic.List{Asm.As.Oib.SiplacePro.LineControl.Contracts.Data.MissingFeeder}@)">
+            <summary>
+            Download the Recipe from the ProductionScheduleElement with the appropriate id in the
+            defined production schedule to the line. If a productionScheduleElementId is specified,
+            then this will be used to find the ProductionScheduleElement, otherwise the nProductionScheduleElementIndex is used.
+            </summary>
+            <param name="strProductionScheduleName">Name of the production schedule</param>
+            <param name="nProductionScheduleElementIndex">Zero based index of the ProductionScheduleElement</param>
+            <param name="productionScheduleElementId">ProductionScheduleElement ID, if this is empty, Index will be used</param>
+            <param name="nLanes">The conveyor lanes. Either Right, Left or Both</param>
+            <param name="ICMode">Integrity Check Mode</param>
+            <param name="ICRepMode">Integrity Check Repartitioning Mode</param>
+            <param name="options">Processing Options (such as Automatic Width adjustment, etc.) Bit Flag</param>
+            <param name="addMissingComponents">
+            If true and there are components missing, these are automatically set up (Random
+            setup mode)
+            </param>
+            <param name="missingFeedersMode">
+            Specifies if Feeders will automatically be added to components or component shapes
+            (Random setup mode)
+            </param>
+            <param name="missingComponents">Missing Components (Random setup mode).</param>
+            <param name="missingFeeders">Missing Feeder assignments (Random setup mode).</param>
+            <returns>DownloadResult structure</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.DownloadIC2_OID(System.Int32,System.Int32,System.String,Asm.As.Oib.SiplacePro.LineControl.Contracts.ConveyorLanes,Asm.As.Oib.SiplacePro.LineControl.Contracts.IntegrityCheckMode,Asm.As.Oib.SiplacePro.LineControl.Contracts.IntegrityCheckModeForRepartitioning,Asm.As.Oib.SiplacePro.LineControl.Contracts.DownloadProcessingOptions,System.Boolean,Asm.As.Oib.SiplacePro.LineControl.Contracts.UpdateModeComponentLibrary,Asm.As.Oib.SiplacePro.LineControl.Contracts.Data.MissingComponents@,System.Collections.Generic.List{Asm.As.Oib.SiplacePro.LineControl.Contracts.Data.MissingFeeder}@)">
+            <summary>
+            Download the Recipe from the ProductionScheduleElement with the appropriate id in the
+            defined production schedule to the line. If a productionScheduleElementId is specified,
+            then this will be used to find the ProductionScheduleElement, otherwise the nProductionScheduleElementIndex is used.
+            </summary>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+            <param name="productionScheduleOID">OID of the production schedule</param>
+            <param name="nProductionScheduleElementIndex">Zero based index of the ProductionScheduleElement</param>
+            <param name="productionScheduleElementId">ProductionScheduleElement ID, if this is empty, Index will be used</param>
+            <param name="nLanes">The conveyor lanes. Either Right, Left or Both</param>
+            <param name="ICMode">Integrity Check Mode</param>
+            <param name="ICRepMode">Integrity Check Repartitioning Mode</param>
+            <param name="options">Processing Options (such as Automatic Width adjustment, etc.) Bit Flag</param>
+            <param name="addMissingComponents">
+            If true and there are components missing, these are automatically set up (Random
+            setup mode)
+            </param>
+            <param name="missingFeedersMode">
+            Specifies if Feeders will automatically be added to components or component shapes
+            (Random setup mode)
+            </param>
+            <param name="missingComponents">Missing Components (Random setup mode).</param>
+            <param name="missingFeeders">Missing Feeder assignments (Random setup mode).</param>
+            <returns>DownloadResult structure</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.DownloadIC2_OID_Long(System.Int64,System.Int32,System.String,Asm.As.Oib.SiplacePro.LineControl.Contracts.ConveyorLanes,Asm.As.Oib.SiplacePro.LineControl.Contracts.IntegrityCheckMode,Asm.As.Oib.SiplacePro.LineControl.Contracts.IntegrityCheckModeForRepartitioning,Asm.As.Oib.SiplacePro.LineControl.Contracts.DownloadProcessingOptions,System.Boolean,Asm.As.Oib.SiplacePro.LineControl.Contracts.UpdateModeComponentLibrary,Asm.As.Oib.SiplacePro.LineControl.Contracts.Data.MissingComponents@,System.Collections.Generic.List{Asm.As.Oib.SiplacePro.LineControl.Contracts.Data.MissingFeeder}@)">
+            <summary>
+            Download the Recipe from the ProductionScheduleElement with the appropriate id in the
+            defined production schedule to the line. If a productionScheduleElementId is specified,
+            then this will be used to find the ProductionScheduleElement, otherwise the nProductionScheduleElementIndex is used.
+            </summary>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+            <param name="productionScheduleOID">OID of the production schedule</param>
+            <param name="nProductionScheduleElementIndex">Zero based index of the ProductionScheduleElement</param>
+            <param name="productionScheduleElementId">ProductionScheduleElement ID, if this is empty, Index will be used</param>
+            <param name="nLanes">The conveyor lanes. Either Right, Left or Both</param>
+            <param name="ICMode">Integrity Check Mode</param>
+            <param name="ICRepMode">Integrity Check Repartitioning Mode</param>
+            <param name="options">Processing Options (such as Automatic Width adjustment, etc.) Bit Flag</param>
+            <param name="addMissingComponents">
+            If true and there are components missing, these are automatically set up (Random
+            setup mode)
+            </param>
+            <param name="missingFeedersMode">
+            Specifies if Feeders will automatically be added to components or component shapes
+            (Random setup mode)
+            </param>
+            <param name="missingComponents">Missing Components (Random setup mode).</param>
+            <param name="missingFeeders">Missing Feeder assignments (Random setup mode).</param>
+            <returns>DownloadResult structure</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.GetLineStatusForStation(System.String,System.Int32)">
+            <summary>
+            Get the status description of the line
+            </summary>
+            <param name="lineName">Name of the line</param>
+            <param name="stationIndex">Index of the station.</param>
+            <returns>
+            The status of the connections to the machines in the LineControlLineStatus object.
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.GetLineStatusForStationOID(System.Int32,System.Int32)">
+            <summary>
+            Get the status description of the line
+            </summary>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+            <param name="lineOID">The line OID.</param>
+            <param name="stationIndex">Index of the station.</param>
+            <returns>
+            The status of the connections to the machines in the LineControlLineStatus object.
+            </returns>       
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.GetLineStatusForStationOID_Long(System.Int64,System.Int32)">
+            <summary>
+            Get the status description of the line
+            </summary>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+            <param name="lineOID">The line OID.</param>
+            <param name="stationIndex">Index of the station.</param>
+            <returns>
+            The status of the connections to the machines in the LineControlLineStatus object.
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.GetLineStatusForStation(Asm.As.Oib.SiplacePro.LineControl.Contracts.Data.GetLineStatusForStationRequest)">
+            <summary>
+            Get the status description of the line
+            </summary>
+            <param name="request">The request.</param>
+            <returns>
+            The status of the connections to the machines in the LineControlLineStatus object.
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.StopLine(Asm.As.Oib.SiplacePro.LineControl.Contracts.Data.StopLineRequest)">
+            <summary>
+            Stop the line by blocking the specified input conveyors from the first station in line.
+            Specify the sub-line selection as well (printer or siplace).
+            Replacement for all methods with names starting with StopLine...
+            </summary>
+            <param name="request">The request which contains the station specifier, the conveyors to stop as well as the sub-line selection</param>
+            <returns>
+            StopLineResult
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.ContinueLine(Asm.As.Oib.SiplacePro.LineControl.Contracts.Data.ContinueLineRequest)">
+            <summary>
+            Continue the line by un-blocking the specified input conveyors from the first station in line.
+            Specify the sub-lane selection as well (printer or siplace).
+            This command is only useful, if a StopLine was issued before.
+            </summary>
+            <param name="request">The request.</param>
+            <returns>ContinueLineResult</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.BlockStationConveyor_OID(System.Int32,Asm.As.Oib.SiplacePro.LineControl.Contracts.ConveyorLanes,System.String)">
+            <summary>
+            Block the specified input conveyors of the specified station.
+            The blockage of the conveyors is guaranteed by the station itself.
+            Can only be unblocked by using UnblockStationConveyor() method.
+            <remarks>
+            Only supported for stations with SW version 706.1 or higher.
+            </remarks>
+            </summary>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+            <param name="stationOID">OID of Station</param>
+            <param name="nLanes">The conveyor lanes. Either Right, Left or Both</param>
+            <param name="strDetails">The reason for stopping the operation (production).</param>
+            <returns>
+            success
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.BlockStationConveyor_OID_Long(System.Int64,Asm.As.Oib.SiplacePro.LineControl.Contracts.ConveyorLanes,System.String)">
+            <summary>
+            Block the specified input conveyors of the specified station.
+            The blockage of the conveyors is guaranteed by the station itself.
+            Can only be unblocked by using UnblockStationConveyor() method.
+            <remarks>
+            Only supported for stations with SW version 706.1 or higher.
+            </remarks>
+            </summary>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+            <param name="stationOID">OID of Station</param>
+            <param name="nLanes">The conveyor lanes. Either Right, Left or Both</param>
+            <param name="strDetails">The reason for stopping the operation (production).</param>
+            <returns>
+            success
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.BlockStationConveyor(System.String,Asm.As.Oib.SiplacePro.LineControl.Contracts.ConveyorLanes,System.String)">
+            <summary>
+            Block the specified input conveyors of the specified station.
+            The blockage of the conveyors is guaranteed by the station itself.
+            Can only be unblocked by using UnblockStationConveyor() method.
+            <remarks>
+            Only supported for stations with SW version 706.1 or higher.
+            </remarks>
+            </summary>
+            <param name="stationPath">Full SIPLACE Pro Path of Station</param>
+            <param name="nLanes">The conveyor lanes. Either Right, Left or Both</param>
+            <param name="strDetails">The reason for stopping the operation (production).</param>
+            <returns>
+            success
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.UnblockStationConveyor_OID(System.Int32,Asm.As.Oib.SiplacePro.LineControl.Contracts.ConveyorLanes,System.String)">
+            <summary>
+            Unblock the input conveyor of the specified station.
+            Must be used when blocking the conveyor with method BlockStationConveyor.
+            </summary>
+            <remarks>
+            Only supported for stations with SW version 706.1 or higher.
+            </remarks>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+            <param name="stationOID">OID of Station</param>
+            <param name="nLanes">The conveyor lanes. Either Right, Left or Both</param>
+            <param name="strDetails">The reason for stopping the operation (production).</param>
+            <returns>
+            success
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.UnblockStationConveyor_OID_Long(System.Int64,Asm.As.Oib.SiplacePro.LineControl.Contracts.ConveyorLanes,System.String)">
+            <summary>
+            Unblock the input conveyor of the specified station.
+            Must be used when blocking the conveyor with method BlockStationConveyor.
+            </summary>
+            <remarks>
+            Only supported for stations with SW version 706.1 or higher.
+            </remarks>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+            <param name="stationOID">OID of Station</param>
+            <param name="nLanes">The conveyor lanes. Either Right, Left or Both</param>
+            <param name="strDetails">The reason for stopping the operation (production).</param>
+            <returns>
+            success
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.UnblockStationConveyor(System.String,Asm.As.Oib.SiplacePro.LineControl.Contracts.ConveyorLanes,System.String)">
+            <summary>
+            Unblock the input conveyor of the specified station
+            Must be used when blocking the conveyor with method BlockStationConveyor.
+            <remarks>
+            Only supported for stations with SW version 706.1 or higher.
+            </remarks>
+            </summary>
+            <param name="stationPath">Full SIPLACE Pro Path of Station</param>
+            <param name="nLanes">The conveyor lanes. Either Right, Left or Both</param>
+            <param name="strDetails">The reason for stopping the operation (production).</param>
+            <returns>
+            success
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.IsStationConveyorBlocked(System.String,System.Boolean@,System.Boolean@)">
+            <summary>
+            Get the status if the input conveyor of the specified station is blocked or not
+            <remarks>
+            Only supported for stations with SW version 706.1 or higher.
+            </remarks>
+            </summary>
+            <param name="stationPath">Full SIPLACE Pro Path of Station</param>
+            <param name="rightConveyorBlocked">if set to <c>true</c> [right conveyor blocked].</param>
+            <param name="leftConveyorBlocked">if set to <c>true</c> [left conveyor blocked].</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.IsStationConveyorBlocked_OID(System.Int32,System.Boolean@,System.Boolean@)">
+            <summary>
+            Get the status if the input conveyor of the specified station is blocked or not
+            </summary>
+            <remarks>
+            Only supported for stations with SW version 706.1 or higher.
+            </remarks>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+            <param name="stationOID">OID of Station</param>
+            <param name="rightConveyorBlocked">if set to <c>true</c> [right conveyor blocked].</param>
+            <param name="leftConveyorBlocked">if set to <c>true</c> [left conveyor blocked].</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.IsStationConveyorBlocked_OID_Long(System.Int64,System.Boolean@,System.Boolean@)">
+            <summary>
+            Get the status if the input conveyor of the specified station is blocked or not
+            </summary>
+            <remarks>
+            Only supported for stations with SW version 706.1 or higher.
+            </remarks>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+            <param name="stationOID">OID of Station</param>
+            <param name="rightConveyorBlocked">if set to <c>true</c> [right conveyor blocked].</param>
+            <param name="leftConveyorBlocked">if set to <c>true</c> [left conveyor blocked].</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.IsStationConveyorBlockSupported_OID(System.Int32)">
+            <summary>
+            Returns if the given station supports blocking of the input conveyor or not
+            </summary>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+            <param name="stationOID">OID of Station</param>
+            <returns>If supported, returns true, otherwise false</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.IsStationConveyorBlockSupported_OID_Long(System.Int64)">
+            <summary>
+            Returns if the given station supports blocking of the input conveyor or not
+            </summary>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+            <param name="stationOID">OID of Station</param>
+            <returns>If supported, returns true, otherwise false</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.IsStationConveyorBlockSupported(System.String)">
+            <summary>
+            Returns if the given station supports blocking of the input conveyor or not
+            </summary>
+            <param name="stationPath">Full SIPLACE Pro Path of Station</param>
+            <returns>If supported, returns true, otherwise false</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.InvokeDeviceActionOnPrinter(Asm.As.Oib.SiplacePro.LineControl.Contracts.Data.InvokeDeviceActionOnPrinterRequest)">
+            <summary>
+            Use this method to invoke a device action (clean, knead) on the printer.
+            </summary>
+            <param name="request">The request.</param>
+            <returns>InvokeDeviceActionOnPrinterResult</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.Configure(System.String,System.String)">
+            <summary>
+            For COM clients who need to be able to configure the endpoint dynamically
+            </summary>
+            <param name="strEndpoint">Endpoint address</param>
+            <param name="strBinding">
+            Binding name (optional). If this is not provided, a proper default binding is used for hosting the callback.
+            Possible values are: "WSHttpBinding", "NetMsmqBinding", "NetNamedPipeBinding", "NetTcpBinding", or string.Empty or null
+            </param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.Configure(System.String)">
+            <summary>
+            For COM clients who need to be able to configure the endpoint dynamically
+            </summary>
+            <param name="strEndpoinConfigurationName">Endpoint configuration Name</param>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.EndpointAddress">
+            <summary>
+            Configured Endpoint Address
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.SubscriptionManagerEndpoint">
+            <summary>
+            Core Computer Name
+            When using the DownloadEventListener without app.config file you need to set this
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.Business.Objects.LineControl.RemoveLine(System.String)">
+            <summary>
+            Removes the line and all its station proxys from Line Control Server.
+            </summary>
+            <param name="lineFullPath">The SPI path of the line to be removed</param>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.LineControl.Proxy.ProxyEndpointHelper.CallbackCertificateValue">
+            <summary>
+            Something like "CN=ASM.SW.Service"
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.LineControl.Proxy.ProxyEndpointHelper.CallbackCertificateStoreLocation">
+            <summary>
+            StoreLocation.LocalMachine or StoreLocation.CurrentUser
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.LineControl.Proxy.ProxyEndpointHelper.CallbackCertificateX509FindType">
+            <summary>
+            One of the X509FindType enum values (e.g. X509FindType.FindBySubjectDistinguishedName). The CallbackCertificateValue
+            must match
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.LineControl.Proxy.ProxyEndpointHelper.CallbackCertificateStoreName">
+            <summary>
+            StoreName (typically StoreName.My)
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.LineControl.Proxy.ProxyEndpointHelper.CallbackCertificateCommonName">
+            <summary>
+            Something like "ASM.SW.Service"
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.LineControl.Proxy.ProxyEndpointHelper.ClientCertificateValue">
+            <summary>
+            Something like "CN=ASM.SW.Client"
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.LineControl.Proxy.ProxyEndpointHelper.ClientCertificateCommonName">
+            <summary>
+            Something like "ASM.SW.Client"
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.LineControl.Proxy.ProxyEndpointHelper.ClientCertificateStoreLocation">
+            <summary>
+            StoreLocation.LocalMachine or StoreLocation.CurrentUser
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.LineControl.Proxy.ProxyEndpointHelper.ClientCertificateX509FindType">
+            <summary>
+            One of the X509FindType enum values (e.g. X509FindType.FindBySubjectDistinguishedName). The CallbackCertificateValue must match 
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.LineControl.Proxy.ProxyEndpointHelper.ClientCertificateStoreName">
+            <summary>
+            StoreName (typically StoreName.My)
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.LineControl.Proxy.ProxyEndpointHelper.SendTimeout">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.ProxyEndpointHelper.PrepareCallbackEndpoint(System.String)">
+            <summary>
+            Prepares the given callback endpoint or the endpoint given by config file.
+            </summary>
+            <param name="callbackEndpoint">Programmatically provided user defined endpoint callback</param>
+            <returns>A ready to use callback endpoint</returns>
+            <exception cref="T:System.ArgumentException">Throwns an exception if the callback endpoint has not been provided.</exception>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.LineControl.Proxy.ProxyInstaller">
+            <summary>
+            Installer class that can be used by 3rd party applications installers
+            Will add/set registry entries for tcp ports.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.ProxyInstaller.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.LineControl.Proxy.ProxyInstaller.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.ProxyInstaller.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.LineControl.Proxy.ProxyInstaller.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+    </members>
+</doc>

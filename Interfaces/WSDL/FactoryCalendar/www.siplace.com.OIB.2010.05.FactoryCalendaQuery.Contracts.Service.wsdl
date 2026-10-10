@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:tns="http://www.siplace.com/OIB/2010/05/FactoryCalendaQuery/Contracts/Service" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" targetNamespace="http://www.siplace.com/OIB/2010/05/FactoryCalendaQuery/Contracts/Service" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.siplace.com/OIB/2010/05/FactoryCalendaQuery/Contracts/Service/Imports">
+      <xsd:import namespace="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Data" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import namespace="http://www.siplace.com/OIB/2016/07/FactoryCalendar/Contracts/Data" />
+      <xsd:import namespace="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service" />
+      <xsd:import namespace="http://www.siplace.com/OIB/2010/05/FactoryCalendarEvents/Contracts/Service" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="QueryStationItemsRequest" />
+  <wsdl:message name="QueryStationItemsResponse" />
+  <wsdl:message name="FactoryCalendarQuery_QueryStationItems_FactoryCalendarFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q1="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Data" element="q1:FactoryCalendarFault" />
+  </wsdl:message>
+  <wsdl:message name="QueryLineItemsRequest" />
+  <wsdl:message name="QueryLineItemsResponse" />
+  <wsdl:message name="FactoryCalendarQuery_QueryLineItems_FactoryCalendarFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q2="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Data" element="q2:FactoryCalendarFault" />
+  </wsdl:message>
+  <wsdl:message name="QueryItemsRequest" />
+  <wsdl:message name="QueryItemsResponse" />
+  <wsdl:message name="FactoryCalendarQuery_QueryItems_FactoryCalendarFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q3="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Data" element="q3:FactoryCalendarFault" />
+  </wsdl:message>
+  <wsdl:portType name="FactoryCalendarQuery">
+    <wsdl:operation name="QueryStationItems">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2010/05/FactoryCalendaQuery/Contracts/Service/FactoryCalendarQuery/QueryStationItems" name="QueryStationItemsRequest" message="tns:QueryStationItemsRequest" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2010/05/FactoryCalendaQuery/Contracts/Service/FactoryCalendarQuery/QueryStationItemsResponse" name="QueryStationItemsResponse" message="tns:QueryStationItemsResponse" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2010/05/FactoryCalendaQuery/Contracts/Service/FactoryCalendarQuery/QueryStationItemsFactoryCalendarFaultFault" name="FactoryCalendarFaultFault" message="tns:FactoryCalendarQuery_QueryStationItems_FactoryCalendarFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="QueryLineItems">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2010/05/FactoryCalendaQuery/Contracts/Service/FactoryCalendarQuery/QueryLineItems" name="QueryLineItemsRequest" message="tns:QueryLineItemsRequest" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2010/05/FactoryCalendaQuery/Contracts/Service/FactoryCalendarQuery/QueryLineItemsResponse" name="QueryLineItemsResponse" message="tns:QueryLineItemsResponse" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2010/05/FactoryCalendaQuery/Contracts/Service/FactoryCalendarQuery/QueryLineItemsFactoryCalendarFaultFault" name="FactoryCalendarFaultFault" message="tns:FactoryCalendarQuery_QueryLineItems_FactoryCalendarFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="QueryItems">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2010/05/FactoryCalendaQuery/Contracts/Service/FactoryCalendarQuery/QueryItems" name="QueryItemsRequest" message="tns:QueryItemsRequest" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2010/05/FactoryCalendaQuery/Contracts/Service/FactoryCalendarQuery/QueryItemsResponse" name="QueryItemsResponse" message="tns:QueryItemsResponse" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2010/05/FactoryCalendaQuery/Contracts/Service/FactoryCalendarQuery/QueryItemsFactoryCalendarFaultFault" name="FactoryCalendarFaultFault" message="tns:FactoryCalendarQuery_QueryItems_FactoryCalendarFaultFault_FaultMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DefaultBinding_FactoryCalendarQuery" type="tns:FactoryCalendarQuery">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="QueryStationItems">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2010/05/FactoryCalendaQuery/Contracts/Service/FactoryCalendarQuery/QueryStationItems" style="document" />
+      <wsdl:input name="QueryStationItemsRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="QueryStationItemsResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="FactoryCalendarFaultFault">
+        <soap:fault name="FactoryCalendarFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="QueryLineItems">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2010/05/FactoryCalendaQuery/Contracts/Service/FactoryCalendarQuery/QueryLineItems" style="document" />
+      <wsdl:input name="QueryLineItemsRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="QueryLineItemsResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="FactoryCalendarFaultFault">
+        <soap:fault name="FactoryCalendarFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="QueryItems">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2010/05/FactoryCalendaQuery/Contracts/Service/FactoryCalendarQuery/QueryItems" style="document" />
+      <wsdl:input name="QueryItemsRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="QueryItemsResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="FactoryCalendarFaultFault">
+        <soap:fault name="FactoryCalendarFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+</wsdl:definitions>

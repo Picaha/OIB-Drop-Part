@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.siplace.com/OIB/2010/06/ProductionCapability/Contracts/Service" elementFormDefault="qualified" targetNamespace="http://www.siplace.com/OIB/2010/06/ProductionCapability/Contracts/Service" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://www.wbf.org/xml/b2mml-v0400" />
+  <xs:element name="GetProductionCapabilityType" xmlns:q1="http://www.wbf.org/xml/b2mml-v0400" type="q1:GetProductionCapabilityType" />
+  <xs:element name="ShowProductionCapabilityType" xmlns:q2="http://www.wbf.org/xml/b2mml-v0400" type="q2:ShowProductionCapabilityType" />
+  <xs:element name="ProcessProductionScheduleType" xmlns:q3="http://www.wbf.org/xml/b2mml-v0400" type="q3:ProcessProductionScheduleType" />
+</xs:schema>

@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Service" elementFormDefault="qualified" targetNamespace="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Service" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Data" />
+  <xs:import namespace="http://www.siplace.com/OIB/2008/05/ConfigurationManager/Contracts/Data" />
+  <xs:element name="RegisterService">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="description" nillable="true" xmlns:q1="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Data" type="q1:ServiceDescription" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RegisterServiceResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="RegisterServiceResult" nillable="true" xmlns:q2="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Data" type="q2:ServiceDescription" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UnregisterService">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="description" nillable="true" xmlns:q3="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Data" type="q3:ServiceDescription" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UnregisterServiceResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllServices">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllServicesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetAllServicesResult" nillable="true" xmlns:q4="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Data" type="q4:ArrayOfServiceDescription" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllRESTServices">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllRESTServicesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetAllRESTServicesResult" nillable="true" xmlns:q5="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Data" type="q5:ArrayOfServiceDescription" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetServices">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="configuredObject" nillable="true" xmlns:q6="http://www.siplace.com/OIB/2008/05/ConfigurationManager/Contracts/Data" type="q6:Isa95Base" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetServicesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetServicesResult" nillable="true" xmlns:q7="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Data" type="q7:ArrayOfServiceDescription" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="FindServices">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="description" nillable="true" xmlns:q8="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Data" type="q8:ServiceMatchCriteria" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="FindServicesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="FindServicesResult" nillable="true" xmlns:q9="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Data" type="q9:ArrayOfServiceDescription" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Save">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="description" nillable="true" xmlns:q10="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Data" type="q10:ServiceDescription" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetServicesWithoutParents">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="configuredObject" nillable="true" xmlns:q11="http://www.siplace.com/OIB/2008/05/ConfigurationManager/Contracts/Data" type="q11:Isa95Base" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetServicesWithoutParentsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetServicesWithoutParentsResult" nillable="true" xmlns:q12="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Data" type="q12:ArrayOfServiceDescription" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveServiceDescription">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="description" nillable="true" xmlns:q13="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Data" type="q13:ServiceDescription" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveServiceDescriptionResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveServiceDescription2">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="description" nillable="true" xmlns:q14="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Data" type="q14:ServiceDescription" />
+        <xs:element minOccurs="0" name="allowConfigurationOverwrite" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveServiceDescription2Response">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckAlive">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckAliveResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CheckAliveResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UnregisterServiceEnhanced">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="description" nillable="true" xmlns:q15="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Data" type="q15:ServiceDescription" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UnregisterServiceEnhancedResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="UnregisterServiceEnhancedResult" nillable="true" xmlns:q16="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Data" type="q16:ServiceDescription" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveServiceDescriptionEnhanced">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="description" nillable="true" xmlns:q17="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Data" type="q17:ServiceDescription" />
+        <xs:element minOccurs="0" name="allowConfigurationOverwrite" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveServiceDescriptionEnhancedResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SaveServiceDescriptionEnhancedResult" nillable="true" xmlns:q18="http://www.siplace.com/OIB/2008/05/ServiceLocator/Contracts/Data" type="q18:ServiceDescription" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

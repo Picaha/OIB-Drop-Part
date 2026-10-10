@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.siplace.com/OIB/2015/10/LineControlServer/Contracts/MESService" elementFormDefault="qualified" targetNamespace="http://www.siplace.com/OIB/2015/10/LineControlServer/Contracts/MESService" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://www.siplace.com/OIB/2015/10/LineControlServer/Contracts/Data" />
+  <xs:element name="Ping">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PingResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="PingResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="VerifyRecipeActivationOnDekPrinter">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="request" nillable="true" xmlns:q1="http://www.siplace.com/OIB/2015/10/LineControlServer/Contracts/Data" type="q1:VerifyRecipeActivationOnDekPrinterRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="VerifyRecipeActivationOnDekPrinterResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="VerifyRecipeActivationOnDekPrinterResult" nillable="true" xmlns:q2="http://www.siplace.com/OIB/2015/10/LineControlServer/Contracts/Data" type="q2:MesVerificationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="VerifyRecipeDownload">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="request" nillable="true" xmlns:q3="http://www.siplace.com/OIB/2015/10/LineControlServer/Contracts/Data" type="q3:VerifyRecipeDownloadRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="VerifyRecipeDownloadResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="VerifyRecipeDownloadResult" nillable="true" xmlns:q4="http://www.siplace.com/OIB/2015/10/LineControlServer/Contracts/Data" type="q4:MesVerificationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="VerifyStartAutoProgramDownload">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="request" nillable="true" xmlns:q5="http://www.siplace.com/OIB/2015/10/LineControlServer/Contracts/Data" type="q5:VerifyRecipeForAutoProgramDownloadRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="VerifyStartAutoProgramDownloadResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="VerifyStartAutoProgramDownloadResult" nillable="true" xmlns:q6="http://www.siplace.com/OIB/2015/10/LineControlServer/Contracts/Data" type="q6:MesVerificationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="VerifyRecipeForAutoProgramDownload">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="request" nillable="true" xmlns:q7="http://www.siplace.com/OIB/2015/10/LineControlServer/Contracts/Data" type="q7:VerifyRecipeForAutoProgramDownloadRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="VerifyRecipeForAutoProgramDownloadResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="VerifyRecipeForAutoProgramDownloadResult" nillable="true" xmlns:q8="http://www.siplace.com/OIB/2015/10/LineControlServer/Contracts/Data" type="q8:MesVerificationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="VerifyPcbForAutoProgramDownload">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="request" nillable="true" xmlns:q9="http://www.siplace.com/OIB/2015/10/LineControlServer/Contracts/Data" type="q9:VerifyPcbForAutoProgramDownloadRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="VerifyPcbForAutoProgramDownloadResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="VerifyPcbForAutoProgramDownloadResult" nillable="true" xmlns:q10="http://www.siplace.com/OIB/2015/10/LineControlServer/Contracts/Data" type="q10:MesVerificationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="VerifyRecipeActivationOnProcessLens">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="request" nillable="true" xmlns:q11="http://www.siplace.com/OIB/2015/10/LineControlServer/Contracts/Data" type="q11:VerifyRecipeActivationOnProcessLensRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="VerifyRecipeActivationOnProcessLensResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="VerifyRecipeActivationOnProcessLensResult" nillable="true" xmlns:q12="http://www.siplace.com/OIB/2015/10/LineControlServer/Contracts/Data" type="q12:MesVerificationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,234 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Data" elementFormDefault="qualified" targetNamespace="http://www.siplace.com/OIB/2012/05/DisplayService/Contracts/Data" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://schemas.xmlsoap.org/ws/2004/08/addressing" />
+  <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:complexType name="ClientRegistration">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CallbackAddress" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ClientGUID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ClientName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LastActive" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CallbackEndpointSerializable" nillable="true" xmlns:q1="http://schemas.xmlsoap.org/ws/2004/08/addressing" type="q1:EndpointReferenceType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ClientRegistration" nillable="true" type="tns:ClientRegistration" />
+  <xs:complexType name="DisplayServiceFault">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorCode" type="xs:int" />
+      <xs:element minOccurs="0" name="ExtendedMessage" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DisplayServiceFault" nillable="true" type="tns:DisplayServiceFault" />
+  <xs:complexType name="Message">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AcknowledgementType" type="tns:AcknowledgementType" />
+      <xs:element minOccurs="0" name="Answers" nillable="true" type="tns:ArrayOfAnswer" />
+      <xs:element minOccurs="0" name="CallbackRequested" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ClientRegistration" nillable="true" type="tns:ClientRegistration" />
+      <xs:element minOccurs="0" name="CreationTimeUTC" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ExtendedDescription" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ExtendedDescriptionDefault" type="xs:boolean" />
+      <xs:element minOccurs="0" name="MessageGUID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MessageText" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Priority" type="xs:int" />
+      <xs:element minOccurs="0" name="SeverityLevel" type="tns:SeverityLevel" />
+      <xs:element minOccurs="0" name="DefaultAnswerIndex" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Message" nillable="true" type="tns:Message" />
+  <xs:simpleType name="AcknowledgementType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Originator" />
+      <xs:enumeration value="OneReceiver" />
+      <xs:enumeration value="AllReceivers" />
+      <xs:enumeration value="Reserved1" />
+      <xs:enumeration value="Reserved2" />
+      <xs:enumeration value="Reserved3" />
+      <xs:enumeration value="Reserved4" />
+      <xs:enumeration value="Reserved5" />
+      <xs:enumeration value="Reserved6" />
+      <xs:enumeration value="Reserved7" />
+      <xs:enumeration value="Reserved8" />
+      <xs:enumeration value="Reserved9" />
+      <xs:enumeration value="Reserved10" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="AcknowledgementType" nillable="true" type="tns:AcknowledgementType" />
+  <xs:complexType name="ArrayOfAnswer">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Answer" nillable="true" type="tns:Answer" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAnswer" nillable="true" type="tns:ArrayOfAnswer" />
+  <xs:complexType name="Answer">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AnswerID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AnswerText" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SubAnswers" nillable="true" xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q2:ArrayOfstring" />
+      <xs:element minOccurs="0" name="SubAnswersNew" nillable="true" type="tns:ArrayOfSubAnswer" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Answer" nillable="true" type="tns:Answer" />
+  <xs:complexType name="ArrayOfSubAnswer">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SubAnswer" nillable="true" type="tns:SubAnswer" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSubAnswer" nillable="true" type="tns:ArrayOfSubAnswer" />
+  <xs:complexType name="SubAnswer">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="SubAnswerID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SubAnswerText" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TextEditable" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SubAnswer" nillable="true" type="tns:SubAnswer" />
+  <xs:simpleType name="SeverityLevel">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="Info" />
+      <xs:enumeration value="Warning" />
+      <xs:enumeration value="Error" />
+      <xs:enumeration value="Undefined" />
+      <xs:enumeration value="Reserved1" />
+      <xs:enumeration value="Reserved2" />
+      <xs:enumeration value="Reserved3" />
+      <xs:enumeration value="Reserved4" />
+      <xs:enumeration value="Reserved5" />
+      <xs:enumeration value="Reserved6" />
+      <xs:enumeration value="Reserved7" />
+      <xs:enumeration value="Reserved8" />
+      <xs:enumeration value="Reserved9" />
+      <xs:enumeration value="Reserved10" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="SeverityLevel" nillable="true" type="tns:SeverityLevel" />
+  <xs:simpleType name="ViewerIdentification">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Explicit" />
+      <xs:enumeration value="StationPath" />
+      <xs:enumeration value="LinePathFirstStation" />
+      <xs:enumeration value="LinePathAllStations" />
+      <xs:enumeration value="Reserved1" />
+      <xs:enumeration value="Reserved2" />
+      <xs:enumeration value="Reserved3" />
+      <xs:enumeration value="Reserved4" />
+      <xs:enumeration value="Reserved5" />
+      <xs:enumeration value="Reserved6" />
+      <xs:enumeration value="Reserved7" />
+      <xs:enumeration value="Reserved8" />
+      <xs:enumeration value="Reserved9" />
+      <xs:enumeration value="Reserved10" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ViewerIdentification" nillable="true" type="tns:ViewerIdentification" />
+  <xs:complexType name="ArrayOfViewerRegistration">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ViewerRegistration" nillable="true" type="tns:ViewerRegistration" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfViewerRegistration" nillable="true" type="tns:ArrayOfViewerRegistration" />
+  <xs:complexType name="ViewerRegistration">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ComputerName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DispatcherEndpointAddress" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EndpointAddress" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IPAddresses" nillable="true" xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q3:ArrayOfstring" />
+      <xs:element minOccurs="0" name="SIPLACEProDatabaseId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SIPLACEProLineOID" type="xs:int" />
+      <xs:element minOccurs="0" name="SIPLACEProLinePath" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SIPLACEProStationIndexInLine" type="xs:int" />
+      <xs:element minOccurs="0" name="SIPLACEProStationOID" type="xs:int" />
+      <xs:element minOccurs="0" name="SIPLACEProStationPath" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ViewerGUID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsStationViewer" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="StationType" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="DeviceInLinePosition" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="DeviceVerticalPositionInLine" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="SIPLACEProLineOID_Long" type="xs:long" />
+      <xs:element minOccurs="0" name="SIPLACEProStationOID_Long" type="xs:long" />
+      <xs:element minOccurs="0" name="IsSsiStationViewer" type="xs:boolean" />
+      <xs:element minOccurs="0" name="LastActive" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ViewerRegistration" nillable="true" type="tns:ViewerRegistration" />
+  <xs:complexType name="ArrayOfMessageDeliveryDetails">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MessageDeliveryDetails" nillable="true" type="tns:MessageDeliveryDetails" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMessageDeliveryDetails" nillable="true" type="tns:ArrayOfMessageDeliveryDetails" />
+  <xs:complexType name="MessageDeliveryDetails">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Answer" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AnswerReceived" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ConfirmationForwardedSuccessfully" type="xs:boolean" />
+      <xs:element minOccurs="0" name="DeliveredSuccessfully" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ExecptionMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SubAnswer" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ViewerRegistration" nillable="true" type="tns:ViewerRegistration" />
+      <xs:element minOccurs="0" name="ConfirmationForwardedSuccessfullyNullable" nillable="true" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MessageDeliveryDetails" nillable="true" type="tns:MessageDeliveryDetails" />
+  <xs:complexType name="DSMessageDeliveryFault">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:DisplayServiceFault">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="DeliveryDetails" nillable="true" type="tns:ArrayOfMessageDeliveryDetails" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DSMessageDeliveryFault" nillable="true" type="tns:DSMessageDeliveryFault" />
+  <xs:complexType name="ArrayOfMessageState">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MessageState" nillable="true" type="tns:MessageState" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMessageState" nillable="true" type="tns:ArrayOfMessageState" />
+  <xs:complexType name="MessageState">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DeliveryDetails" nillable="true" type="tns:ArrayOfMessageDeliveryDetails" />
+      <xs:element minOccurs="0" name="Message" nillable="true" type="tns:Message" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MessageState" nillable="true" type="tns:MessageState" />
+  <xs:complexType name="ArrayOfStationInLine">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="StationInLine" nillable="true" type="tns:StationInLine" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfStationInLine" nillable="true" type="tns:ArrayOfStationInLine" />
+  <xs:complexType name="StationInLine">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IndexInLine" type="xs:int" />
+      <xs:element minOccurs="0" name="StationOID" type="xs:int" />
+      <xs:element minOccurs="0" name="StationPath" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StationType" type="xs:int" />
+      <xs:element minOccurs="0" name="StationOID_Long" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="StationInLine" nillable="true" type="tns:StationInLine" />
+  <xs:complexType name="ArrayOfClientRegistration">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ClientRegistration" nillable="true" type="tns:ClientRegistration" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfClientRegistration" nillable="true" type="tns:ArrayOfClientRegistration" />
+  <xs:complexType name="ArrayOfMessage">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Message" nillable="true" type="tns:Message" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMessage" nillable="true" type="tns:ArrayOfMessage" />
+  <xs:complexType name="DisplayServiceAdminSettings">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DatabaseInstance" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DatabaseName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MaxClientExpiry" type="xs:unsignedShort" />
+      <xs:element minOccurs="0" name="OIBCoreHostName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DisplayServiceAdminSettings" nillable="true" type="tns:DisplayServiceAdminSettings" />
+</xs:schema>

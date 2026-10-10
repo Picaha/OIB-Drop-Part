@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.asm.com/MaterialManager/2018/11/Contracts/Service" elementFormDefault="qualified" targetNamespace="http://www.asm.com/MaterialManager/2018/11/Contracts/Service" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://www.asm.com/MaterialManager/2018/11/Contracts/Data" />
+  <xs:element name="EventCreationTime" type="xs:dateTime" />
+  <xs:element name="MaterialManagerEvents" nillable="true" xmlns:q1="http://www.asm.com/MaterialManager/2018/11/Contracts/Data" type="q1:ArrayOfMaterialManagerEventData" />
+  <xs:element name="MsgId" nillable="true" type="xs:string" />
+  <xs:element name="SubscriptionTopic" nillable="true" type="xs:string" />
+</xs:schema>

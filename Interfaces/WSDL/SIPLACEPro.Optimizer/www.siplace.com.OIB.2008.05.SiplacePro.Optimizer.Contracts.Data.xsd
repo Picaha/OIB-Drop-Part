@@ -1,0 +1,808 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" elementFormDefault="qualified" targetNamespace="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:simpleType name="ClusterOptState">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="CS_UNDEFINED" />
+      <xs:enumeration value="CS_IDLE" />
+      <xs:enumeration value="CS_READ_INPUT" />
+      <xs:enumeration value="CS_OPT_ANALYSING" />
+      <xs:enumeration value="CS_OPT_INT_DATA" />
+      <xs:enumeration value="CS_OPT_CLUSTER" />
+      <xs:enumeration value="CS_OPT_LINEBAL" />
+      <xs:enumeration value="CS_OPT_PRE_OUT" />
+      <xs:enumeration value="CS_PAUSED" />
+      <xs:enumeration value="CS_WRITE" />
+      <xs:enumeration value="CS_SAVED" />
+      <xs:enumeration value="Reserved1" />
+      <xs:enumeration value="Reserved2" />
+      <xs:enumeration value="Reserved3" />
+      <xs:enumeration value="Reserved4" />
+      <xs:enumeration value="Reserved5" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ClusterOptState" nillable="true" type="tns:ClusterOptState" />
+  <xs:simpleType name="OptProgressType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="OCB_PROGRESS">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="OCB_NEWRESULT">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="OCB_PROGRESS_NEWRSULT">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">3</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="OptProgressType" nillable="true" type="tns:OptProgressType" />
+  <xs:simpleType name="OptKernelState">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="KS_UNDEFINED" />
+      <xs:enumeration value="KS_IDLE" />
+      <xs:enumeration value="KS_READ_INPUT" />
+      <xs:enumeration value="KS_ANALYSING" />
+      <xs:enumeration value="KS_OPTIMIZING_1" />
+      <xs:enumeration value="KS_OPTIMIZING_2" />
+      <xs:enumeration value="KS_OPTIMIZING_3" />
+      <xs:enumeration value="KS_OPTIMIZING_4" />
+      <xs:enumeration value="KS_OPTIMIZING_5" />
+      <xs:enumeration value="KS_OPTIMIZING_6" />
+      <xs:enumeration value="KS_OPTIMIZING_7" />
+      <xs:enumeration value="KS_OPTIMIZING_8" />
+      <xs:enumeration value="KS_OPTIMIZING_9" />
+      <xs:enumeration value="KS_OPT_COMPLETE" />
+      <xs:enumeration value="KS_WRITE_OUTPUT" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="OptKernelState" nillable="true" type="tns:OptKernelState" />
+  <xs:complexType name="ClusterOptCompleteArgs">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:OptArgsBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Success" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ClusterOptCompleteArgs" nillable="true" type="tns:ClusterOptCompleteArgs" />
+  <xs:complexType name="OptArgsBase">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ClientInstanceId" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OptArgsBase" nillable="true" type="tns:OptArgsBase" />
+  <xs:complexType name="ClusterOptProgressArgs">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:OptArgsBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Percent" type="xs:int" />
+          <xs:element minOccurs="0" name="RunTime" type="xs:double" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ClusterOptProgressArgs" nillable="true" type="tns:ClusterOptProgressArgs" />
+  <xs:complexType name="ClusterOptStateArgs">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:OptArgsBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="StateCode" type="tns:ClusterOptState" />
+          <xs:element minOccurs="0" name="Stringparam" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ClusterOptStateArgs" nillable="true" type="tns:ClusterOptStateArgs" />
+  <xs:complexType name="ClusterOptResultErrorCountArgs">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:OptArgsBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ErrorCount" type="xs:int" />
+          <xs:element minOccurs="0" name="InfoCount" type="xs:int" />
+          <xs:element minOccurs="0" name="RunTime" type="xs:double" />
+          <xs:element minOccurs="0" name="WarningCount" type="xs:int" />
+          <xs:element minOccurs="0" name="WriteOK" type="xs:boolean" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ClusterOptResultErrorCountArgs" nillable="true" type="tns:ClusterOptResultErrorCountArgs" />
+  <xs:complexType name="ClusterOptResultArgs">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:OptArgsBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="XmlCharacteristics" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ClusterOptResultArgs" nillable="true" type="tns:ClusterOptResultArgs" />
+  <xs:complexType name="ClusterOptSessionTerminatedArgs">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:OptArgsBase">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ClusterOptSessionTerminatedArgs" nillable="true" type="tns:ClusterOptSessionTerminatedArgs" />
+  <xs:complexType name="OptCompleteArgs">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:OptArgsBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Complete" type="xs:boolean" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="OptCompleteArgs" nillable="true" type="tns:OptCompleteArgs" />
+  <xs:complexType name="OptProgressArgs">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:OptArgsBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="AverageUtilization" type="xs:double" />
+          <xs:element minOccurs="0" name="OptProgressType" type="tns:OptProgressType" />
+          <xs:element minOccurs="0" name="Percent" type="xs:int" />
+          <xs:element minOccurs="0" name="PlacementRate" type="xs:int" />
+          <xs:element minOccurs="0" name="ProductionTime" type="xs:double" />
+          <xs:element minOccurs="0" name="RunTime" type="xs:double" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="OptProgressArgs" nillable="true" type="tns:OptProgressArgs" />
+  <xs:complexType name="OptResultArgs">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:OptArgsBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="AverageUtilization" type="xs:double" />
+          <xs:element minOccurs="0" name="DetailedResults" nillable="true" type="tns:JobDataJob" />
+          <xs:element minOccurs="0" name="ErrorCount" type="xs:int" />
+          <xs:element minOccurs="0" name="InfoCount" type="xs:int" />
+          <xs:element minOccurs="0" name="OptimizationSuccessful" type="xs:boolean" />
+          <xs:element minOccurs="0" name="OptimizerMessages" nillable="true" type="tns:ArrayOfOptimizerMessage" />
+          <xs:element minOccurs="0" name="PlacementRate" type="xs:int" />
+          <xs:element minOccurs="0" name="ProductionTime" type="xs:double" />
+          <xs:element minOccurs="0" name="ResultComment" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="RunTime" type="xs:double" />
+          <xs:element minOccurs="0" name="WarningCount" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="OptResultArgs" nillable="true" type="tns:OptResultArgs" />
+  <xs:complexType name="JobDataJob">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CycleTime" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ProductionTime" type="xs:int" />
+      <xs:element minOccurs="0" name="Recipes" nillable="true" type="tns:ArrayOfJobDataRecipe" />
+      <xs:element minOccurs="0" name="SetupName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="JobDataJob" nillable="true" type="tns:JobDataJob" />
+  <xs:complexType name="ArrayOfJobDataRecipe">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="JobDataRecipe" nillable="true" type="tns:JobDataRecipe" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfJobDataRecipe" nillable="true" type="tns:ArrayOfJobDataRecipe" />
+  <xs:complexType name="JobDataRecipe">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PlacementRate" type="xs:int" />
+      <xs:element minOccurs="0" name="ProductionTime" type="xs:int" />
+      <xs:element minOccurs="0" name="Setup" nillable="true" type="tns:JobDataSetup" />
+      <xs:element minOccurs="0" name="Utilization" type="xs:double" />
+      <xs:element minOccurs="0" name="CycleTime" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="JobDataRecipe" nillable="true" type="tns:JobDataRecipe" />
+  <xs:complexType name="JobDataSetup">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Line" nillable="true" type="tns:JobDataLine" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="JobDataSetup" nillable="true" type="tns:JobDataSetup" />
+  <xs:complexType name="JobDataLine">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Stations" nillable="true" type="tns:ArrayOfJobDataStation" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="JobDataLine" nillable="true" type="tns:JobDataLine" />
+  <xs:complexType name="ArrayOfJobDataStation">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="JobDataStation" nillable="true" type="tns:JobDataStation" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfJobDataStation" nillable="true" type="tns:ArrayOfJobDataStation" />
+  <xs:complexType name="JobDataStation">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PlacementAreas" nillable="true" type="tns:ArrayOfJobDataPlacementArea" />
+      <xs:element minOccurs="0" name="StationType" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="JobDataStation" nillable="true" type="tns:JobDataStation" />
+  <xs:complexType name="ArrayOfJobDataPlacementArea">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="JobDataPlacementArea" nillable="true" type="tns:JobDataPlacementArea" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfJobDataPlacementArea" nillable="true" type="tns:ArrayOfJobDataPlacementArea" />
+  <xs:complexType name="JobDataPlacementArea">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CycleTime" type="xs:int" />
+      <xs:element minOccurs="0" name="Heads" nillable="true" type="tns:ArrayOfJobDataHead" />
+      <xs:element minOccurs="0" name="Number" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="JobDataPlacementArea" nillable="true" type="tns:JobDataPlacementArea" />
+  <xs:complexType name="ArrayOfJobDataHead">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="JobDataHead" nillable="true" type="tns:JobDataHead" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfJobDataHead" nillable="true" type="tns:ArrayOfJobDataHead" />
+  <xs:complexType name="JobDataHead">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="HeadSteps" nillable="true" type="tns:ArrayOfJobDataHeadSteps" />
+      <xs:element minOccurs="0" name="Location" type="xs:int" />
+      <xs:element minOccurs="0" name="Type" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="JobDataHead" nillable="true" type="tns:JobDataHead" />
+  <xs:complexType name="ArrayOfJobDataHeadSteps">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="JobDataHeadSteps" nillable="true" type="tns:JobDataHeadSteps" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfJobDataHeadSteps" nillable="true" type="tns:ArrayOfJobDataHeadSteps" />
+  <xs:complexType name="JobDataHeadSteps">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CycleCount" type="xs:int" />
+      <xs:element minOccurs="0" name="CycleTime" type="xs:int" />
+      <xs:element minOccurs="0" name="HeadCycleTime" type="xs:int" />
+      <xs:element minOccurs="0" name="PCBCycle" type="xs:int" />
+      <xs:element minOccurs="0" name="Performance" type="xs:int" />
+      <xs:element minOccurs="0" name="PlacementCount" type="xs:int" />
+      <xs:element minOccurs="0" name="VirtualUnproductiveTime" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="JobDataHeadSteps" nillable="true" type="tns:JobDataHeadSteps" />
+  <xs:complexType name="ArrayOfOptimizerMessage">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="OptimizerMessage" nillable="true" type="tns:OptimizerMessage" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfOptimizerMessage" nillable="true" type="tns:ArrayOfOptimizerMessage" />
+  <xs:complexType name="OptimizerMessage">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MessageCode" type="xs:int" />
+      <xs:element minOccurs="0" name="MessageType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Parameters" nillable="true" xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q1:ArrayOfstring" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OptimizerMessage" nillable="true" type="tns:OptimizerMessage" />
+  <xs:complexType name="OptStateArgs">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:OptArgsBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="IsStopPossible" type="xs:boolean" />
+          <xs:element minOccurs="0" name="StateCode" type="tns:OptKernelState" />
+          <xs:element minOccurs="0" name="StateComment" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="OptStateArgs" nillable="true" type="tns:OptStateArgs" />
+  <xs:complexType name="OptimizerStoppedReport">
+    <xs:sequence>
+      <xs:element name="ClientEndpoint" nillable="true" type="xs:string" />
+      <xs:element name="ClusterJob" type="xs:boolean" />
+      <xs:element name="JobName" nillable="true" type="xs:string" />
+      <xs:element name="ServiceComputer" nillable="true" type="xs:string" />
+      <xs:element name="UTCTime" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OptimizerStoppedReport" nillable="true" type="tns:OptimizerStoppedReport" />
+  <xs:complexType name="OptimizerStartedReport">
+    <xs:sequence>
+      <xs:element name="ClientEndpoint" nillable="true" type="xs:string" />
+      <xs:element name="ClusterJob" type="xs:boolean" />
+      <xs:element name="JobName" nillable="true" type="xs:string" />
+      <xs:element name="ServiceComputer" nillable="true" type="xs:string" />
+      <xs:element name="UTCTime" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OptimizerStartedReport" nillable="true" type="tns:OptimizerStartedReport" />
+  <xs:complexType name="SiplaceProOptimizerFault">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorCode" type="xs:int" />
+      <xs:element minOccurs="0" name="ErrorEnum" type="tns:OptimizerErrorEnum" />
+      <xs:element minOccurs="0" name="ExtendedMessage" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SiplaceProOptimizerFault" nillable="true" type="tns:SiplaceProOptimizerFault" />
+  <xs:simpleType name="OptimizerErrorEnum">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Undefined" />
+      <xs:enumeration value="GenericSystem">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1000</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="GenericBusiness">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2000</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="OptimizerBusyWithJob">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2001</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="OptimizerBusyWithClusterJob">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2002</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="OptimizerBusyWithFromOtherCLient">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2003</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="SpiObjectNameNotFound">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2004</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="SpiObjectIdNotFound">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2005</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="LicenseNotAvailable">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2006</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="OptimizerErrorEnum" nillable="true" type="tns:OptimizerErrorEnum" />
+  <xs:complexType name="OIDInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="HighestOID" type="xs:long" />
+      <xs:element minOccurs="0" name="MaxOidIntCount" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OIDInfo" nillable="true" type="tns:OIDInfo" />
+  <xs:simpleType name="ObjectType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ClusterJob" />
+      <xs:enumeration value="Job" />
+      <xs:enumeration value="Recipe" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ObjectType" nillable="true" type="tns:ObjectType" />
+  <xs:complexType name="OptimizationParameters">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AssignPlacementPosFromHeadschedule" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ClusterSetupFillLevel" type="xs:int" />
+      <xs:element minOccurs="0" name="CompMaxSetupCount" type="xs:long" />
+      <xs:element minOccurs="0" name="DontChangeCompLoc" type="xs:boolean" />
+      <xs:element minOccurs="0" name="DontChangeCompLocModifyFeeder" type="xs:boolean" />
+      <xs:element minOccurs="0" name="FillWPC100Percent" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IdenticalNozzleSetups" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IgnoreFixedFlags" type="xs:boolean" />
+      <xs:element minOccurs="0" name="KeepPlacementSequence" type="xs:boolean" />
+      <xs:element minOccurs="0" name="LogFileName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MTCIdenticalTowers" type="xs:boolean" />
+      <xs:element minOccurs="0" name="MaxRestarts" type="xs:long" />
+      <xs:element minOccurs="0" name="MaxRestartsLimit" type="xs:boolean" />
+      <xs:element minOccurs="0" name="MaxRuntime" type="xs:long" />
+      <xs:element minOccurs="0" name="NoAdditionalSetupComps" type="xs:boolean" />
+      <xs:element minOccurs="0" name="OptLogLevel" type="tns:LogLevel" />
+      <xs:element minOccurs="0" name="OptMsgLevel" type="tns:MsgLevel" />
+      <xs:element minOccurs="0" name="OptimizeHeadSteps" type="xs:boolean" />
+      <xs:element minOccurs="0" name="OptimizeNozzleChanger" type="xs:boolean" />
+      <xs:element minOccurs="0" name="OptimizeTables" type="xs:boolean" />
+      <xs:element minOccurs="0" name="PerformanceSettingLevel2Fast" type="xs:boolean" />
+      <xs:element minOccurs="0" name="SaveResults" type="xs:boolean" />
+      <xs:element minOccurs="0" name="SupportPlacementLevels" type="xs:boolean" />
+      <xs:element minOccurs="0" name="TowerFillUpStrategy" type="tns:MTCFillStrategyMode" />
+      <xs:element minOccurs="0" name="WarningsAsErrors" nillable="true" xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q2:ArrayOfint" />
+      <xs:element minOccurs="0" name="AddCppPrecedences" type="xs:boolean" />
+      <xs:element minOccurs="0" name="AllPlacementsAtFirstStopper" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="PerformanceSettingCreateTimeStamp" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="UseJobNameForResultSetup" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="BalanceLBOStepping" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="AddAllPrecedences" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="CompletePanelsSeparately" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="MaxTableFillLevel" nillable="true" type="xs:unsignedShort" />
+      <xs:element minOccurs="0" name="PlacementLevelBinding" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="TryAssignPlacementPosFromHeadschedule" nillable="true" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OptimizationParameters" nillable="true" type="tns:OptimizationParameters" />
+  <xs:simpleType name="LogLevel">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ERROR_ONLY" />
+      <xs:enumeration value="ALL" />
+      <xs:enumeration value="Reserved1" />
+      <xs:enumeration value="Reserved2" />
+      <xs:enumeration value="Reserved3" />
+      <xs:enumeration value="Reserved4" />
+      <xs:enumeration value="Reserved5" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="LogLevel" nillable="true" type="tns:LogLevel" />
+  <xs:simpleType name="MsgLevel">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="LEVEL_UNDEFINED" />
+      <xs:enumeration value="ERR_MSGS" />
+      <xs:enumeration value="ERR_WARNING_MSGS" />
+      <xs:enumeration value="ALL_MSGS" />
+      <xs:enumeration value="Reserved1" />
+      <xs:enumeration value="Reserved2" />
+      <xs:enumeration value="Reserved3" />
+      <xs:enumeration value="Reserved4" />
+      <xs:enumeration value="Reserved5" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="MsgLevel" nillable="true" type="tns:MsgLevel" />
+  <xs:simpleType name="MTCFillStrategyMode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Undefined" />
+      <xs:enumeration value="BestPerformance" />
+      <xs:enumeration value="FillOneCompPerCass" />
+      <xs:enumeration value="TowerSortedByComp" />
+      <xs:enumeration value="Reserved1" />
+      <xs:enumeration value="Reserved2" />
+      <xs:enumeration value="Reserved3" />
+      <xs:enumeration value="Reserved4" />
+      <xs:enumeration value="Reserved5" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="MTCFillStrategyMode" nillable="true" type="tns:MTCFillStrategyMode" />
+  <xs:complexType name="OptimizerServiceState">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Busy" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ClientEndpoint" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ClusterJob" type="xs:boolean" />
+      <xs:element minOccurs="0" name="JobName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OptimizerServiceState" nillable="true" type="tns:OptimizerServiceState" />
+  <xs:simpleType name="IntegrityCheckMode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="WarnOnly" />
+      <xs:enumeration value="AllowHeadstepRecalcuation" />
+      <xs:enumeration value="ForceHeadstepRecalculation" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="IntegrityCheckMode" nillable="true" type="tns:IntegrityCheckMode" />
+  <xs:simpleType name="ICPlacePosReparMode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="RepAllowRepart">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="RepAvoidRepart">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="RepAvoidRepAndKeepSequence">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">3</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="RepFindBestResult">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">4</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ICPlacePosReparMode" nillable="true" type="tns:ICPlacePosReparMode" />
+  <xs:simpleType name="IntegrityCheckResult">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="DataNotOk" />
+      <xs:enumeration value="DataNotOkHeadStepRecalculationRecommended" />
+      <xs:enumeration value="DataOk">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">3</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DataOkHeadStepsRecalculated">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">4</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="IntegrityCheckResult" nillable="true" type="tns:IntegrityCheckResult" />
+  <xs:complexType name="RecipeDataRecipe">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BoardsLeftLane" nillable="true" type="tns:ArrayOfRecipeDataBoard" />
+      <xs:element minOccurs="0" name="BoardsRightLane" nillable="true" type="tns:ArrayOfRecipeDataBoard" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NeedsToBeReoptimized" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Setup" nillable="true" type="tns:RecipeDataSetup" />
+      <xs:element minOccurs="0" name="PlacementRate" type="xs:int" />
+      <xs:element minOccurs="0" name="ProductionTime" type="xs:int" />
+      <xs:element minOccurs="0" name="Utilization" type="xs:double" />
+      <xs:element minOccurs="0" name="ActiveSetupArea" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ErrorCount" type="xs:int" />
+      <xs:element minOccurs="0" name="InfoCount" type="xs:int" />
+      <xs:element minOccurs="0" name="OptimizerMessages" nillable="true" type="tns:ArrayOfOptimizerMessage" />
+      <xs:element minOccurs="0" name="WarningCount" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RecipeDataRecipe" nillable="true" type="tns:RecipeDataRecipe" />
+  <xs:complexType name="ArrayOfRecipeDataBoard">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="RecipeDataBoard" nillable="true" type="tns:RecipeDataBoard" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfRecipeDataBoard" nillable="true" type="tns:ArrayOfRecipeDataBoard" />
+  <xs:complexType name="RecipeDataBoard">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Height" type="xs:double" />
+      <xs:element minOccurs="0" name="Length" type="xs:double" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Number" type="xs:int" />
+      <xs:element minOccurs="0" name="Width" type="xs:double" />
+      <xs:element minOccurs="0" name="SubLane" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RecipeDataBoard" nillable="true" type="tns:RecipeDataBoard" />
+  <xs:complexType name="RecipeDataSetup">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Line" nillable="true" type="tns:RecipeDataLine" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RecipeDataSetup" nillable="true" type="tns:RecipeDataSetup" />
+  <xs:complexType name="RecipeDataLine">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Stations" nillable="true" type="tns:ArrayOfRecipeDataStation" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RecipeDataLine" nillable="true" type="tns:RecipeDataLine" />
+  <xs:complexType name="ArrayOfRecipeDataStation">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="RecipeDataStation" nillable="true" type="tns:RecipeDataStation" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfRecipeDataStation" nillable="true" type="tns:ArrayOfRecipeDataStation" />
+  <xs:complexType name="RecipeDataStation">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PlacementAreas" nillable="true" type="tns:ArrayOfRecipeDataPlacementArea" />
+      <xs:element minOccurs="0" name="StationType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CycleTime" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RecipeDataStation" nillable="true" type="tns:RecipeDataStation" />
+  <xs:complexType name="ArrayOfRecipeDataPlacementArea">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="RecipeDataPlacementArea" nillable="true" type="tns:RecipeDataPlacementArea" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfRecipeDataPlacementArea" nillable="true" type="tns:ArrayOfRecipeDataPlacementArea" />
+  <xs:complexType name="RecipeDataPlacementArea">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Heads" nillable="true" type="tns:ArrayOfRecipeDataHead" />
+      <xs:element minOccurs="0" name="Number" type="xs:int" />
+      <xs:element minOccurs="0" name="CycleTime" type="xs:int" />
+      <xs:element minOccurs="0" name="BuildTime" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RecipeDataPlacementArea" nillable="true" type="tns:RecipeDataPlacementArea" />
+  <xs:complexType name="ArrayOfRecipeDataHead">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="RecipeDataHead" nillable="true" type="tns:RecipeDataHead" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfRecipeDataHead" nillable="true" type="tns:ArrayOfRecipeDataHead" />
+  <xs:complexType name="RecipeDataHead">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="HeadCycleTime" type="xs:int" />
+      <xs:element minOccurs="0" name="HeadType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Location" type="xs:int" />
+      <xs:element minOccurs="0" name="PCBCycles" nillable="true" type="tns:ArrayOfRecipeDataPCBCycle" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RecipeDataHead" nillable="true" type="tns:RecipeDataHead" />
+  <xs:complexType name="ArrayOfRecipeDataPCBCycle">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="RecipeDataPCBCycle" nillable="true" type="tns:RecipeDataPCBCycle" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfRecipeDataPCBCycle" nillable="true" type="tns:ArrayOfRecipeDataPCBCycle" />
+  <xs:complexType name="RecipeDataPCBCycle">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="HeadSteps" nillable="true" type="tns:ArrayOfRecipeDataHeadStep" />
+      <xs:element minOccurs="0" name="PCBCycle" type="xs:int" />
+      <xs:element minOccurs="0" name="CycleCount" type="xs:int" />
+      <xs:element minOccurs="0" name="CycleTime" type="xs:int" />
+      <xs:element minOccurs="0" name="HeadCycleTime" type="xs:int" />
+      <xs:element minOccurs="0" name="NozzleSetups" nillable="true" type="tns:ArrayOfRecipeDataNozzleSetup" />
+      <xs:element minOccurs="0" name="Performance" type="xs:int" />
+      <xs:element minOccurs="0" name="PlacementCount" type="xs:int" />
+      <xs:element minOccurs="0" name="VirtualUnproductiveTime" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RecipeDataPCBCycle" nillable="true" type="tns:RecipeDataPCBCycle" />
+  <xs:complexType name="ArrayOfRecipeDataHeadStep">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="RecipeDataHeadStep" nillable="true" type="tns:RecipeDataHeadStep" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfRecipeDataHeadStep" nillable="true" type="tns:ArrayOfRecipeDataHeadStep" />
+  <xs:complexType name="RecipeDataHeadStep">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Handling" nillable="true" type="tns:RecipeDataHandling" />
+      <xs:element minOccurs="0" name="HeadCycle" type="xs:int" />
+      <xs:element minOccurs="0" name="Pickup" nillable="true" type="tns:RecipeDataPickup" />
+      <xs:element minOccurs="0" name="PickupTime" type="xs:int" />
+      <xs:element minOccurs="0" name="PlacingTime" type="xs:int" />
+      <xs:element minOccurs="0" name="Position" nillable="true" type="tns:RecipeDataPosition" />
+      <xs:element minOccurs="0" name="SequenceNumber" type="xs:int" />
+      <xs:element minOccurs="0" name="Type" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WaitingTime" type="xs:int" />
+      <xs:element minOccurs="0" name="PCBCycle" type="xs:int" />
+      <xs:element minOccurs="0" name="SubType" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RecipeDataHeadStep" nillable="true" type="tns:RecipeDataHeadStep" />
+  <xs:complexType name="RecipeDataHandling">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Division" type="xs:int" />
+      <xs:element minOccurs="0" name="FeederType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FixedComponent" type="xs:boolean" />
+      <xs:element minOccurs="0" name="FixedFeeder" type="xs:boolean" />
+      <xs:element minOccurs="0" name="FrozenTable" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Level" type="xs:int" />
+      <xs:element minOccurs="0" name="Location" type="xs:int" />
+      <xs:element minOccurs="0" name="PickupPhi" type="xs:double" />
+      <xs:element minOccurs="0" name="PickupX" type="xs:double" />
+      <xs:element minOccurs="0" name="PickupY" type="xs:double" />
+      <xs:element minOccurs="0" name="PickupZ" type="xs:double" />
+      <xs:element minOccurs="0" name="Table" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Tower" type="xs:int" />
+      <xs:element minOccurs="0" name="Track" type="xs:int" />
+      <xs:element minOccurs="0" name="PUP" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RecipeDataHandling" nillable="true" type="tns:RecipeDataHandling" />
+  <xs:complexType name="RecipeDataPickup">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Camera" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ImmediateRepair" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Layer" type="xs:int" />
+      <xs:element minOccurs="0" name="Nozzle" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReducedAcceleration" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Segment" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RecipeDataPickup" nillable="true" type="tns:RecipeDataPickup" />
+  <xs:complexType name="RecipeDataPosition">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Board" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BoardNumber" type="xs:int" />
+      <xs:element minOccurs="0" name="Component" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ComponentShape" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ConveyorLane" type="xs:int" />
+      <xs:element minOccurs="0" name="FiducialDIPFType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FiducialType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Height" type="xs:double" />
+      <xs:element minOccurs="0" name="Length" type="xs:double" />
+      <xs:element minOccurs="0" name="Level" type="xs:int" />
+      <xs:element minOccurs="0" name="Panel" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PositionPhi" type="xs:double" />
+      <xs:element minOccurs="0" name="PositionX" type="xs:double" />
+      <xs:element minOccurs="0" name="PositionY" type="xs:double" />
+      <xs:element minOccurs="0" name="PositionZ" type="xs:double" />
+      <xs:element minOccurs="0" name="ReferenceDesignator" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Width" type="xs:double" />
+      <xs:element minOccurs="0" name="SubLane" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RecipeDataPosition" nillable="true" type="tns:RecipeDataPosition" />
+  <xs:complexType name="ArrayOfRecipeDataNozzleSetup">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="RecipeDataNozzleSetup" nillable="true" type="tns:RecipeDataNozzleSetup" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfRecipeDataNozzleSetup" nillable="true" type="tns:ArrayOfRecipeDataNozzleSetup" />
+  <xs:complexType name="RecipeDataNozzleSetup">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="NozzleType" type="xs:int" />
+      <xs:element minOccurs="0" name="SegmentNumber" type="xs:int" />
+      <xs:element minOccurs="0" name="SequenceOrder" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RecipeDataNozzleSetup" nillable="true" type="tns:RecipeDataNozzleSetup" />
+  <xs:complexType name="LoadSpotxRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="MLJName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WithReferencedObjects" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LoadSpotxRequest" nillable="true" type="tns:LoadSpotxRequest" />
+  <xs:complexType name="LoadSpotxResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="SpotxData" nillable="true" type="xs:base64Binary" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LoadSpotxResult" nillable="true" type="tns:LoadSpotxResult" />
+  <xs:complexType name="SaveSpotxRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="SpotxData" nillable="true" type="xs:base64Binary" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SaveSpotxRequest" nillable="true" type="tns:SaveSpotxRequest" />
+  <xs:complexType name="SaveSpotxResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Succeeded" type="xs:boolean" />
+      <xs:element minOccurs="0" name="UpdatedSpotxData" nillable="true" type="xs:base64Binary" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SaveSpotxResult" nillable="true" type="tns:SaveSpotxResult" />
+  <xs:simpleType name="OptimizerRuntimeParameter">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Default" />
+      <xs:enumeration value="DoNotPersistResults" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="OptimizerRuntimeParameter" nillable="true" type="tns:OptimizerRuntimeParameter" />
+</xs:schema>

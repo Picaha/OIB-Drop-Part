@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.siplace.com/OIB/2016/07/FactoryCalendar/Contracts/Data" elementFormDefault="qualified" targetNamespace="http://www.siplace.com/OIB/2016/07/FactoryCalendar/Contracts/Data" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Data" />
+  <xs:complexType name="CustomState">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Value" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsDeactivated" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Appointments" nillable="true" xmlns:q1="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Data" type="q1:Appointments" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CustomState" nillable="true" type="tns:CustomState" />
+  <xs:complexType name="GroupReason">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Value" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CustomStateExtId" type="xs:int" />
+      <xs:element minOccurs="0" name="Appointments" nillable="true" xmlns:q2="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Data" type="q2:Appointments" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GroupReason" nillable="true" type="tns:GroupReason" />
+  <xs:complexType name="CustomStates">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CustomStates" nillable="true" type="tns:CustomState" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CustomStates" nillable="true" type="tns:CustomStates" />
+  <xs:complexType name="GroupReasons">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="GroupReasons" nillable="true" type="tns:GroupReason" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GroupReasons" nillable="true" type="tns:GroupReasons" />
+</xs:schema>

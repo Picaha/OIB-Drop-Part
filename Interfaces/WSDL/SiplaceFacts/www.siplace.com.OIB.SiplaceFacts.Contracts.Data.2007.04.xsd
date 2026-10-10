@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.siplace.com/OIB/SiplaceFacts/Contracts/Data/2007/04" elementFormDefault="qualified" targetNamespace="http://www.siplace.com/OIB/SiplaceFacts/Contracts/Data/2007/04" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:complexType name="ReorderReport">
+    <xs:sequence>
+      <xs:element name="ComponentName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LineName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Location" type="xs:int" />
+      <xs:element name="ReorderPointInTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="StationName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Division" type="xs:int" />
+      <xs:element minOccurs="0" name="Level" type="xs:int" />
+      <xs:element minOccurs="0" name="Tower" type="xs:int" />
+      <xs:element minOccurs="0" name="Track" type="xs:int" />
+      <xs:element minOccurs="0" name="MaterialReorderType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AlternativeComponentNames" nillable="true" xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q1:ArrayOfstring" />
+      <xs:element minOccurs="0" name="SetupName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsSpliceChainAllowed" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ApprovedMaterialData" nillable="true" type="tns:ApprovedMaterialData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ReorderReport" nillable="true" type="tns:ReorderReport" />
+  <xs:complexType name="ApprovedMaterialData">
+    <xs:sequence>
+      <xs:element name="ApprovedFieldValues" nillable="true" xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q2:ArrayOfstring" />
+      <xs:element name="MaterialVerificationFieldType" type="xs:int" />
+      <xs:element name="MaterialVerificationFieldTypeString" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ApprovedMaterialData" nillable="true" type="tns:ApprovedMaterialData" />
+  <xs:complexType name="ReorderListRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FactoryLocation" nillable="true" type="xs:string" />
+      <xs:element name="ReorderListData" nillable="true" type="tns:ArrayOfReorderListData" />
+      <xs:element minOccurs="0" name="TimeStamp" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="LinePath" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SetupPath" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ReorderListRequest" nillable="true" type="tns:ReorderListRequest" />
+  <xs:complexType name="ArrayOfReorderListData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ReorderListData" nillable="true" type="tns:ReorderListData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfReorderListData" nillable="true" type="tns:ArrayOfReorderListData" />
+  <xs:complexType name="ReorderListData">
+    <xs:sequence>
+      <xs:element name="ComponentName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Location" type="xs:int" />
+      <xs:element minOccurs="0" name="MeasureOfUnit" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Quantitiy" type="xs:int" />
+      <xs:element minOccurs="0" name="StationName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Division" type="xs:int" />
+      <xs:element minOccurs="0" name="Level" type="xs:int" />
+      <xs:element minOccurs="0" name="Tower" type="xs:int" />
+      <xs:element minOccurs="0" name="Track" type="xs:int" />
+      <xs:element minOccurs="0" name="MaterialReorderType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AlternativeComponentNames" nillable="true" xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q3:ArrayOfstring" />
+      <xs:element minOccurs="0" name="IsSpliceChainAllowed" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ApprovedMaterialData" nillable="true" type="tns:ApprovedMaterialData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ReorderListData" nillable="true" type="tns:ReorderListData" />
+  <xs:complexType name="ReorderListResponse">
+    <xs:sequence>
+      <xs:element name="LineName" nillable="true" type="xs:string" />
+      <xs:element name="ReorderListResponseDataList" nillable="true" type="tns:ArrayOfReorderListResponseData" />
+      <xs:element minOccurs="0" name="TimeStamp" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ReorderListResponse" nillable="true" type="tns:ReorderListResponse" />
+  <xs:complexType name="ArrayOfReorderListResponseData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ReorderListResponseData" nillable="true" type="tns:ReorderListResponseData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfReorderListResponseData" nillable="true" type="tns:ArrayOfReorderListResponseData" />
+  <xs:complexType name="ReorderListResponseData">
+    <xs:sequence>
+      <xs:element name="ErrorCode" type="xs:int" />
+      <xs:element name="ExtendedMessage" nillable="true" type="xs:string" />
+      <xs:element name="ReorderData" nillable="true" type="tns:ReorderListData" />
+      <xs:element name="ResultStates" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ReorderListResponseData" nillable="true" type="tns:ReorderListResponseData" />
+</xs:schema>

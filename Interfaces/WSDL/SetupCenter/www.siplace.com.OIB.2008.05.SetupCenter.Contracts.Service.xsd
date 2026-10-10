@@ -1,0 +1,1038 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Service" elementFormDefault="qualified" targetNamespace="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Service" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" />
+  <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:element name="DekPing">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="request" nillable="true" xmlns:q1="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q1:PingRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DekPingResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DekPingResult" nillable="true" xmlns:q2="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q2:PingResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="SiplaceSetupCenterFault">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorCode" type="xs:int" />
+      <xs:element minOccurs="0" name="ExtendedMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SetupCenterErrorCode" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SiplaceSetupCenterFault" nillable="true" type="tns:SiplaceSetupCenterFault" />
+  <xs:element name="VerifyPrinterTool">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="request" nillable="true" xmlns:q3="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q3:VerifyPrinterToolRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="VerifyPrinterToolResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="VerifyPrinterToolResult" nillable="true" xmlns:q4="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q4:VerifyPrinterToolResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="VerifyPrinterMaterial">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="request" nillable="true" xmlns:q5="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q5:VerifyPrinterMaterialRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="VerifyPrinterMaterialResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="VerifyPrinterMaterialResult" nillable="true" xmlns:q6="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q6:VerifyPrinterMaterialResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NozzlePing">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="request" nillable="true" xmlns:q7="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q7:PingRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NozzlePingResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="NozzlePingResult" nillable="true" xmlns:q8="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q8:PingResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetNozzleMaintenanceStatus">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="request" nillable="true" xmlns:q9="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q9:GetNozzleMaintenanceStatusRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetNozzleMaintenanceStatusResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetNozzleMaintenanceStatusResult" nillable="true" xmlns:q10="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q10:GetNozzleMaintenanceStatusResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="FeederExternalControlPing">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="request" nillable="true" xmlns:q11="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q11:PingRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="FeederExternalControlPingResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="FeederExternalControlPingResult" nillable="true" xmlns:q12="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q12:PingResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFeederMaintenanceStatus">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="request" nillable="true" xmlns:q13="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q13:GetFeederMaintenanceStatusRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFeederMaintenanceStatusResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetFeederMaintenanceStatusResult" nillable="true" xmlns:q14="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q14:GetFeederMaintenanceStatusResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="MaterialReusePing">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="request" nillable="true" xmlns:q15="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q15:PingRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="MaterialReusePingResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="MaterialReusePingResult" nillable="true" xmlns:q16="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q16:PingResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMaterialReuseStatus">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="request" nillable="true" xmlns:q17="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q17:GetMaterialReuseStatusRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMaterialReuseStatusResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetMaterialReuseStatusResult" nillable="true" xmlns:q18="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q18:GetMaterialReuseStatusResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Ping">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PingResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="PingResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPackagingUnitControlStatus">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="packagingUnitLocations" nillable="true" xmlns:q19="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q19:ArrayOfPackagingUnitLocation" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPackagingUnitControlStatusResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetPackagingUnitControlStatusResult" nillable="true" xmlns:q20="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q20:ArrayOfExternalControlResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetNewPackagingUnitData">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="packagingUnitLocations" nillable="true" xmlns:q21="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q21:ArrayOfPackagingUnitLocation" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetNewPackagingUnitDataResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetNewPackagingUnitDataResult" nillable="true" xmlns:q22="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q22:ArrayOfExternalControlResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPackagingUnitControlStatusExtended">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="request" nillable="true" xmlns:q23="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q23:GetPackagingUnitControlStatusExtendedRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPackagingUnitControlStatusExtendedResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetPackagingUnitControlStatusExtendedResult" nillable="true" xmlns:q24="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q24:GetPackagingUnitControlStatusExtendedResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetComponentsStatus">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="request" nillable="true" xmlns:q25="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q25:ComponentStatusRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetComponentsStatusResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetComponentsStatusResult" nillable="true" xmlns:q26="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q26:ComponentStatusResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTrayCarrierMappingData">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="request" nillable="true" xmlns:q27="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q27:TrayCarrierMappingDataRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTrayCarrierMappingDataResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetTrayCarrierMappingDataResult" nillable="true" xmlns:q28="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q28:TrayCarrierMappingDataResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateTrayCarrierMappingData">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="request" nillable="true" xmlns:q29="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q29:UpdateTrayCarrierMappingDataRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateTrayCarrierMappingDataResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="UpdateTrayCarrierMappingDataResult" nillable="true" xmlns:q30="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q30:TrayCarrierMappingDataResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IsConnected">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IsConnectedResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="IsConnectedResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Set">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="packagingUnitLocations" nillable="true" xmlns:q31="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q31:ArrayOfPackagingUnitLocation" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Refill">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="packagingUnitLocations" nillable="true" xmlns:q32="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q32:ArrayOfPackagingUnitLocation" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RefillResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TearDown">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="strSetup" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="componentLocations" nillable="true" xmlns:q33="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q33:ArrayOfComponentLocation" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TearDownResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetReducedActualSetup">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="machineId" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetReducedActualSetupResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetReducedActualSetupResult" nillable="true" xmlns:q34="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q34:MachineSetup" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Update">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="packagingUnits" nillable="true" xmlns:q35="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q35:ArrayOfPackagingUnit" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="UpdateResult" nillable="true" xmlns:q36="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q36:ArrayOfPackagingUnitResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Get">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="packagingUnits" nillable="true" xmlns:q37="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q37:ArrayOfPackagingUnit" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetResult" nillable="true" xmlns:q38="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q38:ArrayOfPackagingUnitResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Create">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="packagingUnits" nillable="true" xmlns:q39="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q39:ArrayOfPackagingUnit" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CreateResult" nillable="true" xmlns:q40="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q40:ArrayOfPackagingUnitResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Delete">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="packagingUnits" nillable="true" xmlns:q41="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q41:ArrayOfPackagingUnit" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DeleteResult" nillable="true" xmlns:q42="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q42:ArrayOfPackagingUnitResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Activate">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="componentLocations" nillable="true" xmlns:q43="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q43:ArrayOfComponentLocation" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ActivateResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Deactivate">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="componentLocations" nillable="true" xmlns:q44="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q44:ArrayOfComponentLocation" />
+        <xs:element minOccurs="0" name="reason" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeactivateResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Lock">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="puIDs" nillable="true" xmlns:q45="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q45:ArrayOfPackagingUnit" />
+        <xs:element minOccurs="0" name="reason" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LockResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Unlock">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="puIDs" nillable="true" xmlns:q46="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q46:ArrayOfPackagingUnit" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UnlockResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetMessageLevel">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="messageLevel" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetMessageLevelResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDatabaseName">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDatabaseNameResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetDatabaseNameResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetConfiguration">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetConfigurationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetConfigurationResult" nillable="true" xmlns:q47="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q47:Configuration" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="FireInstantFeederPlacedEvents">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="verificationType" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="FireInstantFeederPlacedEventsResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckConnectionState">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="request" nillable="true" xmlns:q48="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q48:CheckConnectionStateRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckConnectionStateResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CheckConnectionStateResult" nillable="true" xmlns:q49="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q49:CheckConnectionStateResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPackagingUnitLocation">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="packagingUnits" nillable="true" xmlns:q50="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q50:ArrayOfPackagingUnit" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPackagingUnitLocationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetPackagingUnitLocationResult" nillable="true" xmlns:q51="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q51:ArrayOfComponentLocationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateSinglePackagingUnit">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="packagingUnits" nillable="true" xmlns:q52="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q52:ArrayOfPackagingUnit" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateSinglePackagingUnitResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="UpdateSinglePackagingUnitResult" nillable="true" xmlns:q53="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q53:ArrayOfPackagingUnitResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetReducedActualSetups">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="machineIds" nillable="true" xmlns:q54="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q54:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetReducedActualSetupsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetReducedActualSetupsResult" nillable="true" xmlns:q55="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q55:ArrayOfKeyValueOfstringMachineSetupPGILFW9p" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetActualSetups">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="machineIds" nillable="true" xmlns:q56="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q56:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetActualSetupsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetActualSetupsResult" nillable="true" xmlns:q57="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q57:ArrayOfKeyValueOfstringMachineSetupPGILFW9p" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOfflineSetup">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="request" nillable="true" xmlns:q58="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q58:GetOfflineSetupRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOfflineSetupResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetOfflineSetupResult" nillable="true" xmlns:q59="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q59:GetOfflineSetupResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="HasAdapterLicense">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="HasAdapterLicenseResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="HasAdapterLicenseResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetPackagingUnits">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="packagingUnitLocations" nillable="true" xmlns:q60="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q60:ArrayOfPackagingUnitLocation" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetPackagingUnitsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SetPackagingUnitsResult" nillable="true" xmlns:q61="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q61:PackagingUnitLocationResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RefillPackagingUnits">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="packagingUnitLocations" nillable="true" xmlns:q62="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q62:ArrayOfPackagingUnitLocation" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RefillPackagingUnitsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="RefillPackagingUnitsResult" nillable="true" xmlns:q63="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q63:PackagingUnitLocationResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TearDownComponentLocations">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="componentLocations" nillable="true" xmlns:q64="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q64:ArrayOfComponentLocation" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TearDownComponentLocationsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="TearDownComponentLocationsResult" nillable="true" xmlns:q65="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q65:ComponentLocationResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ActivateComponentLocations">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="componentLocations" nillable="true" xmlns:q66="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q66:ArrayOfComponentLocation" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ActivateComponentLocationsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ActivateComponentLocationsResult" nillable="true" xmlns:q67="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q67:ComponentLocationResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeactivateComponentLocations">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="componentLocations" nillable="true" xmlns:q68="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q68:ArrayOfComponentLocation" />
+        <xs:element minOccurs="0" name="reason" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeactivateComponentLocationsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DeactivateComponentLocationsResult" nillable="true" xmlns:q69="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q69:ComponentLocationResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LockPackagingUnits">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="puIDs" nillable="true" xmlns:q70="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q70:ArrayOfPackagingUnit" />
+        <xs:element minOccurs="0" name="reason" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LockPackagingUnitsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="LockPackagingUnitsResult" nillable="true" xmlns:q71="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q71:PackagingUnitResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UnlockPackagingUnits">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="puIDs" nillable="true" xmlns:q72="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q72:ArrayOfPackagingUnit" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UnlockPackagingUnitsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="UnlockPackagingUnitsResult" nillable="true" xmlns:q73="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q73:PackagingUnitResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetActiveSetupAndRecipe">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="machineIds" nillable="true" xmlns:q74="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q74:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetActiveSetupAndRecipeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetActiveSetupAndRecipeResult" nillable="true" xmlns:q75="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q75:GetActiveSetupAndRecipeResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetComponentLevelIndicatorThresholds">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="machineIds" nillable="true" xmlns:q76="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q76:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetComponentLevelIndicatorThresholdsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetComponentLevelIndicatorThresholdsResult" nillable="true" xmlns:q77="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q77:GetComponentLevelIndicatorThresholdsResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPrinterConsumables">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="machineIds" nillable="true" xmlns:q78="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q78:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPrinterConsumablesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetPrinterConsumablesResult" nillable="true" xmlns:q79="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q79:GetPrinterConsumablesResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPrinterDeviceState">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="machineIds" nillable="true" xmlns:q80="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q80:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPrinterDeviceStateResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetPrinterDeviceStateResult" nillable="true" xmlns:q81="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q81:GetPrinterDeviceStateResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UnverifyPrinterMaterial">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="request" nillable="true" xmlns:q82="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q82:UnverifyPrinterMaterialRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UnverifyPrinterMaterialResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="UnverifyPrinterMaterialResult" nillable="true" xmlns:q83="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q83:UnverifyPrinterMaterialResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UnverifyPrinterTool">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="request" nillable="true" xmlns:q84="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q84:UnverifyPrinterToolRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UnverifyPrinterToolResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="UnverifyPrinterToolResult" nillable="true" xmlns:q85="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q85:UnverifyPrinterToolResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPrinterCapabilities">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="request" nillable="true" xmlns:q86="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q86:GetPrinterCapabilitiesRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPrinterCapabilitiesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetPrinterCapabilitiesResult" nillable="true" xmlns:q87="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q87:GetPrinterCapabilitiesResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LockOnlineFeeders">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="request" nillable="true" xmlns:q88="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q88:LockOnlineFeedersRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LockOnlineFeedersResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="LockOnlineFeedersResult" nillable="true" xmlns:q89="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q89:LockOnlineFeedersResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UnlockOnlineFeeders">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="request" nillable="true" xmlns:q90="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q90:UnlockOnlineFeedersRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UnlockOnlineFeedersResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="UnlockOnlineFeedersResult" nillable="true" xmlns:q91="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q91:UnlockOnlineFeedersResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TearDownPackaginUnits">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="request" nillable="true" xmlns:q92="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q92:TearDownPackaginUnitsRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TearDownPackaginUnitsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="TearDownPackaginUnitsResult" nillable="true" xmlns:q93="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q93:PackagingUnitResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPackagingUnitMountLocation">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="request" nillable="true" xmlns:q94="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q94:GetPackagingUnitMountLocationRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPackagingUnitMountLocationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetPackagingUnitMountLocationResult" nillable="true" xmlns:q95="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q95:GetPackagingUnitMountLocationResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetThresholdActivation">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="request" nillable="true" xmlns:q96="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q96:SetThresholdActivationRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetThresholdActivationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SetThresholdActivationResult" nillable="true" xmlns:q97="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q97:SetThresholdActivationResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetStockLocation">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="request" nillable="true" xmlns:q98="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q98:GetStockLocationRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetStockLocationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetStockLocationResult" nillable="true" xmlns:q99="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q99:GetStockLocationResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetVerficationStatus">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="request" nillable="true" xmlns:q100="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q100:GetVerficationStatusRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetVerficationStatusResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetVerficationStatusResult" nillable="true" xmlns:q101="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q101:GetVerficationStatusResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPackagingUnitLocationsOnTables">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="request" nillable="true" xmlns:q102="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q102:GetPackagingUnitLocationsOnTablesRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPackagingUnitLocationsOnTablesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetPackagingUnitLocationsOnTablesResult" nillable="true" xmlns:q103="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q103:GetPackagingUnitLocationsOnTablesResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPackagingUnitLocationsOnFeeders">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="request" nillable="true" xmlns:q104="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q104:GetPackagingUnitLocationsOnFeedersRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPackagingUnitLocationsOnFeedersResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetPackagingUnitLocationsOnFeedersResult" nillable="true" xmlns:q105="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q105:GetPackagingUnitLocationsOnFeedersResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPackagingUnitLocationsInCartridges">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="request" nillable="true" xmlns:q106="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q106:GetPackagingUnitLocationsInCartridgesRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPackagingUnitLocationsInCartridgesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetPackagingUnitLocationsInCartridgesResult" nillable="true" xmlns:q107="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q107:GetPackagingUnitLocationsInCartridgesResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPackagingUnitLocationsInCassettes">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="request" nillable="true" xmlns:q108="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q108:GetPackagingUnitLocationsInCassettesRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPackagingUnitLocationsInCassettesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetPackagingUnitLocationsInCassettesResult" nillable="true" xmlns:q109="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q109:GetPackagingUnitLocationsInCassettesResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPackagingUnitLocationsInTrayCarriers">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="request" nillable="true" xmlns:q110="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q110:GetPackagingUnitLocationsInTrayCarriersRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPackagingUnitLocationsInTrayCarriersResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetPackagingUnitLocationsInTrayCarriersResult" nillable="true" xmlns:q111="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q111:GetPackagingUnitLocationsInTrayCarriersResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IsMachineReadyForMoveInChangeoverTables">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="request" nillable="true" xmlns:q112="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q112:IsMachineReadyForMoveInChangeoverTablesRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IsMachineReadyForMoveInChangeoverTablesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="IsMachineReadyForMoveInChangeoverTablesResult" nillable="true" xmlns:q113="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q113:IsMachineReadyForMoveInChangeoverTablesResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IsMachineReadyForMoveOutChangeoverTables">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="request" nillable="true" xmlns:q114="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q114:IsMachineReadyForMoveOutChangeoverTablesRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IsMachineReadyForMoveOutChangeoverTablesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="IsMachineReadyForMoveOutChangeoverTablesResult" nillable="true" xmlns:q115="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q115:IsMachineReadyForMoveOutChangeoverTablesResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RegisterChangeoverTable">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="request" nillable="true" xmlns:q116="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q116:RegisterChangeoverTableRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RegisterChangeoverTableResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="RegisterChangeoverTableResult" nillable="true" xmlns:q117="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q117:RegisterChangeoverTableResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="MoveChangeoverTableIntoStationLocation">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="request" nillable="true" xmlns:q118="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q118:MoveChangeoverTableIntoStationLocationRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="MoveChangeoverTableIntoStationLocationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="MoveChangeoverTableIntoStationLocationResult" nillable="true" xmlns:q119="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q119:MoveChangeoverTableIntoStationLocationResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="MoveChangeoverTableOutOfStationLocation">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="request" nillable="true" xmlns:q120="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q120:MoveChangeoverTableOutOfStationLocationRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="MoveChangeoverTableOutOfStationLocationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="MoveChangeoverTableOutOfStationLocationResult" nillable="true" xmlns:q121="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q121:MoveChangeoverTableOutOfStationLocationResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetChangeOverTablesOfActiveSetup">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="request" nillable="true" xmlns:q122="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q122:GetChangeOverTablesOfActiveSetupRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetChangeOverTablesOfActiveSetupResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetChangeOverTablesOfActiveSetupResult" nillable="true" xmlns:q123="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q123:GetChangeOverTablesOfActiveSetupResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WaferMapPing">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="request" nillable="true" xmlns:q124="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q124:PingRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WaferMapPingResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="WaferMapPingResult" nillable="true" xmlns:q125="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q125:PingResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetWaferMap">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="request" nillable="true" xmlns:q126="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q126:GetWaferMapRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetWaferMapResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetWaferMapResult" nillable="true" xmlns:q127="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q127:GetWaferMapResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateWaferMap">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="request" nillable="true" xmlns:q128="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" type="q128:UpdateWaferMapRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateWaferMapResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

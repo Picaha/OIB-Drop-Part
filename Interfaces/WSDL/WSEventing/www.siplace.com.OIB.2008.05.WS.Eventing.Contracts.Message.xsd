@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Message" elementFormDefault="qualified" targetNamespace="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Message" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://schemas.xmlsoap.org/ws/2004/08/eventing" />
+  <xs:element name="SubscriptionTopic" nillable="true" type="xs:string" />
+  <xs:element name="MsgId" nillable="true" type="xs:string" />
+  <xs:element name="PauseOneWayRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" xmlns:q1="http://schemas.xmlsoap.org/ws/2004/08/eventing" ref="q1:Pause" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RenewOneWayRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" xmlns:q2="http://schemas.xmlsoap.org/ws/2004/08/eventing" ref="q2:Renew" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ResumeOneWayRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" xmlns:q3="http://schemas.xmlsoap.org/ws/2004/08/eventing" ref="q3:Resume" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SubscribeOneWayRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" xmlns:q4="http://schemas.xmlsoap.org/ws/2004/08/eventing" ref="q4:Subscribe" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UnsubscribeOneWayRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" xmlns:q5="http://schemas.xmlsoap.org/ws/2004/08/eventing" ref="q5:UnsubscribeBody" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

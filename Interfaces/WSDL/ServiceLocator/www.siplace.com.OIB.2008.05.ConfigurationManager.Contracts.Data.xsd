@@ -1,0 +1,233 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.siplace.com/OIB/2008/05/ConfigurationManager/Contracts/Data" elementFormDefault="qualified" targetNamespace="http://www.siplace.com/OIB/2008/05/ConfigurationManager/Contracts/Data" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:complexType name="ArrayOfIsa95Base">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Isa95Base" nillable="true" type="tns:Isa95Base" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfIsa95Base" nillable="true" type="tns:ArrayOfIsa95Base" />
+  <xs:complexType name="Isa95Base">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:PersistBase">
+        <xs:sequence>
+          <xs:element name="Comment" nillable="true" type="xs:string" />
+          <xs:element name="CustomAttributes" nillable="true" xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q1:ArrayOfKeyValueOfstringstring" />
+          <xs:element name="Name" nillable="true" type="xs:string" />
+          <xs:element name="ObjectType" type="tns:ObjectType" />
+          <xs:element name="Path" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ExtensionData" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ExtensionSchema" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Predecessor" nillable="true" xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q2:ArrayOfKeyValueOfintint" />
+          <xs:element minOccurs="0" name="Successors" nillable="true" xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q3:ArrayOfKeyValueOfintint" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Isa95Base" nillable="true" type="tns:Isa95Base" />
+  <xs:complexType name="PersistBase">
+    <xs:sequence>
+      <xs:element name="ID" nillable="true" type="xs:int" />
+      <xs:element name="Version" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Parent" nillable="true" type="tns:PersistBase" />
+      <xs:element minOccurs="0" name="ParentOID" type="xs:int" />
+      <xs:element minOccurs="0" name="ObjectTypeBase" type="tns:ObjectType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PersistBase" nillable="true" type="tns:PersistBase" />
+  <xs:simpleType name="ObjectType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="WorkCell" />
+      <xs:enumeration value="ProductionLine" />
+      <xs:enumeration value="Area" />
+      <xs:enumeration value="Site" />
+      <xs:enumeration value="Enterprise" />
+      <xs:enumeration value="StorageZone" />
+      <xs:enumeration value="StorageUnit" />
+      <xs:enumeration value="ExternalReferencesManager" />
+      <xs:enumeration value="ExternalReferences" />
+      <xs:enumeration value="Reserved_1" />
+      <xs:enumeration value="Reserved_2" />
+      <xs:enumeration value="Reserved_3" />
+      <xs:enumeration value="Reserved_4" />
+      <xs:enumeration value="Reserved_5" />
+      <xs:enumeration value="Reserved_6" />
+      <xs:enumeration value="Reserved_7" />
+      <xs:enumeration value="Reserved_8" />
+      <xs:enumeration value="Reserved_9" />
+      <xs:enumeration value="Reserved_10" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ObjectType" nillable="true" type="tns:ObjectType" />
+  <xs:complexType name="Enterprise">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Isa95Base">
+        <xs:sequence>
+          <xs:element name="Sites" nillable="true" type="tns:SiteCollection" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Enterprise" nillable="true" type="tns:Enterprise" />
+  <xs:complexType name="SiteCollection">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="{0}Collection" Namespace="http://www.siplace.com/OIB/2008/05/ConfigurationManager/Contracts/Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="Site" Namespace="http://www.siplace.com/OIB/2008/05/ConfigurationManager/Contracts/Data" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Site" nillable="true" type="tns:Site" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SiteCollection" nillable="true" type="tns:SiteCollection" />
+  <xs:complexType name="Site">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Isa95Base">
+        <xs:sequence>
+          <xs:element name="Areas" nillable="true" type="tns:AreaCollection" />
+          <xs:element name="ProductionLines" nillable="true" type="tns:ProductionLineCollection" />
+          <xs:element name="WorkCells" nillable="true" type="tns:WorkCellCollection" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Site" nillable="true" type="tns:Site" />
+  <xs:complexType name="AreaCollection">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="{0}Collection" Namespace="http://www.siplace.com/OIB/2008/05/ConfigurationManager/Contracts/Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="Area" Namespace="http://www.siplace.com/OIB/2008/05/ConfigurationManager/Contracts/Data" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Area" nillable="true" type="tns:Area" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AreaCollection" nillable="true" type="tns:AreaCollection" />
+  <xs:complexType name="Area">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Isa95Base">
+        <xs:sequence>
+          <xs:element name="ProductionLines" nillable="true" type="tns:ProductionLineCollection" />
+          <xs:element name="StorageZones" nillable="true" type="tns:StorageZoneCollection" />
+          <xs:element name="WorkCells" nillable="true" type="tns:WorkCellCollection" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Area" nillable="true" type="tns:Area" />
+  <xs:complexType name="ProductionLineCollection">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="{0}Collection" Namespace="http://www.siplace.com/OIB/2008/05/ConfigurationManager/Contracts/Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="ProductionLine" Namespace="http://www.siplace.com/OIB/2008/05/ConfigurationManager/Contracts/Data" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ProductionLine" nillable="true" type="tns:ProductionLine" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProductionLineCollection" nillable="true" type="tns:ProductionLineCollection" />
+  <xs:complexType name="ProductionLine">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Isa95Base">
+        <xs:sequence>
+          <xs:element name="WorkCells" nillable="true" type="tns:WorkCellCollection" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ProductionLine" nillable="true" type="tns:ProductionLine" />
+  <xs:complexType name="WorkCellCollection">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="{0}Collection" Namespace="http://www.siplace.com/OIB/2008/05/ConfigurationManager/Contracts/Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="WorkCell" Namespace="http://www.siplace.com/OIB/2008/05/ConfigurationManager/Contracts/Data" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="WorkCell" nillable="true" type="tns:WorkCell" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WorkCellCollection" nillable="true" type="tns:WorkCellCollection" />
+  <xs:complexType name="WorkCell">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Isa95Base">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="SubWorkCells" nillable="true" type="tns:WorkCellCollection" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="WorkCell" nillable="true" type="tns:WorkCell" />
+  <xs:complexType name="StorageUnit">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Isa95Base">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="StorageUnit" nillable="true" type="tns:StorageUnit" />
+  <xs:complexType name="StorageZone">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Isa95Base">
+        <xs:sequence>
+          <xs:element name="StorageUnits" nillable="true" type="tns:StorageUnitCollection" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="StorageZone" nillable="true" type="tns:StorageZone" />
+  <xs:complexType name="StorageUnitCollection">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="{0}Collection" Namespace="http://www.siplace.com/OIB/2008/05/ConfigurationManager/Contracts/Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="StorageUnit" Namespace="http://www.siplace.com/OIB/2008/05/ConfigurationManager/Contracts/Data" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="StorageUnit" nillable="true" type="tns:StorageUnit" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="StorageUnitCollection" nillable="true" type="tns:StorageUnitCollection" />
+  <xs:complexType name="ExternalReferences">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:PersistBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ReferencedObjects" nillable="true" xmlns:q4="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q4:ArrayOfKeyValueOfIsa95BaseIsa95Base7n_St2CUi" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ExternalReferences" nillable="true" type="tns:ExternalReferences" />
+  <xs:complexType name="ExternalReferencesManager">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:PersistBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ReferencesOfClient" nillable="true" xmlns:q5="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q5:ArrayOfKeyValueOfstringExternalReferences3nO_PcEgB" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ExternalReferencesManager" nillable="true" type="tns:ExternalReferencesManager" />
+  <xs:complexType name="StorageZoneCollection">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="{0}Collection" Namespace="http://www.siplace.com/OIB/2008/05/ConfigurationManager/Contracts/Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="StorageZone" Namespace="http://www.siplace.com/OIB/2008/05/ConfigurationManager/Contracts/Data" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="StorageZone" nillable="true" type="tns:StorageZone" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="StorageZoneCollection" nillable="true" type="tns:StorageZoneCollection" />
+</xs:schema>

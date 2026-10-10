@@ -1,0 +1,220 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.siplace.com/OIB/2011/07/BoardGateKeeper/Contracts/Data" elementFormDefault="qualified" targetNamespace="http://www.siplace.com/OIB/2011/07/BoardGateKeeper/Contracts/Data" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/ASM.AS.Oib.BoardGateKeeper.Contracts.Data" />
+  <xs:complexType name="LineConfigurationRequestData">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:element name="LineConfigurationRequestData" nillable="true" type="tns:LineConfigurationRequestData" />
+  <xs:complexType name="LineConfigurationRequestResult">
+    <xs:sequence>
+      <xs:element name="LineConfigurations" nillable="true" type="tns:ArrayOfLineConfiguration" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LineConfigurationRequestResult" nillable="true" type="tns:LineConfigurationRequestResult" />
+  <xs:complexType name="ArrayOfLineConfiguration">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="LineConfiguration" nillable="true" type="tns:LineConfiguration" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfLineConfiguration" nillable="true" type="tns:ArrayOfLineConfiguration" />
+  <xs:complexType name="LineConfiguration">
+    <xs:sequence>
+      <xs:element name="Active" type="xs:boolean" />
+      <xs:element name="LineConfigurationChangeType" type="xs:int" />
+      <xs:element name="LineName" nillable="true" type="xs:string" />
+      <xs:element name="OperationMode" type="xs:int" />
+      <xs:element name="TimeOfChange" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LineConfiguration" nillable="true" type="tns:LineConfiguration" />
+  <xs:complexType name="BoardFailedData">
+    <xs:sequence>
+      <xs:element name="Board" nillable="true" type="tns:BoardData" />
+      <xs:element name="Context" nillable="true" type="xs:string" />
+      <xs:element name="ErrorId" nillable="true" type="xs:string" />
+      <xs:element name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element name="Position" nillable="true" type="tns:PositionData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BoardFailedData" nillable="true" type="tns:BoardFailedData" />
+  <xs:complexType name="BoardData">
+    <xs:sequence>
+      <xs:element name="Barcode" nillable="true" type="xs:string" />
+      <xs:element name="BoardTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="HermesBoardAvailableData" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SubPanelsData" nillable="true" type="tns:ArrayOfSubPanelData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BoardData" nillable="true" type="tns:BoardData" />
+  <xs:complexType name="ArrayOfSubPanelData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SubPanelData" nillable="true" type="tns:SubPanelData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSubPanelData" nillable="true" type="tns:ArrayOfSubPanelData" />
+  <xs:complexType name="SubPanelData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PanelBarcode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PanelName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SubPanelData" nillable="true" type="tns:SubPanelData" />
+  <xs:complexType name="PositionData">
+    <xs:sequence>
+      <xs:element name="BCRSide" nillable="true" type="xs:string" />
+      <xs:element name="Conveyor" nillable="true" type="xs:string" />
+      <xs:element name="Line" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Origin" nillable="true" type="xs:string" />
+      <xs:element name="SubConveyor" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Station" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PositionData" nillable="true" type="tns:PositionData" />
+  <xs:complexType name="BoardReleasedData">
+    <xs:sequence>
+      <xs:element name="Board" nillable="true" type="tns:BoardData" />
+      <xs:element name="Context" nillable="true" type="xs:string" />
+      <xs:element name="Position" nillable="true" type="tns:PositionData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BoardReleasedData" nillable="true" type="tns:BoardReleasedData" />
+  <xs:complexType name="BoardRequestData">
+    <xs:sequence>
+      <xs:element name="Board" nillable="true" type="tns:BoardData" />
+      <xs:element name="Context" nillable="true" type="xs:string" />
+      <xs:element name="Position" nillable="true" type="tns:PositionData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BoardRequestData" nillable="true" type="tns:BoardRequestData" />
+  <xs:complexType name="BoardRequestResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Reason" nillable="true" type="xs:string" />
+      <xs:element name="RequestResult" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BoardPath" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BoardSide" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="VIHResult" nillable="true" xmlns:q1="http://schemas.datacontract.org/2004/07/ASM.AS.Oib.BoardGateKeeper.Contracts.Data" type="q1:VirtualInkspotHandlingData" />
+      <xs:element minOccurs="0" name="OverridingBarcode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BoardCorrection" nillable="true" type="tns:BoardCorrectionData" />
+      <xs:element minOccurs="0" name="AdditionalBoardData" nillable="true" type="tns:AdditionalBoardData" />
+      <xs:element minOccurs="0" name="RecipeName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="HermesBoardAvailableData" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BoardRequestResult" nillable="true" type="tns:BoardRequestResult" />
+  <xs:complexType name="BoardCorrectionData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="SubPanelCorrections" nillable="true" type="tns:ArrayOfSubPanelCorrectionData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BoardCorrectionData" nillable="true" type="tns:BoardCorrectionData" />
+  <xs:complexType name="ArrayOfSubPanelCorrectionData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SubPanelCorrectionData" nillable="true" type="tns:SubPanelCorrectionData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSubPanelCorrectionData" nillable="true" type="tns:ArrayOfSubPanelCorrectionData" />
+  <xs:complexType name="SubPanelCorrectionData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PanelName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PlacementCorrectionsData" nillable="true" type="tns:ArrayOfPlacementCorrectionData" />
+      <xs:element minOccurs="0" name="FiducialCorrectionsData" nillable="true" type="tns:ArrayOfFiducialCorrectionData" />
+      <xs:element minOccurs="0" name="CfxPosition" nillable="true" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SubPanelCorrectionData" nillable="true" type="tns:SubPanelCorrectionData" />
+  <xs:complexType name="ArrayOfPlacementCorrectionData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PlacementCorrectionData" nillable="true" type="tns:PlacementCorrectionData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPlacementCorrectionData" nillable="true" type="tns:ArrayOfPlacementCorrectionData" />
+  <xs:complexType name="PlacementCorrectionData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DeltaTheta" type="xs:double" />
+      <xs:element minOccurs="0" name="DeltaX" type="xs:double" />
+      <xs:element minOccurs="0" name="DeltaY" type="xs:double" />
+      <xs:element minOccurs="0" name="ReferenceDesignator" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PlacementCorrectionData" nillable="true" type="tns:PlacementCorrectionData" />
+  <xs:complexType name="ArrayOfFiducialCorrectionData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="FiducialCorrectionData" nillable="true" type="tns:FiducialCorrectionData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfFiducialCorrectionData" nillable="true" type="tns:ArrayOfFiducialCorrectionData" />
+  <xs:complexType name="FiducialCorrectionData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DeltaTheta" type="xs:double" />
+      <xs:element minOccurs="0" name="DeltaX" type="xs:double" />
+      <xs:element minOccurs="0" name="DeltaY" type="xs:double" />
+      <xs:element minOccurs="0" name="ReferenceDesignator" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FiducialCorrectionData" nillable="true" type="tns:FiducialCorrectionData" />
+  <xs:complexType name="AdditionalBoardData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AdditionalPanelData" nillable="true" type="tns:ArrayOfAdditionalPanelData" />
+      <xs:element minOccurs="0" name="MeasurementData" nillable="true" type="tns:MeasurementData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AdditionalBoardData" nillable="true" type="tns:AdditionalBoardData" />
+  <xs:complexType name="ArrayOfAdditionalPanelData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AdditionalPanelData" nillable="true" type="tns:AdditionalPanelData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAdditionalPanelData" nillable="true" type="tns:ArrayOfAdditionalPanelData" />
+  <xs:complexType name="AdditionalPanelData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="MeasurementData" nillable="true" type="tns:MeasurementData" />
+      <xs:element minOccurs="0" name="PanelBarcode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PanelName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SkippedPlacedPositions" nillable="true" type="tns:ArrayOfSkippedPlacedPosition" />
+      <xs:element minOccurs="0" name="CfxPosition" nillable="true" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AdditionalPanelData" nillable="true" type="tns:AdditionalPanelData" />
+  <xs:complexType name="MeasurementData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Fiducials" nillable="true" type="tns:ArrayOfFiducial" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MeasurementData" nillable="true" type="tns:MeasurementData" />
+  <xs:complexType name="ArrayOfFiducial">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Fiducial" nillable="true" type="tns:Fiducial" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfFiducial" nillable="true" type="tns:ArrayOfFiducial" />
+  <xs:complexType name="Fiducial">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PositionX" type="xs:int" />
+      <xs:element minOccurs="0" name="PositionY" type="xs:int" />
+      <xs:element minOccurs="0" name="ReferenceDesignator" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Fiducial" nillable="true" type="tns:Fiducial" />
+  <xs:complexType name="ArrayOfSkippedPlacedPosition">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SkippedPlacedPosition" nillable="true" type="tns:SkippedPlacedPosition" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSkippedPlacedPosition" nillable="true" type="tns:ArrayOfSkippedPlacedPosition" />
+  <xs:complexType name="SkippedPlacedPosition">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ReferenceDesignator" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SkippedPlacedPosition" nillable="true" type="tns:SkippedPlacedPosition" />
+  <xs:complexType name="ScannerConnectionChangedData">
+    <xs:sequence>
+      <xs:element name="LineName" nillable="true" type="xs:string" />
+      <xs:element name="Reason" nillable="true" type="xs:string" />
+      <xs:element name="ScannerId" nillable="true" type="xs:string" />
+      <xs:element name="State" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StationName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ScannerConnectionChangedData" nillable="true" type="tns:ScannerConnectionChangedData" />
+</xs:schema>

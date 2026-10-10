@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.siplace.com/OIB/2019/11/MaintenanceData/Contracts/Message" elementFormDefault="qualified" targetNamespace="http://www.siplace.com/OIB/2019/11/MaintenanceData/Contracts/Message" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://www.siplace.com/OIB/2019/11/MaintenanceData/Contracts/Data" />
+  <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:element name="MaintenanceDataRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="EquipmentConfigurationEventData" nillable="true" xmlns:q1="http://www.siplace.com/OIB/2019/11/MaintenanceData/Contracts/Data" type="q1:EquipmentConfigurationEventData" />
+        <xs:element minOccurs="0" name="Isa95Path" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="MetadataEndpoints" nillable="true" xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q2:ArrayOfstring" />
+        <xs:element minOccurs="0" name="Product" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="SendTimeStamp" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="ServiceName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="ServiceVersion" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="SetupConfigurationEventData" nillable="true" xmlns:q3="http://www.siplace.com/OIB/2019/11/MaintenanceData/Contracts/Data" type="q3:SetupConfigurationEventData" />
+        <xs:element minOccurs="0" name="StationServiceAndMaintenanceEventData" nillable="true" xmlns:q4="http://www.siplace.com/OIB/2019/11/MaintenanceData/Contracts/Data" type="q4:StationServiceAndMaintenanceEventData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetEquipmentConfigurationRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="LineFullPath" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="MachineIds" nillable="true" xmlns:q5="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q5:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetEquipmentConfigurationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="EquipmentConfigurations" nillable="true" xmlns:q6="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q6:ArrayOfKeyValueOfstringEquipmentConfigurationResponseData_PMBV55HM" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetServiceAndMaintenanceDataRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="LineFullPath" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="MachineIds" nillable="true" xmlns:q7="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q7:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetServiceAndMaintenanceDataResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="StationServiceAndMaintenanceData" nillable="true" xmlns:q8="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q8:ArrayOfKeyValueOfstringStationServiceAndMaintenanceResponseData_PMBV55HM" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSetupConfigurationRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="LineFullPath" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="MachineIds" nillable="true" xmlns:q9="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q9:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSetupConfigurationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SetupConfigurations" nillable="true" xmlns:q10="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q10:ArrayOfKeyValueOfstringSetupConfigurationResponseData_PMBV55HM" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

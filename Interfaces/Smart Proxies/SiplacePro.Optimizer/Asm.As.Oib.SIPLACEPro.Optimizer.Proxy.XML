@@ -1,0 +1,2548 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ASM.AS.OIB.SIPLACEPro.Optimizer.Proxy</name>
+    </assembly>
+    <members>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IClusterOptimizer">
+            <summary>
+            Interface to Cluster Optimizer Proxy Class
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IClusterOptimizer.StartClustering(System.String,System.String,System.String)">
+            <summary>
+            Starts the cluster optimizer for the given cluster job and publishes events to the given endpoint 
+            </summary>
+            <param name="fullpath">Full SIPLACE Pro object path (including Folders)</param>
+            <param name="strEndpointAddress">Endpoint address</param>
+            <param name="strBinding">Binding name (optional)</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IClusterOptimizer.BeginStartClustering(System.String,System.String,System.String,System.AsyncCallback,System.Object)">
+            <summary>
+            Starts the cluster optimizer asynchronously for the given cluster job and publishes events to the given endpoint 
+            </summary>
+            <param name="fullpath">Full SIPLACE Pro object path (including Folders)</param>
+            <param name="strEndpointAddress">Endpoint address</param>
+            <param name="strBinding">Binding name (optional)</param>
+            <param name="callback">AsnycCallback reference</param>		
+            <param name="state">State object</param>		
+            <returns>Async Result</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IClusterOptimizer.EndStartClustering(System.IAsyncResult)">
+            <summary>
+            Blocks until the cluster optimizer Start request has completed
+            </summary>
+            <param name="result">Async Result</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IClusterOptimizer.StartClustering2(System.Int32,System.String,System.String)">
+            <summary>
+            Starts the cluster optimizer for the given cluster job and publishes events to the given endpoint 
+            </summary>
+            <param name="nOID">OID of ClusterJob</param>
+            <param name="strEndpointAddress">Endpoint address</param>
+            <param name="strBinding">Binding name (optional)</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IClusterOptimizer.StartClustering2_Long(System.Int64,System.String,System.String)">
+            <summary>
+            Starts the cluster optimizer for the given cluster job and publishes events to the given endpoint 
+            </summary>
+            <param name="nOID">OID of ClusterJob</param>
+            <param name="strEndpointAddress">Endpoint address</param>
+            <param name="strBinding">Binding name (optional)</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IClusterOptimizer.BeginStartClustering2(System.Int32,System.String,System.String,System.AsyncCallback,System.Object)">
+            <summary>
+            Starts the cluster optimizer asynchronously for the given cluster job and publishes events to the given endpoint 
+            </summary>
+            <param name="nOID">OID of ClusterJob</param>
+            <param name="strEndpointAddress">Endpoint address</param>
+            <param name="strBinding">Binding name (optional)</param>
+            <param name="callback">AsnycCallback reference</param>		
+            <param name="state">State object</param>		
+            <returns>Async Result</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IClusterOptimizer.BeginStartClustering2_Long(System.Int64,System.String,System.String,System.AsyncCallback,System.Object)">
+            <summary>
+            Starts the cluster optimizer asynchronously for the given cluster job and publishes events to the given endpoint 
+            </summary>
+            <param name="nOID">OID of ClusterJob</param>
+            <param name="strEndpointAddress">Endpoint address</param>
+            <param name="strBinding">Binding name (optional)</param>
+            <param name="callback">AsnycCallback reference</param>		
+            <param name="state">State object</param>		
+            <returns>Async Result</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IClusterOptimizer.EndStartClustering2(System.IAsyncResult)">
+            <summary>
+            Blocks until the cluster optimizer Start request has completed
+            </summary>
+            <param name="result">Async Result</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IClusterOptimizer.EndStartClustering2_Long(System.IAsyncResult)">
+            <summary>
+            Blocks until the cluster optimizer Start request has completed
+            </summary>
+            <param name="result">Async Result</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IClusterOptimizer.StartClusteringWithClientId(System.String,System.String,System.String,System.String)">
+            <summary>
+            Starts the cluster optimizer for the given cluster job and publishes events to the given endpoint 
+            </summary>
+            <param name="fullpath">Full SIPLACE Pro object path (including Folders)</param>
+            <param name="strEndpointAddress">Endpoint address</param>
+            <param name="strBinding">Binding name (optional)</param>
+            <param name="strClientInstanceId">String that is used when sending events back to the client. 
+            With the helps of this id, a client can destinguish from what ClusterOptimizer proxy class
+            (if multiple ones are used) these events belong to</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IClusterOptimizer.BeginStartClusteringWithClientId(System.String,System.String,System.String,System.String,System.AsyncCallback,System.Object)">
+            <summary>
+            Starts the cluster optimizer asynchronously for the given cluster job and publishes events to the given endpoint 
+            </summary>
+            <param name="fullpath">Full SIPLACE Pro object path (including Folders)</param>
+            <param name="strEndpointAddress">Endpoint address</param>
+            <param name="strBinding">Binding name (optional)</param>
+            <param name="strClientInstanceId">String that is used when sending events back to the client. 
+            With the helps of this id, a client can destinguish from what Optimizer proxy class
+            (if multiple ones are used) these events belong to</param>
+            <param name="callback">AsnycCallback reference</param>		
+            <param name="state">State object</param>		
+            <returns>Async Result</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IClusterOptimizer.EndStartClusteringWithClientId(System.IAsyncResult)">
+            <summary>
+            Blocks until the cluster optimizer Start request has completed
+            </summary>
+            <param name="result">Async Result</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IClusterOptimizer.StartClustering2WithClientId(System.Int32,System.String,System.String,System.String)">
+            <summary>
+            Starts the cluster optimizer for the given cluster job and publishes events to the given endpoint 
+            </summary>
+            <param name="nOID">OID of Cluster Job</param>
+            <param name="strEndpointAddress">Endpoint address</param>
+            <param name="strBinding">Binding name (optional)</param>
+            <param name="strClientInstanceId">String that is used when sending events back to the client. 
+            With the helps of this id, a client can destinguish from what ClusterOptimizer proxy class
+            (if multiple ones are used) these events belong to</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IClusterOptimizer.StartClustering2WithClientId_Long(System.Int64,System.String,System.String,System.String)">
+            <summary>
+            Starts the cluster optimizer for the given cluster job and publishes events to the given endpoint 
+            </summary>
+            <param name="nOID">OID of Cluster Job</param>
+            <param name="strEndpointAddress">Endpoint address</param>
+            <param name="strBinding">Binding name (optional)</param>
+            <param name="strClientInstanceId">String that is used when sending events back to the client. 
+            With the helps of this id, a client can destinguish from what ClusterOptimizer proxy class
+            (if multiple ones are used) these events belong to</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IClusterOptimizer.BeginStartClustering2WithClientId(System.Int32,System.String,System.String,System.String,System.AsyncCallback,System.Object)">
+            <summary>
+            Starts the cluster optimizer asynchronously for the given cluster job and publishes events to the given endpoint 
+            </summary>
+            <param name="nOID">OID of ClusterJob</param>
+            <param name="strEndpointAddress">Endpoint address</param>
+            <param name="strBinding">Binding name (optional)</param>
+            <param name="strClientInstanceId">String that is used when sending events back to the client. 
+            With the helps of this id, a client can destinguish from what Optimizer proxy class
+            (if multiple ones are used) these events belong to</param> 
+            <param name="callback">AsnycCallback reference</param>		
+            <param name="state">State object</param>		
+            <returns>Async Result</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IClusterOptimizer.BeginStartClustering2WithClientId_Long(System.Int64,System.String,System.String,System.String,System.AsyncCallback,System.Object)">
+            <summary>
+            Starts the cluster optimizer asynchronously for the given cluster job and publishes events to the given endpoint 
+            </summary>
+            <param name="nOID">OID of ClusterJob</param>
+            <param name="strEndpointAddress">Endpoint address</param>
+            <param name="strBinding">Binding name (optional)</param>
+            <param name="strClientInstanceId">String that is used when sending events back to the client. 
+            With the helps of this id, a client can destinguish from what Optimizer proxy class
+            (if multiple ones are used) these events belong to</param> 
+            <param name="callback">AsnycCallback reference</param>		
+            <param name="state">State object</param>		
+            <returns>Async Result</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IClusterOptimizer.EndStartClustering2WithClientId(System.IAsyncResult)">
+            <summary>
+            Blocks until the cluster optimizer Start request has completed
+            </summary>
+            <param name="result">Async Result</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IClusterOptimizer.EndStartClustering2WithClientId_Long(System.IAsyncResult)">
+            <summary>
+            Blocks until the cluster optimizer Start request has completed
+            </summary>
+            <param name="result">Async Result</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IClusterOptimizer.StartClusteringWithClientId2(System.String,System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            Starts the cluster optimizer for the given cluster job and publishes events to the given endpoint 
+            </summary>
+            <param name="fullpath">Full SIPLACE Pro object path (including Folders)</param>
+            <param name="strEndpointAddress">Endpoint address</param>
+            <param name="strBinding">Binding name (optional)</param>
+            <param name="strClientInstanceId">String that is used when sending events back to the client. 
+            With the helps of this id, a client can destinguish from what ClusterOptimizer proxy class
+            (if multiple ones are used) these events belong to</param>
+            <param name="bOnlyUseNewCallbacks">If true, the service will only publish events on the new Callback Interface
+            (IClusterOptimizerNotifyArgs) and will not attempt to use the old one (IClusterOptimizerNotify)</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IClusterOptimizer.BeginStartClusteringWithClientId2(System.String,System.String,System.String,System.String,System.Boolean,System.AsyncCallback,System.Object)">
+            <summary>
+            Starts the cluster optimizer asynchronously for the given cluster job and publishes events to the given endpoint 
+            </summary>
+            <param name="fullpath">Full SIPLACE Pro object path (including Folders)</param>
+            <param name="strEndpointAddress">Endpoint address</param>
+            <param name="strBinding">Binding name (optional)</param>
+            <param name="strClientInstanceId">String that is used when sending events back to the client. 
+            With the helps of this id, a client can destinguish from what ClusterOptimizer proxy class
+            (if multiple ones are used) these events belong to</param>
+            <param name="bOnlyUseNewCallbacks">If true, the service will only publish events on the new Callback Interface
+            (IClusterOptimizerNotifyArgs) and will not attempt to use the old one (IClusterOptimizerNotify)</param>
+            <param name="callback">AsnycCallback reference</param>		
+            <param name="state">State object</param>		
+            <returns>Async Result</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IClusterOptimizer.EndStartClusteringWithClientId2(System.IAsyncResult)">
+            <summary>
+            Blocks until the cluster optimizer StartClusteringWithClientId2 request has completed
+            </summary>
+            <param name="result">Async Result</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IClusterOptimizer.StartClustering2WithClientId2(System.Int32,System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            Starts the cluster optimizer for the given cluster job and publishes events to the given endpoint 
+            </summary>
+            <param name="nOID">OID of Cluster Job</param>
+            <param name="strEndpointAddress">Endpoint address</param>
+            <param name="strBinding">Binding name (optional)</param>
+            <param name="strClientInstanceId">String that is used when sending events back to the client. 
+            With the helps of this id, a client can destinguish from what ClusterOptimizer proxy class
+            (if multiple ones are used) these events belong to</param>
+            <param name="bOnlyUseNewCallbacks">If true, the service will only publish events on the new Callback Interface
+            (IClusterOptimizerNotifyArgs) and will not attempt to use the old one (IClusterOptimizerNotify)</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IClusterOptimizer.StartClustering2WithClientId2_Long(System.Int64,System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            Starts the cluster optimizer for the given cluster job and publishes events to the given endpoint 
+            </summary>
+            <param name="nOID">OID of Cluster Job</param>
+            <param name="strEndpointAddress">Endpoint address</param>
+            <param name="strBinding">Binding name (optional)</param>
+            <param name="strClientInstanceId">String that is used when sending events back to the client. 
+            With the helps of this id, a client can destinguish from what ClusterOptimizer proxy class
+            (if multiple ones are used) these events belong to</param>
+            <param name="bOnlyUseNewCallbacks">If true, the service will only publish events on the new Callback Interface
+            (IClusterOptimizerNotifyArgs) and will not attempt to use the old one (IClusterOptimizerNotify)</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IClusterOptimizer.BeginStartClustering2WithClientId2(System.Int32,System.String,System.String,System.String,System.Boolean,System.AsyncCallback,System.Object)">
+            <summary>
+            Starts the cluster optimizer asynchronously for the given cluster job and publishes events to the given endpoint 
+            </summary>
+            <param name="nOID">OID of Cluster Job</param>
+            <param name="strEndpointAddress">Endpoint address</param>
+            <param name="strBinding">Binding name (optional)</param>
+            <param name="strClientInstanceId">String that is used when sending events back to the client. 
+            With the helps of this id, a client can destinguish from what ClusterOptimizer proxy class
+            (if multiple ones are used) these events belong to</param>
+            <param name="bOnlyUseNewCallbacks">If true, the service will only publish events on the new Callback Interface
+            (IClusterOptimizerNotifyArgs) and will not attempt to use the old one (IClusterOptimizerNotify)</param>
+            <param name="callback">AsnycCallback reference</param>		
+            <param name="state">State object</param>		
+            <returns>Async Result</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IClusterOptimizer.BeginStartClustering2WithClientId2_Long(System.Int64,System.String,System.String,System.String,System.Boolean,System.AsyncCallback,System.Object)">
+            <summary>
+            Starts the cluster optimizer asynchronously for the given cluster job and publishes events to the given endpoint 
+            </summary>
+            <param name="nOID">OID of Cluster Job</param>
+            <param name="strEndpointAddress">Endpoint address</param>
+            <param name="strBinding">Binding name (optional)</param>
+            <param name="strClientInstanceId">String that is used when sending events back to the client. 
+            With the helps of this id, a client can destinguish from what ClusterOptimizer proxy class
+            (if multiple ones are used) these events belong to</param>
+            <param name="bOnlyUseNewCallbacks">If true, the service will only publish events on the new Callback Interface
+            (IClusterOptimizerNotifyArgs) and will not attempt to use the old one (IClusterOptimizerNotify)</param>
+            <param name="callback">AsnycCallback reference</param>		
+            <param name="state">State object</param>		
+            <returns>Async Result</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IClusterOptimizer.EndStartClustering2WithClientId2(System.IAsyncResult)">
+            <summary>
+            Blocks until the cluster optimizer StartClustering2WithClientId2 request has completed
+            </summary>
+            <param name="result">Async Result</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IClusterOptimizer.EndStartClustering2WithClientId2_Long(System.IAsyncResult)">
+            <summary>
+            Blocks until the cluster optimizer StartClustering2WithClientId2 request has completed
+            </summary>
+            <param name="result">Async Result</param>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IClusterOptimizer.DatabaseId">
+            <summary>
+            Gets the Unique Database Id for the SIPLACE Pro Database
+            </summary>
+            <returns>Unique Database Id (GUID) for the SIPLACE Pro Database</returns>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IClusterOptimizer.ProductVersion">
+            <summary>
+            Gets the Product Version of SIPLACE Pro
+            </summary>
+            <returns>Product Version of SIPLACE Pro, e.g. 7.1.1.2</returns>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IConfigure">
+            <summary>
+            Interface to configure service for COM and other clients which 
+            do not use an application configuration file.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IConfigure.Configure(System.String,System.String)">
+            <summary>
+            For COM clients who need to be able to configure the endpoint dynamically
+            </summary>
+            <param name="strEndpoint">Endpoint address</param>
+            <param name="strBinding">Binding</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IConfigure.Configure(System.String)">
+            <summary>
+            For COM clients who need to be able to configure the endpoint dynamically
+            </summary>
+            <param name="strEndpoinConfigurationName">Endpoint configuration Name</param>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IConfigure.EndpointAddress">
+            <summary>
+            Configured Endpoint Address
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IOptimizer.Start(System.String,System.String,System.String)">
+            <summary>
+            Starts the optimizer for the given job and publishes events to the given endpoint
+            </summary>
+            <param name="fullpath">Full Identity Path of Job</param>
+            <param name="strEndpointAddress">Endpoint address</param>
+            <param name="strBinding">Binding name (optional)</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IOptimizer.BeginStart(System.String,System.String,System.String,System.AsyncCallback,System.Object)">
+            <summary>
+            Starts the optimizer asynchronously for the given job and publishes events to the given endpoint
+            </summary>
+            <param name="fullpath">Full Identity Path of Job</param>
+            <param name="strEndpointAddress">Endpoint address</param>
+            <param name="strBinding">Binding name (optional)</param>		
+            <param name="callback">AsnycCallback reference</param>		
+            <param name="state">State object</param>		
+            <returns>Async Result</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IOptimizer.EndStart(System.IAsyncResult)">
+            <summary>
+            Blocks until the optimizer Start request has completed
+            </summary>
+            <param name="result">Async Result</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IOptimizer.Start2(System.Int32,System.String,System.String)">
+            <summary>
+            Starts the optimizer for the given job and publishes events to the given endpoint
+            </summary>
+            <param name="nOID">OID of Job</param>
+            <param name="strEndpointAddress">Endpoint address</param>
+            <param name="strBinding">Binding name (optional)</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IOptimizer.Start2_Long(System.Int64,System.String,System.String)">
+            <summary>
+            Starts the optimizer for the given job and publishes events to the given endpoint
+            </summary>
+            <param name="nOID">OID of Job</param>
+            <param name="strEndpointAddress">Endpoint address</param>
+            <param name="strBinding">Binding name (optional)</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IOptimizer.BeginStart2(System.Int32,System.String,System.String,System.AsyncCallback,System.Object)">
+            <summary>
+            Starts the optimizer asynchronously for the given job and publishes events to the given endpoint
+            </summary>
+            <param name="nOID">OID of Job</param>
+            <param name="strEndpointAddress">Endpoint address</param>
+            <param name="strBinding">Binding name (optional)</param>		
+            <param name="callback">AsnycCallback reference</param>		
+            <param name="state">State object</param>		
+            <returns>Async Result</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IOptimizer.BeginStart2_Long(System.Int64,System.String,System.String,System.AsyncCallback,System.Object)">
+            <summary>
+            Starts the optimizer asynchronously for the given job and publishes events to the given endpoint
+            </summary>
+            <param name="nOID">OID of Job</param>
+            <param name="strEndpointAddress">Endpoint address</param>
+            <param name="strBinding">Binding name (optional)</param>		
+            <param name="callback">AsnycCallback reference</param>		
+            <param name="state">State object</param>		
+            <returns>Async Result</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IOptimizer.EndStart2(System.IAsyncResult)">
+            <summary>
+            Blocks until the optimizer Start request has completed
+            </summary>
+            <param name="result">Async Result</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IOptimizer.EndStart2_Long(System.IAsyncResult)">
+            <summary>
+            Blocks until the optimizer Start request has completed
+            </summary>
+            <param name="result">Async Result</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IOptimizer.Stop">
+            <summary>
+            Stops the optimizer.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IOptimizer.Cancel">
+            <summary>
+            Cancels the optimizer.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IOptimizer.GetOptimizerMessages(System.String,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ObjectType)">
+            <summary>
+            Gets the optimizer messages. This enables the consumer to figure out, 
+            which is the reason for a aborted optimizer run.
+            </summary>
+            <param name="ObjectName">Full SIPLACE Pro object path (including Folders).</param>
+            <param name="objectType">Object Type (can be either Recipe, Job or ClusterJob).</param>
+            <returns>List of messages issued in the last integrity check run.</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IOptimizer.GetOptimizerMessages2(System.Int32,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ObjectType)">
+            <summary>
+            Gets the optimizer messages. This enables the consumer to figure out, 
+            which is the reason for a aborted optimizer run.
+            </summary>
+            <param name="nOID">OID of object</param>
+            <param name="objectType">Object Type (can be either Recipe, Job or ClusterJob).</param>
+            <returns>List of messages issued in the last integrity check run.</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IOptimizer.GetOptimizerMessages2_Long(System.Int64,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ObjectType)">
+            <summary>
+            Gets the optimizer messages. This enables the consumer to figure out, 
+            which is the reason for a aborted optimizer run.
+            </summary>
+            <param name="nOID">OID of object</param>
+            <param name="objectType">Object Type (can be either Recipe, Job or ClusterJob).</param>
+            <returns>List of messages issued in the last integrity check run.</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IOptimizer.GetOptimizerMessagesList(System.String,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ObjectType)">
+            <summary>
+            Gets the optimizer messages. This enables the consumer to figure out, 
+            which is the reason for a aborted optimizer run.
+            </summary>
+            <param name="ObjectName">Full SIPLACE Pro object path (including Folders).</param>
+            <param name="objectType">Object Type (can be either Recipe, Job or ClusterJob).</param>
+            <returns>List of messages issued in the last integrity check run.</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IOptimizer.GetOptimizerMessagesList2(System.Int32,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ObjectType)">
+            <summary>
+            Gets the optimizer messages. This enables the consumer to figure out, 
+            which is the reason for a aborted optimizer run.
+            </summary>
+            <param name="nOID">OID of object</param>
+            <param name="objectType">Object Type (can be either Recipe, Job or ClusterJob).</param>
+            <returns>List of messages issued in the last integrity check run.</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IOptimizer.GetOptimizerMessagesList2_Long(System.Int64,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ObjectType)">
+            <summary>
+            Gets the optimizer messages. This enables the consumer to figure out, 
+            which is the reason for a aborted optimizer run.
+            </summary>
+            <param name="nOID">OID of object</param>
+            <param name="objectType">Object Type (can be either Recipe, Job or ClusterJob).</param>
+            <returns>List of messages issued in the last integrity check run.</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IOptimizer.GetOptimizerMessagesArray(System.String,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ObjectType)">
+            <summary>
+            Gets the optimizer messages. This enables the consumer to figure out, 
+            which is the reason for a aborted optimizer run.
+            </summary>
+            <param name="ObjectName">Full SIPLACE Pro object path (including Folders).</param>
+            <param name="objectType">Object Type (can be either Recipe, Job or ClusterJob).</param>
+            <returns>Array of messages issued in the last integrity check run.</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IOptimizer.GetOptimizerMessagesArray2(System.Int32,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ObjectType)">
+            <summary>
+            Gets the optimizer messages. This enables the consumer to figure out, 
+            which is the reason for a aborted optimizer run.
+            </summary>
+            <param name="nOID">OID of object</param>
+            <param name="objectType">Object Type (can be either Recipe, Job or ClusterJob).</param>
+            <returns>Array of messages issued in the last integrity check run.</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IOptimizer.GetOptimizerMessagesArray2_Long(System.Int64,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ObjectType)">
+            <summary>
+            Gets the optimizer messages. This enables the consumer to figure out, 
+            which is the reason for a aborted optimizer run.
+            </summary>
+            <param name="nOID">OID of object</param>
+            <param name="objectType">Object Type (can be either Recipe, Job or ClusterJob).</param>
+            <returns>Array of messages issued in the last integrity check run.</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IOptimizer.GetOptimizerResultsForRecipe(System.String)">
+            <summary>
+            Gets the optimizer results as an XML string. This method is to change.
+            </summary>
+            <param name="ObjectName">Full SIPLACE Pro object path (including Folders).</param>
+            <returns>Recipe Data.</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IOptimizer.GetOptimizerResultsForRecipe2(System.Int32)">
+            <summary>
+            Gets the optimizer results as an XML string. This method is to change.
+            </summary>
+            <param name="nOID">OID of recipe</param>
+            <returns>Recipe Data.</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IOptimizer.GetOptimizerResultsForRecipe2_Long(System.Int64)">
+            <summary>
+            Gets the optimizer results as an XML string. This method is to change.
+            </summary>
+            <param name="nOID">OID of recipe</param>
+            <returns>Recipe Data.</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IOptimizer.CheckIntegrity(System.String,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.IntegrityCheckMode,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ICPlacePosReparMode,System.Collections.Generic.List{Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizerMessage}@,System.Int32@,System.Int32@,System.Int32@)">
+            <summary>
+            Checks the recipe integrity.
+            </summary>
+            <param name="recipeName">Full SIPLACE Pro Recipe path (including Folders)</param>
+            <param name="integrityCheckMode">The integrity check mode.</param>
+            <param name="repartMode">Repartitioning Mode.</param>
+            <param name="OpimizerMessages">List of optimizer messages</param>
+            <param name="nErrorCount">Number of errors</param>
+            <param name="nWarningCount">Number of warning</param>
+            <param name="nInfoCount">Number of infos</param>
+            <returns>The IC result)</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IOptimizer.CheckIntegrity2(System.Int32,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.IntegrityCheckMode,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ICPlacePosReparMode,System.Collections.Generic.List{Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizerMessage}@,System.Int32@,System.Int32@,System.Int32@)">
+            <summary>
+            Checks the recipe integrity.
+            </summary>
+            <param name="recipeOID">OID of Recipe</param>
+            <param name="integrityCheckMode">The integrity check mode.</param>
+            <param name="repartMode">Repartitioning Mode.</param>
+            <param name="OpimizerMessages">List of optimizer messages</param>
+            <param name="nErrorCount">Number of errors</param>
+            <param name="nWarningCount">Number of warning</param>
+            <param name="nInfoCount">Number of infos</param>
+            <returns>The IC result</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IOptimizer.CheckIntegrity2_Long(System.Int64,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.IntegrityCheckMode,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ICPlacePosReparMode,System.Collections.Generic.List{Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizerMessage}@,System.Int32@,System.Int32@,System.Int32@)">
+            <summary>
+            Checks the recipe integrity.
+            </summary>
+            <param name="recipeOID">OID of Recipe</param>
+            <param name="integrityCheckMode">The integrity check mode.</param>
+            <param name="repartMode">Repartitioning Mode.</param>
+            <param name="OpimizerMessages">List of optimizer messages</param>
+            <param name="nErrorCount">Number of errors</param>
+            <param name="nWarningCount">Number of warning</param>
+            <param name="nInfoCount">Number of infos</param>
+            <returns>The IC result</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IOptimizer.StartWithClientId(System.String,System.String,System.String,System.String)">
+            <summary>
+            Starts the optimizer for the given job and publishes events to the given endpoint
+            </summary>
+            <param name="fullpath">Full Identity Path of Job</param>
+            <param name="strEndpointAddress">Endpoint address</param>
+            <param name="strBinding">Binding name (optional)</param>
+            <param name="strClientInstanceId">String that is used when sending events back to the client. 
+            With the helps of this id, a client can destinguish from what Optimizer proxy class
+            (if multiple ones are used) these events belong to</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IOptimizer.BeginStartWithClientId(System.String,System.String,System.String,System.String,System.AsyncCallback,System.Object)">
+            <summary>
+            Starts the optimizer asynchronously for the given job and publishes events to the given endpoint
+            </summary>
+            <param name="fullpath">Full Identity Path of Job</param>
+            <param name="strEndpointAddress">Endpoint address</param>
+            <param name="strBinding">Binding name (optional)</param>		
+            <param name="strClientInstanceId">String that is used when sending events back to the client. 
+            With the helps of this id, a client can destinguish from what Optimizer proxy class
+            (if multiple ones are used) these events belong to</param>
+            <param name="callback">AsnycCallback reference</param>		
+            <param name="state">State object</param>		
+            <returns>Async Result</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IOptimizer.EndStartWithClientId(System.IAsyncResult)">
+            <summary>
+            Blocks until the optimizer Start request has completed
+            </summary>
+            <param name="result">Async Result</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IOptimizer.Start2WithClientId(System.Int32,System.String,System.String,System.String)">
+            <summary>
+            Starts the optimizer for the given job and publishes events to the given endpoint
+            </summary>
+            <param name="nOID">OID of Job</param>
+            <param name="strEndpointAddress">Endpoint address</param>
+            <param name="strBinding">Binding name (optional)</param>
+            <param name="strClientInstanceId">String that is used when sending events back to the client. 
+            With the helps of this id, a client can destinguish from what Optimizer proxy class
+            (if multiple ones are used) these events belong to</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IOptimizer.Start2WithClientId_Long(System.Int64,System.String,System.String,System.String)">
+            <summary>
+            Starts the optimizer for the given job and publishes events to the given endpoint
+            </summary>
+            <param name="nOID">OID of Job</param>
+            <param name="strEndpointAddress">Endpoint address</param>
+            <param name="strBinding">Binding name (optional)</param>
+            <param name="strClientInstanceId">String that is used when sending events back to the client. 
+            With the helps of this id, a client can destinguish from what Optimizer proxy class
+            (if multiple ones are used) these events belong to</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IOptimizer.BeginStart2WithClientId(System.Int32,System.String,System.String,System.String,System.AsyncCallback,System.Object)">
+            <summary>
+            Starts the optimizer asynchronously for the given job and publishes events to the given endpoint
+            </summary>
+            <param name="nOID">OID of Job</param>
+            <param name="strEndpointAddress">Endpoint address</param>
+            <param name="strBinding">Binding name (optional)</param>		
+            <param name="strClientInstanceId">String that is used when sending events back to the client. 
+            With the helps of this id, a client can destinguish from what Optimizer proxy class
+            (if multiple ones are used) these events belong to</param>
+            <param name="callback">AsnycCallback reference</param>		
+            <param name="state">State object</param>		
+            <returns>Async Result</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IOptimizer.BeginStart2WithClientId_Long(System.Int64,System.String,System.String,System.String,System.AsyncCallback,System.Object)">
+            <summary>
+            Starts the optimizer asynchronously for the given job and publishes events to the given endpoint
+            </summary>
+            <param name="nOID">OID of Job</param>
+            <param name="strEndpointAddress">Endpoint address</param>
+            <param name="strBinding">Binding name (optional)</param>		
+            <param name="strClientInstanceId">String that is used when sending events back to the client. 
+            With the helps of this id, a client can destinguish from what Optimizer proxy class
+            (if multiple ones are used) these events belong to</param>
+            <param name="callback">AsnycCallback reference</param>		
+            <param name="state">State object</param>		
+            <returns>Async Result</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IOptimizer.EndStart2WithClientId(System.IAsyncResult)">
+            <summary>
+            Blocks until the optimizer Start request has completed
+            </summary>
+            <param name="result">Async Result</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IOptimizer.EndStart2WithClientId_Long(System.IAsyncResult)">
+            <summary>
+            Blocks until the optimizer Start request has completed
+            </summary>
+            <param name="result">Async Result</param>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IOptimizer.DatabaseId">
+            <summary>
+            Gets the Unique Database Id for the SIPLACE Pro Database
+            </summary>
+            <returns>Unique Database Id (GUID) for the SIPLACE Pro Database</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IOptimizer.StartExt(System.String,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizerRuntimeParameter,System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            Starts the optimizer for the given job and publishes events to the given endpoint
+            </summary>
+            <param name="fullpath">Full Identity Path of Job</param>
+            <param name="runtimeParam">Specifiy how the optimizer should run</param>
+            <param name="strEndpointAddress">Endpoint address</param>
+            <param name="strBinding">Binding name (optional)</param>
+            <param name="strClientInstanceId">String that is used when sending events back to the client.</param>
+            <param name="bOnlyUseNewCallbacks">If true, the service will only publish events on the new Callback Interface
+            (IOptimizerNotifyArgs) and will not attempt to use the old one (IOptimizerNotify)</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IOptimizer.BeginStartExt(System.String,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizerRuntimeParameter,System.String,System.String,System.String,System.Boolean,System.AsyncCallback,System.Object)">
+            <summary>
+            Starts the optimizer asynchronously for the given job and publishes events to the given endpoint
+            </summary>
+            <param name="fullpath">Full Identity Path of Job</param>
+            <param name="runtimeParam">Specifiy how the optimizer should run</param>
+            <param name="strEndpointAddress">Endpoint address</param>
+            <param name="strBinding">Binding name (optional)</param>
+            <param name="strClientInstanceId">String that is used when sending events back to the client.</param>
+            <param name="bOnlyUseNewCallbacks">If true, the service will only publish events on the new Callback Interface
+            (IOptimizerNotifyArgs) and will not attempt to use the old one (IOptimizerNotify)</param>
+            <param name="callback">AsnycCallback reference</param>		
+            <param name="state">State object</param>		
+            <returns>Async Result</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IOptimizer.EndStartExt(System.IAsyncResult)">
+            <summary>
+            Blocks until the optimizer StartExt request has completed
+            </summary>
+            <param name="result">Async Result</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IOptimizer.StartExt2(System.Int32,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizerRuntimeParameter,System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            Starts the optimizer for the given job and publishes events to the given endpoint
+            </summary>
+            <param name="nOID">OID of Job</param>
+            <param name="runtimeParam">Specifiy how the optimizer should run</param>
+            <param name="strEndpointAddress">Endpoint address</param>
+            <param name="strBinding">Binding name (optional)</param>
+            <param name="strClientInstanceId">String that is used when sending events back to the client.</param>
+            <param name="bOnlyUseNewCallbacks">If true, the service will only publish events on the new Callback Interface
+            (IOptimizerNotifyArgs) and will not attempt to use the old one (IOptimizerNotify)</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IOptimizer.StartExt2_Long(System.Int64,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizerRuntimeParameter,System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            Starts the optimizer for the given job and publishes events to the given endpoint
+            </summary>
+            <param name="nOID">OID of Job</param>
+            <param name="runtimeParam">Specifiy how the optimizer should run</param>
+            <param name="strEndpointAddress">Endpoint address</param>
+            <param name="strBinding">Binding name (optional)</param>
+            <param name="strClientInstanceId">String that is used when sending events back to the client.</param>
+            <param name="bOnlyUseNewCallbacks">If true, the service will only publish events on the new Callback Interface
+            (IOptimizerNotifyArgs) and will not attempt to use the old one (IOptimizerNotify)</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IOptimizer.BeginStartExt2(System.Int32,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizerRuntimeParameter,System.String,System.String,System.String,System.Boolean,System.AsyncCallback,System.Object)">
+            <summary>
+            Starts the optimizer for the given job and publishes events to the given endpoint
+            </summary>
+            <param name="nOID">OID of Job</param>
+            <param name="runtimeParam">Specifiy how the optimizer should run</param>
+            <param name="strEndpointAddress">Endpoint address</param>
+            <param name="strBinding">Binding name (optional)</param>
+            <param name="strClientInstanceId">String that is used when sending events back to the client.</param>
+            <param name="bOnlyUseNewCallbacks">If true, the service will only publish events on the new Callback Interface
+            (IOptimizerNotifyArgs) and will not attempt to use the old one (IOptimizerNotify)</param>
+            <param name="callback">AsnycCallback reference</param>		
+            <param name="state">State object</param>		
+            <returns>Async Result</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IOptimizer.BeginStartExt2_Long(System.Int64,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizerRuntimeParameter,System.String,System.String,System.String,System.Boolean,System.AsyncCallback,System.Object)">
+            <summary>
+            Starts the optimizer for the given job and publishes events to the given endpoint
+            </summary>
+            <param name="nOID">OID of Job</param>
+            <param name="runtimeParam">Specifiy how the optimizer should run</param>
+            <param name="strEndpointAddress">Endpoint address</param>
+            <param name="strBinding">Binding name (optional)</param>
+            <param name="strClientInstanceId">String that is used when sending events back to the client.</param>
+            <param name="bOnlyUseNewCallbacks">If true, the service will only publish events on the new Callback Interface
+            (IOptimizerNotifyArgs) and will not attempt to use the old one (IOptimizerNotify)</param>
+            <param name="callback">AsnycCallback reference</param>		
+            <param name="state">State object</param>		
+            <returns>Async Result</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IOptimizer.EndStartExt2(System.IAsyncResult)">
+            <summary>
+            Blocks until the optimizer StartExt2 request has completed
+            </summary>
+            <param name="result">Async Result</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IOptimizer.EndStartExt2_Long(System.IAsyncResult)">
+            <summary>
+            Blocks until the optimizer StartExt2 request has completed
+            </summary>
+            <param name="result">Async Result</param>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IOptimizer.ProductVersion">
+            <summary>
+            Gets the Product Version of SIPLACE Pro
+            </summary>
+            <returns>Product Version of SIPLACE Pro, e.g. 7.1.1.2</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IOptimizer.HasAdapterLicense">
+            <summary>
+            Checks if an adapter license is available.
+            </summary>
+            <returns>True, if license is available.</returns>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IServiceState">
+            <summary>
+            Interface for getting the Service State (Busy/Idle)
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IServiceState.GetServiceState">
+            <summary>
+            Gets the current state of the Optmizer Service
+            </summary>
+            <returns>OptimizerServiceState</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Interfaces.IServiceState.GetAdapterTimeZone">
+            <summary>
+            Gets the TimeZoneInfo for the adapter computer
+            Used when converting DateTime objects on the proxy from adapter time to
+            Proxy local time.
+            </summary>
+            <returns>Serialized TimeZoneInfo of adapter</returns>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.BatchCompleteEvent">
+            <summary>
+            BatchCompleteEvent
+            </summary>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.ClusterOptimizationCompleteEvent">
+            <summary>
+            Called when the cluster optimization is complete and has written its results.
+            </summary>
+            <param name="lsuccess">1 if successful</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.ClusterProgressEvent">
+            <summary>
+            Informs the ClusterOptimizers client of it's current progress in numbers
+            </summary>
+            <param name="dRunTime">Run time of current optimization [ms]</param>
+            <param name="lPercent">Progress of current optimization [%]</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.ClusterStateEvent">
+            <summary>
+            Informs the ClusterOptimizers client of it's current state
+            </summary>
+            <param name="stateCode">Code of ClusterOptimizers current state (enum type ClusterOptState)</param>
+            <param name="stringparam">String describing ClusterOptimizers current job</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.ResultClusterErrorCountEvent">
+            <summary>
+            Informs the ClusterOptimizers client of the result of the writing in the database
+            </summary>
+            <param name="dRunTime">Total run time of optimization [ms]</param>
+            <param name="lErrorCount">Number of optimizer specific errors</param>
+            <param name="lWarningCount">Number of optimizer specific warnings</param>
+            <param name="lInfoCount">Number of optimizer specific infos</param>
+            <param name="bWriteOK">If true, writing was successfully completed</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.ResultSolutionCharacteristicsEvent">
+            <summary>
+            Informs the ClusterOptimizers client about the characteristics of the current solution
+            </summary>
+            <param name="xmlCharacteristics">XML-string that holds the characteristics</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.SessionTerminatedEvent">
+            <summary>
+            Informs the ClusterOptimizers client that the session is terminated
+            </summary>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.ClusterOptCompleteEventExt">
+            <summary>
+            Called when the cluster optimization is complete and has written its results.
+            </summary>
+            <param name="args">ClusterOptimizationCompleteArgs</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.ClusterOptProgressEventExt">
+            <summary>
+            Informs the ClusterOptimizers client of it's current progress in numbers
+            </summary>
+            <param name="args">ClusterProgressArgs</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.ClusterOptStateEventExt">
+            <summary>
+            Informs the ClusterOptimizers client of it's current state
+            </summary>
+            <param name="args">ClusterStateArgs</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.ClusterOptResultErrorCountEventExt">
+            <summary>
+            Informs the ClusterOptimizers client of the result of the writing in the database
+            </summary>
+            <param name="args">ClusterOptResultErrorCountArgs</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.ClusterOptResultEventExt">
+            <summary>
+            Informs the ClusterOptimizers client about the characteristics of the current solution
+            </summary>
+            <param name="args">ClusterOptResultArgs</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.ClusterOptSessionTerminatedEventExt">
+            <summary>
+            Informs the ClusterOptimizers client that the session is terminated
+            </summary>
+            <param name="args">ClusterOptSessionTerminatedArgs</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.ClusterOptimizer">
+            <summary>
+            Proxy class for Cluster Optimizer
+            </summary>
+        </member>
+        <member name="E:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.ClusterOptimizer.ClusterOptimizationCompleteChanged">
+            <summary>
+            Called when the cluster optimization is complete and has written its results.
+            </summary>
+        </member>
+        <member name="E:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.ClusterOptimizer.ClusterProgressChanged">
+            <summary>
+            Informs the ClusterOptimizers client of it's current progress in numbers
+            </summary>
+        </member>
+        <member name="E:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.ClusterOptimizer.ClusterStateChanged">
+            <summary>
+            Informs the ClusterOptimizers client of it's current state
+            </summary>
+        </member>
+        <member name="E:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.ClusterOptimizer.ResultClusterErrorCountChanged">
+            <summary>
+            Informs the ClusterOptimizers client of the result of the writing in the database
+            </summary>
+        </member>
+        <member name="E:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.ClusterOptimizer.ResultSolutionCharacteristicsChanged">
+            <summary>
+            Informs the ClusterOptimizers client about the characteristics of the current solution
+            </summary>
+        </member>
+        <member name="E:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.ClusterOptimizer.SessionTerminatedChanged">
+            <summary>
+            Informs the ClusterOptimizers client that the session is terminated
+            </summary>
+        </member>
+        <member name="E:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.ClusterOptimizer.ServiceUnreachable">
+            <summary>
+            Will be fired whenever the service cannot be reached
+            </summary>
+        </member>
+        <member name="E:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.ClusterOptimizer.ServiceReconnect">
+            <summary>
+            Will be fired whenever the service has reestablished connection and can be reached again
+            </summary>
+        </member>
+        <member name="E:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.ClusterOptimizer.ClusterOptComplete">
+            <summary>
+            Called when the cluster optimization is complete and has written its results.
+            </summary>
+        </member>
+        <member name="E:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.ClusterOptimizer.ClusterOptProgress">
+            <summary>
+            Informs the ClusterOptimizers client of it's current progress in numbers
+            </summary>
+        </member>
+        <member name="E:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.ClusterOptimizer.ClusterOptStateChanged">
+            <summary>
+            Informs the ClusterOptimizers client of it's current state
+            </summary>
+        </member>
+        <member name="E:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.ClusterOptimizer.ClusterOptResultErrorCount">
+            <summary>
+            Informs the ClusterOptimizers client of the result of the writing in the database
+            </summary>
+        </member>
+        <member name="E:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.ClusterOptimizer.ClusterOptResult">
+            <summary>
+            Informs the ClusterOptimizers client about the characteristics of the current solution
+            </summary>
+        </member>
+        <member name="E:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.ClusterOptimizer.ClusterOptSessionTerminated">
+            <summary>
+            Informs the ClusterOptimizers client that the session is terminated
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.ClusterOptimizer.MarshalEventsToSessionCreatorThread">
+            <summary>
+            If true, all Events will be fired on the thread that created the ClusterOptimizer class.
+            This is helpful if you use the Events to update the UI.
+            In order for that to work correctly, you need a SynchronizationContext.Current
+            when the ClusterOptimizer class is created (if this was done on the UI thread, then the SynchronizationContext.Current
+            is there by default.
+            The default value of this property is true.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.ClusterOptimizer.#ctor">
+            <summary>
+            Default constructor.
+            Uses the configured default endpoint in the application configuration file.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.ClusterOptimizer.#ctor(System.String)">
+            <summary>
+            Constructor using the configured endpoint name in the application configuration file.
+            </summary>
+            <param name="endpointConfigurationName">Endpoint Name</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.ClusterOptimizer.#ctor(System.ServiceModel.EndpointAddress,System.ServiceModel.Channels.Binding)">
+            <summary>
+            Constructor using the given endpoint address and binding.
+            </summary>
+            <param name="endpointAddress">Endpoint Address of service</param>
+            <param name="binding">Binding to use</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.ClusterOptimizer.Finalize">
+            <summary>
+            Finalizer
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.ClusterOptimizer.KeepAliveChannelsEveryMinutes">
+            <summary>
+            Set this to the amount of minutes that keep alive messages should be sent in order to prevent stateful Firewalls to shut down channels
+            The default is 10 minutes, but you can increase or decrease it according to your firewall settings.
+            Minimum value is 1 minute, maximum value is 30 minutes.
+            Can be configured in the app.config under "Asm.As.Oib.SiplacePro.Proxies.ReliableChannel.KeepAliveChannelsEveryMinutes"
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.ClusterOptimizer.WorkerProcessId">
+            <summary>
+            Gets the worker process PID.
+            </summary>
+            <value>
+            The worker process PID.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.ClusterOptimizer.MaxNumberOfRetryAttempts">
+            <summary>
+            Gets or sets the max number of retry attempts.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.ClusterOptimizer.RetryFrequency">
+            <summary>
+            Gets or sets the retry frequency.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.ClusterOptimizer.SetCertificateForCallback(System.Security.Cryptography.X509Certificates.StoreLocation,System.Security.Cryptography.X509Certificates.X509FindType,System.Security.Cryptography.X509Certificates.StoreName,System.String)">
+            <summary>
+            Sets the certificate for the callback service.
+            </summary>
+            <param name="storeLocation">The store location.</param>
+            <param name="findType">Type of the find.</param>
+            <param name="storeName">Name of the store.</param>
+            <param name="findValue">The find value.</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.ClusterOptimizer.SetCertificateForClientAuthentication(System.Security.Cryptography.X509Certificates.StoreLocation,System.Security.Cryptography.X509Certificates.X509FindType,System.Security.Cryptography.X509Certificates.StoreName,System.String)">
+            <summary>
+            Sets the client certificate parameters for authentication to the ClusterOptimizerService.
+            Needs to be provided in case OIB services require a client certificate.
+            </summary>
+            <param name="storeLocation">The store location.</param>
+            <param name="findType">Type of the find.</param>
+            <param name="storeName">Name of the store.</param>
+            <param name="findValue">The find value.</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.ClusterOptimizer.ToLocalProxyTime(System.DateTime)">
+            <summary>
+            This method converts DateTime objects retrieved from the ClusterOptimizer Adapter
+            into the local time. Use this for client-server scenarios where you span over time zones.
+            </summary>
+            <param name="serverTime">Time returned from the adapter</param>
+            <returns>Time converted to local time</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.ClusterOptimizer.ToUtcTime(System.DateTime)">
+            <summary>
+            This method converts DateTime objects retrieved from the ClusterOptimizer Adapter
+            into UTC time. Use this for client-server scenarios where you span over time zones
+            and work uniquely with UTC on your side.
+            </summary>
+            <param name="serverTime">Time returned from the adapter</param>
+            <returns>Time converted to local time</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.ClusterOptimizer.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.ClusterOptimizer.Dispose">
+            <summary>
+            Disposes of the Optimizer class.
+            Stops the callback service for events, if it is running.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.ClusterOptimizer.StartClustering(System.String,System.String,System.String)">
+            <summary>
+            Starts the cluster optimizer for the given cluster job and publishes events to the given endpoint 
+            </summary>
+            <param name="fullpath">Full SIPLACE Pro object path (including Folders)</param>
+            <param name="strEndpointAddress">Endpoint address</param>
+            <param name="strBinding">Binding name (not used any more)</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.ClusterOptimizer.BeginStartClustering(System.String,System.String,System.String,System.AsyncCallback,System.Object)">
+            <summary>
+            Starts the cluster optimizer asynchronously for the given cluster job and publishes events to the given endpoint 
+            </summary>
+            <param name="fullpath">Full SIPLACE Pro object path (including Folders)</param>
+            <param name="strEndpointAddress">Endpoint address</param>
+            <param name="strBinding">Binding name (not used any more)</param>
+            <param name="callback">AsyncCallback reference</param>		
+            <param name="state">State object</param>		
+            <returns>Async Result</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.ClusterOptimizer.EndStartClustering(System.IAsyncResult)">
+            <summary>
+            Blocks until the cluster optimizer Start request has completed
+            </summary>
+            <param name="result">Async Result</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.ClusterOptimizer.StartClustering2(System.Int32,System.String,System.String)">
+            <summary>
+            Starts the cluster optimizer for the given cluster job and publishes events to the given endpoint 
+            </summary>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's 
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks> 
+            <param name="nOID">OID of ClusterJob</param>
+            <param name="strEndpointAddress">Endpoint address</param>
+            <param name="strBinding">Binding name (optional)</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.ClusterOptimizer.StartClustering2_Long(System.Int64,System.String,System.String)">
+            <summary>
+            Starts the cluster optimizer for the given cluster job and publishes events to the given endpoint 
+            </summary>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's 
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks> 
+            <param name="nOID">OID of ClusterJob</param>
+            <param name="strEndpointAddress">Endpoint address</param>
+            <param name="strBinding">Binding name (not used any more)</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.ClusterOptimizer.BeginStartClustering2(System.Int32,System.String,System.String,System.AsyncCallback,System.Object)">
+            <summary>
+            Starts the cluster optimizer asynchronously for the given cluster job and publishes events to the given endpoint 
+            </summary>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's 
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks> 
+            <param name="nOID">OID of ClusterJob</param>
+            <param name="strEndpointAddress">Endpoint address</param>
+            <param name="strBinding">Binding name (optional)</param>
+            <param name="callback">AsyncCallback reference</param>		
+            <param name="state">State object</param>		
+            <returns>Async Result</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.ClusterOptimizer.BeginStartClustering2_Long(System.Int64,System.String,System.String,System.AsyncCallback,System.Object)">
+            <summary>
+            Starts the cluster optimizer asynchronously for the given cluster job and publishes events to the given endpoint 
+            </summary>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's 
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks> 
+            <param name="nOID">OID of ClusterJob</param>
+            <param name="strEndpointAddress">Endpoint address</param>
+            <param name="strBinding">Binding name (not used any more)</param>
+            <param name="callback">AsyncCallback reference</param>		
+            <param name="state">State object</param>		
+            <returns>Async Result</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.ClusterOptimizer.EndStartClustering2(System.IAsyncResult)">
+            <summary>
+            Blocks until the cluster optimizer Start request has completed
+            </summary>
+            <param name="result">Async Result</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.ClusterOptimizer.EndStartClustering2_Long(System.IAsyncResult)">
+            <summary>
+            Blocks until the cluster optimizer Start request has completed
+            </summary>
+            <param name="result">Async Result</param>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.ClusterOptimizer.DatabaseId">
+            <summary>
+            Gets the Unique Database Id for the SIPLACE Pro Database
+            </summary>
+            <returns>Unique Database Id (GUID) for the SIPLACE Pro Database</returns>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.ClusterOptimizer.ProductVersion">
+            <summary>
+            Gets the Product Version of SIPLACE Pro
+            </summary>
+            <returns>Product Version of SIPLACE Pro, e.g. 7.1.1.2</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.ClusterOptimizer.GetConfiguration(System.String,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ObjectType)">
+            <summary>
+            Gets the optimizer parameters for the given object
+            </summary>
+            <param name="fullpath">Full SIPLACE Pro object path (including Folders)</param>
+            <param name="type">Object Type (ClusterJob or Job)</param>
+            <returns>All optimization parameters</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.ClusterOptimizer.SaveConfiguration(Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizationParameters,System.String,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ObjectType)">
+            <summary>
+            Stores the optimizer parameters for the given object
+            </summary>
+            <param name="parameters">All optimization parameters</param>
+            <param name="fullpath">Full SIPLACE Pro object path (including Folders)</param>
+            <param name="type">Object Type (ClusterJob or Job)</param>
+            <returns>Success</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.ClusterOptimizer.GetConfiguration2(System.Int32,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ObjectType)">
+            <summary>
+            Gets the optimizer parameters for the given object
+            </summary>
+            <param name="nOID">OID of object</param>
+            <param name="type">Object Type (ClusterJob or Job)</param>
+            <returns>All optimization parameters</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.ClusterOptimizer.GetConfiguration2_Long(System.Int64,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ObjectType)">
+            <summary>
+            Gets the optimizer parameters for the given object
+            </summary>
+            <param name="nOID">OID of object</param>
+            <param name="type">Object Type (ClusterJob or Job)</param>
+            <returns>All optimization parameters</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.ClusterOptimizer.SaveConfiguration2(Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizationParameters,System.Int32,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ObjectType)">
+            <summary>
+            Stores the optimizer parameters for the given object
+            </summary>
+            <param name="parameters">All optimization parameters</param>
+            <param name="nOID">OID of object</param>
+            <param name="type">Object Type (ClusterJob or Job)</param>
+            <returns>Success</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.ClusterOptimizer.SaveConfiguration2_Long(Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizationParameters,System.Int64,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ObjectType)">
+            <summary>
+            Stores the optimizer parameters for the given object
+            </summary>
+            <param name="parameters">All optimization parameters</param>
+            <param name="nOID">OID of object</param>
+            <param name="type">Object Type (ClusterJob or Job)</param>
+            <returns>Success</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.ClusterOptimizer.LogonUser(System.String,System.String,System.Boolean)">
+            <summary>
+            This will take a User ID and password as input and attempt to log and set CurrentUser in case bJustCheckPassword is set to false.
+            In case bJustCheckPassword is set to true, only the password for the given User will be checked.
+            </summary>
+            <param name="bstrUserID">The userid of the user to logon.</param>
+            <param name="bstrPassword">The password of the user trying to logon.</param>
+            <param name="bJustCheckPassword">A flag indicating if the system should just verify the password.</param>
+            <returns>See Summary for details. This method will return a type bool with default value of false</returns>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.ClusterOptimizer.CurrentUser">
+            <summary>
+            The user who is currently logged in to the system.  The system runs under the privileges granted to the group that the user belongs to.
+            </summary>
+            <returns>Returns the currently logged on User Name.</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.ClusterOptimizer.GetServiceState">
+            <summary>
+            Gets the current state of the Optimizer Service
+            </summary>
+            <returns>Service State</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.ClusterOptimizer.GetAdapterTimeZone">
+            <summary>
+            Gets the TimeZoneInfo for the adapter computer
+            Used when converting DateTime objects on the proxy from adapter time to
+            Proxy local time.
+            </summary>
+            <returns>Serialized TimeZoneInfo of adapter</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.ClusterOptimizer.Configure(System.String,System.String)">
+            <summary>
+            For COM clients who need to be able to configure the endpoint dynamically
+            </summary>
+            <param name="strEndpoint">Endpoint address</param>
+            <param name="strBinding">Binding</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.ClusterOptimizer.Configure(System.String)">
+            <summary>
+            For COM clients who need to be able to configure the endpoint dynamically
+            </summary>
+            <param name="strEndpointConfigurationName">Endpoint configuration Name</param>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.ClusterOptimizer.EndpointAddress">
+            <summary>
+            Configured Endpoint Address
+            </summary>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.OptimizationCompleteEvent">
+            <summary>
+            Will be fired when the internal optimization algorithms are completed. After this, the result will be written
+            </summary>
+            <param name="bWrite">If true, optimizer will write results into SIPLACE Pro</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.ProgressEvent">
+            <summary>
+            Will be fired whenever a progress is reported
+            </summary>
+            <param name="progressType">Progress type</param>
+            <param name="dRunTime">Optimization runtime in ms</param>
+            <param name="nPercent">Percent of current step</param>
+            <param name="dProductionTime">Production time of job</param>
+            <param name="dAverageUtilization">Average utilization of line</param>
+            <param name="lPlacementRate">Placement rate (components/hour)</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.ResultEvent">
+            <summary>
+            Will be fired whenever the optimization result is available (end of optimization)
+            </summary>
+            <param name="dRunTime">Optimization runtime in ms</param>
+            <param name="dProductionTime">Production time of job</param>
+            <param name="dAverageUtilization">Average utilization of line</param>
+            <param name="lPlacementRate">Placement rate (components/hour)</param>
+            <param name="nErrorCount">Number of Errors</param>
+            <param name="nWarningCount">Number of Warnings</param>
+            <param name="nInfoCount">Number of Infos</param>
+            <param name="strResultComment">Comment</param>
+            <param name="bOptimizationSuccessful">If true, optimization was successful</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.StateEvent">
+            <summary>
+            Will be fired whenever a state change is reported
+            </summary>
+            <param name="stateCode">State code</param>
+            <param name="strStateComment">Comment</param>
+            <param name="bIsStopPossible">If true, optimization can be stopped at this moment</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.ServiceUnreachableEvent">
+            <summary>
+            Will be fired whenever the service cannot be reached
+            </summary>
+            <param name="strServiceEndpoint">Service Endpoint</param>
+            <param name="strComment">Comment</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.ServiceReconnectEvent">
+            <summary>
+            Will be fired whenever the service has reestablished connection and can be reached again
+            </summary>
+            <param name="strServiceEndpoint">Service Endpoint</param>
+            <param name="strComment">Comment</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.OptimizationCompleteEventExt">
+            <summary>
+            Will be fired when the internal optimization algorithms are completed. After this, the result will be written
+            </summary>
+            <param name="args">OptimizationCompleteArgs</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.ProgressEventExt">
+            <summary>
+            Will be fired whenever a progress is reported
+            </summary>
+            <param name="args">OptimizationProgressArgs</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.ResultEventExt">
+            <summary>
+            Will be fired whenever the optimization result is available (end of optimization)
+            </summary>
+            <param name="args">OptimizationResultArgs</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.StateEventExt">
+            <summary>
+            Will be fired whenever a state change is reported
+            </summary>
+            <param name="args">OptimizationStateArgs</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer">
+            <summary>
+            Proxy class for Optimizer
+            </summary>
+        </member>
+        <member name="E:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.OptimizationCompleted">
+            <summary>
+            Will be fired when the internal optimization algorithms are completed. After this, the result will be written
+            </summary>
+        </member>
+        <member name="E:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.ProgressChanged">
+            <summary>
+            Will be fired whenever a progress is reported
+            </summary>
+        </member>
+        <member name="E:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.ResultChanged">
+            <summary>
+            Will be fired whenever the optimization result is available (end of optimization)
+            </summary>
+        </member>
+        <member name="E:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.StateChanged">
+            <summary>
+            Will be fired whenever a state change is reported
+            </summary>
+        </member>
+        <member name="E:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.ServiceUnreachable">
+            <summary>
+            Will be fired whenever the service cannot be reached
+            </summary>
+        </member>
+        <member name="E:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.ServiceReconnect">
+            <summary>
+            Will be fired whenever the service has reestablished connection and can be reached again
+            </summary>
+        </member>
+        <member name="E:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.OptimizationCompletedExt">
+            <summary>
+            Will be fired when the internal optimization algorithms are completed. After this, the result will be written
+            </summary>
+        </member>
+        <member name="E:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.ProgressChangedExt">
+            <summary>
+            Will be fired whenever a progress is reported
+            </summary>
+        </member>
+        <member name="E:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.ResultChangedExt">
+            <summary>
+            Will be fired whenever the optimization result is available (end of optimization)
+            </summary>
+        </member>
+        <member name="E:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.StateChangedExt">
+            <summary>
+            Will be fired whenever a state change is reported
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.MarshalEventsToSessionCreatorThread">
+            <summary>
+            If true, all Events will be fired on the thread that created the Optimizer class.
+            This is helpful if you use the Events to update the UI.
+            In order for that to work correctly, you need a SynchronizationContext.Current
+            when the Optimizer class is created (if this was done on the UI thread, then the SynchronizationContext.Current
+            is there by default.
+            The default value of this property is true.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.#ctor">
+            <summary>
+            Default constructor.
+            Uses the configured default endpoint in the application configuration file.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.#ctor(System.String)">
+            <summary>
+            Constructor using the configured endpoint name in the application configuration file.
+            </summary>
+            <param name="endpointConfigurationName">Endpoint Name</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.#ctor(System.ServiceModel.EndpointAddress,System.ServiceModel.Channels.Binding)">
+            <summary>
+            Constructor using the given endpoint address and binding.
+            </summary>
+            <param name="endpointAddress">Endpoint Address of service</param>
+            <param name="binding">Optional: Binding to use. You can pass in null and a correct binding will be used.</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.Finalize">
+            <summary>
+            Finalizer
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.SetCertificateForCallback(System.Security.Cryptography.X509Certificates.StoreLocation,System.Security.Cryptography.X509Certificates.X509FindType,System.Security.Cryptography.X509Certificates.StoreName,System.String)">
+            <summary>
+            Sets the certificate for the callback service.
+            </summary>
+            <param name="storeLocation">The store location.</param>
+            <param name="findType">Type of the find.</param>
+            <param name="storeName">Name of the store.</param>
+            <param name="findValue">The find value.</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.SetCertificateForClientAuthentication(System.Security.Cryptography.X509Certificates.StoreLocation,System.Security.Cryptography.X509Certificates.X509FindType,System.Security.Cryptography.X509Certificates.StoreName,System.String)">
+            <summary>
+            Sets the client certificate parameters for authentication to the OptimizerService.
+            Needs to be provided in case OIB services require a client certificate.
+            </summary>
+            <param name="storeLocation">The store location.</param>
+            <param name="findType">Type of the find.</param>
+            <param name="storeName">Name of the store.</param>
+            <param name="findValue">The find value.</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.CheckIsServiceAlive">
+            <summary>
+            Triggers the check if the service is alive and returns the current state,
+            </summary>
+            <returns>True, if alive</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.ToLocalProxyTime(System.DateTime)">
+            <summary>
+            This method converts DateTime objects retrieved from the Optimizer Adapter
+            into the local time. Use this for client-server scenarios where you span over time zones.
+            </summary>
+            <param name="serverTime">Time returned from the adapter</param>
+            <returns>
+            Time converted to local time
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.ToUtcTime(System.DateTime)">
+            <summary>
+            This method converts DateTime objects retrieved from the Optimizer Adapter
+            into UTC time. Use this for client-server scenarios where you span over time zones
+            and work uniquely with UTC on your side.
+            </summary>
+            <param name="serverTime">Time returned from the adapter</param>
+            <returns>
+            Time converted to local time
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.KeepAliveChannelsEveryMinutes">
+            <summary>
+            Set this to the amount of minutes that keep alive messages should be sent in order to prevent stateful Firewalls to shut down channels
+            The default is 10 minutes, but you can increase or decrease it according to your firewall settings.
+            Minimum value is 1 minute, maximum value is 30 minutes.
+            Can be configured in the app.config under "Asm.As.Oib.SiplacePro.Proxies.ReliableChannel.KeepAliveChannelsEveryMinutes"
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.ClientStatusCallbackAddress">
+            <summary>
+            Gets the client status callback address.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.CallbackEndpoint">
+            <summary>
+            Gets the callback endpoint.
+            </summary>
+            <value>
+            The callback endpoint.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.WorkerProcessId">
+            <summary>
+            Gets the worker process PID.
+            </summary>
+            <value>
+            The worker process PID.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.ServiceAlive">
+            <summary>
+            Gets a value indicating whether the service is alive.
+            This value is either updated by the timer triggered check or an explicit call to CheckIsServiceAlive()
+            </summary>
+            <value>
+              <c>true</c> if [service alive]; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.MaxNumberOfRetryAttempts">
+            <summary>
+            Gets or sets the max number of retry attempts.
+            </summary>
+            <value>
+            The maximum number of retry attempts.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.RetryFrequency">
+            <summary>
+            Gets or sets the retry frequency.
+            </summary>
+            <value>
+            The retry frequency.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.RetryFrequencyInt">
+            <summary>
+            Gets the retry frequency int.
+            </summary>
+            <value>
+            The retry frequency int.
+            </value>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.Dispose">
+            <summary>
+            Disposes of the Optimizer class.
+            Stops the callback service for events, if it is running.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.Dispose(System.Boolean)">
+            <summary>
+            Releases unmanaged and - optionally - managed resources.
+            </summary>
+            <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.HasAdapterLicense">
+            <summary>
+            Checks if an adapter license is available.
+            </summary>
+            <returns>True, if license is available.</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.Start(System.String,System.String,System.String)">
+            <summary>
+            Starts the optimizer for the given job and publishes events to the given endpoint
+            </summary>
+            <param name="fullpath">Full Identity Path of Job</param>
+            <param name="strEndpointAddress">Callback Endpoint address (optional). If this is not provided, please specify it either in the AppSettings (preferred) [e.g.: <add key="Asm.As.Oib.SiplacePro.Optimizer.Proxy.CallbackEndpointBase" value="net.tcp://sdd2188c:1406/Asm.As.Oib.SpiProxyAutomatedTest" />] or add a Service section</param>
+            <param name="strBinding">Binding name (not used)</param>
+            <exception cref="T:System.ServiceModel.ActionNotSupportedException">This proxy is incompatible to the OIB Adapter used. Please upgrade to the latest proxy version.</exception>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.BeginStart(System.String,System.String,System.String,System.AsyncCallback,System.Object)">
+            <summary>
+            Starts the optimizer asynchronously for the given job and publishes events to the given endpoint
+            </summary>
+            <param name="fullpath">Full Identity Path of Job</param>
+            <param name="strEndpointAddress">Callback Endpoint address (optional). If this is not provided, please specify it either in the AppSettings (preferred) [e.g.: <add key="Asm.As.Oib.SiplacePro.Optimizer.Proxy.CallbackEndpointBase" value="net.tcp://sdd2188c:1406/Asm.As.Oib.SpiProxyAutomatedTest" />] or add a Service section</param>
+            <param name="strBinding">Binding name (not used)</param>
+            <param name="callback">AsyncCallback reference</param>
+            <param name="state">State object</param>
+            <returns>
+            AsyncResult (can be used to call EndStart)
+            </returns>
+            <exception cref="T:System.ServiceModel.ActionNotSupportedException">This proxy is incompatible to the OIB Adapter used. Please upgrade to the latest proxy version.</exception>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.EndStart(System.IAsyncResult)">
+            <summary>
+            Blocks until the optimizer Start request has completed
+            </summary>
+            <param name="result">Async Result</param>
+            <exception cref="T:System.ApplicationException">Please call BeginStart() before!</exception>
+            <exception cref="T:System.ServiceModel.ActionNotSupportedException">This proxy is incompatible to the OIB Adapter used. Please upgrade to the latest proxy version.</exception>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.Start2(System.Int32,System.String,System.String)">
+            <summary>
+            Starts the optimizer for the given job and publishes events to the given endpoint
+            </summary>
+            <param name="nOID">OID of Job</param>
+            <param name="strEndpointAddress">Callback Endpoint address (optional). If this is not provided, please specify it either in the AppSettings (preferred) [e.g.: <add key="Asm.As.Oib.SiplacePro.Optimizer.Proxy.CallbackEndpointBase" value="net.tcp://sdd2188c:1406/Asm.As.Oib.SpiProxyAutomatedTest" />] or add a Service section</param>
+            <param name="strBinding">Binding name (not used)</param>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.Start2_Long(System.Int64,System.String,System.String)">
+            <summary>
+            Starts the optimizer for the given job and publishes events to the given endpoint
+            </summary>
+            <param name="nOID">OID of Job</param>
+            <param name="strEndpointAddress">Callback Endpoint address (optional). If this is not provided, please specify it either in the AppSettings (preferred) [e.g.: <add key="Asm.As.Oib.SiplacePro.Optimizer.Proxy.CallbackEndpointBase" value="net.tcp://sdd2188c:1406/Asm.As.Oib.SpiProxyAutomatedTest" />] or add a Service section</param>
+            <param name="strBinding">Binding name (not used)</param>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.BeginStart2(System.Int32,System.String,System.String,System.AsyncCallback,System.Object)">
+            <summary>
+            Starts the optimizer asynchronously for the given job and publishes events to the given endpoint
+            </summary>
+            <param name="nOID">OID of Job</param>
+            <param name="strEndpointAddress">Callback Endpoint address (optional). If this is not provided, please specify it either in the AppSettings (preferred) [e.g.: <add key="Asm.As.Oib.SiplacePro.Optimizer.Proxy.CallbackEndpointBase" value="net.tcp://sdd2188c:1406/Asm.As.Oib.SpiProxyAutomatedTest" />] or add a Service section</param>
+            <param name="strBinding">Binding name (not used)</param>
+            <param name="callback">AsyncCallback reference</param>
+            <param name="state">State object</param>
+            <returns>
+            AsyncResult (can be used to call EndStart2)
+            </returns>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.BeginStart2_Long(System.Int64,System.String,System.String,System.AsyncCallback,System.Object)">
+            <summary>
+            Starts the optimizer asynchronously for the given job and publishes events to the given endpoint
+            </summary>
+            <param name="nOID">OID of Job</param>
+            <param name="strEndpointAddress">Callback Endpoint address (optional). If this is not provided, please specify it either in the AppSettings (preferred) [e.g.: <add key="Asm.As.Oib.SiplacePro.Optimizer.Proxy.CallbackEndpointBase" value="net.tcp://sdd2188c:1406/Asm.As.Oib.SpiProxyAutomatedTest" />] or add a Service section</param>
+            <param name="strBinding">Binding name (not used)</param>
+            <param name="callback">AsyncCallback reference</param>
+            <param name="state">State object</param>
+            <returns>
+            AsyncResult (can be used to call EndStart2)
+            </returns>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.EndStart2(System.IAsyncResult)">
+            <summary>
+            Blocks until the optimizer Start request has completed
+            </summary>
+            <param name="result">Async Result</param>
+            <exception cref="T:System.ApplicationException">Please call BeginStart2() before!</exception>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.Stop">
+            <summary>
+            Stops the optimizer.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.Cancel">
+            <summary>
+            Cancels the optimizer.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.GetOptimizerMessages(System.String,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ObjectType)">
+            <summary>
+            Gets the optimizer messages. This enables the consumer to figure out,
+            which is the reason for a aborted optimizer run.
+            </summary>
+            <param name="ObjectName">Full SIPLACE Pro object path (including Folders).</param>
+            <param name="objectType">Object Type (can be either Recipe, Job or ClusterJob).</param>
+            <returns>
+            List of messages issued in the last integrity check run.
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.GetOptimizerMessages2(System.Int32,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ObjectType)">
+            <summary>
+            Gets the optimizer messages. This enables the consumer to figure out,
+            which is the reason for a aborted optimizer run.
+            </summary>
+            <param name="nOID">OID of object</param>
+            <param name="objectType">Object Type (can be either Recipe, Job or ClusterJob).</param>
+            <returns>
+            List of messages issued in the last integrity check run.
+            </returns>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.GetOptimizerMessages2_Long(System.Int64,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ObjectType)">
+            <summary>
+            Gets the optimizer messages. This enables the consumer to figure out,
+            which is the reason for a aborted optimizer run.
+            </summary>
+            <param name="nOID">OID of object</param>
+            <param name="objectType">Object Type (can be either Recipe, Job or ClusterJob).</param>
+            <returns>
+            List of messages issued in the last integrity check run.
+            </returns>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.GetOptimizerMessagesList(System.String,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ObjectType)">
+            <summary>
+            Gets the optimizer messages. This enables the consumer to figure out,
+            which is the reason for a aborted optimizer run.
+            </summary>
+            <param name="ObjectName">Full SIPLACE Pro object path (including Folders).</param>
+            <param name="objectType">Object Type (can be either Recipe, Job or ClusterJob).</param>
+            <returns>
+            List of messages issued in the last integrity check run.
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.GetOptimizerMessagesList2(System.Int32,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ObjectType)">
+            <summary>
+            Gets the optimizer messages. This enables the consumer to figure out,
+            which is the reason for a aborted optimizer run.
+            </summary>
+            <param name="nOID">OID of object</param>
+            <param name="objectType">Object Type (can be either Recipe, Job or ClusterJob).</param>
+            <returns>
+            List of messages issued in the last integrity check run.
+            </returns>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.GetOptimizerMessagesList2_Long(System.Int64,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ObjectType)">
+            <summary>
+            Gets the optimizer messages. This enables the consumer to figure out,
+            which is the reason for a aborted optimizer run.
+            </summary>
+            <param name="nOID">OID of object</param>
+            <param name="objectType">Object Type (can be either Recipe, Job or ClusterJob).</param>
+            <returns>
+            List of messages issued in the last integrity check run.
+            </returns>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.GetOptimizerMessagesArray(System.String,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ObjectType)">
+            <summary>
+            Gets the optimizer messages. This enables the consumer to figure out,
+            which is the reason for a aborted optimizer run.
+            </summary>
+            <param name="ObjectName">Full SIPLACE Pro object path (including Folders).</param>
+            <param name="objectType">Object Type (can be either Recipe, Job or ClusterJob).</param>
+            <returns>
+            Array of messages issued in the last integrity check run.
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.GetOptimizerMessagesArray2(System.Int32,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ObjectType)">
+            <summary>
+            Gets the optimizer messages. This enables the consumer to figure out,
+            which is the reason for a aborted optimizer run.
+            </summary>
+            <param name="nOID">OID of object</param>
+            <param name="objectType">Object Type (can be either Recipe, Job or ClusterJob).</param>
+            <returns>
+            Array of messages issued in the last integrity check run.
+            </returns>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.GetOptimizerMessagesArray2_Long(System.Int64,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ObjectType)">
+            <summary>
+            Gets the optimizer messages. This enables the consumer to figure out,
+            which is the reason for a aborted optimizer run.
+            </summary>
+            <param name="nOID">OID of object</param>
+            <param name="objectType">Object Type (can be either Recipe, Job or ClusterJob).</param>
+            <returns>
+            Array of messages issued in the last integrity check run.
+            </returns>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.GetOptimizerResultsForRecipe(System.String)">
+            <summary>
+            Returns the recipe analyzer results as object hierarchy.
+            This includes detailed timing information on head step basis in case
+            the service is running on SIPLACE Pro 5.2 or higher.
+            </summary>
+            <param name="ObjectName">Full SIPLACE Pro object path (including Folders).</param>
+            <returns>
+            RecipeDataRecipe containing all result details.
+            </returns>
+            <remarks>
+            This method requires a SIPLACE Pro Recipe Analyzer license.
+            </remarks>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.GetOptimizerResultsForRecipe2(System.Int32)">
+            <summary>
+            Returns the recipe analyzer results as object hierarchy.
+            This includes detailed timing information on head step basis in case
+            the service is running on SIPLACE Pro 5.2 or higher.
+            </summary>
+            <param name="nOID">OID of recipe</param>
+            <returns>
+            RecipeDataRecipe containing all result details.
+            </returns>
+            <remarks>
+            This method requires a SIPLACE Pro Recipe Analyzer license.
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.GetOptimizerResultsForRecipe2_Long(System.Int64)">
+            <summary>
+            Returns the recipe analyzer results as object hierarchy.
+            This includes detailed timing information on head step basis in case
+            the service is running on SIPLACE Pro 5.2 or higher.
+            </summary>
+            <param name="nOID">OID of recipe</param>
+            <returns>
+            RecipeDataRecipe containing all result details.
+            </returns>
+            <remarks>
+            This method requires a SIPLACE Pro Recipe Analyzer license.
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.CheckIntegrity(System.String,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.IntegrityCheckMode,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ICPlacePosReparMode,System.Collections.Generic.List{Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizerMessage}@,System.Int32@,System.Int32@,System.Int32@)">
+            <summary>
+            Checks the integrity of the given recipe
+            </summary>
+            <param name="recipeName">Full path of the recipe</param>
+            <param name="integrityCheckMode">Integrity Check mode</param>
+            <param name="repartMode">Repartitioning Mode</param>
+            <param name="OpimizerMessages">Optimizer Messages (will be returned)</param>
+            <param name="nErrorCount">Error Message Count of check</param>
+            <param name="nWarningCount">Warning Message Count of check</param>
+            <param name="nInfoCount">Info Message Count of check</param>
+            <returns>
+            True, if successful
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.CheckIntegrityList(System.String,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.IntegrityCheckMode,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ICPlacePosReparMode,System.Collections.IList@,System.Int32@,System.Int32@,System.Int32@)">
+            <summary>
+            Checks the integrity of the given recipe and returns an IList of Optimizer Messages
+            (Mainly for COM clients)
+            </summary>
+            <param name="recipeName">Full path of the recipe</param>
+            <param name="integrityCheckMode">Integrity Check mode</param>
+            <param name="repartMode">Repartitioning Mode</param>
+            <param name="OpimizerMessages">IList of Optimizer Messages (will be returned)</param>
+            <param name="nErrorCount">Error Message Count of check</param>
+            <param name="nWarningCount">Warning Message Count of check</param>
+            <param name="nInfoCount">Info Message Count of check</param>
+            <returns>
+            True, if successful
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.CheckIntegrityArray(System.String,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.IntegrityCheckMode,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ICPlacePosReparMode,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizerMessage[]@,System.Int32@,System.Int32@,System.Int32@)">
+            <summary>
+            Checks the integrity of the given recipe and returns an Array of Optimizer Messages
+            (Mainly for COM clients)
+            </summary>
+            <param name="recipeName">Full path of the recipe</param>
+            <param name="integrityCheckMode">Integrity Check mode</param>
+            <param name="repartMode">Repartitioning Mode</param>
+            <param name="OpimizerMessages">Array of Optimizer Messages (will be returned)</param>
+            <param name="nErrorCount">Error Message Count of check</param>
+            <param name="nWarningCount">Warning Message Count of check</param>
+            <param name="nInfoCount">Info Message Count of check</param>
+            <returns>
+            True, if successful
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.CheckIntegrity2(System.Int32,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.IntegrityCheckMode,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ICPlacePosReparMode,System.Collections.Generic.List{Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizerMessage}@,System.Int32@,System.Int32@,System.Int32@)">
+            <summary>
+            Checks the integrity of the given recipe
+            </summary>
+            <param name="recipeOID">OID of the recipe</param>
+            <param name="integrityCheckMode">Integrity Check mode</param>
+            <param name="repartMode">Repartitioning Mode</param>
+            <param name="OpimizerMessages">Optimizer Messages (will be returned)</param>
+            <param name="nErrorCount">Error Message Count of check</param>
+            <param name="nWarningCount">Warning Message Count of check</param>
+            <param name="nInfoCount">Info Message Count of check</param>
+            <returns>
+            True, if successful
+            </returns>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.CheckIntegrity2_Long(System.Int64,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.IntegrityCheckMode,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ICPlacePosReparMode,System.Collections.Generic.List{Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizerMessage}@,System.Int32@,System.Int32@,System.Int32@)">
+            <summary>
+            Checks the integrity of the given recipe
+            </summary>
+            <param name="recipeOID">OID of the recipe</param>
+            <param name="integrityCheckMode">Integrity Check mode</param>
+            <param name="repartMode">Repartitioning Mode</param>
+            <param name="OpimizerMessages">Optimizer Messages (will be returned)</param>
+            <param name="nErrorCount">Error Message Count of check</param>
+            <param name="nWarningCount">Warning Message Count of check</param>
+            <param name="nInfoCount">Info Message Count of check</param>
+            <returns>
+            True, if successful
+            </returns>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.CheckIntegrity2List(System.Int32,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.IntegrityCheckMode,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ICPlacePosReparMode,System.Collections.IList@,System.Int32@,System.Int32@,System.Int32@)">
+            <summary>
+            Checks the integrity of the given recipe and returns an IList of Optimizer Messages
+            (Mainly for COM clients)
+            </summary>
+            <param name="recipeOID">OID of the recipe</param>
+            <param name="integrityCheckMode">Integrity Check mode</param>
+            <param name="repartMode">Repartitioning Mode</param>
+            <param name="OpimizerMessages">Optimizer Messages (will be returned)</param>
+            <param name="nErrorCount">Error Message Count of check</param>
+            <param name="nWarningCount">Warning Message Count of check</param>
+            <param name="nInfoCount">Info Message Count of check</param>
+            <returns>
+            True, if successful
+            </returns>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.CheckIntegrity2List_Long(System.Int64,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.IntegrityCheckMode,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ICPlacePosReparMode,System.Collections.IList@,System.Int32@,System.Int32@,System.Int32@)">
+            <summary>
+            Checks the integrity of the given recipe and returns an IList of Optimizer Messages
+            (Mainly for COM clients)
+            </summary>
+            <param name="recipeOID">OID of the recipe</param>
+            <param name="integrityCheckMode">Integrity Check mode</param>
+            <param name="repartMode">Repartitioning Mode</param>
+            <param name="OpimizerMessages">Optimizer Messages (will be returned)</param>
+            <param name="nErrorCount">Error Message Count of check</param>
+            <param name="nWarningCount">Warning Message Count of check</param>
+            <param name="nInfoCount">Info Message Count of check</param>
+            <returns>
+            True, if successful
+            </returns>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.CheckIntegrity2Array(System.Int32,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.IntegrityCheckMode,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ICPlacePosReparMode,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizerMessage[]@,System.Int32@,System.Int32@,System.Int32@)">
+            <summary>
+            Checks the integrity of the given recipe and returns an Array of Optimizer Messages
+            (Mainly for COM clients)
+            </summary>
+            <param name="recipeOID">OID of the recipe</param>
+            <param name="integrityCheckMode">Integrity Check mode</param>
+            <param name="repartMode">Repartitioning Mode</param>
+            <param name="OpimizerMessages">Optimizer Messages (will be returned)</param>
+            <param name="nErrorCount">Error Message Count of check</param>
+            <param name="nWarningCount">Warning Message Count of check</param>
+            <param name="nInfoCount">Info Message Count of check</param>
+            <returns>
+            True, if successful
+            </returns>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.CheckIntegrity2Array_Long(System.Int64,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.IntegrityCheckMode,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ICPlacePosReparMode,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizerMessage[]@,System.Int32@,System.Int32@,System.Int32@)">
+            <summary>
+            Checks the integrity of the given recipe and returns an Array of Optimizer Messages
+            (Mainly for COM clients)
+            </summary>
+            <param name="recipeOID">OID of the recipe</param>
+            <param name="integrityCheckMode">Integrity Check mode</param>
+            <param name="repartMode">Repartitioning Mode</param>
+            <param name="OpimizerMessages">Optimizer Messages (will be returned)</param>
+            <param name="nErrorCount">Error Message Count of check</param>
+            <param name="nWarningCount">Warning Message Count of check</param>
+            <param name="nInfoCount">Info Message Count of check</param>
+            <returns>
+            True, if successful
+            </returns>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.DatabaseId">
+            <summary>
+            Gets the Unique Database Id for the SIPLACE Pro Database
+            Can be used to check if the client works on the same data
+            (e.g. when using different adapters such as Optimizer and SPI)
+            </summary>
+            <value>
+            The database identifier.
+            </value>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.StartExt(System.String,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizerRuntimeParameter,System.String,System.String)">
+            <summary>
+            Starts the optimizer for the given job and publishes events to the given endpoint
+            </summary>
+            <param name="fullpath">Full Identity Path of Job</param>
+            <param name="runtimeParam">Specify how the optimizer should run</param>
+            <param name="strEndpointAddress">Callback Endpoint address (optional). If this is not provided, please specify it either in the AppSettings (preferred) [e.g.: <add key="Asm.As.Oib.SiplacePro.Optimizer.Proxy.CallbackEndpointBase" value="net.tcp://sdd2188c:1406/Asm.As.Oib.SpiProxyAutomatedTest" />] or add a Service section</param>
+            <param name="strBinding">Binding name (not used)</param>
+            <exception cref="T:System.ServiceModel.ActionNotSupportedException">This proxy is incompatible to the OIB Adapter used. Please upgrade to the latest proxy version.</exception>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.BeginStartExt(System.String,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizerRuntimeParameter,System.String,System.String,System.AsyncCallback,System.Object)">
+            <summary>
+            Starts the optimizer asynchronously for the given job and publishes events to the given endpoint
+            </summary>
+            <param name="fullpath">Full Identity Path of Job</param>
+            <param name="runtimeParam">Specify how the optimizer should run</param>
+            <param name="strEndpointAddress">Callback Endpoint address (optional). If this is not provided, please specify it either in the AppSettings (preferred) [e.g.: <add key="Asm.As.Oib.SiplacePro.Optimizer.Proxy.CallbackEndpointBase" value="net.tcp://sdd2188c:1406/Asm.As.Oib.SpiProxyAutomatedTest" />] or add a Service section</param>
+            <param name="strBinding">Binding name (not used)</param>
+            <param name="callback">AsyncCallback reference</param>
+            <param name="state">State object</param>
+            <returns>
+            AsyncResult (can be used to call EndStartExt)
+            </returns>
+            <exception cref="T:System.ServiceModel.ActionNotSupportedException">This proxy is incompatible to the OIB Adapter used. Please upgrade to the latest proxy version.</exception>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.EndStartExt(System.IAsyncResult)">
+            <summary>
+            Blocks until the optimizer StartExt request has completed
+            </summary>
+            <param name="result">Async Result</param>
+            <exception cref="T:System.ApplicationException">Please call BeginStartExt() before!</exception>
+            <exception cref="T:System.ServiceModel.ActionNotSupportedException">This proxy is incompatible to the OIB Adapter used. Please upgrade to the latest proxy version.</exception>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.StartExt2(System.Int32,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizerRuntimeParameter,System.String,System.String)">
+            <summary>
+            Starts the optimizer for the given job and publishes events to the given endpoint
+            </summary>
+            <param name="nOID">OID of the Job</param>
+            <param name="runtimeParam">Specify how the optimizer should run</param>
+            <param name="strEndpointAddress">Callback Endpoint address (optional). If this is not provided, please specify it either in the AppSettings (preferred) [e.g.: <add key="Asm.As.Oib.SiplacePro.Optimizer.Proxy.CallbackEndpointBase" value="net.tcp://sdd2188c:1406/Asm.As.Oib.SpiProxyAutomatedTest" />] or add a Service section</param>
+            <param name="strBinding">Binding name (not used)</param>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.StartExt2_Long(System.Int64,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizerRuntimeParameter,System.String,System.String)">
+            <summary>
+            Starts the optimizer for the given job and publishes events to the given endpoint
+            </summary>
+            <param name="nOID">OID of the Job</param>
+            <param name="runtimeParam">Specify how the optimizer should run</param>
+            <param name="strEndpointAddress">Callback Endpoint address (optional). If this is not provided, please specify it either in the AppSettings (preferred) [e.g.: <add key="Asm.As.Oib.SiplacePro.Optimizer.Proxy.CallbackEndpointBase" value="net.tcp://sdd2188c:1406/Asm.As.Oib.SpiProxyAutomatedTest" />] or add a Service section</param>
+            <param name="strBinding">Binding name (not used)</param>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.BeginStartExt2(System.Int32,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizerRuntimeParameter,System.String,System.String,System.AsyncCallback,System.Object)">
+            <summary>
+            Starts the optimizer asynchronously for the given job and publishes events to the given endpoint
+            </summary>
+            <param name="nOID">OID of the Job</param>
+            <param name="runtimeParam">Specify how the optimizer should run</param>
+            <param name="strEndpointAddress">Callback Endpoint address (optional). If this is not provided, please specify it either in the AppSettings (preferred) [e.g.: <add key="Asm.As.Oib.SiplacePro.Optimizer.Proxy.CallbackEndpointBase" value="net.tcp://sdd2188c:1406/Asm.As.Oib.SpiProxyAutomatedTest" />] or add a Service section</param>
+            <param name="strBinding">Binding name (not used)</param>
+            <param name="callback">AsyncCallback reference</param>
+            <param name="state">State object</param>
+            <returns>
+            AsyncResult (can be used to call EndStartExt2)
+            </returns>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.BeginStartExt2_Long(System.Int64,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizerRuntimeParameter,System.String,System.String,System.AsyncCallback,System.Object)">
+            <summary>
+            Starts the optimizer asynchronously for the given job and publishes events to the given endpoint
+            </summary>
+            <param name="nOID">OID of the Job</param>
+            <param name="runtimeParam">Specify how the optimizer should run</param>
+            <param name="strEndpointAddress">Callback Endpoint address (optional). If this is not provided, please specify it either in the AppSettings (preferred) [e.g.: <add key="Asm.As.Oib.SiplacePro.Optimizer.Proxy.CallbackEndpointBase" value="net.tcp://sdd2188c:1406/Asm.As.Oib.SpiProxyAutomatedTest" />] or add a Service section</param>
+            <param name="strBinding">Binding name (not used)</param>
+            <param name="callback">AsyncCallback reference</param>
+            <param name="state">State object</param>
+            <returns>
+            AsyncResult (can be used to call EndStartExt2)
+            </returns>
+            <remarks>
+            This method might block for a while if you pass in a non-existing OID.
+            The default amount of time is 2 minutes. This can be configured in the service's
+            application configuration file (SIPLACE Pro configuration section - siplaceProMsmqWait value * 5 seconds).
+            The value is the retry count that the service retries to get the given OID.
+            </remarks>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.EndStartExt2(System.IAsyncResult)">
+            <summary>
+            Blocks until the optimizer StartExt2 request has completed
+            </summary>
+            <param name="result">Async Result</param>
+            <exception cref="T:System.ApplicationException">Please call BeginStartExt2() before!</exception>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.ProductVersion">
+            <summary>
+            Gets the Product Version of SIPLACE Pro
+            </summary>
+            <value>
+            The product version.
+            </value>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.GetConfiguration(System.String,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ObjectType)">
+            <summary>
+            Gets the optimizer parameters for the given object
+            </summary>
+            <param name="fullpath">Full SIPLACE Pro object path (including Folders)</param>
+            <param name="type">Object Type (ClusterJob or Job)</param>
+            <returns>
+            All optimization parameters
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.SaveConfiguration(Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizationParameters,System.String,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ObjectType)">
+            <summary>
+            Stores the optimizer parameters for the given object
+            </summary>
+            <param name="parameters">All optimization parameters</param>
+            <param name="fullpath">Full SIPLACE Pro object path (including Folders)</param>
+            <param name="type">Object Type (ClusterJob or Job)</param>
+            <returns>
+            True, if successful
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.GetConfiguration2(System.Int32,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ObjectType)">
+            <summary>
+            Gets the optimizer parameters for the given object
+            </summary>
+            <param name="nOID">OID of object</param>
+            <param name="type">Object Type (ClusterJob or Job)</param>
+            <returns>
+            All optimization parameters
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.GetConfiguration2_Long(System.Int64,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ObjectType)">
+            <summary>
+            Gets the optimizer parameters for the given object
+            </summary>
+            <param name="nOID">OID of object</param>
+            <param name="type">Object Type (ClusterJob or Job)</param>
+            <returns>
+            All optimization parameters
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.SaveConfiguration2(Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizationParameters,System.Int32,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ObjectType)">
+            <summary>
+            Stores the optimizer parameters for the given object
+            </summary>
+            <param name="parameters">All optimization parameters</param>
+            <param name="nOID">OID of object</param>
+            <param name="type">Object Type (ClusterJob or Job)</param>
+            <returns>
+            True, if successful
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.SaveConfiguration2_Long(Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizationParameters,System.Int64,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ObjectType)">
+            <summary>
+            Stores the optimizer parameters for the given object
+            </summary>
+            <param name="parameters">All optimization parameters</param>
+            <param name="nOID">OID of object</param>
+            <param name="type">Object Type (ClusterJob or Job)</param>
+            <returns>
+            True, if successful
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.LogonUser(System.String,System.String,System.Boolean)">
+            <summary>
+            This will take a User ID and password as input and attempt to log and set CurrentUser in case bJustCheckPassword is set to false.
+            In case bJustCheckPassword is set to true, only the password for the given User will be checked.
+            </summary>
+            <param name="bstrUserID">The userid of the user to logon.</param>
+            <param name="bstrPassword">The password of the user trying to logon.</param>
+            <param name="bJustCheckPassword">A flag indicating if the system should just verify the password.</param>
+            <returns>
+            See Summary for details. This method will return a type bool with default value of false
+            </returns>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.CurrentUser">
+            <summary>
+            The user who is currently logged in to the system.  The system runs under the privileges granted to the group that the user belongs to.
+            </summary>
+            <value>
+            The current user.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.MaxOIDInfo">
+            <summary>
+            The user who is currently logged in to the system.  The system runs under the privileges granted to the group that the user belongs to.
+            </summary>
+            <value>
+            The current user.
+            </value>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.GetServiceState">
+            <summary>
+            Gets the current state of the Optimizer Service
+            </summary>
+            <returns>
+            Service State
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.GetAdapterTimeZone">
+            <summary>
+            Gets the TimeZoneInfo for the adapter computer
+            Used when converting DateTime objects on the proxy from adapter time to
+            Proxy local time.
+            </summary>
+            <returns>
+            Serialized TimeZoneInfo of adapter
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.CheckBindingParameters">
+            <summary>
+            Checks the binding parameters.
+            </summary>
+            <exception cref="T:System.Exception">
+            Please specify a ReceiveTimeout of minimum 1 hour, ideally specify TimeSpan.MaxValue.
+            or
+            OIB Optimizer Service needs an unreliable NetTcpBinding binding to be configured!
+            </exception>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.StartCheckAliveTimer">
+            <summary>
+            Starts the check alive timer.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.TimerCheckAliveOnElapsed(System.Object,System.Timers.ElapsedEventArgs)">
+            <summary>
+            Handles the OnElapsed event of the timerCheckAlive control.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">The <see cref="T:System.Timers.ElapsedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.GetProxy">
+            <summary>
+            Gets the proxy.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.GetProxy(System.Boolean)">
+            <summary>
+            Gets the proxy.
+            </summary>
+            <param name="bRecreateProxy">if set to <c>true</c> [b recreate proxy].</param>
+            <returns></returns>
+            <exception cref="T:System.Configuration.ConfigurationErrorsException">Cannot create Optimizer proxy. Please configure the proxy either by editing the application configuration file or programmatically by calling the Configure() methods!</exception>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.GetProxyCheckAlive">
+            <summary>
+            Gets the proxy check alive.
+            </summary>
+            <returns></returns>
+            <exception cref="T:System.Configuration.ConfigurationErrorsException">Cannot create Optimizer Check Alive proxy. Please configure the proxy either by editing the application configuration file or programmatically by calling the Configure() methods!</exception>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.InitializeCallbackService(System.String,System.String@)">
+            <summary>
+            Initializes the callback service.
+            </summary>
+            <param name="strEndpointAddress">Callback Endpoint address (optional). If this is not provided, please specify it either in the AppSettings (preferred) [e.g.: <add key="Asm.As.Oib.SiplacePro.Optimizer.Proxy.CallbackEndpointBase" value="net.tcp://sdd2188c:1406/Asm.As.Oib.SpiProxyAutomatedTest" />] or add a Service section</param>
+            <param name="certificateName">Name of the certificate.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.ReleaseProxy">
+            <summary>
+            Releases the proxy.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.CheckDisposed">
+            <summary>
+            Checks the disposed.
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">Optimizer</exception>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.FireOptimizationCompleteEvent(Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.Events.OptCompleteArgs)">
+            <summary>
+            Fires the optimization complete event.
+            </summary>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.FireProgressEvent(Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.Events.OptProgressArgs)">
+            <summary>
+            Fires the progress event.
+            </summary>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.FireResultEvent(Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.Events.OptResultArgs)">
+            <summary>
+            Fires the result event.
+            </summary>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.FireStateEvent(Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.Events.OptStateArgs)">
+            <summary>
+            Fires the state event.
+            </summary>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.FireServiceUnreachableEvent(System.String)">
+            <summary>
+            Fires the service unreachable event.
+            </summary>
+            <param name="strComment">The string comment.</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.FireServiceReconnectEvent(System.String)">
+            <summary>
+            Fires the service reconnect event.
+            </summary>
+            <param name="strComment">The string comment.</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.Configure(System.String,System.String)">
+            <summary>
+            For COM clients who need to be able to configure the endpoint dynamically
+            </summary>
+            <param name="strEndpoint">Endpoint address</param>
+            <param name="strBinding">Binding name (not used)</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.Configure(System.String)">
+            <summary>
+            For COM clients who need to be able to configure the endpoint dynamically
+            </summary>
+            <param name="strEndpoinConfigurationName">Endpoint configuration Name</param>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.EndpointAddress">
+            <summary>
+            Configured Endpoint Address
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.LoadSpotx(System.String,System.Boolean)">
+            <summary>
+            Loads the spotx.
+            </summary>
+            <param name="mLJName">Name of the MLJ file.</param>
+            <param name="withReferencedObjects">if set to <c>true</c> [with referenced objects].</param>
+            <returns></returns>
+            <exception cref="T:System.ServiceModel.ActionNotSupportedException">This proxy is incompatible to the OIB Adapter used. Please upgrade to the latest proxy version.</exception>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.Optimizer.SaveSpotx(System.Byte[],System.Byte[]@)">
+            <summary>
+            Saves the spotx.
+            </summary>
+            <param name="spotxContent">Content of the spotx.</param>
+            <param name="updatedContent">Content of the updated.</param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentNullException">spotxContent</exception>
+            <exception cref="T:System.ServiceModel.ActionNotSupportedException">This proxy is incompatible to the OIB Adapter used. Please upgrade to the latest proxy version.</exception>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.OptimizerStartedEvent">
+            <summary>
+            Event that is fired when a client starts an optimization
+            </summary>
+            <param name="strServiceComputer">Computer Name of the Optimizer Service</param>
+            <param name="strClientEndpoint">Client endpoint</param>
+            <param name="strJobName">Name of job/ cluster job that is optimized</param>
+            <param name="bClusterJob">True, if cluster optimization; false, if normal optimization</param>
+            <param name="utcDate">UTC DateTime when event was fired</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.OptimizerStoppedEvent">
+            <summary>
+            Event that is fired when an optimization stops
+            </summary>
+            <param name="strServiceComputer">Computer Name of the Optimizer Service</param>
+            <param name="strClientEndpoint">Client endpoint</param>
+            <param name="strJobName">Name of job/ cluster job that is optimized</param>
+            <param name="bClusterJob">True, if cluster optimization; false, if normal optimization</param>
+            <param name="utcDate">UTC DateTime when event was fired</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.OptimizerServicesStateListener">
+            <summary>
+            Helper class to receive Optimizer started/ stopped events
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.OptimizerServicesStateListener.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.OptimizerServicesStateListener"/> class.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.OptimizerServicesStateListener.Finalize">
+            <summary>
+            Finalizer, will stop the listener
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.OptimizerServicesStateListener.SubscriptionManagerEndpoint">
+            <summary>
+            Subscription Manager Endpoint
+            Set this when using the OptimizerServicesStateListener without app.config file
+            Examples:
+            http://computername:1405/Asm.As.Oib.WS.Eventing.Services/SubscriptionManager
+            net.tcp://localhost:1406/Asm.As.Oib.WS.Eventing.Services/SubscriptionManager
+            net.msmq://localhost/private/Asm.As.Oib.WS.Eventing.Services
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.OptimizerServicesStateListener.SubscriptionTimeout">
+            <summary>
+            Gets or sets the subscription timeout.
+            This class will use this value for creating and renewing subscriptions
+            Default is one day
+            </summary>
+            <value>
+            The subscription timeout.
+            </value>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.OptimizerServicesStateListener.Dispose">
+            <summary>
+            Stops the listener
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.OptimizerServicesStateListener.StartListener">
+            <summary>
+            To start receiving events, call this method.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.OptimizerServicesStateListener.StartListener(System.String)">
+            <summary>
+            To start receiving events, call this method.
+            </summary>
+            <param name="strEndpoint">The STR endpoint.</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.OptimizerServicesStateListener.StartListener(System.String,Asm.As.Oib.Common.Utilities.ServiceSecurityParameters)">
+            <summary>
+            To start receiving events, call this method.
+            </summary>
+            <param name="strEndpoint">The STR endpoint.</param>
+            <param name="parameters">The service security parameters in case the callback should be secure</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.OptimizerServicesStateListener.StopListener">
+            <summary>
+            To stop receiving events, call this method.
+            </summary>
+        </member>
+        <member name="E:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.OptimizerServicesStateListener.OptimizationStarted">
+            <summary>
+            Fired when an optimization is started
+            </summary>
+        </member>
+        <member name="E:Asm.As.Oib.SiplacePro.Optimizer.Proxy.Business.Objects.OptimizerServicesStateListener.OptimizationStopped">
+            <summary>
+            Fired when an optimization is completed
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Proxy.ProxyEndpointHelper.ClientCertificateValue">
+            <summary>
+            Something like "CN=ASM.SW.Client"
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Proxy.ProxyEndpointHelper.ClientCertificateCommonName">
+            <summary>
+            Something like "ASM.SW.Client"
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Proxy.ProxyEndpointHelper.ClientCertificateStoreLocation">
+            <summary>
+            StoreLocation.LocalMachine or StoreLocation.CurrentUser
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Proxy.ProxyEndpointHelper.ClientCertificateX509FindType">
+            <summary>
+            One of the X509FindType enum values (e.g. X509FindType.FindBySubjectDistinguishedName). The CallbackCertificateValue must match 
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Proxy.ProxyEndpointHelper.ClientCertificateStoreName">
+            <summary>
+            StoreName (typically StoreName.My)
+            </summary>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Proxy.ProxyInstaller">
+            <summary>
+            Installer class that can be used by 3rd party applications installers
+            Will add/set registry entries for tcp ports.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.ProxyInstaller.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Proxy.ProxyInstaller.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.ProxyInstaller.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Proxy.ProxyInstaller.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,618 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ASM.AS.OIB.ServiceLocator.Contracts</name>
+    </assembly>
+    <members>
+        <member name="T:Asm.As.Oib.ServiceLocator.Contracts.Constants">
+            <summary>
+            Constants name space definitions for this service.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ServiceLocator.Contracts.Constants.NamespaceUriData">
+            <summary>
+            URI name space for this data contracts in this service
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ServiceLocator.Contracts.Constants.NamespaceUriService">
+            <summary>
+            URI name space for this service contracts of this service.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ServiceLocator.Contracts.Constants.NamespaceUriMessage">
+            <summary>
+            URI name space for this service contracts of this service.
+            </summary>
+        </member>
+        <member name="T:Asm.As.Oib.ServiceLocator.Contracts.Data.ServiceDescription">
+            <summary>
+            This is the description object for the service.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.ServiceLocator.Contracts.Data.ServiceDescription._id">
+            <summary>
+            The identifier
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.ServiceLocator.Contracts.Data.ServiceDescription.ServiceName">
+            <summary>
+            The name of the Service
+            </summary>
+            <value>
+            The name of the service.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.ServiceLocator.Contracts.Data.ServiceDescription.ServiceVersion">
+            <summary>
+            The version of the service instance.
+            </summary>
+            <value>
+            The service version.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.ServiceLocator.Contracts.Data.ServiceDescription.Product">
+            <summary>
+            The Product that the service is exposing. i.e. SIPLACEPro V4.1
+            </summary>
+            <value>
+            The product.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.ServiceLocator.Contracts.Data.ServiceDescription.Description">
+            <summary>
+            A description of the service.
+            </summary>
+            <value>
+            The description.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.ServiceLocator.Contracts.Data.ServiceDescription.Grouped">
+            <summary>
+            This indicates whether the service locator should aggregate the endpoints when another endpoint
+            has been registered for a service with the same name and version on a host.  If false the endpoint
+            will replace any existing endpoints that are registered.
+            </summary>
+            <value>
+            <c>true</c> if grouped; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.ServiceLocator.Contracts.Data.ServiceDescription.MetadataEndpoints">
+            <summary>
+            A list of endpoint that are provided by the service.
+            </summary>
+            <value>
+            The metadata endpoints.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.ServiceLocator.Contracts.Data.ServiceDescription.Configurations">
+            <summary>
+            A list of object from the Configuration Manager that this service is configured for.
+            This list is just for compatibility with older clients. Please use Configuration instead. The object model will only
+            support ONE configuration.
+            </summary>
+            <value>
+            The configurations.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.ServiceLocator.Contracts.Data.ServiceDescription.ID">
+            <summary>
+            The unique id of this ServiceDescription object.
+            </summary>
+            <value>
+            The identifier.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.ServiceLocator.Contracts.Data.ServiceDescription.Version">
+            <summary>
+            The version of this service description object.
+            </summary>
+            <value>
+            The version.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.ServiceLocator.Contracts.Data.ServiceDescription.EquipmentConnectorEndpoint">
+            <summary>
+            If the service implements IEquipmentConnector, this is the endpoint address.
+            </summary>
+            <value>
+            The equipment connector endpoint.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.ServiceLocator.Contracts.Data.ServiceDescription.Configuration">
+            <summary>
+            The Configuration Manager object that this service is configured for.
+            </summary>
+            <value>
+            The configuration.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.ServiceLocator.Contracts.Data.ServiceDescription.FactoryElementId">
+            <summary>
+            The Id of the Configuration Manager object that this service is configured for.
+            </summary>
+            <value>
+            The factory element identifier.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.ServiceLocator.Contracts.Data.ServiceDescription.OIBInternalService">
+            <summary>
+            Indicates if this service is an OIB internal service (such as Configuration Manager, etc.)
+            </summary>
+            <value>
+            <c>true</c> if [oib internal service]; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.ServiceLocator.Contracts.Data.ServiceDescription.GlobalService">
+            <summary>
+            Indicates that this service is a global service i.e. it makes no sense to configure it for a Factory Element
+            </summary>
+            <value>
+            <c>true</c> if [global service]; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.ServiceLocator.Contracts.Data.ServiceDescription.HealthCheckEndpoint">
+            <summary>
+            The MEX HealthCheck endpoint for this service
+            </summary>
+            <value>
+            The health check MEX endpoint.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.ServiceLocator.Contracts.Data.ServiceDescription.OrderIndex">
+            <summary>
+            The order index of this service
+            </summary>
+            <value>
+            The index of the order.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.ServiceLocator.Contracts.Data.ServiceDescription.DeactivateHealthCheck">
+            <summary>
+            Indicates if health check is disabled for this service.
+            </summary>
+            <value>
+            Indicates if health check is disabled for this service.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.ServiceLocator.Contracts.Data.ServiceDescription.BaseUri">
+            <summary>
+            The base Uri of the REST interface that is provided by the service.
+            </summary>
+            <value>
+            The base Uri of the REST interface.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.ServiceLocator.Contracts.Data.ServiceDescription.ComputerName">
+            <summary>
+            Gets the computer name of where the Service is.
+            Is dynamically retrieved from the mex endpoints or (if no mex endpoints exist) from the health check endpoint
+            If neither exist, then it is dynamically retrieved from the REST endpoints
+            If none of the above options are found then "Unknown" is returned.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.ServiceLocator.Contracts.Data.ServiceDescription.ToShortString">
+            <summary>
+            Returns a short string representation of the ServiceDescription
+            </summary>
+            <returns>A short string representation of the ServiceDescription</returns>
+        </member>
+        <member name="M:Asm.As.Oib.ServiceLocator.Contracts.Data.ServiceDescription.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.ServiceLocator.Contracts.Data.ServiceDescription.Equals(System.Object)">
+            <summary>
+            Determines whether the specified <see cref="T:System.Object" />, is equal to this instance.
+            </summary>
+            <param name="obj">The <see cref="T:System.Object" /> to compare with this instance.</param>
+            <returns>
+            <c>true</c> if the specified <see cref="T:System.Object" /> is equal to this instance; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.ServiceLocator.Contracts.Data.ServiceDescription.GetHashCode">
+            <summary>
+            Serves as a hash function for a particular type.
+            </summary>
+            <returns>
+            A hash code for the current <see cref="T:System.Object" />.
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.ServiceLocator.Contracts.Data.ServiceDescription.op_Equality(Asm.As.Oib.ServiceLocator.Contracts.Data.ServiceDescription,Asm.As.Oib.ServiceLocator.Contracts.Data.ServiceDescription)">
+            <summary>
+            Implements the operator ==.
+            </summary>
+            <param name="left">The left.</param>
+            <param name="right">The right.</param>
+            <returns>
+            The result of the operator.
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.ServiceLocator.Contracts.Data.ServiceDescription.op_Inequality(Asm.As.Oib.ServiceLocator.Contracts.Data.ServiceDescription,Asm.As.Oib.ServiceLocator.Contracts.Data.ServiceDescription)">
+            <summary>
+            Implements the operator !=.
+            </summary>
+            <param name="left">The left.</param>
+            <param name="right">The right.</param>
+            <returns>
+            The result of the operator.
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.ServiceLocator.Contracts.Data.ServiceDescription.Equals(Asm.As.Oib.ServiceLocator.Contracts.Data.ServiceDescription)">
+            <summary>
+            Indicates whether the current object is equal to another object of the same type.
+            Compares the ServiceName, ServiceVersion, Product, Grouped and ComputerName of Mex Endpoints
+            </summary>
+            <param name="desc">An object to compare with this object.</param>
+            <returns>
+            true if the current object is equal to the other parameter; otherwise, false.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.ServiceLocator.Contracts.Data.ServiceMatchCriteria">
+            <summary>
+            This class is used to pass criteria to the ServiceLocator that will be used to search for registered instances of services.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.ServiceLocator.Contracts.Data.ServiceMatchCriteria.ServiceName">
+            <summary>
+            The name of the service to search for.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.ServiceLocator.Contracts.Data.ServiceMatchCriteria.CheckServiceName">
+            <summary>
+            This property tells the Service Locator to use the ServiceName property in its search.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.ServiceLocator.Contracts.Data.ServiceMatchCriteria.ServiceVersion">
+            <summary>
+            The version of the service to search for.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.ServiceLocator.Contracts.Data.ServiceMatchCriteria.CheckServiceVersion">
+            <summary>
+            This property tells the Service Locator to use the ServiceVersion property in its search.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.ServiceLocator.Contracts.Data.ServiceMatchCriteria.Product">
+            <summary>
+            This is the name of the product that the service exposes.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.ServiceLocator.Contracts.Data.ServiceMatchCriteria.CheckProduct">
+            <summary>
+            This property tells the Service Locator to use the Product property in its search.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.ServiceLocator.Contracts.Data.ServiceMatchCriteria.Grouped">
+            <summary>
+            This value indicates the there are several services and endpoints group under one service name.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.ServiceLocator.Contracts.Data.ServiceMatchCriteria.CheckGrouped">
+            <summary>
+            This property tells the Service Locator to use the Grouped property in its search.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.ServiceLocator.Contracts.Data.ServiceMatchCriteria.Endpoint">
+            <summary>
+            If this is set, only services will be returned where one of the 
+            MexEndpoints match exactly the specified endpoint provided here (case invariant comparison is done).
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.ServiceLocator.Contracts.Data.ServiceMatchCriteria.CheckEndpoint">
+            <summary>
+            This property tells the Service Locator to use the Mex Endpoint property in its search.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.ServiceLocator.Contracts.Data.ServiceMatchCriteria.RESTEndpoint">
+            <summary>
+            If this is set, only services will be returned where one of the 
+            REST endpoints match exactly the specified REST endpoint provided here (case invariant comparison is done).
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.ServiceLocator.Contracts.Data.ServiceMatchCriteria.CheckRESTEndpoint">
+            <summary>
+            This property tells the Service Locator to use the REST Endpoint property in its search.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.ServiceLocator.Contracts.Data.ServiceMatchCriteria.SIPLACEProPath">
+            <summary>
+            The custom property which must be set on the ISA 95 object to identify the SIPLACE Pro object via the path string.
+            <remarks>
+            The SiplaceObjectType and the SIPLACEProPath must be set together to identify the object.
+            </remarks>
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.ServiceLocator.Contracts.Data.ServiceMatchCriteria.CheckSIPLACEProPath">
+            <summary>
+            This property tells the Service Locator to use the SIPLACE Pro Path properties for a search of the ISA 95 object first.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.ServiceLocator.Contracts.Data.ServiceMatchCriteria.SIPLACEProObjectType">
+            <summary>
+            The custom property which must be set on the ISA 95 object to identify the SIPLACE Pro object type via the string.
+            Currently 'Line', 'Station', 'Printer' and 'GenericLineDevice' are supported.
+            <remarks>
+            The SIPLACEProObjectType and the SIPLACEProPath must be set together to identify the object.
+            Setting the SIPLACEProDBId is optional.
+            </remarks>
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.ServiceLocator.Contracts.Data.ServiceMatchCriteria.SIPLACEProOID">
+            <summary>
+            The custom property which must be set on the ISA 95 object to identify the SIPLACE Pro object via the object id.
+            <remarks>
+            The SIPLACEProOID_Long and the SIPLACEProDBId must be set together to identify the object.
+            If only one database is used in a factory, the SIPLACEProDBId is optional!
+            </remarks>
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.ServiceLocator.Contracts.Data.ServiceMatchCriteria.SIPLACEProDBId">
+            <summary>
+            The custom property which must be set on the ISA 95 object to identify the SIPLACE Pro database via the database guid.
+            <remarks>
+            The SIPLACEProOID_Long and the SIPLACEProDBId must be set together to identify the object.
+            If only one database is used in a factory, the SIPLACEProDBId is optional!
+            </remarks>
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.ServiceLocator.Contracts.Data.ServiceMatchCriteria.CheckSIPLACEProOID">
+            <summary>
+            This property tells the ServiceLocator to use the SIPLACE Pro object id properties for a search of the ISA 95 object first.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.ServiceLocator.Contracts.Data.ServiceMatchCriteria.CustomProperties">
+            <summary>
+            The Dictionary can contain a list of name value pairs which describe the properties which must match the 
+            ISA95 model 
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.ServiceLocator.Contracts.Data.ServiceMatchCriteria.CheckCustomProperties">
+            <summary>
+            This property tells the ServiceLocator to use the custom properties for a search of the ISA 95 object first.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.ServiceLocator.Contracts.Data.ServiceMatchCriteria.DoNotReturnDefaultServices">
+            <summary>
+            Gets or sets a value indicating whether the FindServices method should return services which are not assigned to an ISA95 object.
+            So in case custom properties or SIPLACE Pro details are provided and no assigned service is found, the following logic is true:<br/>
+            In case DoNotReturnDefaultServices is true, an empty collection is returned, otherwise a list of all Services that match the rest of the 
+            SearchCriteria (ServiceName, ServiceVersion, Product, Grouped, Endpoint) by filtering for un-configured services is returned.
+            </summary>
+            <value>
+            <c>true</c> if [do not return default services]; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.ServiceLocator.Contracts.Data.ServiceMatchCriteria.ConfigurationToStartWithSearching">
+            <summary>
+            Gets or sets the configuration (OID of Factory Layout Element - Isa95Object) to start with searching.
+            </summary>
+            <value>
+            The configuration to start with searching.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.ServiceLocator.Contracts.Data.ServiceMatchCriteria.SearchForEndpointSubstring">
+            <summary>
+            If this is set to true and the Mex Endpoint property is set as well, the following logic is applied:
+            Only services will be returned where one of the MexEndpoints contain the Endpoint provided as sub-string (case invariant comparison is done).
+            /// </summary>
+        </member>
+        <member name="P:Asm.As.Oib.ServiceLocator.Contracts.Data.ServiceMatchCriteria.SearchForRESTEndpointSubstring">
+            <summary>
+            If this is set to true and the RESTEndpoint property is set as well, the following logic is applied:
+            Only services will be returned where one of the RESTEndpoints contain the Endpoint provided as sub-string (case invariant comparison is done).
+            /// </summary>
+        </member>
+        <member name="P:Asm.As.Oib.ServiceLocator.Contracts.Data.ServiceMatchCriteria.SIPLACEProOID_Long">
+            <summary>
+            The custom property which must be set on the ISA 95 object to identify the SIPLACE Pro object via the object id.
+            <remarks>
+            The SIPLACEProOID_Long and the SIPLACEProDBId must be set together to identify the object.
+            If only one database is used in a factory, the SIPLACEProDBId is optional!
+            </remarks>
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.ServiceLocator.Contracts.Data.ServiceMatchCriteria.HealthCheckEndpoint">
+            <summary>
+            If this is set, only services will be returned where the Health Check Endpoint matches exactly the
+            specified endpoint provided here (case invariant comparison is done).
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.ServiceLocator.Contracts.Data.ServiceMatchCriteria.SearchForHealthCheckEndpointSubstring">
+            <summary>
+            If this is set to true and the HealthCheckEndpoint property is set as well, the following logic is applied:
+            Only services will be returned where one of the HealthCheckEndpoint contains the Endpoint provided as sub-string (case invariant comparison is done).
+            /// </summary>
+        </member>
+        <member name="P:Asm.As.Oib.ServiceLocator.Contracts.Data.ServiceMatchCriteria.CheckHealthCheckEndpoint">
+            <summary>
+            This property tells the Service Locator to use the Endpoint property in its search.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.ServiceLocator.Contracts.Data.ServiceMatchCriteria.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.ServiceLocator.Contracts.Faults.ServiceLocatorFault">
+            <summary>
+            Only fault class that will be thrown by ServiceLocator service.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.ServiceLocator.Contracts.Faults.ServiceLocatorFault.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.ServiceLocator.Contracts.Faults.ServiceLocatorFault" /> class.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.ServiceLocator.Contracts.Faults.ServiceLocatorFault.#ctor(System.Int32,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.ServiceLocator.Contracts.Faults.ServiceLocatorFault" /> class.
+            </summary>
+            <param name="errorCode">The error code.</param>
+            <param name="strExtendedMessage">The STR extended message.</param>
+        </member>
+        <member name="P:Asm.As.Oib.ServiceLocator.Contracts.Faults.ServiceLocatorFault.ErrorCode">
+            <summary>
+            The error to be used, when an system error or business error occurred.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Asm.As.Oib.ServiceLocator.Contracts.Faults.ServiceLocatorFault.ExtendedMessage">
+            <summary>
+            This is a error message in a human readable form.
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:Asm.As.Oib.ServiceLocator.Contracts.Faults.ServiceLocatorFault.ToString">
+            <inheritdoc />
+        </member>
+        <member name="T:Asm.As.Oib.ServiceLocator.Contracts.Service.IServiceLocator">
+            <summary>
+            This is the interface description for the ServiceLocator.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.ServiceLocator.Contracts.Service.IServiceLocator.RegisterService(Asm.As.Oib.ServiceLocator.Contracts.Data.ServiceDescription)">
+            <summary>
+            This method registers a service as ready for consumption.  Once registered the service can be discovered by clients.
+            </summary>
+            <param name="description">Information that uniquely describes the service.  Name, version, endpoint URL, ConfigurationManager data.</param>
+            <returns>Service Description of this service</returns>
+        </member>
+        <member name="M:Asm.As.Oib.ServiceLocator.Contracts.Service.IServiceLocator.UnregisterService(Asm.As.Oib.ServiceLocator.Contracts.Data.ServiceDescription)">
+            <summary>
+            This method will effectively remove a service from the system.  Clients will not be able to discover this service using the ServiceLocator.
+            In order to unregister, either pass in the ID of the registration or (if ID is not available), ALL of the following properties of that ServiceDescription:
+            ServiceName, ServiceVersion, Product, Grouped and MetadataEndpoints.
+            </summary>
+            <param name="description">Description of the service to unregister.</param>
+        </member>
+        <member name="M:Asm.As.Oib.ServiceLocator.Contracts.Service.IServiceLocator.GetAllServices">
+            <summary>
+            This method will return all registered services .
+            </summary>
+            <returns>Service Descriptions of all services</returns>
+        </member>
+        <member name="M:Asm.As.Oib.ServiceLocator.Contracts.Service.IServiceLocator.GetAllRESTServices">
+            <summary>
+            This method will return all registered REST services .
+            </summary>
+            <returns>Service Descriptions of all REST services</returns>
+        </member>
+        <member name="M:Asm.As.Oib.ServiceLocator.Contracts.Service.IServiceLocator.GetServices(Asm.As.Oib.ConfigurationManager.Contracts.Data.Isa95Base)">
+            <summary>
+            This method will return a sorted list of all services registered for the configuration object and its parents 
+            passed in by the client.  If null is passed in all services in the system will be returned. The services are sorted by the OrderIndex property.
+            </summary>
+            <param name="configuredObject">Isa95Base object obtained from the Configuration Manager service that the services returned are configured for.</param>
+            <returns>Service Descriptions of all services</returns>
+        </member>
+        <member name="M:Asm.As.Oib.ServiceLocator.Contracts.Service.IServiceLocator.FindServices(Asm.As.Oib.ServiceLocator.Contracts.Data.ServiceMatchCriteria)">
+            <summary>
+            This method will return all registered services that match the description passed in.
+            </summary>
+            <param name="description">ServiceDescription object containing the match criteria.</param>
+            <remarks>
+            Depending on what a caller provides as search criteria, the following logic applies:<br/>
+            A) In case custom properties are provided (SIPLACEProPath, SIPLACEProObjectType, SIPLACEProOID_Long or any other content in the CustomProperties collection):<br/>
+            1. Define the filter: <br/>
+               1A) CustomProperties is filled: This will be taken as filter.<br/>
+               1B) Otherwise SIPLACEPro... properties are taken as filter.<br/>
+            2. Get all Services that match the rest of the SearchCriteria (ServiceName, ServiceVersion, Product, Grouped, Endpoint)<br/>
+            3. Get all Factory Layout objects that match the custom properties filter.<br/>
+            4. If there are Services from step 2 that are assigned to the found FactoryLayout objects of step 3 then return those.<br/>
+            5. If not, traverse up one level from all Factory Layout objects and repeat step 4.<br/>
+            6. If the enterprise level is reached without finding a match, return the list of step 2 by filtering for unconfigured services ONLY if ServiceMatchCriteria.DoNotReturnDefaultServices is false.<br/>
+            In case it is true, an empty collection is returned.<br/>
+            <br/>
+            B) In case no custom properties are provided, the following logic applies:<br/>
+            1. Get all services that match the rest of the SearchCriteria (ServiceName, ServiceVersion, Product, Grouped, Endpoint) and return those.<br/>
+            <br/>
+            Sample code for finding the right service or services for one SIPLACE Pro line:<br/>
+            (This finds the name based line)
+            <code>
+                ServiceLocatorClient client = new ServiceLocatorClient();
+                ServiceMatchCriteria match = new ServiceMatchCriteria();
+                match.ServiceName = "Service Name";
+                match.SiplaceObjectType = "Line";
+                match.SIPLACEProPath = "SIPLACE Pro Line1";
+                match.SIPLACEProDBId = guid; // this is optional if only one database is used in a factory
+                List&lt;ServiceDescription&gt; services = client.FindServices(match);
+            </code>
+            <br/>
+            Alternatively, one can search based on OID and Database ID:<br/>
+            
+            <code>
+                ServiceLocatorClient client = new ServiceLocatorClient();
+                ServiceMatchCriteria match = new ServiceMatchCriteria();
+                match.ServiceName = "Service Name";
+                match.SIPLACEProOID_Long = 1704;  // the property SIPLACEProOID is obsolete, please use SIPLACEProOID_Long instead
+                match.SIPLACEProDBId = guid; // this is optional if only one database is used in a factory
+                List&lt;ServiceDescription&gt; services = client.FindServices(match);
+            </code>
+            </remarks>
+            <returns>Service Descriptions of all services found</returns>
+        </member>
+        <member name="M:Asm.As.Oib.ServiceLocator.Contracts.Service.IServiceLocator.Save(Asm.As.Oib.ServiceLocator.Contracts.Data.ServiceDescription)">
+            <summary>
+            Updates a service registration with new information.
+            </summary>
+            <param name="description">The new data to save.</param>
+        </member>
+        <member name="M:Asm.As.Oib.ServiceLocator.Contracts.Service.IServiceLocator.GetServicesWithoutParents(Asm.As.Oib.ConfigurationManager.Contracts.Data.Isa95Base)">
+            <summary>
+            This method will return all services registered for only (not its parents) the configuration object passed in by the client.
+            If null is passed in all services in the system will be returned.
+            </summary>
+            <param name="configuredObject">Isa95Base object obtained from the Configuration Manager service that the services returned are configured for.</param>
+            <returns>Service Descriptions of all services</returns>
+        </member>
+        <member name="M:Asm.As.Oib.ServiceLocator.Contracts.Service.IServiceLocator.SaveServiceDescription(Asm.As.Oib.ServiceLocator.Contracts.Data.ServiceDescription)">
+            <summary>
+            Updates a service registration with new information.
+            This method will only take the ServiceDescription.Configuration property into account 
+            and disregards the obsolete ServiceDescription.Configurations property.
+            </summary>
+            <param name="description">The new data to save.</param>
+        </member>
+        <member name="M:Asm.As.Oib.ServiceLocator.Contracts.Service.IServiceLocator.SaveServiceDescription2(Asm.As.Oib.ServiceLocator.Contracts.Data.ServiceDescription,System.Boolean)">
+            <summary>
+            Updates a service registration with new information.
+            This method will only take the ServiceDescription.Configuration property into account
+            and disregards the obsolete ServiceDescription.Configurations property.
+            </summary>
+            <param name="description">The new data to save.</param>
+            <param name="allowConfigurationOverwrite">If set to <c>true</c> allows an existing configuration to be overwritten without throwing an exception.</param>
+        </member>
+        <member name="M:Asm.As.Oib.ServiceLocator.Contracts.Service.IServiceLocator.CheckAlive">
+            <summary>
+            Ping method to check if Service is alive
+            </summary>
+            <returns>Process Id of the Core Host process</returns>
+        </member>
+        <member name="M:Asm.As.Oib.ServiceLocator.Contracts.Service.IServiceLocator.UnregisterServiceEnhanced(Asm.As.Oib.ServiceLocator.Contracts.Data.ServiceDescription)">
+            <summary>
+            This method will effectively remove a service from the system.  Clients will not be able to discover this service using the ServiceLocator.
+            In order to unregister, either pass in the ID of the registration or (if ID is not available), ALL of the following properties of that ServiceDescription:
+            ServiceName, ServiceVersion, Product, Grouped and MetadataEndpoints.
+            </summary>
+            <param name="description">Description of the service to unregister.</param>
+            <returns>The service description that was removed. Contains the ID, so that the client can remove the service from the cache</returns>
+        </member>
+        <member name="M:Asm.As.Oib.ServiceLocator.Contracts.Service.IServiceLocator.SaveServiceDescriptionEnhanced(Asm.As.Oib.ServiceLocator.Contracts.Data.ServiceDescription,System.Boolean)">
+            <summary>
+            Updates a service registration with new information.
+            This method will only take the ServiceDescription.Configuration property into account
+            and disregards the obsolete ServiceDescription.Configurations property.
+            </summary>
+            <param name="description">The new data to save.</param>
+            <param name="allowConfigurationOverwrite">If set to <c>true</c> allows an existing configuration to be overwritten without throwing an exception.</param>
+            <returns>The service description that was updated.</returns>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" elementFormDefault="qualified" targetNamespace="http://www.siplace.com/OIB/2008/05/SetupCenter/Contracts/Data" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="PackagingUnit">
+    <xs:sequence>
+      <xs:element name="BatchId" nillable="true" type="xs:string" />
+      <xs:element name="Comment" nillable="true" type="xs:string" />
+      <xs:element name="ComponentBarcode" nillable="true" type="xs:string" />
+      <xs:element name="ComponentName" nillable="true" type="xs:string" />
+      <xs:element name="ExpiryDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Extra1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Extra2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Extra3" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LockInfos" nillable="true" type="tns:ArrayOfLockInfo" />
+      <xs:element name="Manufacturer" nillable="true" type="xs:string" />
+      <xs:element name="ManufacturerDate" type="xs:dateTime" />
+      <xs:element name="MsdLevel" type="xs:int" />
+      <xs:element name="MsdOpenDate" type="xs:dateTime" />
+      <xs:element name="OriginalQuantity" type="xs:int" />
+      <xs:element name="Quantity" type="xs:int" />
+      <xs:element minOccurs="0" name="SplicedPackagingUnit" nillable="true" type="tns:PackagingUnit" />
+      <xs:element name="Supplier" nillable="true" type="xs:string" />
+      <xs:element name="UID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BatchPackagingUnit" nillable="true" type="tns:PackagingUnit" />
+      <xs:element minOccurs="0" name="ConsumptionDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="GreyZone" type="xs:int" />
+      <xs:element minOccurs="0" name="LastProductionDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="AdditionalPartInformation" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Batch2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BrightnessClass" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ManufactureLocation" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ManufacturePartNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OrderingCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PurchaseOrderNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RevisionLevel" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RoHS" type="xs:int" />
+      <xs:element minOccurs="0" name="Serial" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShippingNoteNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SupplierData" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ComponentBarcodeFragment" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CreateDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DateCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Extra4" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Extra5" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReorderCount" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PackagingUnit" nillable="true" type="tns:PackagingUnit" />
+  <xs:complexType name="ArrayOfLockInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="LockInfo" nillable="true" type="tns:LockInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfLockInfo" nillable="true" type="tns:ArrayOfLockInfo" />
+  <xs:complexType name="LockInfo">
+    <xs:sequence>
+      <xs:element name="Date" type="xs:dateTime" />
+      <xs:element name="Message" nillable="true" type="xs:string" />
+      <xs:element name="Reason" type="xs:int" />
+      <xs:element name="Source" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LockInfo" nillable="true" type="tns:LockInfo" />
+</xs:schema>

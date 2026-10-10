@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:tns="http://www.siplace.com/OIB/2010/06/ProductionCapability/Contracts/Service" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" targetNamespace="http://www.siplace.com/OIB/2010/06/ProductionCapability/Contracts/Service" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.siplace.com/OIB/2010/06/ProductionCapability/Contracts/Service/Imports">
+      <xsd:import namespace="http://www.siplace.com/OIB/2010/06/ProductionCapability/Contracts/Service" />
+      <xsd:import namespace="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Data" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import namespace="http://www.siplace.com/OIB/2016/07/FactoryCalendar/Contracts/Data" />
+      <xsd:import namespace="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Service" />
+      <xsd:import namespace="http://www.siplace.com/OIB/2010/05/FactoryCalendarEvents/Contracts/Service" />
+      <xsd:import namespace="http://www.wbf.org/xml/b2mml-v0400" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="GetProdCapInfoRequest">
+    <wsdl:part name="GetProductionCapabilityType" element="tns:GetProductionCapabilityType" />
+  </wsdl:message>
+  <wsdl:message name="GetProdCapInfoResponse">
+    <wsdl:part name="ShowProductionCapabilityType" element="tns:ShowProductionCapabilityType" />
+  </wsdl:message>
+  <wsdl:message name="ProductionCapability_GetProductionCapabilityInformation_FactoryCalendarFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q1="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Data" element="q1:FactoryCalendarFault" />
+  </wsdl:message>
+  <wsdl:message name="GetCycleTimeRequest">
+    <wsdl:part name="ProcessProductionScheduleType" element="tns:ProcessProductionScheduleType" />
+  </wsdl:message>
+  <wsdl:message name="GetCycleTimeResponse">
+    <wsdl:part name="ProcessProductionScheduleType" element="tns:ProcessProductionScheduleType" />
+  </wsdl:message>
+  <wsdl:message name="ProductionCapability_GetCycleTime_FactoryCalendarFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q2="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Data" element="q2:FactoryCalendarFault" />
+  </wsdl:message>
+  <wsdl:message name="GetCascadingCycleTimeRequest">
+    <wsdl:part name="ProcessProductionScheduleType" element="tns:ProcessProductionScheduleType" />
+  </wsdl:message>
+  <wsdl:message name="GetCascadingCycleTimeResponse">
+    <wsdl:part name="ProcessProductionScheduleType" element="tns:ProcessProductionScheduleType" />
+  </wsdl:message>
+  <wsdl:message name="ProductionCapability_GetCascadingCycleTime_FactoryCalendarFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q3="http://www.siplace.com/OIB/2009/07/FactoryCalendar/Contracts/Data" element="q3:FactoryCalendarFault" />
+  </wsdl:message>
+  <wsdl:portType name="ProductionCapability">
+    <wsdl:operation name="GetProductionCapabilityInformation">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2010/06/ProductionCapability/Contracts/Service/ProductionCapability/GetProductionCapabilityInformation" name="GetProdCapInfoRequest" message="tns:GetProdCapInfoRequest" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2010/06/ProductionCapability/Contracts/Service/ProductionCapability/GetProductionCapabilityInformationResponse" name="GetProdCapInfoResponse" message="tns:GetProdCapInfoResponse" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2010/06/ProductionCapability/Contracts/Service/ProductionCapability/GetProductionCapabilityInformationFactoryCalendarFaultFault" name="FactoryCalendarFaultFault" message="tns:ProductionCapability_GetProductionCapabilityInformation_FactoryCalendarFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCycleTime">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2010/06/ProductionCapability/Contracts/Service/ProductionCapability/GetCycleTime" name="GetCycleTimeRequest" message="tns:GetCycleTimeRequest" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2010/06/ProductionCapability/Contracts/Service/ProductionCapability/GetCycleTimeResponse" name="GetCycleTimeResponse" message="tns:GetCycleTimeResponse" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2010/06/ProductionCapability/Contracts/Service/ProductionCapability/GetCycleTimeFactoryCalendarFaultFault" name="FactoryCalendarFaultFault" message="tns:ProductionCapability_GetCycleTime_FactoryCalendarFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCascadingCycleTime">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2010/06/ProductionCapability/Contracts/Service/ProductionCapability/GetCascadingCycleTime" name="GetCascadingCycleTimeRequest" message="tns:GetCascadingCycleTimeRequest" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2010/06/ProductionCapability/Contracts/Service/ProductionCapability/GetCascadingCycleTimeResponse" name="GetCascadingCycleTimeResponse" message="tns:GetCascadingCycleTimeResponse" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2010/06/ProductionCapability/Contracts/Service/ProductionCapability/GetCascadingCycleTimeFactoryCalendarFaultFault" name="FactoryCalendarFaultFault" message="tns:ProductionCapability_GetCascadingCycleTime_FactoryCalendarFaultFault_FaultMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DefaultBinding_ProductionCapability" type="tns:ProductionCapability">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetProductionCapabilityInformation">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2010/06/ProductionCapability/Contracts/Service/ProductionCapability/GetProductionCapabilityInformation" style="document" />
+      <wsdl:input name="GetProdCapInfoRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetProdCapInfoResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="FactoryCalendarFaultFault">
+        <soap:fault name="FactoryCalendarFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetCycleTime">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2010/06/ProductionCapability/Contracts/Service/ProductionCapability/GetCycleTime" style="document" />
+      <wsdl:input name="GetCycleTimeRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetCycleTimeResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="FactoryCalendarFaultFault">
+        <soap:fault name="FactoryCalendarFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetCascadingCycleTime">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2010/06/ProductionCapability/Contracts/Service/ProductionCapability/GetCascadingCycleTime" style="document" />
+      <wsdl:input name="GetCascadingCycleTimeRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetCascadingCycleTimeResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="FactoryCalendarFaultFault">
+        <soap:fault name="FactoryCalendarFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+</wsdl:definitions>

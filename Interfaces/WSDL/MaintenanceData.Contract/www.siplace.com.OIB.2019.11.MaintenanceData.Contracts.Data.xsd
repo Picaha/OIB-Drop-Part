@@ -1,0 +1,415 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.siplace.com/OIB/2019/11/MaintenanceData/Contracts/Data" elementFormDefault="qualified" targetNamespace="http://www.siplace.com/OIB/2019/11/MaintenanceData/Contracts/Data" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/Asm.As.OIB.MaintenanceDataInterface.Contracts.Data" />
+  <xs:complexType name="EquipmentConfigurationEventData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="EquipmentConfiguration" nillable="true" type="tns:EquipmentConfigurationData" />
+      <xs:element minOccurs="0" name="EquipmentConfigurationEncrypted" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Stamp" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="StationIdentification" nillable="true" type="tns:StationIdentification" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EquipmentConfigurationEventData" nillable="true" type="tns:EquipmentConfigurationEventData" />
+  <xs:complexType name="EquipmentConfigurationData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PlacementMachineDetails" nillable="true" type="tns:PlacementEquipmentConfiguration" />
+      <xs:element minOccurs="0" name="StationSoftwareVersion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StationTypeName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PrinterMachineDetails" nillable="true" type="tns:PrinterEquipmentConfiguration" />
+      <xs:element minOccurs="0" name="StationHostname" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StationIpAddress" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EquipmentConfigurationData" nillable="true" type="tns:EquipmentConfigurationData" />
+  <xs:complexType name="PlacementEquipmentConfiguration">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Cameras" nillable="true" type="tns:ArrayOfCamera" />
+      <xs:element minOccurs="0" name="Conveyors" nillable="true" type="tns:ArrayOfConveyor" />
+      <xs:element minOccurs="0" name="Gantries" nillable="true" type="tns:ArrayOfGantry" />
+      <xs:element minOccurs="0" name="NozzleChangerCarrier" nillable="true" type="tns:ArrayOfNozzleChangerCarrier" />
+      <xs:element minOccurs="0" name="PlaceHeads" nillable="true" type="tns:ArrayOfPlaceHead" />
+      <xs:element minOccurs="0" name="TapeCutters" nillable="true" type="tns:ArrayOfTapeCutter" />
+      <xs:element minOccurs="0" name="UniqueId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="VacuumPumps" nillable="true" type="tns:ArrayOfVacuumPump" />
+      <xs:element minOccurs="0" name="ElectricCards" nillable="true" type="tns:ArrayOfElectricCard" />
+      <xs:element minOccurs="0" name="Fans" nillable="true" type="tns:ArrayOfFan" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PlacementEquipmentConfiguration" nillable="true" type="tns:PlacementEquipmentConfiguration" />
+  <xs:complexType name="ArrayOfCamera">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Camera" nillable="true" type="tns:Camera" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCamera" nillable="true" type="tns:ArrayOfCamera" />
+  <xs:complexType name="Camera">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="GeneralData" nillable="true" type="tns:GeneralEquipmentData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Camera" nillable="true" type="tns:Camera" />
+  <xs:complexType name="GeneralEquipmentData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Location" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Type" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TypeId" type="xs:int" />
+      <xs:element minOccurs="0" name="UniqueId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UniqueIdSourceType" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GeneralEquipmentData" nillable="true" type="tns:GeneralEquipmentData" />
+  <xs:complexType name="ArrayOfConveyor">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Conveyor" nillable="true" type="tns:Conveyor" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfConveyor" nillable="true" type="tns:ArrayOfConveyor" />
+  <xs:complexType name="Conveyor">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="GeneralData" nillable="true" type="tns:GeneralEquipmentData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Conveyor" nillable="true" type="tns:Conveyor" />
+  <xs:complexType name="ArrayOfGantry">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Gantry" nillable="true" type="tns:Gantry" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfGantry" nillable="true" type="tns:ArrayOfGantry" />
+  <xs:complexType name="Gantry">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="GeneralData" nillable="true" type="tns:GeneralEquipmentData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Gantry" nillable="true" type="tns:Gantry" />
+  <xs:complexType name="ArrayOfNozzleChangerCarrier">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="NozzleChangerCarrier" nillable="true" type="tns:NozzleChangerCarrier" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfNozzleChangerCarrier" nillable="true" type="tns:ArrayOfNozzleChangerCarrier" />
+  <xs:complexType name="NozzleChangerCarrier">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="GeneralData" nillable="true" type="tns:GeneralEquipmentData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="NozzleChangerCarrier" nillable="true" type="tns:NozzleChangerCarrier" />
+  <xs:complexType name="ArrayOfPlaceHead">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PlaceHead" nillable="true" type="tns:PlaceHead" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPlaceHead" nillable="true" type="tns:ArrayOfPlaceHead" />
+  <xs:complexType name="PlaceHead">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ComponentSensors" nillable="true" type="tns:ArrayOfComponentSensor" />
+      <xs:element minOccurs="0" name="DpAxes" nillable="true" type="tns:ArrayOfDpAxis" />
+      <xs:element minOccurs="0" name="GeneralData" nillable="true" type="tns:GeneralEquipmentData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PlaceHead" nillable="true" type="tns:PlaceHead" />
+  <xs:complexType name="ArrayOfComponentSensor">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ComponentSensor" nillable="true" type="tns:ComponentSensor" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfComponentSensor" nillable="true" type="tns:ArrayOfComponentSensor" />
+  <xs:complexType name="ComponentSensor">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="GeneralData" nillable="true" type="tns:GeneralEquipmentData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ComponentSensor" nillable="true" type="tns:ComponentSensor" />
+  <xs:complexType name="ArrayOfDpAxis">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DpAxis" nillable="true" type="tns:DpAxis" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDpAxis" nillable="true" type="tns:ArrayOfDpAxis" />
+  <xs:complexType name="DpAxis">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="GeneralData" nillable="true" type="tns:GeneralEquipmentData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DpAxis" nillable="true" type="tns:DpAxis" />
+  <xs:complexType name="ArrayOfTapeCutter">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TapeCutter" nillable="true" type="tns:TapeCutter" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTapeCutter" nillable="true" type="tns:ArrayOfTapeCutter" />
+  <xs:complexType name="TapeCutter">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="GeneralData" nillable="true" type="tns:GeneralEquipmentData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TapeCutter" nillable="true" type="tns:TapeCutter" />
+  <xs:complexType name="ArrayOfVacuumPump">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="VacuumPump" nillable="true" type="tns:VacuumPump" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfVacuumPump" nillable="true" type="tns:ArrayOfVacuumPump" />
+  <xs:complexType name="VacuumPump">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="GeneralData" nillable="true" type="tns:GeneralEquipmentData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="VacuumPump" nillable="true" type="tns:VacuumPump" />
+  <xs:complexType name="ArrayOfElectricCard">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ElectricCard" nillable="true" type="tns:ElectricCard" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfElectricCard" nillable="true" type="tns:ArrayOfElectricCard" />
+  <xs:complexType name="ElectricCard">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AppearanceDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DeviceId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ProductionDate" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ElectricCard" nillable="true" type="tns:ElectricCard" />
+  <xs:complexType name="ArrayOfFan">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Fan" nillable="true" type="tns:Fan" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfFan" nillable="true" type="tns:ArrayOfFan" />
+  <xs:complexType name="Fan">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="GeneralData" nillable="true" type="tns:GeneralEquipmentData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Fan" nillable="true" type="tns:Fan" />
+  <xs:complexType name="PrinterEquipmentConfiguration">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="UniqueId" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PrinterEquipmentConfiguration" nillable="true" type="tns:PrinterEquipmentConfiguration" />
+  <xs:complexType name="StationIdentification">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="LineFullPath" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MachineId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StationFullPath" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TypeId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="StationIdentification" nillable="true" type="tns:StationIdentification" />
+  <xs:complexType name="SetupConfigurationEventData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="SetupConfiguration" nillable="true" type="tns:SetupConfigurationData" />
+      <xs:element minOccurs="0" name="SetupConfigurationEncrypted" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Stamp" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="StationIdentification" nillable="true" type="tns:StationIdentification" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SetupConfigurationEventData" nillable="true" type="tns:SetupConfigurationEventData" />
+  <xs:complexType name="SetupConfigurationData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PlacementMachineDetails" nillable="true" type="tns:PlacementSetupConfiguration" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SetupConfigurationData" nillable="true" type="tns:SetupConfigurationData" />
+  <xs:complexType name="PlacementSetupConfiguration">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Garages" nillable="true" type="tns:ArrayOfNozzleInGarage" />
+      <xs:element minOccurs="0" name="TableDevices" nillable="true" type="tns:ArrayOfTableDevice" />
+      <xs:element minOccurs="0" name="TapeFeeders" nillable="true" type="tns:ArrayOfTapeFeeder" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PlacementSetupConfiguration" nillable="true" type="tns:PlacementSetupConfiguration" />
+  <xs:complexType name="ArrayOfNozzleInGarage">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="NozzleInGarage" nillable="true" type="tns:NozzleInGarage" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfNozzleInGarage" nillable="true" type="tns:ArrayOfNozzleInGarage" />
+  <xs:complexType name="NozzleInGarage">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="GeneralData" nillable="true" type="tns:GeneralEquipmentData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="NozzleInGarage" nillable="true" type="tns:NozzleInGarage" />
+  <xs:complexType name="ArrayOfTableDevice">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TableDevice" nillable="true" type="tns:TableDevice" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTableDevice" nillable="true" type="tns:ArrayOfTableDevice" />
+  <xs:complexType name="TableDevice">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="GeneralData" nillable="true" type="tns:GeneralEquipmentData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TableDevice" nillable="true" type="tns:TableDevice" />
+  <xs:complexType name="ArrayOfTapeFeeder">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TapeFeeder" nillable="true" type="tns:TapeFeeder" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTapeFeeder" nillable="true" type="tns:ArrayOfTapeFeeder" />
+  <xs:complexType name="TapeFeeder">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="GeneralData" nillable="true" type="tns:GeneralEquipmentData" />
+      <xs:element minOccurs="0" name="Divisions" nillable="true" type="tns:ArrayOfDivision" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TapeFeeder" nillable="true" type="tns:TapeFeeder" />
+  <xs:complexType name="ArrayOfDivision">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Division" nillable="true" type="tns:Division" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDivision" nillable="true" type="tns:ArrayOfDivision" />
+  <xs:complexType name="Division">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Number" type="xs:int" />
+      <xs:element minOccurs="0" name="Track" type="xs:int" />
+      <xs:element minOccurs="0" name="UniqueId" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Division" nillable="true" type="tns:Division" />
+  <xs:complexType name="StationServiceAndMaintenanceEventData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Stamp" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="StationIdentification" nillable="true" type="tns:StationIdentification" />
+      <xs:element minOccurs="0" name="StationServiceAndMaintenanceData" nillable="true" type="tns:StationServiceAndMaintenanceData" />
+      <xs:element minOccurs="0" name="StationServiceAndMaintenanceDataEncrypted" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="StationServiceAndMaintenanceEventData" nillable="true" type="tns:StationServiceAndMaintenanceEventData" />
+  <xs:complexType name="StationServiceAndMaintenanceData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="EquipmentServiceAndMaintenanceData" nillable="true" type="tns:ArrayOfEquipmentServiceAndMaintenanceData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="StationServiceAndMaintenanceData" nillable="true" type="tns:StationServiceAndMaintenanceData" />
+  <xs:complexType name="ArrayOfEquipmentServiceAndMaintenanceData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EquipmentServiceAndMaintenanceData" nillable="true" type="tns:EquipmentServiceAndMaintenanceData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfEquipmentServiceAndMaintenanceData" nillable="true" type="tns:ArrayOfEquipmentServiceAndMaintenanceData" />
+  <xs:complexType name="EquipmentServiceAndMaintenanceData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CalibrationDetails" nillable="true" type="tns:ArrayOfCalibrationData" />
+      <xs:element minOccurs="0" name="ErrorDetails" nillable="true" type="tns:ArrayOfErrorData" />
+      <xs:element minOccurs="0" name="MaintenanceDetails" nillable="true" type="tns:ArrayOfMaintenanceData" />
+      <xs:element minOccurs="0" name="SensorDetails" nillable="true" type="tns:ArrayOfSensorData" />
+      <xs:element minOccurs="0" name="UniqueId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="VerificationDetails" nillable="true" type="tns:ArrayOfVerificationData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EquipmentServiceAndMaintenanceData" nillable="true" type="tns:EquipmentServiceAndMaintenanceData" />
+  <xs:complexType name="ArrayOfCalibrationData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CalibrationData" nillable="true" type="tns:CalibrationData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCalibrationData" nillable="true" type="tns:ArrayOfCalibrationData" />
+  <xs:complexType name="CalibrationData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="LastRunTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Status" xmlns:q1="http://schemas.datacontract.org/2004/07/Asm.As.OIB.MaintenanceDataInterface.Contracts.Data" type="q1:ExecutionStatusType" />
+      <xs:element minOccurs="0" name="Type" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CalibrationData" nillable="true" type="tns:CalibrationData" />
+  <xs:complexType name="ArrayOfErrorData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ErrorData" nillable="true" type="tns:ErrorData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfErrorData" nillable="true" type="tns:ArrayOfErrorData" />
+  <xs:complexType name="ErrorData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OccurenceTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Number" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ErrorData" nillable="true" type="tns:ErrorData" />
+  <xs:complexType name="ArrayOfMaintenanceData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MaintenanceData" nillable="true" type="tns:MaintenanceData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMaintenanceData" nillable="true" type="tns:ArrayOfMaintenanceData" />
+  <xs:complexType name="MaintenanceData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CounterType" type="xs:int" />
+      <xs:element minOccurs="0" name="CurrentCounterValue" type="xs:double" />
+      <xs:element minOccurs="0" name="CurrentRatio" type="xs:double" />
+      <xs:element minOccurs="0" name="CurrentRatioValid" type="xs:boolean" />
+      <xs:element minOccurs="0" name="CurrentTimeStamp" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="LastMaintenanceCounterValue" type="xs:double" />
+      <xs:element minOccurs="0" name="LastMaintenanceTimeStamp" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="LastMaintenanceValid" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MeasurementLocation" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MaintenanceData" nillable="true" type="tns:MaintenanceData" />
+  <xs:complexType name="ArrayOfSensorData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SensorData" nillable="true" type="tns:SensorData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSensorData" nillable="true" type="tns:ArrayOfSensorData" />
+  <xs:complexType name="SensorData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PhysicalUnitType" type="xs:int" />
+      <xs:element minOccurs="0" name="SampleTimeStamp" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="SampleValue" type="xs:double" />
+      <xs:element minOccurs="0" name="SensorLocationId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SensorType" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SensorData" nillable="true" type="tns:SensorData" />
+  <xs:complexType name="ArrayOfVerificationData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="VerificationData" nillable="true" type="tns:VerificationData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfVerificationData" nillable="true" type="tns:ArrayOfVerificationData" />
+  <xs:complexType name="VerificationData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="LastRunTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Status" xmlns:q2="http://schemas.datacontract.org/2004/07/Asm.As.OIB.MaintenanceDataInterface.Contracts.Data" type="q2:ExecutionStatusType" />
+      <xs:element minOccurs="0" name="Type" type="xs:int" />
+      <xs:element minOccurs="0" name="Value" type="xs:double" />
+      <xs:element minOccurs="0" name="ValueValid" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Target" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ValueInt" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ValueType" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="VerificationData" nillable="true" type="tns:VerificationData" />
+  <xs:complexType name="EquipmentConfigurationResponseData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="EquipmentConfiguration" nillable="true" type="tns:EquipmentConfigurationData" />
+      <xs:element minOccurs="0" name="StationIdentification" nillable="true" type="tns:StationIdentification" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EquipmentConfigurationResponseData" nillable="true" type="tns:EquipmentConfigurationResponseData" />
+  <xs:complexType name="StationServiceAndMaintenanceResponseData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="StationIdentification" nillable="true" type="tns:StationIdentification" />
+      <xs:element minOccurs="0" name="StationServiceAndMaintenanceData" nillable="true" type="tns:StationServiceAndMaintenanceData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="StationServiceAndMaintenanceResponseData" nillable="true" type="tns:StationServiceAndMaintenanceResponseData" />
+  <xs:complexType name="SetupConfigurationResponseData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="SetupConfiguration" nillable="true" type="tns:SetupConfigurationData" />
+      <xs:element minOccurs="0" name="StationIdentification" nillable="true" type="tns:StationIdentification" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SetupConfigurationResponseData" nillable="true" type="tns:SetupConfigurationResponseData" />
+</xs:schema>

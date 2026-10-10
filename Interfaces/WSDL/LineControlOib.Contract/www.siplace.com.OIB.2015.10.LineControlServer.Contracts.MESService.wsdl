@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:tns="http://www.siplace.com/OIB/2015/10/LineControlServer/Contracts/MESService" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" targetNamespace="http://www.siplace.com/OIB/2015/10/LineControlServer/Contracts/MESService" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.siplace.com/OIB/2015/10/LineControlServer/Contracts/MESService/Imports">
+      <xsd:import namespace="http://www.siplace.com/OIB/2015/10/LineControlServer/Contracts/MESService" />
+      <xsd:import namespace="http://www.siplace.com/OIB/2015/10/LineControlServer/Contracts/Fault" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import namespace="http://www.siplace.com/OIB/2015/10/LineControlServer/Contracts/Data" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ILineControlMesInterceptor_Ping_InputMessage">
+    <wsdl:part name="parameters" element="tns:Ping" />
+  </wsdl:message>
+  <wsdl:message name="ILineControlMesInterceptor_Ping_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PingResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILineControlMesInterceptor_Ping_LineControlServerFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q1="http://www.siplace.com/OIB/2015/10/LineControlServer/Contracts/Fault" element="q1:LineControlServerFault" />
+  </wsdl:message>
+  <wsdl:message name="ILineControlMesInterceptor_VerifyRecipeActivationOnDekPrinter_InputMessage">
+    <wsdl:part name="parameters" element="tns:VerifyRecipeActivationOnDekPrinter" />
+  </wsdl:message>
+  <wsdl:message name="ILineControlMesInterceptor_VerifyRecipeActivationOnDekPrinter_OutputMessage">
+    <wsdl:part name="parameters" element="tns:VerifyRecipeActivationOnDekPrinterResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILineControlMesInterceptor_VerifyRecipeActivationOnDekPrinter_LineControlServerFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q2="http://www.siplace.com/OIB/2015/10/LineControlServer/Contracts/Fault" element="q2:LineControlServerFault" />
+  </wsdl:message>
+  <wsdl:message name="ILineControlMesInterceptor_VerifyRecipeDownload_InputMessage">
+    <wsdl:part name="parameters" element="tns:VerifyRecipeDownload" />
+  </wsdl:message>
+  <wsdl:message name="ILineControlMesInterceptor_VerifyRecipeDownload_OutputMessage">
+    <wsdl:part name="parameters" element="tns:VerifyRecipeDownloadResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILineControlMesInterceptor_VerifyRecipeDownload_LineControlServerFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q3="http://www.siplace.com/OIB/2015/10/LineControlServer/Contracts/Fault" element="q3:LineControlServerFault" />
+  </wsdl:message>
+  <wsdl:message name="ILineControlMesInterceptor_VerifyStartAutoProgramDownload_InputMessage">
+    <wsdl:part name="parameters" element="tns:VerifyStartAutoProgramDownload" />
+  </wsdl:message>
+  <wsdl:message name="ILineControlMesInterceptor_VerifyStartAutoProgramDownload_OutputMessage">
+    <wsdl:part name="parameters" element="tns:VerifyStartAutoProgramDownloadResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILineControlMesInterceptor_VerifyStartAutoProgramDownload_LineControlServerFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q4="http://www.siplace.com/OIB/2015/10/LineControlServer/Contracts/Fault" element="q4:LineControlServerFault" />
+  </wsdl:message>
+  <wsdl:message name="ILineControlMesInterceptor_VerifyRecipeForAutoProgramDownload_InputMessage">
+    <wsdl:part name="parameters" element="tns:VerifyRecipeForAutoProgramDownload" />
+  </wsdl:message>
+  <wsdl:message name="ILineControlMesInterceptor_VerifyRecipeForAutoProgramDownload_OutputMessage">
+    <wsdl:part name="parameters" element="tns:VerifyRecipeForAutoProgramDownloadResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILineControlMesInterceptor_VerifyRecipeForAutoProgramDownload_LineControlServerFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q5="http://www.siplace.com/OIB/2015/10/LineControlServer/Contracts/Fault" element="q5:LineControlServerFault" />
+  </wsdl:message>
+  <wsdl:message name="ILineControlMesInterceptor_VerifyPcbForAutoProgramDownload_InputMessage">
+    <wsdl:part name="parameters" element="tns:VerifyPcbForAutoProgramDownload" />
+  </wsdl:message>
+  <wsdl:message name="ILineControlMesInterceptor_VerifyPcbForAutoProgramDownload_OutputMessage">
+    <wsdl:part name="parameters" element="tns:VerifyPcbForAutoProgramDownloadResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILineControlMesInterceptor_VerifyPcbForAutoProgramDownload_LineControlServerFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q6="http://www.siplace.com/OIB/2015/10/LineControlServer/Contracts/Fault" element="q6:LineControlServerFault" />
+  </wsdl:message>
+  <wsdl:message name="ILineControlMesInterceptor_VerifyRecipeActivationOnProcessLens_InputMessage">
+    <wsdl:part name="parameters" element="tns:VerifyRecipeActivationOnProcessLens" />
+  </wsdl:message>
+  <wsdl:message name="ILineControlMesInterceptor_VerifyRecipeActivationOnProcessLens_OutputMessage">
+    <wsdl:part name="parameters" element="tns:VerifyRecipeActivationOnProcessLensResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILineControlMesInterceptor_VerifyRecipeActivationOnProcessLens_LineControlServerFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q7="http://www.siplace.com/OIB/2015/10/LineControlServer/Contracts/Fault" element="q7:LineControlServerFault" />
+  </wsdl:message>
+  <wsdl:portType name="ILineControlMesInterceptor">
+    <wsdl:operation name="Ping">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2015/10/LineControlServer/Contracts/MESService/ILineControlMesInterceptor/Ping" message="tns:ILineControlMesInterceptor_Ping_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2015/10/LineControlServer/Contracts/MESService/ILineControlMesInterceptor/PingResponse" message="tns:ILineControlMesInterceptor_Ping_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2015/10/LineControlServer/Contracts/MESService/ILineControlMesInterceptor/PingLineControlServerFaultFault" name="LineControlServerFaultFault" message="tns:ILineControlMesInterceptor_Ping_LineControlServerFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="VerifyRecipeActivationOnDekPrinter">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2015/10/LineControlServer/Contracts/MESService/ILineControlMesInterceptor/VerifyRecipeActivationOnDekPrinter" message="tns:ILineControlMesInterceptor_VerifyRecipeActivationOnDekPrinter_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2015/10/LineControlServer/Contracts/MESService/ILineControlMesInterceptor/VerifyRecipeActivationOnDekPrinterResponse" message="tns:ILineControlMesInterceptor_VerifyRecipeActivationOnDekPrinter_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2015/10/LineControlServer/Contracts/MESService/ILineControlMesInterceptor/VerifyRecipeActivationOnDekPrinterLineControlServerFaultFault" name="LineControlServerFaultFault" message="tns:ILineControlMesInterceptor_VerifyRecipeActivationOnDekPrinter_LineControlServerFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="VerifyRecipeDownload">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2015/10/LineControlServer/Contracts/MESService/ILineControlMesInterceptor/VerifyRecipeDownload" message="tns:ILineControlMesInterceptor_VerifyRecipeDownload_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2015/10/LineControlServer/Contracts/MESService/ILineControlMesInterceptor/VerifyRecipeDownloadResponse" message="tns:ILineControlMesInterceptor_VerifyRecipeDownload_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2015/10/LineControlServer/Contracts/MESService/ILineControlMesInterceptor/VerifyRecipeDownloadLineControlServerFaultFault" name="LineControlServerFaultFault" message="tns:ILineControlMesInterceptor_VerifyRecipeDownload_LineControlServerFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="VerifyStartAutoProgramDownload">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2015/10/LineControlServer/Contracts/MESService/ILineControlMesInterceptor/VerifyStartAutoProgramDownload" message="tns:ILineControlMesInterceptor_VerifyStartAutoProgramDownload_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2015/10/LineControlServer/Contracts/MESService/ILineControlMesInterceptor/VerifyStartAutoProgramDownloadResponse" message="tns:ILineControlMesInterceptor_VerifyStartAutoProgramDownload_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2015/10/LineControlServer/Contracts/MESService/ILineControlMesInterceptor/VerifyStartAutoProgramDownloadLineControlServerFaultFault" name="LineControlServerFaultFault" message="tns:ILineControlMesInterceptor_VerifyStartAutoProgramDownload_LineControlServerFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="VerifyRecipeForAutoProgramDownload">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2015/10/LineControlServer/Contracts/MESService/ILineControlMesInterceptor/VerifyRecipeForAutoProgramDownload" message="tns:ILineControlMesInterceptor_VerifyRecipeForAutoProgramDownload_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2015/10/LineControlServer/Contracts/MESService/ILineControlMesInterceptor/VerifyRecipeForAutoProgramDownloadResponse" message="tns:ILineControlMesInterceptor_VerifyRecipeForAutoProgramDownload_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2015/10/LineControlServer/Contracts/MESService/ILineControlMesInterceptor/VerifyRecipeForAutoProgramDownloadLineControlServerFaultFault" name="LineControlServerFaultFault" message="tns:ILineControlMesInterceptor_VerifyRecipeForAutoProgramDownload_LineControlServerFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="VerifyPcbForAutoProgramDownload">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2015/10/LineControlServer/Contracts/MESService/ILineControlMesInterceptor/VerifyPcbForAutoProgramDownload" message="tns:ILineControlMesInterceptor_VerifyPcbForAutoProgramDownload_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2015/10/LineControlServer/Contracts/MESService/ILineControlMesInterceptor/VerifyPcbForAutoProgramDownloadResponse" message="tns:ILineControlMesInterceptor_VerifyPcbForAutoProgramDownload_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2015/10/LineControlServer/Contracts/MESService/ILineControlMesInterceptor/VerifyPcbForAutoProgramDownloadLineControlServerFaultFault" name="LineControlServerFaultFault" message="tns:ILineControlMesInterceptor_VerifyPcbForAutoProgramDownload_LineControlServerFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="VerifyRecipeActivationOnProcessLens">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2015/10/LineControlServer/Contracts/MESService/ILineControlMesInterceptor/VerifyRecipeActivationOnProcessLens" message="tns:ILineControlMesInterceptor_VerifyRecipeActivationOnProcessLens_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2015/10/LineControlServer/Contracts/MESService/ILineControlMesInterceptor/VerifyRecipeActivationOnProcessLensResponse" message="tns:ILineControlMesInterceptor_VerifyRecipeActivationOnProcessLens_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2015/10/LineControlServer/Contracts/MESService/ILineControlMesInterceptor/VerifyRecipeActivationOnProcessLensLineControlServerFaultFault" name="LineControlServerFaultFault" message="tns:ILineControlMesInterceptor_VerifyRecipeActivationOnProcessLens_LineControlServerFaultFault_FaultMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DefaultBinding_ILineControlMesInterceptor" type="tns:ILineControlMesInterceptor">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Ping">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2015/10/LineControlServer/Contracts/MESService/ILineControlMesInterceptor/Ping" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="LineControlServerFaultFault">
+        <soap:fault name="LineControlServerFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="VerifyRecipeActivationOnDekPrinter">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2015/10/LineControlServer/Contracts/MESService/ILineControlMesInterceptor/VerifyRecipeActivationOnDekPrinter" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="LineControlServerFaultFault">
+        <soap:fault name="LineControlServerFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="VerifyRecipeDownload">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2015/10/LineControlServer/Contracts/MESService/ILineControlMesInterceptor/VerifyRecipeDownload" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="LineControlServerFaultFault">
+        <soap:fault name="LineControlServerFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="VerifyStartAutoProgramDownload">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2015/10/LineControlServer/Contracts/MESService/ILineControlMesInterceptor/VerifyStartAutoProgramDownload" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="LineControlServerFaultFault">
+        <soap:fault name="LineControlServerFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="VerifyRecipeForAutoProgramDownload">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2015/10/LineControlServer/Contracts/MESService/ILineControlMesInterceptor/VerifyRecipeForAutoProgramDownload" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="LineControlServerFaultFault">
+        <soap:fault name="LineControlServerFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="VerifyPcbForAutoProgramDownload">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2015/10/LineControlServer/Contracts/MESService/ILineControlMesInterceptor/VerifyPcbForAutoProgramDownload" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="LineControlServerFaultFault">
+        <soap:fault name="LineControlServerFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="VerifyRecipeActivationOnProcessLens">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2015/10/LineControlServer/Contracts/MESService/ILineControlMesInterceptor/VerifyRecipeActivationOnProcessLens" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="LineControlServerFaultFault">
+        <soap:fault name="LineControlServerFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+</wsdl:definitions>

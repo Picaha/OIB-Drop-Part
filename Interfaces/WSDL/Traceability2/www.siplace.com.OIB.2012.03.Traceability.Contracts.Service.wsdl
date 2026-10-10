@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:tns="http://www.siplace.com/OIB/2012/03/Traceability/Contracts/Service" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" targetNamespace="http://www.siplace.com/OIB/2012/03/Traceability/Contracts/Service" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.siplace.com/OIB/2012/03/Traceability/Contracts/Service/Imports">
+      <xsd:import namespace="http://www.siplace.com/OIB/2012/03/Traceability/Contracts/Message" />
+      <xsd:import namespace="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Message" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import namespace="http://www.siplace.com/OIB/2012/03/Traceability/Contracts/Data" />
+      <xsd:import namespace="http://www.siplace.com/OIB/2012/03/Traceability/Contracts/Service" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ProcessDataRequest">
+    <wsdl:part name="parameters" xmlns:q1="http://www.siplace.com/OIB/2012/03/Traceability/Contracts/Message" element="q1:ProcessDataRequest" />
+  </wsdl:message>
+  <wsdl:message name="ProcessDataRequest_Headers">
+    <wsdl:part name="MessageId" xmlns:q2="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Message" element="q2:MsgId" />
+    <wsdl:part name="SubscriptionTopic" xmlns:q3="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Message" element="q3:SubscriptionTopic" />
+  </wsdl:message>
+  <wsdl:message name="IProcessDataDuplex_NewProcessData_OutputMessage" />
+  <wsdl:message name="IProcessDataDuplex_NewProcessData_TraceabilityFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:TraceabilityFault" />
+  </wsdl:message>
+  <wsdl:message name="TraceabilityDataRequest">
+    <wsdl:part name="parameters" xmlns:q4="http://www.siplace.com/OIB/2012/03/Traceability/Contracts/Message" element="q4:TraceabilityDataRequest" />
+  </wsdl:message>
+  <wsdl:message name="TraceabilityDataRequest_Headers">
+    <wsdl:part name="MessageId" xmlns:q5="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Message" element="q5:MsgId" />
+    <wsdl:part name="SubscriptionTopic" xmlns:q6="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Message" element="q6:SubscriptionTopic" />
+  </wsdl:message>
+  <wsdl:message name="ITraceabilityDataDuplex_NewTraceabilityData_OutputMessage" />
+  <wsdl:message name="ITraceabilityDataDuplex_NewTraceabilityData_TraceabilityFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:TraceabilityFault" />
+  </wsdl:message>
+  <wsdl:portType name="IProcessDataOneWay">
+    <wsdl:operation name="NewProcessData">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2012/03/Traceability/Contracts/ServiceNewProcessData" name="ProcessDataRequest" message="tns:ProcessDataRequest" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IProcessDataDuplex">
+    <wsdl:operation name="NewProcessData">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2012/03/Traceability/Contracts/ServiceNewProcessData" name="ProcessDataRequest" message="tns:ProcessDataRequest" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2012/03/Traceability/Contracts/Service/IProcessDataDuplex/NewProcessDataResponse" message="tns:IProcessDataDuplex_NewProcessData_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2012/03/Traceability/Contracts/Service/IProcessDataDuplex/NewProcessDataTraceabilityFaultFault" name="TraceabilityFaultFault" message="tns:IProcessDataDuplex_NewProcessData_TraceabilityFaultFault_FaultMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ITraceabilityDataOneWay">
+    <wsdl:operation name="NewTraceabilityData">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2012/03/Traceability/Contracts/ServiceNewTraceabilityData" name="TraceabilityDataRequest" message="tns:TraceabilityDataRequest" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ITraceabilityDataDuplex">
+    <wsdl:operation name="NewTraceabilityData">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2012/03/Traceability/Contracts/ServiceNewTraceabilityData" name="TraceabilityDataRequest" message="tns:TraceabilityDataRequest" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2012/03/Traceability/Contracts/Service/ITraceabilityDataDuplex/NewTraceabilityDataResponse" message="tns:ITraceabilityDataDuplex_NewTraceabilityData_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2012/03/Traceability/Contracts/Service/ITraceabilityDataDuplex/NewTraceabilityDataTraceabilityFaultFault" name="TraceabilityFaultFault" message="tns:ITraceabilityDataDuplex_NewTraceabilityData_TraceabilityFaultFault_FaultMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DefaultBinding_IProcessDataOneWay" type="tns:IProcessDataOneWay">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="NewProcessData">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2012/03/Traceability/Contracts/ServiceNewProcessData" style="document" />
+      <wsdl:input name="ProcessDataRequest">
+        <soap:header message="tns:ProcessDataRequest_Headers" part="MessageId" use="literal" />
+        <soap:header message="tns:ProcessDataRequest_Headers" part="SubscriptionTopic" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DefaultBinding_IProcessDataDuplex" type="tns:IProcessDataDuplex">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="NewProcessData">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2012/03/Traceability/Contracts/ServiceNewProcessData" style="document" />
+      <wsdl:input name="ProcessDataRequest">
+        <soap:header message="tns:ProcessDataRequest_Headers" part="MessageId" use="literal" />
+        <soap:header message="tns:ProcessDataRequest_Headers" part="SubscriptionTopic" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="TraceabilityFaultFault">
+        <soap:fault name="TraceabilityFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DefaultBinding_ITraceabilityDataOneWay" type="tns:ITraceabilityDataOneWay">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="NewTraceabilityData">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2012/03/Traceability/Contracts/ServiceNewTraceabilityData" style="document" />
+      <wsdl:input name="TraceabilityDataRequest">
+        <soap:header message="tns:TraceabilityDataRequest_Headers" part="MessageId" use="literal" />
+        <soap:header message="tns:TraceabilityDataRequest_Headers" part="SubscriptionTopic" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DefaultBinding_ITraceabilityDataDuplex" type="tns:ITraceabilityDataDuplex">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="NewTraceabilityData">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2012/03/Traceability/Contracts/ServiceNewTraceabilityData" style="document" />
+      <wsdl:input name="TraceabilityDataRequest">
+        <soap:header message="tns:TraceabilityDataRequest_Headers" part="MessageId" use="literal" />
+        <soap:header message="tns:TraceabilityDataRequest_Headers" part="SubscriptionTopic" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="TraceabilityFaultFault">
+        <soap:fault name="TraceabilityFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+</wsdl:definitions>

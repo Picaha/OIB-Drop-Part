@@ -1,0 +1,3420 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ASM.AS.OIB.SIPLACEPro.Optimizer.Contracts</name>
+    </assembly>
+    <members>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Constants">
+            <summary>
+            Constants name space definitions for this service.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Constants.NamespaceUriData">
+            <summary>
+            URI name space for this data contracs in this service
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Constants.NamespaceUriMessage">
+            <summary>
+            URI name space for this service contracts of this service.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Constants.NamespaceUriService">
+            <summary>
+            URI name space for this service contracts of this service.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Constants.OptimizationTopic">
+            <summary>
+            Topic for Optimization notifications.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Constants.OptimizationStartedTopic">
+            <summary>
+            The topic for the Optimization Started event of the Optimizer.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Constants.OptimizationStoppedTopic">
+            <summary>
+            The topic for the Optimization Stopped event of the Optimizer.
+            </summary>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OIDInfo">
+            <summary>
+            A structure containing the information about the maximum OID
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OIDInfo.HighestOID">
+            <summary>
+            The highest OID currently used in Siplace Pro.
+            </summary>
+            <returns>The highest OID currently used in Siplace Pro.</returns>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OIDInfo.MaxOidIntCount">
+            <summary>
+            The max value for a OID of type int.
+            </summary>
+            <returns>The max value for a OID of type int.</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OIDInfo.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.SaveSpotxResult">
+            <summary>
+            SaveSpotxResult Result Data
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.SaveSpotxResult.UpdatedSpotxData">
+            <summary>
+            The updated spotx data
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.SaveSpotxResult.Succeeded">
+            <summary>
+            Gets or sets a value indicating whether [succeeded].
+            </summary>
+            <value>
+            <c>true</c> if [succeeded]; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.SaveSpotxResult.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.SaveSpotxRequest">
+            <summary>
+            SaveSpotxRequest Result Data
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.SaveSpotxRequest.SpotxData">
+            <summary>
+            Gets or sets the spotx data.
+            </summary>
+            <value>
+            The spotx data.
+            </value>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.SaveSpotxRequest.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.LoadSpotxRequest">
+            <summary>
+            LoadSpotxRequest Result Data
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.LoadSpotxRequest.MLJName">
+            <summary>
+            Gets or sets the name of the MLJ.
+            </summary>
+            <value>
+            The name of the MLJ.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.LoadSpotxRequest.WithReferencedObjects">
+            <summary>
+            Gets or sets a value indicating whether [with referenced objects].
+            </summary>
+            <value>
+            <c>true</c> if [with referenced objects]; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.LoadSpotxRequest.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.LoadSpotxResult">
+            <summary>
+            LoadSpotxResult Result Data
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.LoadSpotxResult.SpotxData">
+            <summary>
+            Gets or sets the spotx data.
+            </summary>
+            <value>
+            The spotx data.
+            </value>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.LoadSpotxResult.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.Events.ClusterOptCompleteArgs">
+            <summary>
+            Arguments passed when firing the ClusterOptimizationComplete Event
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.Events.ClusterOptCompleteArgs.Success">
+            <summary>
+            1 if successful
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.Events.ClusterOptCompleteArgs.#ctor(System.Int32,System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="nSuccess">1 if successful</param>
+            <param name="strClientId">String that was passed when calling StartWithClientId</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.Events.ClusterOptProgressArgs">
+            <summary>
+            Arguments passed when firing the ClusterProgress Event
+            </summary>
+            [DataContract(Namespace = Constants.NamespaceUriData)]
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.Events.ClusterOptProgressArgs.Percent">
+            <summary>
+            Progress of current optimization [%]
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.Events.ClusterOptProgressArgs.RunTime">
+            <summary>
+            Run time of current optimization [ms]
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.Events.ClusterOptProgressArgs.#ctor(System.Double,System.Int32,System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="dRunTime">Run time of current optimization [ms]</param>
+            <param name="nPercent">Progress of current optimization [%]</param>
+            <param name="strClientId">String that was passed when calling StartWithClientId</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.Events.ClusterOptStateArgs">
+            <summary>
+            Arguments passed when firing the ClusterState Event
+            </summary>
+            [DataContract(Namespace = Constants.NamespaceUriData)]
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.Events.ClusterOptStateArgs.StateCode">
+            <summary>
+            Code of optimizer's current state (enum type ClusterOptState)
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.Events.ClusterOptStateArgs.Stringparam">
+            <summary>
+            String describing optimizer's current job
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.Events.ClusterOptStateArgs.#ctor(Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ClusterOptState,System.String,System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="stateCode">Code of optimizer's current state (enum type ClusterOptState)</param>
+            <param name="stringparam">String describing optimizer's current job</param>
+            <param name="strClientId">String that was passed when calling StartWithClientId</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.Events.OptResultArgs">
+            <summary>
+            Arguments passed when firing the OptimizationResult Event
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.Events.OptResultArgs.AverageUtilization">
+            <summary>
+            Average Utilization of Line Capacity
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.Events.OptResultArgs.DetailedResults">
+            <summary>
+            Detailed results
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.Events.OptResultArgs.ErrorCount">
+            <summary>
+            Number of optimizer specific errors
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.Events.OptResultArgs.InfoCount">
+            <summary>
+            Number of optimizer specific infos
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.Events.OptResultArgs.OptimizationSuccessful">
+            <summary>
+            True, if optimization was successful
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.Events.OptResultArgs.OptimizerMessages">
+            <summary>
+            List of Optimizer Messages
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.Events.OptResultArgs.PlacementRate">
+            <summary>
+            Placement rate of the line
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.Events.OptResultArgs.ProductionTime">
+            <summary>
+            If >=0.0: estimated production time of the 'best' result currently calculated [ms]. If less than 0.0:  no valid result
+            found yet
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.Events.OptResultArgs.ResultComment">
+            <summary>
+            String describing the result of optimization
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.Events.OptResultArgs.RunTime">
+            <summary>
+            Total run time of optimization [ms]
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.Events.OptResultArgs.WarningCount">
+            <summary>
+            Number of optimizer specific warnings
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.Events.OptResultArgs.#ctor(System.Double,System.Double,System.Double,System.Int32,System.Int32,System.Int32,System.Int32,System.String,System.Boolean,System.String,System.Collections.Generic.List{Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizerMessage},Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.JobDataJob)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="dRunTime">Total run time of optimization [ms]</param>
+            <param name="dProductionTime">
+            If >=0.0: estimated production time of the 'best' result currently calculated [ms]. If
+            less than 0.0:  no valid result found yet
+            </param>
+            <param name="dAverageUtilization">Average Utilization of Line Capacity</param>
+            <param name="nPlacementRate">Placement rate of the line</param>
+            <param name="nErrorCount">Number of optimizer specific errors</param>
+            <param name="nWarningCount">umber of optimizer specific warnings</param>
+            <param name="nInfoCount">Number of optimizer specific infos</param>
+            <param name="strResultComment">String describing the result of optimization</param>
+            <param name="optimizationSuccessful">True, if optimization was successful</param>
+            <param name="listOpimizerMessages">List of Optimizer Messages</param>
+            <param name="strClientId">String that was passed when calling StartWithClientId</param>
+            <param name="detailedResults">RecipeDataJob  object containing detailed results</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.Events.OptStateArgs">
+            <summary>
+            Arguments passed when firing the OptimizationState Event
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.Events.OptStateArgs.IsStopPossible">
+            <summary>
+            True, if optimizer can be stopped via Stop() method
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.Events.OptStateArgs.StateCode">
+            <summary>
+            Code of optimizer's current state (enum type OptKernelState)
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.Events.OptStateArgs.StateComment">
+            <summary>
+            String describing optimizer's current state
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.Events.OptStateArgs.#ctor(Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptKernelState,System.String,System.Boolean,System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="stateCode">Code of optimizer's current state (enum type OptKernelState)</param>
+            <param name="strStateComment">String describing optimizer's current state</param>
+            <param name="bIsStopPossible">True, if optimizer can be stopped via Stop() method</param>
+            <param name="strClientId">String that was passed when calling StartWithClientId</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.Events.ClusterOptResultErrorCountArgs">
+            <summary>
+            Arguments passed when firing the ResultErrorClusterCount Event
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.Events.ClusterOptResultErrorCountArgs.ErrorCount">
+            <summary>
+            Number of optimizer specific errors
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.Events.ClusterOptResultErrorCountArgs.InfoCount">
+            <summary>
+            Number of optimizer specific infos
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.Events.ClusterOptResultErrorCountArgs.RunTime">
+            <summary>
+            Total run time of optimization [ms]
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.Events.ClusterOptResultErrorCountArgs.WarningCount">
+            <summary>
+            Number of optimizer specific warnings
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.Events.ClusterOptResultErrorCountArgs.WriteOK">
+            <summary>
+            If true, writing was successfully completed
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.Events.ClusterOptResultErrorCountArgs.#ctor(System.Double,System.Int32,System.Int32,System.Int32,System.Boolean,System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="dRunTime">Total run time of optimization [ms]</param>
+            <param name="nErrorCount">Number of optimizer specific errors</param>
+            <param name="nWarningCount">Number of optimizer specific warnings</param>
+            <param name="nInfoCount">Number of optimizer specific infos</param>
+            <param name="bWriteOK">If true, writing was successfully completed</param>
+            <param name="strClientId">String that was passed when calling StartWithClientId</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.Events.ClusterOptResultArgs">
+            <summary>
+            Arguments passed when firing the ResultSolutionCharacteristics Event
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.Events.ClusterOptResultArgs.XmlCharacteristics">
+            <summary>
+            XML-string that holds the characteristics
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.Events.ClusterOptResultArgs.#ctor(System.String,System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="strXmlCharacteristics">XML-string that holds the characteristics</param>
+            <param name="strClientId">String that was passed when calling StartWithClientId</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.Events.ClusterOptSessionTerminatedArgs">
+            <summary>
+            Arguments passed when firing the SessionTerminated Event
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.Events.ClusterOptSessionTerminatedArgs.#ctor(System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="strClientId">String that was passed when calling StartWithClientId</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.Events.OptCompleteArgs">
+            <summary>
+            Arguments passed when firing the OptimizationComplete Event
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.Events.OptCompleteArgs.Complete">
+            <summary>
+            True, if optimizer computations completed succesfully
+            and results will be written next
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.Events.OptCompleteArgs.#ctor(System.Boolean,System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="bComplete">
+            True, if optimizer computations completed succesfully
+            and results will be written next
+            </param>
+            <param name="strClientId">String that was passed when calling StartWithClientId</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.Events.OptArgsBase">
+            <summary>
+            Base Class for all arguments classes that are passed when firing events
+            </summary>
+            [DataContract(Namespace = Constants.NamespaceUriData)]
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.Events.OptArgsBase.ClientInstanceId">
+            <summary>
+            String that was passed when calling StartWithClientId
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.Events.OptArgsBase.#ctor(System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="strClientInstanceId">String that was passed when calling StartWithClientId</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.Events.OptProgressArgs">
+            <summary>
+            Arguments passed when firing the OptimizationProgress Event
+            </summary>
+            [DataContract(Namespace = Constants.NamespaceUriData)]
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.Events.OptProgressArgs.AverageUtilization">
+            <summary>
+            Average Utilization of Line Capacity
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.Events.OptProgressArgs.OptProgressType">
+            <summary>
+            Progress Type, either only progress without new best result or even with new optimization result
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.Events.OptProgressArgs.Percent">
+            <summary>
+            Progress of current optimization [%]
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.Events.OptProgressArgs.PlacementRate">
+            <summary>
+            Placement rate of the line
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.Events.OptProgressArgs.ProductionTime">
+            <summary>
+            If >=0.0: estimated production time of the 'best' result currently calculated [ms].
+            If less than 0.0:  no valid result found yet
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.Events.OptProgressArgs.RunTime">
+            <summary>
+            Run time of current optimization [ms]
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.Events.OptProgressArgs.#ctor(Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptProgressType,System.Double,System.Int32,System.Double,System.Double,System.Int32,System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="optProgressType">
+            Progress Type, either only progress without new best result or even with new optimization
+            result
+            </param>
+            <param name="dRunTime">Run time of current optimization [ms]</param>
+            <param name="nPercent">Progress of current optimization [%]</param>
+            <param name="dProductionTime">
+            If >=0.0: estimated production time of the 'best' result currently calculated [ms].
+            If less than 0.0:  no valid result found yet
+            </param>
+            <param name="dAverageUtilization">Average Utilization of Line Capacity</param>
+            <param name="nPlacementRate">Placement rate of the line</param>
+            <param name="strClientId">String that was passed when calling StartWithClientId</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.IntegrityCheckMode">
+            <summary>
+            Represents the possible modes for the recipe Integrity Check.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.IntegrityCheckMode.WarnOnly">
+            <summary>
+            Warnings will be issued, when the IC operation is performed.
+            Data will not be modified.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.IntegrityCheckMode.AllowHeadstepRecalcuation">
+            <summary>
+            Integritycheck will perform a recalculation of the headsteps when this is required.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.IntegrityCheckMode.ForceHeadstepRecalculation">
+            <summary>
+            Integritycheck will always perform a recalculation of the headsteps.
+            </summary>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ICPlacePosReparMode">
+            <summary>
+            Represents the possible modes for the recipe Integrity Check.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ICPlacePosReparMode.RepAllowRepart">
+            <summary>
+            Allow component repartitioning for best line balancing
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ICPlacePosReparMode.RepAvoidRepart">
+            <summary>
+            Avoid component repartitioning that line does not need to be run emptied
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ICPlacePosReparMode.RepAvoidRepAndKeepSequence">
+            <summary>
+            keep placement sequence from last optimizer run (only valid for SIPLACE Pro 5.1 and higher)
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ICPlacePosReparMode.RepFindBestResult">
+            <summary>
+            run all three other modes once and use the best result (only valid for SIPLACE Pro 5.2 and higher)
+            </summary>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.IntegrityCheckResult">
+            <summary>
+            Represents the possible modes for the recipe Integrity Check.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.IntegrityCheckResult.DataNotOk">
+            <summary>
+            Integrity Check failed
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.IntegrityCheckResult.DataNotOkHeadStepRecalculationRecommended">
+            <summary>
+            Integrity Check failed, recalculating the headsteps is recommended
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.IntegrityCheckResult.DataOk">
+            <summary>
+            Integrity Check succeeded
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.IntegrityCheckResult.DataOkHeadStepsRecalculated">
+            <summary>
+            Integrity Check succeeded; head steps were recalculated
+            </summary>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.JobDataHead">
+            <summary>
+            Station Result Data
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.JobDataHead.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.JobDataHead.Type">
+            <summary>
+            Type of Head
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.JobDataHead.Location">
+            <summary>
+            Location Number (MC Location ID) of Head
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.JobDataHead.HeadSteps">
+            <summary>
+            Head Steps summary (can contain up to 2, one for each Board stepping)
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.JobDataHead.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.JobDataHeadSteps">
+            <summary>
+            Station Result Data
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.JobDataHeadSteps.CycleTime">
+            <summary>
+            Cycle Time (time needed for finishing all head steps) in ms
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.JobDataHeadSteps.PCBCycle">
+            <summary>
+            Number of the stopper for which the current head schedule is, starting with 1
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.JobDataHeadSteps.PlacementCount">
+            <summary>
+            Number of Placements
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.JobDataHeadSteps.CycleCount">
+            <summary>
+            Number of Head Cycles
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.JobDataHeadSteps.HeadCycleTime">
+            <summary>
+            Cycle Time (overall time needed to finish this head schedule) of the Head in ms
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.JobDataHeadSteps.Performance">
+            <summary>
+            Performance (average number of placements placed in this
+            head schedule in one hour) of the Head
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.JobDataHeadSteps.VirtualUnproductiveTime">
+            <summary>
+            Virtual unproductive time (time not spent for placing, but for
+            waiting and measuring fiducials) in ms
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.JobDataHeadSteps.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.JobDataLine">
+            <summary>
+            Recipe Result Data
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.JobDataLine.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.JobDataLine.Name">
+            <summary>
+            Full Path Name of Line
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.JobDataLine.Stations">
+            <summary>
+            Stations in the Line
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.JobDataLine.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.JobDataPlacementArea">
+            <summary>
+            Station Result Data
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.JobDataPlacementArea.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.JobDataPlacementArea.Number">
+            <summary>
+            Number of the Placement Area
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.JobDataPlacementArea.Heads">
+            <summary>
+            Heads in the Placement Area
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.JobDataPlacementArea.CycleTime">
+            <summary>
+            CycleTime of Placement Area in ms
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.JobDataPlacementArea.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.JobDataRecipe">
+            <summary>
+            Recipe Result Data
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.JobDataRecipe.Name">
+            <summary>
+            Full Path Name of Recipe
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.JobDataRecipe.Utilization">
+            <summary>
+            Utilization in %
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.JobDataRecipe.ProductionTime">
+            <summary>
+            Production Time in ms
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.JobDataRecipe.PlacementRate">
+            <summary>
+            Placement Rate in placements per hour
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.JobDataRecipe.CycleTime">
+            <summary>
+            CycleTime of Recipe in ms
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.JobDataRecipe.Setup">
+            <summary>
+            Setup
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.JobDataRecipe.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.JobDataSetup">
+            <summary>
+            Recipe Result Data
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.JobDataSetup.Name">
+            <summary>
+            Full Path Name of Setup
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.JobDataSetup.Line">
+            <summary>
+            Setup
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.JobDataSetup.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.JobDataStation">
+            <summary>
+            Station Result Data
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.JobDataStation.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.JobDataStation.Name">
+            <summary>
+            Full Path Name of Station
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.JobDataStation.StationType">
+            <summary>
+            Type of Station
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.JobDataStation.PlacementAreas">
+            <summary>
+            Placement Areas in the Station
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.JobDataStation.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ObjectType">
+            <summary>
+            Defines the Object Type for getting Optimizer Messages
+            Can be either Job, ClusterJob or Recipe
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ObjectType.ClusterJob">
+            <summary>
+            Cluster Job
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ObjectType.Job">
+            <summary>
+            Job
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ObjectType.Recipe">
+            <summary>
+            Recipe
+            </summary>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizerRuntimeParameter">
+            <summary>
+            Defines the level of Logging for the Optimizer
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizerRuntimeParameter.Default">
+            <summary>
+            Use default runtime behavior,
+            will write results into DB
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizerRuntimeParameter.DoNotPersistResults">
+            <summary>
+            Will use special rule not to persist optimization results
+            (head steps, setup, etc) to SIPLACE Pro database.
+            Will result in higher performance. Only supported for SIPLACE Pro 7.0 and higher.
+            </summary>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizerServiceState">
+            <summary>
+            This class contains details about the current optimizer service state.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizerServiceState.m_bBusy">
+            <summary>
+            If true, the optimizer service is busy
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizerServiceState.m_bClusterJob">
+            <summary>
+            If true, cluster optimization is running
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizerServiceState.m_strClientEndpoint">
+            <summary>
+            Client endpoint of current optimization
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizerServiceState.m_strJobName">
+            <summary>
+            Job/ Cluster Job display path
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizerServiceState.Busy">
+            <summary>
+            If true, the optimizer service is busy
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizerServiceState.ClusterJob">
+            <summary>
+            If true, cluster optimization is running
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizerServiceState.JobName">
+            <summary>
+            Job/ Cluster Job display path
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizerServiceState.ClientEndpoint">
+            <summary>
+            Client endpoint of current optimization
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizerServiceState.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizerStartedReport">
+            <summary>
+            Contains data for the Optimizer Started Event
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizerStartedReport.bClusterJob">
+            <summary>
+            True, if a cluster optimization was started, false in case a normal optimization was started
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizerStartedReport.strClientEndpoint">
+            <summary>
+            Endpoint of the Client (callback) that started the Optimization
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizerStartedReport.strJobName">
+            <summary>
+            The Job/Cluster Job name that has been started to optimize
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizerStartedReport.strServiceComputer">
+            <summary>
+            Computer Name on which the Optimizer Service is running
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizerStartedReport.timeUTCTime">
+            <summary>
+            Current UTC time when the Optimizer was started
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizerStartedReport.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizerStoppedReport">
+            <summary>
+            Contains data for the Optimizer Stopped Event
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizerStoppedReport.bClusterJob">
+            <summary>
+            True, if a cluster optimization was stopped, false in case a normal optimization was stopped
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizerStoppedReport.strClientEndpoint">
+            <summary>
+            Endpoint of the Client (callback) that stopped the Optimization
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizerStoppedReport.strJobName">
+            <summary>
+            The Job/Cluster Job name that has been stopped to optimize
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizerStoppedReport.strServiceComputer">
+            <summary>
+            Computer Name on which the Optimizer Service is running
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizerStoppedReport.timeUTCTime">
+            <summary>
+            Current UTC time when the Optimizer was started
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizerStoppedReport.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataComponentLocation">
+            <summary>
+            Component Location Related Data
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataComponentLocation.Component">
+            <summary>
+            Component Name
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataComponentLocation.FeederType">
+            <summary>
+            Feeder Type
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataComponentLocation.ReserveType">
+            <summary>
+            Reserve Type
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataComponentLocation.Track">
+            <summary>
+            Track Number
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataComponentLocation.Division">
+            <summary>
+            Division Number of Feeder
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataComponentLocation.Tower">
+            <summary>
+            Tower Number (used with Feeders that have a Tower)
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataComponentLocation.Level">
+            <summary>
+            Level Number (used with Feeders that have a Tower)
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataComponentLocation.PickupX">
+            <summary>
+            Pickup Position X
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataComponentLocation.PickupY">
+            <summary>
+            Pickup Position Y
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataComponentLocation.PickupZ">
+            <summary>
+            Pickup Position Z
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataComponentLocation.PickupPhi">
+            <summary>
+            Placement Angle
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataComponentLocation.FixedFeeder">
+            <summary>
+            Fixed Feeder
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataComponentLocation.FixedComponent">
+            <summary>
+            Fixed Component
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataComponentLocation.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataHandling">
+            <summary>
+            Pickup Related Head Step Data
+            This class might be renamed, since it contains pick up data, no handling data
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataHandling.Location">
+            <summary>
+            Pickup Location
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataHandling.Table">
+            <summary>
+            Table Name
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataHandling.FeederType">
+            <summary>
+            Feeder Type
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataHandling.Track">
+            <summary>
+            Track Number
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataHandling.Division">
+            <summary>
+            Division Number of Feeder
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataHandling.Tower">
+            <summary>
+            Tower Number (used with Feeders that have a Tower)
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataHandling.Level">
+            <summary>
+            Level Number (used with Feeders that have a Tower)
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataHandling.PickupX">
+            <summary>
+            Pickup Position X
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataHandling.PickupY">
+            <summary>
+            Pickup Position Y
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataHandling.PickupZ">
+            <summary>
+            Pickup Position Z
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataHandling.PickupPhi">
+            <summary>
+            Placement Angle
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataHandling.FixedFeeder">
+            <summary>
+            Fixed Feeder
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataHandling.FixedComponent">
+            <summary>
+            Fixed Component
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataHandling.FrozenTable">
+            <summary>
+            Frozen Table
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataHandling.PUP">
+            <summary>
+            Pickup Position
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataHandling.ToString">
+            <summary>
+            Overloaded, returns all Properties and their values as string
+            </summary>
+            <returns>Properties and their values</returns>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataHead">
+            <summary>
+            Head Data
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataHead.HeadType">
+            <summary>
+            Type of Head
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataHead.Location">
+            <summary>
+            Location Number
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataHead.HeadCycleTime">
+            <summary>
+            Head Cycle Time
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataHead.PCBCycles">
+            <summary>
+            Head Steps
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataHead.GetOrCreatePCBCycle(System.Int32)">
+            <summary>
+            Returns or creates a RecipeDataPCBCycle object. If created, PCBCycle member will have iCycle+1
+            </summary>
+            <param name="iCycle">0 based index</param>
+            <returns>PCB Cycle at that index</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataHead.ToString">
+            <summary>
+            Overloaded, returns all Properties and their values as string
+            </summary>
+            <returns>Properties and their values</returns>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataHeadStep">
+            <summary>
+            Head Step related Data
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataHeadStep.Type">
+            <summary>
+            Type of Head Step (either PLACE or FIDUCIAL)
+            Beginning with SIPLACE Pro 14.1, this can also be
+            HEIGHT_MEASUREMENT or INSPECTION
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataHeadStep.SequenceNumber">
+            <summary>
+            Sequence Number
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataHeadStep.HeadCycle">
+            <summary>
+            Head Cycle Number
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataHeadStep.PlacingTime">
+            <summary>
+            Time since the Board entered the Placing Area until
+            end of placement of this head step in ms (can be -1 if unknown)
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataHeadStep.WaitingTime">
+            <summary>
+            Waiting Time in ms (can be -1 if unknown)
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataHeadStep.PickupTime">
+            <summary>
+            Time since the Board entered the Placing Area until
+            end of pickup of this head step in ms (can be -1 if unknown)
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataHeadStep.Position">
+            <summary>
+            Placement Position related data
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataHeadStep.Handling">
+            <summary>
+            Pickup related data
+            This class might be renamed, since it contains pick up data, no handling data
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataHeadStep.Pickup">
+            <summary>
+            Handling Related Head Step Data
+            This class might be renamed, since it contains handling data, no pick up data
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataHeadStep.PCBCycle">
+            <summary>
+            PCB Cycle Number (for Long Board)
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataHeadStep.SubType">
+            <summary>
+            Sub Type of Head Step (for Type FIDUCIAL, SIPLACE Pro >= 9.2 will contain either FIDUCIAL_MEASURE or FIDUCIAL_RESERVE)
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataHeadStep.GetOrCreatePickup">
+            <summary>
+            Gets the current or creates a new RecipeDataPickup instance in case it is null
+            </summary>
+            <returns>Current or newly created RecipeDataPickup</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataHeadStep.ToString">
+            <summary>
+            Overloaded, returns all Properties and their values as string
+            </summary>
+            <returns>Properties and their values</returns>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.JobDataJob">
+            <summary>
+            Job Result Data
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.JobDataJob.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.JobDataJob.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.JobDataJob.Recipes">
+            <summary>
+            List Boards on Conveyor 1
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.JobDataJob.Name">
+            <summary>
+            Full Path Name of Job
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.JobDataJob.SetupName">
+            <summary>
+            Full Path Name of Setup
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.JobDataJob.CycleTime">
+            <summary>
+            CycleTime of Job in ms
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.JobDataJob.ProductionTime">
+            <summary>
+            Production Time of Job in ms
+            </summary>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataLine">
+            <summary>
+            Line Data
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataLine.Name">
+            <summary>
+            Full Path Name of Line
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataLine.Stations">
+            <summary>
+            Stations in the Line
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataLine.ToString">
+            <summary>
+            Overloaded, returns all Properties and their values as string
+            </summary>
+            <returns>Properties and their values</returns>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ClusterOptState">
+            <summary>
+            This is an enum whose value represent the possible states for the Cluster Optimizer.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ClusterOptState.CS_UNDEFINED">
+            <summary>
+            Undefined (not used)
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ClusterOptState.CS_IDLE">
+            <summary>
+            Optimizer is idle; optimization can now be started
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ClusterOptState.CS_READ_INPUT">
+            <summary>
+            Optimizer reads input data from SPI
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ClusterOptState.CS_OPT_ANALYSING">
+            <summary>
+            Optimizer analyses input data and creates own data model
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ClusterOptState.CS_OPT_INT_DATA">
+            <summary>
+            Optimizer is in internal data setup
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ClusterOptState.CS_OPT_CLUSTER">
+            <summary>
+            Optimizer is clustering
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ClusterOptState.CS_OPT_LINEBAL">
+            <summary>
+            Optimizer is linebalancing
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ClusterOptState.CS_OPT_PRE_OUT">
+            <summary>
+            Optimizer is preparing output
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ClusterOptState.CS_PAUSED">
+            <summary>
+            Optimizer is paused with results
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ClusterOptState.CS_WRITE">
+            <summary>
+            Optimizer is writing results
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ClusterOptState.CS_SAVED">
+            <summary>
+            Results saved
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ClusterOptState.Reserved1">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ClusterOptState.Reserved2">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ClusterOptState.Reserved3">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ClusterOptState.Reserved4">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ClusterOptState.Reserved5">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.LogLevel">
+            <summary>
+            Defines the level of Logging for the Optimizer
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.LogLevel.ERROR_ONLY">
+            <summary>
+            Only log error events
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.LogLevel.ALL">
+            <summary>
+            Log error and status events
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.LogLevel.Reserved1">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.LogLevel.Reserved2">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.LogLevel.Reserved3">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.LogLevel.Reserved4">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.LogLevel.Reserved5">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.MsgLevel">
+            <summary>
+            Defines the type of messages that the optimizer should return.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.MsgLevel.LEVEL_UNDEFINED">
+            <summary>
+            Undefined
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.MsgLevel.ERR_MSGS">
+            <summary>
+            Only output error messages.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.MsgLevel.ERR_WARNING_MSGS">
+            <summary>
+            All error and warning messages are output. This is the default.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.MsgLevel.ALL_MSGS">
+            <summary>
+            All error, warning and info messages are output.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.MsgLevel.Reserved1">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.MsgLevel.Reserved2">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.MsgLevel.Reserved3">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.MsgLevel.Reserved4">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.MsgLevel.Reserved5">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.MTCFillStrategyMode">
+            <summary>
+            Enum that defines how the optimizer should fill MTC feeders.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.MTCFillStrategyMode.Undefined">
+            <summary>
+            Undefined
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.MTCFillStrategyMode.BestPerformance">
+            <summary>
+            Fill for best performance.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.MTCFillStrategyMode.FillOneCompPerCass">
+            <summary>
+            Fill one component per carrier.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.MTCFillStrategyMode.TowerSortedByComp">
+            <summary>
+            Fill one component per tower.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.MTCFillStrategyMode.Reserved1">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.MTCFillStrategyMode.Reserved2">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.MTCFillStrategyMode.Reserved3">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.MTCFillStrategyMode.Reserved4">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.MTCFillStrategyMode.Reserved5">
+            <summary>
+            Reserved for future use
+            </summary>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizationLevel">
+            <summary>
+            Defines how the optimizer should optimize the data.  The Levels 1 - 3 have predefined options that the optimizer will
+            use.
+            The custom level allows the client to specify parameters for optimization.  Refer to the SIPLACE
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizationLevel.Undefined_0">
+            <summary>
+            Level 0
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizationLevel.Level_1">
+            <summary>
+            Level 1
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizationLevel.Level_2">
+            <summary>
+            Level 2
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizationLevel.Level_3">
+            <summary>
+            Level 3
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizationLevel.Level_Custom">
+            <summary>
+            Custom Level
+            </summary>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizationParameters">
+            <summary>
+            Parameters for optimization
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizationParameters.MaxRestartsLimit">
+            <summary>
+            If true, uses MaxRestarts (not recommended), otherwise uses MaxRuntime
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizationParameters.MaxRuntime">
+            <summary>
+            Maximum Optimizer Runtime per Recipe in [ms]
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizationParameters.MaxRestarts">
+            <summary>
+            Maximum number of restarts (not recommended to use), please use MaxRuntime instead!
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizationParameters.OptimizeTables">
+            <summary>
+            If true, optimizer is allowed to change the setup of the tables
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizationParameters.MTCIdenticalTowers">
+            <summary>
+            If true, MTC towers will be set up identically.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizationParameters.FillWPC100Percent">
+            <summary>
+            If true, components on the WPC will be set up more than once until the tower is filled up to 100%.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizationParameters.TowerFillUpStrategy">
+            <summary>
+            Fill up strategy
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizationParameters.IdenticalNozzleSetups">
+            <summary>
+            If true, for all collect and place heads the nozzle setup on the head will be identical
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizationParameters.OptimizeNozzleChanger">
+            <summary>
+            If true, nozzle changers will be optimized (nozzles are set up)
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizationParameters.OptimizeHeadSteps">
+            <summary>
+            If true, head steps are created and saved (typically true)
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizationParameters.OptMsgLevel">
+            <summary>
+            Optimizer Message Level
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizationParameters.SupportPlacementLevels">
+            <summary>
+            If false, all placements that have a level > 0 will be put on the last placement area of the line.
+            If true, user has to fix all components with level > 0. In each placement area
+            levels are accounted for.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizationParameters.CompMaxSetupCount">
+            <summary>
+            Maximum setup count per component in resulting setup
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizationParameters.DontChangeCompLoc">
+            <summary>
+            If true, components that are used in the job (feeders that have this component)
+            won't be removed from Setup or moved to another location.
+            Only valid for SIPLACE Pro versions greater and equal 4.1!
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizationParameters.DontChangeCompLocModifyFeeder">
+            <summary>
+            Only valid if DontChangeCompLoc is true, also!
+            If true, Components that are not needed will be removed from Feeder pockets, so that other
+            components can be set up onto this feeder. Also, empty pockets will be filled up with other components,
+            if the space is needed.
+            Only valid for SIPLACE Pro versions greater and equal 4.1!
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizationParameters.ClusterSetupFillLevel">
+            <summary>
+            Specifies the setup fill level in percent that should be reached when clustering
+            (100 means that all feeder spaces are filled up)
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizationParameters.AssignPlacementPosFromHeadschedule">
+            <summary>
+            If true, the same head will place the same placement positions in an already
+            optimized recipe when re-optimizing.
+            Only valid for SIPLACE Pro versions greater and equal 5.0!
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizationParameters.KeepPlacementSequence">
+            <summary>
+            If true, the same head will place the same placement positions in the same order
+            in an already optimized recipe when re-optimizing.
+            Only valid for SIPLACE Pro versions greater and equal 5.0!
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizationParameters.OptLogLevel">
+            <summary>
+            Logging level
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizationParameters.SaveResults">
+            <summary>
+            If true, a SPOT file will be written. To specify the location, use LogFileName parameter.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizationParameters.LogFileName">
+            <summary>
+            Location of the SPOT file that will be written.
+            SaveResults needs to be true.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizationParameters.IgnoreFixedFlags">
+            <summary>
+            Only valid if DontChangeCompLoc is true, also!
+            If true, Components that are fixed, but not needed will be removed from the setup
+            Only valid for SIPLACE Pro versions greater and equal 5.1!
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizationParameters.NoAdditionalSetupComps">
+            <summary>
+            If true, if a component is already present on setup, it will not be set up again by the optimizer.
+            Only valid for SIPLACE Pro versions greater and equal 5.1!
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizationParameters.PerformanceSettingLevel2Fast">
+            <summary>
+            If true, the level 2 optimization will be faster.
+            If a job contains lots of recipes, there is a chance of reaching the memory limit though.
+            Only valid for SIPLACE Pro versions greater and equal 5.2!
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizationParameters.WarningsAsErrors">
+            <summary>
+            This is a list of warnings that should be treated as errors.
+            Only valid for SIPLACE Pro versions greater and equal 5.2!
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizationParameters.AddCppPrecedences">
+            <summary>
+            Avoid nozzle collisions on MultiStar CPP heads.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizationParameters.AllPlacementsAtFirstStopper">
+            <summary>
+            Gets or sets a value indicating whether all placements should be at the first stopper.
+            The assignment to the first stopper is done without reachability check.
+            </summary>
+            <remarks>
+            This property was introduced in SIPLACE Pro 13.0. If null is passed in the default value of false is used.
+            </remarks>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizationParameters.PerformanceSettingCreateTimeStamp">
+            <summary>
+            Update Time Stamp for optimized recipes.
+            If true, increases performance of the first integrity check of an optimized recipe.
+            However, the performance of this job optimization will be slightly lower in the read/write phase.
+            </summary>
+            <remarks>
+            If null is passed in the default value of true is used.
+            </remarks>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizationParameters.UseJobNameForResultSetup">
+            <summary>
+            If true, uses the job name to derive the newly created optimized setup name.
+            If false, uses the initial setup name
+            </summary>
+            <remarks>
+            This property was introduced in SIPLACE Pro 13.0. If null is passed in the default value of false is used.
+            </remarks>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizationParameters.BalanceLBOStepping">
+            <summary>
+            If true, balances the Long Board Option Steps for stations with 2 placement areas with each having 2 active stoppers.
+            This means that the optimizer tries to assign equal amounts of placement positions for each stopper
+            If false, uses the default algorithm.
+            </summary>
+            <remarks>
+            This property was introduced in SIPLACE Pro 14.1. If null is passed in the default value of false is used.
+            </remarks>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizationParameters.MaxTableFillLevel">
+            <summary>
+            Maximum allowed fill level of a table (0..100%) 
+            </summary>
+            <remarks>
+            If null is passed in the default value of 100 is used.
+            </remarks>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizationParameters.CompletePanelsSeparately">
+            <summary>
+            If true, the station tries to complete placements of one panel in one placement area
+            before the placement of the next panel begins
+            </summary>
+            <remarks>
+            This property was introduced in SIPLACE Pro 17.1. If null is passed in the default value of false is used.
+            </remarks>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizationParameters.AddAllPrecedences">
+            <summary>
+            Avoid nozzle collisions on all heads (not only MultiStart CPP <seealso cref="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizationParameters.AddCppPrecedences"/>).
+            </summary>
+            <remarks>
+            This property was introduced in SIPLACE Pro 18.0. If null is passed in the default value of false is used.
+            </remarks>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizationParameters.TryAssignPlacementPosFromHeadschedule">
+            <summary>
+            Try to avoid redistribution of components which are set up multiple times.
+            If true and if possible, the same head will place the same placement positions in an already
+            optimized recipe when re-optimizing.
+            </summary>
+            <remarks>
+            This property was introduced in SIPLACE Pro 18.0. If null is passed in the default value of false is used.
+            </remarks>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizationParameters.PlacementLevelBinding">
+            <summary>
+            Placement level binding to the last placement area
+            If false, placements with level higher than 0 are allowed to be placed as soon as possible
+            If true (default), placements with level higher than 0 are bound to the last placement area of the line  
+            </summary>
+            <remarks>
+            This property was introduced in SIPLACE Pro 19.0. If null is passed in the default value of true is used.
+            </remarks>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizationParameters.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizerMessage">
+            <summary>
+            This class contains details about a specific optimizer message.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizerMessage.MessageType">
+            <summary>
+            Warning, Info, Error
+            <list type="table">
+            <listheader>
+            <term>Value</term>
+            <description>MessageType</description>
+            </listheader>
+            <item>
+            <term>Info</term>
+            <description>Message some informational content</description>
+            </item>
+            <item>
+            <term>Warning</term>
+            <description>
+            Message indicates some warning in the data consistency, which is not hindering the
+            system to prepare the machine for operation but which might not be the intention of the
+            line engineer and might require some attention.
+            </description>
+            </item>
+            <item>
+            <term>Error</term>
+            <description>
+            An error indicates that some data inconsistency hinders the integrity check  to
+            finish successfully or that the optimizer can not find a valid setup configuration
+            due to some constrains which must be fulfilled which are not.
+            </description>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizerMessage.MessageCode">
+            <summary>
+            Error numbers (defined by Optimizer) that you can pair with explanations stored as strings.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizerMessage.Message">
+            <summary>
+            This is the whole message explaining the cause of the information, warning or error message.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizerMessage.Parameters">
+            <summary>
+            Single parameter values from the message.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizerMessage.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptKernelState">
+            <summary>
+            Optimizer Kernel State
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptKernelState.KS_UNDEFINED">
+            <summary>
+            Undefined
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptKernelState.KS_IDLE">
+            <summary>
+            Optimizer is idle; optimization can now be started
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptKernelState.KS_READ_INPUT">
+            <summary>
+            Optimizer reads input data from SPI
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptKernelState.KS_ANALYSING">
+            <summary>
+            Optimizer analyses input data and creates own data model
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptKernelState.KS_OPTIMIZING_1">
+            <summary>
+            Preparing initial setup
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptKernelState.KS_OPTIMIZING_2">
+            <summary>
+            Optimizing, no solution available
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptKernelState.KS_OPTIMIZING_3">
+            <summary>
+            Optimizing
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptKernelState.KS_OPTIMIZING_4">
+            <summary>
+            Creating headsteps
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptKernelState.KS_OPTIMIZING_5">
+            <summary>
+            Preparing output data
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptKernelState.KS_OPTIMIZING_6">
+            <summary>
+            not used yet
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptKernelState.KS_OPTIMIZING_7">
+            <summary>
+            not used yet
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptKernelState.KS_OPTIMIZING_8">
+            <summary>
+            not used yet
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptKernelState.KS_OPTIMIZING_9">
+            <summary>
+            not used yet
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptKernelState.KS_OPT_COMPLETE">
+            <summary>
+            Optimization is complete
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptKernelState.KS_WRITE_OUTPUT">
+            <summary>
+            Optimizer is writing results
+            </summary>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptProgressType">
+            <summary>
+            Optimizer Progress
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptProgressType.OCB_PROGRESS">
+            <summary>
+            Progress without new, better result
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptProgressType.OCB_NEWRESULT">
+            <summary>
+            Just new result (not used)
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptProgressType.OCB_PROGRESS_NEWRSULT">
+            <summary>
+            Progress with new, best result
+            </summary>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataBoard">
+            <summary>
+            Board Data
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataBoard.Name">
+            <summary>
+            Full Path Name of Board
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataBoard.Number">
+            <summary>
+            Number of Board (for multiple boards in one lane)
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataBoard.Length">
+            <summary>
+            Length in mm
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataBoard.Width">
+            <summary>
+            Width in mm
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataBoard.Height">
+            <summary>
+            Height in mm
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataBoard.SubLane">
+            <summary>
+            SubLane
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataBoard.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataNozzleSetup">
+            <summary>
+            Nozzle Setup Data
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataNozzleSetup.NozzleType">
+            <summary>
+            Nozzle Type number
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataNozzleSetup.SegmentNumber">
+            <summary>
+            Segment Number on which the nozzle is set up
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataNozzleSetup.SequenceOrder">
+            <summary>
+            Sequence Order
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataNozzleSetup.ToString">
+            <summary>
+            Overloaded, returns all Properties and their values as string
+            </summary>
+            <returns>Properties and their values</returns>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataPCBCycle">
+            <summary>
+            PCB Cycle Data
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataPCBCycle.PCBCycle">
+            <summary>
+            PCB Cycle Number (for Long Board)
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataPCBCycle.Performance">
+            <summary>
+            Performance (average number of placements placed in this
+            head schedule in one hour) of the Head
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataPCBCycle.VirtualUnproductiveTime">
+            <summary>
+            Virtual unproductive time (time not spent for placing, but for
+            waiting and measuring fiducials) in ms
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataPCBCycle.PlacementCount">
+            <summary>
+            Number of Placements
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataPCBCycle.CycleCount">
+            <summary>
+            Number of Head Cycles
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataPCBCycle.CycleTime">
+            <summary>
+            Cycle Time (time needed for finishing all head steps of this PCB cycle) in ms
+            This is also displayed in the recipe result in SIPLACE Pro Desk
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataPCBCycle.HeadCycleTime">
+            <summary>
+            Cycle Time (overall time needed to finish this head schedule) of the Head in ms
+            Also known as BuildTime (time of first fiducial measurement until last placement of this PCB cycle).
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataPCBCycle.HeadSteps">
+            <summary>
+            Head Steps
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataPCBCycle.NozzleSetups">
+            <summary>
+            Nozzle Setups
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataPCBCycle.ToString">
+            <summary>
+            Overloaded, returns all Properties and their values as string
+            </summary>
+            <returns>Properties and their values</returns>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataPickup">
+            <summary>
+            Handling Related Head Step Data
+            This class might be renamed, since it contains handling data, no pick up data
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataPickup.Nozzle">
+            <summary>
+            Nozzle Name
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataPickup.Camera">
+            <summary>
+            Camera Name
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataPickup.Segment">
+            <summary>
+            Segment Number
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataPickup.Layer">
+            <summary>
+            Placement Layer
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataPickup.ImmediateRepair">
+            <summary>
+            Immediate Repair Flag
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataPickup.ReducedAcceleration">
+            <summary>
+            Reduced Acceleration
+            This property only displays the correct value for SIPLACE Pro 14.0 or higher!
+            For lower version it always returns true which might not be correct.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataPickup.ToString">
+            <summary>
+            Overloaded, returns all Properties and their values as string
+            </summary>
+            <returns>Properties and their values</returns>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataPlacementArea">
+            <summary>
+            Placement Area Data
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataPlacementArea.Number">
+            <summary>
+            Index of the PlacementArea
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataPlacementArea.Heads">
+            <summary>
+            Heads in this Placement Area
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataPlacementArea.CycleTime">
+            <summary>
+            CycleTime of Placement Area in ms
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataPlacementArea.BuildTime">
+            <summary>
+            Build Time in ms
+            Time consumed in between measuring the first fiducial and the last placement step
+            in a placement area. In case you are running LBO with stepping, the board transport time
+            between both stoppers is substracted from the build time.
+            For SIPLACE Pro Versions less than 8.0 this contains the CycleTime.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataPlacementArea.ToString">
+            <summary>
+            Overloaded, returns all Properties and their values as string
+            </summary>
+            <returns>Properties and their values</returns>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataPosition">
+            <summary>
+            Position Related Head Step Data
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataPosition.ReferenceDesignator">
+            <summary>
+            Reference Designator (either of component placement or fiducial placement)
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataPosition.Board">
+            <summary>
+            Board Name
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataPosition.Panel">
+            <summary>
+            Panel Name (concatenated)
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataPosition.Component">
+            <summary>
+            Component Name
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataPosition.ComponentShape">
+            <summary>
+            Component Shape Name
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataPosition.FiducialType">
+            <summary>
+            Fiducial Type Name
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataPosition.FiducialDIPFType">
+            <summary>
+            Fiducial DIPF Type Name
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataPosition.ConveyorLane">
+            <summary>
+            Conveyor Lane (1: Right Lane; 2: Left Lane; -1 returned if unknown [only possible in case the same board is on both
+            lanes] )
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataPosition.BoardNumber">
+            <summary>
+            Index in Board Collection
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataPosition.Level">
+            <summary>
+            Placement Level
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataPosition.PositionX">
+            <summary>
+            Position X on Board
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataPosition.PositionY">
+            <summary>
+            Position Y on Board
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataPosition.PositionZ">
+            <summary>
+            Position Z on Board
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataPosition.PositionPhi">
+            <summary>
+            Angle on Board
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataPosition.Length">
+            <summary>
+            Length of Component (X)
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataPosition.Width">
+            <summary>
+            Width of Component (Y)
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataPosition.Height">
+            <summary>
+            Height of Component (Z)
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataPosition.SubLane">
+            <summary>
+            Sub Lane
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataPosition.ToString">
+            <summary>
+            Overloaded, returns all Properties and their values as string
+            </summary>
+            <returns>Properties and their values</returns>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataRecipe">
+            <summary>
+            Recipe Data
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataRecipe.NeedsToBeReoptimized">
+            <summary>
+            If true, the recipe's input data has changed and it needs to be re-optimized
+            In that case, most probably no Head Steps are returned.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataRecipe.Name">
+            <summary>
+            Full Path Name of Recipe
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataRecipe.BoardsRightLane">
+            <summary>
+            List Boards on Conveyor 1
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataRecipe.BoardsLeftLane">
+            <summary>
+            List Boards on Conveyor 2
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataRecipe.Setup">
+            <summary>
+            Setup
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataRecipe.Utilization">
+            <summary>
+            Utilization in %
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataRecipe.ProductionTime">
+            <summary>
+            Production Time in ms
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataRecipe.PlacementRate">
+            <summary>
+            Placement Rate in components per hour
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataRecipe.ActiveSetupArea">
+            <summary>
+            Active Setup Area (for split table mode) which is used to produce this recipe.
+            Can be: 'Both', 'I', or 'II'
+            Only filled out for SIPLACE Pro Versions >= 9.2
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataRecipe.OptimizerMessages">
+            <summary>
+            Optimizer Messages that were possibly issued
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataRecipe.ErrorCount">
+            <summary>
+            Number of Errors issued
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataRecipe.WarningCount">
+            <summary>
+            Number of Warnings issued
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataRecipe.InfoCount">
+            <summary>
+            Number of Infos issued
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataRecipe.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataSetup">
+            <summary>
+            Setup Data
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataSetup.Name">
+            <summary>
+            Full Path Name of Setup
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataSetup.Line">
+            <summary>
+            Line
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataSetup.ToString">
+            <summary>
+            Overloaded, returns all Properties and their values as string
+            </summary>
+            <returns>Properties and their values</returns>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataStation">
+            <summary>
+            Station Data
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataStation.Name">
+            <summary>
+            Full Path Name of Station
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataStation.StationType">
+            <summary>
+            Type of Station
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataStation.PlacementAreas">
+            <summary>
+            Placement Areas
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataStation.CycleTime">
+            <summary>
+            CycleTime of the Station in ms
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataStation.ToString">
+            <summary>
+            Overloaded, returns all Properties and their values as string
+            </summary>
+            <returns>Properties and their values</returns>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataTable">
+            <summary>
+            Table Data
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataTable.Name">
+            <summary>
+            Full Path Name of Table
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataTable.Location">
+            <summary>
+            Location
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataTable.Frozen">
+            <summary>
+            Frozen Table
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataTable.Components">
+            <summary>
+            Components on Table
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.RecipeDataTable.ToString">
+            <summary>
+            Overloaded, returns all Properties and their values as string
+            </summary>
+            <returns>Properties and their values</returns>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Faults.SiplaceProOptimizerFault">
+            <summary>
+            Only fault class that will be thrown by optimizer service.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Faults.SiplaceProOptimizerFault.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Faults.SiplaceProOptimizerFault" /> class.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Faults.SiplaceProOptimizerFault.#ctor(System.Int32,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Faults.SiplaceProOptimizerFault" /> class.
+            </summary>
+            <param name="errorCode">The error code.</param>
+            <param name="strExtendedMessage">The STR extended message.</param>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Faults.SiplaceProOptimizerFault.ErrorCode">
+            <summary>
+            The error to be used, when an system error or business error occurred.
+            <list type="table">
+            <listheader>
+            <term>Value</term>
+            <description>Error Description</description>
+            </listheader>
+            <item>
+            <term>1000</term>
+            <description>This is a generic system error</description>
+            </item>
+            <item>
+            <term>2000</term>
+            <description>This is a generic business error</description>
+            </item>
+            </list>
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Faults.SiplaceProOptimizerFault.ExtendedMessage">
+            <summary>
+            This is a error message in a human readable form.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Faults.SiplaceProOptimizerFault.ErrorEnum">
+            <summary>
+            Error code translated to enum
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Faults.SiplaceProOptimizerFault.ToString">
+            <inheritdoc />
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Faults.OptimizerErrorEnum">
+            <summary>
+            Represents different error codes from the Optimizer
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Faults.OptimizerErrorEnum.Undefined">
+            <summary>
+            Undefined
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Faults.OptimizerErrorEnum.GenericSystem">
+            <summary>
+            This is a generic system error
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Faults.OptimizerErrorEnum.GenericBusiness">
+            <summary>
+            This is a generic business error
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Faults.OptimizerErrorEnum.OptimizerBusyWithJob">
+            <summary>
+            Optimizer already running another Job
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Faults.OptimizerErrorEnum.OptimizerBusyWithClusterJob">
+            <summary>
+            Optimizer already running another Cluster Job
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Faults.OptimizerErrorEnum.OptimizerBusyWithFromOtherCLient">
+            <summary>
+            Optimizer already running triggered by other client
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Faults.OptimizerErrorEnum.SpiObjectNameNotFound">
+            <summary>
+            Optimizer cannot find Object Name in SPI
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Faults.OptimizerErrorEnum.SpiObjectIdNotFound">
+            <summary>
+            Optimizer cannot find Object Id in SPI
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Faults.OptimizerErrorEnum.LicenseNotAvailable">
+            <summary>
+            License not availbale
+            </summary>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Message.OptimizerStartedReportRequest">
+            <summary>
+            Message that is sent when optimization is started
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Message.OptimizerStartedReportRequest.#ctor">
+            <summary>
+            Constructor of the ObjectDeletedReportRequest
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Message.OptimizerStartedReportRequest.#ctor(Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizerStartedReport)">
+            <summary>
+            Constructor of the ObjectDeletedReportRequest
+            </summary>
+            <param name="optimizerStartedReport">The optimizer started report.</param>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Message.OptimizerStartedReportRequest.OptimizerStartedReport">
+            <summary>
+            Gets or sets the resource of this event.
+            </summary>
+            <value>The resource.</value>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Message.OptimizerStoppedReportRequest">
+            <summary>
+            Message that is sent when optimization is completed
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Message.OptimizerStoppedReportRequest.#ctor">
+            <summary>
+            Constructor of the ObjectDeletedReportRequest
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Message.OptimizerStoppedReportRequest.#ctor(Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizerStoppedReport)">
+            <summary>
+            Constructor of the ObjectDeletedReportRequest
+            </summary>
+            <param name="optimizerStoppedReport">The optimizer stopped report.</param>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Message.OptimizerStoppedReportRequest.OptimizerStoppedReport">
+            <summary>
+            Gets or sets the resource of this event.
+            </summary>
+            <value>The resource.</value>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IClusterOptimizerNotify2">
+            <summary>
+            Callback interface for cluster optimizer events.
+            Must be implemented by the client.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IClusterOptimizerNotify2.ClusterOptimizationComplete2(System.Int32,System.String)">
+            <summary>
+            Called when the cluster optimization is complete and has written its results.
+            </summary>
+            <param name="nSuccess">1 if successful</param>
+            <param name="strClientInstanceId">String that was passed when calling StartClusteringWithClientId</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IClusterOptimizerNotify2.ClusterProgress2(System.Double,System.Int32,System.String)">
+            <summary>
+            Informs the optimizer's client of it's current progress in numbers
+            </summary>
+            <param name="dRunTime">Run time of current optimization [ms]</param>
+            <param name="lPercent">Progress of current optimization [%]</param>
+            <param name="strClientInstanceId">String that was passed when calling StartClusteringWithClientId</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IClusterOptimizerNotify2.ClusterState2(Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ClusterOptState,System.String,System.String)">
+            <summary>
+            Informs the optimizer's client of it's current state
+            </summary>
+            <param name="stateCode">Code of optimizer's current state (enum type ClusterOptState)</param>
+            <param name="stringparam">String describing optimizer's current job</param>
+            <param name="strClientInstanceId">String that was passed when calling StartClusteringWithClientId</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IClusterOptimizerNotify2.ResultErrorClusterCount2(System.Double,System.Int32,System.Int32,System.Int32,System.Boolean,System.String)">
+            <summary>
+            Informs the optimizer's client of the result of the writing in the database
+            </summary>
+            <param name="dRunTime">Total run time of optimization [ms]</param>
+            <param name="lErrorCount">Number of optimizer specific errors </param>
+            <param name="lWarningCount">Number of optimizer specific warnings</param>
+            <param name="lInfoCount">Number of optimizer specific infos</param>
+            <param name="bWriteOK">If true, writing was successfully completed</param>
+            <param name="strClientInstanceId">String that was passed when calling StartClusteringWithClientId</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IClusterOptimizerNotify2.ResultSolutionCharacteristics2(System.String,System.String)">
+            <summary>
+            Informs the optimizer's client about the characteristics of the current solution
+            </summary>
+            <param name="xmlCharacteristics">XML-string that holds the characteristics</param>
+            <param name="strClientInstanceId">String that was passed when calling StartClusteringWithClientId</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IClusterOptimizerNotify2.SessionTerminated2(System.String)">
+            <summary>
+            Informs the optimizer's client that the session is terminated
+            </summary>
+            <param name="strClientInstanceId">String that was passed when calling StartClusteringWithClientId</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IOptimizerNotify2">
+            <summary>
+            Interface for events fired from optimizer service when running normal optimization
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IOptimizerNotify2.OptimizationComplete2(System.Boolean,System.String)">
+            <summary>
+            Informs the optimizer's client that optimization completed
+            </summary>
+            <param name="bComplete">
+            True, if optimizer computations completed successfully
+            and results will be written next
+            </param>
+            <param name="strClientInstanceId">String that was passed when calling StartWithClientId</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IOptimizerNotify2.OptimizationProgress2(Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptProgressType,System.Double,System.Int32,System.Double,System.Double,System.Int32,System.String)">
+            <summary>
+            Informs the optimizer's client of it's current progress in numbers
+            </summary>
+            <param name="optProgressType">
+            Progress Type, either only progress without new best result or even with new optimization
+            result
+            </param>
+            <param name="dRunTime">Run time of current optimization [ms]</param>
+            <param name="nPercent">Progress of current optimization [%]</param>
+            <param name="dProductionTime">
+            If >=0.0: estimated production time of the 'best' result currently calculated [ms]. If
+            less than 0.0:  no valid result found yet
+            </param>
+            <param name="dAverageUtilization">Average Utilization of Line Capacity</param>
+            <param name="lPlacementRate">Placement rate of the line</param>
+            <param name="strClientInstanceId">String that was passed when calling StartWithClientId</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IOptimizerNotify2.OptimizationResult2(System.Double,System.Double,System.Double,System.Int32,System.Int32,System.Int32,System.Int32,System.String,System.Boolean,System.String)">
+            <summary>
+            Informs the optimizer's client of the optimizer's results (key values)
+            </summary>
+            <param name="dRunTime">Total run time of optimization [ms]</param>
+            <param name="dProductionTime">
+            If >=0.0: estimated production time of the 'best' result currently calculated [ms]. If
+            less than 0.0:  no valid result found yet
+            </param>
+            <param name="dAverageUtilization">Average Utilization of Line Capacity</param>
+            <param name="lPlacementRate">Placement rate of the line</param>
+            <param name="nErrorCount">Number of optimizer specific errors</param>
+            <param name="nWarningCount">Number of optimizer specific warnings</param>
+            <param name="nInfoCount">Number of optimizer specific infos</param>
+            <param name="strResultComment">String describing the result of optimization</param>
+            <param name="bOptimizationSuccessful">True, if optimization was successful</param>
+            <param name="strClientInstanceId">String that was passed when calling Start</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IOptimizerNotify2.OptimizationState2(Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptKernelState,System.String,System.Boolean,System.String)">
+            <summary>
+            Informs the optimizer's client of it's current state
+            </summary>
+            <param name="eStateCode">code of optimizer's current state (enum type OptKernelState)</param>
+            <param name="strStateComment">string describing optimizer's current state</param>
+            <param name="bIsStopPossible">True, if optimizer can be stopped via Stop() method</param>
+            <param name="strClientInstanceId">String that was passed when calling Start</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IClusterOptimizerNotifyArgs">
+            <summary>
+            Callback interface for cluster optimizer events.
+            Must be implemented by the client.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IClusterOptimizerNotifyArgs.ClusterOptimizationComplete3(Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.Events.ClusterOptCompleteArgs)">
+            <summary>
+            Called when the cluster optimization is complete and has written its results.
+            </summary>
+            <param name="args">Provided ClusterOptimizationCompleteArgs</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IClusterOptimizerNotifyArgs.ClusterProgress3(Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.Events.ClusterOptProgressArgs)">
+            <summary>
+            Informs the optimizer's client of it's current progress in numbers
+            </summary>
+            <param name="args">Provided ClusterProgressArgs</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IClusterOptimizerNotifyArgs.ClusterState3(Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.Events.ClusterOptStateArgs)">
+            <summary>
+            Informs the optimizer's client of it's current state
+            </summary>
+            <param name="args">Provided ClusterStateArgs</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IClusterOptimizerNotifyArgs.ResultErrorClusterCount3(Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.Events.ClusterOptResultErrorCountArgs)">
+            <summary>
+            Informs the optimizer's client of the result of the writing in the database
+            </summary>
+            <param name="args">Provided ResultErrorClusterCountArgs</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IClusterOptimizerNotifyArgs.ResultSolutionCharacteristics3(Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.Events.ClusterOptResultArgs)">
+            <summary>
+            Informs the optimizer's client about the characteristics of the current solution
+            </summary>
+            <param name="args">Provided ResultSolutionCharacteristicsArgs</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IClusterOptimizerNotifyArgs.SessionTerminated3(Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.Events.ClusterOptSessionTerminatedArgs)">
+            <summary>
+            Informs the optimizer's client that the session is terminated
+            </summary>
+            <param name="args">Provided SessionTerminatedArgs</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IOptimizerNotifyArgs">
+            <summary>
+            Interface for events fired from optimizer service when running normal optimization
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IOptimizerNotifyArgs.OptimizationComplete3(Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.Events.OptCompleteArgs)">
+            <summary>
+            Informs the optimizer's client that optimization completed
+            </summary>
+            <param name="args">The args.</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IOptimizerNotifyArgs.OptimizationProgress3(Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.Events.OptProgressArgs)">
+            <summary>
+            Informs the optimizer's client of it's current progress in numbers
+            </summary>
+            <param name="args">The args.</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IOptimizerNotifyArgs.OptimizationResult3(Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.Events.OptResultArgs)">
+            <summary>
+            Informs the optimizer's client of the optimizer's results (key values)
+            </summary>
+            <param name="args">The args.</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IOptimizerNotifyArgs.OptimizationState3(Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.Events.OptStateArgs)">
+            <summary>
+            Informs the optimizer's client of it's current state
+            </summary>
+            <param name="args">The args.</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IOptimizerStoppedReceiver">
+            <summary>
+            One way interface that is usually used when sending the event through an msmq binding
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IOptimizerStoppedReceiver.OptimizerStoppedReport(Asm.As.Oib.SiplacePro.Optimizer.Contracts.Message.OptimizerStoppedReportRequest)">
+            <summary>
+            Optimizer Stopped Report
+            </summary>
+            <param name="request">The request.</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IOptimizerStartedReceiver">
+            <summary>
+            Interface that needs to be implemented when clients want to receive the optimizer started event
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IOptimizerStartedReceiver.OptimizerStartedReport(Asm.As.Oib.SiplacePro.Optimizer.Contracts.Message.OptimizerStartedReportRequest)">
+            <summary>
+            Optimizer Started Report
+            </summary>
+            <param name="request">The request.</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IClusterOptimizer">
+            <summary>
+            Cluster Optimizer Interface
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IClusterOptimizer.DatabaseId">
+            <summary>
+            Gets the Unique Database Id for the SIPLACE Pro Database
+            </summary>
+            <returns>Unique Database Id (GUID) for the SIPLACE Pro Database</returns>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IClusterOptimizer.ProductVersion">
+            <summary>
+            Gets the Product Version of SIPLACE Pro
+            </summary>
+            <returns>Product Version of SIPLACE Pro, e.g. 7.1.1.2</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IClusterOptimizer.StartClustering(System.String,System.String,System.String)">
+            <summary>
+            Starts the cluster optimizer for the given cluster job and publishes events to the given endpoint
+            </summary>
+            <remarks>
+            This method requires a SIPLACE SiCluster license of the corresponding SIPLACE Pro version.
+            </remarks>
+            <param name="fullpath">Full SIPLACE Pro object path (including Folders)</param>
+            <param name="strEndpointAddress">Endpoint address</param>
+            <param name="strBinding">Binding name (optional)</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IClusterOptimizer.StartClustering2(System.Int32,System.String,System.String)">
+            <summary>
+            Starts the cluster optimizer for the given cluster job and publishes events to the given endpoint
+            </summary>
+            <remarks>
+            This method requires a SIPLACE SiCluster license of the corresponding SIPLACE Pro version.
+            </remarks>
+            <param name="nOID">OID of Cluster Job</param>
+            <param name="strEndpointAddress">Endpoint address</param>
+            <param name="strBinding">Binding name (optional)</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IClusterOptimizer.StartClustering2WithClientId(System.Int32,System.String,System.String,System.String)">
+            <summary>
+            Starts the cluster optimizer for the given cluster job and publishes events to the given endpoint
+            </summary>
+            <remarks>
+            This method requires a SIPLACE SiCluster license of the corresponding SIPLACE Pro version.
+            </remarks>
+            <param name="nOID">OID of Cluster Job</param>
+            <param name="strEndpointAddress">Endpoint address</param>
+            <param name="strBinding">Binding name (optional)</param>
+            <param name="strClientInstanceId">
+            String that is used when sending events back to the client.
+            With the helps of this id, a client can distinguish from what ClusterOptimizer proxy class
+            (if multiple ones are used) these events belong to
+            </param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IClusterOptimizer.StartClustering2WithClientId_Long(System.Int64,System.String,System.String,System.String)">
+            <summary>
+            Starts the cluster optimizer for the given cluster job and publishes events to the given endpoint
+            </summary>
+            <remarks>
+            This method requires a SIPLACE SiCluster license of the corresponding SIPLACE Pro version.
+            </remarks>
+            <param name="nOID">OID of Cluster Job</param>
+            <param name="strEndpointAddress">Endpoint address</param>
+            <param name="strBinding">Binding name (optional)</param>
+            <param name="strClientInstanceId">
+            String that is used when sending events back to the client.
+            With the helps of this id, a client can distinguish from what ClusterOptimizer proxy class
+            (if multiple ones are used) these events belong to
+            </param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IClusterOptimizer.StartClustering2WithClientId2(System.Int32,System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            Starts the cluster optimizer for the given cluster job and publishes events to the given endpoint
+            </summary>
+            <remarks>
+            This method requires a SIPLACE SiCluster license of the corresponding SIPLACE Pro version.
+            </remarks>
+            <param name="nOID">OID of Cluster Job</param>
+            <param name="strEndpointAddress">Endpoint address</param>
+            <param name="strBinding">Binding name (optional)</param>
+            <param name="strClientInstanceId">
+            String that is used when sending events back to the client.
+            With the helps of this id, a client can distinguish from what ClusterOptimizer proxy class
+            (if multiple ones are used) these events belong to
+            </param>
+            <param name="bOnlyUseNewCallbacks">
+            If true, the service will only publish events on the new Callback Interface
+            (IClusterOptimizerNotifyArgs) and will not attempt to use the old one (IClusterOptimizerNotify)
+            </param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IClusterOptimizer.StartClustering2WithClientId2_Long(System.Int64,System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            Starts the cluster optimizer for the given cluster job and publishes events to the given endpoint
+            </summary>
+            <remarks>
+            This method requires a SIPLACE SiCluster license of the corresponding SIPLACE Pro version.
+            </remarks>
+            <param name="nOID">OID of Cluster Job</param>
+            <param name="strEndpointAddress">Endpoint address</param>
+            <param name="strBinding">Binding name (optional)</param>
+            <param name="strClientInstanceId">
+            String that is used when sending events back to the client.
+            With the helps of this id, a client can distinguish from what ClusterOptimizer proxy class
+            (if multiple ones are used) these events belong to
+            </param>
+            <param name="bOnlyUseNewCallbacks">
+            If true, the service will only publish events on the new Callback Interface
+            (IClusterOptimizerNotifyArgs) and will not attempt to use the old one (IClusterOptimizerNotify)
+            </param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IClusterOptimizer.StartClusteringWithClientId(System.String,System.String,System.String,System.String)">
+            <summary>
+            Starts the cluster optimizer for the given cluster job and publishes events to the given endpoint
+            </summary>
+            <remarks>
+            This method requires a SIPLACE SiCluster license of the corresponding SIPLACE Pro version.
+            </remarks>
+            <param name="fullpath">Full SIPLACE Pro object path (including Folders)</param>
+            <param name="strEndpointAddress">Endpoint address</param>
+            <param name="strBinding">Binding name (optional)</param>
+            <param name="strClientInstanceId">
+            String that is used when sending events back to the client.
+            With the helps of this id, a client can distinguish from what ClusterOptimizer proxy class
+            (if multiple ones are used) these events belong to
+            </param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IClusterOptimizer.StartClusteringWithClientId2(System.String,System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            Starts the cluster optimizer for the given cluster job and publishes events to the given endpoint
+            </summary>
+            <remarks>
+            This method requires a SIPLACE SiCluster license of the corresponding SIPLACE Pro version.
+            </remarks>
+            <param name="fullpath">Full SIPLACE Pro object path (including Folders)</param>
+            <param name="strEndpointAddress">Endpoint address</param>
+            <param name="strBinding">Binding name (optional)</param>
+            <param name="strClientInstanceId">
+            String that is used when sending events back to the client.
+            With the helps of this id, a client can distinguish from what ClusterOptimizer proxy class
+            (if multiple ones are used) these events belong to
+            </param>
+            <param name="bOnlyUseNewCallbacks">
+            If true, the service will only publish events on the new Callback Interface
+            (IClusterOptimizerNotifyArgs) and will not attempt to use the old one (IClusterOptimizerNotify)
+            </param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IClusterOptimizerNotify">
+            <summary>
+            Callback interface for cluster optimizer events.
+            Must be implemented by the client.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IClusterOptimizerNotify.ClusterOptimizationComplete(System.Int32)">
+            <summary>
+            Called when the cluster optimization is complete and has written its results.
+            </summary>
+            <param name="nSuccess">1 if successful</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IClusterOptimizerNotify.ClusterProgress(System.Double,System.Int32)">
+            <summary>
+            Informs the optimizer's client of it's current progress in numbers
+            </summary>
+            <param name="dRunTime">Run time of current optimization [ms]</param>
+            <param name="lPercent">Progress of current optimization [%]</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IClusterOptimizerNotify.ClusterState(Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ClusterOptState,System.String)">
+            <summary>
+            Informs the optimizer's client of it's current state
+            </summary>
+            <param name="stateCode">Code of optimizer's current state (enum type ClusterOptState)</param>
+            <param name="stringparam">String describing optimizer's current job</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IClusterOptimizerNotify.ResultErrorClusterCount(System.Double,System.Int32,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Informs the optimizer's client of the result of the writing in the database
+            </summary>
+            <param name="dRunTime">Total run time of optimization [ms]</param>
+            <param name="lErrorCount">Number of optimizer specific errors </param>
+            <param name="lWarningCount">Number of optimizer specific warnings</param>
+            <param name="lInfoCount">Number of optimizer specific infos</param>
+            <param name="bWriteOK">If true, writing was successfully completed</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IClusterOptimizerNotify.ResultSolutionCharacteristics(System.String)">
+            <summary>
+            Informs the optimizer's client about the characteristics of the current solution
+            </summary>
+            <param name="xmlCharacteristics">XML-string that holds the characteristics</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IClusterOptimizerNotify.SessionTerminated">
+            <summary>
+            Informs the optimizer's client that the session is terminated
+            </summary>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IConfiguration">
+            <summary>
+            Configuration Interface. Use this to configure optimizer parameters
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IConfiguration.CurrentUser">
+            <summary>
+            The user who is currently logged in to the system.  The system runs under the privileges granted to the group that the
+            user belongs to.
+            </summary>
+            <returns>Returns the currently logged on User Name.</returns>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IConfiguration.MaxOIDInfo">
+            <summary>
+            The highest OID currently used in Siplace Pro.
+            </summary>
+            <returns>The highest OID currently used in Siplace Pro.</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IConfiguration.GetConfiguration(System.String,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ObjectType)">
+            <summary>
+            Gets the optimizer parameters for the given object
+            </summary>
+            <param name="fullpath">Full SIPLACE Pro object path (including Folders)</param>
+            <param name="type">Object Type (ClusterJob or Job)</param>
+            <returns>All optimization parameters</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IConfiguration.GetConfiguration2(System.Int32,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ObjectType)">
+            <summary>
+            Gets the optimizer parameters for the given object
+            </summary>
+            <param name="nOID">OID of object</param>
+            <param name="type">Object Type (ClusterJob or Job)</param>
+            <returns>All optimization parameters</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IConfiguration.GetConfiguration2_Long(System.Int64,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ObjectType)">
+            <summary>
+            Gets the optimizer parameters for the given object
+            </summary>
+            <param name="nOID">OID of object</param>
+            <param name="type">Object Type (ClusterJob or Job)</param>
+            <returns>All optimization parameters</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IConfiguration.LogonUser(System.String,System.String,System.Boolean)">
+            <summary>
+            This will take a User ID and password as input and attempt to log and set CurrentUser in case bJustCheckPassword is set
+            to false.
+            In case bJustCheckPassword is set to true, only the password for the given User will be checked.
+            </summary>
+            <param name="bstrUserID">The user id of the user to logon.</param>
+            <param name="bstrPassword">The password of the user trying to logon.</param>
+            <param name="bJustCheckPassword">A flag indicating if the system should just verify the password.</param>
+            <returns>See Summary for details. This method will return a type bool with default value of false</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IConfiguration.SaveConfiguration(Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizationParameters,System.String,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ObjectType)">
+            <summary>
+            Stores the optimizer parameters for the given object
+            </summary>
+            <param name="parameters">All optimization parameters</param>
+            <param name="fullpath">Full SIPLACE Pro object path (including Folders)</param>
+            <param name="type">Object Type (ClusterJob or Job)</param>
+            <returns>Success</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IConfiguration.SaveConfiguration2(Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizationParameters,System.Int32,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ObjectType)">
+            <summary>
+            Stores the optimizer parameters for the given object
+            </summary>
+            <param name="parameters">All optimization parameters</param>
+            <param name="nOID">OID of object</param>
+            <param name="type">Object Type (ClusterJob or Job)</param>
+            <returns>Success</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IConfiguration.SaveConfiguration2_Long(Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizationParameters,System.Int64,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ObjectType)">
+            <summary>
+            Stores the optimizer parameters for the given object
+            </summary>
+            <param name="parameters">All optimization parameters</param>
+            <param name="nOID">OID of object</param>
+            <param name="type">Object Type (ClusterJob or Job)</param>
+            <returns>Success</returns>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IOptimizer">
+            <summary>
+            Interface for the normal Optimizer
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IOptimizer.DatabaseId">
+            <summary>
+            Gets the Unique Database Id for the SIPLACE Pro Database
+            </summary>
+            <returns>Unique Database Id (GUID) for the SIPLACE Pro Database</returns>
+        </member>
+        <member name="P:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IOptimizer.ProductVersion">
+            <summary>
+            Gets the Product Version of SIPLACE Pro
+            </summary>
+            <returns>Product Version of SIPLACE Pro, e.g. 7.1.1.2</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IOptimizer.Cancel">
+            <summary>
+            Cancels the optimizer.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IOptimizer.CheckIntegrity(System.String,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.IntegrityCheckMode,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ICPlacePosReparMode,System.Collections.Generic.List{Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizerMessage}@,System.Int32@,System.Int32@,System.Int32@)">
+            <summary>
+            Checks the recipe integrity.
+            </summary>
+            <param name="recipeName">Full SIPLACE Pro Recipe path (including Folders)</param>
+            <param name="integrityCheckMode">The integrity check mode.</param>
+            <param name="repartMode">Repartitioning Mode.</param>
+            <param name="OpimizerMessages">List of optimizer messages</param>
+            <param name="nErrorCount">Number of errors</param>
+            <param name="nWarningCount">Number of warning</param>
+            <param name="nInfoCount">Number of infos</param>
+            <returns>If true, check was successful (no errors)</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IOptimizer.CheckIntegrity2(System.Int32,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.IntegrityCheckMode,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ICPlacePosReparMode,System.Collections.Generic.List{Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizerMessage}@,System.Int32@,System.Int32@,System.Int32@)">
+            <summary>
+            Checks the recipe integrity.
+            </summary>
+            <param name="recipeOID">OID of Recipe</param>
+            <param name="integrityCheckMode">The integrity check mode.</param>
+            <param name="repartMode">Repartitioning Mode.</param>
+            <param name="OpimizerMessages">List of optimizer messages</param>
+            <param name="nErrorCount">Number of errors</param>
+            <param name="nWarningCount">Number of warning</param>
+            <param name="nInfoCount">Number of infos</param>
+            <returns>If true, check was successful (no errors)</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IOptimizer.CheckIntegrity2_Long(System.Int64,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.IntegrityCheckMode,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ICPlacePosReparMode,System.Collections.Generic.List{Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizerMessage}@,System.Int32@,System.Int32@,System.Int32@)">
+            <summary>
+            Checks the recipe integrity.
+            </summary>
+            <param name="recipeOID">OID of Recipe</param>
+            <param name="integrityCheckMode">The integrity check mode.</param>
+            <param name="repartMode">Repartitioning Mode.</param>
+            <param name="OpimizerMessages">List of optimizer messages</param>
+            <param name="nErrorCount">Number of errors</param>
+            <param name="nWarningCount">Number of warning</param>
+            <param name="nInfoCount">Number of infos</param>
+            <returns>If true, check was successful (no errors)</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IOptimizer.GetOptimizerMessages(System.String,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ObjectType)">
+            <summary>
+            Gets the optimizer messages. This enables the consumer to figure out,
+            which is the reason for a aborted optimizer run.
+            </summary>
+            <param name="ObjectName">Full SIPLACE Pro object path (including Folders).</param>
+            <param name="objectType">Object Type (can be either Recipe, Job or ClusterJob).</param>
+            <returns>List of messages issued in the last integrity check run.</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IOptimizer.GetOptimizerMessages2(System.Int32,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ObjectType)">
+            <summary>
+            Gets the optimizer messages. This enables the consumer to figure out,
+            which is the reason for a aborted optimizer run.
+            </summary>
+            <param name="nOID">OID of object</param>
+            <param name="objectType">Object Type (can be either Recipe, Job or ClusterJob).</param>
+            <returns>List of messages issued in the last integrity check run.</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IOptimizer.GetOptimizerMessages2_Long(System.Int64,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.ObjectType)">
+            <summary>
+            Gets the optimizer messages. This enables the consumer to figure out,
+            which is the reason for a aborted optimizer run.
+            </summary>
+            <param name="nOID">OID of object</param>
+            <param name="objectType">Object Type (can be either Recipe, Job or ClusterJob).</param>
+            <returns>List of messages issued in the last integrity check run.</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IOptimizer.GetOptimizerResultsForRecipe(System.String)">
+            <summary>
+            Returns the recipe analyzer results as object hierarchy.
+            This includes detailed timing information on head step basis in case
+            the service is running on SIPLACE Pro 5.2 or higher.
+            </summary>
+            <remarks>
+            This method requires a SIPLACE Pro Recipe Analyzer license of the corresponding SIPLACE Pro version.
+            </remarks>
+            <param name="ObjectName">Full SIPLACE Pro recipe path (including Folders).</param>
+            <returns>Recipe Data.</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IOptimizer.GetOptimizerResultsForRecipe2(System.Int32)">
+            <summary>
+            Returns the recipe analyzer results as object hierarchy.
+            This includes detailed timing information on head step basis in case
+            the service is running on SIPLACE Pro 5.2 or higher.
+            </summary>
+            <remarks>
+            This method requires a SIPLACE Pro Recipe Analyzer license of the corresponding SIPLACE Pro version.
+            </remarks>
+            <param name="nOID">OID of Recipe</param>
+            <returns>Recipe Data.</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IOptimizer.GetOptimizerResultsForRecipe2_Long(System.Int64)">
+            <summary>
+            Returns the recipe analyzer results as object hierarchy.
+            This includes detailed timing information on head step basis in case
+            the service is running on SIPLACE Pro 5.2 or higher.
+            </summary>
+            <remarks>
+            This method requires a SIPLACE Pro Recipe Analyzer license of the corresponding SIPLACE Pro version.
+            </remarks>
+            <param name="nOID">OID of Recipe</param>
+            <returns>Recipe Data.</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IOptimizer.HasAdapterLicense">
+            <summary>
+            Checks if an adapter license is available.
+            </summary>
+            <returns>True, if license is available.</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IOptimizer.LoadSpotx(Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.LoadSpotxRequest)">
+            <summary>
+            Loads the spotx.
+            </summary>
+            <param name="request">The request.</param>
+            <returns>LoadSpotxResult</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IOptimizer.SaveSpotx(Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.SaveSpotxRequest)">
+            <summary>
+            Saves the spotx.
+            </summary>
+            <param name="request">The request.</param>
+            <returns>SaveSpotxResult</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IOptimizer.Start(System.String,System.String,System.String)">
+            <summary>
+            Starts the optimizer for the given job and publishes events to the given endpoint
+            </summary>
+            <param name="fullpath">Full Identity Path of Job</param>
+            <param name="strEndpointAddress">Endpoint address</param>
+            <param name="strBinding">Binding name (optional)</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IOptimizer.Start2(System.Int32,System.String,System.String)">
+            <summary>
+            Starts the optimizer for the given job and publishes events to the given endpoint
+            </summary>
+            <param name="nOID">OID of Job</param>
+            <param name="strEndpointAddress">Endpoint address</param>
+            <param name="strBinding">Binding name (optional)</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IOptimizer.Start2WithClientId(System.Int32,System.String,System.String,System.String)">
+            <summary>
+            Starts the optimizer for the given job and publishes events to the given endpoint
+            </summary>
+            <param name="nOID">OID of Job</param>
+            <param name="strEndpointAddress">Endpoint address</param>
+            <param name="strBinding">Binding name (optional)</param>
+            <param name="strClientInstanceId">
+            String that is used when sending events back to the client.
+            With the helps of this id, a client can distinguish from what Optimizer proxy class
+            (if multiple ones are used) these events belong to
+            </param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IOptimizer.StartExt(System.String,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizerRuntimeParameter,System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            Starts the optimizer for the given job and publishes events to the given endpoint
+            </summary>
+            <param name="fullpath">Full Identity Path of Job</param>
+            <param name="runtimeParam">Specifies how the optimizer should run</param>
+            <param name="strEndpointAddress">Endpoint address</param>
+            <param name="strBinding">Binding name (optional)</param>
+            <param name="strClientInstanceId">String that is used when sending events back to the client.</param>
+            <param name="bOnlyUseNewCallbacks">
+            If true, the service will only publish events on the new Callback Interface
+            (IOptimizerNotifyArgs) and will not attempt to use the old one (IOptimizerNotify)
+            </param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IOptimizer.StartExt2(System.Int32,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizerRuntimeParameter,System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            Starts the optimizer for the given job and publishes events to the given endpoint
+            </summary>
+            <param name="nOID">OID of Job</param>
+            <param name="runtimeParam">Specifies how the optimizer should run</param>
+            <param name="strEndpointAddress">Endpoint address</param>
+            <param name="strBinding">Binding name (optional)</param>
+            <param name="strClientInstanceId">>String that is used when sending events back to the client.</param>
+            <param name="bOnlyUseNewCallbacks">
+            If true, the service will only publish events on the new Callback Interface
+            (IOptimizerNotifyArgs) and will not attempt to use the old one (IOptimizerNotify)
+            </param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IOptimizer.StartExt2_Long(System.Int64,Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptimizerRuntimeParameter,System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            Starts the optimizer for the given job and publishes events to the given endpoint
+            </summary>
+            <param name="nOID">OID of Job</param>
+            <param name="runtimeParam">Specifies how the optimizer should run</param>
+            <param name="strEndpointAddress">Endpoint address</param>
+            <param name="strBinding">Binding name (optional)</param>
+            <param name="strClientInstanceId">>String that is used when sending events back to the client.</param>
+            <param name="bOnlyUseNewCallbacks">
+            If true, the service will only publish events on the new Callback Interface
+            (IOptimizerNotifyArgs) and will not attempt to use the old one (IOptimizerNotify)
+            </param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IOptimizer.StartWithClientId(System.String,System.String,System.String,System.String)">
+            <summary>
+            Starts the optimizer for the given job and publishes events to the given endpoint
+            </summary>
+            <param name="fullpath">Full Identity Path of Job</param>
+            <param name="strEndpointAddress">Endpoint address</param>
+            <param name="strBinding">Binding name (optional)</param>
+            <param name="strClientInstanceId">
+            String that is used when sending events back to the client.
+            With the helps of this id, a client can distinguish from what Optimizer proxy class
+            (if multiple ones are used) these events belong to
+            </param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IOptimizer.Stop">
+            <summary>
+            Stops the optimizer.
+            </summary>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IOptimizerNotify">
+            <summary>
+            Interface for events fired from optimizer service when running normal optimization
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IOptimizerNotify.OptimizationComplete(System.Boolean)">
+            <summary>
+            Informs the optimizer's client that optimization completed
+            </summary>
+            <param name="bComplete">
+            True, if optimizer computations completed successfully
+            and results will be written next
+            </param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IOptimizerNotify.OptimizationProgress(Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptProgressType,System.Double,System.Int32,System.Double,System.Double,System.Int32)">
+            <summary>
+            Informs the optimizer's client of it's current progress in numbers
+            </summary>
+            <param name="optProgressType">
+            Progress Type, either only progress without new best result or even with new optimization
+            result
+            </param>
+            <param name="dRunTime">Run time of current optimization [ms]</param>
+            <param name="nPercent">Progress of current optimization [%]</param>
+            <param name="dProductionTime">
+            If >=0.0: estimated production time of the 'best' result currently calculated [ms]. If
+            less than 0.0:  no valid result found yet
+            </param>
+            <param name="dAverageUtilization">Average Utilization of Line Capacity</param>
+            <param name="lPlacementRate">Placement rate of the line</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IOptimizerNotify.OptimizationResult(System.Double,System.Double,System.Double,System.Int32,System.Int32,System.Int32,System.Int32,System.String,System.Boolean)">
+            <summary>
+            Informs the optimizer's client of the optimizer's results (key values)
+            </summary>
+            <param name="dRunTime">Total run time of optimization [ms]</param>
+            <param name="dProductionTime">
+            If >=0.0: estimated production time of the 'best' result currently calculated [ms]. If
+            less than 0.0:  no valid result found yet
+            </param>
+            <param name="dAverageUtilization">Average Utilization of Line Capacity</param>
+            <param name="lPlacementRate">Placement rate of the line</param>
+            <param name="nErrorCount">Number of optimizer specific errors</param>
+            <param name="nWarningCount">Number of optimizer specific warnings</param>
+            <param name="nInfoCount">Number of optimizer specific infos</param>
+            <param name="strResultComment">String describing the result of optimization</param>
+            <param name="bOptimizationSuccessful">True, if optimization was successful</param>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IOptimizerNotify.OptimizationState(Asm.As.Oib.SiplacePro.Optimizer.Contracts.Data.OptKernelState,System.String,System.Boolean)">
+            <summary>
+            Informs the optimizer's client of it's current state
+            </summary>
+            <param name="eStateCode">code of optimizer's current state (enum type OptKernelState)</param>
+            <param name="strStateComment">string describing optimizer's current state</param>
+            <param name="bIsStopPossible">True, if optimizer can be stopped via Stop() method</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IOptimizerStarted">
+            <summary>
+            One way interface that is usually used when sending the event through an msmq binding
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IOptimizerStarted.OptimizerStartedReport(Asm.As.Oib.SiplacePro.Optimizer.Contracts.Message.OptimizerStartedReportRequest)">
+            <summary>
+            Optimizer Started Report
+            </summary>
+            <param name="request">The request.</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IOptimizerStopped">
+            <summary>
+            Interface that needs to be implemented when clients want to receive the optimizer stopped event
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IOptimizerStopped.OptimizerStoppedReport(Asm.As.Oib.SiplacePro.Optimizer.Contracts.Message.OptimizerStoppedReportRequest)">
+            <summary>
+            Optimizer Stopped Report
+            </summary>
+            <param name="request">The request.</param>
+        </member>
+        <member name="T:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IServiceState">
+            <summary>
+            ServiceState Interface. Use this to retrieve the service state
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IServiceState.GetAdapterTimeZone">
+            <summary>
+            Gets the TimeZoneInfo for the adapter computer
+            Used when converting DateTime objects on the proxy from adapter time to
+            Proxy local time.
+            </summary>
+            <returns>Serialized TimeZoneInfo of adapter</returns>
+        </member>
+        <member name="M:Asm.As.Oib.SiplacePro.Optimizer.Contracts.Service.IServiceState.GetServiceState">
+            <summary>
+            Gets the current state of the Optimizer Service
+            </summary>
+            <returns>The optimizer service state</returns>
+        </member>
+    </members>
+</doc>

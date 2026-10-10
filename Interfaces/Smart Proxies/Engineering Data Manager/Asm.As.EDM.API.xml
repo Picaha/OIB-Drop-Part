@@ -1,0 +1,651 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Asm.As.EDM.API</name>
+    </assembly>
+    <members>
+        <member name="T:Asm.As.EDM.API.EdmApiTools">
+            <summary>
+            Static helper class containing some methods used by the EDM API.
+            </summary>
+        </member>
+        <member name="F:Asm.As.EDM.API.EdmApiTools.PushApiEndpointConfigurationName_Tcp">
+            <summary>
+            Name of the tcp endpoint definition (app.config) 
+            </summary>
+        </member>
+        <member name="F:Asm.As.EDM.API.EdmApiTools.PushApiEndpointConfigurationName_Tcp_Secure">
+            <summary>
+            Name of the secure tcp endpoint definition (app.config) 
+            </summary>
+        </member>
+        <member name="F:Asm.As.EDM.API.EdmApiTools.PushApiBindingConfigurationName_Tcp">
+            <summary>
+            Name of the netTcpBinding in app.config which overrides the default value
+            </summary>
+        </member>
+        <member name="F:Asm.As.EDM.API.EdmApiTools.PushApiBindingConfigurationName_Tcp_Secure">
+            <summary>
+            Name of the secure netTcpBinding in app.config which overrides the default value
+            </summary>
+        </member>
+        <member name="F:Asm.As.EDM.API.EdmApiTools.PushApiBindingConfigurationName_HttpDuplex">
+            <summary>
+            Name of the httpBinding in app.config which overrides the default value
+            </summary>
+        </member>
+        <member name="M:Asm.As.EDM.API.EdmApiTools.ApplyEdmQuotas(System.Xml.XmlDictionaryReaderQuotas)">
+            <summary>
+            Applies EDM compatible quotas.
+            </summary>
+            <param name="quotas">The quotas.</param>
+        </member>
+        <member name="M:Asm.As.EDM.API.EdmApiTools.ApplyTimeoutSettings(System.ServiceModel.Channels.Binding,System.TimeSpan,System.TimeSpan,System.TimeSpan,System.TimeSpan)">
+            <summary>
+            Applies the specified timeout settings.
+            </summary>
+            <param name="binding">The binding.</param>
+            <param name="openTimeout">The open timeout.</param>
+            <param name="closeTimeout">The close timeout.</param>
+            <param name="sendTimeout">The send timeout.</param>
+            <param name="receiveTimeout">The receive timeout.</param>
+        </member>
+        <member name="M:Asm.As.EDM.API.EdmApiTools.CreateWsDuplexHttpBinding(System.TimeSpan,System.TimeSpan,System.TimeSpan,System.TimeSpan,System.Int64,System.ServiceModel.WSDualHttpSecurityMode)">
+            <summary>
+            Creates an EDM API compatible WS duplex HTTP binding.
+            </summary>
+            <param name="openTimeout">The open timeout.</param>
+            <param name="closeTimeout">The close timeout.</param>
+            <param name="sendTimeout">The send timeout.</param>
+            <param name="receiveTimeout">The receive timeout.</param>
+            <param name="maxSize">Size of the max.</param>
+            <param name="security">The security.</param>
+            <returns>A WSDualHttpBinding object</returns>
+        </member>
+        <member name="M:Asm.As.EDM.API.EdmApiTools.CreateWsDuplexHttpBinding">
+            <summary>
+            Creates the an EDM API compatible Duplex WS HTTP binding.
+            </summary>
+            <returns>A WSDualHttpBinding object</returns>
+        </member>
+        <member name="M:Asm.As.EDM.API.EdmApiTools.CreateWsTcpBinding(System.Boolean,System.ServiceModel.SecurityMode)">
+            <summary>
+            Creates an EDM API compatible WS TCP binding.
+            </summary>
+            <param name="createServerBinding">True, if the binding shall be adjusted for use in a service, false for client usage</param>
+            <param name="securityMode">securityMode of the binding</param>
+            <returns>A NetTcpBinding object</returns>
+        </member>
+        <member name="M:Asm.As.EDM.API.EdmApiTools.TryCreateTcpBindingFromConfig(System.String)">
+            <summary>
+            Tries to create a TCP binding from config.
+            </summary>
+            <param name="strConfigName">Name of the binding in the App.Config</param>
+            <returns>The binding specified by the name or null in case of an error.</returns>
+        </member>
+        <member name="M:Asm.As.EDM.API.EdmApiTools.TryCreateHttpBindingFromConfig(System.String,System.Boolean)">
+            <summary>
+            Tries to create a HTTP binding from config.
+            </summary>
+            <param name="strConfigName">Name of the binding in the App.Config</param>
+            <param name="bDuplex">if set to <c>true</c> a duplex binding will be created.</param>
+            <returns>
+            The binding specified by the name or null in case of an error.
+            </returns>
+        </member>
+        <member name="M:Asm.As.EDM.API.EdmApiTools.CreateMexBinding(System.Uri)">
+            <summary>
+            Creates a "mex" binding usable by the MetadataExchangeClient.
+            </summary>
+            <param name="metadataEndpoint">The metadata endpoint.</param>
+            <returns>A <c>Binding</c> usable by the <c>MetadataExchangeClient</c></returns>
+        </member>
+        <member name="M:Asm.As.EDM.API.EdmApiTools.GetServiceEndpointsFromMetaData(System.Uri)">
+            <summary>
+            Gets the service endpoints from meta data (mex) endpoint.
+            </summary>
+            <param name="metadataEndpoint">The metadata endpoint.</param>
+            <returns>An enumerable collections of service endpoint <c>Uri</c> objects</returns>
+            Note: Same coded is implemented in OibWrapper
+        </member>
+        <member name="M:Asm.As.EDM.API.EdmApiTools.GetServiceEndpointsFromMetaData(System.ServiceModel.Description.MetadataSet)">
+            <summary>
+            Gets the service endpoints from the specified meta data set.
+            </summary>
+            <param name="metaData">The meta data.</param>
+            <returns>An enumerable collections of service endpoint <c>Uri</c> objects</returns>
+            Note: Same coded is implemented in OibWrapper
+        </member>
+        <member name="T:Asm.As.EDM.API.DataTransfer.Proxy.NamespaceDoc">
+            <summary>
+            The <see cref="N:Asm.As.EDM.API.DataTransfer.Proxy" /> namespace contains classes to access the EDM Data Transfer (Push)
+            API Webservice interface.
+            It contains a "smart proxy" which simplifies the usage of that API.
+            </summary>
+        </member>
+        <member name="T:Asm.As.EDM.API.DataTransfer.Proxy.EdmPushApiProxy">
+            <summary>
+            A sample implementation of a Web-Service client for the EDM Data Transfer (Push) API (also called SmartProxy in
+            OIB).
+            Note:
+            To provide compatibility with EDM 3.12 or earlier, set
+            "Asm.As.EDM.API.DataTransfer.Proxy.UseSecureEndpoints" in the appSettings section of your
+            app.config to false
+            </summary>
+        </member>
+        <member name="F:Asm.As.EDM.API.DataTransfer.Proxy.EdmPushApiProxy.s_Log">
+            <summary>
+            The logger
+            </summary>
+        </member>
+        <member name="M:Asm.As.EDM.API.DataTransfer.Proxy.EdmPushApiProxy.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.EDM.API.DataTransfer.Proxy.EdmPushApiProxy" /> class.
+            </summary>
+            <param name="strHost">The hostname of the EDM Push API Service (usually the EDM Master Server).</param>
+        </member>
+        <member name="M:Asm.As.EDM.API.DataTransfer.Proxy.EdmPushApiProxy.#ctor(System.String,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.EDM.API.DataTransfer.Proxy.EdmPushApiProxy" /> class.
+            </summary>
+            <param name="strHost">The hostname of the EDM Push API Service (usually the EDM Master Server).</param>
+            <param name="nTcpPort">The port number of the TCP-Port to use.</param>
+        </member>
+        <member name="M:Asm.As.EDM.API.DataTransfer.Proxy.EdmPushApiProxy.#ctor(System.Uri)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.EDM.API.DataTransfer.Proxy.EdmPushApiProxy" /> class.
+            </summary>
+            <param name="serverEndpoint">The Uri of the endpoint of the EDM Push Server (usually the EDM Master Server)..</param>
+        </member>
+        <member name="M:Asm.As.EDM.API.DataTransfer.Proxy.EdmPushApiProxy.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.EDM.API.DataTransfer.Proxy.EdmPushApiProxy" /> class using the default values.
+            </summary>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.Proxy.EdmPushApiProxy.RawPushApi">
+            <summary>
+            Provides access to the underlying IEdmDataPush Server Channel (use the methods provided by this client instead
+            whenever possible).
+            </summary>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.Proxy.EdmPushApiProxy.ServerEndpoint">
+            <summary>
+            Gets the current server endpoint.
+            </summary>
+            <value>
+            The server endpoint.
+            </value>
+        </member>
+        <member name="M:Asm.As.EDM.API.DataTransfer.Proxy.EdmPushApiProxy.GetPendingPushIds">
+            <summary>
+            Gets the ids of all pending push operations.
+            </summary>
+            <returns>An array of all push ids known by this EdmPushApiProxy</returns>
+        </member>
+        <member name="M:Asm.As.EDM.API.DataTransfer.Proxy.EdmPushApiProxy.CreatePushResult(Asm.As.EDM.API.DataTransfer.PushStatusInformation,Asm.As.EDM.API.DataTransfer.PushIdToken,System.TimeSpan)">
+            <summary>
+            Creates a push result.
+            </summary>
+            <param name="status">The status.</param>
+            <param name="token">The push id token.</param>
+            <param name="duration">The duration.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Asm.As.EDM.API.DataTransfer.Proxy.EdmPushApiProxy.CreateEdmPushApiEndpointUri(System.String,System.Int32)">
+            <summary>
+            Gets the EDM push API endpoint Uri for the specified host.
+            </summary>
+            <param name="strHost">The name of the EDM API host (normally the EDM Master).</param>
+            <param name="nPort">The number of the TCP-Port of the EDM API Service.</param>
+            <returns>The Uri of the EDM API Host</returns>
+        </member>
+        <member name="M:Asm.As.EDM.API.DataTransfer.Proxy.EdmPushApiProxy.CreateEdmPushApiEndpointUri(System.String)">
+            <summary>
+            Gets the EDM push API endpoint Uri for the specified host.
+            </summary>
+            <param name="strHost">The name of the EDM API host (normally the EDM Master).</param>
+            <returns>The Uri of the EDM API Host</returns>
+        </member>
+        <member name="M:Asm.As.EDM.API.DataTransfer.Proxy.EdmPushApiProxy.StatusUpdated(Asm.As.EDM.API.DataTransfer.PushStatusInformation)">
+            <summary>
+            Called if the status of a push operation is updated.
+            </summary>
+            <param name="status">A <see cref="T:Asm.As.EDM.API.DataTransfer.PushStatusInformation" /> object containing the current status of the push operation.</param>
+        </member>
+        <member name="T:Asm.As.EDM.API.DataTransfer.Proxy.EdmPushApiProxy.PendingPushData">
+            <summary>
+            Data about pending pushes
+            </summary>
+        </member>
+        <member name="M:Asm.As.EDM.API.DataTransfer.Proxy.EdmPushApiProxy.PendingPushData.#ctor(System.Threading.ManualResetEventSlim,Asm.As.EDM.API.DataTransfer.PushStatusInformation,System.DateTime,Asm.As.EDM.API.DataTransfer.PushIdToken)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.EDM.API.DataTransfer.Proxy.EdmPushApiProxy.PendingPushData" /> class.
+            </summary>
+            <param name="syn">The sync object.</param>
+            <param name="status">The status.</param>
+            <param name="timestamp">The timestamp.</param>
+            <param name="idToken">The id token.</param>
+        </member>
+        <member name="M:Asm.As.EDM.API.DataTransfer.Proxy.EdmPushApiProxy.PendingPushData.#ctor(Asm.As.EDM.API.DataTransfer.PushIdToken)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.EDM.API.DataTransfer.Proxy.EdmPushApiProxy.PendingPushData" /> class.
+            </summary>
+            <param name="idToken">The id token.</param>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.Proxy.EdmPushApiProxy.PendingPushData.StartTime">
+            <summary>
+            Gets or sets the start time.
+            </summary>
+            <value>
+            The start time.
+            </value>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.Proxy.EdmPushApiProxy.PendingPushData.PushId">
+            <summary>
+            Gets or sets the start time.
+            </summary>
+            <value>
+            The start time.
+            </value>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.Proxy.EdmPushApiProxy.PendingPushData.Token">
+            <summary>
+            Gets or sets the start time.
+            </summary>
+            <value>
+            The start time.
+            </value>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.Proxy.EdmPushApiProxy.PendingPushData.Status">
+            <summary>
+            Gets or sets the status.
+            </summary>
+            <value>
+            The status.
+            </value>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.Proxy.EdmPushApiProxy.PendingPushData.SyncObject">
+            <summary>
+            Gets or sets the sync object.
+            </summary>
+            <value>
+            The sync object.
+            </value>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.Proxy.EdmPushApiProxy.PendingPushData.DebuggerDisplayString">
+            <summary>
+            Gets the debugger display string.
+            </summary>
+        </member>
+        <member name="M:Asm.As.EDM.API.DataTransfer.Proxy.EdmPushApiProxy.PendingPushData.Signal">
+            <summary>
+            Signals the sync object.
+            </summary>
+        </member>
+        <member name="M:Asm.As.EDM.API.DataTransfer.Proxy.EdmPushApiProxy.PendingPushData.Dispose">
+            <summary>
+            Implementation of the Dispose pattern
+            </summary>
+        </member>
+        <member name="E:Asm.As.EDM.API.DataTransfer.Proxy.EdmPushApiProxy.PushFinished">
+            <summary>
+            Occurs when a push operation has finished.
+            </summary>
+        </member>
+        <member name="E:Asm.As.EDM.API.DataTransfer.Proxy.EdmPushApiProxy.PushStatusUpdate">
+            <summary>
+            Occurs when the status of a push operation changes.
+            </summary>
+        </member>
+        <member name="M:Asm.As.EDM.API.DataTransfer.Proxy.EdmPushApiProxy.OnPushFinishedAsync(Asm.As.EDM.API.DataTransfer.PushResult)">
+            <summary>
+            Called when a push finished.
+            </summary>
+            <param name="result">The result.</param>
+        </member>
+        <member name="M:Asm.As.EDM.API.DataTransfer.Proxy.EdmPushApiProxy.OnPushStatusUpdateAsync(Asm.As.EDM.API.DataTransfer.PushStatusInformation)">
+            <summary>
+            Called on a push status update.
+            </summary>
+            <param name="status">The status.</param>
+        </member>
+        <member name="M:Asm.As.EDM.API.DataTransfer.Proxy.EdmPushApiProxy.OnPushFinished(Asm.As.EDM.API.DataTransfer.PushResult)">
+            <summary>
+            Called when a push finished.
+            </summary>
+            <param name="result">The result.</param>
+        </member>
+        <member name="M:Asm.As.EDM.API.DataTransfer.Proxy.EdmPushApiProxy.OnPushStatusUpdate(Asm.As.EDM.API.DataTransfer.PushStatusInformation)">
+            <summary>
+            Called on a push status update.
+            </summary>
+            <param name="status">The status.</param>
+        </member>
+        <member name="M:Asm.As.EDM.API.DataTransfer.Proxy.EdmPushApiProxy.Dispose(System.Boolean)">
+            <summary>
+            Releases unmanaged and - optionally - managed resources
+            </summary>
+            <param name="bDisposing">
+            <c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only
+            unmanaged resources.
+            </param>
+        </member>
+        <member name="M:Asm.As.EDM.API.DataTransfer.Proxy.EdmPushApiProxy.CloseChannel(System.ServiceModel.ICommunicationObject)">
+            <summary>
+            Closes the channel.
+            </summary>
+            <param name="channel">The channel.</param>
+        </member>
+        <member name="M:Asm.As.EDM.API.DataTransfer.Proxy.EdmPushApiProxy.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.Proxy.EdmPushApiProxy.IsDisposed">
+            <summary>
+            Gets a value indicating whether this instance is disposed.
+            </summary>
+            <value>
+            <c>true</c> if this instance is disposed; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="M:Asm.As.EDM.API.DataTransfer.Proxy.EdmPushApiProxy.StartDataPush(Asm.As.EDM.API.DataTransfer.PushParameter,System.String)">
+            <summary>
+            Starts a data push with the specified parameters.
+            </summary>
+            <param name="parameter">The <see cref="T:Asm.As.EDM.API.DataTransfer.PushParameter" /> to use.</param>
+            <param name="lineServer">
+            The EDM line server to push the data to (may be specified as EDM Line Alias, SPI Line (with the "Line:" prefix) or
+            as Hostname (with the "Host:" prefix)).
+            Note: The EDM Line Alias must exist / The SPI Line must be assigned to a EDM Line Server / the Host must correspond
+            to an EDM Line Alias in the EDM Machine Configuration.
+            </param>
+            <returns>The ID Token of the push operation (used in status queries or to cancel the operation)</returns>
+        </member>
+        <member name="M:Asm.As.EDM.API.DataTransfer.Proxy.EdmPushApiProxy.StartMultiLineDataPush(Asm.As.EDM.API.DataTransfer.PushParameter,System.String[])">
+            <summary>
+            Starts a data push and transfers the same data to multiple lines (this has the advantage the the data is only
+            exported once, which reduces the performance consumption on the EDM-Master server and ensures that the same data is
+            pushed to all line servers).
+            </summary>
+            <param name="parameter">The <see cref="T:Asm.As.EDM.API.DataTransfer.PushParameter" /> to use.</param>
+            <param name="lineServers">
+            The EDM line servers to push the data to (may be specified as EDM Line Alias, SPI Line (with the "Line:" prefix) or
+            as Hostname (with the "Host:" prefix)).
+            Note: The EDM Line Alias must exist / the SPI Line must be assigned to a EDM Line Server / the Host must correspond
+            to an EDM Line Alias in the EDM Machine Configuration for all specified line servers.
+            </param>
+            <returns>
+            A List of ID Token of the push operations corresponding to the specified Line Servers (used in status queries
+            or to cancel the operation)
+            </returns>
+        </member>
+        <member name="M:Asm.As.EDM.API.DataTransfer.Proxy.EdmPushApiProxy.GetCurrentStatus(System.String)">
+            <summary>
+            Query the the current status of a Push Operation.
+            </summary>
+            <param name="id">The Id-Token (obtained from the Start(MultiLIne)DataPush-Call.</param>
+            <returns>a <c>PushStatusInformation</c> object</returns>
+        </member>
+        <member name="M:Asm.As.EDM.API.DataTransfer.Proxy.EdmPushApiProxy.CancelDataTransfer(System.String)">
+            <summary>
+            Cancels a push operation.
+            </summary>
+            <param name="id">The Id-Token (obtained from the Start(MultiLIne)DataPush-Call.</param>
+            <returns>
+            If the operation was canceled, false otherwise
+            </returns>
+        </member>
+        <member name="M:Asm.As.EDM.API.DataTransfer.Proxy.EdmPushApiProxy.GetEdmVersion">
+            <summary>
+            Gets the EDM version used by the API Server.
+            </summary>
+            <returns>An <c>EdmVersionData</c> containing the version information </returns>
+        </member>
+        <member name="M:Asm.As.EDM.API.DataTransfer.Proxy.EdmPushApiProxy.GetTemplateList">
+            <summary>
+            Get information of all EDM ApplicationTemplates currently known at the server.
+            </summary>
+            <returns>
+            A TemplateInfo object for each known template.
+            </returns>
+        </member>
+        <member name="M:Asm.As.EDM.API.DataTransfer.Proxy.EdmPushApiProxy.GetEdmLineServersForSpiLine(System.String,System.Boolean)">
+            <summary>
+            Gets the all EDM line servers that is associated with the specified SPI Line.
+            </summary>
+            <param name="strLinePath">The SPI line path.</param>
+            <param name="bMatchAllTag">if set to <c>true</c> also return line servers that are assigned to the special line [ALL].</param>
+            <returns>
+            A list of all EDM line servers that is associated with the specified SPI Line.
+            </returns>
+        </member>
+        <member name="M:Asm.As.EDM.API.DataTransfer.Proxy.EdmPushApiProxy.GetDefaultSettingsFromConfig">
+            <summary>
+            Yields push settings according the current configuration on the EDM Master computer (which hosts the endpoint).
+            </summary>
+            <returns>A <c>PushSettings</c> object which may be used to configure subsequent data pushes</returns>
+        </member>
+        <member name="M:Asm.As.EDM.API.DataTransfer.Proxy.EdmPushApiProxy.StartDataPush(Asm.As.EDM.API.DataTransfer.PushParameter,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Starts a data push and transfers the same data to multiple lines (this has the advantage the the data is only
+            exported once, which reduces the performance consumption on the EDM-Master server and ensures that the same data is
+            pushed to all line servers).
+            </summary>
+            <param name="parameter">The <see cref="T:Asm.As.EDM.API.DataTransfer.PushParameter" /> to use.</param>
+            <param name="lineServers">
+            The EDM line servers to push the data to (may be specified as EDM Line Alias, SPI Line (with the "Line:" prefix) or
+            as Hostname (with the "Host:" prefix)).
+            Note: The EDM Line Alias must exist / the SPI Line must be assigned to a EDM Line Server / the Host must correspond
+            to an EDM Line Alias in the EDM Machine Configuration for all specified line servers.
+            </param>
+            <returns>
+            A List of ID Token of the push operations corresponding to the specified Line Servers (used in status queries
+            or to cancel the operation)
+            </returns>
+        </member>
+        <member name="M:Asm.As.EDM.API.DataTransfer.Proxy.EdmPushApiProxy.StartDataPush(Asm.As.EDM.API.DataTransfer.PushParameter,System.String[])">
+            <summary>
+            Starts a data push and transfers the same data to multiple lines (this has the advantage the the data is only
+            exported once, which reduces the performance consumption on the EDM-Master server and ensures that the same data is
+            pushed to all line servers).
+            </summary>
+            <param name="parameter">The <see cref="T:Asm.As.EDM.API.DataTransfer.PushParameter" /> to use.</param>
+            <param name="lineServers">
+            The EDM line servers to push the data to (may be specified as either
+            - EDM Line Alias,
+            - SPI Line (with the "Line:" prefix) or
+            - Hostname (with the "Host:" prefix))
+            .
+            Note: The EDM Line Alias must exist / the SPI Line must be assigned to a EDM Line Server / the Host must correspond
+            to an EDM Line Alias in the EDM Machine Configuration for all specified line servers.
+            </param>
+            <returns>
+            A List of ID Token of the push operations corresponding to the specified Line Servers (used in status queries
+            or to cancel the operation)
+            </returns>
+        </member>
+        <member name="M:Asm.As.EDM.API.DataTransfer.Proxy.EdmPushApiProxy.PushData(Asm.As.EDM.API.DataTransfer.PushParameter,System.String)">
+            <summary>
+            Starts a data push with the specified parameters and waits for the result (which may take several days to complete
+            if features like Confirmation or LineDataConflictChecks are active).
+            </summary>
+            <param name="parameter">The <see cref="T:Asm.As.EDM.API.DataTransfer.PushParameter" /> to use.</param>
+            <param name="lineServer">
+            The EDM line server to push the data to (may be specified as EDM Line Alias, SPI Line (with the "Line:" prefix) or
+            as Hostname (with the "Host:" prefix)).
+            Note: The EDM Line Alias must exist / The SPI Line must be assigned to a EDM Line Server / the Host must correspond
+            to an EDM Line Alias in the EDM Machine Configuration.
+            </param>
+            <returns>The result of the push operation</returns>
+        </member>
+        <member name="M:Asm.As.EDM.API.DataTransfer.Proxy.EdmPushApiProxy.PushData(Asm.As.EDM.API.DataTransfer.PushParameter,System.String[])">
+            <summary>
+            Starts a data push and transfers the same data to multiple lines (this has the advantage the the data is only
+            exported once, which reduces the performance consumption on the EDM-Master server and ensures that the same data is
+            pushed to all line servers)
+            and waits for the result of ALL operations (which may take several days to complete if features like Confirmation
+            or LineDataConflictChecks are active).
+            </summary>
+            <param name="parameter">The <see cref="T:Asm.As.EDM.API.DataTransfer.PushParameter" /> to use.</param>
+            <param name="lineServers">
+            The EDM line servers to push the data to (may be specified as EDM Line Alias, SPI Line (with the "Line:" prefix) or
+            as Hostname (with the "Host:" prefix)).
+            Note: The EDM Line Alias must exist / the SPI Line must be assigned to a EDM Line Server / the Host must correspond
+            to an EDM Line Alias in the EDM Machine Configuration for all specified line servers.
+            </param>
+            <returns>
+            A List of results of the push operations corresponding to the specified Line Servers (used in status queries
+            or to cancel the operation)
+            </returns>
+        </member>
+        <member name="M:Asm.As.EDM.API.DataTransfer.Proxy.EdmPushApiProxy.PushData(Asm.As.EDM.API.DataTransfer.PushParameter,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Starts a data push and transfers the same data to multiple lines (this has the advantage the the data is only
+            exported once, which reduces the performance consumption on the EDM-Master server and ensures that the same data is
+            pushed to all line servers)
+            and waits for the result of ALL operations (which may take several days to complete if features like Confirmation
+            or LineDataConflictChecks are active).
+            </summary>
+            <param name="parameter">The <see cref="T:Asm.As.EDM.API.DataTransfer.PushParameter" /> to use.</param>
+            <param name="lineServers">
+            The EDM line servers to push the data to (may be specified as EDM Line Alias, SPI Line (with the "Line:" prefix) or
+            as Hostname (with the "Host:" prefix)).
+            Note: The EDM Line Alias must exist / the SPI Line must be assigned to a EDM Line Server / the Host must correspond
+            to an EDM Line Alias in the EDM Machine Configuration for all specified line servers.
+            </param>
+            <returns>
+            A List of results of the push operations corresponding to the specified Line Servers (used in status queries
+            or to cancel the operation)
+            </returns>
+        </member>
+        <member name="M:Asm.As.EDM.API.DataTransfer.Proxy.EdmPushApiProxy.PushData(Asm.As.EDM.API.DataTransfer.PushParameter,System.Int32,System.String)">
+            <summary>
+            Starts a data push with the specified parameters and waits for the result (which may take several days to complete
+            if features like Confirmation or LineDataConflictChecks are active).
+            Note: The push operation itself may still be running and complete successfully after this call has timed out. Use
+            CancelDataTransfer to (try to) abort the push operation, if desired.
+            </summary>
+            <param name="parameter">The <see cref="T:Asm.As.EDM.API.DataTransfer.PushParameter" /> to use.</param>
+            <param name="nTimeoutMsec">
+            A timeout in milliseconds, the operation will end if the timeout has elapsed or the
+            operation has finished.
+            </param>
+            <param name="lineServer">
+            The EDM line server to push the data to (may be specified as EDM Line Alias, SPI Line (with the "Line:" prefix) or
+            as Hostname (with the "Host:" prefix)).
+            Note: The EDM Line Alias must exist / The SPI Line must be assigned to a EDM Line Server / the Host must correspond
+            to an EDM Line Alias in the EDM Machine Configuration.
+            </param>
+            <returns>
+            The result of the push operation (NOTE: There may be more than one result, if a SPI Line parameters is used and
+            this line is assigned to more than one EDM Line Server)
+            </returns>
+        </member>
+        <member name="M:Asm.As.EDM.API.DataTransfer.Proxy.EdmPushApiProxy.PushData(Asm.As.EDM.API.DataTransfer.PushParameter,System.Int32,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Starts a data push and transfers the same data to multiple lines (this has the advantage the the data is only
+            exported once, which reduces the performance consumption on the EDM-Master server and ensures that the same data is
+            pushed to all line servers)
+            and waits for the result of ALL operations (which may take several days to complete if features like Confirmation
+            or LineDataConflictChecks are active).
+            </summary>
+            <param name="parameter">The <see cref="T:Asm.As.EDM.API.DataTransfer.PushParameter" /> to use.</param>
+            <param name="nTimeoutMsec">
+            A timeout in milliseconds, the operation will end if the timeout has elapsed or the
+            operation has finished.
+            </param>
+            <param name="lineServers">
+            The EDM line servers to push the data to (may be specified as EDM Line Alias, SPI Line (with the "Line:" prefix) or
+            as Hostname (with the "Host:" prefix)).
+            Note: The EDM Line Alias must exist / the SPI Line must be assigned to a EDM Line Server / the Host must correspond
+            to an EDM Line Alias in the EDM Machine Configuration for all specified line servers.
+            </param>
+            <returns>
+            A List of results of the push operations corresponding to the specified Line Servers (used in status queries
+            or to cancel the operation)
+            </returns>
+        </member>
+        <member name="M:Asm.As.EDM.API.DataTransfer.Proxy.EdmPushApiProxy.PushData(Asm.As.EDM.API.DataTransfer.PushParameter,System.Int32,System.String[])">
+            <summary>
+            Starts a data push and transfers the same data to multiple lines (this has the advantage the the data is only
+            exported once, which reduces the performance consumption on the EDM-Master server and ensures that the same data is
+            pushed to all line servers)
+            and waits for the result of ALL operations (which may take several days to complete if features like Confirmation
+            or LineDataConflictChecks are active).
+            </summary>
+            <param name="parameter">The <see cref="T:Asm.As.EDM.API.DataTransfer.PushParameter" /> to use.</param>
+            <param name="nTimeoutMsec">
+            A timeout in milliseconds, the operation will end if the timeout has elapsed or the
+            operation has finished.
+            </param>
+            <param name="lineServers">
+            The EDM line servers to push the data to (may be specified as EDM Line Alias, SPI Line (with the "Line:" prefix) or
+            as Hostname (with the "Host:" prefix)).
+            Note: The EDM Line Alias must exist / the SPI Line must be assigned to a EDM Line Server / the Host must correspond
+            to an EDM Line Alias in the EDM Machine Configuration for all specified line servers.
+            </param>
+            <returns>
+            A List of results of the push operations corresponding to the specified Line Servers (used in status queries
+            or to cancel the operation)
+            </returns>
+        </member>
+        <member name="M:Asm.As.EDM.API.DataTransfer.Proxy.EdmPushApiProxy.GetEdmLineServersForSpiLine(System.String)">
+            <summary>
+            Gets the all EDM line servers that is associated with the specified SPI Line.
+            </summary>
+            <param name="strLinePath">The SPI line path.</param>
+            <returns>
+            A list of all EDM line servers that is associated with the specified SPI Line.
+            </returns>
+        </member>
+        <member name="T:Asm.As.EDM.API.DataTransfer.Proxy.PushFinishedEventArgs">
+            <summary>
+            EventArgs used by the PushFinished event.
+            </summary>
+        </member>
+        <member name="M:Asm.As.EDM.API.DataTransfer.Proxy.PushFinishedEventArgs.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.EDM.API.DataTransfer.Proxy.PushFinishedEventArgs" /> class.
+            </summary>
+        </member>
+        <member name="M:Asm.As.EDM.API.DataTransfer.Proxy.PushFinishedEventArgs.#ctor(Asm.As.EDM.API.DataTransfer.PushResult)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.EDM.API.DataTransfer.Proxy.PushFinishedEventArgs" /> class.
+            </summary>
+            <param name="result">The result.</param>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.Proxy.PushFinishedEventArgs.Result">
+            <summary>
+            Gets or sets the push result data.
+            </summary>
+            <value>
+            The push result.
+            </value>
+        </member>
+        <member name="T:Asm.As.EDM.API.DataTransfer.Proxy.PushStatusUpdateEventArgs">
+            <summary>
+            Event Arguments used for push status update events.
+            </summary>
+        </member>
+        <member name="M:Asm.As.EDM.API.DataTransfer.Proxy.PushStatusUpdateEventArgs.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.EDM.API.DataTransfer.Proxy.PushStatusUpdateEventArgs" /> class.
+            </summary>
+        </member>
+        <member name="M:Asm.As.EDM.API.DataTransfer.Proxy.PushStatusUpdateEventArgs.#ctor(Asm.As.EDM.API.DataTransfer.PushStatusInformation)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.EDM.API.DataTransfer.Proxy.PushStatusUpdateEventArgs" /> class.
+            </summary>
+            <param name="status">The status.</param>
+        </member>
+        <member name="P:Asm.As.EDM.API.DataTransfer.Proxy.PushStatusUpdateEventArgs.Status">
+            <summary>
+            Gets or sets the status.
+            </summary>
+            <value>
+            The status.
+            </value>
+        </member>
+    </members>
+</doc>

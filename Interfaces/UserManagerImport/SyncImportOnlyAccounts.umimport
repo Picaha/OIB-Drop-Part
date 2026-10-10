@@ -1,0 +1,49 @@
+{
+  "Products": [],
+  "AllowableValues": [],
+  "RoleClaimTypes": [],
+  "Roles": [
+    {
+      "Id": 1001,
+      "Name": "User Management Administrators"
+    },
+    {
+      "Id": 1002,
+      "Name": "User Managers"
+    },
+    {
+      "Id": 1003,
+      "Name": "OIB Gui Administrator Users"
+    }
+  ],
+  "Accounts": [
+    {
+      "Id": 2,
+      "Name": "Daniel Anderson",
+      "Description": "Banking Analyst",
+      "UserNamePasswords": [
+        {
+          "UserName": "DanielAnderson",
+          "InitialPassword": "Dan$P@ssw0rd"
+        }
+      ],
+      "RoleIds": [
+      ],
+      "EmailAddress": "daniel.anderson@ubs.com"
+    },
+    {
+      "Id": 3,
+      "Name": "Betty Sanchez",
+      "Description": "Customer Service Account Manager",
+
+      "WindowsUserNames": [],
+      "RoleIds": [
+        1004
+      ],
+      "EmailAddress": "betty.sanchez@mycompany.com"
+    }
+  ],
+  "IsSyncImport": true,
+  "RemoveRoleAssignmentsFromAccounts": false
+
+}

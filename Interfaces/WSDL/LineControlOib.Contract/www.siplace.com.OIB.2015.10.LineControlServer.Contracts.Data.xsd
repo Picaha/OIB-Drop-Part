@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.siplace.com/OIB/2015/10/LineControlServer/Contracts/Data" elementFormDefault="qualified" targetNamespace="http://www.siplace.com/OIB/2015/10/LineControlServer/Contracts/Data" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="VerifyRecipeActivationOnDekPrinterRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DekPrinterRecipeVerificationData" nillable="true" type="tns:DekPrinterRecipeVerificationData" />
+      <xs:element minOccurs="0" name="DeviceLocator" nillable="true" type="tns:DeviceLocator" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="VerifyRecipeActivationOnDekPrinterRequest" nillable="true" type="tns:VerifyRecipeActivationOnDekPrinterRequest" />
+  <xs:complexType name="DekPrinterRecipeVerificationData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ConveyorLane" type="xs:int" />
+      <xs:element minOccurs="0" name="DateModified" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ProductId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ProductName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DekPrinterRecipeVerificationData" nillable="true" type="tns:DekPrinterRecipeVerificationData" />
+  <xs:complexType name="DeviceLocator">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="LineName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MachineId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MachineName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MachineType" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DeviceLocator" nillable="true" type="tns:DeviceLocator" />
+  <xs:complexType name="MesVerificationResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Reason" nillable="true" type="xs:string" />
+      <xs:element name="VerificationResult" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MesVerificationResult" nillable="true" type="tns:MesVerificationResult" />
+  <xs:complexType name="VerifyRecipeDownloadRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DownloadVerificationData" nillable="true" type="tns:ArrayOfDownloadVerificationData" />
+      <xs:element minOccurs="0" name="LineName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="VerifyRecipeDownloadRequest" nillable="true" type="tns:VerifyRecipeDownloadRequest" />
+  <xs:complexType name="ArrayOfDownloadVerificationData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DownloadVerificationData" nillable="true" type="tns:DownloadVerificationData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDownloadVerificationData" nillable="true" type="tns:ArrayOfDownloadVerificationData" />
+  <xs:complexType name="DownloadVerificationData">
+    <xs:sequence>
+      <xs:element name="Lane" type="xs:int" />
+      <xs:element minOccurs="0" name="OrderId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ProductionSchedule" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ProductionScheduleElementId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Recipe" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DownloadVerificationData" nillable="true" type="tns:DownloadVerificationData" />
+  <xs:complexType name="VerifyRecipeForAutoProgramDownloadRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AutoProgramDownloadVerificationData" nillable="true" type="tns:AutoProgramDownloadRecipeVerificationData" />
+      <xs:element minOccurs="0" name="LineName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="VerifyRecipeForAutoProgramDownloadRequest" nillable="true" type="tns:VerifyRecipeForAutoProgramDownloadRequest" />
+  <xs:complexType name="AutoProgramDownloadRecipeVerificationData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Job" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Recipe" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AutoProgramDownloadRecipeVerificationData" nillable="true" type="tns:AutoProgramDownloadRecipeVerificationData" />
+  <xs:complexType name="VerifyPcbForAutoProgramDownloadRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AutoProgramDownloadPcbVerificationData" nillable="true" type="tns:AutoProgramDownloadPcbVerificationData" />
+      <xs:element minOccurs="0" name="DeviceLocator" nillable="true" type="tns:DeviceLocator" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="VerifyPcbForAutoProgramDownloadRequest" nillable="true" type="tns:VerifyPcbForAutoProgramDownloadRequest" />
+  <xs:complexType name="AutoProgramDownloadPcbVerificationData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BarcodePosition" type="xs:int" />
+      <xs:element minOccurs="0" name="BarcodePosition2" type="xs:int" />
+      <xs:element name="Lane" type="xs:int" />
+      <xs:element minOccurs="0" name="LineJobGUID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PcbBarcode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PcbBarcode2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Recipe" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AutoProgramDownloadPcbVerificationData" nillable="true" type="tns:AutoProgramDownloadPcbVerificationData" />
+  <xs:complexType name="VerifyRecipeActivationOnProcessLensRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DeviceLocator" nillable="true" type="tns:DeviceLocator" />
+      <xs:element minOccurs="0" name="ProcessLensRecipeVerificationData" nillable="true" type="tns:ProcessLensRecipeVerificationData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="VerifyRecipeActivationOnProcessLensRequest" nillable="true" type="tns:VerifyRecipeActivationOnProcessLensRequest" />
+  <xs:complexType name="ProcessLensRecipeVerificationData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ConveyorLane" type="xs:int" />
+      <xs:element minOccurs="0" name="DateModified" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ProductId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ProductName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProcessLensRecipeVerificationData" nillable="true" type="tns:ProcessLensRecipeVerificationData" />
+</xs:schema>

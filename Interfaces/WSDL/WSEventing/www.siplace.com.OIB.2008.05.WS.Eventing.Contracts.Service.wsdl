@@ -1,0 +1,529 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:tns="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Service" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" targetNamespace="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Service" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Service/Imports">
+      <xsd:import namespace="http://schemas.xmlsoap.org/ws/2004/08/eventing" />
+      <xsd:import namespace="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Message" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import namespace="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Service" />
+      <xsd:import namespace="http://www.siplace.com/OIB/2008/05/WS/Common/Contracts/Data" />
+      <xsd:import namespace="http://schemas.xmlsoap.org/ws/2004/08/addressing" />
+      <xsd:import namespace="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Data" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/System.Collections.Generic" />
+      <xsd:import namespace="http://schemas.microsoft.com/serviceModel/2004/05/xpathfilter/" />
+      <xsd:import namespace="http://schemas.microsoft.com/serviceModel/2004/05/xpathfilter" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/System.ServiceModel.Dispatcher" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/System" />
+      <xsd:import namespace="http://schemas.microsoft.com/Message" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="BatchSendRequest">
+    <wsdl:part name="parameters" xmlns:q1="http://schemas.xmlsoap.org/ws/2004/08/eventing" element="q1:BatchSendRequest" />
+  </wsdl:message>
+  <wsdl:message name="BatchSendRequest_Headers">
+    <wsdl:part name="SubscriptionTopic" xmlns:q2="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Message" element="q2:SubscriptionTopic" />
+  </wsdl:message>
+  <wsdl:message name="BatchSendResponse">
+    <wsdl:part name="parameters" xmlns:q3="http://schemas.xmlsoap.org/ws/2004/08/eventing" element="q3:BatchSendResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEndpointKeeper_AddEventSource_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddEventSource" />
+  </wsdl:message>
+  <wsdl:message name="IEndpointKeeper_AddEventSource_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddEventSourceResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEndpointKeeper_AddEventSource_OIBWSFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q4="http://www.siplace.com/OIB/2008/05/WS/Common/Contracts/Data" element="q4:OIBWSFault" />
+  </wsdl:message>
+  <wsdl:message name="IEndpointKeeper_GetEventSources_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetEventSources" />
+  </wsdl:message>
+  <wsdl:message name="IEndpointKeeper_GetEventSources_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetEventSourcesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEndpointKeeper_GetEventSources_OIBWSFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q5="http://www.siplace.com/OIB/2008/05/WS/Common/Contracts/Data" element="q5:OIBWSFault" />
+  </wsdl:message>
+  <wsdl:message name="IEndpointKeeper_GetNotificationEndpoints_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetNotificationEndpoints" />
+  </wsdl:message>
+  <wsdl:message name="IEndpointKeeper_GetNotificationEndpoints_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetNotificationEndpointsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEndpointKeeper_GetNotificationEndpoints_OIBWSFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q6="http://www.siplace.com/OIB/2008/05/WS/Common/Contracts/Data" element="q6:OIBWSFault" />
+  </wsdl:message>
+  <wsdl:message name="IEndpointKeeper_GetLeastUsedEndpoint_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLeastUsedEndpoint" />
+  </wsdl:message>
+  <wsdl:message name="IEndpointKeeper_GetLeastUsedEndpoint_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLeastUsedEndpointResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEndpointKeeper_GetLeastUsedEndpoint_OIBWSFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q7="http://www.siplace.com/OIB/2008/05/WS/Common/Contracts/Data" element="q7:OIBWSFault" />
+  </wsdl:message>
+  <wsdl:message name="IEndpointKeeper_RemoveEventSource_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveEventSource" />
+  </wsdl:message>
+  <wsdl:message name="IEndpointKeeper_RemoveEventSource_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveEventSourceResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEndpointKeeper_RemoveEventSource_OIBWSFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q8="http://www.siplace.com/OIB/2008/05/WS/Common/Contracts/Data" element="q8:OIBWSFault" />
+  </wsdl:message>
+  <wsdl:message name="IEndpointKeeper_RemoveNotificationEndpoint_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveNotificationEndpoint" />
+  </wsdl:message>
+  <wsdl:message name="IEndpointKeeper_RemoveNotificationEndpoint_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveNotificationEndpointResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEndpointKeeper_RemoveNotificationEndpoint_OIBWSFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q9="http://www.siplace.com/OIB/2008/05/WS/Common/Contracts/Data" element="q9:OIBWSFault" />
+  </wsdl:message>
+  <wsdl:message name="IEndpointKeeper_UpdateEventSource_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateEventSource" />
+  </wsdl:message>
+  <wsdl:message name="IEndpointKeeper_UpdateEventSource_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateEventSourceResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEndpointKeeper_UpdateEventSource_OIBWSFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q10="http://www.siplace.com/OIB/2008/05/WS/Common/Contracts/Data" element="q10:OIBWSFault" />
+  </wsdl:message>
+  <wsdl:message name="IEventingAdministration_CheckAlive_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckAlive" />
+  </wsdl:message>
+  <wsdl:message name="IEventingAdministration_CheckAlive_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckAliveResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEventingAdministration_GetAllQueues_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllQueues" />
+  </wsdl:message>
+  <wsdl:message name="IEventingAdministration_GetAllQueues_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllQueuesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEventingAdministration_GetLiveQueues_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLiveQueues" />
+  </wsdl:message>
+  <wsdl:message name="IEventingAdministration_GetLiveQueues_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLiveQueuesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEventingAdministration_GetReceiverQueue_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetReceiverQueue" />
+  </wsdl:message>
+  <wsdl:message name="IEventingAdministration_GetReceiverQueue_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetReceiverQueueResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEventingAdministration_PauseQueue_InputMessage">
+    <wsdl:part name="parameters" element="tns:PauseQueue" />
+  </wsdl:message>
+  <wsdl:message name="IEventingAdministration_PauseQueue_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PauseQueueResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEventingAdministration_RemoveMessage_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveMessage" />
+  </wsdl:message>
+  <wsdl:message name="IEventingAdministration_RemoveMessage_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveMessageResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEventingAdministration_RestartQueue_InputMessage">
+    <wsdl:part name="parameters" element="tns:RestartQueue" />
+  </wsdl:message>
+  <wsdl:message name="IEventingAdministration_RestartQueue_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RestartQueueResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEventingAdministration_ResumeQueue_InputMessage">
+    <wsdl:part name="parameters" element="tns:ResumeQueue" />
+  </wsdl:message>
+  <wsdl:message name="IEventingAdministration_ResumeQueue_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ResumeQueueResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMsmqPing_Ping_InputMessage">
+    <wsdl:part name="parameters" element="tns:Ping" />
+  </wsdl:message>
+  <wsdl:message name="IRequestResponse_RequestResponse_InputMessage">
+    <wsdl:part name="message" xmlns:q11="http://schemas.microsoft.com/Message" type="q11:MessageBody" />
+  </wsdl:message>
+  <wsdl:message name="IRequestResponse_RequestResponse_OutputMessage" />
+  <wsdl:message name="ISubscriptionManagerOneWay_CreateSubscriptionTopic_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateSubscriptionTopic" />
+  </wsdl:message>
+  <wsdl:message name="PauseOneWayRequest">
+    <wsdl:part name="parameters" xmlns:q12="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Message" element="q12:PauseOneWayRequest" />
+  </wsdl:message>
+  <wsdl:message name="RenewOneWayRequest">
+    <wsdl:part name="parameters" xmlns:q13="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Message" element="q13:RenewOneWayRequest" />
+  </wsdl:message>
+  <wsdl:message name="RenewOneWayRequest_Headers">
+    <wsdl:part name="SubscriptionTopic" xmlns:q14="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Message" element="q14:SubscriptionTopic" />
+    <wsdl:part name="Identifier" element="tns:Identifier" />
+  </wsdl:message>
+  <wsdl:message name="ResumeOneWayRequest">
+    <wsdl:part name="parameters" xmlns:q15="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Message" element="q15:ResumeOneWayRequest" />
+  </wsdl:message>
+  <wsdl:message name="SubscribeOneWayRequest">
+    <wsdl:part name="parameters" xmlns:q16="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Message" element="q16:SubscribeOneWayRequest" />
+  </wsdl:message>
+  <wsdl:message name="SubscribeOneWayRequest_Headers">
+    <wsdl:part name="MessageId" xmlns:q17="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Message" element="q17:MsgId" />
+    <wsdl:part name="SubscriptionTopic" xmlns:q18="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Message" element="q18:SubscriptionTopic" />
+  </wsdl:message>
+  <wsdl:message name="UnsubscribeOneWayRequest">
+    <wsdl:part name="parameters" xmlns:q19="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Message" element="q19:UnsubscribeOneWayRequest" />
+  </wsdl:message>
+  <wsdl:message name="UnsubscribeOneWayRequest_Headers">
+    <wsdl:part name="Endpoint" xmlns:q20="http://schemas.xmlsoap.org/ws/2004/08/eventing" element="q20:Endpoint" />
+    <wsdl:part name="SubscriptionTopic" xmlns:q21="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Message" element="q21:SubscriptionTopic" />
+    <wsdl:part name="Identifier" element="tns:Identifier" />
+  </wsdl:message>
+  <wsdl:portType name="IBatchRequestResponse">
+    <wsdl:operation name="RequestResponse">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Service/IBatchRequestResponse/RequestResponse" name="BatchSendRequest" message="tns:BatchSendRequest" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Service/IBatchRequestResponse/RequestResponseResponse" name="BatchSendResponse" message="tns:BatchSendResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IEndpointKeeper">
+    <wsdl:operation name="AddEventSource">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Service/IEndpointKeeper/AddEventSource" message="tns:IEndpointKeeper_AddEventSource_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Service/IEndpointKeeper/AddEventSourceResponse" message="tns:IEndpointKeeper_AddEventSource_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Service/IEndpointKeeper/AddEventSourceOIBWSFaultFault" name="OIBWSFaultFault" message="tns:IEndpointKeeper_AddEventSource_OIBWSFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEventSources">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Service/IEndpointKeeper/GetEventSources" message="tns:IEndpointKeeper_GetEventSources_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Service/IEndpointKeeper/GetEventSourcesResponse" message="tns:IEndpointKeeper_GetEventSources_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Service/IEndpointKeeper/GetEventSourcesOIBWSFaultFault" name="OIBWSFaultFault" message="tns:IEndpointKeeper_GetEventSources_OIBWSFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNotificationEndpoints">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Service/IEndpointKeeper/GetNotificationEndpoints" message="tns:IEndpointKeeper_GetNotificationEndpoints_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Service/IEndpointKeeper/GetNotificationEndpointsResponse" message="tns:IEndpointKeeper_GetNotificationEndpoints_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Service/IEndpointKeeper/GetNotificationEndpointsOIBWSFaultFault" name="OIBWSFaultFault" message="tns:IEndpointKeeper_GetNotificationEndpoints_OIBWSFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLeastUsedEndpoint">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Service/IEndpointKeeper/GetLeastUsedEndpoint" message="tns:IEndpointKeeper_GetLeastUsedEndpoint_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Service/IEndpointKeeper/GetLeastUsedEndpointResponse" message="tns:IEndpointKeeper_GetLeastUsedEndpoint_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Service/IEndpointKeeper/GetLeastUsedEndpointOIBWSFaultFault" name="OIBWSFaultFault" message="tns:IEndpointKeeper_GetLeastUsedEndpoint_OIBWSFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveEventSource">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Service/IEndpointKeeper/RemoveEventSource" message="tns:IEndpointKeeper_RemoveEventSource_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Service/IEndpointKeeper/RemoveEventSourceResponse" message="tns:IEndpointKeeper_RemoveEventSource_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Service/IEndpointKeeper/RemoveEventSourceOIBWSFaultFault" name="OIBWSFaultFault" message="tns:IEndpointKeeper_RemoveEventSource_OIBWSFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveNotificationEndpoint">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Service/IEndpointKeeper/RemoveNotificationEndpoint" message="tns:IEndpointKeeper_RemoveNotificationEndpoint_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Service/IEndpointKeeper/RemoveNotificationEndpointResponse" message="tns:IEndpointKeeper_RemoveNotificationEndpoint_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Service/IEndpointKeeper/RemoveNotificationEndpointOIBWSFaultFault" name="OIBWSFaultFault" message="tns:IEndpointKeeper_RemoveNotificationEndpoint_OIBWSFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateEventSource">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Service/IEndpointKeeper/UpdateEventSource" message="tns:IEndpointKeeper_UpdateEventSource_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Service/IEndpointKeeper/UpdateEventSourceResponse" message="tns:IEndpointKeeper_UpdateEventSource_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Service/IEndpointKeeper/UpdateEventSourceOIBWSFaultFault" name="OIBWSFaultFault" message="tns:IEndpointKeeper_UpdateEventSource_OIBWSFaultFault_FaultMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IEventingAdministration">
+    <wsdl:operation name="CheckAlive">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Service/IEventingAdministration/CheckAlive" message="tns:IEventingAdministration_CheckAlive_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Service/IEventingAdministration/CheckAliveResponse" message="tns:IEventingAdministration_CheckAlive_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllQueues">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Service/IEventingAdministration/GetAllQueues" message="tns:IEventingAdministration_GetAllQueues_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Service/IEventingAdministration/GetAllQueuesResponse" message="tns:IEventingAdministration_GetAllQueues_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLiveQueues">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Service/IEventingAdministration/GetLiveQueues" message="tns:IEventingAdministration_GetLiveQueues_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Service/IEventingAdministration/GetLiveQueuesResponse" message="tns:IEventingAdministration_GetLiveQueues_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetReceiverQueue">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Service/IEventingAdministration/GetReceiverQueue" message="tns:IEventingAdministration_GetReceiverQueue_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Service/IEventingAdministration/GetReceiverQueueResponse" message="tns:IEventingAdministration_GetReceiverQueue_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PauseQueue">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Service/IEventingAdministration/PauseQueue" message="tns:IEventingAdministration_PauseQueue_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Service/IEventingAdministration/PauseQueueResponse" message="tns:IEventingAdministration_PauseQueue_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveMessage">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Service/IEventingAdministration/RemoveMessage" message="tns:IEventingAdministration_RemoveMessage_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Service/IEventingAdministration/RemoveMessageResponse" message="tns:IEventingAdministration_RemoveMessage_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RestartQueue">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Service/IEventingAdministration/RestartQueue" message="tns:IEventingAdministration_RestartQueue_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Service/IEventingAdministration/RestartQueueResponse" message="tns:IEventingAdministration_RestartQueue_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ResumeQueue">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Service/IEventingAdministration/ResumeQueue" message="tns:IEventingAdministration_ResumeQueue_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Service/IEventingAdministration/ResumeQueueResponse" message="tns:IEventingAdministration_ResumeQueue_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IMsmqPing">
+    <wsdl:operation name="Ping">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Service/IMsmqPing/Ping" message="tns:IMsmqPing_Ping_InputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IRequestResponse">
+    <wsdl:operation name="RequestResponse">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Service/IRequestResponse/RequestResponse" message="tns:IRequestResponse_RequestResponse_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Service/IRequestResponse/RequestResponseResponse" message="tns:IRequestResponse_RequestResponse_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ISubscriptionManagerOneWay">
+    <wsdl:operation name="CreateSubscriptionTopic">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Service/ISubscriptionManagerOneWay/CreateSubscriptionTopic" message="tns:ISubscriptionManagerOneWay_CreateSubscriptionTopic_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Pause">
+      <wsdl:input wsaw:Action="http://schemas.xmlsoap.org/ws/2004/08/eventing/Pause" name="PauseOneWayRequest" message="tns:PauseOneWayRequest" />
+    </wsdl:operation>
+    <wsdl:operation name="Renew">
+      <wsdl:input wsaw:Action="http://schemas.xmlsoap.org/ws/2004/08/eventing/Renew" name="RenewOneWayRequest" message="tns:RenewOneWayRequest" />
+    </wsdl:operation>
+    <wsdl:operation name="Resume">
+      <wsdl:input wsaw:Action="http://schemas.xmlsoap.org/ws/2004/08/eventing/Resume" name="ResumeOneWayRequest" message="tns:ResumeOneWayRequest" />
+    </wsdl:operation>
+    <wsdl:operation name="Subscribe">
+      <wsdl:input wsaw:Action="http://schemas.xmlsoap.org/ws/2004/08/eventing/Subscribe" name="SubscribeOneWayRequest" message="tns:SubscribeOneWayRequest" />
+    </wsdl:operation>
+    <wsdl:operation name="Unsubscribe">
+      <wsdl:input wsaw:Action="http://schemas.xmlsoap.org/ws/2004/08/eventing/Unsubscribe" name="UnsubscribeOneWayRequest" message="tns:UnsubscribeOneWayRequest" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DefaultBinding_IBatchRequestResponse" type="tns:IBatchRequestResponse">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="RequestResponse">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Service/IBatchRequestResponse/RequestResponse" style="document" />
+      <wsdl:input name="BatchSendRequest">
+        <soap:header message="tns:BatchSendRequest_Headers" part="SubscriptionTopic" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="BatchSendResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DefaultBinding_IEndpointKeeper" type="tns:IEndpointKeeper">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AddEventSource">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Service/IEndpointKeeper/AddEventSource" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="OIBWSFaultFault">
+        <soap:fault name="OIBWSFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetEventSources">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Service/IEndpointKeeper/GetEventSources" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="OIBWSFaultFault">
+        <soap:fault name="OIBWSFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetNotificationEndpoints">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Service/IEndpointKeeper/GetNotificationEndpoints" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="OIBWSFaultFault">
+        <soap:fault name="OIBWSFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetLeastUsedEndpoint">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Service/IEndpointKeeper/GetLeastUsedEndpoint" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="OIBWSFaultFault">
+        <soap:fault name="OIBWSFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveEventSource">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Service/IEndpointKeeper/RemoveEventSource" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="OIBWSFaultFault">
+        <soap:fault name="OIBWSFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveNotificationEndpoint">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Service/IEndpointKeeper/RemoveNotificationEndpoint" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="OIBWSFaultFault">
+        <soap:fault name="OIBWSFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateEventSource">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Service/IEndpointKeeper/UpdateEventSource" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="OIBWSFaultFault">
+        <soap:fault name="OIBWSFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DefaultBinding_IEventingAdministration" type="tns:IEventingAdministration">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CheckAlive">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Service/IEventingAdministration/CheckAlive" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllQueues">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Service/IEventingAdministration/GetAllQueues" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLiveQueues">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Service/IEventingAdministration/GetLiveQueues" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReceiverQueue">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Service/IEventingAdministration/GetReceiverQueue" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PauseQueue">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Service/IEventingAdministration/PauseQueue" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveMessage">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Service/IEventingAdministration/RemoveMessage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RestartQueue">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Service/IEventingAdministration/RestartQueue" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResumeQueue">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Service/IEventingAdministration/ResumeQueue" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DefaultBinding_IMsmqPing" type="tns:IMsmqPing">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Ping">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Service/IMsmqPing/Ping" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DefaultBinding_IRequestResponse" type="tns:IRequestResponse">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="RequestResponse">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Service/IRequestResponse/RequestResponse" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DefaultBinding_ISubscriptionManagerOneWay" type="tns:ISubscriptionManagerOneWay">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreateSubscriptionTopic">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Service/ISubscriptionManagerOneWay/CreateSubscriptionTopic" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="Pause">
+      <soap:operation soapAction="http://schemas.xmlsoap.org/ws/2004/08/eventing/Pause" style="document" />
+      <wsdl:input name="PauseOneWayRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="Renew">
+      <soap:operation soapAction="http://schemas.xmlsoap.org/ws/2004/08/eventing/Renew" style="document" />
+      <wsdl:input name="RenewOneWayRequest">
+        <soap:header message="tns:RenewOneWayRequest_Headers" part="SubscriptionTopic" use="literal" />
+        <soap:header message="tns:RenewOneWayRequest_Headers" part="Identifier" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="Resume">
+      <soap:operation soapAction="http://schemas.xmlsoap.org/ws/2004/08/eventing/Resume" style="document" />
+      <wsdl:input name="ResumeOneWayRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="Subscribe">
+      <soap:operation soapAction="http://schemas.xmlsoap.org/ws/2004/08/eventing/Subscribe" style="document" />
+      <wsdl:input name="SubscribeOneWayRequest">
+        <soap:header message="tns:SubscribeOneWayRequest_Headers" part="MessageId" use="literal" />
+        <soap:header message="tns:SubscribeOneWayRequest_Headers" part="SubscriptionTopic" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="Unsubscribe">
+      <soap:operation soapAction="http://schemas.xmlsoap.org/ws/2004/08/eventing/Unsubscribe" style="document" />
+      <wsdl:input name="UnsubscribeOneWayRequest">
+        <soap:header message="tns:UnsubscribeOneWayRequest_Headers" part="Endpoint" use="literal" />
+        <soap:header message="tns:UnsubscribeOneWayRequest_Headers" part="SubscriptionTopic" use="literal" />
+        <soap:header message="tns:UnsubscribeOneWayRequest_Headers" part="Identifier" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+  </wsdl:binding>
+</wsdl:definitions>

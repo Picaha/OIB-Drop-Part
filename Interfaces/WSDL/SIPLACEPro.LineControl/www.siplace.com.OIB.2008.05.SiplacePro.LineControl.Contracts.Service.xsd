@@ -1,0 +1,2363 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Service" elementFormDefault="qualified" targetNamespace="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Service" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" />
+  <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:simpleType name="ConveyorLanes">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Right" />
+      <xs:enumeration value="Left" />
+      <xs:enumeration value="Both" />
+      <xs:enumeration value="Reserved1" />
+      <xs:enumeration value="Reserved2" />
+      <xs:enumeration value="Reserved3" />
+      <xs:enumeration value="Reserved4" />
+      <xs:enumeration value="Reserved5" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ConveyorLanes" nillable="true" type="tns:ConveyorLanes" />
+  <xs:element name="GetProductionSchedules">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="FolderPath" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetProductionSchedulesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetProductionSchedulesResult" nillable="true" xmlns:q1="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q1:ArrayOfProductionSchedule" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:simpleType name="MessageLevel">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="Debug" />
+      <xs:enumeration value="Info" />
+      <xs:enumeration value="Warning" />
+      <xs:enumeration value="Error" />
+      <xs:enumeration value="FatalError" />
+      <xs:enumeration value="Reserved1" />
+      <xs:enumeration value="Reserved2" />
+      <xs:enumeration value="Reserved3" />
+      <xs:enumeration value="Reserved4" />
+      <xs:enumeration value="Reserved5" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="MessageLevel" nillable="true" type="tns:MessageLevel" />
+  <xs:simpleType name="Subsystem">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="LineControlServer" />
+      <xs:enumeration value="IntegrityCheck" />
+      <xs:enumeration value="NextManufacturedDataCache" />
+      <xs:enumeration value="Reserved1" />
+      <xs:enumeration value="Reserved2" />
+      <xs:enumeration value="Reserved3" />
+      <xs:enumeration value="Reserved4" />
+      <xs:enumeration value="Reserved5" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="Subsystem" nillable="true" type="tns:Subsystem" />
+  <xs:element name="GetProductionSchedulesList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="FolderPath" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetProductionSchedulesListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetProductionSchedulesListResult" nillable="true" xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q2:ArrayOfanyType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetProductionSchedulesArray">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="FolderPath" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetProductionSchedulesArrayResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetProductionSchedulesArrayResult" nillable="true" xmlns:q3="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q3:ArrayOfProductionSchedule" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAdapterTimeZone">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAdapterTimeZoneResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetAdapterTimeZoneResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LogonUser">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="bstrUserID" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="bstrPassword" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="bJustCheckPassword" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LogonUserResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="LogonUserResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DownloadIC2">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="strProductionScheduleName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="nProductionScheduleElementIndex" type="xs:int" />
+        <xs:element minOccurs="0" name="productionScheduleElementId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="nLanes" type="tns:ConveyorLanes" />
+        <xs:element minOccurs="0" name="ICMode" type="tns:IntegrityCheckMode" />
+        <xs:element minOccurs="0" name="ICRepMode" type="tns:IntegrityCheckModeForRepartitioning" />
+        <xs:element minOccurs="0" name="options" type="tns:DownloadProcessingOptions" />
+        <xs:element minOccurs="0" name="addMissingComponents" type="xs:boolean" />
+        <xs:element minOccurs="0" name="missingFeedersMode" type="tns:UpdateModeComponentLibrary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:simpleType name="IntegrityCheckMode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="WarnOnly" />
+      <xs:enumeration value="AllowHeadstepRecalcuation" />
+      <xs:enumeration value="ForceHeadstepRecalculation" />
+      <xs:enumeration value="Reserved1" />
+      <xs:enumeration value="Reserved2" />
+      <xs:enumeration value="Reserved3" />
+      <xs:enumeration value="Reserved4" />
+      <xs:enumeration value="Reserved5" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="IntegrityCheckMode" nillable="true" type="tns:IntegrityCheckMode" />
+  <xs:simpleType name="IntegrityCheckModeForRepartitioning">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="AllowRepartitioning">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="AvoidRepartitioning">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="AvoidRepartitioningAndKeepSequence">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">3</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="FindBestResult">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">4</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Reserved1">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">5</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Reserved2">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">6</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Reserved3">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">7</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Reserved4">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">8</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Reserved5">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">9</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="IntegrityCheckModeForRepartitioning" nillable="true" type="tns:IntegrityCheckModeForRepartitioning" />
+  <xs:simpleType name="DownloadProcessingOptions">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="None">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">0</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="SetupChangeWithoutClearedLine">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="AutoWidthAdjust">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="LotSizeMode">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">4</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="BarcodeMode">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">8</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="DisplaySetupOnly">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">16</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="CheckFiducials">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">32</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="CreateBcRecipeByLcs">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">64</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="CreateBcRecipeWithSingleBoardByLcs">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">128</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="PrepareBcRecipesInBackground">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">256</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="OverwriteFeederSettings">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">512</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="LotSizeContinue">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1024</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="AllowUploadFeederSettings">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2048</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="UpdateActualSetupDuringDownload">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">4096</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="RestorePreviousOptimizedSetupAfterSetupChange">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">8192</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="Reserved">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">16384</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="Reserved4">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">32768</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="Reserved5">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">65536</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="Reserved6">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">131072</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="Reserved7">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">262144</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="Reserved8">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">524288</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="Reserved9">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1048576</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="Reserved10">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2097152</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+  <xs:element name="DownloadProcessingOptions" nillable="true" type="tns:DownloadProcessingOptions" />
+  <xs:simpleType name="UpdateModeComponentLibrary">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="DontUpdateLibrary" />
+      <xs:enumeration value="UpdateComponentLibrary" />
+      <xs:enumeration value="UpdateComponentShapeLibrary" />
+      <xs:enumeration value="Reserved1" />
+      <xs:enumeration value="Reserved2" />
+      <xs:enumeration value="Reserved3" />
+      <xs:enumeration value="Reserved4" />
+      <xs:enumeration value="Reserved5" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="UpdateModeComponentLibrary" nillable="true" type="tns:UpdateModeComponentLibrary" />
+  <xs:element name="DownloadIC2Response">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DownloadIC2Result" nillable="true" xmlns:q4="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q4:DownloadResult" />
+        <xs:element minOccurs="0" name="missingComponents" nillable="true" xmlns:q5="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q5:MissingComponents" />
+        <xs:element minOccurs="0" name="missingFeeders" nillable="true" xmlns:q6="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q6:ArrayOfMissingFeeder" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:simpleType name="DownloadResults">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Failed">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">0</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="IntegrityCheckOk">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="DataPreparationOk">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="DataTransmissionOk">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">4</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="Reserved1">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">5</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="Reserved2">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">6</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="Reserved3">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">7</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="Reserved4">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">8</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="Reserved5">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">9</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+  <xs:element name="DownloadResults" nillable="true" type="tns:DownloadResults" />
+  <xs:simpleType name="IntegrityCheckResult">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="SwitchedOff" />
+      <xs:enumeration value="DataOk" />
+      <xs:enumeration value="DataOkHeadstepsRecalculated" />
+      <xs:enumeration value="DataNotOk" />
+      <xs:enumeration value="DataNotOkHeadstepRecalculationRecommended" />
+      <xs:enumeration value="Reserved1" />
+      <xs:enumeration value="Reserved2" />
+      <xs:enumeration value="Reserved3" />
+      <xs:enumeration value="Reserved4" />
+      <xs:enumeration value="Reserved5" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="IntegrityCheckResult" nillable="true" type="tns:IntegrityCheckResult" />
+  <xs:element name="DownloadIC2_OID">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="productionScheduleOID" type="xs:int" />
+        <xs:element minOccurs="0" name="nProductionScheduleElementIndex" type="xs:int" />
+        <xs:element minOccurs="0" name="productionScheduleElementId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="nLanes" type="tns:ConveyorLanes" />
+        <xs:element minOccurs="0" name="ICMode" type="tns:IntegrityCheckMode" />
+        <xs:element minOccurs="0" name="ICRepMode" type="tns:IntegrityCheckModeForRepartitioning" />
+        <xs:element minOccurs="0" name="options" type="tns:DownloadProcessingOptions" />
+        <xs:element minOccurs="0" name="addMissingComponents" type="xs:boolean" />
+        <xs:element minOccurs="0" name="missingFeedersMode" type="tns:UpdateModeComponentLibrary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DownloadIC2_OIDResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DownloadIC2_OIDResult" nillable="true" xmlns:q7="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q7:DownloadResult" />
+        <xs:element minOccurs="0" name="missingComponents" nillable="true" xmlns:q8="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q8:MissingComponents" />
+        <xs:element minOccurs="0" name="missingFeeders" nillable="true" xmlns:q9="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q9:ArrayOfMissingFeeder" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DownloadIC2_OID_Long">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="productionScheduleOID" type="xs:long" />
+        <xs:element minOccurs="0" name="nProductionScheduleElementIndex" type="xs:int" />
+        <xs:element minOccurs="0" name="productionScheduleElementId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="nLanes" type="tns:ConveyorLanes" />
+        <xs:element minOccurs="0" name="ICMode" type="tns:IntegrityCheckMode" />
+        <xs:element minOccurs="0" name="ICRepMode" type="tns:IntegrityCheckModeForRepartitioning" />
+        <xs:element minOccurs="0" name="options" type="tns:DownloadProcessingOptions" />
+        <xs:element minOccurs="0" name="addMissingComponents" type="xs:boolean" />
+        <xs:element minOccurs="0" name="missingFeedersMode" type="tns:UpdateModeComponentLibrary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DownloadIC2_OID_LongResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DownloadIC2_OID_LongResult" nillable="true" xmlns:q10="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q10:DownloadResult" />
+        <xs:element minOccurs="0" name="missingComponents" nillable="true" xmlns:q11="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q11:MissingComponents" />
+        <xs:element minOccurs="0" name="missingFeeders" nillable="true" xmlns:q12="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q12:ArrayOfMissingFeeder" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLineStatusForStation">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="lineName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="stationIndex" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLineStatusForStationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetLineStatusForStationResult" nillable="true" xmlns:q13="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q13:LineControlLineStatus" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:simpleType name="StationwiseDownloadState">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Inactive" />
+      <xs:enumeration value="Requested" />
+      <xs:enumeration value="Started" />
+      <xs:enumeration value="Finished" />
+      <xs:enumeration value="Aborted" />
+      <xs:enumeration value="Reserved1" />
+      <xs:enumeration value="Reserved2" />
+      <xs:enumeration value="Reserved3" />
+      <xs:enumeration value="Reserved4" />
+      <xs:enumeration value="Reserved5" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="StationwiseDownloadState" nillable="true" type="tns:StationwiseDownloadState" />
+  <xs:element name="GetLineStatusForStationOID">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="lineOID" type="xs:int" />
+        <xs:element minOccurs="0" name="stationIndex" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLineStatusForStationOIDResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetLineStatusForStationOIDResult" nillable="true" xmlns:q14="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q14:LineControlLineStatus" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLineStatusForStationOID_Long">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="lineOID" type="xs:long" />
+        <xs:element minOccurs="0" name="stationIndex" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLineStatusForStationOID_LongResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetLineStatusForStationOID_LongResult" nillable="true" xmlns:q15="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q15:LineControlLineStatus" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BlockStationConveyor_OID">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="stationOID" type="xs:int" />
+        <xs:element minOccurs="0" name="nLanes" type="tns:ConveyorLanes" />
+        <xs:element minOccurs="0" name="strDetails" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BlockStationConveyor_OIDResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="BlockStationConveyor_OIDResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BlockStationConveyor_OID_Long">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="stationOID" type="xs:long" />
+        <xs:element minOccurs="0" name="nLanes" type="tns:ConveyorLanes" />
+        <xs:element minOccurs="0" name="strDetails" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BlockStationConveyor_OID_LongResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="BlockStationConveyor_OID_LongResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BlockStationConveyor">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="stationPath" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="nLanes" type="tns:ConveyorLanes" />
+        <xs:element minOccurs="0" name="strDetails" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BlockStationConveyorResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="BlockStationConveyorResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UnblockStationConveyor_OID">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="stationOID" type="xs:int" />
+        <xs:element minOccurs="0" name="nLanes" type="tns:ConveyorLanes" />
+        <xs:element minOccurs="0" name="strDetails" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UnblockStationConveyor_OIDResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="UnblockStationConveyor_OIDResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UnblockStationConveyor_OID_Long">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="stationOID" type="xs:long" />
+        <xs:element minOccurs="0" name="nLanes" type="tns:ConveyorLanes" />
+        <xs:element minOccurs="0" name="strDetails" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UnblockStationConveyor_OID_LongResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="UnblockStationConveyor_OID_LongResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UnblockStationConveyor">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="stationPath" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="nLanes" type="tns:ConveyorLanes" />
+        <xs:element minOccurs="0" name="strDetails" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UnblockStationConveyorResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="UnblockStationConveyorResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IsStationConveyorBlocked">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="stationPath" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IsStationConveyorBlockedResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="rightConveyorBlocked" type="xs:boolean" />
+        <xs:element minOccurs="0" name="leftConveyorBlocked" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IsStationConveyorBlocked_OID">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="stationOID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IsStationConveyorBlocked_OIDResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="rightConveyorBlocked" type="xs:boolean" />
+        <xs:element minOccurs="0" name="leftConveyorBlocked" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IsStationConveyorBlocked_OID_Long">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="stationOID" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IsStationConveyorBlocked_OID_LongResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="rightConveyorBlocked" type="xs:boolean" />
+        <xs:element minOccurs="0" name="leftConveyorBlocked" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IsStationConveyorBlockSupported_OID">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="stationOID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IsStationConveyorBlockSupported_OIDResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="IsStationConveyorBlockSupported_OIDResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IsStationConveyorBlockSupported_OID_Long">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="stationOID" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IsStationConveyorBlockSupported_OID_LongResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="IsStationConveyorBlockSupported_OID_LongResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IsStationConveyorBlockSupported">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="stationPath" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IsStationConveyorBlockSupportedResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="IsStationConveyorBlockSupportedResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExternalStopOperation">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="stationPath" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="strDetails" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExternalStopOperationResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExternalStopOperation_OID">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="stationOID" type="xs:int" />
+        <xs:element minOccurs="0" name="strDetails" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExternalStopOperation_OIDResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExternalStopOperation_OID_Long">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="stationOID" type="xs:long" />
+        <xs:element minOccurs="0" name="strDetails" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExternalStopOperation_OID_LongResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckAlive">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckAliveResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CheckAliveResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DownloadEnhanced">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="request" nillable="true" xmlns:q16="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q16:DownloadRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DownloadEnhancedResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DownloadEnhancedResult" nillable="true" xmlns:q17="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q17:DownloadResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="HasAdapterLicense">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="HasAdapterLicenseResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="HasAdapterLicenseResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetRecipeForAutoProgramDownload">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="request" nillable="true" xmlns:q18="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q18:GetRecipeForAutoProgramDownloadRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetRecipeForAutoProgramDownloadResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetRecipeForAutoProgramDownloadResult" nillable="true" xmlns:q19="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q19:GetRecipeForAutoProgramDownloadResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLineStatusForStation2">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="request" nillable="true" xmlns:q20="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q20:GetLineStatusForStationRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLineStatusForStation2Response">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetLineStatusForStation2Result" nillable="true" xmlns:q21="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q21:LineControlLineStatus" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StopLineEnhanced">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="request" nillable="true" xmlns:q22="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q22:StopLineRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StopLineEnhancedResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="StopLineEnhancedResult" nillable="true" xmlns:q23="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q23:StopLineResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ContinueLineEnhanced">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="request" nillable="true" xmlns:q24="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q24:ContinueLineRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ContinueLineEnhancedResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ContinueLineEnhancedResult" nillable="true" xmlns:q25="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q25:ContinueLineResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTheHermesStandardConfiguration">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="request" nillable="true" xmlns:q26="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q26:GetTheHermesStandardConfigurationRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTheHermesStandardConfigurationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetTheHermesStandardConfigurationResult" nillable="true" xmlns:q27="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q27:GetTheHermesStandardConfigurationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetTheHermesStandardConfiguration">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="request" nillable="true" xmlns:q28="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q28:SetTheHermesStandardConfigurationRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetTheHermesStandardConfigurationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SetTheHermesStandardConfigurationResult" nillable="true" xmlns:q29="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q29:SetTheHermesStandardConfigurationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckTheHermesStandardConfiguration">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="request" nillable="true" xmlns:q30="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q30:CheckTheHermesStandardConfigurationRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckTheHermesStandardConfigurationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CheckTheHermesStandardConfigurationResult" nillable="true" xmlns:q31="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q31:CheckTheHermesStandardConfigurationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StartBarcodeMode">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="request" nillable="true" xmlns:q32="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q32:StartBarcodeModeRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StartBarcodeModeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="StartBarcodeModeResult" nillable="true" xmlns:q33="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q33:StartBarcodeModeResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IsLineInBarcodeMode">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="request" nillable="true" xmlns:q34="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q34:IsLineInBarcodeModeRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IsLineInBarcodeModeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="IsLineInBarcodeModeResult" nillable="true" xmlns:q35="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q35:IsLineInBarcodeModeResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PrepareAllActiveRecipesAgain">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="request" nillable="true" xmlns:q36="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q36:PrepareAllActiveRecipesAgainRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PrepareAllActiveRecipesAgainResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="PrepareAllActiveRecipesAgainResult" nillable="true" xmlns:q37="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q37:PrepareAllActiveRecipesAgainResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReDownloadRecipeForBarcodeMode">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="request" nillable="true" xmlns:q38="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q38:ReDownloadRecipeForBarcodeModeRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReDownloadRecipeForBarcodeModeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ReDownloadRecipeForBarcodeModeResult" nillable="true" xmlns:q39="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q39:ReDownloadRecipeForBarcodeModeResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExternalPressStartButton">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="request" nillable="true" xmlns:q40="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q40:ExternalPressStartButtonRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExternalPressStartButtonResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ExternalPressStartButtonResult" nillable="true" xmlns:q41="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q41:ExternalPressStartButtonResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InvokeDeviceActionOnPrinter">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="request" nillable="true" xmlns:q42="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q42:InvokeDeviceActionOnPrinterRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InvokeDeviceActionOnPrinterResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="InvokeDeviceActionOnPrinterResult" nillable="true" xmlns:q43="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q43:InvokeDeviceActionOnPrinterResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="get_DatabaseId">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="get_DatabaseIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="get_DatabaseIdResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="get_ProductVersion">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="get_ProductVersionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="get_ProductVersionResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="get_CurrentUser">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="get_CurrentUserResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="get_CurrentUserResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="get_MaxOIDInfo">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="get_MaxOIDInfoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="get_MaxOIDInfoResult" nillable="true" xmlns:q44="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q44:OIDInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Download">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="strProductionScheduleName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="nProductionScheduleElementIndex" type="xs:int" />
+        <xs:element minOccurs="0" name="nLanes" type="tns:ConveyorLanes" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DownloadResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DownloadResult" nillable="true" xmlns:q45="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q45:DownloadResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Download2">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="strProductionScheduleName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="productionScheduleElementId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="nLanes" type="tns:ConveyorLanes" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Download2Response">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Download2Result" nillable="true" xmlns:q46="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q46:DownloadResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DownloadIC">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="strProductionScheduleName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="nProductionScheduleElementIndex" type="xs:int" />
+        <xs:element minOccurs="0" name="productionScheduleElementId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="nLanes" type="tns:ConveyorLanes" />
+        <xs:element minOccurs="0" name="ICMode" type="tns:IntegrityCheckMode" />
+        <xs:element minOccurs="0" name="ICRepMode" type="tns:IntegrityCheckModeForRepartitioning" />
+        <xs:element minOccurs="0" name="options" type="tns:DownloadProcessingOptions" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DownloadICResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DownloadICResult" nillable="true" xmlns:q47="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q47:DownloadResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StopLine">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="lineName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StopLineResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="StopLineResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StopLineConveyor">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="lineName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="nLanes" type="tns:ConveyorLanes" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StopLineConveyorResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="StopLineConveyorResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ContinueLine">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="lineName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ContinueLineResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ContinueLineResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ContinueLineConveyor">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="lineName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="nLanes" type="tns:ConveyorLanes" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ContinueLineConveyorResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ContinueLineConveyorResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetConveyorWidth">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="lineName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="nLanes" type="tns:ConveyorLanes" />
+        <xs:element minOccurs="0" name="width" type="xs:double" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetConveyorWidthResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SetConveyorWidthResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BlockStationInputConveyor">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="station" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="bLock" type="xs:boolean" />
+        <xs:element minOccurs="0" name="strBlockingApplicationName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BlockStationInputConveyorResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="BlockStationInputConveyorResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UnBlockStationInputConveyor">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="station" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="strUnblockingApplicationName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UnBlockStationInputConveyorResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="UnBlockStationInputConveyorResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReconnectStations">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="lineName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReconnectStationsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ReconnectStationsResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReconnectStationsMsg">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="lineName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReconnectStationsMsgResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ReconnectStationsMsgResult" nillable="true" xmlns:q48="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q48:ArrayOfDownloadMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetActiveProductionSchedule">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="lineName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetActiveProductionScheduleResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetActiveProductionScheduleResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetActiveProductionSchedule">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="lineName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="productionScheduleName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetActiveProductionScheduleResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SetActiveProductionScheduleResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLineStatus">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="lineName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLineStatusResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetLineStatusResult" nillable="true" xmlns:q49="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q49:LineControlLineStatus" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetProductionSchedule">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetProductionScheduleResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetProductionScheduleResult" nillable="true" xmlns:q50="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q50:ProductionSchedule" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetProductionScheduleByIdentity">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="identity" nillable="true" xmlns:q51="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q51:LCIdentity" />
+        <xs:element minOccurs="0" name="includeExtendedInformation" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetProductionScheduleByIdentityResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetProductionScheduleByIdentityResult" nillable="true" xmlns:q52="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q52:ProductionSchedule" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AppendProductionScheduleElement">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="productionSchedule" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="element" nillable="true" xmlns:q53="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q53:ProductionScheduleElement" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AppendProductionScheduleElementResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AppendProductionScheduleElementResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckDownloadData">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="lineName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="productionSchedule" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="productionScheduleElementId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="integrityCheckMode" type="tns:IntegrityCheckMode" />
+        <xs:element minOccurs="0" name="allowRepartitioningInIntegrityCheck" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckDownloadDataResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CheckDownloadDataResult" nillable="true" xmlns:q54="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q54:ArrayOfOptimizerMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckDownloadData2">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="lineName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="recipeName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="integrityCheckMode" type="tns:IntegrityCheckMode" />
+        <xs:element minOccurs="0" name="allowRepartitioningInIntegrityCheck" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckDownloadData2Response">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CheckDownloadData2Result" nillable="true" xmlns:q55="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q55:ArrayOfOptimizerMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckDownloadData3">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="lineName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="productionSchedule" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="productionScheduleElementIndex" type="xs:int" />
+        <xs:element minOccurs="0" name="integrityCheckMode" type="tns:IntegrityCheckMode" />
+        <xs:element minOccurs="0" name="allowRepartitioningInIntegrityCheck" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckDownloadData3Response">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CheckDownloadData3Result" nillable="true" xmlns:q56="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q56:ArrayOfOptimizerMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetIntegrityCheckMessages">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="recipeName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetIntegrityCheckMessagesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetIntegrityCheckMessagesResult" nillable="true" xmlns:q57="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q57:ArrayOfOptimizerMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckDownloadDataArray">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="lineName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="productionSchedule" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="productionScheduleElementId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="integrityCheckMode" type="tns:IntegrityCheckMode" />
+        <xs:element minOccurs="0" name="allowRepartitioningInIntegrityCheck" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckDownloadDataArrayResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CheckDownloadDataArrayResult" nillable="true" xmlns:q58="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q58:ArrayOfOptimizerMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckDownloadDataArray2">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="lineName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="recipeName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="integrityCheckMode" type="tns:IntegrityCheckMode" />
+        <xs:element minOccurs="0" name="allowRepartitioningInIntegrityCheck" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckDownloadDataArray2Response">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CheckDownloadDataArray2Result" nillable="true" xmlns:q59="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q59:ArrayOfOptimizerMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckDownloadDataArray3">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="lineName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="productionSchedule" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="productionScheduleElementIndex" type="xs:int" />
+        <xs:element minOccurs="0" name="integrityCheckMode" type="tns:IntegrityCheckMode" />
+        <xs:element minOccurs="0" name="allowRepartitioningInIntegrityCheck" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckDownloadDataArray3Response">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CheckDownloadDataArray3Result" nillable="true" xmlns:q60="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q60:ArrayOfOptimizerMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckDownloadDataList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="lineName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="productionSchedule" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="productionScheduleElementId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="integrityCheckMode" type="tns:IntegrityCheckMode" />
+        <xs:element minOccurs="0" name="allowRepartitioningInIntegrityCheck" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckDownloadDataListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CheckDownloadDataListResult" nillable="true" xmlns:q61="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q61:ArrayOfanyType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckDownloadDataList2">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="lineName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="recipeName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="integrityCheckMode" type="tns:IntegrityCheckMode" />
+        <xs:element minOccurs="0" name="allowRepartitioningInIntegrityCheck" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckDownloadDataList2Response">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CheckDownloadDataList2Result" nillable="true" xmlns:q62="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q62:ArrayOfanyType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckDownloadDataList3">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="lineName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="productionSchedule" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="productionScheduleElementIndex" type="xs:int" />
+        <xs:element minOccurs="0" name="integrityCheckMode" type="tns:IntegrityCheckMode" />
+        <xs:element minOccurs="0" name="allowRepartitioningInIntegrityCheck" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckDownloadDataList3Response">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CheckDownloadDataList3Result" nillable="true" xmlns:q63="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q63:ArrayOfanyType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetIntegrityCheckMessagesArray">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="recipeName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetIntegrityCheckMessagesArrayResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetIntegrityCheckMessagesArrayResult" nillable="true" xmlns:q64="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q64:ArrayOfOptimizerMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetIntegrityCheckMessagesList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="recipeName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetIntegrityCheckMessagesListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetIntegrityCheckMessagesListResult" nillable="true" xmlns:q65="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q65:ArrayOfanyType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Download_OID">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="productionScheduleOID" type="xs:int" />
+        <xs:element minOccurs="0" name="nProductionScheduleElementIndex" type="xs:int" />
+        <xs:element minOccurs="0" name="nLanes" type="tns:ConveyorLanes" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Download_OIDResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Download_OIDResult" nillable="true" xmlns:q66="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q66:DownloadResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Download_OID_Long">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="productionScheduleOID" type="xs:long" />
+        <xs:element minOccurs="0" name="nProductionScheduleElementIndex" type="xs:int" />
+        <xs:element minOccurs="0" name="nLanes" type="tns:ConveyorLanes" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Download_OID_LongResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Download_OID_LongResult" nillable="true" xmlns:q67="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q67:DownloadResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Download2_OID">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="productionScheduleOID" type="xs:int" />
+        <xs:element minOccurs="0" name="productionScheduleElementId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="nLanes" type="tns:ConveyorLanes" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Download2_OIDResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Download2_OIDResult" nillable="true" xmlns:q68="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q68:DownloadResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Download2_OID_Long">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="productionScheduleOID" type="xs:long" />
+        <xs:element minOccurs="0" name="productionScheduleElementId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="nLanes" type="tns:ConveyorLanes" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Download2_OID_LongResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Download2_OID_LongResult" nillable="true" xmlns:q69="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q69:DownloadResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DownloadIC_OID">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="productionScheduleOID" type="xs:int" />
+        <xs:element minOccurs="0" name="nProductionScheduleElementIndex" type="xs:int" />
+        <xs:element minOccurs="0" name="productionScheduleElementId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="nLanes" type="tns:ConveyorLanes" />
+        <xs:element minOccurs="0" name="ICMode" type="tns:IntegrityCheckMode" />
+        <xs:element minOccurs="0" name="ICRepMode" type="tns:IntegrityCheckModeForRepartitioning" />
+        <xs:element minOccurs="0" name="options" type="tns:DownloadProcessingOptions" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DownloadIC_OIDResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DownloadIC_OIDResult" nillable="true" xmlns:q70="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q70:DownloadResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DownloadIC_OID_Long">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="productionScheduleOID" type="xs:long" />
+        <xs:element minOccurs="0" name="nProductionScheduleElementIndex" type="xs:int" />
+        <xs:element minOccurs="0" name="productionScheduleElementId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="nLanes" type="tns:ConveyorLanes" />
+        <xs:element minOccurs="0" name="ICMode" type="tns:IntegrityCheckMode" />
+        <xs:element minOccurs="0" name="ICRepMode" type="tns:IntegrityCheckModeForRepartitioning" />
+        <xs:element minOccurs="0" name="options" type="tns:DownloadProcessingOptions" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DownloadIC_OID_LongResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DownloadIC_OID_LongResult" nillable="true" xmlns:q71="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q71:DownloadResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StopLine_OID">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="lineOID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StopLine_OIDResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="StopLine_OIDResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StopLine_OID_Long">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="lineOID" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StopLine_OID_LongResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="StopLine_OID_LongResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StopLineConveyor_OID">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="lineOID" type="xs:int" />
+        <xs:element minOccurs="0" name="nLanes" type="tns:ConveyorLanes" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StopLineConveyor_OIDResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="StopLineConveyor_OIDResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StopLineConveyor_OID_Long">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="lineOID" type="xs:long" />
+        <xs:element minOccurs="0" name="nLanes" type="tns:ConveyorLanes" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StopLineConveyor_OID_LongResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="StopLineConveyor_OID_LongResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ContinueLine_OID">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="lineOID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ContinueLine_OIDResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ContinueLine_OIDResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ContinueLine_OID_Long">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="lineOID" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ContinueLine_OID_LongResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ContinueLine_OID_LongResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ContinueLineConveyor_OID">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="lineOID" type="xs:int" />
+        <xs:element minOccurs="0" name="nLanes" type="tns:ConveyorLanes" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ContinueLineConveyor_OIDResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ContinueLineConveyor_OIDResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ContinueLineConveyor_OID_Long">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="lineOID" type="xs:long" />
+        <xs:element minOccurs="0" name="nLanes" type="tns:ConveyorLanes" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ContinueLineConveyor_OID_LongResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ContinueLineConveyor_OID_LongResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetConveyorWidth_OID">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="lineOID" type="xs:int" />
+        <xs:element minOccurs="0" name="nLanes" type="tns:ConveyorLanes" />
+        <xs:element minOccurs="0" name="width" type="xs:double" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetConveyorWidth_OIDResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SetConveyorWidth_OIDResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetConveyorWidth_OID_Long">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="lineOID" type="xs:long" />
+        <xs:element minOccurs="0" name="nLanes" type="tns:ConveyorLanes" />
+        <xs:element minOccurs="0" name="width" type="xs:double" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetConveyorWidth_OID_LongResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SetConveyorWidth_OID_LongResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BlockStationInputConveyor_OID">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="stationOID" type="xs:int" />
+        <xs:element minOccurs="0" name="bLock" type="xs:boolean" />
+        <xs:element minOccurs="0" name="strBlockingApplicationName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BlockStationInputConveyor_OIDResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="BlockStationInputConveyor_OIDResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BlockStationInputConveyor_OID_Long">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="stationOID" type="xs:long" />
+        <xs:element minOccurs="0" name="bLock" type="xs:boolean" />
+        <xs:element minOccurs="0" name="strBlockingApplicationName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BlockStationInputConveyor_OID_LongResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="BlockStationInputConveyor_OID_LongResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UnBlockStationInputConveyor_OID">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="stationOID" type="xs:int" />
+        <xs:element minOccurs="0" name="strUnblockingApplicationName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UnBlockStationInputConveyor_OIDResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="UnBlockStationInputConveyor_OIDResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UnBlockStationInputConveyor_OID_Long">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="stationOID" type="xs:long" />
+        <xs:element minOccurs="0" name="strUnblockingApplicationName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UnBlockStationInputConveyor_OID_LongResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="UnBlockStationInputConveyor_OID_LongResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReconnectStations_OID">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="lineOID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReconnectStations_OIDResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ReconnectStations_OIDResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReconnectStations_OID_Long">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="lineOID" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReconnectStations_OID_LongResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ReconnectStations_OID_LongResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReconnectStationsMsg_OID">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="lineOID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReconnectStationsMsg_OIDResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ReconnectStationsMsg_OIDResult" nillable="true" xmlns:q72="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q72:ArrayOfDownloadMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReconnectStationsMsg_OID_Long">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="lineOID" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReconnectStationsMsg_OID_LongResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ReconnectStationsMsg_OID_LongResult" nillable="true" xmlns:q73="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q73:ArrayOfDownloadMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetActiveProductionSchedule_OID">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="lineOID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetActiveProductionSchedule_OIDResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetActiveProductionSchedule_OIDResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetActiveProductionSchedule_OID_Long">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="lineOID" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetActiveProductionSchedule_OID_LongResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetActiveProductionSchedule_OID_LongResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetActiveProductionSchedule_OID">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="lineOID" type="xs:int" />
+        <xs:element minOccurs="0" name="productionScheduleOID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetActiveProductionSchedule_OIDResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SetActiveProductionSchedule_OIDResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetActiveProductionSchedule_OID_Long">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="lineOID" type="xs:long" />
+        <xs:element minOccurs="0" name="productionScheduleOID" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetActiveProductionSchedule_OID_LongResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SetActiveProductionSchedule_OID_LongResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLineStatus_OID">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="lineOID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLineStatus_OIDResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetLineStatus_OIDResult" nillable="true" xmlns:q74="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q74:LineControlLineStatus" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLineStatus_OID_Long">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="lineOID" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLineStatus_OID_LongResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetLineStatus_OID_LongResult" nillable="true" xmlns:q75="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q75:LineControlLineStatus" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetProductionSchedule_OID">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="productionScheduleOID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetProductionSchedule_OIDResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetProductionSchedule_OIDResult" nillable="true" xmlns:q76="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q76:ProductionSchedule" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetProductionSchedule_OID_Long">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="productionScheduleOID" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetProductionSchedule_OID_LongResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetProductionSchedule_OID_LongResult" nillable="true" xmlns:q77="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q77:ProductionSchedule" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AppendProductionScheduleElement_OID">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="productionScheduleOID" type="xs:int" />
+        <xs:element minOccurs="0" name="element" nillable="true" xmlns:q78="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q78:ProductionScheduleElement" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AppendProductionScheduleElement_OIDResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AppendProductionScheduleElement_OIDResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AppendProductionScheduleElement_OID_Long">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="productionScheduleOID" type="xs:long" />
+        <xs:element minOccurs="0" name="element" nillable="true" xmlns:q79="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q79:ProductionScheduleElement" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AppendProductionScheduleElement_OID_LongResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AppendProductionScheduleElement_OID_LongResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckDownloadData_OID">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="lineOID" type="xs:int" />
+        <xs:element minOccurs="0" name="productionScheduleOID" type="xs:int" />
+        <xs:element minOccurs="0" name="productionScheduleElementId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="integrityCheckMode" type="tns:IntegrityCheckMode" />
+        <xs:element minOccurs="0" name="allowRepartitioningInIntegrityCheck" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckDownloadData_OIDResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CheckDownloadData_OIDResult" nillable="true" xmlns:q80="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q80:ArrayOfOptimizerMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckDownloadData_OID_Long">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="lineOID" type="xs:long" />
+        <xs:element minOccurs="0" name="productionScheduleOID" type="xs:long" />
+        <xs:element minOccurs="0" name="productionScheduleElementId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="integrityCheckMode" type="tns:IntegrityCheckMode" />
+        <xs:element minOccurs="0" name="allowRepartitioningInIntegrityCheck" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckDownloadData_OID_LongResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CheckDownloadData_OID_LongResult" nillable="true" xmlns:q81="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q81:ArrayOfOptimizerMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckDownloadData2_OID">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="lineOID" type="xs:int" />
+        <xs:element minOccurs="0" name="recipeOID" type="xs:int" />
+        <xs:element minOccurs="0" name="integrityCheckMode" type="tns:IntegrityCheckMode" />
+        <xs:element minOccurs="0" name="allowRepartitioningInIntegrityCheck" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckDownloadData2_OIDResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CheckDownloadData2_OIDResult" nillable="true" xmlns:q82="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q82:ArrayOfOptimizerMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckDownloadData2_OID_Long">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="lineOID" type="xs:long" />
+        <xs:element minOccurs="0" name="recipeOID" type="xs:long" />
+        <xs:element minOccurs="0" name="integrityCheckMode" type="tns:IntegrityCheckMode" />
+        <xs:element minOccurs="0" name="allowRepartitioningInIntegrityCheck" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckDownloadData2_OID_LongResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CheckDownloadData2_OID_LongResult" nillable="true" xmlns:q83="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q83:ArrayOfOptimizerMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckDownloadData3_OID">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="lineOID" type="xs:int" />
+        <xs:element minOccurs="0" name="productionScheduleOID" type="xs:int" />
+        <xs:element minOccurs="0" name="productionScheduleElementIndex" type="xs:int" />
+        <xs:element minOccurs="0" name="integrityCheckMode" type="tns:IntegrityCheckMode" />
+        <xs:element minOccurs="0" name="allowRepartitioningInIntegrityCheck" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckDownloadData3_OIDResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CheckDownloadData3_OIDResult" nillable="true" xmlns:q84="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q84:ArrayOfOptimizerMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckDownloadData3_OID_Long">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="lineOID" type="xs:long" />
+        <xs:element minOccurs="0" name="productionScheduleOID" type="xs:long" />
+        <xs:element minOccurs="0" name="productionScheduleElementIndex" type="xs:int" />
+        <xs:element minOccurs="0" name="integrityCheckMode" type="tns:IntegrityCheckMode" />
+        <xs:element minOccurs="0" name="allowRepartitioningInIntegrityCheck" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckDownloadData3_OID_LongResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CheckDownloadData3_OID_LongResult" nillable="true" xmlns:q85="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q85:ArrayOfOptimizerMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetIntegrityCheckMessages_OID">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="recipeOID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetIntegrityCheckMessages_OIDResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetIntegrityCheckMessages_OIDResult" nillable="true" xmlns:q86="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q86:ArrayOfOptimizerMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetIntegrityCheckMessages_OID_Long">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="recipeOID" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetIntegrityCheckMessages_OID_LongResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetIntegrityCheckMessages_OID_LongResult" nillable="true" xmlns:q87="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q87:ArrayOfOptimizerMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckDownloadDataArray_OID">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="lineOID" type="xs:int" />
+        <xs:element minOccurs="0" name="productionScheduleOID" type="xs:int" />
+        <xs:element minOccurs="0" name="productionScheduleElementId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="integrityCheckMode" type="tns:IntegrityCheckMode" />
+        <xs:element minOccurs="0" name="allowRepartitioningInIntegrityCheck" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckDownloadDataArray_OIDResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CheckDownloadDataArray_OIDResult" nillable="true" xmlns:q88="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q88:ArrayOfOptimizerMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckDownloadDataArray2_OID">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="lineOID" type="xs:int" />
+        <xs:element minOccurs="0" name="recipeOID" type="xs:int" />
+        <xs:element minOccurs="0" name="integrityCheckMode" type="tns:IntegrityCheckMode" />
+        <xs:element minOccurs="0" name="allowRepartitioningInIntegrityCheck" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckDownloadDataArray2_OIDResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CheckDownloadDataArray2_OIDResult" nillable="true" xmlns:q89="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q89:ArrayOfOptimizerMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckDownloadDataArray3_OID">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="lineOID" type="xs:int" />
+        <xs:element minOccurs="0" name="productionScheduleOID" type="xs:int" />
+        <xs:element minOccurs="0" name="productionScheduleElementIndex" type="xs:int" />
+        <xs:element minOccurs="0" name="integrityCheckMode" type="tns:IntegrityCheckMode" />
+        <xs:element minOccurs="0" name="allowRepartitioningInIntegrityCheck" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckDownloadDataArray3_OIDResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CheckDownloadDataArray3_OIDResult" nillable="true" xmlns:q90="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q90:ArrayOfOptimizerMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckDownloadDataList2_OID">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="lineOID" type="xs:int" />
+        <xs:element minOccurs="0" name="recipeOID" type="xs:int" />
+        <xs:element minOccurs="0" name="integrityCheckMode" type="tns:IntegrityCheckMode" />
+        <xs:element minOccurs="0" name="allowRepartitioningInIntegrityCheck" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckDownloadDataList2_OIDResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CheckDownloadDataList2_OIDResult" nillable="true" xmlns:q91="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q91:ArrayOfanyType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckDownloadDataList3_OID">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="lineOID" type="xs:int" />
+        <xs:element minOccurs="0" name="productionScheduleOID" type="xs:int" />
+        <xs:element minOccurs="0" name="productionScheduleElementIndex" type="xs:int" />
+        <xs:element minOccurs="0" name="integrityCheckMode" type="tns:IntegrityCheckMode" />
+        <xs:element minOccurs="0" name="allowRepartitioningInIntegrityCheck" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckDownloadDataList3_OIDResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CheckDownloadDataList3_OIDResult" nillable="true" xmlns:q92="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q92:ArrayOfanyType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetIntegrityCheckMessagesArray_OID">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="recipeOID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetIntegrityCheckMessagesArray_OIDResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetIntegrityCheckMessagesArray_OIDResult" nillable="true" xmlns:q93="http://www.siplace.com/OIB/2008/05/SiplacePro/LineControl/Contracts/Data" type="q93:ArrayOfOptimizerMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetIntegrityCheckMessagesList_OID">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="recipeOID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetIntegrityCheckMessagesList_OIDResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetIntegrityCheckMessagesList_OIDResult" nillable="true" xmlns:q94="http://schemas.microsoft.com/2003/10/Serialization/Arrays" type="q94:ArrayOfanyType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InitializeDownloadEventSender">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InitializeDownloadEventSenderResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TestUpdateSetupFromLine">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="setupFullPath" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TestUpdateSetupFromLineResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveLine">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="lineFullPath" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveLineResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

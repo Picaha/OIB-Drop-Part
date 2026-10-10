@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Asm.As.OIB.MaintenanceDataInterface.Contracts.Data" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Asm.As.OIB.MaintenanceDataInterface.Contracts.Data" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:simpleType name="ExecutionStatusType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Undefined" />
+      <xs:enumeration value="Failed" />
+      <xs:enumeration value="Ok" />
+      <xs:enumeration value="Reserved0" />
+      <xs:enumeration value="Reserved1" />
+      <xs:enumeration value="Reserved2" />
+      <xs:enumeration value="Reserved3" />
+      <xs:enumeration value="Reserved4" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ExecutionStatusType" nillable="true" type="tns:ExecutionStatusType" />
+</xs:schema>

@@ -1,0 +1,1265 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ASM.AS.OIB.UserManagement.Common</name>
+    </assembly>
+    <members>
+        <member name="T:Asm.As.Oib.UserManagement.Common.Constants">
+            <summary>
+            All constant values
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.SIPLACE_USER_MANAGER_PRODUCT">
+            <summary>
+            SIPLACE_USER_MANAGER_PRODUCT
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.SIPLACE_USER_MANAGER_PRODUCT_VERSION">
+            <summary>
+            SIPLACE_USER_MANAGER_PRODUCT_VERSION
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.SIPLACE_USER_MANAGER_UNIQUE_IDENTIFIER">
+            <summary>
+            SIPLACE_USER_MANAGER_UNIQUE_IDENTIFIER
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.ALL_PRODUCTS_PRODUCT_ID">
+            <summary>
+            ALL_PRODUCTS_PRODUCT_ID
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.UMServiceAccountName">
+            <summary>
+            Name that is used for the built in Service Account
+            OIB 6.0 and higher: there is no 'OIB Service Account' anymore.
+            Due compatibility reason only.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.UserManagement.Common.Constants.ToClaimTypeString(System.String)">
+            <summary>
+            Concatenates the ClaimName with the UM Product Name and Unique Id
+            Helper Method to convert Role ClaimTypes (with product &amp; unique identifier)
+            </summary>
+            <param name="strClaimName">Name of the claim.</param>
+            <returns></returns>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.UMAccountIdentitifer">
+            <summary>
+            UM Account Identifier
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.UMRoleIdentitifer">
+            <summary>
+            UM Role Identifier
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.UMCredentialIdentitifer">
+            <summary>
+            UM Credential Identifier
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.SecurityTokenHeaderName">
+            <summary>
+            SecurityTokenHeaderName
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.SecurityTokenHeaderNamespace">
+            <summary>
+            SecurityTokenHeaderNamespace
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.SecurityTokenRequirementTokenType">
+            <summary>
+            OIB Client Token Type for SecurityTokenRequirement
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.SecurityTokenHeaderNoToken">
+            <summary>
+            Security Token text when no authentication is possible.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.UMProductUniqueId">
+            <summary>
+            UM Product Namespace
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.UMCredentialProduct">
+            <summary>
+            UM Credential Product
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.UMCredentialIsNotForLogin">
+            <summary>
+            The credential is not for login
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.UMClaimName">
+            <summary>
+            UM Claim Name
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.UMClaimId">
+            <summary>
+            UM Claim Name
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.UMClaimDescription">
+            <summary>
+            UM Claim Account Description
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.UMClaimEmailAddressName">
+            <summary>
+            The UM claim email address
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.UMClaimCustomUserIdClaimName">
+            <summary>
+            UM Claim Custom User Id
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.UMClaimCustomPasswordClaimName">
+            <summary>
+            UM Claim Custom Password
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.UMClaimCustomSimpleUserIdClaimName">
+            <summary>
+            UM Claim Custom Simple User Id
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.UMClaimCustomSimplePasswordClaimName">
+            <summary>
+            UM Claim Custom Password
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.UMClaimCustomIsInitialPasswordClaimName">
+            <summary>
+            UM Claim Custom IsInitialPassword
+            Is the password associated to the credential an initial password.
+            If IsInitialPassword == true the password must be changed by a next login.
+            When IsInitialPassword == false or NULL this is no need to change a password by a next login.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.UMClaimCustomLastPasswordChangeTimeClaimName">
+            <summary>
+            UM Claim Custom LastPasswordChangeTime
+            The time when a password was changed at the last time.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.UMClaimCustomLastLoginAttemptTimeClaimName">
+            <summary>
+            UM Claim Custom last login attempt time.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.UMClaimCustomLastLoginAttemptNumberClaimName">
+            <summary>
+            UM Claim Custom last login attempt number.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.UMClaimCustomPasswordExpiryClaimName">
+            <summary>
+            The PasswordExpiry (number of days until password expire) claim name
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.UMClaimCustomIsPasswordExpiredClaimName">
+            <summary>
+            The IsPasswordExpired claim name
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.UMClaimWindowsUserIdClaimName">
+            <summary>
+            UM Claim Windows User Id
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.UMClaimCustomLogonUserIdClaimName">
+            <summary>
+            UM Claim Custom Logon Id
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.UMClaimServiceAccountClaimName">
+            <summary>
+            UM Claim Service Account
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.SAClaimExecuteAndViewClaimName">
+            <summary>
+            The SubscriptionAdmin Claim to execute and view SubscriptionAdmin GUI:
+            1. Start GUI and start processing button
+            2. View all data
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.SAClaimModifyClaimName">
+            <summary>
+            The SubscriptionAdmin claim to modify on SubscriptionAdmin GUI:
+            1. Subscriptions (delete/ pause / resume)
+            2. Modify Options
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.FEClaimExecuteAndViewClaimName">
+            <summary>
+            The FactoryExplorer and ConfigurationManagerServices claim to execute and view FactoryExplorer GUI:
+            1. Start GUI
+            2. View all data
+            3. CentralSettings, ConfigurationManager, ServiceLocator services: All read only methods
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.FEClaimModifyClaimName">
+            <summary>
+            The FactoryExplorer and ConfigurationManagerServices claim to modify on FactoryExplorer GUI and on
+            ConfigurationManagerServices:
+            1. Create / Delete / Edit any Factory Layout Element
+            2. Assign Services(configure / reconfigure)
+            3. Reference Management
+            4. Settings
+            5. Create / Delete / Edit service registrations
+            6. ConfigurationManager, ServiceLocator services: All create, delete, update methods
+            /// </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.FEClaimCentralSettings">
+            <summary>
+            The FactoryExplorer claim to modify on FactoryExplorer GUI:
+            1. View and modify Central Settings
+            2. Central Settings service: Remove and Upload Plugin Assembly
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.FCClaimExecuteAndViewClaimName">
+            <summary>
+            The FactoryCalendar and FactoryCalendarService claim to execute and view on FactoryCalendar GUI and on
+            FactoryCalendarService:
+            1. Start GUI
+            2. View all data
+            3. Call all Get...() methods
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.FCClaimModifyClaimName">
+            <summary>
+            The FactoryCalendar and FactoryCalendarService claim to modify on FactoryCalendar GUI and on FactoryCalendarService:
+            1. Create / Delete / Edit any Calendar item
+            2. Settings
+            3. Teams / Team Members
+            4. Call all Create...(), Delete...(), Update...(), Save...(),
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.HMClaimExecuteAndViewClaimName">
+            <summary>
+            The HealthManager claim to execute and view HealthManager GUI:
+            1. Start GUI
+            2. View all data
+            3. Execute basic test box tests
+            4. Call all Get...() methods on service
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.HMClaimModifyClaimName">
+            <summary>
+            The HealthManager claim to modify on HealthManager GUI:
+            1. Un-register Service
+            2. Execute enhanced checks (since they modify data)
+            3. Change settings
+            4. Create / Delete / Edit Mailing Lists / Recipients
+            5. Send Test Email
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.DSClaimExecuteAndViewClaimName">
+            <summary>
+            The DisplayServiceAdmin and DisplayService claim to execute and view on DisplayServiceAdmin GUI and DisplayService:
+            1. Start GUI
+            2. View all data
+            3. Call Get...() and Is...() methods
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.DSClaimModifyClaimName">
+            <summary>
+            The DisplayServiceAdmin and DisplayService claim to modify on DisplayServiceAdmin GUI and on DisplayService:
+            1. Un-register Display Service Viewer
+            2. Un-register Display Service Client
+            3. Revoke messages
+            4. Send and revoke a test message (check if communication is possible to a viewer and back)
+            5. Send, Revoke, Update, Register methods on service
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.UMClaimExecuteClaimName">
+            <summary>
+            The UM claim to execute and view UserManagementAdmin GUI:
+            1. Start GUI
+            2. View all data
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.UMClaimImportClaimName">
+            <summary>
+            UM Claim Import
+            Import User Manager data via XML or json
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.UMClaimExportClaimName">
+            <summary>
+            UM Claim Export
+            Export User Manager data via XML
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.UMClaimAccountCreateClaimName">
+            <summary>
+            UM Claim Account Create
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.UMClaimAccountReadClaimName">
+            <summary>
+            UM Claim Account Read
+            1. Read Accounts
+            2. Read Settings
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.UMClaimAccountUpdateClaimName">
+            <summary>
+            UM Claim Account Update
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.UMClaimAccountDeleteClaimName">
+            <summary>
+            UM Claim Account Delete
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.UMClaimClaimTypeCreateClaimName">
+            <summary>
+            UM Claim ClaimType Create
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.UMClaimClaimTypeReadClaimName">
+            <summary>
+            UM Claim ClaimType Read
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.UMClaimClaimTypeUpdateClaimName">
+            <summary>
+            UM Claim ClaimType Update
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.UMClaimClaimTypeDeleteClaimName">
+            <summary>
+            UM Claim ClaimType Delete
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.UMClaimCredentialCreateClaimName">
+            <summary>
+            UM Claim Credential Create
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.UMClaimCredentialReadClaimName">
+            <summary>
+            UM Claim Credential Read
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.UMClaimCredentialUpdateClaimName">
+            <summary>
+            UM Claim Credential Update
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.UMClaimCredentialDeleteClaimName">
+            <summary>
+            UM Claim Credential Delete
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.UMClaimProductCreateClaimName">
+            <summary>
+            UM Claim Product Create
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.UMClaimProductReadClaimName">
+            <summary>
+            UM Claim Product Read
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.UMClaimProductUpdateClaimName">
+            <summary>
+            UM Claim Product Update
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.UMClaimProductDeleteClaimName">
+            <summary>
+            UM Claim Product Delete
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.UMClaimRoleCreateClaimName">
+            <summary>
+            UM Claim Role Create
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.UMClaimRoleReadClaimName">
+            <summary>
+            UM Claim Role Read
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.UMClaimRoleUpdateClaimName">
+            <summary>
+            UM Claim Role Update
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.UMClaimRoleDeleteClaimName">
+            <summary>
+            UM Claim Role Delete
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.UMClaimRoleUpdateSettingsClaimName">
+            <summary>
+            This claim gives a role the ability to modify and update settings (including password policy).
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.SMClaimSubscriptionsManageClaimName">
+            <summary>
+            The SubscriptionManager subscriptions manage claim
+            1. Create new Subscriptions
+            2. Delete existing Subscriptions
+            3. Pause existing Subscriptions
+            4. Resume paused Subscriptions
+            5. Update existing Subscriptions
+            ///
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.SMClaimSubscriptionsReadClaimName">
+            <summary>
+            The SubscriptionManager subscriptions read claim
+            1. Read all Subscriptions
+            2. Restart disabled Subscriptions
+            3. Read Subscription Settings
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.SMClaimSubscriptionsSubscriptionSettingsClaimName">
+            <summary>
+            The SubscriptionManager subscriptions settings claim
+            1. Modify Subscription Settings
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.SCClaimSetupReadClaimName">
+            <summary>
+            The SiplaceSetupCenter setup read claim
+            1. All get methods and methods that will initiate sending of events (Fire...Events())
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.SCClaimSetupModifyClaimName">
+            <summary>
+            The SiplaceSetupCenter setup modify claim
+            1. All methods that will modify data (like Activate...(), Create...(), Delete...(), Lock...(), Unlock...(), etc)
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.MonClaimMonitoringReadClaimName">
+            <summary>
+            The SiplaceMonitoringService monitoring read claim
+            1. All Get...() methods
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.MonClaimMonitoringModifyClaimName">
+            <summary>
+            The SiplaceMonitoringService monitoring modify claim
+            1. All methods that modify data
+            2. HandleAssist of Operator Assist Interface
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.LnClaimLineControlReadClaimName">
+            <summary>
+            The LineControlService read claim
+            1. All Get...() and Is...() methods and properties
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.LnClaimLineControlModifyClaimName">
+            <summary>
+            The LineControlService modify claim
+            1. All Download...(), CheckDownloadData...() and all methods that modify SIPLACE Pro data or station state
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.OpClaimOptimizerReadClaimName">
+            <summary>
+            The OptimizerService read claim
+            1. All Get...() methods and properties
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.OpClaimOptimizerModifyClaimName">
+            <summary>
+            The OptimizerService modify claim
+            1. All methods that start/stop/cancel a (cluster) optimization, all CheckIntegrity...() and all methods that modify
+            SIPLACE Pro data
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.SpiClaimSpiAccessClaimName">
+            <summary>
+            The SPI access claim
+            1. Any access to SPI Adapter
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.AllowableValue_Allow">
+            <summary>
+            Allow value for all OIB claims
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.AllowableValue_Deny">
+            <summary>
+            Deny value for all OIB claims
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.Role_UMAdministrators">
+            <summary>
+            UM Admin Role Name
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.Role_UMUsers">
+            <summary>
+            UM Users Role Name
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.Role_UMManagers">
+            <summary>
+            UM Managers Role Name
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.Account_UMAdministrator">
+            <summary>
+            UM Admin Role Name
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.UserManagementModuleId">
+            <summary>
+            The module id, needs to be without blanks!
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.UserManagementModuleVersion">
+            <summary>
+            The module version
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.UserManagementModulePublisher">
+            <summary>
+            The module publisher
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.UserManagementModuleDescription">
+            <summary>
+            The module description
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.ImportSchemaProduct">
+            <summary>
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.ImportSchemaName">
+            <summary>
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.ImportSchemaVersion">
+            <summary>
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.ImportSchemaCompany">
+            <summary>
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.ImportSchemaUniqueIdentifier">
+            <summary>
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.ImportSchemaClaimTypeNamespace">
+            <summary>
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.ImportSchemaDescription">
+            <summary>
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.ImportSchemaAllowableValue">
+            <summary>
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.ImportSchemaValue">
+            <summary>
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.ImportSchemaClaimType">
+            <summary>
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.ImportSchemaDisplayName">
+            <summary>
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.ImportSchemaScope">
+            <summary>
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.ImportSchemaValueType">
+            <summary>
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.ImportSchemaId">
+            <summary>
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.ImportSchemaAccount">
+            <summary>
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.ImportSchemaAccountClaim">
+            <summary>
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.ImportSchemaClaimValue">
+            <summary>
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.ImportSchemaRoleMember">
+            <summary>
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.ImportSchemaCredential">
+            <summary>
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.ImportSchemaCredentialClaim">
+            <summary>
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.ImportSchemaUserManagement">
+            <summary>
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.ImportSchemaAllowedValue">
+            <summary>
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.ImportSchemaRole">
+            <summary>
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.ImportSchemaRoleClaim">
+            <summary>
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.ImportSchemaNamespace">
+            <summary>
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.ImportOldSchemaNamespace">
+            <summary>
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.ImportSchemaRoleAdGroupName">
+            <summary>
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.AccountClaimScopeType">
+            <summary>
+            The account claim scope type
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.RoleClaimScopeType">
+            <summary>
+            The role claim scope type
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.CredentialClaimScopeType">
+            <summary>
+            The credential claim scope type
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.StringClaimValueType">
+            <summary>
+            The string claim value type
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.DoubleClaimValueType">
+            <summary>
+            The double claim value type
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.BoolClaimValueType">
+            <summary>
+            The bool claim value type
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.AllowedValueClaimValueType">
+            <summary>
+            The allowed value claim value type
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.DateTimeClaimValueType">
+            <summary>
+            The date time claim value type
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.IntClaimValueType">
+            <summary>
+            The int claim value type
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Constants.DateTimeClaimValueFormat">
+            <summary>
+            The date time claim value format
+            </summary>
+        </member>
+        <member name="T:Asm.As.Oib.UserManagement.Common.Extensions.IAuthenticationPluginEventsExt">
+            <summary>
+            Interface that defines events that can be published back to the Authentication Manager.
+            Currently only used for login / logoff triggered by an external hardware or software solution.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.UserManagement.Common.Extensions.IAuthenticationPluginEventsExt.Login(System.String,Asm.As.Oib.UserManagement.Common.Extensions.IAuthenticationPluginExt)">
+            <summary>
+            A logon was triggered by a hardware
+            </summary>
+            <param name="userId">User name or id that is used as credential</param>
+            <param name="sender">The plugin that triggered this event</param>
+        </member>
+        <member name="M:Asm.As.Oib.UserManagement.Common.Extensions.IAuthenticationPluginEventsExt.DisplayStatusMessage(System.String,System.Collections.Generic.Dictionary{System.Globalization.CultureInfo,System.String},Asm.As.Oib.UserManagement.Common.Extensions.IAuthenticationPluginExt)">
+            <summary>
+            Can be used to tell the application to display a message.
+            Example would be to inform about failed fingerprint read attempts, etc.
+            </summary>
+            <param name="message">The message in the default language</param>
+            <param name="translatedMessage">A collection of translated messages.
+            Key must beCultureInfo, value is the translated message.</param>
+            <param name="sender">The plugin that triggered this event</param>
+        </member>
+        <member name="T:Asm.As.Oib.UserManagement.Common.Extensions.IAuthenticationPluginExt">
+            <summary>
+            Interface that collects all plugins that are currently available
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.UserManagement.Common.Extensions.IAuthenticationPluginExt.AssemblyName">
+            <summary>
+            The Assembly Name of the containing assembly. Is set by the
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.UserManagement.Common.Extensions.IAuthenticationPluginExt.IsValid">
+            <summary>
+            If all properties are filled, this is true
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.UserManagement.Common.Extensions.IAuthenticationPluginExt.Name">
+            <summary>
+            Name of the plugin
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.UserManagement.Common.Extensions.IAuthenticationPluginExt.Description">
+            <summary>
+            Description of the plugin
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.UserManagement.Common.Extensions.IAuthenticationPluginExt.PluginIcon">
+            <summary>
+            An optional icon for the plugin. 32x32 pixels, white on transparent background.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.UserManagement.Common.Extensions.IAuthenticationPluginExt.TranslatedNameAndDescription">
+            <summary>
+            Contains translated plugin names and descriptions.
+            May be filled so that the application can display text in the correct language.
+            Key must be CultureInfo, Value is the a KeyValuePair where Key is the Name
+            and Value is the Description.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.UserManagement.Common.Extensions.IAuthenticationPluginExt.Activate(Asm.As.Oib.UserManagement.Common.Extensions.IAuthenticationPluginEventsExt)">
+            <summary>
+            Method that will get called when this plugin shall be activated.
+            </summary>
+            <param name="callbackClass">
+            The class that implements the event methods.<seealso cref="T:Asm.As.Oib.UserManagement.Common.Extensions.IAuthenticationPluginEventsExt" />
+            </param>
+            <returns>True, if successful</returns>
+        </member>
+        <member name="M:Asm.As.Oib.UserManagement.Common.Extensions.IAuthenticationPluginExt.Deactivate">
+            <summary>
+            Method that will get called when this plugin shall be deactivated.
+            </summary>
+            <returns>True, if successful</returns>
+        </member>
+        <member name="M:Asm.As.Oib.UserManagement.Common.Extensions.IAuthenticationPluginExt.Initialize(Asm.As.Oib.UserManagement.Extensions.ILogger)">
+            <summary>
+            Called right after the implementing class is constructed.
+            Can be used to do any initialization logic and to store the logger.
+            </summary>
+            <param name="logger">The logger that can be used internally</param>
+            <returns>True, if successful</returns>
+        </member>
+        <member name="M:Asm.As.Oib.UserManagement.Common.Extensions.IAuthenticationPluginExt.ToString">
+            <summary>
+            Returns a string representation of the class
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Asm.As.Oib.UserManagement.Common.Extensions.IExtensionPluginCollector">
+            <summary>
+            Interface that collects all plugins that are currently available
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.UserManagement.Common.Extensions.IExtensionPluginCollector.GetAllPlugins">
+            <summary>
+            Returns all plugins that are available. These plugins must implement IAuthenticationPlugin <seealso cref="T:Asm.As.Oib.UserManagement.Extensions.IAuthenticationPlugin"/>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Asm.As.Oib.UserManagement.Common.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.UserManagement.Common.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.UserManagement.Common.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="T:Asm.As.Oib.UserManagement.Common.UserManagementFaultCodes">
+            <summary>
+            User Management Fault Codes
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.UserManagementFaultCodes.UpdateError">
+            <summary>
+            UpdateError
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.UserManagementFaultCodes.InvalidArgument">
+            <summary>
+            InvalidArgument
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.UserManagementFaultCodes.CreateError">
+            <summary>
+            CreateError
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.UserManagementFaultCodes.DeleteError">
+            <summary>
+            DeleteError
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.UserManagementFaultCodes.GetError">
+            <summary>
+            GetError
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.UserManagementFaultCodes.GeneralError">
+            <summary>
+            GeneralError
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.UserManagementFaultCodes.ImportError">
+            <summary>
+            ImportError
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.UserManagementFaultCodes.ExportError">
+            <summary>
+            ExportError
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.UserManagementFaultCodes.InvalidClaimTypeNamespace">
+            <summary>
+            InvalidClaimTypeNamespace
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.UserManagementFaultCodes.DeleteLastAdmin">
+            <summary>
+            DeleteLastAdmin
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.UserManagementFaultCodes.ImportValidationError">
+            <summary>
+            ImportValidationError
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.UserManagementFaultCodes.WindowsAccountNonexisting">
+            <summary>
+            WindowsAccountNonexisting
+            </summary>
+        </member>
+        <member name="T:Asm.As.Oib.UserManagement.Common.Utilities.AuthenticationResult">
+            <summary>
+            Authentication Result enum
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Utilities.AuthenticationResult.Success">
+            <summary>
+            Success
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Utilities.AuthenticationResult.STSNotAvailable">
+            <summary>
+            STS service is not available. Only used on proxy side
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Utilities.AuthenticationResult.UserCanceled">
+            <summary>
+            User canceled the authentication. Only used on proxy side.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Utilities.AuthenticationResult.UnknownUser">
+            <summary>
+            A non-existing windows account was passed in.
+            Not used any more (due to information disclosure)
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Utilities.AuthenticationResult.UnknownError">
+            <summary>
+            Unknown error occurred. Only used on proxy side
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Utilities.AuthenticationResult.STSConfigurationException">
+            <summary>
+            Is used to signal that the incoming token request to the STS is invalid.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Utilities.AuthenticationResult.InvalidWindowsIdentity">
+            <summary>
+            Is used to signal that the windows identity that was passed in to the
+            public AuthenticationResult Authenticate(WindowsIdentity identity) method is not valid.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Utilities.AuthenticationResult.LoginFailure">
+            <summary>
+            Generic login failure.
+            This is returned in case the windows or user name/pw credential could not be authenticated.
+            Could be that the windows account is not found, user name is not found or the user name and pw does not match up.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Utilities.AuthenticationResult.InvalidWindowsUserName">
+            <summary>
+            A non-existing user was passed in.
+            Not used any more (due to information disclosure)
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Utilities.AuthenticationResult.InvalidWindowsPassword">
+            <summary>
+            An invalid password for a windows user was passed in.
+            Not used any more (due to information disclosure)
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Utilities.AuthenticationResult.InvalidPassword">
+            <summary>
+            An invalid password for a custom (or service) user was passed in.
+            Not used any more (due to information disclosure)
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Utilities.AuthenticationResult.NoCurrentAccount">
+            <summary>
+            Re-authenticate was called, but no account was authenticated before.
+            Only used on proxy side
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Utilities.AuthenticationResult.FirstTimePassword">
+            <summary>
+            The right password was passed in, but this is the first usage of a newly created credential, so the
+            password has to be changed before a login is possible.
+            Please call CredentialManager.AuthenticateSilentWithPasswordChange() to change the password and reauthenticate.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Utilities.AuthenticationResult.AccountLocked">
+            <summary>
+            This account is locked.
+            Please unlock it in User Management UI and try again.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Utilities.AuthenticationResult.AccountOnHold">
+            <summary>
+            The protection against brute force login attempts: for non-Windows accounts User Manager makes the time delay between login attempts. 
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Utilities.AuthenticationResult.PasswordExpired">
+            <summary>
+            The password is expired. Please set first a new password up.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.UserManagement.Common.Utilities.AuthenticationResult.FirstTimeSimplePassword">
+            <summary>
+            The right simple password was passed in, but this is the first usage of a newly created credential, so the
+            password has to be changed before a login is possible.
+            Please call CredentialManager.AuthenticateSilentWithPasswordChange() to change the password and re-authenticate.
+            </summary>
+        </member>
+        <member name="T:Asm.As.Oib.UserManagement.Common.Utilities.Cachable`2">
+            <summary>
+            The cache pattern implementation for on time cached object
+            </summary>
+            <typeparam name="TArg">The type of the instanceGenerator's argument</typeparam>
+            <typeparam name="TCachedType">The type of the cached type.</typeparam>
+        </member>
+        <member name="M:Asm.As.Oib.UserManagement.Common.Utilities.Cachable`2.#ctor(System.TimeSpan)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.UserManagement.Common.Utilities.Cachable`2"/> class.
+            </summary>
+            <param name="timeSpan">The time span.</param>
+        </member>
+        <member name="M:Asm.As.Oib.UserManagement.Common.Utilities.Cachable`2.#ctor(System.TimeSpan,System.Func{`0,`1},`0)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.UserManagement.Common.Utilities.Cachable`2" /> class.
+            </summary>
+            <param name="timeSpan">The time span.</param>
+            <param name="instanceGenerator">The instance generator.</param>
+            <param name="arg">The argument.</param>
+        </member>
+        <member name="M:Asm.As.Oib.UserManagement.Common.Utilities.Cachable`2.UpdateInstanceGenerator(System.Func{`0,`1},`0)">
+            <summary>
+            Updates the instance generator.
+            </summary>
+            <param name="instanceGenerator">The instance generator.</param>
+            <param name="arg">The argument.</param>
+        </member>
+        <member name="P:Asm.As.Oib.UserManagement.Common.Utilities.Cachable`2.IsDirty">
+            <summary>
+            Gets or sets a value whether this instance is dirty.
+            Can be used to forcefully update the cache
+            </summary>
+            <value>
+              <c>true</c> if this instance is dirty; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.UserManagement.Common.Utilities.Cachable`2.Instance">
+            <summary>
+            The instance.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.UserManagement.Common.Utilities.Cachable`2.IsInstanceGeneratorValid">
+            <summary>
+            Gets or sets a value indicating whether this instance is instance generator valid.
+            </summary>
+            <value>
+              <c>true</c> if this instance is instance generator valid; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="T:Asm.As.Oib.UserManagement.Common.Utilities.UserManagementAuthenticationFault">
+            <summary>
+            Data Contract Class - UserManagementAuthenticationFault
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.UserManagement.Common.Utilities.UserManagementAuthenticationFault.ErrorCode">
+            <summary>
+            Gets or sets the error code.
+            </summary>
+            <value>The error code.</value>
+        </member>
+        <member name="P:Asm.As.Oib.UserManagement.Common.Utilities.UserManagementAuthenticationFault.ExtendedMessage">
+            <summary>
+            Gets or sets the extended message.
+            </summary>
+            <value>The extended message.</value>
+        </member>
+        <member name="T:Asm.As.Oib.UserManagement.Common.Utilities.UserManagementFault">
+            <summary>
+            Data Contract Class - UserManagementFault
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.UserManagement.Common.Utilities.UserManagementFault.ErrorCode">
+            <summary>
+            Gets or sets the error code.
+            </summary>
+            <value>The error code.</value>
+        </member>
+        <member name="P:Asm.As.Oib.UserManagement.Common.Utilities.UserManagementFault.ExtendedMessage">
+            <summary>
+            Gets or sets the extended message.
+            </summary>
+            <value>The extended message.</value>
+        </member>
+        <member name="T:Asm.As.Oib.UserManagement.Common.Utilities.UserManagementFaultHelper">
+            <summary>
+            UserManagementFaultHelper class
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.UserManagement.Common.Utilities.UserManagementFaultHelper.CreateUMAuthenticationFault(System.String,Asm.As.Oib.UserManagement.Common.Utilities.AuthenticationResult,System.Exception)">
+            <summary>
+            Creates the UM Authentication fault.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="faultcode">The fault code.</param>
+            <param name="ex">The exception.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Asm.As.Oib.UserManagement.Common.Utilities.UserManagementFaultHelper.CreateUMFault(System.String,System.Int32,System.Exception)">
+            <summary>
+            Creates the UM fault.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="faultcode">The fault code.</param>
+            <param name="ex">The ex.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Asm.As.Oib.UserManagement.Common.Utilities.UserManagementFaultHelper.GetUserManagemenAuthenticationFault(System.ServiceModel.FaultException)">
+            <summary>
+            Gets the user management fault.
+            </summary>
+            <param name="fe">The fault exception.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Asm.As.Oib.UserManagement.Common.Utilities.UserManagementFaultHelper.GetUserManagemenFault(System.ServiceModel.FaultException)">
+            <summary>
+            Gets the user management authentication fault.
+            </summary>
+            <param name="fe">The fault exception.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Asm.As.Oib.UserManagement.Common.Utilities.UserManagerJsonSchema">
+            <summary>
+            User Manager JSON Schema
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.UserManagement.Common.Utilities.UserManagerJsonSchema.SchemaString">
+            <summary>
+            Gets the schema string.
+            </summary>
+            <value>
+            The schema string.
+            </value>
+        </member>
+        <member name="T:Asm.As.Oib.UserManagement.Common.Utilities.UserManagerXMLSchema">
+            <summary>
+            UserManagerXMLSchema
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.UserManagement.Common.Utilities.UserManagerXMLSchema.SchemaString">
+            <summary>
+            Gets the schema string.
+            </summary>
+            <value>
+            The schema string.
+            </value>
+        </member>
+        <member name="T:Asm.As.Oib.UserManagement.Common.Utilities.WindowsDomainHelper">
+            <summary>
+            WindowsDomainHelper
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.UserManagement.Common.Utilities.WindowsDomainHelper.IsComputerOnDomain">
+            <summary>
+            Gets a value indicating whether this instance is computer on domain.
+            </summary>
+            <value>
+              <c>true</c> if this instance is computer on domain; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="M:Asm.As.Oib.UserManagement.Common.Utilities.WindowsDomainHelper.IsLocalUser(System.Security.Principal.WindowsIdentity)">
+            <summary>
+            Determines whether the specified identity is a local user.
+            </summary>
+            <param name="identity">The identity.</param>
+            <returns>
+              <c>true</c> if [is local user] [the specified identity]; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.UserManagement.Common.Utilities.WindowsDomainHelper.IsDomainUser(System.Security.Principal.WindowsIdentity)">
+            <summary>
+            Determines whether if the specified identity is a domain user.
+            Returns false in case the local machine is on a workgroup and not on a domain.
+            </summary>
+            <param name="identity">The identity.</param>
+            <returns>
+              <c>true</c> if [is domain user] [the specified identity]; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="P:Asm.As.Oib.UserManagement.Common.Utilities.WindowsDomainHelper.Domains">
+            <summary>
+            Dictionary of domain names (fully qualified domain names -> netbios domain name)
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.UserManagement.Common.Utilities.WindowsDomainHelper.ConvertUserId(System.String,System.Boolean@,System.Boolean@)">
+            <summary>
+            Converts a user Id for UserManagement. This means an FQDN name is converted to a netbios domain name.
+            </summary>
+            <param name="strUserId">The user Id including the domain name. Could be fqdn or netbios!</param>
+            <param name="isLocalUser">if set to <c>true</c> [is local user].</param>
+            <param name="isLocalUserExisting">if set to <c>true</c> [is local user existing].</param>
+            <returns>
+            If the computer is in a domain, the strUserId, otherwise only the user id without the domain name
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.UserManagement.Common.Utilities.WindowsDomainHelper.ConvertUserId(System.String)">
+            <summary>
+            Converts a user Id for UserManagement
+            </summary>
+            <param name="strUserId">The user Id including the domain name</param>
+            <returns>
+            If the computer is in a domain, the strUserId, otherwise only the user id without the domain name
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.UserManagement.Common.Utilities.WindowsDomainHelper.DoesUserExist(System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Checks if the user exist. Use this method in case you already called the ConvertUserId which returns the
+            two parameters isLocalUser and isLocalUserExisting and use them here for performance reasons.
+            </summary>
+            <param name="strUserId">Name of the user.</param>
+            <param name="isLocalUser">Needs to be set to true in case this is a local user</param>
+            <param name="isLocalUserExisting">Needs to be set to true in case the local user exists on this computer.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Asm.As.Oib.UserManagement.Common.Utilities.WindowsDomainHelper.DoesUserExist(System.String)">
+            <summary>
+            Checks if the user exist (no matter if this is a local user or domain user).
+            </summary>
+            <param name="strUserId">Name of the user.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Asm.As.Oib.UserManagement.Common.Utilities.WindowsDomainHelper.ConvertDomainName(System.String)">
+            <summary>
+            Converts the name of the domain from fully qualified to netbios domain name
+            </summary>
+            <param name="domainName">Name of the domain.</param>
+            <returns>Netbios domain name</returns>
+        </member>
+        <member name="M:Asm.As.Oib.UserManagement.Common.Utilities.WindowsDomainHelper.ConvertUserId(System.Security.Principal.WindowsIdentity)">
+            <summary>
+            Converts the user identifier in a netbios domain name and user (if it is a domain user)
+            or just the plain user name (if it is a local user)
+            </summary>
+            <param name="windowsIdentity">The windows identity.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Asm.As.Oib.UserManagement.Common.Utilities.WindowsDomainHelper.IsLocalUser(System.String,System.String)">
+            <summary>
+            Determines whether the specified account name is a local user (domain name cannot be found in the domain names)
+            </summary>
+            <param name="domainName">Name of the domain.</param>
+            <param name="userName">Name of the user.</param>
+            <returns>
+              <c>true</c> if the domain name could be found; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.UserManagement.Common.Utilities.WindowsDomainHelper.IsLocalUser(System.String)">
+            <summary>
+            Determines whether the specified account name is a local user (domain name cannot be found in the netbios domain names)
+            </summary>
+            <param name="accountName">Name of the account using the netbios domain name. Example: 'siplaceworld\testuser' </param>
+            <returns>
+            <c>true</c> if the domain name could be found; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.UserManagement.Common.Utilities.WindowsDomainHelper.IsLocalUserExisting(System.String)">
+            <summary>
+            Determines whether the specified account name is existing as local user on ths machine.
+            </summary>
+            <param name="accountName">Name of the account.</param>
+            <returns>
+              <c>true</c> if [is local user existing] [the specified account name]; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.UserManagement.Common.Utilities.WindowsDomainHelper.IsDomainUserExisting(System.String,System.String)">
+            <summary>
+            Determines whether the specified account name is existing as domain user.
+            Uses Principal.FindByIdentity to determine.
+            </summary>
+            <param name="accountName">Name of the account.</param>
+            <param name="domainName">Name of the domain.</param>
+            <returns>
+              <c>true</c> if a domain user with the specified account name exists; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.UserManagement.Common.Utilities.WindowsDomainHelper.GetNetbiosDomainName(System.String)">
+            <summary>
+            Gets the netbios domain name from the passed in dns domain name.
+            </summary>
+            <param name="dnsDomainName">Name of the DNS domain.</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

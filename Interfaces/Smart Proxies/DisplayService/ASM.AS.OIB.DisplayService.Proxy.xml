@@ -1,0 +1,948 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ASM.AS.OIB.DisplayService.Proxy</name>
+    </assembly>
+    <members>
+        <member name="T:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.ServiceUnreachableEvent">
+            <summary>
+            Will be fired whenever the service cannot be reached.
+            </summary>
+            <param name="strServiceEndpoint">Service Endpoint</param>
+            <param name="strComment">Comment</param>
+        </member>
+        <member name="T:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.ServiceConnectedEvent">
+            <summary>
+            Will be fired whenever the CheckAlive call can reach the service.
+            </summary>
+            <param name="strServiceEndpoint">Service Endpoint</param>
+            <param name="strComment">Comment</param>
+        </member>
+        <member name="T:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.ConfirmationReceivedEvent">
+            <summary>
+            Will be fired whenever a ConfirmationReceivedEvent is received at the proxy.
+            </summary>
+            <param name="confirmationReceivedRequest"></param>
+        </member>
+        <member name="T:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.DisplayServiceClient">
+            <summary>
+            The class that DS clients use to communicate to the DS Service
+            Provides methods to register this client, send messages, revoke messages and receive acknowledgments
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.DisplayServiceClient._currentDsEndpoint">
+            <summary>
+            Current Endpoint of DS service
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.DisplayServiceClient._currentCallbackEndpoint">
+            <summary>
+            Current Callback Endpoint address. Used for answer event from DS service to this proxy.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.DisplayServiceClient._currentCallbackEndpointGateway">
+            <summary>
+            Gateway address of current Callback Endpoint (in a cluster environment). Used for answer event from DS service to this proxy.
+            </summary>
+        </member>
+        <member name="F:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.DisplayServiceClient.MarshalEventsToSessionCreatorThread">
+            <summary>
+            If true, all Events will be fired on the thread that created the Session.
+            This is helpful if you use the Events to update the UI.
+            In order for that to work correctly, you need a SynchronizationContext.Current
+            when the Session is created (if this was done on the UI thread, then the SynchronizationContext.Current
+            is there by default.
+            The default value of this property is true.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.DisplayServiceClient.ReceiveTimeout">
+            <summary>
+            Gets or sets the receive timeout.
+            </summary>
+            <value>
+            The receive timeout.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.DisplayServiceClient.OpenTimeout">
+            <summary>
+            Gets or sets the open timeout.
+            </summary>
+            <value>
+            The open timeout.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.DisplayServiceClient.CloseTimeout">
+            <summary>
+            Gets or sets the close timeout.
+            </summary>
+            <value>
+            The close timeout.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.DisplayServiceClient.SendTimeout">
+            <summary>
+            Gets or sets the send timeout.
+            </summary>
+            <value>
+            The send timeout.
+            </value>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.DisplayServiceClient.ClientRegistrationId">
+            <summary>
+            Gets the client registration id.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.DisplayServiceClient.CallbackAddress">
+            <summary>
+            Gets the callback address.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.DisplayServiceClient.CallbackAddressGateway">
+            <summary>
+            Gets the gateway callback address (cluster environment).
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.DisplayServiceClient.IsServiceAlive">
+            <summary>
+            Check the status of our Service connection. If the CheckAlive failed, then it is false. Otherwise it is true.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.DisplayServiceClient.ServiceEndpoint">
+            <summary>
+            Gets the service endpoint.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.DisplayServiceClient.ServiceComputerName">
+            <summary>
+            Gets the name of the service computer.
+            </summary>
+            <value>
+            The name of the service computer.
+            </value>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.DisplayServiceClient.GetAllViewerRegistrations">
+            <summary>
+            Returns a list of all registered viewers.
+            </summary>
+            <returns>ViewerRegistrations</returns>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.DisplayServiceClient.RevokeMessage(System.String)">
+            <summary>
+            Revoke a message according to the given message GUID.
+            </summary>
+            <param name="messageGUID">The message GUID, previously returned by send message</param>
+            <returns>True, if successful</returns>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.DisplayServiceClient.GetMessagesStates">
+            <summary>
+            Gets the statuses of the messages for this DS client.
+            </summary>
+            <returns>MessageStates for all messages</returns>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.DisplayServiceClient.GetMessageStates(System.String)">
+            <summary>
+            Gets the status of a given message for this DS client.
+            </summary>
+            <param name="messageGuid">The message GUID.</param>
+            <returns>MessageState for this message</returns>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.DisplayServiceClient.UnregisterClient">
+            <summary>
+            Un-registers the client. Needs to be called when this client is no longer interested in
+            answers from the DS service.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.DisplayServiceClient.SetCertificateForClientAuthentication(System.Security.Cryptography.X509Certificates.StoreLocation,System.Security.Cryptography.X509Certificates.X509FindType,System.Security.Cryptography.X509Certificates.StoreName,System.String)">
+            <summary>
+            Sets the client certificate parameters for authentication to the DisplayService.
+            Needs to be provided in case OIB Core services require a client certificate.
+            </summary>
+            <param name="storeLocation">The store location.</param>
+            <param name="findType">Type of the find.</param>
+            <param name="storeName">Name of the store.</param>
+            <param name="findValue">The find value.</param>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.DisplayServiceClient.SetCertificateForCallback(System.Security.Cryptography.X509Certificates.StoreLocation,System.Security.Cryptography.X509Certificates.X509FindType,System.Security.Cryptography.X509Certificates.StoreName,System.String)">
+            <summary>
+            Sets the service certificate for the locally hosted callback service for getting answers.
+            This will make it possible that the answers will be encrypted when sending them from the Display Service
+            to this client.
+            </summary>
+            <param name="storeLocation">The store location.</param>
+            <param name="findType">Type of the find.</param>
+            <param name="storeName">Name of the store.</param>
+            <param name="findValue">The find value.</param>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.DisplayServiceClient.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
+        <member name="E:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.DisplayServiceClient.ServiceUnreachable">
+            <summary>
+            Will be fired whenever the service cannot be reached
+            </summary>
+        </member>
+        <member name="E:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.DisplayServiceClient.ServiceConnected">
+            <summary>
+            Will be fired whenever the service has reestablished connection and can be reached again
+            </summary>
+        </member>
+        <member name="E:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.DisplayServiceClient.ConfirmationReceived">
+            <summary>
+            Will be fired whenever a confirmation is received
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.DisplayServiceClient.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.DisplayServiceClient" /> class.
+            Uses the properties defined in the app.config for getting service computer name, port, etc.
+            Creates a new client registration.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.DisplayServiceClient.#ctor(System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.DisplayServiceClient" /> class.
+            Uses the properties defined in the app.config for getting service computer name, port, etc.
+            Creates a new client registration.
+            Un-registers this instance on calling Dispose() or upon finalization optionally.
+            </summary>
+            <param name="unregisterOnDisposeFinalize">If set to <c>true</c> [unregister on dispose finalize].</param>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.DisplayServiceClient.#ctor(System.String,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.DisplayServiceClient" /> class.
+            Creates a new client registration.
+            </summary>
+            <param name="serviceComputerName">Name of the service computer.</param>
+            <param name="servicePortNumber">The service port number.</param>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.DisplayServiceClient.#ctor(System.String,System.Int32,System.String,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.DisplayServiceClient" /> class.
+            Creates a new client registration.
+            </summary>
+            <param name="serviceComputerName">Name of the service computer.</param>
+            <param name="servicePortNumber">The service port number.</param>
+            <param name="callbackIdentifier">The callback identifier.</param>
+            <param name="callbackPortNumber">The callback port number.</param>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.DisplayServiceClient.#ctor(System.Guid)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.DisplayServiceClient" /> class.
+            Uses the properties defined in the app.config for getting service computer name, port, etc.
+            Creates a new client registration if Guid is Guid.Empty or uses the guid that was passed in.
+            Use this constructor if you did not unregister this client, but want to resynchronize when starting up.
+            </summary>
+            <param name="clientRegistrationId">The client registration id. If you want to create a new registration, pass in Guid.Empty</param>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.DisplayServiceClient.#ctor(System.String,System.Int32,System.String,System.Int32,System.Guid,System.Boolean,System.Int32,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.DisplayServiceClient" /> class.
+            Creates a new client registration if Guid is Guid.Empty or uses the guid that was passed in.
+            </summary>
+            <param name="serviceComputerName">Name of the service computer.</param>
+            <param name="servicePortNumber">The service port number.</param>
+            <param name="callbackIdentifier">The callback identifier.</param>
+            <param name="callbackPortNumber">The callback port number.</param>
+            <param name="clientRegistrationId">The client registration id. If you want to create a new registration, pass in Guid.Empty</param>
+            <param name="portSharingEnabled">If set to <c>true</c> [port sharing enabled].</param>
+            <param name="portBandwidth">The port bandwidth.</param>
+            <param name="unregisterOnDisposeFinalize">If set to <c>true</c> [unregister on dispose finalize].</param>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.DisplayServiceClient.#ctor(System.String,System.Int32,System.String,System.Int32,System.Guid,System.Boolean,System.Int32,System.Boolean,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.DisplayServiceClient" /> class.
+            Creates a new client registration if Guid is Guid.Empty or uses the guid that was passed in.
+            </summary>
+            <param name="serviceComputerName">Name of the service computer.</param>
+            <param name="servicePortNumber">The service port number.</param>
+            <param name="callbackIdentifier">The callback identifier.</param>
+            <param name="callbackPortNumber">The callback port number.</param>
+            <param name="clientRegistrationId">The client registration id. If you want to create a new registration, pass in Guid.Empty</param>
+            <param name="portSharingEnabled">If set to <c>true</c> [port sharing enabled].</param>
+            <param name="portBandwidth">The port bandwidth.</param>
+            <param name="unregisterOnDisposeFinalize">If set to <c>true</c> [unregister on dispose finalize].</param>
+            <param name="useSecureEndpoint">If true, uses the secure, encrypted endpoint</param>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.DisplayServiceClient.#ctor(System.String,System.Int32,System.String,System.Int32,System.Guid,System.Boolean,System.Int32,System.Boolean,System.Boolean,Asm.As.Oib.Common.Utilities.ServiceSecurityParameters)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.DisplayServiceClient" /> class.
+            Creates a new client registration if Guid is Guid.Empty or uses the guid that was passed in.
+            </summary>
+            <param name="serviceComputerName">Name of the service computer.</param>
+            <param name="servicePortNumber">The service port number.</param>
+            <param name="callbackIdentifier">The callback identifier.</param>
+            <param name="callbackPortNumber">The callback port number.</param>
+            <param name="clientRegistrationId">The client registration id. If you want to create a new registration, pass in Guid.Empty</param>
+            <param name="portSharingEnabled">If set to <c>true</c> [port sharing enabled].</param>
+            <param name="portBandwidth">The port bandwidth.</param>
+            <param name="unregisterOnDisposeFinalize">If set to <c>true</c> [unregister on dispose finalize].</param>
+            <param name="useSecureEndpoint">If true, uses the secure, encrypted endpoint for communication towards the DisplayService</param>
+            <param name="clientSecurityParameters">The client certificate that will be used for authentication towards the DisplayService.</param>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.DisplayServiceClient.#ctor(System.String,System.Int32,System.String,System.Int32,System.Guid,System.Boolean,System.Int32,System.Boolean,System.Boolean,Asm.As.Oib.Common.Utilities.ServiceSecurityParameters,Asm.As.Oib.Common.Utilities.ServiceSecurityParameters)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.DisplayServiceClient" /> class.
+            Creates a new client registration if Guid is Guid.Empty or uses the guid that was passed in.
+            </summary>
+            <param name="serviceComputerName">Name of the service computer.</param>
+            <param name="servicePortNumber">The service port number.</param>
+            <param name="callbackIdentifier">The callback identifier.</param>
+            <param name="callbackPortNumber">The callback port number.</param>
+            <param name="clientRegistrationId">The client registration id. If you want to create a new registration, pass in Guid.Empty</param>
+            <param name="portSharingEnabled">If set to <c>true</c> [port sharing enabled].</param>
+            <param name="portBandwidth">The port bandwidth.</param>
+            <param name="unregisterOnDisposeFinalize">If set to <c>true</c> [unregister on dispose finalize].</param>
+            <param name="useSecureEndpoint">If true, uses the secure, encrypted endpoint</param>
+            <param name="clientSecurityParameters">The client certificate that will be used for authentication towards the DisplayService.</param>
+            <param name="callbackParameters">Used for specifying if the callback services should be secure and what certificate should be used. Is valid for DS callback.</param>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.DisplayServiceClient.#ctor(System.String,System.Int32,System.String,System.Int32,System.String,System.Int32,System.Guid,System.Boolean,System.Int32,System.Boolean,System.Boolean,Asm.As.Oib.Common.Utilities.ServiceSecurityParameters,Asm.As.Oib.Common.Utilities.ServiceSecurityParameters)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.DisplayServiceClient" /> class.
+            Creates a new client registration if Guid is Guid.Empty or uses the guid that was passed in.
+            </summary>
+            <param name="serviceComputerName">Name of the service computer.</param>
+            <param name="servicePortNumber">The service port number.</param>
+            <param name="callbackIdentifier">The callback identifier.</param>
+            <param name="callbackPortNumber">The actual callback port number.</param>
+            <param name="gatewayComputer">Gateway computer name through which the actual callback endpoint can be reached (in a cluster environment)</param>
+            <param name="callbackGatewayPort">Gateway port through which the actual callback endpoint can be reached (in a cluster environment)</param>
+            <param name="clientRegistrationId">The client registration id. If you want to create a new registration, pass in Guid.Empty</param>
+            <param name="portSharingEnabled">If set to <c>true</c> [port sharing enabled].</param>
+            <param name="portBandwidth">The port bandwidth.</param>
+            <param name="unregisterOnDisposeFinalize">If set to <c>true</c> [unregister on dispose finalize].</param>
+            <param name="useSecureEndpoint">If true, uses the secure, encrypted endpoint</param>
+            <param name="clientSecurityParameters">The client certificate that will be used for authentication towards the DisplayService.</param>
+            <param name="callbackParameters">Used for specifying if the callback services should be secure and what certificate should be used. Is valid for DS callback.</param>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.DisplayServiceClient.Finalize">
+            <summary>
+            Releases unmanaged resources and performs other cleanup operations before the
+            <see cref="T:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.DisplayServiceClient" /> is reclaimed by garbage collection.
+            </summary>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.DisplayServiceClient.SendMessageExplicit(System.Collections.Generic.List{Asm.As.Oib.DisplayService.Contracts.Data.ViewerRegistration},System.String,System.String,Asm.As.Oib.DisplayService.Contracts.Data.Types.AcknowledgementType,System.Boolean,System.Int32,Asm.As.Oib.DisplayService.Contracts.Data.Types.SeverityLevel)">
+            <summary>
+            Sends a message to the viewer of the given viewer registrations.
+            </summary>
+            <param name="viewerRegistrations">The viewer registrations.</param>
+            <param name="messageText">The message text.</param>
+            <param name="extendedDescription">The extended description.</param>
+            <param name="acknowledgementType">Type of the acknowledgment.</param>
+            <param name="callbackRequest">if set to <c>true</c> [callback request].</param>
+            <param name="priority">
+            Is used by viewers to sort messages, this is an integer with values from 0 to 100 where 0 has
+            the highest priority.
+            </param>
+            <param name="severityLevel">The severity level.</param>
+            <returns>SendMessageResponse</returns>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.DisplayServiceClient.SendMessageExplicit(System.Collections.Generic.List{Asm.As.Oib.DisplayService.Contracts.Data.ViewerRegistration},System.String,System.String,Asm.As.Oib.DisplayService.Contracts.Data.Types.AcknowledgementType,System.Boolean,System.Int32,Asm.As.Oib.DisplayService.Contracts.Data.Types.SeverityLevel,System.Collections.Generic.List{Asm.As.Oib.DisplayService.Contracts.Data.Answer})">
+            <summary>
+            Sends a message to the viewer of the given viewer registrations.
+            </summary>
+            <param name="viewerRegistrations">The viewer registrations.</param>
+            <param name="messageText">The message text.</param>
+            <param name="extendedDescription">The extended description.</param>
+            <param name="acknowledgementType">Type of the acknowledgment.</param>
+            <param name="callbackRequest">if set to <c>true</c> [callback request].</param>
+            <param name="priority">
+            Is used by viewers to sort messages, this is an integer with values from 0 to 100 where 0 has
+            the highest priority.
+            </param>
+            <param name="severityLevel">The severity level.</param>
+            <param name="answers">The answers.</param>
+            <returns>SendMessageResponse</returns>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.DisplayServiceClient.SendMessageExplicit(System.Collections.Generic.List{Asm.As.Oib.DisplayService.Contracts.Data.ViewerRegistration},System.String,System.String,Asm.As.Oib.DisplayService.Contracts.Data.Types.AcknowledgementType,System.Boolean,System.Int32,Asm.As.Oib.DisplayService.Contracts.Data.Types.SeverityLevel,System.Collections.Generic.List{Asm.As.Oib.DisplayService.Contracts.Data.Answer},System.Int32)">
+            <summary>
+            Sends a message to the viewer of the given viewer registrations.
+            </summary>
+            <param name="viewerRegistrations">The viewer registrations.</param>
+            <param name="messageText">The message text.</param>
+            <param name="extendedDescription">The extended description.</param>
+            <param name="acknowledgementType">Type of the acknowledgment.</param>
+            <param name="callbackRequest">if set to <c>true</c> [callback request].</param>
+            <param name="priority">
+            Is used by viewers to sort messages, this is an integer with values from 0 to 100 where 0 has
+            the highest priority.
+            </param>
+            <param name="severityLevel">The severity level.</param>
+            <param name="answers">The answers.</param>
+            <param name="defaultAnswerIndex">Default index of the answer.</param>
+            <returns>
+            SendMessageResponse
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.DisplayServiceClient.SendMessageExplicit(System.Collections.Generic.List{Asm.As.Oib.DisplayService.Contracts.Data.ViewerRegistration},System.String,System.String,Asm.As.Oib.DisplayService.Contracts.Data.Types.AcknowledgementType,System.Boolean,System.Int32,Asm.As.Oib.DisplayService.Contracts.Data.Types.SeverityLevel,System.Collections.Generic.List{Asm.As.Oib.DisplayService.Contracts.Data.Answer},System.Int32,System.Boolean)">
+            <summary>
+            Sends a message to the viewer of the given viewer registrations.
+            </summary>
+            <param name="viewerRegistrations">The viewer registrations.</param>
+            <param name="messageText">The message text.</param>
+            <param name="extendedDescription">The extended description.</param>
+            <param name="acknowledgementType">Type of the acknowledgment.</param>
+            <param name="callbackRequest">if set to <c>true</c> [callback request].</param>
+            <param name="priority">
+            Is used by viewers to sort messages, this is an integer with values from 0 to 100 where 0 has
+            the highest priority.
+            </param>
+            <param name="severityLevel">The severity level.</param>
+            <param name="answers">The answers.</param>
+            <param name="defaultAnswerIndex">Default index for answer selection.</param>
+            <param name="extendedDescriptionDefault">If this is true, the extended description is expanded as well when showing the message.</param>
+            <returns>SendMessageResponse</returns>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.DisplayServiceClient.SendMessageExplicit(Asm.As.Oib.DisplayService.Contracts.Data.ViewerRegistration,System.String,System.String,Asm.As.Oib.DisplayService.Contracts.Data.Types.AcknowledgementType,System.Boolean,System.Int32,Asm.As.Oib.DisplayService.Contracts.Data.Types.SeverityLevel)">
+            <summary>
+            Sends a message to the given viewer registration.
+            </summary>
+            <param name="viewerRegistration">The viewer registration.</param>
+            <param name="messageText">The message text.</param>
+            <param name="extendedDescription">The extended description.</param>
+            <param name="acknowledgementType">Type of the acknowledgment.</param>
+            <param name="callbackRequest">if set to <c>true</c> [callback request].</param>
+            <param name="priority">
+            Is used by viewers to sort messages, this is an integer with values from 0 to 100 where 0 has
+            the highest priority.
+            </param>
+            <param name="severityLevel">The severity level.</param>
+            <returns>SendMessageResponse</returns>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.DisplayServiceClient.SendMessageExplicit(Asm.As.Oib.DisplayService.Contracts.Data.ViewerRegistration,System.String,System.String,Asm.As.Oib.DisplayService.Contracts.Data.Types.AcknowledgementType,System.Boolean,System.Int32,Asm.As.Oib.DisplayService.Contracts.Data.Types.SeverityLevel,System.Collections.Generic.List{Asm.As.Oib.DisplayService.Contracts.Data.Answer})">
+            <summary>
+            Sends a message to the given viewer registration.
+            </summary>
+            <param name="viewerRegistration">The viewer registration.</param>
+            <param name="messageText">The message text.</param>
+            <param name="extendedDescription">The extended description.</param>
+            <param name="acknowledgementType">Type of the acknowledgment.</param>
+            <param name="callbackRequest">if set to <c>true</c> [callback request].</param>
+            <param name="priority">
+            Is used by viewers to sort messages, this is an integer with values from 0 to 100 where 0 has
+            the highest priority.
+            </param>
+            <param name="severityLevel">The severity level.</param>
+            <param name="answers">The answers.</param>
+            <returns>SendMessageResponse</returns>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.DisplayServiceClient.SendMessageExplicit(Asm.As.Oib.DisplayService.Contracts.Data.ViewerRegistration,System.String,System.String,Asm.As.Oib.DisplayService.Contracts.Data.Types.AcknowledgementType,System.Boolean,System.Int32,Asm.As.Oib.DisplayService.Contracts.Data.Types.SeverityLevel,System.Collections.Generic.List{Asm.As.Oib.DisplayService.Contracts.Data.Answer},System.Int32,System.Boolean)">
+            <summary>
+            Sends a message to the given viewer registration.
+            </summary>
+            <param name="viewerRegistration">The viewer registration.</param>
+            <param name="messageText">The message text.</param>
+            <param name="extendedDescription">The extended description.</param>
+            <param name="acknowledgementType">Type of the acknowledgment.</param>
+            <param name="callbackRequest">if set to <c>true</c> [callback request].</param>
+            <param name="priority">
+            Is used by viewers to sort messages, this is an integer with values from 0 to 100 where 0 has
+            the highest priority.
+            </param>
+            <param name="severityLevel">The severity level.</param>
+            <param name="answers">The answers.</param>
+            <param name="defaultAnswerIndex">Default index for answer selection.</param>
+            <param name="extendedDescriptionDefault">If this is true, the extended description is expanded as well when showing the message.</param>
+            <returns>SendMessageResponse</returns>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.DisplayServiceClient.SendMessageByStationPath(System.String,System.String,System.String,Asm.As.Oib.DisplayService.Contracts.Data.Types.AcknowledgementType,System.Boolean,System.Int32,Asm.As.Oib.DisplayService.Contracts.Data.Types.SeverityLevel)">
+            <summary>
+            Sends a message to the viewer of the given station path (SIPLACE Station).
+            </summary>
+            <param name="stationPath">The station path.</param>
+            <param name="messageText">The message text.</param>
+            <param name="extendedDescription">The extended description.</param>
+            <param name="acknowledgementType">Type of the acknowledgment.</param>
+            <param name="callbackRequest">if set to <c>true</c> [callback request].</param>
+            <param name="priority">
+            Is used by viewers to sort messages, this is an integer with values from 0 to 100 where 0 has
+            the highest priority.
+            </param>
+            <param name="severityLevel">The severity level.</param>
+            <returns>SendMessageResponse</returns>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.DisplayServiceClient.SendMessageByStationPath(System.String,System.String,System.String,Asm.As.Oib.DisplayService.Contracts.Data.Types.AcknowledgementType,System.Boolean,System.Int32,Asm.As.Oib.DisplayService.Contracts.Data.Types.SeverityLevel,System.Collections.Generic.List{Asm.As.Oib.DisplayService.Contracts.Data.Answer})">
+            <summary>
+            Sends a message to the viewer of the given station path (SIPLACE Station).
+            </summary>
+            <param name="stationPath">The station path.</param>
+            <param name="messageText">The message text.</param>
+            <param name="extendedDescription">The extended description.</param>
+            <param name="acknowledgementType">Type of the acknowledgment.</param>
+            <param name="callbackRequest">if set to <c>true</c> [callback request].</param>
+            <param name="priority">
+            Is used by viewers to sort messages, this is an integer with values from 0 to 100 where 0 has
+            the highest priority.
+            </param>
+            <param name="severityLevel">The severity level.</param>
+            <param name="answers">The answers.</param>
+            <returns>SendMessageResponse</returns>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.DisplayServiceClient.SendMessageByStationPath(System.String,System.String,System.String,Asm.As.Oib.DisplayService.Contracts.Data.Types.AcknowledgementType,System.Boolean,System.Int32,Asm.As.Oib.DisplayService.Contracts.Data.Types.SeverityLevel,System.Collections.Generic.List{Asm.As.Oib.DisplayService.Contracts.Data.Answer},System.String)">
+            <summary>
+            Sends a message to the viewer of the given station path (SIPLACE Station).
+            </summary>
+            <param name="stationPath">The station path.</param>
+            <param name="messageText">The message text.</param>
+            <param name="extendedDescription">The extended description.</param>
+            <param name="acknowledgementType">Type of the acknowledgment.</param>
+            <param name="callbackRequest">if set to <c>true</c> [callback request].</param>
+            <param name="priority">
+            Is used by viewers to sort messages, this is an integer with values from 0 to 100 where 0 has
+            the highest priority.
+            </param>
+            <param name="severityLevel">The severity level.</param>
+            <param name="answers">The answers.</param>
+            <param name="siplaceProDbId">
+            Optional SIPLACE Pro DB Id.
+            In an EDM case when you connect to different databases and there are lines / stations with the same name in the
+            databases,
+            you need to specify the database Id. Otherwise sending of the message will fail since the viewer cannot be identified.
+            </param>
+            <returns>SendMessageResponse</returns>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.DisplayServiceClient.SendMessageByStationPath(System.String,System.String,System.String,Asm.As.Oib.DisplayService.Contracts.Data.Types.AcknowledgementType,System.Boolean,System.Int32,Asm.As.Oib.DisplayService.Contracts.Data.Types.SeverityLevel,System.Collections.Generic.List{Asm.As.Oib.DisplayService.Contracts.Data.Answer},System.String,System.Int32,System.Boolean)">
+            <summary>
+            Sends a message to the viewer of the given station path (SIPLACE Station).
+            </summary>
+            <param name="stationPath">The station path.</param>
+            <param name="messageText">The message text.</param>
+            <param name="extendedDescription">The extended description.</param>
+            <param name="acknowledgementType">Type of the acknowledgment.</param>
+            <param name="callbackRequest">if set to <c>true</c> [callback request].</param>
+            <param name="priority">
+            Is used by viewers to sort messages, this is an integer with values from 0 to 100 where 0 has
+            the highest priority.
+            </param>
+            <param name="severityLevel">The severity level.</param>
+            <param name="answers">The answers.</param>
+            <param name="siplaceProDbId">
+            Optional SIPLACE Pro DB Id.
+            In an EDM case when you connect to different databases and there are lines / stations with the same name in the
+            databases,
+            you need to specify the database Id. Otherwise sending of the message will fail since the viewer cannot be identified.
+            </param>
+            <param name="defaultAnswerIndex">Default index for answer selection.</param>
+            <param name="extendedDescriptionDefault">If this is true, the extended description is expanded as well when showing the message.</param>
+            <returns>SendMessageResponse</returns>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.DisplayServiceClient.SendMessageByStationPath(System.String,System.Int32,System.String,System.String,Asm.As.Oib.DisplayService.Contracts.Data.Types.AcknowledgementType,System.Boolean,System.Int32,Asm.As.Oib.DisplayService.Contracts.Data.Types.SeverityLevel,System.Collections.Generic.List{Asm.As.Oib.DisplayService.Contracts.Data.Answer},System.String,System.Int32,System.Boolean)">
+            <summary>
+            Sends a message to the viewer of the given station path.
+            </summary>
+            <param name="stationPath">The station path.</param>
+            <param name="stationType">Type of the station. 0: SIPLACE Station, 1: Printer, 2: Generic Device </param>
+            <param name="messageText">The message text.</param>
+            <param name="extendedDescription">The extended description.</param>
+            <param name="acknowledgementType">Type of the acknowledgment.</param>
+            <param name="callbackRequest">if set to <c>true</c> [callback request].</param>
+            <param name="priority">
+            Is used by viewers to sort messages, this is an integer with values from 0 to 100 where 0 has
+            the highest priority.
+            </param>
+            <param name="severityLevel">The severity level.</param>
+            <param name="answers">The answers.</param>
+            <param name="siplaceProDbId">
+            Optional SIPLACE Pro DB Id.
+            In an EDM case when you connect to different databases and there are lines / stations with the same name in the
+            databases,
+            you need to specify the database Id. Otherwise sending of the message will fail since the viewer cannot be identified.
+            </param>
+            <param name="defaultAnswerIndex">Default index for answer selection.</param>
+            <param name="extendedDescriptionDefault">If this is true, the extended description is expanded as well when showing the message.</param>
+            <returns>
+            SendMessageResponse
+            </returns>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.DisplayServiceClient.SendMessageByLinePathFirstStation(System.String,System.String,System.String,Asm.As.Oib.DisplayService.Contracts.Data.Types.AcknowledgementType,System.Boolean,System.Int32,Asm.As.Oib.DisplayService.Contracts.Data.Types.SeverityLevel)">
+            <summary>
+            Sends a message to the viewer of the first station of the given line path.
+            A station may be of any of the supported station types (station, printer, generic line device)
+            In case there are 2 printers upfront the line, only one of the printers will be addressed.
+            Only the one which has the SIPLACEProStationIndexInLine set to 0 (in its ViewerRegistration) will be used
+            </summary>
+            <param name="linePath">The line path.</param>
+            <param name="messageText">The message text.</param>
+            <param name="extendedDescription">The extended description.</param>
+            <param name="acknowledgementType">Type of the acknowledgment.</param>
+            <param name="callbackRequest">if set to <c>true</c> [callback request].</param>
+            <param name="priority">
+            Is used by viewers to sort messages, this is an integer with values from 0 to 100 where 0 has
+            the highest priority.
+            </param>
+            <param name="severityLevel">The severity level.</param>
+            <returns>SendMessageResponse</returns>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.DisplayServiceClient.SendMessageByLinePathFirstStation(System.String,System.String,System.String,Asm.As.Oib.DisplayService.Contracts.Data.Types.AcknowledgementType,System.Boolean,System.Int32,Asm.As.Oib.DisplayService.Contracts.Data.Types.SeverityLevel,System.Collections.Generic.List{Asm.As.Oib.DisplayService.Contracts.Data.Answer})">
+            <summary>
+            Sends a message to the viewer of the first station of the given line path.
+            A station may be of any of the supported station types (station, printer, generic line device)
+            In case there are 2 printers upfront the line, only one of the printers will be addressed.
+            Only the one which has the SIPLACEProStationIndexInLine set to 0 (in its ViewerRegistration) will be used
+            </summary>
+            <param name="linePath">The line path.</param>
+            <param name="messageText">The message text.</param>
+            <param name="extendedDescription">The extended description.</param>
+            <param name="acknowledgementType">Type of the acknowledgment.</param>
+            <param name="callbackRequest">if set to <c>true</c> [callback request].</param>
+            <param name="priority">
+            Is used by viewers to sort messages, this is an integer with values from 0 to 100 where 0 has
+            the highest priority.
+            </param>
+            <param name="severityLevel">The severity level.</param>
+            <param name="answers">The answers.</param>
+            <returns>SendMessageResponse</returns>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.DisplayServiceClient.SendMessageByLinePathFirstStation(System.String,System.String,System.String,Asm.As.Oib.DisplayService.Contracts.Data.Types.AcknowledgementType,System.Boolean,System.Int32,Asm.As.Oib.DisplayService.Contracts.Data.Types.SeverityLevel,System.Collections.Generic.List{Asm.As.Oib.DisplayService.Contracts.Data.Answer},System.String)">
+            <summary>
+            Sends a message to the viewer of the first station of the given line path.
+            A station may be of any of the supported station types (station, printer, generic line device)
+            In case there are 2 printers upfront the line, only one of the printers will be addressed.
+            Only the one which has the SIPLACEProStationIndexInLine set to 0 (in its ViewerRegistration) will be used
+            </summary>
+            <param name="linePath">The line path.</param>
+            <param name="messageText">The message text.</param>
+            <param name="extendedDescription">The extended description.</param>
+            <param name="acknowledgementType">Type of the acknowledgment.</param>
+            <param name="callbackRequest">if set to <c>true</c> [callback request].</param>
+            <param name="priority">
+            Is used by viewers to sort messages, this is an integer with values from 0 to 100 where 0 has
+            the highest priority.
+            </param>
+            <param name="severityLevel">The severity level.</param>
+            <param name="answers">The answers.</param>
+            <param name="siplaceProDbId">
+            Optional SIPLACE Pro DB Id.
+            In an EDM case when you connect to different databases and there are lines / stations with the same name in the
+            databases,
+            you need to specify the database Id. Otherwise sending of the message will fail since the viewer cannot be identified.
+            </param>
+            <returns>SendMessageResponse</returns>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.DisplayServiceClient.SendMessageByLinePathFirstStation(System.String,System.String,System.String,Asm.As.Oib.DisplayService.Contracts.Data.Types.AcknowledgementType,System.Boolean,System.Int32,Asm.As.Oib.DisplayService.Contracts.Data.Types.SeverityLevel,System.Collections.Generic.List{Asm.As.Oib.DisplayService.Contracts.Data.Answer},System.String,System.Int32,System.Boolean)">
+            <summary>
+            Sends a message to the viewer of the first station of the given line path.
+            </summary>
+            <param name="linePath">The line path.</param>
+            <param name="messageText">The message text.</param>
+            <param name="extendedDescription">The extended description.</param>
+            <param name="acknowledgementType">Type of the acknowledgment.</param>
+            <param name="callbackRequest">if set to <c>true</c> [callback request].</param>
+            <param name="priority">
+            Is used by viewers to sort messages, this is an integer with values from 0 to 100 where 0 has
+            the highest priority.
+            </param>
+            <param name="severityLevel">The severity level.</param>
+            <param name="answers">The answers.</param>
+            <param name="siplaceProDbId">
+            Optional SIPLACE Pro DB Id.
+            In an EDM case when you connect to different databases and there are lines / stations with the same name in the
+            databases,
+            you need to specify the database Id. Otherwise sending of the message will fail since the viewer cannot be identified.
+            </param>
+            <param name="defaultAnswerIndex">Default index for answer selection.</param>
+            <param name="extendedDescriptionDefault">If this is true, the extended description is expanded as well when showing the message.</param>
+            <returns>SendMessageResponse</returns>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.DisplayServiceClient.SendMessageByLinePathFirstStation(System.String,System.String,System.String,Asm.As.Oib.DisplayService.Contracts.Data.Types.AcknowledgementType,System.Boolean,System.Int32,Asm.As.Oib.DisplayService.Contracts.Data.Types.SeverityLevel,System.Collections.Generic.List{Asm.As.Oib.DisplayService.Contracts.Data.Answer},System.String,System.Int32,System.Boolean,System.Boolean)">
+            <summary>
+            Sends a message to the viewer of the first station of the given line path.
+            A station may be of any of the supported station types (station, printer, generic line device)
+            In case there are 2 printers upfront the line, only one of the printers will be addressed.
+            Only the one which has the SIPLACEProStationIndexInLine set to 0 (in its ViewerRegistration) will be used
+            </summary>
+            <param name="linePath">The line path.</param>
+            <param name="messageText">The message text.</param>
+            <param name="extendedDescription">The extended description.</param>
+            <param name="acknowledgementType">Type of the acknowledgment.</param>
+            <param name="callbackRequest">if set to <c>true</c> [callback request].</param>
+            <param name="priority">
+            Is used by viewers to sort messages, this is an integer with values from 0 to 100 where 0 has
+            the highest priority.
+            </param>
+            <param name="severityLevel">The severity level.</param>
+            <param name="answers">The answers.</param>
+            <param name="siplaceProDbId">
+            Optional SIPLACE Pro DB Id.
+            In an EDM case when you connect to different databases and there are lines / stations with the same name in the
+            databases,
+            you need to specify the database Id. Otherwise sending of the message will fail since the viewer cannot be identified.
+            </param>
+            <param name="defaultAnswerIndex">Default index for answer selection.</param>
+            <param name="extendedDescriptionDefault">If this is true, the extended description is expanded as well when showing the message.</param>
+            <param name="sendToLineControlViewerAsWell">
+            if set to <c>true</c> the message is also displayed on the line control
+            viewer if there is one registered for that line.
+            </param>
+            <returns>SendMessageResponse</returns>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.DisplayServiceClient.SendMessageByLinePathAllStations(System.String,System.String,System.String,Asm.As.Oib.DisplayService.Contracts.Data.Types.AcknowledgementType,System.Boolean,System.Int32,Asm.As.Oib.DisplayService.Contracts.Data.Types.SeverityLevel)">
+            <summary>
+            Sends a message to the viewer of all stations of the given line path.
+            All station types will be used (SIPLACE Station, Printer, Generic line device)
+            </summary>
+            <param name="linePath">The line path.</param>
+            <param name="messageText">The message text.</param>
+            <param name="extendedDescription">The extended description.</param>
+            <param name="acknowledgementType">Type of the acknowledgment.</param>
+            <param name="callbackRequest">if set to <c>true</c> [callback request].</param>
+            <param name="priority">
+            Is used by viewers to sort messages, this is an integer with values from 0 to 100 where 0 has
+            the highest priority.
+            </param>
+            <param name="severityLevel">The severity level.</param>
+            <returns>SendMessageResponse</returns>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.DisplayServiceClient.SendMessageByLinePathAllStations(System.String,System.String,System.String,Asm.As.Oib.DisplayService.Contracts.Data.Types.AcknowledgementType,System.Boolean,System.Int32,Asm.As.Oib.DisplayService.Contracts.Data.Types.SeverityLevel,System.Collections.Generic.List{Asm.As.Oib.DisplayService.Contracts.Data.Answer})">
+            <summary>
+            Sends a message to the viewer of all stations of the given line path.
+            All station types will be used (SIPLACE Station, Printer, Generic line device)
+            </summary>
+            <param name="linePath">The line path.</param>
+            <param name="messageText">The message text.</param>
+            <param name="extendedDescription">The extended description.</param>
+            <param name="acknowledgementType">Type of the acknowledgment.</param>
+            <param name="callbackRequest">if set to <c>true</c> [callback request].</param>
+            <param name="priority">
+            Is used by viewers to sort messages, this is an integer with values from 0 to 100 where 0 has
+            the highest priority.
+            </param>
+            <param name="severityLevel">The severity level.</param>
+            <param name="answers">The answers.</param>
+            <returns>SendMessageResponse</returns>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.DisplayServiceClient.SendMessageByLinePathAllStations(System.String,System.String,System.String,Asm.As.Oib.DisplayService.Contracts.Data.Types.AcknowledgementType,System.Boolean,System.Int32,Asm.As.Oib.DisplayService.Contracts.Data.Types.SeverityLevel,System.Collections.Generic.List{Asm.As.Oib.DisplayService.Contracts.Data.Answer},System.String)">
+            <summary>
+            Sends a message to the viewer of all stations of the given line path.
+            All station types will be used (SIPLACE Station, Printer, Generic line device)
+            </summary>
+            <param name="linePath">The line path.</param>
+            <param name="messageText">The message text.</param>
+            <param name="extendedDescription">The extended description.</param>
+            <param name="acknowledgementType">Type of the acknowledgment.</param>
+            <param name="callbackRequest">if set to <c>true</c> [callback request].</param>
+            <param name="priority">
+            Is used by viewers to sort messages, this is an integer with values from 0 to 100 where 0 has
+            the highest priority.
+            </param>
+            <param name="severityLevel">The severity level.</param>
+            <param name="answers">The answers.</param>
+            <param name="siplaceProDbId">
+            Optional SIPLACE Pro DB Id.
+            In an EDM case when you connect to different databases and there are lines / stations with the same name in the
+            databases,
+            you need to specify the database Id. Otherwise sending of the message will fail since the viewer cannot be identified.
+            </param>
+            <returns>SendMessageResponse</returns>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.DisplayServiceClient.SendMessageByLinePathAllStations(System.String,System.String,System.String,Asm.As.Oib.DisplayService.Contracts.Data.Types.AcknowledgementType,System.Boolean,System.Int32,Asm.As.Oib.DisplayService.Contracts.Data.Types.SeverityLevel,System.Collections.Generic.List{Asm.As.Oib.DisplayService.Contracts.Data.Answer},System.String,System.Int32,System.Boolean)">
+            <summary>
+            Sends a message to the viewer of all stations of the given line path.
+            All station types will be used (SIPLACE Station, Printer, Generic line device)
+            </summary>
+            <param name="linePath">The line path.</param>
+            <param name="messageText">The message text.</param>
+            <param name="extendedDescription">The extended description.</param>
+            <param name="acknowledgementType">Type of the acknowledgment.</param>
+            <param name="callbackRequest">if set to <c>true</c> [callback request].</param>
+            <param name="priority">
+            Is used by viewers to sort messages, this is an integer with values from 0 to 100 where 0 has
+            the highest priority.
+            </param>
+            <param name="severityLevel">The severity level.</param>
+            <param name="answers">The answers.</param>
+            <param name="siplaceProDbId">
+            Optional SIPLACE Pro DB Id.
+            In an EDM case when you connect to different databases and there are lines / stations with the same name in the
+            databases,
+            you need to specify the database Id. Otherwise sending of the message will fail since the viewer cannot be identified.
+            </param>
+            <param name="defaultAnswerIndex">Default index for answer selection.</param>
+            <param name="extendedDescriptionDefault">If this is true, the extended description is expanded as well when showing the message.</param>
+            <returns>SendMessageResponse</returns>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.DisplayServiceClient.SendMessageByLinePathAllStations(System.String,System.String,System.String,Asm.As.Oib.DisplayService.Contracts.Data.Types.AcknowledgementType,System.Boolean,System.Int32,Asm.As.Oib.DisplayService.Contracts.Data.Types.SeverityLevel,System.Collections.Generic.List{Asm.As.Oib.DisplayService.Contracts.Data.Answer},System.String,System.Int32,System.Boolean,System.Boolean)">
+            <summary>
+            Sends a message to the viewer of all stations of the given line path.
+            All station types will be used (SIPLACE Station, Printer, Generic line device)
+            </summary>
+            <param name="linePath">The line path.</param>
+            <param name="messageText">The message text.</param>
+            <param name="extendedDescription">The extended description.</param>
+            <param name="acknowledgementType">Type of the acknowledgment.</param>
+            <param name="callbackRequest">if set to <c>true</c> [callback request].</param>
+            <param name="priority">
+            Is used by viewers to sort messages, this is an integer with values from 0 to 100 where 0 has
+            the highest priority.
+            </param>
+            <param name="severityLevel">The severity level.</param>
+            <param name="answers">The answers.</param>
+            <param name="siplaceProDbId">
+            Optional SIPLACE Pro DB Id.
+            In an EDM case when you connect to different databases and there are lines / stations with the same name in the
+            databases,
+            you need to specify the database Id. Otherwise sending of the message will fail since the viewer cannot be identified.
+            </param>
+            <param name="defaultAnswerIndex">Default index for answer selection.</param>
+            <param name="extendedDescriptionDefault">If this is true, the extended description is expanded as well when showing the message.</param>
+            <param name="sendToLineControlViewerAsWell">
+            if set to <c>true</c> the message is also displayed on the line control
+            viewer if there is one registered for that line.
+            </param>
+            <returns>
+            SendMessageResponse
+            </returns>
+            <exception cref="T:System.Exception">Please specify a line path!</exception>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.DisplayServiceClient.SendMessageByLinePathNoStations(System.String,System.String,System.String,Asm.As.Oib.DisplayService.Contracts.Data.Types.AcknowledgementType,System.Boolean,System.Int32,Asm.As.Oib.DisplayService.Contracts.Data.Types.SeverityLevel,System.Collections.Generic.List{Asm.As.Oib.DisplayService.Contracts.Data.Answer},System.String,System.Int32,System.Boolean)">
+            <summary>
+            Sends a message to the line control computer viewer that is registered for the given line path.
+            All station types will be used (SIPLACE Station, Printer, Generic line device)
+            </summary>
+            <param name="linePath">The line path.</param>
+            <param name="messageText">The message text.</param>
+            <param name="extendedDescription">The extended description.</param>
+            <param name="acknowledgementType">Type of the acknowledgment.</param>
+            <param name="callbackRequest">if set to <c>true</c> [callback request].</param>
+            <param name="priority">
+            Is used by viewers to sort messages, this is an integer with values from 0 to 100 where 0 has
+            the highest priority.
+            </param>
+            <param name="severityLevel">The severity level.</param>
+            <param name="answers">The answers.</param>
+            <param name="siplaceProDbId">
+            Optional SIPLACE Pro DB Id.
+            In an EDM case when you connect to different databases and there are lines / stations with the same name in the
+            databases,
+            you need to specify the database Id. Otherwise sending of the message will fail since the viewer cannot be identified.
+            </param>
+            <param name="defaultAnswerIndex">Default index for answer selection.</param>
+            <param name="extendedDescriptionDefault">If this is true, the extended description is expanded as well when showing the message.</param>
+            <returns>
+            SendMessageResponse
+            </returns>
+            <exception cref="T:System.Exception">Please specify a line path!</exception>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.DisplayServiceClient.UpdateMessage(System.String,System.String,System.String,System.Int32,Asm.As.Oib.DisplayService.Contracts.Data.Types.SeverityLevel)">
+            <summary>
+            Update a not yet acknowledged message.
+            </summary>
+            <param name="messageGUID">The message GUID, previously returned by send message. Mandatory.</param>
+            <param name="updatedMessageText">Updated message text. Optional (if you do not want to update the message text, pass in null)</param>
+            <param name="updatedExtendedDescription">Updated extended description. Optional (if you do not want to update the extended description, pass in null)</param>
+            <param name="updatedPriority">Updated priority</param>
+            <param name="updatedSeverityLevel">Updated severity level</param>
+            <returns>MessageDeliveryDetails</returns>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.DisplayServiceClient.UpdateMessage(System.String,System.String,System.String,System.Int32)">
+            <summary>
+            Update a not yet acknowledged message.
+            </summary>
+            <param name="messageGUID">The message GUID, previously returned by send message. Mandatory.</param>
+            <param name="updatedMessageText">Updated message text. Optional (if you do not want to update the message text, pass in null)</param>
+            <param name="updatedExtendedDescription">Updated extended description. Optional (if you do not want to update the extended description, pass in null)</param>
+            <param name="updatedPriority">Updated priority</param>
+            <returns>MessageDeliveryDetails</returns>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.DisplayServiceClient.UpdateMessage(System.String,System.String,System.String)">
+            <summary>
+            Update a not yet acknowledged message.
+            </summary>
+            <param name="messageGUID">The message GUID, previously returned by send message. Mandatory.</param>
+            <param name="updatedMessageText">Updated message text. Optional (if you do not want to update the message text, pass in null)</param>
+            <param name="updatedExtendedDescription">Updated extended description. Optional (if you do not want to update the extended description, pass in null)</param>
+            <returns>MessageDeliveryDetails</returns>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.DisplayServiceClient.UpdateMessage(System.String,System.String)">
+            <summary>
+            Update a not yet acknowledged message.
+            </summary>
+            <param name="messageGUID">The message GUID, previously returned by send message. Mandatory.</param>
+            <param name="updatedMessageText">Updated message text. Optional (if you do not want to update the message text, pass in null)</param>
+            <returns>MessageDeliveryDetails</returns>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.DisplayServiceClient.UpdateMessage(System.String)">
+            <summary>
+            Update a not yet acknowledged message.
+            </summary>
+            <param name="messageGUID">The message GUID, previously returned by send message</param>
+            <returns>MessageDeliveryDetails</returns>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.DisplayServiceClient.UpdateMessage(System.String,System.String,System.String,System.Boolean,System.Int32,Asm.As.Oib.DisplayService.Contracts.Data.Types.SeverityLevel)">
+            <summary>
+            Update a not yet acknowledged message.
+            </summary>
+            <param name="messageGUID">The message GUID, previously returned by send message. Mandatory.</param>
+            <param name="updatedMessageText">Updated message text. Optional (if you do not want to update the message text, pass in null)</param>
+            <param name="updatedExtendedDescription">Updated extended description. Optional (if you do not want to update the extended description, pass in null)</param>
+            <param name="updatedExtendedDescriptionDefault">The updated "extended description default". If this is true, the extended description is expanded as well when showing the message. Optional (if you do not want to update the extended description default, pass in null)</param>
+            <param name="updatedPriority">Updated priority. Optional (if you do not want to update the priority, pass in int.MinValue)</param>
+            <param name="updatedSeverityLevel">Updated severity level. Optional (if you do not want to update the severity level, pass in SeverityLevel.Undefined)</param>
+            <returns>MessageDeliveryDetails</returns>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.DisplayServiceClient.UpdateMessageEx(System.String,System.String,System.String,System.Nullable{System.Boolean},System.Int32,Asm.As.Oib.DisplayService.Contracts.Data.Types.SeverityLevel)">
+            <summary>
+            Update a not yet acknowledged message.
+            </summary>
+            <param name="messageGUID">The message GUID, previously returned by send message. Mandatory.</param>
+            <param name="updatedMessageText">The updated "message text". Optional (if you do not want to update the message text, pass in null)</param>
+            <param name="updatedExtendedDescription">The updated "extended description". Optional (if you do not want to update the extended description, pass in null)</param>
+            <param name="updatedExtendedDescriptionDefault">The updated "extended description default". If this is true, the extended description is expanded as well when showing the message. Optional (if you do not want to update the extended description default, pass in null)</param>
+            <param name="updatedPriority">The updated "priority". Optional (if you do not want to update the priority, pass in int.MinValue)</param>
+            <param name="updatedSeverityLevel">The updated "severity level". Optional (if you do not want to update the severity level, pass in SeverityLevel.Undefined)</param>
+            <returns>MessageDeliveryDetails</returns>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.DisplayServiceClient.CheckAlive">
+            <summary>
+            Will do a ping on the DS service and check if it is alive.
+            If the service was restarted, this call will resynchronize the proxy automatically.
+            </summary>
+            <returns>True, if the service is alive, otherwise false</returns>
+        </member>
+        <member name="M:Asm.As.Oib.DisplayService.Proxy.Architecture.Objects.DisplayServiceClient.Dispose">
+            <summary>
+            Disposes of this object instance.
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Proxy.ProxyEndpointHelper.CheckAliveFrequency">
+            <summary>
+            Gets or sets the check alive frequency in ms.
+            This value must be greater or equal to 10 seconds (10000) and less or equal to 30 minutes (1800000)
+            In case setter has not been called yet, reads the value from the app.config file 
+            app settings section from key "Asm.As.Oib.DisplayService.Proxy.CheckAliveFrequency"
+            The default value is 1 minute (60000).
+            </summary>
+            <value>The check alive frequency in ms.</value>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Proxy.ProxyEndpointHelper.ClientCertificateValue">
+            <summary>
+            Something like "CN=ASM.SW.Client"
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Proxy.ProxyEndpointHelper.ClientCertificateCommonName">
+            <summary>
+            Something like "ASM.SW.Client"
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Proxy.ProxyEndpointHelper.ClientCertificateStoreLocation">
+            <summary>
+            StoreLocation.LocalMachine or StoreLocation.CurrentUser
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Proxy.ProxyEndpointHelper.ClientCertificateX509FindType">
+            <summary>
+            One of the X509FindType enum values (e.g. X509FindType.FindBySubjectDistinguishedName). The CallbackCertificateValue must match 
+            </summary>
+        </member>
+        <member name="P:Asm.As.Oib.DisplayService.Proxy.ProxyEndpointHelper.ClientCertificateStoreName">
+            <summary>
+            StoreName (typically StoreName.My)
+            </summary>
+        </member>
+    </members>
+</doc>

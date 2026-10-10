@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:tns="http://www.siplace.com/OIB/2019/11/MaintenanceData/Contracts/Service" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" targetNamespace="http://www.siplace.com/OIB/2019/11/MaintenanceData/Contracts/Service" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.siplace.com/OIB/2019/11/MaintenanceData/Contracts/Service/Imports">
+      <xsd:import namespace="http://www.siplace.com/OIB/2019/11/MaintenanceData/Contracts/Message" />
+      <xsd:import namespace="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Message" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import namespace="http://www.siplace.com/OIB/2019/11/MaintenanceData/Contracts/Data" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/Asm.As.OIB.MaintenanceDataInterface.Contracts.Data" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/Asm.As.OIB.MaintenanceDataInterface.Contracts.Fault" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="MaintenanceDataRequest">
+    <wsdl:part name="parameters" xmlns:q1="http://www.siplace.com/OIB/2019/11/MaintenanceData/Contracts/Message" element="q1:MaintenanceDataRequest" />
+  </wsdl:message>
+  <wsdl:message name="MaintenanceDataRequest_Headers">
+    <wsdl:part name="MessageId" xmlns:q2="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Message" element="q2:MsgId" />
+    <wsdl:part name="SubscriptionTopic" xmlns:q3="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Message" element="q3:SubscriptionTopic" />
+  </wsdl:message>
+  <wsdl:message name="IMaintenanceDataNotifyDuplex_NewMaintenanceData_OutputMessage" />
+  <wsdl:message name="GetEquipmentConfigurationRequest">
+    <wsdl:part name="parameters" xmlns:q4="http://www.siplace.com/OIB/2019/11/MaintenanceData/Contracts/Message" element="q4:GetEquipmentConfigurationRequest" />
+  </wsdl:message>
+  <wsdl:message name="GetEquipmentConfigurationResponse">
+    <wsdl:part name="parameters" xmlns:q5="http://www.siplace.com/OIB/2019/11/MaintenanceData/Contracts/Message" element="q5:GetEquipmentConfigurationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMaintenanceDataSource_GetEquipmentConfiguration_MaintenanceDataFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q6="http://schemas.datacontract.org/2004/07/Asm.As.OIB.MaintenanceDataInterface.Contracts.Fault" element="q6:MaintenanceDataFault" />
+  </wsdl:message>
+  <wsdl:message name="GetServiceAndMaintenanceDataRequest">
+    <wsdl:part name="parameters" xmlns:q7="http://www.siplace.com/OIB/2019/11/MaintenanceData/Contracts/Message" element="q7:GetServiceAndMaintenanceDataRequest" />
+  </wsdl:message>
+  <wsdl:message name="GetServiceAndMaintenanceDataResponse">
+    <wsdl:part name="parameters" xmlns:q8="http://www.siplace.com/OIB/2019/11/MaintenanceData/Contracts/Message" element="q8:GetServiceAndMaintenanceDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMaintenanceDataSource_GetServiceAndMaintenanceData_MaintenanceDataFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q9="http://schemas.datacontract.org/2004/07/Asm.As.OIB.MaintenanceDataInterface.Contracts.Fault" element="q9:MaintenanceDataFault" />
+  </wsdl:message>
+  <wsdl:message name="GetSetupConfigurationRequest">
+    <wsdl:part name="parameters" xmlns:q10="http://www.siplace.com/OIB/2019/11/MaintenanceData/Contracts/Message" element="q10:GetSetupConfigurationRequest" />
+  </wsdl:message>
+  <wsdl:message name="GetSetupConfigurationResponse">
+    <wsdl:part name="parameters" xmlns:q11="http://www.siplace.com/OIB/2019/11/MaintenanceData/Contracts/Message" element="q11:GetSetupConfigurationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMaintenanceDataSource_GetSetupConfiguration_MaintenanceDataFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q12="http://schemas.datacontract.org/2004/07/Asm.As.OIB.MaintenanceDataInterface.Contracts.Fault" element="q12:MaintenanceDataFault" />
+  </wsdl:message>
+  <wsdl:portType name="IMaintenanceDataNotifyDuplex">
+    <wsdl:operation name="NewMaintenanceData">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2019/11/MaintenanceData/Contracts/Service\NewMaintenanceData" name="MaintenanceDataRequest" message="tns:MaintenanceDataRequest" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2019/11/MaintenanceData/Contracts/Service/IMaintenanceDataNotifyDuplex/NewMaintenanceDataResponse" message="tns:IMaintenanceDataNotifyDuplex_NewMaintenanceData_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IMaintenanceDataNotifyOneWay">
+    <wsdl:operation name="NewMaintenanceData">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2019/11/MaintenanceData/Contracts/Service\NewMaintenanceData" name="MaintenanceDataRequest" message="tns:MaintenanceDataRequest" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IMaintenanceDataSource">
+    <wsdl:operation name="GetEquipmentConfiguration">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2019/11/MaintenanceData/Contracts/Service/IMaintenanceDataSource/GetEquipmentConfiguration" name="GetEquipmentConfigurationRequest" message="tns:GetEquipmentConfigurationRequest" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2019/11/MaintenanceData/Contracts/Service/IMaintenanceDataSource/GetEquipmentConfigurationResponse" name="GetEquipmentConfigurationResponse" message="tns:GetEquipmentConfigurationResponse" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2019/11/MaintenanceData/Contracts/Service/IMaintenanceDataSource/GetEquipmentConfigurationMaintenanceDataFaultFault" name="MaintenanceDataFaultFault" message="tns:IMaintenanceDataSource_GetEquipmentConfiguration_MaintenanceDataFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetServiceAndMaintenanceData">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2019/11/MaintenanceData/Contracts/Service/IMaintenanceDataSource/GetServiceAndMaintenanceData" name="GetServiceAndMaintenanceDataRequest" message="tns:GetServiceAndMaintenanceDataRequest" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2019/11/MaintenanceData/Contracts/Service/IMaintenanceDataSource/GetServiceAndMaintenanceDataResponse" name="GetServiceAndMaintenanceDataResponse" message="tns:GetServiceAndMaintenanceDataResponse" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2019/11/MaintenanceData/Contracts/Service/IMaintenanceDataSource/GetServiceAndMaintenanceDataMaintenanceDataFaultFault" name="MaintenanceDataFaultFault" message="tns:IMaintenanceDataSource_GetServiceAndMaintenanceData_MaintenanceDataFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSetupConfiguration">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2019/11/MaintenanceData/Contracts/Service/IMaintenanceDataSource/GetSetupConfiguration" name="GetSetupConfigurationRequest" message="tns:GetSetupConfigurationRequest" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2019/11/MaintenanceData/Contracts/Service/IMaintenanceDataSource/GetSetupConfigurationResponse" name="GetSetupConfigurationResponse" message="tns:GetSetupConfigurationResponse" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2019/11/MaintenanceData/Contracts/Service/IMaintenanceDataSource/GetSetupConfigurationMaintenanceDataFaultFault" name="MaintenanceDataFaultFault" message="tns:IMaintenanceDataSource_GetSetupConfiguration_MaintenanceDataFaultFault_FaultMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DefaultBinding_IMaintenanceDataNotifyDuplex" type="tns:IMaintenanceDataNotifyDuplex">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="NewMaintenanceData">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2019/11/MaintenanceData/Contracts/Service\NewMaintenanceData" style="document" />
+      <wsdl:input name="MaintenanceDataRequest">
+        <soap:header message="tns:MaintenanceDataRequest_Headers" part="MessageId" use="literal" />
+        <soap:header message="tns:MaintenanceDataRequest_Headers" part="SubscriptionTopic" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DefaultBinding_IMaintenanceDataNotifyOneWay" type="tns:IMaintenanceDataNotifyOneWay">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="NewMaintenanceData">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2019/11/MaintenanceData/Contracts/Service\NewMaintenanceData" style="document" />
+      <wsdl:input name="MaintenanceDataRequest">
+        <soap:header message="tns:MaintenanceDataRequest_Headers" part="MessageId" use="literal" />
+        <soap:header message="tns:MaintenanceDataRequest_Headers" part="SubscriptionTopic" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DefaultBinding_IMaintenanceDataSource" type="tns:IMaintenanceDataSource">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetEquipmentConfiguration">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2019/11/MaintenanceData/Contracts/Service/IMaintenanceDataSource/GetEquipmentConfiguration" style="document" />
+      <wsdl:input name="GetEquipmentConfigurationRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetEquipmentConfigurationResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="MaintenanceDataFaultFault">
+        <soap:fault name="MaintenanceDataFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetServiceAndMaintenanceData">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2019/11/MaintenanceData/Contracts/Service/IMaintenanceDataSource/GetServiceAndMaintenanceData" style="document" />
+      <wsdl:input name="GetServiceAndMaintenanceDataRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetServiceAndMaintenanceDataResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="MaintenanceDataFaultFault">
+        <soap:fault name="MaintenanceDataFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetSetupConfiguration">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2019/11/MaintenanceData/Contracts/Service/IMaintenanceDataSource/GetSetupConfiguration" style="document" />
+      <wsdl:input name="GetSetupConfigurationRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetSetupConfigurationResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="MaintenanceDataFaultFault">
+        <soap:fault name="MaintenanceDataFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+</wsdl:definitions>

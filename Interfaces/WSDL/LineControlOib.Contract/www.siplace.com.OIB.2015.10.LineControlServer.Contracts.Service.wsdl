@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:tns="http://www.siplace.com/OIB/2015/10/LineControlServer/Contracts/Service" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" targetNamespace="http://www.siplace.com/OIB/2015/10/LineControlServer/Contracts/Service" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.siplace.com/OIB/2015/10/LineControlServer/Contracts/Service/Imports">
+      <xsd:import namespace="http://www.siplace.com/OIB/2015/10/LineControlServer/Contracts/Service" />
+      <xsd:import namespace="http://www.siplace.com/OIB/2015/10/LineControlServer/Contracts/Fault" />
+      <xsd:import namespace="http://www.siplace.com/OIB/2015/10/LineControlServer/Contracts/MESService" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import namespace="http://www.siplace.com/OIB/2015/10/LineControlServer/Contracts/Data" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ILineControlServer_Ping_InputMessage">
+    <wsdl:part name="parameters" element="tns:Ping" />
+  </wsdl:message>
+  <wsdl:message name="ILineControlServer_Ping_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PingResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILineControlServer_Ping_LineControlServerFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q1="http://www.siplace.com/OIB/2015/10/LineControlServer/Contracts/Fault" element="q1:LineControlServerFault" />
+  </wsdl:message>
+  <wsdl:portType name="ILineControlServer">
+    <wsdl:operation name="Ping">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2015/10/LineControlServer/Contracts/Service/ILineControlServer/Ping" message="tns:ILineControlServer_Ping_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2015/10/LineControlServer/Contracts/Service/ILineControlServer/PingResponse" message="tns:ILineControlServer_Ping_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2015/10/LineControlServer/Contracts/Service/ILineControlServer/PingLineControlServerFaultFault" name="LineControlServerFaultFault" message="tns:ILineControlServer_Ping_LineControlServerFaultFault_FaultMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DefaultBinding_ILineControlServer" type="tns:ILineControlServer">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Ping">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2015/10/LineControlServer/Contracts/Service/ILineControlServer/Ping" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="LineControlServerFaultFault">
+        <soap:fault name="LineControlServerFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+</wsdl:definitions>

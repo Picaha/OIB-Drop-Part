@@ -1,0 +1,1122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.wbf.org/xml/b2mml-v0400" elementFormDefault="qualified" targetNamespace="http://www.wbf.org/xml/b2mml-v0400" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="GetProductionCapabilityType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="ApplicationArea" type="tns:TransApplicationAreaType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DataArea">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="Get" type="tns:ArrayOfToken" />
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="ProductionCapability" type="tns:ProductionCapabilityType" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="releaseID" type="xs:normalizedString" />
+    <xs:attribute name="versionID" type="xs:normalizedString" />
+  </xs:complexType>
+  <xs:complexType name="TransApplicationAreaType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Sender" type="tns:TransSenderType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CreationDateTime" type="tns:DateTimeType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Signature" type="tns:TransSignatureType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="BODID" type="tns:IdentifierType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="UserArea" type="tns:TransUserAreaType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TransSenderType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="LogicalID" type="tns:IdentifierType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ComponentID" type="tns:IdentifierType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TaskID" type="tns:IdentifierType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ReferenceID" type="tns:IdentifierType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ConfirmationCode" type="tns:TransConfirmationCodeType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="AuthorizationID" type="tns:IdentifierType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="IdentifierType">
+    <xs:simpleContent>
+      <xs:extension base="xs:normalizedString">
+        <xs:attribute name="schemeID" type="xs:normalizedString" />
+        <xs:attribute name="schemeName" type="xs:string" />
+        <xs:attribute name="schemeAgencyID" type="xs:normalizedString" />
+        <xs:attribute name="schemeAgencyName" type="xs:string" />
+        <xs:attribute name="schemeVersionID" type="xs:normalizedString" />
+        <xs:attribute name="schemeDataURI" type="xs:anyURI" />
+        <xs:attribute name="schemeURI" type="xs:anyURI" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="BillOfResourcesIDType">
+    <xs:simpleContent>
+      <xs:extension base="tns:IdentifierType" />
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="BillOfMaterialIDType">
+    <xs:simpleContent>
+      <xs:extension base="tns:IdentifierType" />
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="BillOfMaterialsIDType">
+    <xs:simpleContent>
+      <xs:extension base="tns:IdentifierType" />
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="CertificateOfAnalysisReferenceType">
+    <xs:simpleContent>
+      <xs:extension base="tns:IdentifierType" />
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="EquipmentCapabilityTestSpecificationIDType">
+    <xs:simpleContent>
+      <xs:extension base="tns:IdentifierType" />
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="EquipmentClassIDType">
+    <xs:simpleContent>
+      <xs:extension base="tns:IdentifierType" />
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="EquipmentIDType">
+    <xs:simpleContent>
+      <xs:extension base="tns:IdentifierType" />
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="MaintenanceRequestIDType">
+    <xs:simpleContent>
+      <xs:extension base="tns:IdentifierType" />
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="MaintenanceResponseIDType">
+    <xs:simpleContent>
+      <xs:extension base="tns:IdentifierType" />
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="MaintenanceWorkOrderIDType">
+    <xs:simpleContent>
+      <xs:extension base="tns:IdentifierType" />
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="MaterialClassIDType">
+    <xs:simpleContent>
+      <xs:extension base="tns:IdentifierType" />
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="MaterialDefinitionIDType">
+    <xs:simpleContent>
+      <xs:extension base="tns:IdentifierType" />
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="MaterialLotIDType">
+    <xs:simpleContent>
+      <xs:extension base="tns:IdentifierType" />
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="MaterialSubLotIDType">
+    <xs:simpleContent>
+      <xs:extension base="tns:IdentifierType" />
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="ParameterIDType">
+    <xs:simpleContent>
+      <xs:extension base="tns:IdentifierType" />
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="PersonnelClassIDType">
+    <xs:simpleContent>
+      <xs:extension base="tns:IdentifierType" />
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="PersonIDType">
+    <xs:simpleContent>
+      <xs:extension base="tns:IdentifierType" />
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="PersonNameType">
+    <xs:simpleContent>
+      <xs:extension base="tns:IdentifierType" />
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="ProcessSegmentIDType">
+    <xs:simpleContent>
+      <xs:extension base="tns:IdentifierType" />
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="ProductionScheduleIDType">
+    <xs:simpleContent>
+      <xs:extension base="tns:IdentifierType" />
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="ProductProductionRuleIDType">
+    <xs:simpleContent>
+      <xs:extension base="tns:IdentifierType" />
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="ProductProductionRuleType">
+    <xs:simpleContent>
+      <xs:extension base="tns:IdentifierType" />
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="ProductionRequestIDType">
+    <xs:simpleContent>
+      <xs:extension base="tns:IdentifierType" />
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="ProductSegmentIDType">
+    <xs:simpleContent>
+      <xs:extension base="tns:IdentifierType" />
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="PropertyIDType">
+    <xs:simpleContent>
+      <xs:extension base="tns:IdentifierType" />
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="QAMaterialTestSpecificationIDType">
+    <xs:simpleContent>
+      <xs:extension base="tns:IdentifierType" />
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="QualificationTestSpecificationIDType">
+    <xs:simpleContent>
+      <xs:extension base="tns:IdentifierType" />
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="RequestorType">
+    <xs:simpleContent>
+      <xs:extension base="tns:IdentifierType" />
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="ResponsiblePersonType">
+    <xs:simpleContent>
+      <xs:extension base="tns:IdentifierType" />
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="ReviewerType">
+    <xs:simpleContent>
+      <xs:extension base="tns:IdentifierType" />
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="StorageLocationType">
+    <xs:simpleContent>
+      <xs:extension base="tns:IdentifierType" />
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="VersionType">
+    <xs:simpleContent>
+      <xs:extension base="tns:IdentifierType" />
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="TransConfirmationCodeType">
+    <xs:simpleContent>
+      <xs:extension base="tns:CodeType" />
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="CodeType">
+    <xs:simpleContent>
+      <xs:extension base="xs:normalizedString">
+        <xs:attribute name="listID" type="xs:normalizedString" />
+        <xs:attribute name="listAgencyID" type="xs:normalizedString" />
+        <xs:attribute name="listAgencyName" type="xs:string" />
+        <xs:attribute name="listName" type="xs:string" />
+        <xs:attribute name="listVersionID" type="xs:normalizedString" />
+        <xs:attribute name="name" type="xs:string" />
+        <xs:attribute name="languageID" type="xs:language" />
+        <xs:attribute name="listURI" type="xs:anyURI" />
+        <xs:attribute name="listSchemeURI" type="xs:anyURI" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="CapabilityType1Type">
+    <xs:simpleContent>
+      <xs:extension base="tns:CodeType" />
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="CapabilityTypeType">
+    <xs:simpleContent>
+      <xs:extension base="tns:CapabilityType1Type">
+        <xs:attribute name="OtherValue" type="xs:string" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="CauseType">
+    <xs:simpleContent>
+      <xs:extension base="tns:CodeType" />
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="ConsumableType">
+    <xs:simpleContent>
+      <xs:extension base="tns:CodeType" />
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="CorrectionType">
+    <xs:simpleContent>
+      <xs:extension base="tns:CodeType" />
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="DataType1Type">
+    <xs:simpleContent>
+      <xs:extension base="tns:CodeType" />
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="DataTypeType">
+    <xs:simpleContent>
+      <xs:extension base="tns:DataType1Type">
+        <xs:attribute name="OtherValue" type="xs:string" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="Dependency1Type">
+    <xs:simpleContent>
+      <xs:extension base="tns:CodeType" />
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="DependencyType">
+    <xs:simpleContent>
+      <xs:extension base="tns:Dependency1Type">
+        <xs:attribute name="OtherValue" type="xs:string" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="EquipmentElementLevel1Type">
+    <xs:simpleContent>
+      <xs:extension base="tns:CodeType" />
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="EquipmentElementLevelType">
+    <xs:simpleContent>
+      <xs:extension base="tns:EquipmentElementLevel1Type">
+        <xs:attribute name="OtherValue" type="xs:string" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="MaterialUse1Type">
+    <xs:simpleContent>
+      <xs:extension base="tns:CodeType" />
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="MaterialUseType">
+    <xs:simpleContent>
+      <xs:extension base="tns:MaterialUse1Type">
+        <xs:attribute name="OtherValue" type="xs:string" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="OtherDependencyType">
+    <xs:simpleContent>
+      <xs:extension base="tns:CodeType" />
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="ProblemType">
+    <xs:simpleContent>
+      <xs:extension base="tns:CodeType" />
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="ReasonType">
+    <xs:simpleContent>
+      <xs:extension base="tns:CodeType" />
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="RequestState1Type">
+    <xs:simpleContent>
+      <xs:extension base="tns:CodeType" />
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="RequestStateType">
+    <xs:simpleContent>
+      <xs:extension base="tns:RequestState1Type">
+        <xs:attribute name="OtherValue" type="xs:string" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="RequiredByRequestedSegmentResponse1Type">
+    <xs:simpleContent>
+      <xs:extension base="tns:CodeType" />
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="RequiredByRequestedSegmentResponseType">
+    <xs:simpleContent>
+      <xs:extension base="tns:RequiredByRequestedSegmentResponse1Type">
+        <xs:attribute name="OtherValue" type="xs:string" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="ResourcesType">
+    <xs:simpleContent>
+      <xs:extension base="tns:CodeType" />
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="ResponseState1Type">
+    <xs:simpleContent>
+      <xs:extension base="tns:CodeType" />
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="ResponseStateType">
+    <xs:simpleContent>
+      <xs:extension base="tns:ResponseState1Type">
+        <xs:attribute name="OtherValue" type="xs:string" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="StatusType">
+    <xs:simpleContent>
+      <xs:extension base="tns:CodeType" />
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="UnitOfMeasureType">
+    <xs:simpleContent>
+      <xs:extension base="tns:CodeType" />
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="DateTimeType">
+    <xs:simpleContent>
+      <xs:extension base="xs:dateTime">
+        <xs:attribute name="format" type="xs:string" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="ActualFinishTimeType">
+    <xs:simpleContent>
+      <xs:extension base="tns:DateTimeType" />
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="ActualStartTimeType">
+    <xs:simpleContent>
+      <xs:extension base="tns:DateTimeType" />
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="ActualEndTimeType">
+    <xs:simpleContent>
+      <xs:extension base="tns:DateTimeType" />
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="EarliestStartTimeType">
+    <xs:simpleContent>
+      <xs:extension base="tns:DateTimeType" />
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="EndTimeType">
+    <xs:simpleContent>
+      <xs:extension base="tns:DateTimeType" />
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="ExpirationTimeType">
+    <xs:simpleContent>
+      <xs:extension base="tns:DateTimeType" />
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="LatestEndTimeType">
+    <xs:simpleContent>
+      <xs:extension base="tns:DateTimeType" />
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="PlannedFinishTimeType">
+    <xs:simpleContent>
+      <xs:extension base="tns:DateTimeType" />
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="PlannedStartTimeType">
+    <xs:simpleContent>
+      <xs:extension base="tns:DateTimeType" />
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="PublishedDateType">
+    <xs:simpleContent>
+      <xs:extension base="tns:DateTimeType" />
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="RequestedCompletionDateType">
+    <xs:simpleContent>
+      <xs:extension base="tns:DateTimeType" />
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="SubmissionDateType">
+    <xs:simpleContent>
+      <xs:extension base="tns:DateTimeType" />
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="StartTimeType">
+    <xs:simpleContent>
+      <xs:extension base="tns:DateTimeType" />
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="StatusTimeType">
+    <xs:simpleContent>
+      <xs:extension base="tns:DateTimeType" />
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="TestDateTimeType">
+    <xs:simpleContent>
+      <xs:extension base="tns:DateTimeType" />
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="TransSignatureType">
+    <xs:sequence>
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+    <xs:attribute name="qualifyingAgencyID" type="xs:normalizedString" />
+  </xs:complexType>
+  <xs:complexType name="TransUserAreaType">
+    <xs:sequence>
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfToken">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Expression" type="xs:token" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ProductionCapabilityType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="ID" type="tns:IdentifierType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Description" type="tns:DescriptionType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Location" type="tns:LocationType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PublishedDate" type="tns:PublishedDateType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CapabilityType" type="tns:CapabilityTypeType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Reason" type="tns:ReasonType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EquipmentElementLevel" type="tns:EquipmentElementLevelType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="StartTime" type="tns:StartTimeType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="EndTime" type="tns:EndTimeType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PersonnelCapability" type="tns:PersonnelCapabilityType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EquipmentCapability" type="tns:EquipmentCapabilityType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MaterialCapability" type="tns:MaterialCapabilityType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ProcessSegmentCapability" type="tns:ProcessSegmentCapabilityType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Any" type="tns:AnyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DescriptionType">
+    <xs:simpleContent>
+      <xs:extension base="tns:TextType" />
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="TextType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="languageID" type="xs:language" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="LocationType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="EquipmentID" type="tns:EquipmentIDType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="EquipmentElementLevel" type="tns:EquipmentElementLevelType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Location" type="tns:LocationType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Any" type="tns:AnyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AnyType">
+    <xs:sequence>
+      <xs:any minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PersonnelCapabilityType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="PersonnelClassID" type="tns:PersonnelClassIDType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PersonID" type="tns:PersonIDType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Description" type="tns:DescriptionType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CapabilityType" type="tns:CapabilityTypeType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Reason" type="tns:ReasonType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EquipmentElementLevel" type="tns:EquipmentElementLevelType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="StartTime" type="tns:StartTimeType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="EndTime" type="tns:EndTimeType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Location" type="tns:LocationType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Quantity" type="tns:QuantityValueType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PersonnelCapabilityProperty" type="tns:PersonnelCapabilityPropertyType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Any" type="tns:AnyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="QuantityValueType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="QuantityString" type="tns:QuantityStringType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DataType" type="tns:DataTypeType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="UnitOfMeasure" type="tns:UnitOfMeasureType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Key" type="tns:IdentifierType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Any" type="tns:AnyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="QuantityStringType">
+    <xs:simpleContent>
+      <xs:extension base="tns:AnyGenericValueType" />
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="AnyGenericValueType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="currancyID" type="xs:normalizedString" />
+        <xs:attribute name="currencyCodeListVersionID" type="xs:normalizedString" />
+        <xs:attribute name="encodingCode" type="xs:normalizedString" />
+        <xs:attribute name="format" type="xs:string" />
+        <xs:attribute name="characterSetCode" type="xs:normalizedString" />
+        <xs:attribute name="listID" type="xs:normalizedString" />
+        <xs:attribute name="listAgencyID" type="xs:normalizedString" />
+        <xs:attribute name="listAgencyName" type="xs:string" />
+        <xs:attribute name="listName" type="xs:string" />
+        <xs:attribute name="listVersionID" type="xs:normalizedString" />
+        <xs:attribute name="languageID" type="xs:language" />
+        <xs:attribute name="languageLocaleID" type="xs:normalizedString" />
+        <xs:attribute name="listURI" type="xs:anyURI" />
+        <xs:attribute name="listSchemaURI" type="xs:anyURI" />
+        <xs:attribute name="mimeCode" type="xs:normalizedString" />
+        <xs:attribute name="name" type="xs:string" />
+        <xs:attribute name="schemaID" type="xs:normalizedString" />
+        <xs:attribute name="schemaName" type="xs:string" />
+        <xs:attribute name="schemaAgencyID" type="xs:normalizedString" />
+        <xs:attribute name="schemaAgencyName" type="xs:string" />
+        <xs:attribute name="schemaVersionID" type="xs:normalizedString" />
+        <xs:attribute name="schemaDataURI" type="xs:anyURI" />
+        <xs:attribute name="schemaURI" type="xs:anyURI" />
+        <xs:attribute name="unitCode" type="xs:normalizedString" />
+        <xs:attribute name="unitCodeListID" type="xs:normalizedString" />
+        <xs:attribute name="unitCodeListAgencyID" type="xs:normalizedString" />
+        <xs:attribute name="unitCodeListAgencyName" type="xs:string" />
+        <xs:attribute name="unitCodeListVersionID" type="xs:normalizedString" />
+        <xs:attribute name="filename" type="xs:string" />
+        <xs:attribute name="uri" type="xs:anyURI" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="ValueStringType">
+    <xs:simpleContent>
+      <xs:extension base="tns:AnyGenericValueType" />
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="PersonnelCapabilityPropertyType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="ID" type="tns:IdentifierType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Description" type="tns:DescriptionType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Value" type="tns:ValueType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Quantity" type="tns:QuantityValueType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Any" type="tns:AnyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ValueType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="ValueString" type="tns:ValueStringType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DataType" type="tns:DataTypeType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="UnitOfMeasure" type="tns:UnitOfMeasureType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Key" type="tns:IdentifierType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Any" type="tns:AnyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="EquipmentCapabilityType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="EquipmentClassID" type="tns:EquipmentClassIDType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="EquipmentID" type="tns:EquipmentIDType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Description" type="tns:DescriptionType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CapabilityType" type="tns:CapabilityTypeType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Reason" type="tns:ReasonType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EquipmentElementLevel" type="tns:EquipmentElementLevelType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="StartTime" type="tns:StartTimeType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="EndTime" type="tns:EndTimeType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Location" type="tns:LocationType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Quantity" type="tns:QuantityValueType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EquipmentCapabilityProperty" type="tns:EquipmentCapabilityPropertyType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Any" type="tns:AnyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="EquipmentCapabilityPropertyType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="ID" type="tns:IdentifierType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Description" type="tns:DescriptionType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Value" type="tns:ValueType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Quantity" type="tns:QuantityValueType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Any" type="tns:AnyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="MaterialCapabilityType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="MaterialClassID" type="tns:MaterialClassIDType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MaterialDefinitionID" type="tns:MaterialDefinitionIDType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MaterialLotID" type="tns:MaterialLotIDType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MaterialSubLotID" type="tns:MaterialSubLotIDType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Description" type="tns:DescriptionType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CapabilityType" type="tns:CapabilityTypeType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Reason" type="tns:ReasonType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EquipmentElementLevel" type="tns:EquipmentElementLevelType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MaterialUse" type="tns:MaterialUseType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="StartTime" type="tns:StartTimeType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="EndTime" type="tns:EndTimeType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Location" type="tns:LocationType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Quantity" type="tns:QuantityValueType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MaterialCapabilityProperty" type="tns:MaterialCapabilityPropertyType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Any" type="tns:AnyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="MaterialCapabilityPropertyType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="ID" type="tns:IdentifierType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Description" type="tns:DescriptionType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Value" type="tns:ValueType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Quantity" type="tns:QuantityValueType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MaterialUse" type="tns:MaterialUseType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Any" type="tns:AnyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ProcessSegmentCapabilityType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="ID" type="tns:IdentifierType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Description" type="tns:DescriptionType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ProcessSegmentID" type="tns:ProcessSegmentIDType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CapabilityType" type="tns:CapabilityTypeType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Reason" type="tns:ReasonType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Location" type="tns:LocationType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EquipmentElementLevel" type="tns:EquipmentElementLevelType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="StartTime" type="tns:StartTimeType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="EndTime" type="tns:EndTimeType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PersonnelCapability" type="tns:PersonnelCapabilityType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EquipmentCapability" type="tns:EquipmentCapabilityType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MaterialCapability" type="tns:MaterialCapabilityType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ProcessSegmentCapability" type="tns:ProcessSegmentCapabilityType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Any" type="tns:AnyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ShowProductionCapabilityType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="ApplicationArea" type="tns:TransApplicationAreaType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DataArea">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="Show" type="tns:TransShowType" />
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="ProductionCapability" type="tns:ProductionCapabilityType" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="releaseID" type="xs:normalizedString" />
+    <xs:attribute name="versionID" type="xs:normalizedString" />
+  </xs:complexType>
+  <xs:complexType name="TransShowType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="OriginalApplicationArea" type="tns:TransApplicationAreaType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ResponseCriteria" type="tns:TransResponseCriteriaType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TransResponseCriteriaType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="ResponseExpression" type="tns:TransExpressionType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TransExpressionType">
+    <xs:simpleContent>
+      <xs:extension base="tns:TransExpression1Type">
+        <xs:attribute name="actionCode" type="xs:string" />
+        <xs:attribute name="expressionLanguage" type="xs:token" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="TransExpression1Type">
+    <xs:simpleContent>
+      <xs:extension base="xs:token" />
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="ProcessProductionScheduleType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="ApplicationArea" type="tns:TransApplicationAreaType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DataArea">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="Process" type="tns:TransProcessType" />
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="ProductionSchedule" type="tns:ProductionScheduleType" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="releaseID" type="xs:normalizedString" />
+    <xs:attribute name="versionID" type="xs:normalizedString" />
+  </xs:complexType>
+  <xs:complexType name="TransProcessType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="ActionCriteria" type="tns:ArrayOfTransExpressionType" />
+    </xs:sequence>
+    <xs:attribute name="acknowledgeCode" type="tns:TransResponseCodeType" />
+  </xs:complexType>
+  <xs:complexType name="ArrayOfTransExpressionType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ActionExpression" type="tns:TransExpressionType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="TransResponseCodeType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Always" />
+      <xs:enumeration value="OnError" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ProductionScheduleType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="ID" type="tns:IdentifierType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Description" type="tns:DescriptionType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Location" type="tns:LocationType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PublishedDate" type="tns:PublishedDateType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="StartTime" type="tns:StartTimeType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="EndTime" type="tns:EndTimeType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="EquipmentElementLevel" type="tns:EquipmentElementLevelType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ProductionRequest" type="tns:ProductionRequestType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ScheduleState" type="tns:RequestStateType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Any" type="tns:AnyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ProductionRequestType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="ID" type="tns:IdentifierType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Description" type="tns:DescriptionType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ProductProductionRuleID" type="tns:ProductProductionRuleIDType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Location" type="tns:LocationType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="StartTime" type="tns:StartTimeType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="EndTime" type="tns:EndTimeType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Priority" type="tns:PriorityType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SegmentRequirement" type="tns:SegmentRequirementType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SegmentResponse" type="tns:SegmentResponseType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="RequestState" type="tns:RequestStateType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Any" type="tns:AnyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PriorityType">
+    <xs:simpleContent>
+      <xs:extension base="tns:NumericType" />
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="NumericType">
+    <xs:simpleContent>
+      <xs:extension base="xs:decimal" />
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="RequestedPriorityType">
+    <xs:simpleContent>
+      <xs:extension base="tns:NumericType" />
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="SegmentRequirementType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="ID" type="tns:IdentifierType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ProductSegmentID" type="tns:ProductSegmentIDType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ProcessSegmentID" type="tns:ProcessSegmentIDType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Description" type="tns:DescriptionType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Location" type="tns:LocationType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="EarliestStartTime" type="tns:EarliestStartTimeType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="LatestEndTime" type="tns:LatestEndTimeType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Duration" type="xs:duration" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ProductionParameter" type="tns:ProductionParameterType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PersonnelRequirement" type="tns:PersonnelRequirementType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EquipmentRequirement" type="tns:EquipmentRequirementType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MaterialRequirement" type="tns:MaterialRequirementType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MaterialProducedRequirement" type="tns:MaterialProducedRequirementType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MaterialConsumedRequirement" type="tns:MaterialConsumedRequirementType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ConsumableExpectedRequirement" type="tns:ConsumableExpectedRequirementType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SegmentRequirement" type="tns:SegmentRequirementType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="RequiredByRequestedSegmentResponse" type="tns:RequiredByRequestedSegmentResponseType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="SegmentState" type="tns:RequestStateType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Any" type="tns:AnyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ProductionParameterType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="ProductSegmentID" type="tns:ProductSegmentIDType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ProcessSegmentID" type="tns:ProcessSegmentIDType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Parameter" type="tns:ParameterType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Any" type="tns:AnyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ParameterType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="ID" type="tns:IdentifierType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Value" type="tns:ValueType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Description" type="tns:DescriptionType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Parameter" type="tns:ParameterType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Any" type="tns:AnyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PersonnelRequirementType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="PersonnelClassID" type="tns:PersonnelClassIDType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PersonID" type="tns:PersonIDType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Description" type="tns:DescriptionType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Location" type="tns:LocationType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Quantity" type="tns:QuantityValueType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PersonnelRequirementProperty" type="tns:PersonnelRequirementPropertyType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="RequiredByRequestedSegmentResponse" type="tns:RequiredByRequestedSegmentResponseType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Any" type="tns:AnyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PersonnelRequirementPropertyType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="ID" type="tns:IdentifierType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Description" type="tns:DescriptionType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Value" type="tns:ValueType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Quantity" type="tns:QuantityValueType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Any" type="tns:AnyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="EquipmentRequirementType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="EquipmentClassID" type="tns:EquipmentClassIDType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="EquipmentID" type="tns:EquipmentIDType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Description" type="tns:DescriptionType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Location" type="tns:LocationType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Quantity" type="tns:QuantityValueType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EquipmentRequirementProperty" type="tns:EquipmentRequirementPropertyType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="RequiredByRequestedSegmentResponse" type="tns:RequiredByRequestedSegmentResponseType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Any" type="tns:AnyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="EquipmentRequirementPropertyType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="ID" type="tns:IdentifierType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Description" type="tns:DescriptionType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Value" type="tns:ValueType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Quantity" type="tns:QuantityValueType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Any" type="tns:AnyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="MaterialRequirementType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MaterialClassID" type="tns:MaterialClassIDType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MaterialDefinitionID" type="tns:MaterialDefinitionIDType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MaterialLotID" type="tns:MaterialLotIDType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MaterialSubLotID" type="tns:MaterialSubLotIDType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Description" type="tns:DescriptionType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Location" type="tns:LocationType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MaterialUse" type="tns:MaterialUseType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Quantity" type="tns:QuantityValueType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MaterialRequirementProperty" type="tns:MaterialRequirementPropertyType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="RequiredByRequestedSegmentResponse" type="tns:RequiredByRequestedSegmentResponseType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Any" type="tns:AnyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="MaterialRequirementPropertyType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="ID" type="tns:IdentifierType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Description" type="tns:DescriptionType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Value" type="tns:ValueType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Quantity" type="tns:QuantityValueType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Any" type="tns:AnyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="MaterialProducedRequirementType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MaterialClassID" type="tns:MaterialClassIDType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MaterialDefinitionID" type="tns:MaterialDefinitionIDType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MaterialLotID" type="tns:MaterialLotIDType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MaterialSubLotID" type="tns:MaterialSubLotIDType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Description" type="tns:DescriptionType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Location" type="tns:LocationType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Quantity" type="tns:QuantityValueType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MaterialProducedRequirementProperty" type="tns:MaterialProducedRequirementPropertyType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="RequiredByRequestedSegmentResponse" type="tns:RequiredByRequestedSegmentResponseType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Any" type="tns:AnyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="MaterialProducedRequirementPropertyType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="ID" type="tns:IdentifierType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Description" type="tns:DescriptionType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Value" type="tns:ValueType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Quantity" type="tns:QuantityValueType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Any" type="tns:AnyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="MaterialConsumedRequirementType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MaterialClassID" type="tns:MaterialClassIDType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MaterialDefinitionID" type="tns:MaterialDefinitionIDType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MaterialLotID" type="tns:MaterialLotIDType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MaterialSubLotID" type="tns:MaterialSubLotIDType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Description" type="tns:DescriptionType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Location" type="tns:LocationType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Quantity" type="tns:QuantityValueType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MaterialConsumedRequirementProperty" type="tns:MaterialConsumedRequirementPropertyType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="RequiredByRequestedSegmentResponse" type="tns:RequiredByRequestedSegmentResponseType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Any" type="tns:AnyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="MaterialConsumedRequirementPropertyType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="ID" type="tns:IdentifierType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Description" type="tns:DescriptionType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Value" type="tns:ValueType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Quantity" type="tns:QuantityValueType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Any" type="tns:AnyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ConsumableExpectedRequirementType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MaterialClassID" type="tns:MaterialClassIDType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MaterialDefinitionID" type="tns:MaterialDefinitionIDType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Description" type="tns:DescriptionType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Location" type="tns:LocationType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Quantity" type="tns:QuantityValueType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ConsumableExpectedRequirementProperty" type="tns:ConsumableExpectedRequirementPropertyType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="RequiredByRequestedSegmentResponse" type="tns:RequiredByRequestedSegmentResponseType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Any" type="tns:AnyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ConsumableExpectedRequirementPropertyType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="ID" type="tns:IdentifierType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Description" type="tns:DescriptionType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Value" type="tns:ValueType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Quantity" type="tns:QuantityValueType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Any" type="tns:AnyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SegmentResponseType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="ID" type="tns:IdentifierType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ProcessSegmentID" type="tns:ProcessSegmentIDType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ProductSegmentID" type="tns:ProductSegmentIDType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Description" type="tns:DescriptionType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Location" type="tns:LocationType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ActualStartTime" type="tns:ActualStartTimeType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ActualEndTime" type="tns:ActualEndTimeType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ProductionData" type="tns:ProductionDataType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PersonnelActual" type="tns:PersonnelActualType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EquipmentActual" type="tns:EquipmentActualType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MaterialActual" type="tns:MaterialActualType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MaterialProducedActual" type="tns:MaterialProducedActualType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MaterialConsumedActual" type="tns:MaterialConsumedActualType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ConsumableActual" type="tns:ConsumableActualType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SegmentResponse" type="tns:SegmentResponseType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="RequiredByRequestedSegmentResponse" type="tns:RequiredByRequestedSegmentResponseType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="SegmentState" type="tns:ResponseStateType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Any" type="tns:AnyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ProductionDataType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="ID" type="tns:IdentifierType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Description" type="tns:DescriptionType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Value" type="tns:ValueType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="RequiredByRequestedSegmentResponse" type="tns:RequiredByRequestedSegmentResponseType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ProductionData" type="tns:ProductionDataType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Any" type="tns:AnyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PersonnelActualType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="PersonnelClassID" type="tns:PersonnelClassIDType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PersonID" type="tns:PersonIDType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Description" type="tns:DescriptionType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Location" type="tns:LocationType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Quantity" type="tns:QuantityValueType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PersonnelActualProperty" type="tns:PersonnelActualPropertyType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="RequiredByRequestedSegmentResponse" type="tns:RequiredByRequestedSegmentResponseType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Any" type="tns:AnyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PersonnelActualPropertyType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="ID" type="tns:IdentifierType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Description" type="tns:DescriptionType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Value" type="tns:ValueType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Quantity" type="tns:QuantityValueType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="RequiredByRequestedSegmentResponse" type="tns:RequiredByRequestedSegmentResponseType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Any" type="tns:AnyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="EquipmentActualType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="EquipmentClassID" type="tns:EquipmentClassIDType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="EquipmentID" type="tns:EquipmentIDType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Description" type="tns:DescriptionType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Location" type="tns:LocationType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Quantity" type="tns:QuantityValueType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EquipmentActualProperty" type="tns:EquipmentActualPropertyType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="RequiredByRequestedSegmentResponse" type="tns:RequiredByRequestedSegmentResponseType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Any" type="tns:AnyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="EquipmentActualPropertyType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="ID" type="tns:IdentifierType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Description" type="tns:DescriptionType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Value" type="tns:ValueType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Quantity" type="tns:QuantityValueType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="RequiredByRequestedSegmentResponse" type="tns:RequiredByRequestedSegmentResponseType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Any" type="tns:AnyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="MaterialActualType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MaterialClassID" type="tns:MaterialClassIDType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MaterialDefinitionID" type="tns:MaterialDefinitionIDType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MaterialLotID" type="tns:MaterialLotIDType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MaterialSubLotID" type="tns:MaterialSubLotIDType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Description" type="tns:DescriptionType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Location" type="tns:LocationType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MaterialUse" type="tns:MaterialUseType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Quantity" type="tns:QuantityValueType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MaterialActualProperty" type="tns:MaterialProducedActualPropertyType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="RequiredByRequestedSegmentResponse" type="tns:RequiredByRequestedSegmentResponseType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Any" type="tns:AnyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="MaterialProducedActualPropertyType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="ID" type="tns:IdentifierType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Description" type="tns:DescriptionType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Value" type="tns:ValueType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Quantity" type="tns:QuantityValueType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="RequiredByRequestedSegmentResponse" type="tns:RequiredByRequestedSegmentResponseType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Any" type="tns:AnyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="MaterialProducedActualType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MaterialClassID" type="tns:MaterialClassIDType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MaterialDefinitionID" type="tns:MaterialDefinitionIDType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MaterialLotID" type="tns:MaterialLotIDType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MaterialSubLotID" type="tns:MaterialSubLotIDType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Description" type="tns:DescriptionType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Location" type="tns:LocationType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Quantity" type="tns:QuantityValueType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MaterialProducedActualProperty" type="tns:MaterialProducedActualPropertyType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="RequiredByRequestedSegmentResponse" type="tns:RequiredByRequestedSegmentResponseType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Any" type="tns:AnyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="MaterialConsumedActualType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MaterialClassID" type="tns:MaterialClassIDType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MaterialDefinitionID" type="tns:MaterialDefinitionIDType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MaterialLotID" type="tns:MaterialLotIDType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MaterialSubLotID" type="tns:MaterialSubLotIDType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Description" type="tns:DescriptionType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Location" type="tns:LocationType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Quantity" type="tns:QuantityValueType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MaterialConsumedActualProperty" type="tns:MaterialConsumedActualPropertyType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="RequiredByRequestedSegmentResponse" type="tns:RequiredByRequestedSegmentResponseType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Any" type="tns:AnyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="MaterialConsumedActualPropertyType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="ID" type="tns:IdentifierType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Description" type="tns:DescriptionType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Value" type="tns:ValueType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Quantity" type="tns:QuantityValueType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="RequiredByRequestedSegmentResponse" type="tns:RequiredByRequestedSegmentResponseType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Any" type="tns:AnyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ConsumableActualType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MaterialClassID" type="tns:MaterialClassIDType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MaterialDefinitionID" type="tns:MaterialDefinitionIDType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Description" type="tns:DescriptionType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Location" type="tns:LocationType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Quantity" type="tns:QuantityValueType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ConsumableActualProperty" type="tns:ConsumableActualPropertyType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="RequiredByRequestedSegmentResponse" type="tns:RequiredByRequestedSegmentResponseType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Any" type="tns:AnyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ConsumableActualPropertyType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="ID" type="tns:IdentifierType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Description" type="tns:DescriptionType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Value" type="tns:ValueType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Quantity" type="tns:QuantityValueType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="RequiredByRequestedSegmentResponse" type="tns:RequiredByRequestedSegmentResponseType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Any" type="tns:AnyType" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

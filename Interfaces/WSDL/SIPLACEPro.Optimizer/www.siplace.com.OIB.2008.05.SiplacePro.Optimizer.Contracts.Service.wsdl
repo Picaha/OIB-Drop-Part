@@ -1,0 +1,2142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:tns="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" targetNamespace="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/Imports">
+      <xsd:import namespace="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import namespace="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import namespace="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Message" />
+      <xsd:import namespace="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Message" />
+      <xsd:import namespace="http://www.siplace.com/OIB/2008/05/Common/Contracts/Service" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IClusterOptimizerNotify2_ClusterOptimizationComplete2_InputMessage">
+    <wsdl:part name="parameters" element="tns:ClusterOptimizationComplete2" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizerNotify2_ClusterProgress2_InputMessage">
+    <wsdl:part name="parameters" element="tns:ClusterProgress2" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizerNotify2_ClusterState2_InputMessage">
+    <wsdl:part name="parameters" element="tns:ClusterState2" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizerNotify2_ClusterState2_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ClusterState2Response" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizerNotify2_ResultErrorClusterCount2_InputMessage">
+    <wsdl:part name="parameters" element="tns:ResultErrorClusterCount2" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizerNotify2_ResultSolutionCharacteristics2_InputMessage">
+    <wsdl:part name="parameters" element="tns:ResultSolutionCharacteristics2" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizerNotify2_SessionTerminated2_InputMessage">
+    <wsdl:part name="parameters" element="tns:SessionTerminated2" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizerNotify2_OptimizationComplete2_InputMessage">
+    <wsdl:part name="parameters" element="tns:OptimizationComplete2" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizerNotify2_OptimizationProgress2_InputMessage">
+    <wsdl:part name="parameters" element="tns:OptimizationProgress2" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizerNotify2_OptimizationResult2_InputMessage">
+    <wsdl:part name="parameters" element="tns:OptimizationResult2" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizerNotify2_OptimizationResult2_OutputMessage">
+    <wsdl:part name="parameters" element="tns:OptimizationResult2Response" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizerNotify2_OptimizationState2_InputMessage">
+    <wsdl:part name="parameters" element="tns:OptimizationState2" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizerNotifyArgs_ClusterOptimizationComplete3_InputMessage">
+    <wsdl:part name="parameters" element="tns:ClusterOptimizationComplete3" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizerNotifyArgs_ClusterProgress3_InputMessage">
+    <wsdl:part name="parameters" element="tns:ClusterProgress3" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizerNotifyArgs_ClusterState3_InputMessage">
+    <wsdl:part name="parameters" element="tns:ClusterState3" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizerNotifyArgs_ClusterState3_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ClusterState3Response" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizerNotifyArgs_ResultErrorClusterCount3_InputMessage">
+    <wsdl:part name="parameters" element="tns:ResultErrorClusterCount3" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizerNotifyArgs_ResultSolutionCharacteristics3_InputMessage">
+    <wsdl:part name="parameters" element="tns:ResultSolutionCharacteristics3" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizerNotifyArgs_SessionTerminated3_InputMessage">
+    <wsdl:part name="parameters" element="tns:SessionTerminated3" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizerNotifyArgs_OptimizationComplete3_InputMessage">
+    <wsdl:part name="parameters" element="tns:OptimizationComplete3" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizerNotifyArgs_OptimizationProgress3_InputMessage">
+    <wsdl:part name="parameters" element="tns:OptimizationProgress3" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizerNotifyArgs_OptimizationResult3_InputMessage">
+    <wsdl:part name="parameters" element="tns:OptimizationResult3" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizerNotifyArgs_OptimizationResult3_OutputMessage">
+    <wsdl:part name="parameters" element="tns:OptimizationResult3Response" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizerNotifyArgs_OptimizationState3_InputMessage">
+    <wsdl:part name="parameters" element="tns:OptimizationState3" />
+  </wsdl:message>
+  <wsdl:message name="OptimizerStoppedReportRequest">
+    <wsdl:part name="parameters" xmlns:q1="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Message" element="q1:OptimizerStoppedReportRequest" />
+  </wsdl:message>
+  <wsdl:message name="OptimizerStoppedReportRequest_Headers">
+    <wsdl:part name="MessageId" xmlns:q2="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Message" element="q2:MsgId" />
+    <wsdl:part name="SubscriptionTopic" xmlns:q3="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Message" element="q3:SubscriptionTopic" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizerStoppedReceiver_OptimizerStoppedReport_OutputMessage" />
+  <wsdl:message name="OptimizerStartedReportRequest">
+    <wsdl:part name="parameters" xmlns:q4="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Message" element="q4:OptimizerStartedReportRequest" />
+  </wsdl:message>
+  <wsdl:message name="OptimizerStartedReportRequest_Headers">
+    <wsdl:part name="MessageId" xmlns:q5="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Message" element="q5:MsgId" />
+    <wsdl:part name="SubscriptionTopic" xmlns:q6="http://www.siplace.com/OIB/2008/05/WS/Eventing/Contracts/Message" element="q6:SubscriptionTopic" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizerStartedReceiver_OptimizerStartedReport_OutputMessage" />
+  <wsdl:message name="IClusterOptimizer_get_CurrentUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:get_CurrentUser" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizer_get_CurrentUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:get_CurrentUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizer_get_CurrentUser_SiplaceProOptimizerFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q7="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" element="q7:SiplaceProOptimizerFault" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizer_get_MaxOIDInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:get_MaxOIDInfo" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizer_get_MaxOIDInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:get_MaxOIDInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizer_get_MaxOIDInfo_SiplaceProOptimizerFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q8="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" element="q8:SiplaceProOptimizerFault" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizer_GetConfiguration_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetConfiguration" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizer_GetConfiguration_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetConfigurationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizer_GetConfiguration_SiplaceProOptimizerFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q9="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" element="q9:SiplaceProOptimizerFault" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizer_GetConfiguration2_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetConfiguration2" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizer_GetConfiguration2_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetConfiguration2Response" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizer_GetConfiguration2_SiplaceProOptimizerFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q10="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" element="q10:SiplaceProOptimizerFault" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizer_GetConfiguration2_Long_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetConfiguration2_Long" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizer_GetConfiguration2_Long_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetConfiguration2_LongResponse" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizer_GetConfiguration2_Long_SiplaceProOptimizerFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q11="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" element="q11:SiplaceProOptimizerFault" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizer_LogonUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:LogonUser" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizer_LogonUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LogonUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizer_LogonUser_SiplaceProOptimizerFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q12="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" element="q12:SiplaceProOptimizerFault" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizer_SaveConfiguration_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveConfiguration" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizer_SaveConfiguration_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveConfigurationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizer_SaveConfiguration_SiplaceProOptimizerFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q13="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" element="q13:SiplaceProOptimizerFault" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizer_SaveConfiguration2_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveConfiguration2" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizer_SaveConfiguration2_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveConfiguration2Response" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizer_SaveConfiguration2_SiplaceProOptimizerFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q14="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" element="q14:SiplaceProOptimizerFault" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizer_SaveConfiguration2_Long_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveConfiguration2_Long" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizer_SaveConfiguration2_Long_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveConfiguration2_LongResponse" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizer_SaveConfiguration2_Long_SiplaceProOptimizerFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q15="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" element="q15:SiplaceProOptimizerFault" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizer_GetAdapterTimeZone_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAdapterTimeZone" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizer_GetAdapterTimeZone_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAdapterTimeZoneResponse" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizer_GetAdapterTimeZone_SiplaceProOptimizerFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q16="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" element="q16:SiplaceProOptimizerFault" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizer_GetServiceState_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetServiceState" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizer_GetServiceState_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetServiceStateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizer_CheckAlive_InputMessage">
+    <wsdl:part name="parameters" xmlns:q17="http://www.siplace.com/OIB/2008/05/Common/Contracts/Service" element="q17:CheckAlive" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizer_CheckAlive2_InputMessage">
+    <wsdl:part name="parameters" xmlns:q18="http://www.siplace.com/OIB/2008/05/Common/Contracts/Service" element="q18:CheckAlive2" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizer_CheckAlive2_OutputMessage">
+    <wsdl:part name="parameters" xmlns:q19="http://www.siplace.com/OIB/2008/05/Common/Contracts/Service" element="q19:CheckAlive2Response" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizer_GetDatabaseIdForClusterOptimizer_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDatabaseIdForClusterOptimizer" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizer_GetDatabaseIdForClusterOptimizer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDatabaseIdForClusterOptimizerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizer_GetDatabaseIdForClusterOptimizer_SiplaceProOptimizerFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q20="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" element="q20:SiplaceProOptimizerFault" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizer_GetProductVersionForClusterOptimizer_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetProductVersionForClusterOptimizer" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizer_GetProductVersionForClusterOptimizer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetProductVersionForClusterOptimizerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizer_GetProductVersionForClusterOptimizer_SiplaceProOptimizerFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q21="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" element="q21:SiplaceProOptimizerFault" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizer_StartClustering_InputMessage">
+    <wsdl:part name="parameters" element="tns:StartClustering" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizer_StartClustering_OutputMessage">
+    <wsdl:part name="parameters" element="tns:StartClusteringResponse" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizer_StartClustering_SiplaceProOptimizerFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q22="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" element="q22:SiplaceProOptimizerFault" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizer_StartClustering2_InputMessage">
+    <wsdl:part name="parameters" element="tns:StartClustering2" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizer_StartClustering2_OutputMessage">
+    <wsdl:part name="parameters" element="tns:StartClustering2Response" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizer_StartClustering2_SiplaceProOptimizerFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q23="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" element="q23:SiplaceProOptimizerFault" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizer_StartClustering2WithClientId_InputMessage">
+    <wsdl:part name="parameters" element="tns:StartClustering2WithClientId" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizer_StartClustering2WithClientId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:StartClustering2WithClientIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizer_StartClustering2WithClientId_SiplaceProOptimizerFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q24="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" element="q24:SiplaceProOptimizerFault" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizer_StartClustering2WithClientId_Long_InputMessage">
+    <wsdl:part name="parameters" element="tns:StartClustering2WithClientId_Long" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizer_StartClustering2WithClientId_Long_OutputMessage">
+    <wsdl:part name="parameters" element="tns:StartClustering2WithClientId_LongResponse" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizer_StartClustering2WithClientId_Long_SiplaceProOptimizerFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q25="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" element="q25:SiplaceProOptimizerFault" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizer_StartClustering2WithClientId2_InputMessage">
+    <wsdl:part name="parameters" element="tns:StartClustering2WithClientId2" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizer_StartClustering2WithClientId2_OutputMessage">
+    <wsdl:part name="parameters" element="tns:StartClustering2WithClientId2Response" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizer_StartClustering2WithClientId2_SiplaceProOptimizerFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q26="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" element="q26:SiplaceProOptimizerFault" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizer_StartClustering2WithClientId2_Long_InputMessage">
+    <wsdl:part name="parameters" element="tns:StartClustering2WithClientId2_Long" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizer_StartClustering2WithClientId2_Long_OutputMessage">
+    <wsdl:part name="parameters" element="tns:StartClustering2WithClientId2_LongResponse" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizer_StartClustering2WithClientId2_Long_SiplaceProOptimizerFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q27="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" element="q27:SiplaceProOptimizerFault" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizer_StartClusteringWithClientId_InputMessage">
+    <wsdl:part name="parameters" element="tns:StartClusteringWithClientId" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizer_StartClusteringWithClientId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:StartClusteringWithClientIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizer_StartClusteringWithClientId_SiplaceProOptimizerFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q28="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" element="q28:SiplaceProOptimizerFault" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizer_StartClusteringWithClientId2_InputMessage">
+    <wsdl:part name="parameters" element="tns:StartClusteringWithClientId2" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizer_StartClusteringWithClientId2_OutputMessage">
+    <wsdl:part name="parameters" element="tns:StartClusteringWithClientId2Response" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizer_StartClusteringWithClientId2_SiplaceProOptimizerFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q29="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" element="q29:SiplaceProOptimizerFault" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizerNotify_ClusterOptimizationComplete_InputMessage">
+    <wsdl:part name="parameters" element="tns:ClusterOptimizationComplete" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizerNotify_ClusterProgress_InputMessage">
+    <wsdl:part name="parameters" element="tns:ClusterProgress" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizerNotify_ClusterState_InputMessage">
+    <wsdl:part name="parameters" element="tns:ClusterState" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizerNotify_ResultErrorClusterCount_InputMessage">
+    <wsdl:part name="parameters" element="tns:ResultErrorClusterCount" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizerNotify_ResultSolutionCharacteristics_InputMessage">
+    <wsdl:part name="parameters" element="tns:ResultSolutionCharacteristics" />
+  </wsdl:message>
+  <wsdl:message name="IClusterOptimizerNotify_SessionTerminated_InputMessage">
+    <wsdl:part name="parameters" element="tns:SessionTerminated" />
+  </wsdl:message>
+  <wsdl:message name="IConfiguration_get_CurrentUser_SiplaceProOptimizerFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q30="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" element="q30:SiplaceProOptimizerFault" />
+  </wsdl:message>
+  <wsdl:message name="IConfiguration_get_MaxOIDInfo_SiplaceProOptimizerFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q31="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" element="q31:SiplaceProOptimizerFault" />
+  </wsdl:message>
+  <wsdl:message name="IConfiguration_GetConfiguration_SiplaceProOptimizerFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q32="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" element="q32:SiplaceProOptimizerFault" />
+  </wsdl:message>
+  <wsdl:message name="IConfiguration_GetConfiguration2_SiplaceProOptimizerFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q33="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" element="q33:SiplaceProOptimizerFault" />
+  </wsdl:message>
+  <wsdl:message name="IConfiguration_GetConfiguration2_Long_SiplaceProOptimizerFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q34="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" element="q34:SiplaceProOptimizerFault" />
+  </wsdl:message>
+  <wsdl:message name="IConfiguration_LogonUser_SiplaceProOptimizerFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q35="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" element="q35:SiplaceProOptimizerFault" />
+  </wsdl:message>
+  <wsdl:message name="IConfiguration_SaveConfiguration_SiplaceProOptimizerFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q36="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" element="q36:SiplaceProOptimizerFault" />
+  </wsdl:message>
+  <wsdl:message name="IConfiguration_SaveConfiguration2_SiplaceProOptimizerFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q37="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" element="q37:SiplaceProOptimizerFault" />
+  </wsdl:message>
+  <wsdl:message name="IConfiguration_SaveConfiguration2_Long_SiplaceProOptimizerFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q38="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" element="q38:SiplaceProOptimizerFault" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizer_get_CurrentUser_SiplaceProOptimizerFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q39="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" element="q39:SiplaceProOptimizerFault" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizer_get_MaxOIDInfo_SiplaceProOptimizerFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q40="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" element="q40:SiplaceProOptimizerFault" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizer_GetConfiguration_SiplaceProOptimizerFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q41="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" element="q41:SiplaceProOptimizerFault" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizer_GetConfiguration2_SiplaceProOptimizerFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q42="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" element="q42:SiplaceProOptimizerFault" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizer_GetConfiguration2_Long_SiplaceProOptimizerFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q43="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" element="q43:SiplaceProOptimizerFault" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizer_LogonUser_SiplaceProOptimizerFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q44="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" element="q44:SiplaceProOptimizerFault" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizer_SaveConfiguration_SiplaceProOptimizerFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q45="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" element="q45:SiplaceProOptimizerFault" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizer_SaveConfiguration2_SiplaceProOptimizerFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q46="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" element="q46:SiplaceProOptimizerFault" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizer_SaveConfiguration2_Long_SiplaceProOptimizerFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q47="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" element="q47:SiplaceProOptimizerFault" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizer_GetAdapterTimeZone_SiplaceProOptimizerFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q48="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" element="q48:SiplaceProOptimizerFault" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizer_GetDatabaseIdForOptimizer_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDatabaseIdForOptimizer" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizer_GetDatabaseIdForOptimizer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDatabaseIdForOptimizerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizer_GetDatabaseIdForOptimizer_SiplaceProOptimizerFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q49="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" element="q49:SiplaceProOptimizerFault" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizer_GetProductVersionForOptimizer_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetProductVersionForOptimizer" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizer_GetProductVersionForOptimizer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetProductVersionForOptimizerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizer_GetProductVersionForOptimizer_SiplaceProOptimizerFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q50="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" element="q50:SiplaceProOptimizerFault" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizer_Cancel_InputMessage">
+    <wsdl:part name="parameters" element="tns:Cancel" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizer_Cancel_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CancelResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizer_Cancel_SiplaceProOptimizerFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q51="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" element="q51:SiplaceProOptimizerFault" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizer_CheckIntegrity_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckIntegrity" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizer_CheckIntegrity_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckIntegrityResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizer_CheckIntegrity_SiplaceProOptimizerFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q52="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" element="q52:SiplaceProOptimizerFault" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizer_CheckIntegrity2_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckIntegrity2" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizer_CheckIntegrity2_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckIntegrity2Response" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizer_CheckIntegrity2_SiplaceProOptimizerFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q53="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" element="q53:SiplaceProOptimizerFault" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizer_CheckIntegrity2_Long_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckIntegrity2_Long" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizer_CheckIntegrity2_Long_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckIntegrity2_LongResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizer_CheckIntegrity2_Long_SiplaceProOptimizerFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q54="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" element="q54:SiplaceProOptimizerFault" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizer_GetOptimizerMessages_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOptimizerMessages" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizer_GetOptimizerMessages_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetOptimizerMessagesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizer_GetOptimizerMessages_SiplaceProOptimizerFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q55="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" element="q55:SiplaceProOptimizerFault" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizer_GetOptimizerMessages2_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOptimizerMessages2" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizer_GetOptimizerMessages2_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetOptimizerMessages2Response" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizer_GetOptimizerMessages2_SiplaceProOptimizerFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q56="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" element="q56:SiplaceProOptimizerFault" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizer_GetOptimizerMessages2_Long_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOptimizerMessages2_Long" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizer_GetOptimizerMessages2_Long_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetOptimizerMessages2_LongResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizer_GetOptimizerMessages2_Long_SiplaceProOptimizerFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q57="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" element="q57:SiplaceProOptimizerFault" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizer_GetOptimizerResultsForRecipe_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOptimizerResultsForRecipe" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizer_GetOptimizerResultsForRecipe_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetOptimizerResultsForRecipeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizer_GetOptimizerResultsForRecipe_SiplaceProOptimizerFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q58="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" element="q58:SiplaceProOptimizerFault" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizer_GetOptimizerResultsForRecipe2_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOptimizerResultsForRecipe2" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizer_GetOptimizerResultsForRecipe2_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetOptimizerResultsForRecipe2Response" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizer_GetOptimizerResultsForRecipe2_SiplaceProOptimizerFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q59="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" element="q59:SiplaceProOptimizerFault" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizer_GetOptimizerResultsForRecipe2_Long_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOptimizerResultsForRecipe2_Long" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizer_GetOptimizerResultsForRecipe2_Long_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetOptimizerResultsForRecipe2_LongResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizer_GetOptimizerResultsForRecipe2_Long_SiplaceProOptimizerFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q60="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" element="q60:SiplaceProOptimizerFault" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizer_HasAdapterLicense_InputMessage">
+    <wsdl:part name="parameters" element="tns:HasAdapterLicense" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizer_HasAdapterLicense_OutputMessage">
+    <wsdl:part name="parameters" element="tns:HasAdapterLicenseResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizer_HasAdapterLicense_SiplaceProOptimizerFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q61="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" element="q61:SiplaceProOptimizerFault" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizer_LoadSpotx_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadSpotx" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizer_LoadSpotx_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadSpotxResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizer_SaveSpotx_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveSpotx" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizer_SaveSpotx_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveSpotxResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizer_Start_InputMessage">
+    <wsdl:part name="parameters" element="tns:Start" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizer_Start_OutputMessage">
+    <wsdl:part name="parameters" element="tns:StartResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizer_Start_SiplaceProOptimizerFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q62="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" element="q62:SiplaceProOptimizerFault" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizer_Start2_InputMessage">
+    <wsdl:part name="parameters" element="tns:Start2" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizer_Start2_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Start2Response" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizer_Start2_SiplaceProOptimizerFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q63="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" element="q63:SiplaceProOptimizerFault" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizer_Start2WithClientId_InputMessage">
+    <wsdl:part name="parameters" element="tns:Start2WithClientId" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizer_Start2WithClientId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Start2WithClientIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizer_Start2WithClientId_SiplaceProOptimizerFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q64="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" element="q64:SiplaceProOptimizerFault" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizer_StartExt_InputMessage">
+    <wsdl:part name="parameters" element="tns:StartExt" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizer_StartExt_OutputMessage">
+    <wsdl:part name="parameters" element="tns:StartExtResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizer_StartExt_SiplaceProOptimizerFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q65="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" element="q65:SiplaceProOptimizerFault" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizer_StartExt2_InputMessage">
+    <wsdl:part name="parameters" element="tns:StartExt2" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizer_StartExt2_OutputMessage">
+    <wsdl:part name="parameters" element="tns:StartExt2Response" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizer_StartExt2_SiplaceProOptimizerFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q66="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" element="q66:SiplaceProOptimizerFault" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizer_StartExt2_Long_InputMessage">
+    <wsdl:part name="parameters" element="tns:StartExt2_Long" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizer_StartExt2_Long_OutputMessage">
+    <wsdl:part name="parameters" element="tns:StartExt2_LongResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizer_StartExt2_Long_SiplaceProOptimizerFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q67="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" element="q67:SiplaceProOptimizerFault" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizer_StartWithClientId_InputMessage">
+    <wsdl:part name="parameters" element="tns:StartWithClientId" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizer_StartWithClientId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:StartWithClientIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizer_StartWithClientId_SiplaceProOptimizerFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q68="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" element="q68:SiplaceProOptimizerFault" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizer_Stop_InputMessage">
+    <wsdl:part name="parameters" element="tns:Stop" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizer_Stop_OutputMessage">
+    <wsdl:part name="parameters" element="tns:StopResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizer_Stop_SiplaceProOptimizerFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q69="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" element="q69:SiplaceProOptimizerFault" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizerNotify_OptimizationComplete_InputMessage">
+    <wsdl:part name="parameters" element="tns:OptimizationComplete" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizerNotify_OptimizationProgress_InputMessage">
+    <wsdl:part name="parameters" element="tns:OptimizationProgress" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizerNotify_OptimizationResult_InputMessage">
+    <wsdl:part name="parameters" element="tns:OptimizationResult" />
+  </wsdl:message>
+  <wsdl:message name="IOptimizerNotify_OptimizationState_InputMessage">
+    <wsdl:part name="parameters" element="tns:OptimizationState" />
+  </wsdl:message>
+  <wsdl:message name="IServiceState_GetAdapterTimeZone_SiplaceProOptimizerFaultFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q70="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Data" element="q70:SiplaceProOptimizerFault" />
+  </wsdl:message>
+  <wsdl:portType name="IClusterOptimizerNotify2">
+    <wsdl:operation name="ClusterOptimizationComplete2">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IClusterOptimizerNotify2/ClusterOptimizationComplete2" message="tns:IClusterOptimizerNotify2_ClusterOptimizationComplete2_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ClusterProgress2">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IClusterOptimizerNotify2/ClusterProgress2" message="tns:IClusterOptimizerNotify2_ClusterProgress2_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ClusterState2">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IClusterOptimizerNotify2/ClusterState2" message="tns:IClusterOptimizerNotify2_ClusterState2_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IClusterOptimizerNotify2/ClusterState2Response" message="tns:IClusterOptimizerNotify2_ClusterState2_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ResultErrorClusterCount2">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IClusterOptimizerNotify2/ResultErrorClusterCount2" message="tns:IClusterOptimizerNotify2_ResultErrorClusterCount2_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ResultSolutionCharacteristics2">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IClusterOptimizerNotify2/ResultSolutionCharacteristics2" message="tns:IClusterOptimizerNotify2_ResultSolutionCharacteristics2_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SessionTerminated2">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IClusterOptimizerNotify2/SessionTerminated2" message="tns:IClusterOptimizerNotify2_SessionTerminated2_InputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IOptimizerNotify2">
+    <wsdl:operation name="OptimizationComplete2">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizerNotify2/OptimizationComplete2" message="tns:IOptimizerNotify2_OptimizationComplete2_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="OptimizationProgress2">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizerNotify2/OptimizationProgress2" message="tns:IOptimizerNotify2_OptimizationProgress2_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="OptimizationResult2">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizerNotify2/OptimizationResult2" message="tns:IOptimizerNotify2_OptimizationResult2_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizerNotify2/OptimizationResult2Response" message="tns:IOptimizerNotify2_OptimizationResult2_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="OptimizationState2">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizerNotify2/OptimizationState2" message="tns:IOptimizerNotify2_OptimizationState2_InputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IClusterOptimizerNotifyArgs">
+    <wsdl:operation name="ClusterOptimizationComplete3">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IClusterOptimizerNotifyArgs/ClusterOptimizationComplete3" message="tns:IClusterOptimizerNotifyArgs_ClusterOptimizationComplete3_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ClusterProgress3">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IClusterOptimizerNotifyArgs/ClusterProgress3" message="tns:IClusterOptimizerNotifyArgs_ClusterProgress3_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ClusterState3">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IClusterOptimizerNotifyArgs/ClusterState3" message="tns:IClusterOptimizerNotifyArgs_ClusterState3_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IClusterOptimizerNotifyArgs/ClusterState3Response" message="tns:IClusterOptimizerNotifyArgs_ClusterState3_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ResultErrorClusterCount3">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IClusterOptimizerNotifyArgs/ResultErrorClusterCount3" message="tns:IClusterOptimizerNotifyArgs_ResultErrorClusterCount3_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ResultSolutionCharacteristics3">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IClusterOptimizerNotifyArgs/ResultSolutionCharacteristics3" message="tns:IClusterOptimizerNotifyArgs_ResultSolutionCharacteristics3_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SessionTerminated3">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IClusterOptimizerNotifyArgs/SessionTerminated3" message="tns:IClusterOptimizerNotifyArgs_SessionTerminated3_InputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IOptimizerNotifyArgs">
+    <wsdl:operation name="OptimizationComplete3">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizerNotifyArgs/OptimizationComplete3" message="tns:IOptimizerNotifyArgs_OptimizationComplete3_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="OptimizationProgress3">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizerNotifyArgs/OptimizationProgress3" message="tns:IOptimizerNotifyArgs_OptimizationProgress3_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="OptimizationResult3">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizerNotifyArgs/OptimizationResult3" message="tns:IOptimizerNotifyArgs_OptimizationResult3_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizerNotifyArgs/OptimizationResult3Response" message="tns:IOptimizerNotifyArgs_OptimizationResult3_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="OptimizationState3">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizerNotifyArgs/OptimizationState3" message="tns:IOptimizerNotifyArgs_OptimizationState3_InputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IOptimizerStoppedReceiver">
+    <wsdl:operation name="OptimizerStoppedReport">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service\OptimizerStopped" name="OptimizerStoppedReportRequest" message="tns:OptimizerStoppedReportRequest" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizerStoppedReceiver/OptimizerStoppedReportResponse" message="tns:IOptimizerStoppedReceiver_OptimizerStoppedReport_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IOptimizerStartedReceiver">
+    <wsdl:operation name="OptimizerStartedReport">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service\OptimizerStarted" name="OptimizerStartedReportRequest" message="tns:OptimizerStartedReportRequest" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizerStartedReceiver/OptimizerStartedReportResponse" message="tns:IOptimizerStartedReceiver_OptimizerStartedReport_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType msc:usingSession="true" name="IClusterOptimizer">
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="get_CurrentUser">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/get_CurrentUser" message="tns:IClusterOptimizer_get_CurrentUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/get_CurrentUserResponse" message="tns:IClusterOptimizer_get_CurrentUser_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/get_CurrentUserSiplaceProOptimizerFaultFault" name="SiplaceProOptimizerFaultFault" message="tns:IClusterOptimizer_get_CurrentUser_SiplaceProOptimizerFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="get_MaxOIDInfo">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/get_MaxOIDInfo" message="tns:IClusterOptimizer_get_MaxOIDInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/get_MaxOIDInfoResponse" message="tns:IClusterOptimizer_get_MaxOIDInfo_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/get_MaxOIDInfoSiplaceProOptimizerFaultFault" name="SiplaceProOptimizerFaultFault" message="tns:IClusterOptimizer_get_MaxOIDInfo_SiplaceProOptimizerFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetConfiguration">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/GetConfiguration" message="tns:IClusterOptimizer_GetConfiguration_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/GetConfigurationResponse" message="tns:IClusterOptimizer_GetConfiguration_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/GetConfigurationSiplaceProOptimizerFaultFault" name="SiplaceProOptimizerFaultFault" message="tns:IClusterOptimizer_GetConfiguration_SiplaceProOptimizerFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetConfiguration2">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/GetConfiguration2" message="tns:IClusterOptimizer_GetConfiguration2_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/GetConfiguration2Response" message="tns:IClusterOptimizer_GetConfiguration2_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/GetConfiguration2SiplaceProOptimizerFaultFault" name="SiplaceProOptimizerFaultFault" message="tns:IClusterOptimizer_GetConfiguration2_SiplaceProOptimizerFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetConfiguration2_Long">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/GetConfiguration2_Long" message="tns:IClusterOptimizer_GetConfiguration2_Long_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/GetConfiguration2_LongResponse" message="tns:IClusterOptimizer_GetConfiguration2_Long_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/GetConfiguration2_LongSiplaceProOptimizerFaultFault" name="SiplaceProOptimizerFaultFault" message="tns:IClusterOptimizer_GetConfiguration2_Long_SiplaceProOptimizerFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="LogonUser">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/LogonUser" message="tns:IClusterOptimizer_LogonUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/LogonUserResponse" message="tns:IClusterOptimizer_LogonUser_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/LogonUserSiplaceProOptimizerFaultFault" name="SiplaceProOptimizerFaultFault" message="tns:IClusterOptimizer_LogonUser_SiplaceProOptimizerFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="SaveConfiguration">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/SaveConfiguration" message="tns:IClusterOptimizer_SaveConfiguration_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/SaveConfigurationResponse" message="tns:IClusterOptimizer_SaveConfiguration_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/SaveConfigurationSiplaceProOptimizerFaultFault" name="SiplaceProOptimizerFaultFault" message="tns:IClusterOptimizer_SaveConfiguration_SiplaceProOptimizerFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="SaveConfiguration2">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/SaveConfiguration2" message="tns:IClusterOptimizer_SaveConfiguration2_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/SaveConfiguration2Response" message="tns:IClusterOptimizer_SaveConfiguration2_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/SaveConfiguration2SiplaceProOptimizerFaultFault" name="SiplaceProOptimizerFaultFault" message="tns:IClusterOptimizer_SaveConfiguration2_SiplaceProOptimizerFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="SaveConfiguration2_Long">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/SaveConfiguration2_Long" message="tns:IClusterOptimizer_SaveConfiguration2_Long_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/SaveConfiguration2_LongResponse" message="tns:IClusterOptimizer_SaveConfiguration2_Long_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/SaveConfiguration2_LongSiplaceProOptimizerFaultFault" name="SiplaceProOptimizerFaultFault" message="tns:IClusterOptimizer_SaveConfiguration2_Long_SiplaceProOptimizerFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetAdapterTimeZone">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IServiceState/GetAdapterTimeZone" message="tns:IClusterOptimizer_GetAdapterTimeZone_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IServiceState/GetAdapterTimeZoneResponse" message="tns:IClusterOptimizer_GetAdapterTimeZone_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IServiceState/GetAdapterTimeZoneSiplaceProOptimizerFaultFault" name="SiplaceProOptimizerFaultFault" message="tns:IClusterOptimizer_GetAdapterTimeZone_SiplaceProOptimizerFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetServiceState">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IServiceState/GetServiceState" message="tns:IClusterOptimizer_GetServiceState_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IServiceState/GetServiceStateResponse" message="tns:IClusterOptimizer_GetServiceState_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="CheckAlive">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/Common/Contracts/Service/ICheckAlive/CheckAlive" message="tns:IClusterOptimizer_CheckAlive_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="CheckAlive2">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/Common/Contracts/Service/ICheckAlive/CheckAlive2" message="tns:IClusterOptimizer_CheckAlive2_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/Common/Contracts/Service/ICheckAlive/CheckAlive2Response" message="tns:IClusterOptimizer_CheckAlive2_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetDatabaseIdForClusterOptimizer">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IClusterOptimizer/GetDatabaseIdForClusterOptimizer" message="tns:IClusterOptimizer_GetDatabaseIdForClusterOptimizer_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IClusterOptimizer/GetDatabaseIdForClusterOptimizerResponse" message="tns:IClusterOptimizer_GetDatabaseIdForClusterOptimizer_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IClusterOptimizer/GetDatabaseIdForClusterOptimizerSiplaceProOptimizerFaultFault" name="SiplaceProOptimizerFaultFault" message="tns:IClusterOptimizer_GetDatabaseIdForClusterOptimizer_SiplaceProOptimizerFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetProductVersionForClusterOptimizer">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IClusterOptimizer/GetProductVersionForClusterOptimizer" message="tns:IClusterOptimizer_GetProductVersionForClusterOptimizer_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IClusterOptimizer/GetProductVersionForClusterOptimizerResponse" message="tns:IClusterOptimizer_GetProductVersionForClusterOptimizer_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IClusterOptimizer/GetProductVersionForClusterOptimizerSiplaceProOptimizerFaultFault" name="SiplaceProOptimizerFaultFault" message="tns:IClusterOptimizer_GetProductVersionForClusterOptimizer_SiplaceProOptimizerFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="StartClustering">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IClusterOptimizer/StartClustering" message="tns:IClusterOptimizer_StartClustering_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IClusterOptimizer/StartClusteringResponse" message="tns:IClusterOptimizer_StartClustering_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IClusterOptimizer/StartClusteringSiplaceProOptimizerFaultFault" name="SiplaceProOptimizerFaultFault" message="tns:IClusterOptimizer_StartClustering_SiplaceProOptimizerFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="StartClustering2">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IClusterOptimizer/StartClustering2" message="tns:IClusterOptimizer_StartClustering2_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IClusterOptimizer/StartClustering2Response" message="tns:IClusterOptimizer_StartClustering2_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IClusterOptimizer/StartClustering2SiplaceProOptimizerFaultFault" name="SiplaceProOptimizerFaultFault" message="tns:IClusterOptimizer_StartClustering2_SiplaceProOptimizerFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="StartClustering2WithClientId">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IClusterOptimizer/StartClustering2WithClientId" message="tns:IClusterOptimizer_StartClustering2WithClientId_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IClusterOptimizer/StartClustering2WithClientIdResponse" message="tns:IClusterOptimizer_StartClustering2WithClientId_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IClusterOptimizer/StartClustering2WithClientIdSiplaceProOptimizerFaultFault" name="SiplaceProOptimizerFaultFault" message="tns:IClusterOptimizer_StartClustering2WithClientId_SiplaceProOptimizerFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="StartClustering2WithClientId_Long">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IClusterOptimizer/StartClustering2WithClientId_Long" message="tns:IClusterOptimizer_StartClustering2WithClientId_Long_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IClusterOptimizer/StartClustering2WithClientId_LongResponse" message="tns:IClusterOptimizer_StartClustering2WithClientId_Long_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IClusterOptimizer/StartClustering2WithClientId_LongSiplaceProOptimizerFaultFault" name="SiplaceProOptimizerFaultFault" message="tns:IClusterOptimizer_StartClustering2WithClientId_Long_SiplaceProOptimizerFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="StartClustering2WithClientId2">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IClusterOptimizer/StartClustering2WithClientId2" message="tns:IClusterOptimizer_StartClustering2WithClientId2_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IClusterOptimizer/StartClustering2WithClientId2Response" message="tns:IClusterOptimizer_StartClustering2WithClientId2_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IClusterOptimizer/StartClustering2WithClientId2SiplaceProOptimizerFaultFault" name="SiplaceProOptimizerFaultFault" message="tns:IClusterOptimizer_StartClustering2WithClientId2_SiplaceProOptimizerFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="StartClustering2WithClientId2_Long">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IClusterOptimizer/StartClustering2WithClientId2_Long" message="tns:IClusterOptimizer_StartClustering2WithClientId2_Long_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IClusterOptimizer/StartClustering2WithClientId2_LongResponse" message="tns:IClusterOptimizer_StartClustering2WithClientId2_Long_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IClusterOptimizer/StartClustering2WithClientId2_LongSiplaceProOptimizerFaultFault" name="SiplaceProOptimizerFaultFault" message="tns:IClusterOptimizer_StartClustering2WithClientId2_Long_SiplaceProOptimizerFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="StartClusteringWithClientId">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IClusterOptimizer/StartClusteringWithClientId" message="tns:IClusterOptimizer_StartClusteringWithClientId_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IClusterOptimizer/StartClusteringWithClientIdResponse" message="tns:IClusterOptimizer_StartClusteringWithClientId_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IClusterOptimizer/StartClusteringWithClientIdSiplaceProOptimizerFaultFault" name="SiplaceProOptimizerFaultFault" message="tns:IClusterOptimizer_StartClusteringWithClientId_SiplaceProOptimizerFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="StartClusteringWithClientId2">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IClusterOptimizer/StartClusteringWithClientId2" message="tns:IClusterOptimizer_StartClusteringWithClientId2_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IClusterOptimizer/StartClusteringWithClientId2Response" message="tns:IClusterOptimizer_StartClusteringWithClientId2_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IClusterOptimizer/StartClusteringWithClientId2SiplaceProOptimizerFaultFault" name="SiplaceProOptimizerFaultFault" message="tns:IClusterOptimizer_StartClusteringWithClientId2_SiplaceProOptimizerFaultFault_FaultMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IClusterOptimizerNotify">
+    <wsdl:operation name="ClusterOptimizationComplete">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IClusterOptimizerNotify/ClusterOptimizationComplete" message="tns:IClusterOptimizerNotify_ClusterOptimizationComplete_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ClusterProgress">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IClusterOptimizerNotify/ClusterProgress" message="tns:IClusterOptimizerNotify_ClusterProgress_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ClusterState">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IClusterOptimizerNotify/ClusterState" message="tns:IClusterOptimizerNotify_ClusterState_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ResultErrorClusterCount">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IClusterOptimizerNotify/ResultErrorClusterCount" message="tns:IClusterOptimizerNotify_ResultErrorClusterCount_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ResultSolutionCharacteristics">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IClusterOptimizerNotify/ResultSolutionCharacteristics" message="tns:IClusterOptimizerNotify_ResultSolutionCharacteristics_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SessionTerminated">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IClusterOptimizerNotify/SessionTerminated" message="tns:IClusterOptimizerNotify_SessionTerminated_InputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType msc:usingSession="true" name="IConfiguration">
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="get_CurrentUser">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/get_CurrentUser" message="tns:IClusterOptimizer_get_CurrentUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/get_CurrentUserResponse" message="tns:IClusterOptimizer_get_CurrentUser_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/get_CurrentUserSiplaceProOptimizerFaultFault" name="SiplaceProOptimizerFaultFault" message="tns:IConfiguration_get_CurrentUser_SiplaceProOptimizerFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="get_MaxOIDInfo">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/get_MaxOIDInfo" message="tns:IClusterOptimizer_get_MaxOIDInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/get_MaxOIDInfoResponse" message="tns:IClusterOptimizer_get_MaxOIDInfo_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/get_MaxOIDInfoSiplaceProOptimizerFaultFault" name="SiplaceProOptimizerFaultFault" message="tns:IConfiguration_get_MaxOIDInfo_SiplaceProOptimizerFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetConfiguration">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/GetConfiguration" message="tns:IClusterOptimizer_GetConfiguration_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/GetConfigurationResponse" message="tns:IClusterOptimizer_GetConfiguration_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/GetConfigurationSiplaceProOptimizerFaultFault" name="SiplaceProOptimizerFaultFault" message="tns:IConfiguration_GetConfiguration_SiplaceProOptimizerFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetConfiguration2">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/GetConfiguration2" message="tns:IClusterOptimizer_GetConfiguration2_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/GetConfiguration2Response" message="tns:IClusterOptimizer_GetConfiguration2_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/GetConfiguration2SiplaceProOptimizerFaultFault" name="SiplaceProOptimizerFaultFault" message="tns:IConfiguration_GetConfiguration2_SiplaceProOptimizerFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetConfiguration2_Long">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/GetConfiguration2_Long" message="tns:IClusterOptimizer_GetConfiguration2_Long_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/GetConfiguration2_LongResponse" message="tns:IClusterOptimizer_GetConfiguration2_Long_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/GetConfiguration2_LongSiplaceProOptimizerFaultFault" name="SiplaceProOptimizerFaultFault" message="tns:IConfiguration_GetConfiguration2_Long_SiplaceProOptimizerFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="LogonUser">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/LogonUser" message="tns:IClusterOptimizer_LogonUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/LogonUserResponse" message="tns:IClusterOptimizer_LogonUser_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/LogonUserSiplaceProOptimizerFaultFault" name="SiplaceProOptimizerFaultFault" message="tns:IConfiguration_LogonUser_SiplaceProOptimizerFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="SaveConfiguration">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/SaveConfiguration" message="tns:IClusterOptimizer_SaveConfiguration_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/SaveConfigurationResponse" message="tns:IClusterOptimizer_SaveConfiguration_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/SaveConfigurationSiplaceProOptimizerFaultFault" name="SiplaceProOptimizerFaultFault" message="tns:IConfiguration_SaveConfiguration_SiplaceProOptimizerFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="SaveConfiguration2">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/SaveConfiguration2" message="tns:IClusterOptimizer_SaveConfiguration2_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/SaveConfiguration2Response" message="tns:IClusterOptimizer_SaveConfiguration2_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/SaveConfiguration2SiplaceProOptimizerFaultFault" name="SiplaceProOptimizerFaultFault" message="tns:IConfiguration_SaveConfiguration2_SiplaceProOptimizerFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="SaveConfiguration2_Long">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/SaveConfiguration2_Long" message="tns:IClusterOptimizer_SaveConfiguration2_Long_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/SaveConfiguration2_LongResponse" message="tns:IClusterOptimizer_SaveConfiguration2_Long_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/SaveConfiguration2_LongSiplaceProOptimizerFaultFault" name="SiplaceProOptimizerFaultFault" message="tns:IConfiguration_SaveConfiguration2_Long_SiplaceProOptimizerFaultFault_FaultMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType msc:usingSession="true" name="IOptimizer">
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="get_CurrentUser">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/get_CurrentUser" message="tns:IClusterOptimizer_get_CurrentUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/get_CurrentUserResponse" message="tns:IClusterOptimizer_get_CurrentUser_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/get_CurrentUserSiplaceProOptimizerFaultFault" name="SiplaceProOptimizerFaultFault" message="tns:IOptimizer_get_CurrentUser_SiplaceProOptimizerFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="get_MaxOIDInfo">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/get_MaxOIDInfo" message="tns:IClusterOptimizer_get_MaxOIDInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/get_MaxOIDInfoResponse" message="tns:IClusterOptimizer_get_MaxOIDInfo_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/get_MaxOIDInfoSiplaceProOptimizerFaultFault" name="SiplaceProOptimizerFaultFault" message="tns:IOptimizer_get_MaxOIDInfo_SiplaceProOptimizerFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetConfiguration">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/GetConfiguration" message="tns:IClusterOptimizer_GetConfiguration_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/GetConfigurationResponse" message="tns:IClusterOptimizer_GetConfiguration_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/GetConfigurationSiplaceProOptimizerFaultFault" name="SiplaceProOptimizerFaultFault" message="tns:IOptimizer_GetConfiguration_SiplaceProOptimizerFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetConfiguration2">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/GetConfiguration2" message="tns:IClusterOptimizer_GetConfiguration2_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/GetConfiguration2Response" message="tns:IClusterOptimizer_GetConfiguration2_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/GetConfiguration2SiplaceProOptimizerFaultFault" name="SiplaceProOptimizerFaultFault" message="tns:IOptimizer_GetConfiguration2_SiplaceProOptimizerFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetConfiguration2_Long">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/GetConfiguration2_Long" message="tns:IClusterOptimizer_GetConfiguration2_Long_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/GetConfiguration2_LongResponse" message="tns:IClusterOptimizer_GetConfiguration2_Long_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/GetConfiguration2_LongSiplaceProOptimizerFaultFault" name="SiplaceProOptimizerFaultFault" message="tns:IOptimizer_GetConfiguration2_Long_SiplaceProOptimizerFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="LogonUser">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/LogonUser" message="tns:IClusterOptimizer_LogonUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/LogonUserResponse" message="tns:IClusterOptimizer_LogonUser_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/LogonUserSiplaceProOptimizerFaultFault" name="SiplaceProOptimizerFaultFault" message="tns:IOptimizer_LogonUser_SiplaceProOptimizerFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="SaveConfiguration">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/SaveConfiguration" message="tns:IClusterOptimizer_SaveConfiguration_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/SaveConfigurationResponse" message="tns:IClusterOptimizer_SaveConfiguration_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/SaveConfigurationSiplaceProOptimizerFaultFault" name="SiplaceProOptimizerFaultFault" message="tns:IOptimizer_SaveConfiguration_SiplaceProOptimizerFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="SaveConfiguration2">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/SaveConfiguration2" message="tns:IClusterOptimizer_SaveConfiguration2_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/SaveConfiguration2Response" message="tns:IClusterOptimizer_SaveConfiguration2_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/SaveConfiguration2SiplaceProOptimizerFaultFault" name="SiplaceProOptimizerFaultFault" message="tns:IOptimizer_SaveConfiguration2_SiplaceProOptimizerFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="SaveConfiguration2_Long">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/SaveConfiguration2_Long" message="tns:IClusterOptimizer_SaveConfiguration2_Long_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/SaveConfiguration2_LongResponse" message="tns:IClusterOptimizer_SaveConfiguration2_Long_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/SaveConfiguration2_LongSiplaceProOptimizerFaultFault" name="SiplaceProOptimizerFaultFault" message="tns:IOptimizer_SaveConfiguration2_Long_SiplaceProOptimizerFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetAdapterTimeZone">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IServiceState/GetAdapterTimeZone" message="tns:IClusterOptimizer_GetAdapterTimeZone_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IServiceState/GetAdapterTimeZoneResponse" message="tns:IClusterOptimizer_GetAdapterTimeZone_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IServiceState/GetAdapterTimeZoneSiplaceProOptimizerFaultFault" name="SiplaceProOptimizerFaultFault" message="tns:IOptimizer_GetAdapterTimeZone_SiplaceProOptimizerFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetServiceState">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IServiceState/GetServiceState" message="tns:IClusterOptimizer_GetServiceState_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IServiceState/GetServiceStateResponse" message="tns:IClusterOptimizer_GetServiceState_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="CheckAlive">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/Common/Contracts/Service/ICheckAlive/CheckAlive" message="tns:IClusterOptimizer_CheckAlive_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="CheckAlive2">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/Common/Contracts/Service/ICheckAlive/CheckAlive2" message="tns:IClusterOptimizer_CheckAlive2_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/Common/Contracts/Service/ICheckAlive/CheckAlive2Response" message="tns:IClusterOptimizer_CheckAlive2_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetDatabaseIdForOptimizer">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/GetDatabaseIdForOptimizer" message="tns:IOptimizer_GetDatabaseIdForOptimizer_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/GetDatabaseIdForOptimizerResponse" message="tns:IOptimizer_GetDatabaseIdForOptimizer_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/GetDatabaseIdForOptimizerSiplaceProOptimizerFaultFault" name="SiplaceProOptimizerFaultFault" message="tns:IOptimizer_GetDatabaseIdForOptimizer_SiplaceProOptimizerFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetProductVersionForOptimizer">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/GetProductVersionForOptimizer" message="tns:IOptimizer_GetProductVersionForOptimizer_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/GetProductVersionForOptimizerResponse" message="tns:IOptimizer_GetProductVersionForOptimizer_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/GetProductVersionForOptimizerSiplaceProOptimizerFaultFault" name="SiplaceProOptimizerFaultFault" message="tns:IOptimizer_GetProductVersionForOptimizer_SiplaceProOptimizerFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="Cancel">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/Cancel" message="tns:IOptimizer_Cancel_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/CancelResponse" message="tns:IOptimizer_Cancel_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/CancelSiplaceProOptimizerFaultFault" name="SiplaceProOptimizerFaultFault" message="tns:IOptimizer_Cancel_SiplaceProOptimizerFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="CheckIntegrity">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/CheckIntegrity" message="tns:IOptimizer_CheckIntegrity_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/CheckIntegrityResponse" message="tns:IOptimizer_CheckIntegrity_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/CheckIntegritySiplaceProOptimizerFaultFault" name="SiplaceProOptimizerFaultFault" message="tns:IOptimizer_CheckIntegrity_SiplaceProOptimizerFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="CheckIntegrity2">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/CheckIntegrity2" message="tns:IOptimizer_CheckIntegrity2_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/CheckIntegrity2Response" message="tns:IOptimizer_CheckIntegrity2_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/CheckIntegrity2SiplaceProOptimizerFaultFault" name="SiplaceProOptimizerFaultFault" message="tns:IOptimizer_CheckIntegrity2_SiplaceProOptimizerFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="CheckIntegrity2_Long">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/CheckIntegrity2_Long" message="tns:IOptimizer_CheckIntegrity2_Long_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/CheckIntegrity2_LongResponse" message="tns:IOptimizer_CheckIntegrity2_Long_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/CheckIntegrity2_LongSiplaceProOptimizerFaultFault" name="SiplaceProOptimizerFaultFault" message="tns:IOptimizer_CheckIntegrity2_Long_SiplaceProOptimizerFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetOptimizerMessages">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/GetOptimizerMessages" message="tns:IOptimizer_GetOptimizerMessages_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/GetOptimizerMessagesResponse" message="tns:IOptimizer_GetOptimizerMessages_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/GetOptimizerMessagesSiplaceProOptimizerFaultFault" name="SiplaceProOptimizerFaultFault" message="tns:IOptimizer_GetOptimizerMessages_SiplaceProOptimizerFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetOptimizerMessages2">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/GetOptimizerMessages2" message="tns:IOptimizer_GetOptimizerMessages2_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/GetOptimizerMessages2Response" message="tns:IOptimizer_GetOptimizerMessages2_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/GetOptimizerMessages2SiplaceProOptimizerFaultFault" name="SiplaceProOptimizerFaultFault" message="tns:IOptimizer_GetOptimizerMessages2_SiplaceProOptimizerFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetOptimizerMessages2_Long">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/GetOptimizerMessages2_Long" message="tns:IOptimizer_GetOptimizerMessages2_Long_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/GetOptimizerMessages2_LongResponse" message="tns:IOptimizer_GetOptimizerMessages2_Long_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/GetOptimizerMessages2_LongSiplaceProOptimizerFaultFault" name="SiplaceProOptimizerFaultFault" message="tns:IOptimizer_GetOptimizerMessages2_Long_SiplaceProOptimizerFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetOptimizerResultsForRecipe">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/GetOptimizerResultsForRecipe" message="tns:IOptimizer_GetOptimizerResultsForRecipe_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/GetOptimizerResultsForRecipeResponse" message="tns:IOptimizer_GetOptimizerResultsForRecipe_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/GetOptimizerResultsForRecipeSiplaceProOptimizerFaultFault" name="SiplaceProOptimizerFaultFault" message="tns:IOptimizer_GetOptimizerResultsForRecipe_SiplaceProOptimizerFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetOptimizerResultsForRecipe2">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/GetOptimizerResultsForRecipe2" message="tns:IOptimizer_GetOptimizerResultsForRecipe2_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/GetOptimizerResultsForRecipe2Response" message="tns:IOptimizer_GetOptimizerResultsForRecipe2_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/GetOptimizerResultsForRecipe2SiplaceProOptimizerFaultFault" name="SiplaceProOptimizerFaultFault" message="tns:IOptimizer_GetOptimizerResultsForRecipe2_SiplaceProOptimizerFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetOptimizerResultsForRecipe2_Long">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/GetOptimizerResultsForRecipe2_Long" message="tns:IOptimizer_GetOptimizerResultsForRecipe2_Long_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/GetOptimizerResultsForRecipe2_LongResponse" message="tns:IOptimizer_GetOptimizerResultsForRecipe2_Long_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/GetOptimizerResultsForRecipe2_LongSiplaceProOptimizerFaultFault" name="SiplaceProOptimizerFaultFault" message="tns:IOptimizer_GetOptimizerResultsForRecipe2_Long_SiplaceProOptimizerFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="HasAdapterLicense">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/HasAdapterLicense" message="tns:IOptimizer_HasAdapterLicense_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/HasAdapterLicenseResponse" message="tns:IOptimizer_HasAdapterLicense_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/HasAdapterLicenseSiplaceProOptimizerFaultFault" name="SiplaceProOptimizerFaultFault" message="tns:IOptimizer_HasAdapterLicense_SiplaceProOptimizerFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="LoadSpotx">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/LoadSpotx" message="tns:IOptimizer_LoadSpotx_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/LoadSpotxResponse" message="tns:IOptimizer_LoadSpotx_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="SaveSpotx">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/SaveSpotx" message="tns:IOptimizer_SaveSpotx_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/SaveSpotxResponse" message="tns:IOptimizer_SaveSpotx_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="Start">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/Start" message="tns:IOptimizer_Start_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/StartResponse" message="tns:IOptimizer_Start_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/StartSiplaceProOptimizerFaultFault" name="SiplaceProOptimizerFaultFault" message="tns:IOptimizer_Start_SiplaceProOptimizerFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="Start2">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/Start2" message="tns:IOptimizer_Start2_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/Start2Response" message="tns:IOptimizer_Start2_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/Start2SiplaceProOptimizerFaultFault" name="SiplaceProOptimizerFaultFault" message="tns:IOptimizer_Start2_SiplaceProOptimizerFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="Start2WithClientId">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/Start2WithClientId" message="tns:IOptimizer_Start2WithClientId_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/Start2WithClientIdResponse" message="tns:IOptimizer_Start2WithClientId_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/Start2WithClientIdSiplaceProOptimizerFaultFault" name="SiplaceProOptimizerFaultFault" message="tns:IOptimizer_Start2WithClientId_SiplaceProOptimizerFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="StartExt">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/StartExt" message="tns:IOptimizer_StartExt_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/StartExtResponse" message="tns:IOptimizer_StartExt_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/StartExtSiplaceProOptimizerFaultFault" name="SiplaceProOptimizerFaultFault" message="tns:IOptimizer_StartExt_SiplaceProOptimizerFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="StartExt2">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/StartExt2" message="tns:IOptimizer_StartExt2_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/StartExt2Response" message="tns:IOptimizer_StartExt2_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/StartExt2SiplaceProOptimizerFaultFault" name="SiplaceProOptimizerFaultFault" message="tns:IOptimizer_StartExt2_SiplaceProOptimizerFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="StartExt2_Long">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/StartExt2_Long" message="tns:IOptimizer_StartExt2_Long_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/StartExt2_LongResponse" message="tns:IOptimizer_StartExt2_Long_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/StartExt2_LongSiplaceProOptimizerFaultFault" name="SiplaceProOptimizerFaultFault" message="tns:IOptimizer_StartExt2_Long_SiplaceProOptimizerFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="StartWithClientId">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/StartWithClientId" message="tns:IOptimizer_StartWithClientId_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/StartWithClientIdResponse" message="tns:IOptimizer_StartWithClientId_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/StartWithClientIdSiplaceProOptimizerFaultFault" name="SiplaceProOptimizerFaultFault" message="tns:IOptimizer_StartWithClientId_SiplaceProOptimizerFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="Stop">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/Stop" message="tns:IOptimizer_Stop_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/StopResponse" message="tns:IOptimizer_Stop_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/StopSiplaceProOptimizerFaultFault" name="SiplaceProOptimizerFaultFault" message="tns:IOptimizer_Stop_SiplaceProOptimizerFaultFault_FaultMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IOptimizerNotify">
+    <wsdl:operation name="OptimizationComplete">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizerNotify/OptimizationComplete" message="tns:IOptimizerNotify_OptimizationComplete_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="OptimizationProgress">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizerNotify/OptimizationProgress" message="tns:IOptimizerNotify_OptimizationProgress_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="OptimizationResult">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizerNotify/OptimizationResult" message="tns:IOptimizerNotify_OptimizationResult_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="OptimizationState">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizerNotify/OptimizationState" message="tns:IOptimizerNotify_OptimizationState_InputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IOptimizerStarted">
+    <wsdl:operation name="OptimizerStartedReport">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service\OptimizerStarted" name="OptimizerStartedReportRequest" message="tns:OptimizerStartedReportRequest" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IOptimizerStopped">
+    <wsdl:operation name="OptimizerStoppedReport">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service\OptimizerStopped" name="OptimizerStoppedReportRequest" message="tns:OptimizerStoppedReportRequest" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType msc:usingSession="true" name="IServiceState">
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetAdapterTimeZone">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IServiceState/GetAdapterTimeZone" message="tns:IClusterOptimizer_GetAdapterTimeZone_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IServiceState/GetAdapterTimeZoneResponse" message="tns:IClusterOptimizer_GetAdapterTimeZone_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IServiceState/GetAdapterTimeZoneSiplaceProOptimizerFaultFault" name="SiplaceProOptimizerFaultFault" message="tns:IServiceState_GetAdapterTimeZone_SiplaceProOptimizerFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetServiceState">
+      <wsdl:input wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IServiceState/GetServiceState" message="tns:IClusterOptimizer_GetServiceState_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IServiceState/GetServiceStateResponse" message="tns:IClusterOptimizer_GetServiceState_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DefaultBinding_IClusterOptimizerNotify2" type="tns:IClusterOptimizerNotify2">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ClusterOptimizationComplete2">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IClusterOptimizerNotify2/ClusterOptimizationComplete2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="ClusterProgress2">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IClusterOptimizerNotify2/ClusterProgress2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="ClusterState2">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IClusterOptimizerNotify2/ClusterState2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResultErrorClusterCount2">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IClusterOptimizerNotify2/ResultErrorClusterCount2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="ResultSolutionCharacteristics2">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IClusterOptimizerNotify2/ResultSolutionCharacteristics2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="SessionTerminated2">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IClusterOptimizerNotify2/SessionTerminated2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DefaultBinding_IOptimizerNotify2" type="tns:IOptimizerNotify2">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="OptimizationComplete2">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizerNotify2/OptimizationComplete2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="OptimizationProgress2">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizerNotify2/OptimizationProgress2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="OptimizationResult2">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizerNotify2/OptimizationResult2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OptimizationState2">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizerNotify2/OptimizationState2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DefaultBinding_IClusterOptimizerNotifyArgs" type="tns:IClusterOptimizerNotifyArgs">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ClusterOptimizationComplete3">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IClusterOptimizerNotifyArgs/ClusterOptimizationComplete3" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="ClusterProgress3">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IClusterOptimizerNotifyArgs/ClusterProgress3" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="ClusterState3">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IClusterOptimizerNotifyArgs/ClusterState3" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResultErrorClusterCount3">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IClusterOptimizerNotifyArgs/ResultErrorClusterCount3" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="ResultSolutionCharacteristics3">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IClusterOptimizerNotifyArgs/ResultSolutionCharacteristics3" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="SessionTerminated3">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IClusterOptimizerNotifyArgs/SessionTerminated3" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DefaultBinding_IOptimizerNotifyArgs" type="tns:IOptimizerNotifyArgs">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="OptimizationComplete3">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizerNotifyArgs/OptimizationComplete3" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="OptimizationProgress3">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizerNotifyArgs/OptimizationProgress3" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="OptimizationResult3">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizerNotifyArgs/OptimizationResult3" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OptimizationState3">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizerNotifyArgs/OptimizationState3" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DefaultBinding_IOptimizerStoppedReceiver" type="tns:IOptimizerStoppedReceiver">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="OptimizerStoppedReport">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service\OptimizerStopped" style="document" />
+      <wsdl:input name="OptimizerStoppedReportRequest">
+        <soap:header message="tns:OptimizerStoppedReportRequest_Headers" part="MessageId" use="literal" />
+        <soap:header message="tns:OptimizerStoppedReportRequest_Headers" part="SubscriptionTopic" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DefaultBinding_IOptimizerStartedReceiver" type="tns:IOptimizerStartedReceiver">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="OptimizerStartedReport">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service\OptimizerStarted" style="document" />
+      <wsdl:input name="OptimizerStartedReportRequest">
+        <soap:header message="tns:OptimizerStartedReportRequest_Headers" part="MessageId" use="literal" />
+        <soap:header message="tns:OptimizerStartedReportRequest_Headers" part="SubscriptionTopic" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DefaultBinding_IClusterOptimizer" type="tns:IClusterOptimizer">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="get_CurrentUser">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/get_CurrentUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SiplaceProOptimizerFaultFault">
+        <soap:fault name="SiplaceProOptimizerFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="get_MaxOIDInfo">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/get_MaxOIDInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SiplaceProOptimizerFaultFault">
+        <soap:fault name="SiplaceProOptimizerFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetConfiguration">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/GetConfiguration" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SiplaceProOptimizerFaultFault">
+        <soap:fault name="SiplaceProOptimizerFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetConfiguration2">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/GetConfiguration2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SiplaceProOptimizerFaultFault">
+        <soap:fault name="SiplaceProOptimizerFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetConfiguration2_Long">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/GetConfiguration2_Long" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SiplaceProOptimizerFaultFault">
+        <soap:fault name="SiplaceProOptimizerFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="LogonUser">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/LogonUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SiplaceProOptimizerFaultFault">
+        <soap:fault name="SiplaceProOptimizerFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="SaveConfiguration">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/SaveConfiguration" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SiplaceProOptimizerFaultFault">
+        <soap:fault name="SiplaceProOptimizerFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="SaveConfiguration2">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/SaveConfiguration2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SiplaceProOptimizerFaultFault">
+        <soap:fault name="SiplaceProOptimizerFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="SaveConfiguration2_Long">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/SaveConfiguration2_Long" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SiplaceProOptimizerFaultFault">
+        <soap:fault name="SiplaceProOptimizerFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetAdapterTimeZone">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IServiceState/GetAdapterTimeZone" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SiplaceProOptimizerFaultFault">
+        <soap:fault name="SiplaceProOptimizerFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetServiceState">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IServiceState/GetServiceState" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckAlive">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/Common/Contracts/Service/ICheckAlive/CheckAlive" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="CheckAlive2">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/Common/Contracts/Service/ICheckAlive/CheckAlive2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDatabaseIdForClusterOptimizer">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IClusterOptimizer/GetDatabaseIdForClusterOptimizer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SiplaceProOptimizerFaultFault">
+        <soap:fault name="SiplaceProOptimizerFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetProductVersionForClusterOptimizer">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IClusterOptimizer/GetProductVersionForClusterOptimizer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SiplaceProOptimizerFaultFault">
+        <soap:fault name="SiplaceProOptimizerFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="StartClustering">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IClusterOptimizer/StartClustering" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SiplaceProOptimizerFaultFault">
+        <soap:fault name="SiplaceProOptimizerFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="StartClustering2">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IClusterOptimizer/StartClustering2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SiplaceProOptimizerFaultFault">
+        <soap:fault name="SiplaceProOptimizerFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="StartClustering2WithClientId">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IClusterOptimizer/StartClustering2WithClientId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SiplaceProOptimizerFaultFault">
+        <soap:fault name="SiplaceProOptimizerFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="StartClustering2WithClientId_Long">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IClusterOptimizer/StartClustering2WithClientId_Long" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SiplaceProOptimizerFaultFault">
+        <soap:fault name="SiplaceProOptimizerFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="StartClustering2WithClientId2">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IClusterOptimizer/StartClustering2WithClientId2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SiplaceProOptimizerFaultFault">
+        <soap:fault name="SiplaceProOptimizerFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="StartClustering2WithClientId2_Long">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IClusterOptimizer/StartClustering2WithClientId2_Long" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SiplaceProOptimizerFaultFault">
+        <soap:fault name="SiplaceProOptimizerFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="StartClusteringWithClientId">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IClusterOptimizer/StartClusteringWithClientId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SiplaceProOptimizerFaultFault">
+        <soap:fault name="SiplaceProOptimizerFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="StartClusteringWithClientId2">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IClusterOptimizer/StartClusteringWithClientId2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SiplaceProOptimizerFaultFault">
+        <soap:fault name="SiplaceProOptimizerFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DefaultBinding_IClusterOptimizerNotify" type="tns:IClusterOptimizerNotify">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ClusterOptimizationComplete">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IClusterOptimizerNotify/ClusterOptimizationComplete" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="ClusterProgress">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IClusterOptimizerNotify/ClusterProgress" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="ClusterState">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IClusterOptimizerNotify/ClusterState" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="ResultErrorClusterCount">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IClusterOptimizerNotify/ResultErrorClusterCount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="ResultSolutionCharacteristics">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IClusterOptimizerNotify/ResultSolutionCharacteristics" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="SessionTerminated">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IClusterOptimizerNotify/SessionTerminated" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DefaultBinding_IConfiguration" type="tns:IConfiguration">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="get_CurrentUser">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/get_CurrentUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SiplaceProOptimizerFaultFault">
+        <soap:fault name="SiplaceProOptimizerFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="get_MaxOIDInfo">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/get_MaxOIDInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SiplaceProOptimizerFaultFault">
+        <soap:fault name="SiplaceProOptimizerFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetConfiguration">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/GetConfiguration" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SiplaceProOptimizerFaultFault">
+        <soap:fault name="SiplaceProOptimizerFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetConfiguration2">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/GetConfiguration2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SiplaceProOptimizerFaultFault">
+        <soap:fault name="SiplaceProOptimizerFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetConfiguration2_Long">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/GetConfiguration2_Long" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SiplaceProOptimizerFaultFault">
+        <soap:fault name="SiplaceProOptimizerFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="LogonUser">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/LogonUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SiplaceProOptimizerFaultFault">
+        <soap:fault name="SiplaceProOptimizerFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="SaveConfiguration">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/SaveConfiguration" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SiplaceProOptimizerFaultFault">
+        <soap:fault name="SiplaceProOptimizerFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="SaveConfiguration2">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/SaveConfiguration2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SiplaceProOptimizerFaultFault">
+        <soap:fault name="SiplaceProOptimizerFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="SaveConfiguration2_Long">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/SaveConfiguration2_Long" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SiplaceProOptimizerFaultFault">
+        <soap:fault name="SiplaceProOptimizerFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DefaultBinding_IOptimizer" type="tns:IOptimizer">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="get_CurrentUser">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/get_CurrentUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SiplaceProOptimizerFaultFault">
+        <soap:fault name="SiplaceProOptimizerFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="get_MaxOIDInfo">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/get_MaxOIDInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SiplaceProOptimizerFaultFault">
+        <soap:fault name="SiplaceProOptimizerFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetConfiguration">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/GetConfiguration" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SiplaceProOptimizerFaultFault">
+        <soap:fault name="SiplaceProOptimizerFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetConfiguration2">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/GetConfiguration2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SiplaceProOptimizerFaultFault">
+        <soap:fault name="SiplaceProOptimizerFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetConfiguration2_Long">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/GetConfiguration2_Long" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SiplaceProOptimizerFaultFault">
+        <soap:fault name="SiplaceProOptimizerFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="LogonUser">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/LogonUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SiplaceProOptimizerFaultFault">
+        <soap:fault name="SiplaceProOptimizerFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="SaveConfiguration">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/SaveConfiguration" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SiplaceProOptimizerFaultFault">
+        <soap:fault name="SiplaceProOptimizerFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="SaveConfiguration2">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/SaveConfiguration2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SiplaceProOptimizerFaultFault">
+        <soap:fault name="SiplaceProOptimizerFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="SaveConfiguration2_Long">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IConfiguration/SaveConfiguration2_Long" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SiplaceProOptimizerFaultFault">
+        <soap:fault name="SiplaceProOptimizerFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetAdapterTimeZone">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IServiceState/GetAdapterTimeZone" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SiplaceProOptimizerFaultFault">
+        <soap:fault name="SiplaceProOptimizerFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetServiceState">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IServiceState/GetServiceState" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckAlive">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/Common/Contracts/Service/ICheckAlive/CheckAlive" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="CheckAlive2">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/Common/Contracts/Service/ICheckAlive/CheckAlive2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDatabaseIdForOptimizer">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/GetDatabaseIdForOptimizer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SiplaceProOptimizerFaultFault">
+        <soap:fault name="SiplaceProOptimizerFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetProductVersionForOptimizer">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/GetProductVersionForOptimizer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SiplaceProOptimizerFaultFault">
+        <soap:fault name="SiplaceProOptimizerFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Cancel">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/Cancel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SiplaceProOptimizerFaultFault">
+        <soap:fault name="SiplaceProOptimizerFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="CheckIntegrity">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/CheckIntegrity" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SiplaceProOptimizerFaultFault">
+        <soap:fault name="SiplaceProOptimizerFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="CheckIntegrity2">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/CheckIntegrity2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SiplaceProOptimizerFaultFault">
+        <soap:fault name="SiplaceProOptimizerFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="CheckIntegrity2_Long">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/CheckIntegrity2_Long" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SiplaceProOptimizerFaultFault">
+        <soap:fault name="SiplaceProOptimizerFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetOptimizerMessages">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/GetOptimizerMessages" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SiplaceProOptimizerFaultFault">
+        <soap:fault name="SiplaceProOptimizerFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetOptimizerMessages2">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/GetOptimizerMessages2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SiplaceProOptimizerFaultFault">
+        <soap:fault name="SiplaceProOptimizerFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetOptimizerMessages2_Long">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/GetOptimizerMessages2_Long" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SiplaceProOptimizerFaultFault">
+        <soap:fault name="SiplaceProOptimizerFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetOptimizerResultsForRecipe">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/GetOptimizerResultsForRecipe" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SiplaceProOptimizerFaultFault">
+        <soap:fault name="SiplaceProOptimizerFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetOptimizerResultsForRecipe2">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/GetOptimizerResultsForRecipe2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SiplaceProOptimizerFaultFault">
+        <soap:fault name="SiplaceProOptimizerFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetOptimizerResultsForRecipe2_Long">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/GetOptimizerResultsForRecipe2_Long" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SiplaceProOptimizerFaultFault">
+        <soap:fault name="SiplaceProOptimizerFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="HasAdapterLicense">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/HasAdapterLicense" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SiplaceProOptimizerFaultFault">
+        <soap:fault name="SiplaceProOptimizerFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="LoadSpotx">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/LoadSpotx" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveSpotx">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/SaveSpotx" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Start">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/Start" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SiplaceProOptimizerFaultFault">
+        <soap:fault name="SiplaceProOptimizerFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Start2">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/Start2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SiplaceProOptimizerFaultFault">
+        <soap:fault name="SiplaceProOptimizerFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Start2WithClientId">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/Start2WithClientId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SiplaceProOptimizerFaultFault">
+        <soap:fault name="SiplaceProOptimizerFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="StartExt">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/StartExt" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SiplaceProOptimizerFaultFault">
+        <soap:fault name="SiplaceProOptimizerFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="StartExt2">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/StartExt2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SiplaceProOptimizerFaultFault">
+        <soap:fault name="SiplaceProOptimizerFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="StartExt2_Long">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/StartExt2_Long" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SiplaceProOptimizerFaultFault">
+        <soap:fault name="SiplaceProOptimizerFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="StartWithClientId">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/StartWithClientId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SiplaceProOptimizerFaultFault">
+        <soap:fault name="SiplaceProOptimizerFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Stop">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizer/Stop" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SiplaceProOptimizerFaultFault">
+        <soap:fault name="SiplaceProOptimizerFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DefaultBinding_IOptimizerNotify" type="tns:IOptimizerNotify">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="OptimizationComplete">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizerNotify/OptimizationComplete" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="OptimizationProgress">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizerNotify/OptimizationProgress" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="OptimizationResult">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizerNotify/OptimizationResult" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="OptimizationState">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IOptimizerNotify/OptimizationState" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DefaultBinding_IOptimizerStarted" type="tns:IOptimizerStarted">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="OptimizerStartedReport">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service\OptimizerStarted" style="document" />
+      <wsdl:input name="OptimizerStartedReportRequest">
+        <soap:header message="tns:OptimizerStartedReportRequest_Headers" part="MessageId" use="literal" />
+        <soap:header message="tns:OptimizerStartedReportRequest_Headers" part="SubscriptionTopic" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DefaultBinding_IOptimizerStopped" type="tns:IOptimizerStopped">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="OptimizerStoppedReport">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service\OptimizerStopped" style="document" />
+      <wsdl:input name="OptimizerStoppedReportRequest">
+        <soap:header message="tns:OptimizerStoppedReportRequest_Headers" part="MessageId" use="literal" />
+        <soap:header message="tns:OptimizerStoppedReportRequest_Headers" part="SubscriptionTopic" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DefaultBinding_IServiceState" type="tns:IServiceState">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetAdapterTimeZone">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IServiceState/GetAdapterTimeZone" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SiplaceProOptimizerFaultFault">
+        <soap:fault name="SiplaceProOptimizerFaultFault" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetServiceState">
+      <soap:operation soapAction="http://www.siplace.com/OIB/2008/05/SiplacePro/Optimizer/Contracts/Service/IServiceState/GetServiceState" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+</wsdl:definitions>
