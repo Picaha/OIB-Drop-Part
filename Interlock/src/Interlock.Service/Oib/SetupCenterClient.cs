@@ -35,7 +35,8 @@ namespace Interlock.Service.Oib
                 ServiceName,
                 () => new SiplaceSetupCenter(address, OibEndpoints.SecureBinding(endpointUri, sendTimeout)),
                 proxy => proxy.Dispose(),
-                clock);
+                clock,
+                proxy => proxy.IsConnected()); // the first call opens the channel; do it once, before other threads share the proxy
         }
 
         /// <summary>

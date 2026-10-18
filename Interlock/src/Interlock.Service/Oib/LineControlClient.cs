@@ -28,7 +28,8 @@ namespace Interlock.Service.Oib
                 ServiceName,
                 () => new LineControl(address, OibEndpoints.SecureBinding(endpointUri, sendTimeout)),
                 proxy => proxy.Dispose(),
-                clock);
+                clock,
+                proxy => proxy.IsServiceAlive()); // the first call opens the channel; do it once, before other threads share the proxy
         }
 
         // OIB 6.6 and later need no adapter license, so the OIB marks HasAdapterLicense obsolete. The port still reports it for the

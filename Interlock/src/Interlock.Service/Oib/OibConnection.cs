@@ -31,6 +31,7 @@ namespace Interlock.Service.Oib
         private readonly string _service;
         private readonly Func<TProxy> _create;
         private readonly Action<TProxy> _close;
+        private readonly Action<TProxy> _open;
         private readonly ReconnectBackoff _backoff;
         private readonly object _gate = new object();
         private TProxy _proxy;
@@ -39,7 +40,12 @@ namespace Interlock.Service.Oib
         /// <param name="service">The name used in messages, for example "Setup Center".</param>
         /// <param name="create">Makes a new proxy. It may throw.</param>
         /// <param name="close">Releases a proxy. Its exceptions are ignored.</param>
-        public OibConnection(string service, Func<TProxy> create, Action<TProxy> close, IClock clock)
+        /// <param name="open">
+        /// Opens a new proxy: a harmless first call. WCF channels open themselves on the first call and that open is not safe to
+        /// race, so it runs once, right after creation and under the creation lock; the proxy is shared with other threads only
+        /// when it succeeded. A failure counts as a connection failure. Omitted: no open step.
+        /// </param>
+        public OibConnection(string service, Func<TProxy> create, Action<TProxy> close, IClock clock, Action<TProxy> open = null)
         {
             if (string.IsNullOrWhiteSpace(service))
                 throw new ArgumentException("A service name is required.", nameof(service));
@@ -53,6 +59,7 @@ namespace Interlock.Service.Oib
             _service = service;
             _create = create;
             _close = close;
+            _open = open;
             _backoff = new ReconnectBackoff(clock);
         }
 
@@ -110,25 +117,39 @@ namespace Interlock.Service.Oib
 
         private TProxy Acquire(string action)
         {
-            lock (_gate)
+            TProxy failed = null;
+            try
             {
-                if (_disposed)
-                    throw new OibCallException(_service + " client is disposed");
-                if (_proxy != null)
-                    return _proxy;
-                if (!_backoff.CanTry)
-                    throw new OibCallException(_service + " not connected");
+                lock (_gate)
+                {
+                    if (_disposed)
+                        throw new OibCallException(_service + " client is disposed");
+                    if (_proxy != null)
+                        return _proxy;
+                    if (!_backoff.CanTry)
+                        throw new OibCallException(_service + " not connected");
 
-                try
-                {
-                    _proxy = _create();
-                    return _proxy;
+                    try
+                    {
+                        var created = _create();
+                        failed = created;
+                        if (_open != null)
+                            _open(created);
+                        failed = null;
+                        _proxy = created;
+                        return created;
+                    }
+                    catch (Exception ex)
+                    {
+                        _backoff.Failed();
+                        throw new OibCallException(_service + " " + action + " failed: " + ex.Message, ex);
+                    }
                 }
-                catch (Exception ex)
-                {
-                    _backoff.Failed();
-                    throw new OibCallException(_service + " " + action + " failed: " + ex.Message, ex);
-                }
+            }
+            finally
+            {
+                // A proxy whose open failed was never shared; close it outside the lock.
+                Close(failed);
             }
         }
 
