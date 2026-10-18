@@ -14,7 +14,7 @@ namespace Interlock.Service.ExternalControl
     /// (localhost becomes the machine name, so Setup Center on another computer can reach it) and each host is opened with
     /// <c>EndpointHelper.OpenServiceHost</c>: the pattern of the OIB tutorials.
     /// </summary>
-    public sealed class ExternalControlHost : IDisposable
+    public sealed class ExternalControlHost : IListener
     {
         private static readonly TimeSpan CloseTimeout = TimeSpan.FromSeconds(5);
 

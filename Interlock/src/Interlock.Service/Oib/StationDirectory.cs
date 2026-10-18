@@ -13,7 +13,7 @@ namespace Interlock.Service.Oib
     /// the stations plus the ones Setup Center knows, sorted ignoring case. Each source is refreshed on its own: when one fails
     /// its last good list stays (a warning is logged) and the other still updates.
     /// </summary>
-    public sealed class StationDirectory : IStationDirectory
+    public sealed class StationDirectory : IRefreshableStationDirectory
     {
         private static readonly IList<StationRef> NoStations = new ReadOnlyCollection<StationRef>(new StationRef[0]);
         private static readonly IList<string> NoLines = new ReadOnlyCollection<string>(new string[0]);

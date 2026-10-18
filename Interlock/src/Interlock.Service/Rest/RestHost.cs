@@ -11,7 +11,7 @@ namespace Interlock.Service.Rest
     /// (for example <c>http://+:8080/interlock/v1</c>). The binding is plain HTTP; switching to HTTPS is a change of the base
     /// address and the binding's security mode, which a later configuration step can make.
     /// </summary>
-    public sealed class RestHost : IDisposable
+    public sealed class RestHost : IListener
     {
         private const int MaxBodyBytes = 64 * 1024;
         private static readonly TimeSpan CloseTimeout = TimeSpan.FromSeconds(5);

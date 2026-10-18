@@ -27,7 +27,7 @@ namespace Interlock.Service.Oib
     /// <see cref="ReconnectBackoff"/> after failures. Nothing here throws into the caller or into the OIB thread that raises the
     /// events: every failure is logged. <see cref="Stop"/> unsubscribes quietly.
     /// </summary>
-    public sealed class SetupCenterEventSubscriber : IDisposable
+    public sealed class SetupCenterEventSubscriber : ILockEventSource
     {
         private readonly Func<ISetupCenterSession> _newSession;
         private readonly string _coreHost;
