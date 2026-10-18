@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Interlock.Core.Errors;
@@ -20,6 +21,9 @@ namespace Interlock.Tests.Fakes
 
         /// <summary>Mounted feeders by feeder id.</summary>
         public Dictionary<string, FeederMount> Mounted { get; set; } = new Dictionary<string, FeederMount>();
+
+        /// <summary>Called with the recorded text of every call (the entry just added to <see cref="Calls"/>), before the call can throw. Lets a test change the world while a call is in flight.</summary>
+        public Action<string> OnCall { get; set; }
 
         public List<MachineRef> Machines { get; set; } = new List<MachineRef>();
 
@@ -91,7 +95,9 @@ namespace Interlock.Tests.Fakes
 
         private void Record(string method, IEnumerable<string> ids = null)
         {
-            Calls.Add(ids == null ? method : method + ":" + string.Join(",", ids));
+            var call = ids == null ? method : method + ":" + string.Join(",", ids);
+            Calls.Add(call);
+            OnCall?.Invoke(call);
         }
 
         private void ThrowIfWritesFail(string method)

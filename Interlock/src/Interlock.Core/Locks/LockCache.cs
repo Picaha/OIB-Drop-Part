@@ -52,12 +52,34 @@ namespace Interlock.Core.Locks
             lock (_writeGate)
             {
                 var items = new List<LockRecord>(_items);
-                var index = items.FindIndex(e => l.Id != 0 ? e.Id == l.Id : SameIdentity(e, l));
+                var index = IndexOf(items, l);
                 if (index >= 0)
                     items[index] = l;
                 else
                     items.Add(l);
                 Publish(items.ToArray());
+            }
+        }
+
+        /// <summary>
+        /// Like <see cref="Upsert"/>, but never adds: replaces the entry with the same <c>Id</c> (for <c>Id == 0</c> the entry
+        /// with the same identity) and returns true, or changes nothing and returns false. The check and the write are one
+        /// step, so a lock removed meanwhile is not put back.
+        /// </summary>
+        public bool UpsertIfPresent(LockRecord l)
+        {
+            if (l == null)
+                throw new ArgumentNullException(nameof(l));
+
+            lock (_writeGate)
+            {
+                var items = new List<LockRecord>(_items);
+                var index = IndexOf(items, l);
+                if (index < 0)
+                    return false;
+                items[index] = l;
+                Publish(items.ToArray());
+                return true;
             }
         }
 
@@ -94,6 +116,11 @@ namespace Interlock.Core.Locks
         private void Publish(LockRecord[] items)
         {
             Volatile.Write(ref _items, items);
+        }
+
+        private static int IndexOf(List<LockRecord> items, LockRecord l)
+        {
+            return items.FindIndex(e => l.Id != 0 ? e.Id == l.Id : SameIdentity(e, l));
         }
 
         private static bool SameIdentity(LockRecord a, LockRecord b)

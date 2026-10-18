@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Interlock.Core.Errors;
 using Interlock.Core.Model;
@@ -18,6 +19,9 @@ namespace Interlock.Tests.Fakes
 
         /// <summary>The answer of <see cref="IsBlockSupported"/> for every station.</summary>
         public bool Supported { get; set; } = true;
+
+        /// <summary>Called with the recorded text of every call (the entry just added to <see cref="Calls"/>), before the call can throw. Lets a test change the world while a call is in flight.</summary>
+        public Action<string> OnCall { get; set; }
 
         /// <summary>When true, every member (reads too) records itself and then throws <see cref="OibCallException"/>.</summary>
         public bool ThrowAlways { get; set; }
@@ -54,6 +58,7 @@ namespace Interlock.Tests.Fakes
         private void Record(string call)
         {
             Calls.Add(call);
+            OnCall?.Invoke(call);
             if (ThrowAlways)
                 throw new OibCallException("Line Control fake: " + call + " failed.");
         }

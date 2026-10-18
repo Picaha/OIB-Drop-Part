@@ -75,6 +75,12 @@ namespace Interlock.Core.Enforcement
             if (!CanHandle(job))
                 return;
 
+            if (job.Kind != JobKind.Release && !IsInCache(l))
+            {
+                _log.Info("Lock #" + l.Id + ": " + job.Kind + " job skipped, the lock is no longer cached.");
+                return;
+            }
+
             if (l.Id == 0)
                 _log.Warn("Lock " + DbEnum.ToDb(l.Type) + " " + l.Target + " has no id yet (not stored): the action log and enforce state are not written to the database.");
 
@@ -217,11 +223,20 @@ namespace Interlock.Core.Enforcement
             return Outcome.Done(EnforceState.Applied, true);
         }
 
-        /// <summary>Logs the failed call, then queues a retry, or ends the job as FAILED when it must not or can no longer be retried.</summary>
+        /// <summary>
+        /// Logs the failed call, then queues a retry, or ends the job as FAILED when it must not or can no longer be retried.
+        /// An Apply or Reblock job whose lock has left the cache (released meanwhile) is dropped instead: no retry, no FAILED, no alarm.
+        /// </summary>
         private void OnFailure(EnforcementJob job, string action, string error, bool canRetry)
         {
             var l = job.Lock;
             WriteAction(job, action, false, error);
+
+            if (job.Kind != JobKind.Release && !IsInCache(l))
+            {
+                _log.Info("Lock #" + l.Id + " " + action + " failed and the lock is no longer cached, so there is no retry and no FAILED state: " + error);
+                return;
+            }
 
             if (canRetry)
             {
@@ -269,13 +284,14 @@ namespace Interlock.Core.Enforcement
 
             if (l.Id != 0)
                 TryDb("save the enforce state", () => _locks.SetEnforceState(l.Id, state, error));
-            if (l.Status == LockStatus.Active && IsInCache(l))
-                _cache.Upsert(l);
+            if (l.Status == LockStatus.Active)
+                _cache.UpsertIfPresent(l);
         }
 
         /// <summary>
-        /// True while the cache still holds the lock: by id, or for a spooled lock (id 0) by identity. A lock released
-        /// while its job ran is gone from the cache, and the worker must not put it back.
+        /// True while the cache still holds the lock: by id, or for a spooled lock (id 0) by identity. Apply and Reblock jobs act
+        /// only on such a lock. A lock released while its job waited or ran is gone from the cache, and the worker neither
+        /// runs, retries nor re-caches it.
         /// </summary>
         private bool IsInCache(LockRecord l)
         {

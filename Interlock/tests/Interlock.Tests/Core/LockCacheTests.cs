@@ -122,6 +122,52 @@ namespace Interlock.Tests.Core
         }
 
         [Test]
+        public void UpsertIfPresent_replaces_entry_with_same_id()
+        {
+            _cache.Replace(new[] { L(1), L(2) }, T0);
+
+            var replaced = _cache.UpsertIfPresent(L(1, target: "OTHER"));
+
+            Assert.That(replaced, Is.True);
+            Assert.That(_cache.Snapshot.Count, Is.EqualTo(2));
+            Assert.That(_cache.Snapshot.Single(l => l.Id == 1).Target, Is.EqualTo("OTHER"));
+        }
+
+        [Test]
+        public void UpsertIfPresent_does_not_add_an_unknown_id()
+        {
+            _cache.Replace(new[] { L(1) }, T0);
+
+            var replaced = _cache.UpsertIfPresent(L(2));
+
+            Assert.That(replaced, Is.False);
+            Assert.That(_cache.Snapshot.Select(l => l.Id), Is.EqualTo(new long[] { 1 }));
+        }
+
+        [Test]
+        public void UpsertIfPresent_replaces_a_spooled_entry_by_identity_and_never_adds()
+        {
+            Assert.That(_cache.UpsertIfPresent(L(0, target: "U1")), Is.False);
+            Assert.That(_cache.Snapshot, Is.Empty);
+
+            _cache.Upsert(L(0, target: "U1"));
+            Assert.That(_cache.UpsertIfPresent(L(0, target: "u1 ")), Is.True);
+            Assert.That(_cache.UpsertIfPresent(L(0, target: "U2")), Is.False);
+
+            Assert.That(_cache.Snapshot.Count, Is.EqualTo(1));
+            Assert.That(_cache.Snapshot.Single().Target, Is.EqualTo("u1 "));
+        }
+
+        [Test]
+        public void UpsertIfPresent_does_not_change_loaded_time()
+        {
+            _cache.Replace(new[] { L(1) }, T0);
+            _cache.UpsertIfPresent(L(1));
+
+            Assert.That(_cache.LoadedAtUtc, Is.EqualTo(T0));
+        }
+
+        [Test]
         public void Remove_by_id()
         {
             _cache.Replace(new[] { L(1), L(2) }, T0);

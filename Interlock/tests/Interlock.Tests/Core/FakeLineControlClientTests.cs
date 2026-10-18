@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Interlock.Core.Errors;
 using Interlock.Core.Model;
@@ -43,6 +44,23 @@ namespace Interlock.Tests.Core
 
             _lc.Supported = false;
             Assert.That(_lc.IsBlockSupported("S1"), Is.False);
+        }
+
+        [Test]
+        public void OnCall_sees_each_recorded_call_before_it_can_throw()
+        {
+            var seen = new List<string>();
+            _lc.OnCall = c => seen.Add(c + "|" + string.Join(",", _lc.Calls));
+            _lc.ThrowAlways = true;
+
+            Assert.Throws<OibCallException>(() => _lc.Block("S1", Lanes.Both, "why"));
+            Assert.Throws<OibCallException>(() => _lc.GetState("S1"));
+
+            Assert.That(seen, Is.EqualTo(new[]
+            {
+                "Block:S1:BOTH|Block:S1:BOTH",
+                "GetState:S1|Block:S1:BOTH,GetState:S1"
+            }));
         }
 
         [Test]

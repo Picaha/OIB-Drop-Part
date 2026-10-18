@@ -449,13 +449,83 @@ namespace Interlock.Tests.Core
             Assert.That(_alarms.Recent(5), Is.Empty);
         }
 
-        // ---- cache ----
+        // ---- cache, and locks released while their job waits or runs ----
 
         [Test]
-        public void Lock_released_while_its_apply_job_waits_is_not_put_back_in_the_cache()
+        public void Apply_job_for_a_lock_that_left_the_cache_makes_no_oib_call()
         {
             Enqueue(Pu(1, "U1"), JobKind.Apply);
             _cache.Remove(1);
+
+            _worker.RunDue();
+
+            Assert.That(_sc.Calls, Is.Empty);
+            Assert.That(_audit.Actions, Is.Empty);
+            Assert.That(_queue.Count, Is.EqualTo(0));
+            Assert.That(_repo.Get(1).EnforceState, Is.EqualTo(EnforceState.Pending));
+            Assert.That(_cache.Snapshot, Is.Empty);
+            Assert.That(_alarms.Recent(5), Is.Empty);
+            Assert.That(_log.Infos, Has.Some.Contains("no longer cached"));
+        }
+
+        [Test]
+        public void Reblock_job_for_a_lock_that_left_the_cache_makes_no_oib_call()
+        {
+            Enqueue(Conv(1, "S1", Lanes.Both), JobKind.Reblock);
+            _cache.Remove(1);
+
+            _worker.RunDue();
+
+            Assert.That(_lc.Calls, Is.Empty);
+            Assert.That(_audit.Actions, Is.Empty);
+            Assert.That(_queue.Count, Is.EqualTo(0));
+            Assert.That(_alarms.Recent(5), Is.Empty);
+            Assert.That(_log.Infos, Has.Some.Contains("no longer cached"));
+        }
+
+        [Test]
+        public void Spooled_apply_job_for_a_lock_that_left_the_cache_makes_no_oib_call()
+        {
+            _queue.Enqueue(new EnforcementJob { Lock = Pu(0, "U1"), Kind = JobKind.Apply, NotBeforeUtc = _clock.UtcNow });
+
+            _worker.RunDue();
+
+            Assert.That(_sc.Calls, Is.Empty);
+            Assert.That(_cache.Snapshot, Is.Empty);
+            Assert.That(_queue.Count, Is.EqualTo(0));
+        }
+
+        [Test]
+        public void Release_job_runs_when_its_lock_is_not_cached()
+        {
+            Enqueue(Pu(1, "U1"), JobKind.Release);
+            Assert.That(_cache.Snapshot, Is.Empty);
+
+            _worker.RunDue();
+
+            Assert.That(_sc.Calls, Is.EqualTo(new[] { "UnlockPackagingUnits:U1" }));
+            Assert.That(_repo.Get(1).EnforceState, Is.EqualTo(EnforceState.Applied));
+        }
+
+        [Test]
+        public void Failed_release_is_retried_although_its_lock_is_not_cached()
+        {
+            _sc.ThrowAlways = true;
+            Enqueue(Pu(1, "U1"), JobKind.Release);
+
+            _worker.RunDue();
+            _clock.Advance(TimeSpan.FromSeconds(5));
+            _worker.RunDue();
+
+            Assert.That(_sc.Calls, Is.EqualTo(new[] { "UnlockPackagingUnits:U1", "UnlockPackagingUnits:U1" }));
+            Assert.That(_queue.Count, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void Lock_released_during_a_successful_apply_call_is_not_put_back_in_the_cache()
+        {
+            _sc.OnCall = c => _cache.Remove(1);
+            Enqueue(Pu(1, "U1"), JobKind.Apply);
 
             _worker.RunDue();
 
@@ -465,26 +535,83 @@ namespace Interlock.Tests.Core
         }
 
         [Test]
-        public void Lock_gone_from_the_cache_stays_out_when_the_job_ends_failed()
+        public void Failing_apply_is_not_retried_when_the_lock_left_the_cache_during_the_call()
         {
-            _lc.Supported = false;
-            Enqueue(Conv(1, "S1", Lanes.Both), JobKind.Apply);
-            _cache.Remove(1);
+            _sc.ThrowAlways = true;
+            _sc.OnCall = c => _cache.Remove(1);
+            Enqueue(Pu(1, "U1"), JobKind.Apply);
 
             _worker.RunDue();
-
-            Assert.That(_repo.Get(1).EnforceState, Is.EqualTo(EnforceState.Failed));
-            Assert.That(_cache.Snapshot, Is.Empty);
-        }
-
-        [Test]
-        public void Spooled_lock_gone_from_the_cache_is_not_put_back()
-        {
-            _queue.Enqueue(new EnforcementJob { Lock = Pu(0, "U1"), Kind = JobKind.Apply, NotBeforeUtc = _clock.UtcNow });
-
+            Assert.That(_queue.Count, Is.EqualTo(0), "no retry queued");
+            _clock.Advance(TimeSpan.FromMinutes(10));
             _worker.RunDue();
 
             Assert.That(_sc.Calls, Is.EqualTo(new[] { "LockPackagingUnits:U1" }));
+            Assert.That(_queue.Count, Is.EqualTo(0));
+            Assert.That(_repo.Get(1).EnforceState, Is.EqualTo(EnforceState.Pending));
+            Assert.That(_alarms.Recent(5), Is.Empty);
+            Assert.That(_cache.Snapshot, Is.Empty);
+            Assert.That(_audit.Actions.Single().Success, Is.False);
+            Assert.That(_log.Infos, Has.Some.Contains("no retry"));
+        }
+
+        [Test]
+        public void Conveyor_apply_that_cannot_be_retried_does_not_end_failed_when_the_lock_left_the_cache()
+        {
+            _lc.Supported = false;
+            _lc.OnCall = c => _cache.Remove(1);
+            Enqueue(Conv(1, "S1", Lanes.Both), JobKind.Apply);
+
+            _worker.RunDue();
+
+            Assert.That(_repo.Get(1).EnforceState, Is.EqualTo(EnforceState.Pending));
+            Assert.That(_alarms.Recent(5), Is.Empty);
+            Assert.That(_cache.Snapshot, Is.Empty);
+            Assert.That(_queue.Count, Is.EqualTo(0));
+            Assert.That(_audit.Actions.Single().Error, Is.EqualTo("Conveyor block not supported"));
+        }
+
+        [Test]
+        public void Failing_reblock_is_not_retried_when_the_lock_left_the_cache_during_the_call()
+        {
+            _lc.ThrowAlways = true;
+            _lc.OnCall = c => _cache.Remove(1);
+            Enqueue(Conv(1, "S1", Lanes.Both), JobKind.Reblock);
+
+            _worker.RunDue();
+            Assert.That(_queue.Count, Is.EqualTo(0), "no retry queued");
+            _clock.Advance(TimeSpan.FromMinutes(10));
+            _worker.RunDue();
+
+            Assert.That(_lc.Calls, Is.EqualTo(new[] { "Block:S1:BOTH" }));
+            Assert.That(_queue.Count, Is.EqualTo(0));
+            Assert.That(_repo.Get(1).EnforceState, Is.EqualTo(EnforceState.Pending));
+            Assert.That(_alarms.Recent(5), Is.Empty);
+        }
+
+        [Test]
+        public void Queued_retry_is_skipped_when_the_lock_is_released_before_it_is_due()
+        {
+            _sc.ThrowAlways = true;
+            Enqueue(Pu(1, "U1"), JobKind.Apply);
+            _worker.RunDue();
+            Assert.That(_queue.Count, Is.EqualTo(1));
+
+            // the operator releases the lock: the cache entry goes, the release job is queued
+            _cache.Remove(1);
+            _repo.MarkReleased(1, "operator", _clock.UtcNow, "done");
+            var released = Pu(1, "U1");
+            released.Status = LockStatus.Released;
+            _queue.Enqueue(new EnforcementJob { Lock = released, Kind = JobKind.Release, NotBeforeUtc = _clock.UtcNow });
+            _sc.ThrowAlways = false;
+
+            _clock.Advance(TimeSpan.FromSeconds(5));
+            _worker.RunDue();
+
+            Assert.That(_sc.Calls, Is.EqualTo(new[] { "LockPackagingUnits:U1", "UnlockPackagingUnits:U1" }));
+            Assert.That(_queue.Count, Is.EqualTo(0));
+            Assert.That(_repo.Get(1).Status, Is.EqualTo(LockStatus.Released));
+            Assert.That(_repo.Get(1).EnforceState, Is.EqualTo(EnforceState.Applied));
             Assert.That(_cache.Snapshot, Is.Empty);
         }
 
@@ -583,6 +710,7 @@ namespace Interlock.Tests.Core
         {
             var l = Pu(1, "U1");
             _repo.InsertActive(l);
+            _cache.Upsert(l.Clone());
             _queue.Enqueue(new EnforcementJob { Lock = l.Clone(), Kind = JobKind.Apply, NotBeforeUtc = _clock.UtcNow.AddSeconds(10) });
 
             _worker.RunDue();

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using Interlock.Core.Errors;
 using Interlock.Core.Model;
@@ -67,6 +68,23 @@ namespace Interlock.Tests.Core
             Assert.That(_sc.GetMountedPus(new[] { "m1", "m2" }).Count, Is.EqualTo(3));
             Assert.That(_sc.GetMountedPus(new string[0]), Is.Empty);
             Assert.That(_sc.GetMountedPus(new[] { "m9" }), Is.Empty);
+        }
+
+        [Test]
+        public void OnCall_sees_each_recorded_call_before_it_can_throw()
+        {
+            var seen = new List<string>();
+            _sc.OnCall = c => seen.Add(c + "|" + string.Join(",", _sc.Calls));
+            _sc.ThrowAlways = true;
+
+            Assert.Throws<OibCallException>(() => _sc.LockPackagingUnits(new[] { "U1" }, "why"));
+            _sc.FindMountedFeeder("F1");
+
+            Assert.That(seen, Is.EqualTo(new[]
+            {
+                "LockPackagingUnits:U1|LockPackagingUnits:U1",
+                "FindMountedFeeder:F1|LockPackagingUnits:U1,FindMountedFeeder:F1"
+            }));
         }
 
         [Test]
