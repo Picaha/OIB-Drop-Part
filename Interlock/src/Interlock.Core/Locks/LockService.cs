@@ -135,6 +135,7 @@ namespace Interlock.Core.Locks
                 throw new InterlockException(ErrorKind.Forbidden, "Not allowed to release locks");
             if (string.IsNullOrWhiteSpace(reason))
                 throw new InterlockException(ErrorKind.Validation, "Reason is required");
+            var releaseReason = reason.Trim();
 
             try
             {
@@ -147,13 +148,13 @@ namespace Interlock.Core.Locks
                         throw new InterlockException(ErrorKind.InvalidState, "Lock is already released");
 
                     var now = _clock.UtcNow;
-                    _locks.MarkReleased(id, p.Name, now, reason);
+                    _locks.MarkReleased(id, p.Name, now, releaseReason);
 
                     // Once the row is released the cache and the queue must follow, even if reading the row back fails.
                     l.Status = LockStatus.Released;
                     l.ReleasedBy = p.Name;
                     l.ReleasedAtUtc = now;
-                    l.ReleaseReason = reason;
+                    l.ReleaseReason = releaseReason;
                     l.EnforceState = EnforceState.Pending;
                     _cache.Remove(id);
                     _queue.Cancel(id);
@@ -174,7 +175,8 @@ namespace Interlock.Core.Locks
 
         /// <summary>
         /// Queues the OIB work of a FAILED lock again: Apply for an ACTIVE lock, Release for a RELEASED one. The lock goes
-        /// back to PENDING first. Returns the updated row.
+        /// back to PENDING first. An ACTIVE lock is put into the cache (the worker skips Apply jobs of uncached locks); a
+        /// RELEASED lock never is. Returns the updated row.
         /// </summary>
         public LockRecord Retry(Principal p, long id)
         {
@@ -198,7 +200,11 @@ namespace Interlock.Core.Locks
                     l.EnforceState = EnforceState.Pending;
                     l.EnforceError = null;
                     if (active)
-                        _cache.UpsertIfPresent(l.Clone());
+                    {
+                        // The row was just read under the gate, so it is ACTIVE now and no in-process release or reload can
+                        // interleave: caching it cannot bring a released lock back. The worker skips Apply jobs of uncached locks.
+                        _cache.Upsert(l.Clone());
+                    }
                     Enqueue(active ? JobKind.Apply : JobKind.Release, l);
                     _log.Info("Lock #" + id + " retried by " + p.Name);
                     return l;
@@ -254,7 +260,7 @@ namespace Interlock.Core.Locks
                 TargetNorm = Normalizer.Norm(trimmed),
                 Lanes = lanes,
                 LinePath = linePath,
-                Reason = reason,
+                Reason = reason == null ? null : reason.Trim(),
                 Source = source,
                 CreatedBy = createdBy,
                 CreatedAtUtc = _clock.UtcNow,

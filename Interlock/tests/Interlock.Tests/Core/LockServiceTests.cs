@@ -123,6 +123,15 @@ namespace Interlock.Tests.Core
         }
 
         [Test]
+        public void Create_stores_a_trimmed_reason()
+        {
+            var l = _svc.CreateLock(Qa, PuReq("U1", "  Reel damaged \r\n")).Lock;
+
+            Assert.That(l.Reason, Is.EqualTo("Reel damaged"));
+            Assert.That(_repo.Get(l.Id).Reason, Is.EqualTo("Reel damaged"));
+        }
+
+        [Test]
         public void Create_stores_a_blank_line_path_as_null_and_a_set_one_trimmed()
         {
             var blank = _svc.CreateLock(Qa, new CreateLockRequest { Type = LockType.Pn, Target = "C1", Reason = "r", LinePath = "   " });
@@ -454,6 +463,18 @@ namespace Interlock.Tests.Core
         }
 
         [Test]
+        public void Release_stores_a_trimmed_reason()
+        {
+            var id = CreatePu("U1");
+
+            var r = _svc.Release(Qa, id, "  Reel replaced \r\n");
+
+            Assert.That(r.ReleaseReason, Is.EqualTo("Reel replaced"));
+            Assert.That(_repo.Get(id).ReleaseReason, Is.EqualTo("Reel replaced"));
+            Assert.That(TakeJobs().Single().Lock.ReleaseReason, Is.EqualTo("Reel replaced"));
+        }
+
+        [Test]
         public void Release_queues_a_copy_of_the_released_lock()
         {
             var id = CreatePu("U1");
@@ -654,7 +675,7 @@ namespace Interlock.Tests.Core
         }
 
         [Test]
-        public void Retry_does_not_put_a_lock_back_into_the_cache()
+        public void Retry_of_an_active_lock_the_cache_lacks_caches_it_and_the_worker_applies_it()
         {
             var id = _repo.InsertActive(Pu(0, "U1")).Id;
             _repo.SetEnforceState(id, EnforceState.Failed, "x");
@@ -662,8 +683,36 @@ namespace Interlock.Tests.Core
             var r = _svc.Retry(Qa, id);
 
             Assert.That(r.EnforceState, Is.EqualTo(EnforceState.Pending));
-            Assert.That(_cache.Snapshot, Is.Empty);
-            Assert.That(TakeJobs().Single().Kind, Is.EqualTo(JobKind.Apply));
+            var cached = _cache.Snapshot.Single();
+            Assert.That(cached.Id, Is.EqualTo(id));
+            Assert.That(cached.EnforceState, Is.EqualTo(EnforceState.Pending));
+            Assert.That(cached, Is.Not.SameAs(r));
+            var job = TakeJobs().Single();
+            Assert.That(job.Kind, Is.EqualTo(JobKind.Apply));
+            Assert.That(_cache.Snapshot.Any(l => l.Id == job.Lock.Id), "the Apply job's lock is cached, so the worker will not skip it");
+
+            _queue.Enqueue(job);
+            var sc = new FakeSetupCenterClient();
+            var worker = new EnforcementWorker(_queue, _repo, _audit, sc, new FakeLineControlClient(), _cache, new AlarmBoard(), _clock, _log);
+            worker.RunDue();
+
+            Assert.That(sc.Calls, Does.Contain("LockPackagingUnits:U1"));
+            Assert.That(_repo.Get(id).EnforceState, Is.EqualTo(EnforceState.Applied));
+        }
+
+        [Test]
+        public void Retry_of_a_released_lock_leaves_the_cache_untouched()
+        {
+            var other = CreatePu("U2");
+            var id = CreatePu("U1");
+            _svc.Release(Qa, id, "ok");
+            _repo.SetEnforceState(id, EnforceState.Failed, "x");
+            var before = _cache.Snapshot.ToArray();
+
+            _svc.Retry(Qa, id);
+
+            Assert.That(_cache.Snapshot.Select(l => l.Id), Is.EqualTo(new[] { other }));
+            Assert.That(_cache.Snapshot.Single(), Is.SameAs(before.Single()), "the other lock's cached copy was not replaced");
         }
 
         [Test]
@@ -796,6 +845,15 @@ namespace Interlock.Tests.Core
             var job = TakeJobs().Single();
             Assert.That(job.Kind, Is.EqualTo(JobKind.Apply));
             Assert.That(job.Lock, Is.Not.SameAs(_cache.Snapshot.Single()));
+        }
+
+        [Test]
+        public void CreateFromSetupCenter_stores_a_trimmed_reason()
+        {
+            var l = _svc.CreateFromSetupCenter("U1", " Setup Center component mismatch ");
+
+            Assert.That(l.Reason, Is.EqualTo("Setup Center component mismatch"));
+            Assert.That(_repo.Get(l.Id).Reason, Is.EqualTo("Setup Center component mismatch"));
         }
 
         [Test]
