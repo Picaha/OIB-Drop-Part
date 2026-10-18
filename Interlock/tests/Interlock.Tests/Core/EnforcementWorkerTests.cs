@@ -449,6 +449,58 @@ namespace Interlock.Tests.Core
             Assert.That(_alarms.Recent(5), Is.Empty);
         }
 
+        // ---- cache ----
+
+        [Test]
+        public void Lock_released_while_its_apply_job_waits_is_not_put_back_in_the_cache()
+        {
+            Enqueue(Pu(1, "U1"), JobKind.Apply);
+            _cache.Remove(1);
+
+            _worker.RunDue();
+
+            Assert.That(_sc.Calls, Is.EqualTo(new[] { "LockPackagingUnits:U1" }));
+            Assert.That(_repo.Get(1).EnforceState, Is.EqualTo(EnforceState.Applied));
+            Assert.That(_cache.Snapshot, Is.Empty);
+        }
+
+        [Test]
+        public void Lock_gone_from_the_cache_stays_out_when_the_job_ends_failed()
+        {
+            _lc.Supported = false;
+            Enqueue(Conv(1, "S1", Lanes.Both), JobKind.Apply);
+            _cache.Remove(1);
+
+            _worker.RunDue();
+
+            Assert.That(_repo.Get(1).EnforceState, Is.EqualTo(EnforceState.Failed));
+            Assert.That(_cache.Snapshot, Is.Empty);
+        }
+
+        [Test]
+        public void Spooled_lock_gone_from_the_cache_is_not_put_back()
+        {
+            _queue.Enqueue(new EnforcementJob { Lock = Pu(0, "U1"), Kind = JobKind.Apply, NotBeforeUtc = _clock.UtcNow });
+
+            _worker.RunDue();
+
+            Assert.That(_sc.Calls, Is.EqualTo(new[] { "LockPackagingUnits:U1" }));
+            Assert.That(_cache.Snapshot, Is.Empty);
+        }
+
+        [Test]
+        public void Other_cached_locks_are_left_alone_when_a_job_finishes()
+        {
+            Enqueue(Pu(1, "U1"), JobKind.Apply);
+            _cache.Upsert(Pu(2, "U2"));
+
+            _worker.RunDue();
+
+            Assert.That(_cache.Snapshot.Select(e => e.Id), Is.EquivalentTo(new long[] { 1, 2 }));
+            Assert.That(_cache.Snapshot.Single(e => e.Id == 1).EnforceState, Is.EqualTo(EnforceState.Applied));
+            Assert.That(_cache.Snapshot.Single(e => e.Id == 2).EnforceState, Is.EqualTo(EnforceState.Pending));
+        }
+
         // ---- database trouble, unhandled kinds, queue ----
 
         [Test]

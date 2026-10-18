@@ -1,5 +1,6 @@
 using System;
 using System.Globalization;
+using System.Linq;
 using System.Text;
 using Interlock.Core.Errors;
 using Interlock.Core.Locks;
@@ -259,7 +260,7 @@ namespace Interlock.Core.Enforcement
             TryDb("write the action log", () => _audit.AddAction(entry));
         }
 
-        /// <summary>Sets the state on the job's lock copy and in the database, and refreshes the cached copy of an ACTIVE lock.</summary>
+        /// <summary>Sets the state on the job's lock copy and in the database, and refreshes the cached copy of an ACTIVE lock that is still cached.</summary>
         private void SetState(EnforcementJob job, EnforceState state, string error)
         {
             var l = job.Lock;
@@ -268,8 +269,19 @@ namespace Interlock.Core.Enforcement
 
             if (l.Id != 0)
                 TryDb("save the enforce state", () => _locks.SetEnforceState(l.Id, state, error));
-            if (l.Status == LockStatus.Active)
+            if (l.Status == LockStatus.Active && IsInCache(l))
                 _cache.Upsert(l);
+        }
+
+        /// <summary>
+        /// True while the cache still holds the lock: by id, or for a spooled lock (id 0) by identity. A lock released
+        /// while its job ran is gone from the cache, and the worker must not put it back.
+        /// </summary>
+        private bool IsInCache(LockRecord l)
+        {
+            if (l.Id != 0)
+                return _cache.Snapshot.Any(e => e.Id == l.Id);
+            return _cache.FindActive(l.Type, l.TargetNorm, l.LinePath, l.Lanes) != null;
         }
 
         /// <summary>Runs a database write. A failure is logged and the OIB result stands.</summary>
