@@ -228,20 +228,43 @@ namespace Interlock.Tests.Service
         }
 
         [Test]
-        public void Invalid_locations_get_ok_without_messages_and_echo_the_pu_even_when_a_lock_would_match()
+        public void Location_without_a_pu_gets_ok_without_messages_and_nothing_is_echoed()
         {
             cache.Replace(new[] { L(1, LockType.Pn, "C1"), L(2, LockType.Pu, "U1") }, t0);
-            var noPu = new PackagingUnitLocation { LinePath = "Lines\\L1" };
-            var blankUid = Loc("  ", "C1");
-            var nullUid = Loc(null, "C1");
 
-            var r = sc.GetPackagingUnitControlStatus(new[] { noPu, blankUid, nullUid });
+            var r = sc.GetPackagingUnitControlStatus(new[] { new PackagingUnitLocation { LinePath = "Lines\\L1" } }).Single();
 
-            Assert.That(r.Select(x => x.ResultState), Is.EqualTo(new[] { 1, 1, 1 }));
-            Assert.That(r.Select(x => x.Messages), Is.All.Null);
-            Assert.That(r[0].PackagingUnit, Is.Null);
-            Assert.That(r[1].PackagingUnit, Is.SameAs(blankUid.PackagingUnit));
-            Assert.That(r[2].PackagingUnit, Is.SameAs(nullUid.PackagingUnit));
+            Assert.That(r.ResultState, Is.EqualTo(1));
+            Assert.That(r.Messages, Is.Null);
+            Assert.That(r.PackagingUnit, Is.Null);
+        }
+
+        [TestCase("  ")]
+        [TestCase("")]
+        [TestCase(null)]
+        public void Blank_uid_never_matches_a_pu_lock_but_pn_locks_still_apply(string uid)
+        {
+            cache.Replace(new[] { L(1, LockType.Pn, "C1"), L(2, LockType.Pu, "U1") }, t0);
+            var blocked = Loc(uid, "C1");
+            var clear = Loc(uid, "C2");
+
+            var r = sc.GetPackagingUnitControlStatus(new[] { blocked, clear });
+
+            Assert.That(r.Select(x => x.ResultState), Is.EqualTo(new[] { 2, 1 }));
+            Assert.That(r[0].Messages.Single().Message, Is.EqualTo("Interlock: PN C1 locked – r1 (#1)"));
+            Assert.That(r[1].Messages, Is.Null);
+            Assert.That(r[0].PackagingUnit, Is.SameAs(blocked.PackagingUnit));
+            Assert.That(r[1].PackagingUnit, Is.SameAs(clear.PackagingUnit));
+        }
+
+        [Test]
+        public void Blank_uid_is_checked_against_mpn_and_supplier_locks_too()
+        {
+            cache.Replace(new[] { L(3, LockType.Mpn, "MPN-X"), L(4, LockType.Supplier, "SUP-Y") }, t0);
+
+            var r = sc.GetPackagingUnitControlStatus(new[] { Loc(" ", "C", mpn: "mpn-x"), Loc(" ", "C", supplier: "sup-y") });
+
+            Assert.That(r.Select(x => x.ResultState), Is.EqualTo(new[] { 2, 2 }));
         }
 
         [Test]
@@ -708,6 +731,41 @@ namespace Interlock.Tests.Service
 
             Assert.That(errors, Is.Empty);
             Assert.That(log.Errors, Is.Empty);
+        }
+
+        [Test]
+        public void One_call_checks_all_its_locations_against_one_snapshot_while_the_cache_is_swapped()
+        {
+            var locked = new[] { L(5, LockType.Pu, "U1") };
+            var clear = new LockRecord[0];
+            var errors = new ConcurrentBag<string>();
+            var stop = false;
+            var batch = Enumerable.Range(0, 50).Select(_ => Loc("U1", "C1")).ToArray();
+
+            var writer = Task.Run(() =>
+            {
+                var flip = false;
+                while (!Volatile.Read(ref stop))
+                {
+                    cache.Replace(flip ? locked : clear, t0);
+                    flip = !flip;
+                }
+            });
+            var readers = Enumerable.Range(0, 4).Select(_ => Task.Run(() =>
+            {
+                for (var i = 0; i < 300; i++)
+                {
+                    var states = sc.GetPackagingUnitControlStatus(batch).Select(x => x.ResultState).Distinct().ToList();
+                    if (states.Count != 1)
+                        errors.Add("results of one call disagree: " + string.Join(",", states));
+                }
+            })).ToArray();
+
+            Task.WaitAll(readers);
+            Volatile.Write(ref stop, true);
+            writer.Wait();
+
+            Assert.That(errors, Is.Empty);
         }
     }
 }

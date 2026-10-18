@@ -119,13 +119,13 @@ namespace Interlock.Service.ExternalControl
         }
 
         /// <summary>
-        /// A location without a PU or without a UID cannot be checked and cannot be blocked: it is answered OK with no message
-        /// (the PU is echoed as it came).
+        /// A location without a PU (or a null location) has nothing to check: it is answered OK with no message. A PU with a blank
+        /// UID is checked like any other: it never matches a PU lock, but PN, MPN and SUPPLIER locks still apply.
         /// </summary>
         private ExternalControlResult CheckOne(string method, int? reasonCode, PackagingUnitLocation loc, IReadOnlyCollection<LockRecord> active, DateTime now)
         {
             var pu = loc?.PackagingUnit;
-            if (pu == null || string.IsNullOrWhiteSpace(pu.UID))
+            if (pu == null)
             {
                 Record(ExternalControlMapper.ToEntry(method, reasonCode, loc, ExternalControlMapper.LogOk, null, now));
                 return new ExternalControlResult { PackagingUnit = pu, ResultState = ExternalControlMapper.ResultOk };

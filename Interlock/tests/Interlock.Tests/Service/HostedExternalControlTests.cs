@@ -412,42 +412,30 @@ namespace Interlock.Tests.Service
         }
 
         /// <summary>
-        /// The shipped configuration with the binding swapped by editing the file only: net.tcp on two free ports, no security, no
-        /// HTTP GET. That is the on-site change the spec asks for; no line of code is involved.
+        /// The shipped configuration after the documented on-site steps for net.tcp, and nothing else: (1) delete the active
+        /// services element, (2) remove the comment markers around NETTCP-ALTERNATIVE, (3) set the two ports.
         /// </summary>
         private static string WriteNetTcpConfig(int scPort, int feederPort)
         {
             var doc = XDocument.Load(ShippedConfigPath());
             var model = doc.Root.Element("system.serviceModel");
-            model.Element("bindings").Remove();
-            model.AddFirst(new XElement("bindings",
-                new XElement("netTcpBinding",
-                    new XElement("binding", new XAttribute("name", "TestTcp"), new XElement("security", new XAttribute("mode", "None"))))));
+
+            model.Element("services").Remove();
+
+            var comment = model.Nodes().OfType<XComment>().Single(c => c.Value.Contains("NETTCP-ALTERNATIVE"));
+            var inner = comment.Value.Replace("NETTCP-ALTERNATIVE", string.Empty);
+            var services = XElement.Parse(inner);
+            comment.ReplaceWith(services);
 
             var ports = new Dictionary<string, int> { { ScServiceName, scPort }, { FeederServiceName, feederPort } };
-            foreach (var service in model.Element("services").Elements("service"))
+            foreach (var service in services.Elements("service"))
             {
-                var port = ports[(string)service.Attribute("name")];
                 foreach (var add in service.Element("host").Element("baseAddresses").Elements("add"))
                 {
-                    var path = new Uri((string)add.Attribute("baseAddress")).AbsolutePath;
-                    add.SetAttributeValue("baseAddress", "net.tcp://localhost:" + port + path);
-                }
-                foreach (var endpoint in service.Elements("endpoint"))
-                {
-                    if ((string)endpoint.Attribute("contract") == "IMetadataExchange")
-                    {
-                        endpoint.SetAttributeValue("binding", "mexTcpBinding");
-                    }
-                    else
-                    {
-                        endpoint.SetAttributeValue("binding", "netTcpBinding");
-                        endpoint.SetAttributeValue("bindingConfiguration", "TestTcp");
-                    }
+                    var uri = new UriBuilder((string)add.Attribute("baseAddress")) { Port = ports[(string)service.Attribute("name")] };
+                    add.SetAttributeValue("baseAddress", uri.Uri.AbsoluteUri);
                 }
             }
-            foreach (var metadata in doc.Descendants("serviceMetadata"))
-                metadata.SetAttributeValue("httpGetEnabled", null);
 
             var configPath = Path.Combine(Path.GetTempPath(), "interlock-external-control-" + Guid.NewGuid().ToString("N") + ".config");
             doc.Save(configPath);
