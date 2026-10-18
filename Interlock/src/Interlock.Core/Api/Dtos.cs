@@ -119,13 +119,16 @@ namespace Interlock.Core.Api
         [DataMember(Name = "alarms")] public string[] alarms { get; set; }
     }
 
-    /// <summary>A user. <c>pin</c> is only ever read from a request, never written to a response.</summary>
+    /// <summary>
+    /// A user. <c>pin</c> is only ever read from a request, never written to a response. In a request a missing <c>active</c>
+    /// means active for a new user and "keep the current value" for an existing one.
+    /// </summary>
     [DataContract]
     public sealed class UserDto
     {
         [DataMember(Name = "username")] public string username { get; set; }
         [DataMember(Name = "role")] public string role { get; set; }
-        [DataMember(Name = "active")] public bool active { get; set; }
+        [DataMember(Name = "active")] public bool? active { get; set; }
         [DataMember(Name = "pin", EmitDefaultValue = false)] public string pin { get; set; }
     }
 

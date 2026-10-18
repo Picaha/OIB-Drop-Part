@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Net.Sockets;
 using System.Runtime.Serialization.Json;
 using System.Text;
+using System.Threading.Tasks;
 using Interlock.Core.Api;
 using Interlock.Core.Enforcement;
 using Interlock.Core.Errors;
@@ -739,6 +740,102 @@ namespace Interlock.Tests.Service
 
             _clock.Advance(TimeSpan.FromSeconds(1));
             Assert.That(Post("session", Obj("username", "qa1", "pin", "1234")).StatusCode, Is.EqualTo(HttpStatusCode.OK));
+        }
+
+        [Test]
+        public void With_spaced_failures_the_block_lasts_until_60_seconds_after_the_last_one()
+        {
+            for (var i = 0; i < 5; i++)
+            {
+                AssertError(Post("session", Obj("username", "qa1", "pin", "bad" + i)), HttpStatusCode.Unauthorized, "unauthenticated");
+                if (i < 4)
+                    _clock.Advance(TimeSpan.FromSeconds(10));
+            }
+
+            _clock.Advance(TimeSpan.FromSeconds(59));
+            StringAssert.Contains("Too many attempts", Post("session", Obj("username", "qa1", "pin", "1234")).Body);
+
+            _clock.Advance(TimeSpan.FromSeconds(1));
+            Assert.That(Post("session", Obj("username", "qa1", "pin", "1234")).StatusCode, Is.EqualTo(HttpStatusCode.OK));
+        }
+
+        [Test]
+        public void A_burst_of_parallel_wrong_pins_lets_at_most_five_reach_the_login()
+        {
+            ServicePointManager.DefaultConnectionLimit = 64;
+
+            var bodies = Enumerable.Range(0, 24)
+                .Select(i => Task.Run(() => Post("session", Obj("username", "qa1", "pin", "wrong" + i)).Body))
+                .ToArray();
+            Task.WaitAll(bodies);
+
+            var reachedLogin = bodies.Count(t => t.Result.Contains("Invalid username or PIN"));
+            var refused = bodies.Count(t => t.Result.Contains("Too many attempts"));
+            Assert.That(reachedLogin, Is.EqualTo(5));
+            Assert.That(refused, Is.EqualTo(19));
+        }
+
+        [Test]
+        public void An_admin_changing_only_the_role_does_not_deactivate_the_user()
+        {
+            var admin = Login("admin");
+            Post("admin/users", Obj("username", "eng1", "role", "ENGINEER", "pin", "5678"), admin);
+            Assert.That(Parse<UserDto[]>(Get("admin/users", admin)).Single(u => u.username == "eng1").active, Is.True);
+
+            Post("admin/users", Obj("username", "eng1", "role", "ENGINEER", "active", false), admin);
+            Assert.That(Parse<UserDto[]>(Get("admin/users", admin)).Single(u => u.username == "eng1").active, Is.False);
+
+            var r = Post("admin/users", Obj("username", "ENG1", "role", "QA"), admin);
+            Assert.That(r.StatusCode, Is.EqualTo(HttpStatusCode.OK), r.Body);
+            var after = Parse<UserDto[]>(Get("admin/users", admin)).Single(u => u.username == "eng1");
+            Assert.That(after.role, Is.EqualTo("QA"));
+            Assert.That(after.active, Is.False, "a missing flag keeps the current value");
+            Assert.That(Parse<UserDto>(r).active, Is.False);
+        }
+
+        [Test]
+        public void A_new_user_without_an_active_flag_is_active()
+        {
+            var admin = Login("admin");
+
+            var r = Post("admin/users", Obj("username", "eng2", "role", "ENGINEER", "pin", "5678"), admin);
+
+            Assert.That(Parse<UserDto>(r).active, Is.True);
+            Assert.That(Login("eng2", "5678"), Is.Not.Empty);
+        }
+
+        [Test]
+        public void Health_exposes_only_the_error_type_not_hosts_ports_or_user_names()
+        {
+            _repo.OnCall = call => { throw new DbUnavailableException("connect to 10.0.0.5:5432 failed: password authentication failed for user \"interlock\" (28P01)"); };
+            _refresher.Tick();
+            _repo.OnCall = null;
+
+            var r = Get("health");
+
+            Assert.That(r.StatusCode, Is.EqualTo(HttpStatusCode.OK));
+            Assert.That(Parse<HealthDto>(r).cacheRefreshError, Is.EqualTo("DbUnavailableException"));
+            StringAssert.DoesNotContain("10.0.0.5", r.Body);
+            StringAssert.DoesNotContain("5432", r.Body);
+            StringAssert.DoesNotContain("28P01", r.Body);
+            StringAssert.DoesNotContain("password", r.Body);
+            Assert.That(_log.Warnings.Any(w => w.Contains("10.0.0.5:5432")), Is.True, "the full text stays in the log");
+        }
+
+        [Test]
+        public void Health_alarms_do_not_carry_oib_error_text()
+        {
+            _alarms.Raise("Lock #7 FAILED: Endpoint net.tcp://10.0.0.5:5432/SetupCenter refused the connection", _clock.UtcNow);
+            _alarms.Raise("Conveyor re-blocked: Line1 (#9)", _clock.UtcNow);
+
+            var r = Get("health");
+
+            var alarms = Parse<HealthDto>(r).alarms;
+            Assert.That(alarms, Has.Length.EqualTo(2));
+            Assert.That(alarms.Any(a => a.EndsWith("Lock #7 FAILED")), Is.True);
+            Assert.That(alarms.Any(a => a.EndsWith("Conveyor re-blocked: Line1 (#9)")), Is.True);
+            StringAssert.DoesNotContain("10.0.0.5", r.Body);
+            StringAssert.DoesNotContain("SetupCenter", r.Body);
         }
 
         [Test]

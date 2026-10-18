@@ -102,8 +102,9 @@ namespace Interlock.Service.Rest
             return binding;
         }
 
-        // A loopback address means "this computer only": it is registered as given, which also needs no URL ACL under the
-        // Temporary_Listen_Addresses prefix. Any other host (+, *, the machine name) listens on every interface, as WCF does by default.
+        // A loopback host is registered as given (Exact), which is also what lets the Temporary_Listen_Addresses prefix bind without
+        // a URL ACL. This is not an access control: a remote client that sends "Host: localhost" may still be matched. Any other
+        // host (+, *, the machine name) keeps the WCF default (strong wildcard). Restrict access with the firewall.
         private static bool LoopbackOnly(string baseAddress)
         {
             var host = new Uri(baseAddress).Host;

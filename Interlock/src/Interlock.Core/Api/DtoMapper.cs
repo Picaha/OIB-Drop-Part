@@ -98,7 +98,7 @@ namespace Interlock.Core.Api
         {
             if (u == null) throw new ArgumentNullException(nameof(u));
 
-            return new UserDto { username = u.Username, role = DbEnum.ToDb(u.Role), active = u.Active };
+            return new UserDto { username = u.Username, role = DbEnum.ToDb(u.Role), active = (bool?)u.Active };
         }
 
         /// <summary>The key as a response: never the hash, and the plain <c>key</c> only when the caller passes it (on creation).</summary>

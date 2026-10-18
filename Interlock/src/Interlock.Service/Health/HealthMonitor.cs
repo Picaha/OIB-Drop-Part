@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Text.RegularExpressions;
 using Interlock.Core.Api;
 using Interlock.Core.Enforcement;
 using Interlock.Core.Locks;
@@ -71,7 +72,6 @@ namespace Interlock.Service.Health
                 SetupCenterLicense = Try(() => (bool?)_setupCenter.HasLicense(), null, "Setup Center license check"),
                 LineControlLicense = Try(() => (bool?)_lineControl.HasLicense(), null, "Line Control license check"),
                 MonitoringOk = Try(() => _monitoring.GetStations() != null, false, "Monitoring check"),
-                FailedLocks = previous.FailedLocks
             };
 
             // A database that is down keeps the previous count; the dbOk flag tells the story.
@@ -100,9 +100,31 @@ namespace Interlock.Service.Health
                 lockCount = _cache.Snapshot.Count,
                 failedLocks = last.FailedLocks,
                 cacheRefreshFailures = failures,
-                cacheRefreshError = failures == 0 ? null : _refresher.LastError,
-                alarms = _alarms.Recent(AlarmCount).ToArray()
+                cacheRefreshError = failures == 0 ? null : PublicError(_refresher.LastError),
+                alarms = _alarms.Recent(AlarmCount).Select(PublicAlarm).ToArray()
             };
+        }
+
+        private const string GenericError = "Database error";
+        private static readonly Regex TypeName = new Regex(@"^[A-Za-z_][A-Za-z0-9_.]{0,99}$", RegexOptions.Compiled);
+
+        // /health needs no login, so the error is only the exception type name (the text before the first ':'), never the
+        // message: that can carry hosts, ports or user names. The full text stays in the log.
+        private static string PublicError(string lastError)
+        {
+            if (lastError == null)
+                return GenericError;
+            var colon = lastError.IndexOf(':');
+            var name = (colon < 0 ? lastError : lastError.Substring(0, colon)).Trim();
+            return TypeName.IsMatch(name) ? name : GenericError;
+        }
+
+        // The detail of a FAILED alarm is an OIB error message (it can name hosts and endpoints); /health keeps the lock only.
+        private static string PublicAlarm(string alarm)
+        {
+            const string marker = " FAILED: ";
+            var at = alarm.IndexOf(marker, StringComparison.Ordinal);
+            return at < 0 ? alarm : alarm.Substring(0, at) + " FAILED";
         }
 
         private T Try<T>(Func<T> call, T fallback, string what)

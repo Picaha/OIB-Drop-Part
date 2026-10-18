@@ -5,10 +5,12 @@ using Interlock.Core.Ports;
 namespace Interlock.Core.Security
 {
     /// <summary>
-    /// Slows down guessing of short PINs: after <see cref="MaxFailures"/> failed logins within <see cref="Window"/> for the same
-    /// username (ignoring case) or the same remote address, further logins for that key are refused until the window since the
-    /// last failure has passed. There is no permanent lock-out, a success clears the username's counter, and expired entries are
-    /// dropped lazily. In memory and safe to use from several threads.
+    /// Slows down guessing of short PINs. A login first reserves a slot with <see cref="TryBegin"/>: attempts still in flight
+    /// count toward the limit together with the failures of the last <see cref="Window"/>, so a burst of parallel requests cannot
+    /// slip past the check before the first failure is recorded. At <see cref="MaxFailures"/> the key (username ignoring case, or
+    /// remote address) is refused until <see cref="Window"/> after the failure that reached the limit (and after any later
+    /// failure). There is no permanent lock-out, a success clears the username's failures, and idle entries are dropped lazily.
+    /// In memory and safe to use from several threads.
     /// </summary>
     public sealed class LoginThrottle
     {
@@ -19,7 +21,7 @@ namespace Interlock.Core.Security
 
         private readonly IClock _clock;
         private readonly object _gate = new object();
-        private readonly Dictionary<string, List<DateTime>> _failures = new Dictionary<string, List<DateTime>>();
+        private readonly Dictionary<string, Entry> _entries = new Dictionary<string, Entry>();
 
         public LoginThrottle(IClock clock)
         {
@@ -27,36 +29,66 @@ namespace Interlock.Core.Security
             _clock = clock;
         }
 
-        /// <summary>True when this username or this address has used up its failed attempts. Either may be null or blank (not checked).</summary>
-        public bool IsBlocked(string username, string address)
+        /// <summary>
+        /// Reserves an attempt for this username and address (either may be null or blank: not checked). Returns false when the
+        /// limit is reached, and then nothing is reserved. After true, exactly one of <see cref="RecordFailure"/>,
+        /// <see cref="RecordSuccess"/> or <see cref="Abandon"/> must follow, in a <c>finally</c>.
+        /// </summary>
+        public bool TryBegin(string username, string address)
         {
             lock (_gate)
             {
                 var now = _clock.UtcNow;
-                return Blocked(UserKey(username), now) || Blocked(AddressKey(address), now);
+                if (_entries.Count > SweepAboveCount)
+                    Sweep(now);
+
+                var user = UserKey(username);
+                var addr = AddressKey(address);
+                if (Full(user, now) || Full(addr, now))
+                    return false;
+
+                Reserve(user);
+                Reserve(addr);
+                return true;
             }
         }
 
+        /// <summary>Ends a reserved attempt as a failed login.</summary>
         public void RecordFailure(string username, string address)
         {
             lock (_gate)
             {
                 var now = _clock.UtcNow;
-                if (_failures.Count > SweepAboveCount)
-                    Sweep(now);
-                Add(UserKey(username), now);
-                Add(AddressKey(address), now);
+                Fail(UserKey(username), now);
+                Fail(AddressKey(address), now);
             }
         }
 
-        /// <summary>Clears the username's counter. The address keeps its count, so one valid account cannot reset the guessing of others.</summary>
-        public void RecordSuccess(string username)
+        /// <summary>Ends a reserved attempt as a successful login and clears the username's failures. The address keeps its count, so one valid account cannot reset the guessing of others.</summary>
+        public void RecordSuccess(string username, string address)
         {
             lock (_gate)
             {
-                var key = UserKey(username);
-                if (key != null)
-                    _failures.Remove(key);
+                Release(UserKey(username));
+                Release(AddressKey(address));
+                var user = UserKey(username);
+                Entry e;
+                if (user != null && _entries.TryGetValue(user, out e))
+                {
+                    e.Failures.Clear();
+                    e.BlockedUntil = DateTime.MinValue;
+                    Drop(user, e);
+                }
+            }
+        }
+
+        /// <summary>Ends a reserved attempt that was neither a failure nor a success (the login errored for another reason).</summary>
+        public void Abandon(string username, string address)
+        {
+            lock (_gate)
+            {
+                Release(UserKey(username));
+                Release(AddressKey(address));
             }
         }
 
@@ -70,50 +102,82 @@ namespace Interlock.Core.Security
             return string.IsNullOrWhiteSpace(address) ? null : "a:" + address.Trim();
         }
 
-        private bool Blocked(string key, DateTime now)
+        private bool Full(string key, DateTime now)
         {
-            List<DateTime> list;
-            if (key == null || !_failures.TryGetValue(key, out list))
+            Entry e;
+            if (key == null || !_entries.TryGetValue(key, out e))
                 return false;
-            Prune(list, now);
-            if (list.Count == 0)
-            {
-                _failures.Remove(key);
-                return false;
-            }
-            return list.Count >= MaxFailures;
+            Prune(e, now);
+            var full = now < e.BlockedUntil || e.Failures.Count + e.InFlight >= MaxFailures;
+            if (!full)
+                Drop(key, e);
+            return full;
         }
 
-        private void Add(string key, DateTime now)
+        private void Reserve(string key)
         {
             if (key == null)
                 return;
-            List<DateTime> list;
-            if (!_failures.TryGetValue(key, out list))
+            Entry e;
+            if (!_entries.TryGetValue(key, out e))
             {
-                list = new List<DateTime>();
-                _failures[key] = list;
+                e = new Entry();
+                _entries[key] = e;
             }
-            Prune(list, now);
-            list.Add(now);
+            e.InFlight++;
         }
 
-        private static void Prune(List<DateTime> list, DateTime now)
+        private void Release(string key)
         {
-            list.RemoveAll(t => now - t >= Window);
+            Entry e;
+            if (key != null && _entries.TryGetValue(key, out e) && e.InFlight > 0)
+                e.InFlight--;
+        }
+
+        private void Fail(string key, DateTime now)
+        {
+            if (key == null)
+                return;
+            Release(key);
+            Entry e;
+            if (!_entries.TryGetValue(key, out e))
+            {
+                e = new Entry();
+                _entries[key] = e;
+            }
+            Prune(e, now);
+            e.Failures.Add(now);
+            if (e.Failures.Count >= MaxFailures)
+                e.BlockedUntil = now + Window;
+        }
+
+        private static void Prune(Entry e, DateTime now)
+        {
+            e.Failures.RemoveAll(t => now - t >= Window);
+        }
+
+        private void Drop(string key, Entry e)
+        {
+            if (e.Failures.Count == 0 && e.InFlight == 0)
+                _entries.Remove(key);
         }
 
         private void Sweep(DateTime now)
         {
-            var dead = new List<string>();
-            foreach (var pair in _failures)
+            foreach (var key in new List<string>(_entries.Keys))
             {
-                Prune(pair.Value, now);
-                if (pair.Value.Count == 0)
-                    dead.Add(pair.Key);
+                var e = _entries[key];
+                Prune(e, now);
+                if (now >= e.BlockedUntil)
+                    Drop(key, e);
             }
-            foreach (var key in dead)
-                _failures.Remove(key);
+        }
+
+        private sealed class Entry
+        {
+            public readonly List<DateTime> Failures = new List<DateTime>();
+            public int InFlight;
+            public DateTime BlockedUntil = DateTime.MinValue;
         }
     }
 }

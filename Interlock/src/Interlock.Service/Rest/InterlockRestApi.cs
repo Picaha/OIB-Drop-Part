@@ -21,8 +21,6 @@ namespace Interlock.Service.Rest
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single, ConcurrencyMode = ConcurrencyMode.Multiple, UseSynchronizationContext = false)]
     public sealed class InterlockRestApi : IInterlockRestApi
     {
-        private const int HealthAlarmCount = 20;
-
         private readonly LockService _locks;
         private readonly AuthService _auth;
         private readonly IAuditRepository _audit;
@@ -61,22 +59,33 @@ namespace Interlock.Service.Rest
                 var pin = InputGuard.CleanSecret(request.pin, "pin");
                 var address = RemoteAddress();
 
-                if (_throttle.IsBlocked(username, address))
+                if (!_throttle.TryBegin(username, address))
                     throw new InterlockException(ErrorKind.Unauthenticated, "Too many attempts, try again later");
 
+                // Every reserved attempt ends as a failure, a success or abandoned, whatever happens in between.
+                var ended = false;
                 LoginResult result;
                 try
                 {
                     result = _auth.Login(username, pin);
+                    _throttle.RecordSuccess(username, address);
+                    ended = true;
                 }
                 catch (InterlockException ex)
                 {
                     if (ex.Kind == ErrorKind.Unauthenticated)
+                    {
                         _throttle.RecordFailure(username, address);
+                        ended = true;
+                    }
                     throw;
                 }
+                finally
+                {
+                    if (!ended)
+                        _throttle.Abandon(username, address);
+                }
 
-                _throttle.RecordSuccess(username);
                 return new SessionDto
                 {
                     token = result.Token,
@@ -194,8 +203,9 @@ namespace Interlock.Service.Rest
                 var role = DtoMapper.ParseRole(request.role);
                 var pin = InputGuard.CleanSecret(request.pin, "pin");
 
-                _auth.SaveUser(p, username, role, request.active, pin);
-                return new UserDto { username = username, role = DbEnum.ToDb(role), active = request.active };
+                var active = request.active ?? ActiveForMissingFlag(p, username);
+                _auth.SaveUser(p, username, role, active, pin);
+                return new UserDto { username = username, role = DbEnum.ToDb(role), active = active };
             });
         }
 
@@ -236,6 +246,13 @@ namespace Interlock.Service.Rest
                     throw new InterlockException(ErrorKind.NotFound, "API key not found");
                 return DtoMapper.ToDto(record, null);
             });
+        }
+
+        // No "active" in the request: a new user is active, an existing user keeps the current value.
+        private bool ActiveForMissingFlag(Principal p, string username)
+        {
+            var existing = _auth.ListUsers(p).FirstOrDefault(u => string.Equals(u.Username, username, StringComparison.OrdinalIgnoreCase));
+            return existing == null || existing.Active;
         }
 
         private T Run<T>(Func<T> operation)
