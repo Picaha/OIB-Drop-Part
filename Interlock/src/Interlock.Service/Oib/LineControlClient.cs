@@ -17,7 +17,8 @@ namespace Interlock.Service.Oib
 
         private readonly OibConnection<LineControl> _connection;
 
-        public LineControlClient(string endpointUri, IClock clock)
+        /// <param name="sendTimeout">How long a call may take; see <see cref="OibEndpoints.SecureBinding"/> (30 s when omitted).</param>
+        public LineControlClient(string endpointUri, IClock clock, TimeSpan? sendTimeout = null)
         {
             var address = OibEndpoints.SecureAddress(endpointUri);
             if (clock == null)
@@ -25,7 +26,7 @@ namespace Interlock.Service.Oib
 
             _connection = new OibConnection<LineControl>(
                 ServiceName,
-                () => new LineControl(address, OibEndpoints.SecureBinding(endpointUri)),
+                () => new LineControl(address, OibEndpoints.SecureBinding(endpointUri, sendTimeout)),
                 proxy => proxy.Dispose(),
                 clock);
         }
@@ -35,7 +36,8 @@ namespace Interlock.Service.Oib
         public bool HasLicense()
         {
 #pragma warning disable CS0618
-            return _connection.Call("HasAdapterLicense", proxy => proxy.HasAdapterLicense());
+            // The answer says nothing about the connection, so it never resets the backoff.
+            return _connection.Call("HasAdapterLicense", proxy => proxy.HasAdapterLicense(), licensed => false);
 #pragma warning restore CS0618
         }
 

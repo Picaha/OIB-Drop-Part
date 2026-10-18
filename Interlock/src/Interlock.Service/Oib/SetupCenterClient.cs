@@ -20,23 +20,31 @@ namespace Interlock.Service.Oib
         private const string ServiceName = "Setup Center";
 
         private readonly OibConnection<SiplaceSetupCenter> _connection;
+        private readonly ILog _log;
 
-        public SetupCenterClient(string endpointUri, IClock clock)
+        /// <param name="sendTimeout">How long a call may take; see <see cref="OibEndpoints.SecureBinding"/> (30 s when omitted).</param>
+        /// <param name="log">Where warnings go; none when omitted.</param>
+        public SetupCenterClient(string endpointUri, IClock clock, TimeSpan? sendTimeout = null, ILog log = null)
         {
             var address = OibEndpoints.SecureAddress(endpointUri);
             if (clock == null)
                 throw new ArgumentNullException(nameof(clock));
 
+            _log = log;
             _connection = new OibConnection<SiplaceSetupCenter>(
                 ServiceName,
-                () => new SiplaceSetupCenter(address, OibEndpoints.SecureBinding(endpointUri)),
+                () => new SiplaceSetupCenter(address, OibEndpoints.SecureBinding(endpointUri, sendTimeout)),
                 proxy => proxy.Dispose(),
                 clock);
         }
 
+        /// <summary>
+        /// True only when Setup Center and its database are connected. When the service is down the proxy answers false without
+        /// throwing, so a false answer proves nothing about the connection and leaves the backoff alone.
+        /// </summary>
         public bool IsConnected()
         {
-            return _connection.Call("IsConnected", proxy => proxy.IsConnected());
+            return _connection.Call("IsConnected", proxy => proxy.IsConnected(), connected => connected);
         }
 
         // OIB 6.6 and later need no adapter license, so the OIB marks HasAdapterLicense obsolete. The port still reports it for the
@@ -44,7 +52,8 @@ namespace Interlock.Service.Oib
         public bool HasLicense()
         {
 #pragma warning disable CS0618
-            return _connection.Call("HasAdapterLicense", proxy => proxy.HasAdapterLicense());
+            // The answer says nothing about the connection (a dead endpoint still answers true), so it never resets the backoff.
+            return _connection.Call("HasAdapterLicense", proxy => proxy.HasAdapterLicense(), licensed => false);
 #pragma warning restore CS0618
         }
 
@@ -54,7 +63,7 @@ namespace Interlock.Service.Oib
             if (units.Count == 0)
                 return;
             var response = _connection.Call("LockPackagingUnits", proxy => proxy.LockPackagingUnits(units, reason));
-            SetupCenterMapper.ThrowIfFailed("LockPackagingUnits", response);
+            SetupCenterMapper.ThrowIfFailed("LockPackagingUnits", response, units.Select(u => u.UID));
         }
 
         public void UnlockPackagingUnits(IList<string> uids)
@@ -63,7 +72,7 @@ namespace Interlock.Service.Oib
             if (units.Count == 0)
                 return;
             var response = _connection.Call("UnlockPackagingUnits", proxy => proxy.UnlockPackagingUnits(units));
-            SetupCenterMapper.ThrowIfFailed("UnlockPackagingUnits", response);
+            SetupCenterMapper.ThrowIfFailed("UnlockPackagingUnits", response, units.Select(u => u.UID));
         }
 
         public FeederMount FindMountedFeeder(string feederId)
@@ -77,7 +86,9 @@ namespace Interlock.Service.Oib
 
         public void LockOnlineFeeder(FeederMount m, string reason)
         {
-            var request = new LockOnlineFeedersRequest { LockFeederLocationInfos = new List<LockFeederLocationInfo> { SetupCenterMapper.ToLockInfo(m, reason) } };
+            var info = SetupCenterMapper.ToLockInfo(m, reason);
+            WarnIfNoLine(info, _log);
+            var request = new LockOnlineFeedersRequest { LockFeederLocationInfos = new List<LockFeederLocationInfo> { info } };
             var response = _connection.Call("LockOnlineFeeders", proxy => proxy.LockOnlineFeeders(request));
             SetupCenterMapper.ThrowIfFailed("LockOnlineFeeders", response);
         }
@@ -111,6 +122,16 @@ namespace Interlock.Service.Oib
         public void Dispose()
         {
             _connection.Dispose();
+        }
+
+        /// <summary>
+        /// Setup Center documents the machine's line name as mandatory for locking a feeder, but only the External Control path is
+        /// known to fill it. A location with neither a line name nor a line path is logged before the call, so a refusal is explained.
+        /// </summary>
+        internal static void WarnIfNoLine(LockFeederLocationInfo info, ILog log)
+        {
+            if (log != null && info != null && !SetupCenterMapper.HasLine(info))
+                log.Warn("Feeder " + info.FeederId + " has neither a line name nor a line path on its Setup Center machine; LockOnlineFeeders may refuse it.");
         }
 
         private Configuration GetConfiguration()

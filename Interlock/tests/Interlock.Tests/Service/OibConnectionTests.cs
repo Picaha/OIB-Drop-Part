@@ -206,6 +206,73 @@ namespace Interlock.Tests.Service
             Assert.That(_conn.Call("Ping", Ok), Is.GreaterThan(0), "after a success the wait is 5 s again");
         }
 
+        private void FailOnce()
+        {
+            Assert.Throws<OibCallException>(() => _conn.Call<int>("Ping", p => { throw new CommunicationException("down"); }));
+        }
+
+        private void AssertBlocked()
+        {
+            Assert.That(Assert.Throws<OibCallException>(() => _conn.Call("Ping", Ok)).Message, Is.EqualTo("Setup Center not connected"));
+        }
+
+        [Test]
+        public void A_probe_that_answers_false_does_not_reset_the_backoff()
+        {
+            FailOnce();
+            _clock.Advance(TimeSpan.FromSeconds(5));
+
+            var connected = _conn.Call("IsConnected", p => false, answer => answer);
+            Assert.That(connected, Is.False, "the false answer is returned, not thrown");
+            FailOnce();
+
+            _clock.Advance(TimeSpan.FromSeconds(9));
+            AssertBlocked();
+            _clock.Advance(TimeSpan.FromSeconds(1));
+            Assert.That(_conn.Call("Ping", Ok), Is.GreaterThan(0), "the second wait is 10 s: the probe did not reset the count");
+        }
+
+        [Test]
+        public void A_probe_that_never_proves_the_connection_does_not_reset_the_backoff_even_when_it_answers_true()
+        {
+            FailOnce();
+            _clock.Advance(TimeSpan.FromSeconds(5));
+
+            var licensed = _conn.Call("HasAdapterLicense", p => true, answer => false);
+            Assert.That(licensed, Is.True);
+            FailOnce();
+
+            _clock.Advance(TimeSpan.FromSeconds(9));
+            AssertBlocked();
+            _clock.Advance(TimeSpan.FromSeconds(1));
+            Assert.That(_conn.Call("Ping", Ok), Is.GreaterThan(0));
+        }
+
+        [Test]
+        public void A_probe_that_answers_true_resets_the_backoff()
+        {
+            FailOnce();
+            _clock.Advance(TimeSpan.FromSeconds(5));
+            Assert.That(_conn.Call("IsConnected", p => true, answer => answer), Is.True);
+
+            FailOnce();
+
+            _clock.Advance(TimeSpan.FromSeconds(5));
+            Assert.That(_conn.Call("Ping", Ok), Is.GreaterThan(0), "after a proven connection the next wait is 5 s again");
+        }
+
+        [Test]
+        public void A_probe_that_answers_false_is_not_a_connection_failure()
+        {
+            _conn.Call("Ping", Ok);
+
+            Assert.That(_conn.Call("IsConnected", p => false, answer => answer), Is.False);
+
+            Assert.That(_closed, Is.Empty, "the proxy stays");
+            Assert.That(_conn.Call("Ping", Ok), Is.EqualTo(1), "and the next call is not held back");
+            Assert.That(_created, Has.Count.EqualTo(1));
+        }
+
         [Test]
         public void Closing_a_dead_proxy_never_throws()
         {

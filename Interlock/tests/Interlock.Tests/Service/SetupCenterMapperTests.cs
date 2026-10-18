@@ -127,7 +127,7 @@ namespace Interlock.Tests.Service
         }
 
         [Test]
-        public void Machines_are_read_from_the_machine_configurations_too_and_listed_once()
+        public void Machines_come_from_the_machine_configurations_first_then_the_old_list_once_each()
         {
             var c = new Configuration
             {
@@ -136,7 +136,11 @@ namespace Interlock.Tests.Service
                     new LineConfiguration
                     {
                         LinePath = "Lines\\L1",
-                        Machines = new List<MachineLocator> { new MachineLocator { MachineId = "m1" } },
+                        Machines = new List<MachineLocator>
+                        {
+                            new MachineLocator { MachineId = "m1", LinePath = "Lines\\Old" },
+                            new MachineLocator { MachineId = "m3" }
+                        },
                         MachineConfigurations = new List<MachineConfiguration>
                         {
                             null,
@@ -150,7 +154,10 @@ namespace Interlock.Tests.Service
 
             var machines = SetupCenterMapper.ToMachines(c);
 
-            Assert.That(machines.Select(m => m.MachineId + "@" + m.LinePath), Is.EqualTo(new[] { "m1@Lines\\L1", "m2@Lines\\L1" }));
+            Assert.That(
+                machines.Select(m => m.MachineId + "@" + m.LinePath),
+                Is.EqualTo(new[] { "m1@Lines\\Other", "m2@Lines\\L1", "m3@Lines\\L1" }),
+                "the replacement member wins for a machine listed in both");
         }
 
         [Test]
@@ -244,15 +251,27 @@ namespace Interlock.Tests.Service
         }
 
         [Test]
-        public void Mounted_pus_fall_back_to_the_machine_of_the_component_location()
+        public void Mounted_pus_prefer_the_machine_of_the_component_location_over_the_old_members()
         {
-            var state = State("A");
+            var state = State("A", linePath: "Lines\\Old", machineId: "old");
             state.ComponentLocation = new ComponentLocation { Machine = new MachineLocator { MachineId = "m7", LinePath = "Lines\\L7" } };
 
             var r = SetupCenterMapper.ToMountedPus(new Dictionary<string, MachineSetup> { ["key"] = Setup("key", state) }).Single();
 
             Assert.That(r.MachineId, Is.EqualTo("m7"));
             Assert.That(r.Pu.LinePath, Is.EqualTo("Lines\\L7"));
+        }
+
+        [Test]
+        public void Mounted_pus_use_the_old_members_for_what_the_component_location_leaves_blank()
+        {
+            var state = State("A", linePath: "Lines\\Old", machineId: "old");
+            state.ComponentLocation = new ComponentLocation { Machine = new MachineLocator { MachineId = " ", LinePath = null } };
+
+            var r = SetupCenterMapper.ToMountedPus(new Dictionary<string, MachineSetup> { ["key"] = Setup("key", state) }).Single();
+
+            Assert.That(r.MachineId, Is.EqualTo("old"));
+            Assert.That(r.Pu.LinePath, Is.EqualTo("Lines\\Old"));
         }
 
         [Test]
@@ -283,7 +302,7 @@ namespace Interlock.Tests.Service
         }
 
         [Test]
-        public void Feeder_mount_keeps_the_native_location_and_the_machine()
+        public void Feeder_mount_keeps_the_native_location_and_prefers_the_machine_of_its_component_location()
         {
             var loc = FeederLocationOf("F1");
             loc.MachineId = "mach";
@@ -292,7 +311,10 @@ namespace Interlock.Tests.Service
             var m = SetupCenterMapper.ToFeederMount("F1", OnFeeders("F1", loc));
 
             Assert.That(m.Native, Is.SameAs(loc));
-            Assert.That(new[] { m.FeederId, m.MachineId, m.LinePath }, Is.EqualTo(new[] { "F1", "mach", "Lines\\L1" }));
+            Assert.That(
+                new[] { m.FeederId, m.MachineId, m.LinePath },
+                Is.EqualTo(new[] { "F1", "m1", "Lines\\L1" }),
+                "the machine id comes from the component location, the blank line path falls back to the old member");
         }
 
         [Test]
@@ -322,6 +344,33 @@ namespace Interlock.Tests.Service
             var response = new GetPackagingUnitLocationsOnFeedersResponse
             {
                 PackagingUnitLocationListOnFeeders = new Dictionary<string, List<PackagingUnitLocation>> { { "F1", new List<PackagingUnitLocation>() } },
+                PackagingUnitLocationsOnFeeders = new Dictionary<string, PackagingUnitLocation> { { "F1", legacy } }
+            };
+
+            Assert.That(SetupCenterMapper.ToFeederMount("F1", response).Native, Is.SameAs(legacy));
+        }
+
+        [Test]
+        public void Feeder_mount_is_null_when_no_returned_location_has_a_component_location()
+        {
+            var bare = new PackagingUnitLocation();
+            var onlyBare = new GetPackagingUnitLocationsOnFeedersResponse
+            {
+                PackagingUnitLocationListOnFeeders = new Dictionary<string, List<PackagingUnitLocation>> { { "F1", new List<PackagingUnitLocation> { null, bare } } },
+                PackagingUnitLocationsOnFeeders = new Dictionary<string, PackagingUnitLocation> { { "F1", new PackagingUnitLocation() } }
+            };
+
+            Assert.That(SetupCenterMapper.ToFeederMount("F1", onlyBare), Is.Null);
+            Assert.That(SetupCenterMapper.ToFeederMount("F1", OnFeeders("F1", new PackagingUnitLocation())), Is.Null, "the old single-location answer without a component location");
+        }
+
+        [Test]
+        public void Feeder_mount_goes_on_to_the_old_answer_when_the_list_has_no_component_location()
+        {
+            var legacy = FeederLocationOf("F1", "legacy");
+            var response = new GetPackagingUnitLocationsOnFeedersResponse
+            {
+                PackagingUnitLocationListOnFeeders = new Dictionary<string, List<PackagingUnitLocation>> { { "F1", new List<PackagingUnitLocation> { new PackagingUnitLocation() } } },
                 PackagingUnitLocationsOnFeeders = new Dictionary<string, PackagingUnitLocation> { { "F1", legacy } }
             };
 
@@ -426,6 +475,16 @@ namespace Interlock.Tests.Service
             Assert.Throws<ArgumentNullException>(() => SetupCenterMapper.ToFeederLocation(null));
             Assert.Throws<ArgumentException>(() => SetupCenterMapper.ToFeederLocation(new FeederMount { FeederId = "F1", Native = 42 }));
             Assert.Throws<OibCallException>(() => SetupCenterMapper.ToFeederLocation(new FeederMount { FeederId = "F1", Native = new PackagingUnitLocation() }));
+        }
+
+        [Test]
+        public void A_lock_request_has_a_line_when_the_machine_names_it_by_line_name_or_line_path()
+        {
+            Assert.That(SetupCenterMapper.HasLine(new LockFeederLocationInfo { Machine = new MachineLocator { LinePath = "Lines\\L1" } }), Is.True);
+            Assert.That(SetupCenterMapper.HasLine(new LockFeederLocationInfo { Machine = new MachineLocator { LineName = "L1" } }), Is.True);
+            Assert.That(SetupCenterMapper.HasLine(new LockFeederLocationInfo { Machine = new MachineLocator { LineName = " ", LinePath = "" } }), Is.False);
+            Assert.That(SetupCenterMapper.HasLine(new LockFeederLocationInfo { Machine = null }), Is.False);
+            Assert.That(SetupCenterMapper.HasLine(null), Is.False);
         }
 
         // ---- ToReports ----
@@ -560,27 +619,114 @@ namespace Interlock.Tests.Service
         {
             var none = Assert.Throws<OibCallException>(() => SetupCenterMapper.ThrowIfFailed("LOCK_PU", new int[0], null));
             StringAssert.Contains("no result", none.Message);
-            Assert.Throws<OibCallException>(() => SetupCenterMapper.ThrowIfFailed("LOCK_PU", null, null));
+            Assert.Throws<OibCallException>(() => SetupCenterMapper.ThrowIfFailed("LOCK_PU", (IEnumerable<int>)null, null));
+        }
+
+        private static PackagingUnitResult Result(string uid, int state = 1, params string[] messages)
+        {
+            return new PackagingUnitResult
+            {
+                ResultState = state,
+                PackagingUnit = uid == null ? null : new PackagingUnit { UID = uid },
+                Messages = messages.Select(m => new PackagingUnitResultMessage(m)).ToList()
+            };
+        }
+
+        private static PackagingUnitResponse Response(params PackagingUnitResult[] results)
+        {
+            return new PackagingUnitResponse { Results = results.ToList() };
         }
 
         [Test]
         public void Throw_if_failed_reads_a_packaging_unit_response()
         {
-            var bad = new PackagingUnitResponse
-            {
-                Results = new List<PackagingUnitResult>
-                {
-                    new PackagingUnitResult { ResultState = 1 },
-                    new PackagingUnitResult { ResultState = 2, Messages = new List<PackagingUnitResultMessage> { new PackagingUnitResultMessage("PU unknown") } }
-                }
-            };
+            var bad = Response(Result("A"), Result("B", 2, "PU unknown"));
 
-            var ex = Assert.Throws<OibCallException>(() => SetupCenterMapper.ThrowIfFailed("LOCK_PU", bad));
+            var ex = Assert.Throws<OibCallException>(() => SetupCenterMapper.ThrowIfFailed("LOCK_PU", bad, new[] { "A", "B" }));
             StringAssert.Contains("PU unknown", ex.Message);
 
-            Assert.DoesNotThrow(() => SetupCenterMapper.ThrowIfFailed("LOCK_PU", new PackagingUnitResponse { Results = new List<PackagingUnitResult> { new PackagingUnitResult { ResultState = 1 } } }));
-            Assert.Throws<OibCallException>(() => SetupCenterMapper.ThrowIfFailed("LOCK_PU", (PackagingUnitResponse)null));
-            Assert.Throws<OibCallException>(() => SetupCenterMapper.ThrowIfFailed("LOCK_PU", new PackagingUnitResponse()));
+            Assert.DoesNotThrow(() => SetupCenterMapper.ThrowIfFailed("LOCK_PU", Response(Result("A")), new[] { "A" }));
+        }
+
+        [Test]
+        public void Throw_if_failed_needs_a_result_for_a_packaging_unit_response()
+        {
+            var none = Assert.Throws<OibCallException>(() => SetupCenterMapper.ThrowIfFailed("LOCK_PU", (PackagingUnitResponse)null, new[] { "A", "B" }));
+            StringAssert.Contains("no result", none.Message);
+            StringAssert.Contains("A, B", none.Message);
+            Assert.Throws<OibCallException>(() => SetupCenterMapper.ThrowIfFailed("LOCK_PU", new PackagingUnitResponse(), new[] { "A" }));
+            Assert.Throws<OibCallException>(() => SetupCenterMapper.ThrowIfFailed("LOCK_PU", new PackagingUnitResponse { Results = null }, new[] { "A" }));
+        }
+
+        [Test]
+        public void Throw_if_failed_rejects_fewer_results_than_requested_uids()
+        {
+            var ex = Assert.Throws<OibCallException>(() => SetupCenterMapper.ThrowIfFailed("LOCK_PU", Response(Result("A")), new[] { "A", "B" }));
+
+            StringAssert.Contains("no confirmation for B", ex.Message);
+        }
+
+        [Test]
+        public void Throw_if_failed_names_the_uid_that_has_no_result()
+        {
+            var response = Response(Result("A"), Result("C"));
+
+            var ex = Assert.Throws<OibCallException>(() => SetupCenterMapper.ThrowIfFailed("LOCK_PU", response, new[] { "A", "B", "C" }));
+
+            Assert.That(ex.Message, Is.EqualTo("LOCK_PU failed: no confirmation for B"), "only the missing uid is named");
+        }
+
+        [Test]
+        public void Throw_if_failed_accepts_results_in_any_order_and_extra_results()
+        {
+            var response = Response(Result("C"), Result("X"), Result("A"), Result("B"));
+
+            Assert.DoesNotThrow(() => SetupCenterMapper.ThrowIfFailed("LOCK_PU", response, new[] { "A", "B", "C" }));
+        }
+
+        [Test]
+        public void Throw_if_failed_ignores_results_about_uids_that_were_not_requested()
+        {
+            var response = Response(Result("A"), Result("X", 2, "not ours"));
+
+            Assert.DoesNotThrow(() => SetupCenterMapper.ThrowIfFailed("LOCK_PU", response, new[] { "A" }));
+        }
+
+        [Test]
+        public void Throw_if_failed_matches_uids_trimmed_and_ignoring_case_and_ignores_repeated_requests()
+        {
+            var response = Response(Result(" a "), Result("B"));
+
+            Assert.DoesNotThrow(() => SetupCenterMapper.ThrowIfFailed("LOCK_PU", response, new[] { "A", "a", " b", "  ", null }));
+        }
+
+        [Test]
+        public void Throw_if_failed_counts_results_that_carry_no_packaging_unit()
+        {
+            Assert.DoesNotThrow(() => SetupCenterMapper.ThrowIfFailed("LOCK_PU", Response(Result(null), Result(null)), new[] { "A", "B" }));
+            Assert.DoesNotThrow(() => SetupCenterMapper.ThrowIfFailed("LOCK_PU", Response(Result(null), Result(null), Result(null)), new[] { "A", "B" }));
+            Assert.DoesNotThrow(() => SetupCenterMapper.ThrowIfFailed("LOCK_PU", Response(Result("A"), Result(null)), new[] { "A", "B" }), "one named, one anonymous");
+            Assert.Throws<OibCallException>(() => SetupCenterMapper.ThrowIfFailed("LOCK_PU", Response(Result(null)), new[] { "A", "B" }));
+            Assert.Throws<OibCallException>(() => SetupCenterMapper.ThrowIfFailed("LOCK_PU", Response(Result("A"), Result(null)), new[] { "A", "B", "C" }));
+        }
+
+        [Test]
+        public void Throw_if_failed_takes_messages_only_from_failed_results()
+        {
+            var response = Response(Result("A", 1, "all good"), Result("B", 2, "boom"), Result("C", 1, "also fine"));
+
+            var ex = Assert.Throws<OibCallException>(() => SetupCenterMapper.ThrowIfFailed("LOCK_PU", response, new[] { "A", "B", "C" }));
+
+            StringAssert.Contains("boom", ex.Message);
+            StringAssert.DoesNotContain("all good", ex.Message);
+            StringAssert.DoesNotContain("also fine", ex.Message);
+        }
+
+        [Test]
+        public void Throw_if_failed_fails_on_an_anonymous_failed_result_and_a_null_result()
+        {
+            Assert.Throws<OibCallException>(() => SetupCenterMapper.ThrowIfFailed("LOCK_PU", Response(Result("A"), Result(null, 2, "bad")), new[] { "A" }));
+            Assert.Throws<OibCallException>(() => SetupCenterMapper.ThrowIfFailed("LOCK_PU", Response(Result("A"), null), new[] { "A" }));
         }
 
         [Test]
@@ -601,6 +747,35 @@ namespace Interlock.Tests.Service
             Assert.DoesNotThrow(() => SetupCenterMapper.ThrowIfFailed("UNLOCK_FEEDER", new UnlockOnlineFeedersResponse { UnlockOnlineFeedersResults = new List<UnlockOnlineFeedersResult> { new UnlockOnlineFeedersResult { ResultState = 1 } } }));
             Assert.Throws<OibCallException>(() => SetupCenterMapper.ThrowIfFailed("LOCK_FEEDER", (LockOnlineFeedersResponse)null));
             Assert.Throws<OibCallException>(() => SetupCenterMapper.ThrowIfFailed("UNLOCK_FEEDER", (UnlockOnlineFeedersResponse)null));
+        }
+
+        [Test]
+        public void Throw_if_failed_takes_online_feeder_messages_only_from_failed_results()
+        {
+            var lockMixed = new LockOnlineFeedersResponse
+            {
+                LockOnlineFeedersResults = new List<LockOnlineFeedersResult>
+                {
+                    new LockOnlineFeedersResult { ResultState = 1, Messages = new List<string> { "locked fine" } },
+                    new LockOnlineFeedersResult { ResultState = 2, Messages = new List<string> { "feeder busy" } }
+                }
+            };
+            var unlockMixed = new UnlockOnlineFeedersResponse
+            {
+                UnlockOnlineFeedersResults = new List<UnlockOnlineFeedersResult>
+                {
+                    new UnlockOnlineFeedersResult { ResultState = 1, Messages = new List<string> { "unlocked fine" } },
+                    new UnlockOnlineFeedersResult { ResultState = 2, Messages = new List<string> { "not locked" } }
+                }
+            };
+
+            var lockEx = Assert.Throws<OibCallException>(() => SetupCenterMapper.ThrowIfFailed("LOCK_FEEDER", lockMixed));
+            var unlockEx = Assert.Throws<OibCallException>(() => SetupCenterMapper.ThrowIfFailed("UNLOCK_FEEDER", unlockMixed));
+
+            StringAssert.Contains("feeder busy", lockEx.Message);
+            StringAssert.DoesNotContain("locked fine", lockEx.Message);
+            StringAssert.Contains("not locked", unlockEx.Message);
+            StringAssert.DoesNotContain("unlocked fine", unlockEx.Message);
         }
 
         // ---- ReconnectBackoff (the brief puts its test here) ----

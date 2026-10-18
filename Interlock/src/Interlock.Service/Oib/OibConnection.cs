@@ -17,9 +17,14 @@ namespace Interlock.Service.Oib
     /// proxy or touching the network.</item>
     /// <item>A fault the service sent back (<see cref="FaultException"/>) or any other exception is a business failure: it is
     /// wrapped in <see cref="OibCallException"/> but the proxy stays and the backoff is not touched.</item>
+    /// <item>A call that returns resets the backoff only if it proves the connection works. Business calls always do. A health
+    /// probe says so through <c>provesConnection</c>: <c>IsConnected</c> answers false (without throwing) when the service is
+    /// down, so a false answer proves nothing and leaves the backoff as it is. A returned false is not a connection failure
+    /// either, so it does not start the wait.</item>
     /// </list>
-    /// The proxy is created and replaced under a lock, so concurrent first calls create one proxy. The lock is never held while
-    /// a call runs or while a dead proxy is closed.
+    /// The proxy is created and replaced under a lock, so concurrent first calls create one proxy. Creation (<c>create</c>) runs
+    /// under that lock and may do network I/O, so concurrent callers wait for it. The lock is never held while a call runs or
+    /// while a dead proxy is closed.
     /// </summary>
     internal sealed class OibConnection<TProxy> : IDisposable where TProxy : class
     {
@@ -52,7 +57,10 @@ namespace Interlock.Service.Oib
         }
 
         /// <summary>Runs <paramref name="call"/> on the proxy. Every failure is an <see cref="OibCallException"/>.</summary>
-        public T Call<T>(string action, Func<TProxy, T> call)
+        /// <param name="provesConnection">
+        /// Decides from the result whether the call proves the connection works (and so resets the backoff). Omitted: it always does.
+        /// </param>
+        public T Call<T>(string action, Func<TProxy, T> call, Func<T, bool> provesConnection = null)
         {
             var proxy = Acquire(action);
             T result;
@@ -71,8 +79,11 @@ namespace Interlock.Service.Oib
                 throw new OibCallException(_service + " " + action + " failed: " + ex.Message, ex);
             }
 
-            lock (_gate)
-                _backoff.Succeeded();
+            if (provesConnection == null || provesConnection(result))
+            {
+                lock (_gate)
+                    _backoff.Succeeded();
+            }
             return result;
         }
 

@@ -46,8 +46,9 @@ namespace Interlock.Service.Oib
         /// <param name="callbackPort">The port the proxy listens on for the events.</param>
         /// <param name="onReports">Called on the OIB thread with the reports of one notice; keep it short and non-blocking.</param>
         /// <param name="clock">For the backoff; the system clock when omitted.</param>
-        public SetupCenterEventSubscriber(string endpointUri, string coreHost, string callbackName, int callbackPort, Action<IList<PuLockReport>> onReports, ILog log, IClock clock = null)
-            : this(NewProxySessionFactory(endpointUri), coreHost, callbackName, callbackPort, onReports, log, clock ?? new SystemClock())
+        /// <param name="sendTimeout">How long a subscribe or unsubscribe may take; see <see cref="OibEndpoints.SecureBinding"/> (30 s when omitted).</param>
+        public SetupCenterEventSubscriber(string endpointUri, string coreHost, string callbackName, int callbackPort, Action<IList<PuLockReport>> onReports, ILog log, IClock clock = null, TimeSpan? sendTimeout = null)
+            : this(NewProxySessionFactory(endpointUri, sendTimeout), coreHost, callbackName, callbackPort, onReports, log, clock ?? new SystemClock())
         {
         }
 
@@ -213,10 +214,10 @@ namespace Interlock.Service.Oib
             }
         }
 
-        private static Func<ISetupCenterSession> NewProxySessionFactory(string endpointUri)
+        private static Func<ISetupCenterSession> NewProxySessionFactory(string endpointUri, TimeSpan? sendTimeout)
         {
             var address = OibEndpoints.SecureAddress(endpointUri);
-            return () => new ProxySession(new SiplaceSetupCenter(address, OibEndpoints.SecureBinding(endpointUri)));
+            return () => new ProxySession(new SiplaceSetupCenter(address, OibEndpoints.SecureBinding(endpointUri, sendTimeout)));
         }
 
         /// <summary>One session with its handlers, so they can be taken off again.</summary>

@@ -34,8 +34,9 @@ namespace Interlock.Service.Oib
         }
 
         /// <summary>
-        /// Every machine of every line, once. Setup Center lists them in <c>Machines</c> (obsolete) and in
-        /// <c>MachineConfigurations</c>; both are read. A machine without a line path of its own takes the one of its line.
+        /// Every machine of every line, once. Setup Center lists them in <c>MachineConfigurations</c> and, obsolete, in
+        /// <c>Machines</c>; both are read, <c>MachineConfigurations</c> first. A machine without a line path of its own takes the
+        /// one of its line.
         /// </summary>
         public static IList<MachineRef> ToMachines(Configuration c)
         {
@@ -80,8 +81,8 @@ namespace Interlock.Service.Oib
 
         /// <summary>
         /// Every packaging unit mounted on the machines of <paramref name="setups"/>. Locations without a packaging unit, or with a
-        /// blank UID, are skipped. The line path comes from the location state; the machine comes from the state, or from the
-        /// dictionary key when the state names none.
+        /// blank UID, are skipped. The machine and the line path come from the machine of the component location of the state,
+        /// else from the state's own (obsolete) members; the machine is the dictionary key when the state names none.
         /// </summary>
         public static IList<MountedPu> ToMountedPus(Dictionary<string, MachineSetup> setups)
         {
@@ -118,7 +119,8 @@ namespace Interlock.Service.Oib
         /// when the key differs only in case or padding it is still found. <see cref="FeederMount.Native"/> is the
         /// <see cref="PackagingUnitLocation"/> Setup Center returned. Setup Center may list several locations for one feeder id
         /// (the old single-location answer is obsolete for that reason): the first one with a component location stands for the
-        /// feeder.
+        /// feeder. When none of the returned locations has a component location the feeder is mounted nowhere, so the result is
+        /// null.
         /// </summary>
         public static FeederMount ToFeederMount(string feederId, GetPackagingUnitLocationsOnFeedersResponse r)
         {
@@ -152,6 +154,17 @@ namespace Interlock.Service.Oib
                 info.FeederId = m.FeederId;
             info.Reason = reason;
             return info;
+        }
+
+        /// <summary>
+        /// True when the machine of the lock request names its line, by line name (obsolete, but documented as mandatory) or by
+        /// line path.
+        /// </summary>
+        public static bool HasLine(LockFeederLocationInfo info)
+        {
+            if (info == null || info.Machine == null)
+                return false;
+            return !string.IsNullOrWhiteSpace(LineNameOf(info.Machine)) || !string.IsNullOrWhiteSpace(info.Machine.LinePath);
         }
 
         /// <summary>The request item that unlocks the mounted feeder: the shared properties of its location in a plain <see cref="FeederLocation"/>.</summary>
@@ -224,18 +237,59 @@ namespace Interlock.Service.Oib
             throw new OibCallException(action + " failed: " + text);
         }
 
-        public static void ThrowIfFailed(string action, PackagingUnitResponse r)
+        /// <summary>
+        /// Throws <see cref="OibCallException"/> unless Setup Center confirmed every requested packaging unit with an OK result.
+        /// Results are matched on <c>PackagingUnit.UID</c> (trimmed, ignoring case), in any order; results for UIDs that were not
+        /// requested are ignored. Results that carry no packaging unit cannot be matched, so they are counted: there must be at
+        /// least as many of them as there are unconfirmed UIDs. A failed result throws with its own messages (the messages of OK
+        /// results are not used). A UID nobody answered for is named in the message; Setup Center leaves out, for example, the
+        /// spliced packaging units of a chain.
+        /// </summary>
+        public static void ThrowIfFailed(string action, PackagingUnitResponse r, IEnumerable<string> requestedUids)
         {
-            var results = r == null ? null : r.Results;
-            ThrowIfFailed(
-                action,
-                results == null ? null : results.Select(x => x == null ? 0 : x.ResultState),
-                results == null
-                    ? null
-                    : results
-                        .Where(x => x != null && x.Messages != null)
-                        .SelectMany(x => x.Messages)
-                        .Select(m => m == null ? null : m.Message));
+            var wanted = new List<string>();
+            var wantedSet = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            foreach (var uid in requestedUids ?? new string[0])
+            {
+                if (!string.IsNullOrWhiteSpace(uid) && wantedSet.Add(uid.Trim()))
+                    wanted.Add(uid.Trim());
+            }
+
+            var results = r == null || r.Results == null ? new List<PackagingUnitResult>() : r.Results;
+            if (results.Count == 0)
+                throw new OibCallException(action + " failed: no result returned" + (wanted.Count == 0 ? string.Empty : " for " + string.Join(", ", wanted)));
+
+            var anonymous = new List<PackagingUnitResult>();
+            var relevant = new List<PackagingUnitResult>();
+            var confirmed = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            foreach (var result in results)
+            {
+                var uid = UidOf(result);
+                if (uid == null)
+                {
+                    anonymous.Add(result);
+                    relevant.Add(result);
+                }
+                else if (wantedSet.Contains(uid))
+                {
+                    relevant.Add(result);
+                    if (result.ResultState == ResultOk)
+                        confirmed.Add(uid);
+                }
+            }
+
+            var failed = relevant.Where(x => x == null || x.ResultState != ResultOk).ToList();
+            if (failed.Count > 0)
+            {
+                ThrowIfFailed(
+                    action,
+                    failed.Select(x => x == null ? 0 : x.ResultState),
+                    failed.Where(x => x != null && x.Messages != null).SelectMany(x => x.Messages).Select(m => m == null ? null : m.Message));
+            }
+
+            var unconfirmed = wanted.Where(uid => !confirmed.Contains(uid)).ToList();
+            if (unconfirmed.Count > anonymous.Count)
+                throw new OibCallException(action + " failed: no confirmation for " + string.Join(", ", unconfirmed));
         }
 
         public static void ThrowIfFailed(string action, LockOnlineFeedersResponse r)
@@ -244,7 +298,7 @@ namespace Interlock.Service.Oib
             ThrowIfFailed(
                 action,
                 results == null ? null : results.Select(x => x == null ? 0 : x.ResultState),
-                results == null ? null : results.Where(x => x != null && x.Messages != null).SelectMany(x => x.Messages));
+                results == null ? null : results.Where(x => x != null && x.ResultState != ResultOk && x.Messages != null).SelectMany(x => x.Messages));
         }
 
         public static void ThrowIfFailed(string action, UnlockOnlineFeedersResponse r)
@@ -253,7 +307,7 @@ namespace Interlock.Service.Oib
             ThrowIfFailed(
                 action,
                 results == null ? null : results.Select(x => x == null ? 0 : x.ResultState),
-                results == null ? null : results.Where(x => x != null && x.Messages != null).SelectMany(x => x.Messages));
+                results == null ? null : results.Where(x => x != null && x.ResultState != ResultOk && x.Messages != null).SelectMany(x => x.Messages));
         }
 
         private static ComponentLocation RequireLocation(FeederMount m)
@@ -303,14 +357,15 @@ namespace Interlock.Service.Oib
             List<PackagingUnitLocation> locations;
             if (TryGetIgnoringCaseAndPadding(r.PackagingUnitLocationListOnFeeders, feederId, out locations) && locations != null)
             {
-                var first = locations.FirstOrDefault(l => l != null && l.ComponentLocation != null) ?? locations.FirstOrDefault(l => l != null);
+                var first = locations.FirstOrDefault(l => l != null && l.ComponentLocation != null);
                 if (first != null)
                     return first;
             }
 
             PackagingUnitLocation single;
-            TryGetIgnoringCaseAndPadding(LegacyFeederLocations(r), feederId, out single);
-            return single;
+            if (TryGetIgnoringCaseAndPadding(LegacyFeederLocations(r), feederId, out single) && single != null && single.ComponentLocation != null)
+                return single;
+            return null;
         }
 
         private static bool TryGetIgnoringCaseAndPadding<T>(Dictionary<string, T> map, string key, out T value)
@@ -335,25 +390,29 @@ namespace Interlock.Service.Oib
         }
 
         // The OIB marks some members obsolete. Older Setup Center versions fill only those, newer ones the replacements, so the
-        // mapper reads the member the contract gave first and then the replacement. The warnings are silenced here, nowhere else.
+        // mapper reads the replacement first and the obsolete member as the fallback. The warnings are silenced here, nowhere else.
 #pragma warning disable CS0618
         private static IEnumerable<MachineLocator> MachineLocatorsOf(LineConfiguration line)
         {
-            var machines = line.Machines ?? new List<MachineLocator>();
             var configured = (line.MachineConfigurations ?? new List<MachineConfiguration>()).Select(c => c == null ? null : c.MachineLocator);
-            return machines.Concat(configured);
+            return configured.Concat(line.Machines ?? new List<MachineLocator>());
         }
 
         private static string MachineIdOf(PackagingUnitLocation location)
         {
             var machine = location.ComponentLocation == null ? null : location.ComponentLocation.Machine;
-            return FirstNonBlank(location.MachineId, machine == null ? null : machine.MachineId);
+            return FirstNonBlank(machine == null ? null : machine.MachineId, location.MachineId);
         }
 
         private static string LinePathOf(PackagingUnitLocation location)
         {
             var machine = location.ComponentLocation == null ? null : location.ComponentLocation.Machine;
-            return FirstNonBlank(location.LinePath, machine == null ? null : machine.LinePath);
+            return FirstNonBlank(machine == null ? null : machine.LinePath, location.LinePath);
+        }
+
+        private static string LineNameOf(MachineLocator machine)
+        {
+            return machine.LineName;
         }
 
         private static Dictionary<string, PackagingUnitLocation> LegacyFeederLocations(GetPackagingUnitLocationsOnFeedersResponse r)
@@ -361,6 +420,14 @@ namespace Interlock.Service.Oib
             return r.PackagingUnitLocationsOnFeeders;
         }
 #pragma warning restore CS0618
+
+        /// <summary>The trimmed UID of the packaging unit a result is about, or null when the result names none.</summary>
+        private static string UidOf(PackagingUnitResult result)
+        {
+            if (result == null || result.PackagingUnit == null || string.IsNullOrWhiteSpace(result.PackagingUnit.UID))
+                return null;
+            return result.PackagingUnit.UID.Trim();
+        }
 
         private static string FirstNonBlank(string first, string second)
         {

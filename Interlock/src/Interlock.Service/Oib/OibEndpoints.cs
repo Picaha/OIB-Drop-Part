@@ -33,20 +33,43 @@ namespace Interlock.Service.Oib
 
         public static readonly TimeSpan CloseTimeout = TimeSpan.FromSeconds(5);
 
+        /// <summary>The send timeout bindings get unless the caller asks for another.</summary>
+        public static readonly TimeSpan DefaultSendTimeout = TimeSpan.FromSeconds(30);
+
+        public static readonly TimeSpan MinSendTimeout = TimeSpan.FromSeconds(5);
+
+        public static readonly TimeSpan MaxSendTimeout = TimeSpan.FromSeconds(120);
+
         /// <summary>
-        /// A new binding each call: a binding must not be shared between channel factories. The open and close timeouts are cut to
-        /// <see cref="OpenTimeout"/> and <see cref="CloseTimeout"/> (never lengthened); send and receive timeouts stay at the OIB
-        /// values, since they bound calls that really take long.
+        /// A new binding each call: a binding must not be shared between channel factories. Three timeouts are cut (never
+        /// lengthened): open to <see cref="OpenTimeout"/>, close to <see cref="CloseTimeout"/>, and send to
+        /// <paramref name="sendTimeout"/> (<see cref="DefaultSendTimeout"/> when null, kept between <see cref="MinSendTimeout"/> and
+        /// <see cref="MaxSendTimeout"/>). The OIB default send timeout is 10 minutes: a service that accepts the connection and then
+        /// hangs would hold the calling thread that long. The receive timeout is left alone; on a reliable session it is the idle
+        /// lifetime of the session, not a call limit.
         /// </summary>
-        public static Binding SecureBinding(string uri)
+        public static Binding SecureBinding(string uri, TimeSpan? sendTimeout = null)
         {
             RequireUri(uri);
+            var send = ClampSendTimeout(sendTimeout);
             var binding = EndpointHelper.CreateBindingFromParameters(new BindingParameters(uri, true));
             if (binding.OpenTimeout > OpenTimeout)
                 binding.OpenTimeout = OpenTimeout;
             if (binding.CloseTimeout > CloseTimeout)
                 binding.CloseTimeout = CloseTimeout;
+            if (binding.SendTimeout > send)
+                binding.SendTimeout = send;
             return binding;
+        }
+
+        /// <summary>The send timeout a binding gets for <paramref name="requested"/>: the default when null, else limited to 5..120 s.</summary>
+        public static TimeSpan ClampSendTimeout(TimeSpan? requested)
+        {
+            if (requested == null)
+                return DefaultSendTimeout;
+            if (requested.Value < MinSendTimeout)
+                return MinSendTimeout;
+            return requested.Value > MaxSendTimeout ? MaxSendTimeout : requested.Value;
         }
 
         private static void RequireUri(string uri)

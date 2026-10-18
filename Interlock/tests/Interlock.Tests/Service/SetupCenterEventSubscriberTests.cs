@@ -397,7 +397,7 @@ namespace Interlock.Tests.Service
         {
             Assert.Throws<ArgumentException>(() => new SetupCenterEventSubscriber(" ", "core", "cb", 1, r => { }, _log));
 
-            using (var sub = new SetupCenterEventSubscriber("net.tcp://localhost:1406/Asm.As.Oib.SetupCenter/SiplaceSetupCenter/Reliable", "core", "cb", 1, r => { }, _log))
+            using (var sub = new SetupCenterEventSubscriber("net.tcp://localhost:1406/Asm.As.Oib.SetupCenter/SiplaceSetupCenter/Reliable", "core", "cb", 1, r => { }, _log, _clock, TimeSpan.FromSeconds(45)))
                 Assert.That(sub.IsSubscribed, Is.False, "construction subscribes to nothing");
         }
     }

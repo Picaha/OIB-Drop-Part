@@ -18,7 +18,8 @@ namespace Interlock.Service.Oib
 
         private readonly OibConnection<Monitoring> _connection;
 
-        public MonitoringClient(string endpointUri, IClock clock)
+        /// <param name="sendTimeout">How long a call may take; see <see cref="OibEndpoints.SecureBinding"/> (30 s when omitted).</param>
+        public MonitoringClient(string endpointUri, IClock clock, TimeSpan? sendTimeout = null)
         {
             var address = OibEndpoints.SecureAddress(endpointUri);
             if (clock == null)
@@ -26,7 +27,7 @@ namespace Interlock.Service.Oib
 
             _connection = new OibConnection<Monitoring>(
                 ServiceName,
-                () => MonitoringManager.GetOrCreateInstance(address, OibEndpoints.SecureBinding(endpointUri)),
+                () => MonitoringManager.GetOrCreateInstance(address, OibEndpoints.SecureBinding(endpointUri, sendTimeout)),
                 proxy => proxy.Dispose(),
                 clock);
         }

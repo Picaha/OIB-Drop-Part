@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
 using Asm.As.Oib.SiplacePro.LineControl.Contracts;
+using Asm.As.Oib.SiplaceSetupCenter.Contracts.Data;
 using Interlock.Core.Model;
 using Interlock.Service.Oib;
 using Interlock.Tests.Fakes;
@@ -51,7 +52,7 @@ namespace Interlock.Tests.Service
         }
 
         [Test]
-        public void The_binding_opens_and_closes_within_bounded_times_but_keeps_the_oib_send_and_receive_timeouts()
+        public void The_binding_opens_closes_and_sends_within_bounded_times_and_leaves_the_receive_timeout_alone()
         {
             var parameters = new Asm.As.Oib.Common.Utilities.BindingParameters(SetupCenterUri, true);
 
@@ -59,8 +60,42 @@ namespace Interlock.Tests.Service
 
             Assert.That(binding.OpenTimeout, Is.EqualTo(TimeSpan.FromSeconds(10)));
             Assert.That(binding.CloseTimeout, Is.EqualTo(TimeSpan.FromSeconds(5)));
-            Assert.That(binding.SendTimeout, Is.EqualTo(parameters.SendTimeout));
+            Assert.That(binding.SendTimeout, Is.EqualTo(TimeSpan.FromSeconds(30)), "30 s unless asked otherwise");
             Assert.That(binding.ReceiveTimeout, Is.EqualTo(parameters.ReceiveTimeout));
+        }
+
+        [TestCase(60, 60)]
+        [TestCase(30, 30)]
+        [TestCase(5, 5)]
+        [TestCase(120, 120)]
+        [TestCase(1, 5)]
+        [TestCase(0, 5)]
+        [TestCase(-3, 5)]
+        [TestCase(121, 120)]
+        [TestCase(600, 120)]
+        public void The_send_timeout_asked_for_is_kept_between_five_and_120_seconds(int requestedSeconds, int expectedSeconds)
+        {
+            var binding = OibEndpoints.SecureBinding(LineControlUri, TimeSpan.FromSeconds(requestedSeconds));
+
+            Assert.That(binding.SendTimeout, Is.EqualTo(TimeSpan.FromSeconds(expectedSeconds)));
+            Assert.That(OibEndpoints.ClampSendTimeout(TimeSpan.FromSeconds(requestedSeconds)), Is.EqualTo(TimeSpan.FromSeconds(expectedSeconds)));
+        }
+
+        [Test]
+        public void No_send_timeout_asked_for_means_thirty_seconds()
+        {
+            Assert.That(OibEndpoints.ClampSendTimeout(null), Is.EqualTo(TimeSpan.FromSeconds(30)));
+        }
+
+        [Test]
+        public void The_send_timeout_is_only_ever_shortened()
+        {
+            var oibDefault = new Asm.As.Oib.Common.Utilities.BindingParameters(SetupCenterUri, true).SendTimeout;
+
+            var binding = OibEndpoints.SecureBinding(SetupCenterUri, TimeSpan.FromSeconds(120));
+
+            Assert.That(oibDefault, Is.GreaterThan(TimeSpan.FromSeconds(120)), "the OIB default is long, so the cap applies");
+            Assert.That(binding.SendTimeout, Is.EqualTo(TimeSpan.FromSeconds(120)));
         }
 
         [Test]
@@ -139,6 +174,43 @@ namespace Interlock.Tests.Service
             Assert.That(MonitoringClient.ToStations(c).Single().LinePath, Is.EqualTo("Lines\\L1"));
         }
 
+        // ---- SetupCenterClient ----
+
+        private static LockFeederLocationInfo LockInfoOn(MachineLocator machine)
+        {
+            return new LockFeederLocationInfo { FeederId = "F1", Machine = machine };
+        }
+
+        [Test]
+        public void A_feeder_lock_on_a_machine_without_a_line_is_logged()
+        {
+            var log = new ListLog();
+
+            SetupCenterClient.WarnIfNoLine(LockInfoOn(new MachineLocator { MachineId = "m1" }), log);
+
+            Assert.That(log.Warnings, Has.Count.EqualTo(1));
+            StringAssert.Contains("F1", log.Warnings[0]);
+        }
+
+        [Test]
+        public void A_feeder_lock_on_a_machine_with_a_line_is_not_logged()
+        {
+            var log = new ListLog();
+
+            SetupCenterClient.WarnIfNoLine(LockInfoOn(new MachineLocator { LinePath = "Lines\\L1" }), log);
+#pragma warning disable CS0618
+            SetupCenterClient.WarnIfNoLine(LockInfoOn(new MachineLocator { LineName = "L1" }), log);
+#pragma warning restore CS0618
+
+            Assert.That(log.Warnings, Is.Empty);
+        }
+
+        [Test]
+        public void The_line_warning_needs_no_log()
+        {
+            Assert.DoesNotThrow(() => SetupCenterClient.WarnIfNoLine(LockInfoOn(new MachineLocator()), null));
+        }
+
         // ---- constructors validate and never connect ----
 
         [Test]
@@ -153,9 +225,9 @@ namespace Interlock.Tests.Service
             Assert.Throws<ArgumentException>(() => new MonitoringClient("", clock));
             Assert.Throws<ArgumentNullException>(() => new MonitoringClient(SetupCenterUri, null));
 
-            using (var sc = new SetupCenterClient(SetupCenterUri, clock))
-            using (var lc = new LineControlClient(LineControlUri, clock))
-            using (var mon = new MonitoringClient(SetupCenterUri, clock))
+            using (var sc = new SetupCenterClient(SetupCenterUri, clock, TimeSpan.FromSeconds(45), new ListLog()))
+            using (var lc = new LineControlClient(LineControlUri, clock, TimeSpan.FromSeconds(45)))
+            using (var mon = new MonitoringClient(SetupCenterUri, clock, TimeSpan.FromSeconds(45)))
             {
                 Assert.That(sc, Is.Not.Null);
                 Assert.That(lc, Is.Not.Null);
