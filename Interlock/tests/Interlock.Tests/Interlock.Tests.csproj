@@ -15,4 +15,8 @@
     <ProjectReference Include="..\..\src\Interlock.Service\Interlock.Service.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="..\..\db\001_interlock_schema.sql" Link="db\001_interlock_schema.sql" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
 </Project>

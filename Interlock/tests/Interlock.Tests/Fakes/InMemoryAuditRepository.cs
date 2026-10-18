@@ -9,8 +9,10 @@ using Interlock.Core.Text;
 namespace Interlock.Tests.Fakes
 {
     /// <summary>
-    /// An audit repository that lives in memory. Tests read the stored entries from <see cref="Actions"/> and
-    /// <see cref="Decisions"/>; both keep insertion order, and so do the query methods.
+    /// An audit repository that lives in memory and orders like the real one: <see cref="GetActions"/> by id, and
+    /// <see cref="QueryDecisions"/> the newest rows first (a time tie goes to the later insert). Entries are copied on write
+    /// and on read, so callers cannot change stored rows by accident. Tests read the stored copies from <see cref="Actions"/>
+    /// and <see cref="Decisions"/>, in insertion order.
     /// </summary>
     public sealed class InMemoryAuditRepository : IAuditRepository
     {
@@ -24,7 +26,7 @@ namespace Interlock.Tests.Fakes
 
         public List<DecisionLogEntry> Decisions { get; } = new List<DecisionLogEntry>();
 
-        /// <summary>Stores the entry itself and, like the database, gives it the next id when it has none.</summary>
+        /// <summary>Stores a copy of the entry; like the database, the copy gets the next id when the entry has none.</summary>
         public void AddAction(ActionLogEntry e)
         {
             if (e == null)
@@ -32,11 +34,12 @@ namespace Interlock.Tests.Fakes
             CheckUp();
             lock (_gate)
             {
-                if (e.Id == 0)
-                    e.Id = ++_lastActionId;
-                else if (e.Id > _lastActionId)
-                    _lastActionId = e.Id;
-                Actions.Add(e);
+                var stored = Copy(e);
+                if (stored.Id == 0)
+                    stored.Id = ++_lastActionId;
+                else if (stored.Id > _lastActionId)
+                    _lastActionId = stored.Id;
+                Actions.Add(stored);
             }
         }
 
@@ -44,19 +47,24 @@ namespace Interlock.Tests.Fakes
         {
             CheckUp();
             lock (_gate)
-                return Actions.Where(a => a.LockId == lockId).ToList();
+                return Actions.Where(a => a.LockId == lockId).OrderBy(a => a.Id).Select(Copy).ToList();
         }
 
+        /// <summary>Stores copies of the whole batch, or nothing when an entry is null.</summary>
         public void AddDecisions(IList<DecisionLogEntry> e)
         {
             if (e == null)
                 throw new ArgumentNullException(nameof(e));
             CheckUp();
+            var copies = e.Select(Copy).ToList();
             lock (_gate)
-                Decisions.AddRange(e);
+                Decisions.AddRange(copies);
         }
 
-        /// <summary>Uid and Pn are compared after <c>Normalizer.Norm</c>; a blank filter is no filter. Both time limits are inclusive.</summary>
+        /// <summary>
+        /// The newest <c>Limit</c> matching rows, newest first. Uid and Pn are compared after <c>Normalizer.Norm</c>; a blank
+        /// filter is no filter. Both time limits are inclusive.
+        /// </summary>
         public IList<DecisionLogEntry> QueryDecisions(DecisionQuery q)
         {
             CheckUp();
@@ -67,11 +75,15 @@ namespace Interlock.Tests.Fakes
             lock (_gate)
             {
                 return Decisions
-                    .Where(d => (uid == null || Normalizer.Norm(d.Uid) == uid)
-                        && (pn == null || Normalizer.Norm(d.Pn) == pn)
-                        && (q.FromUtc == null || d.CreatedAtUtc >= q.FromUtc)
-                        && (q.ToUtc == null || d.CreatedAtUtc <= q.ToUtc))
+                    .Select((d, index) => new { Entry = d, Index = index })
+                    .Where(x => (uid == null || Normalizer.Norm(x.Entry.Uid) == uid)
+                        && (pn == null || Normalizer.Norm(x.Entry.Pn) == pn)
+                        && (q.FromUtc == null || x.Entry.CreatedAtUtc >= q.FromUtc)
+                        && (q.ToUtc == null || x.Entry.CreatedAtUtc <= q.ToUtc))
+                    .OrderByDescending(x => x.Entry.CreatedAtUtc)
+                    .ThenByDescending(x => x.Index)
                     .Take(q.Limit)
+                    .Select(x => Copy(x.Entry))
                     .ToList();
             }
         }
@@ -80,6 +92,43 @@ namespace Interlock.Tests.Fakes
         {
             if (Down)
                 throw new DbUnavailableException("The in-memory audit repository is down.");
+        }
+
+        private static ActionLogEntry Copy(ActionLogEntry a)
+        {
+            return new ActionLogEntry
+            {
+                Id = a.Id,
+                LockId = a.LockId,
+                Action = a.Action,
+                RequestJson = a.RequestJson,
+                Success = a.Success,
+                Error = a.Error,
+                Attempt = a.Attempt,
+                CreatedAtUtc = a.CreatedAtUtc
+            };
+        }
+
+        private static DecisionLogEntry Copy(DecisionLogEntry d)
+        {
+            if (d == null)
+                throw new ArgumentException("The batch contains a null entry.", "e");
+            return new DecisionLogEntry
+            {
+                Method = d.Method,
+                ReasonCode = d.ReasonCode,
+                Uid = d.Uid,
+                Pn = d.Pn,
+                Mpn = d.Mpn,
+                Supplier = d.Supplier,
+                LinePath = d.LinePath,
+                MachineId = d.MachineId,
+                FeederId = d.FeederId,
+                Result = d.Result,
+                Message = d.Message,
+                MatchedLockIds = d.MatchedLockIds,
+                CreatedAtUtc = d.CreatedAtUtc
+            };
         }
     }
 }
