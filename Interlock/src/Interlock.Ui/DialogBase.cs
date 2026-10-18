@@ -15,7 +15,33 @@ namespace Interlock.Ui
             MinimizeBox = false;
             ShowInTaskbar = false;
             StartPosition = FormStartPosition.CenterParent;
+            FormClosing += (s, e) => { if (ShouldBlockClose(Busy, _forced)) e.Cancel = true; };
             FormClosed += (s, e) => IsClosed = true;
+        }
+
+        private bool _forced;
+
+        /// <summary>True while a call that changes data runs: the dialog cannot be cancelled, so its answer is never lost.</summary>
+        protected bool Busy { get; private set; }
+
+        public static bool ShouldBlockClose(bool busy, bool forced)
+        {
+            return busy && !forced;
+        }
+
+        /// <summary>Marks a call as running (or finished): blocks Cancel/Esc/close while it runs.</summary>
+        protected void SetBusyState(bool busy)
+        {
+            Busy = busy;
+            var cancel = CancelButton as Button;
+            if (cancel != null) cancel.Enabled = !busy;
+        }
+
+        /// <summary>Used by the owner when the session ends; closes even while a call runs.</summary>
+        public void CloseForced()
+        {
+            _forced = true;
+            Close();
         }
 
         /// <summary>True once the dialog is closed; async continuations must not touch controls then.</summary>

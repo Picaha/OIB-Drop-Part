@@ -37,7 +37,7 @@ namespace Interlock.Ui
             _cancel.Text = "Cancel";
             _cancel.DialogResult = DialogResult.Cancel;
             _cancel.SetBounds(340, 152, 88, 28);
-            _ok.Click += async (s, e) => await SubmitAsync();
+            _ok.Click += async (s, e) => await Guarded(SubmitAsync, _status);
 
             Controls.AddRange(new Control[] { label, _reason, _status, _ok, _cancel });
             AcceptButton = _ok;
@@ -67,12 +67,13 @@ namespace Interlock.Ui
             var done = false;
             await Guarded(async () => { await _submit(reason); done = true; }, _status);
             if (IsClosed) return;
+            SetBusy(false);
             if (done) DialogResult = DialogResult.OK;
-            else SetBusy(false);
         }
 
         private void SetBusy(bool busy)
         {
+            SetBusyState(busy);
             _reason.Enabled = !busy;
             _ok.Enabled = !busy;
             if (!busy) _reason.Focus();

@@ -112,6 +112,24 @@ namespace Interlock.Tests.Ui
         }
 
         [Test]
+        public void New_user_with_an_existing_name_is_refused_ignoring_case_but_editing_is_allowed()
+        {
+            var existing = new[] { "Alice", "bob" };
+            Assert.That(AdminRules.ValidateUser(true, " BOB ", "QA", "1234", existing), Is.EqualTo("User 'BOB' already exists. Select it in the list to edit it"));
+            Assert.That(AdminRules.ValidateUser(true, "carol", "QA", "1234", existing), Is.Null);
+            Assert.That(AdminRules.ValidateUser(false, "bob", "QA", "", existing), Is.Null);
+        }
+
+        [Test]
+        public void Programmatic_filling_of_the_released_grid_never_changes_the_preselected_lock()
+        {
+            var first = new Interlock.Core.Api.LockDto { id = 1 };
+            Assert.That(HistoryLockSelection.NextIdText("42", first, false), Is.EqualTo("42"));
+            Assert.That(HistoryLockSelection.NextIdText("42", first, true), Is.EqualTo("1"));
+            Assert.That(HistoryLockSelection.NextIdText("42", null, true), Is.EqualTo("42"));
+        }
+
+        [Test]
         public void Edit_keeps_the_pin_when_empty_but_checks_a_given_one()
         {
             Assert.That(AdminRules.ValidateUser(false, "bob", "QA", ""), Is.Null);
@@ -127,6 +145,14 @@ namespace Interlock.Tests.Ui
             Assert.That(keep.pin, Is.Null);
             Assert.That(keep.active, Is.False);
             Assert.That(AdminRules.ToUserDto("bob", "QA", true, "1234").pin, Is.EqualTo("1234"));
+        }
+
+        [Test]
+        public void Busy_dialogs_block_close_unless_the_owner_forces_it()
+        {
+            Assert.That(DialogBase.ShouldBlockClose(true, false), Is.True);
+            Assert.That(DialogBase.ShouldBlockClose(true, true), Is.False);
+            Assert.That(DialogBase.ShouldBlockClose(false, false), Is.False);
         }
 
         [Test]

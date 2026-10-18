@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Globalization;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Interlock.Core.Api;
@@ -28,6 +29,7 @@ namespace Interlock.Ui
         private readonly Button _ok = new Button();
         private readonly Button _cancel = new Button();
         private readonly TableLayoutPanel _table = new TableLayoutPanel();
+        private readonly Timer _closeTimer = new Timer { Interval = 1500 };
 
         private readonly Label _targetLabel = new Label { Text = "Target", AutoSize = true, Anchor = AnchorStyles.Left };
         private readonly Label _stationLabel = new Label { Text = "Station", AutoSize = true, Anchor = AnchorStyles.Left };
@@ -95,6 +97,12 @@ namespace Interlock.Ui
                 e.SuppressKeyPress = true;
                 _reason.Focus();
             };
+            _closeTimer.Tick += (s, e) =>
+            {
+                _closeTimer.Stop();
+                if (!IsClosed) DialogResult = DialogResult.OK;
+            };
+            FormClosed += (s, e) => _closeTimer.Dispose();
             _ok.Click += async (s, e) => await Guarded(SubmitAsync, _status);
             Shown += async (s, e) => await Guarded(LoadListsAsync, _status);
             ApplyVisibility();
@@ -175,25 +183,36 @@ namespace Interlock.Ui
 
             SetBusy(true);
             ShowInfo(_status, "Working...");
+            CreateResult result;
             try
             {
-                var result = await _client.Create(model.ToDto());
-                if (IsClosed) return;
-                if (!result.Created)
-                {
-                    var id = result.Lock == null ? "?" : result.Lock.id.ToString();
-                    MessageBox.Show(this, "Already locked (#" + id + ")", "New lock", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                DialogResult = DialogResult.OK;
+                result = await _client.Create(model.ToDto());
             }
-            finally
+            catch
             {
                 if (!IsClosed) SetBusy(false);
+                throw;
             }
+
+            if (IsClosed) return;
+            SetBusy(false);
+            if (result.Created)
+            {
+                DialogResult = DialogResult.OK;
+                return;
+            }
+
+            // The same lock already exists: say so inline, keep the inputs frozen and close shortly after.
+            var id = result.Lock == null ? "?" : result.Lock.id.ToString(CultureInfo.InvariantCulture);
+            ShowInfo(_status, "Already locked (#" + id + ")");
+            _table.Enabled = false;
+            _ok.Enabled = false;
+            _closeTimer.Start();
         }
 
         private void SetBusy(bool busy)
         {
+            SetBusyState(busy);
             _table.Enabled = !busy;
             _ok.Enabled = !busy;
         }

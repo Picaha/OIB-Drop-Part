@@ -407,7 +407,11 @@ namespace Interlock.Ui
             // An open dialog is modal on this form; close it first so the form can end.
             foreach (var owned in OwnedForms)
             {
-                try { owned.Close(); }
+                try
+                {
+                    var dialog = owned as DialogBase;
+                    if (dialog != null) dialog.CloseForced(); else owned.Close();
+                }
                 catch (Exception ex) { UiSafety.Log(ex); }
             }
             Close();

@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using Interlock.Core.Api;
 
 namespace Interlock.Ui
@@ -14,9 +17,12 @@ namespace Interlock.Ui
         }
 
         /// <summary>Null when fine. A new user needs a PIN; when editing, an empty PIN keeps the current one.</summary>
-        public static string ValidateUser(bool isNew, string username, string role, string pin)
+        public static string ValidateUser(bool isNew, string username, string role, string pin, IEnumerable<string> existingNames = null)
         {
             if (string.IsNullOrWhiteSpace(username)) return "Enter the username";
+            // The service saves by upsert: a "new" user with an existing name would silently reset that user's PIN and role.
+            if (isNew && existingNames != null && existingNames.Any(n => string.Equals(n == null ? null : n.Trim(), username.Trim(), StringComparison.OrdinalIgnoreCase)))
+                return "User '" + username.Trim() + "' already exists. Select it in the list to edit it";
             if (string.IsNullOrWhiteSpace(role)) return "Choose a role";
             var length = pin == null ? 0 : pin.Length;
             if (isNew && length < MinPin) return "A new user needs a PIN of at least " + MinPin + " characters";

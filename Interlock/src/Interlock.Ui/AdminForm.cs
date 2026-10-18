@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -45,6 +46,7 @@ namespace Interlock.Ui
         private IList<UserDto> _users = new UserDto[0];
         private IList<ApiKeyDto> _keys = new ApiKeyDto[0];
         private bool _binding;
+        private bool _keyPicked;
         private bool _editingNew = true;
 
         public AdminForm(ApiClient client, Session session)
@@ -71,9 +73,11 @@ namespace Interlock.Ui
 
             _usersGrid.SelectionChanged += (s, e) => { if (!_binding) LoadEditor(SelectedUser()); };
             _newUser.Click += (s, e) => BeginNewUser();
-            _saveUser.Click += async (s, e) => await Run(_userEditor, _usersStatus, SaveUserAsync);
-            _createKey.Click += async (s, e) => await Run(_keyEditor, _keysStatus, CreateKeyAsync);
-            _toggleKey.Click += async (s, e) => await Run(_keyEditor, _keysStatus, ToggleKeyAsync);
+            _saveUser.Click += async (s, e) => await Run(_userEditor, _usersStatus, SaveUserAsync, true);
+            _createKey.Click += async (s, e) => await Run(_keyEditor, _keysStatus, CreateKeyAsync, true);
+            _toggleKey.Click += async (s, e) => await Run(_keyEditor, _keysStatus, ToggleKeyAsync, true);
+            _keysGrid.CellClick += (s, e) => { if (e.RowIndex >= 0) _keyPicked = true; };
+            _keysGrid.KeyUp += (s, e) => { if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Down) _keyPicked = true; };
             _copyKey.Click += (s, e) => CopyKey();
             _tabs.SelectedIndexChanged += (s, e) => ClearSecrets();
             FormClosing += (s, e) => ClearSecrets();
@@ -149,12 +153,17 @@ namespace Interlock.Ui
         // ---- plumbing ----------------------------------------------------------------------------------------------
 
         /// <summary>Runs one call with the editor disabled (no double submit); errors are shown on the tab's status line.</summary>
-        private async Task Run(Control editor, Label status, Func<Task> body)
+        private async Task Run(Control editor, Label status, Func<Task> body, bool mutating = false)
         {
             if (!editor.Enabled || IsClosed) return;
             editor.Enabled = false;
+            if (mutating) SetBusyState(true);
             try { await Guarded(body, status); }
-            finally { if (!IsClosed) editor.Enabled = true; }
+            finally
+            {
+                if (mutating) SetBusyState(false);
+                if (!IsClosed) editor.Enabled = true;
+            }
         }
 
         private void ClearSecrets()
@@ -192,7 +201,7 @@ namespace Interlock.Ui
             _username.ReadOnly = true;
             _username.Text = user.username;
             var index = _role.Items.IndexOf(user.role);
-            _role.SelectedIndex = index < 0 ? 0 : index;
+            _role.SelectedIndex = index; // an unknown role selects nothing: Save is blocked until one is chosen
             _active.Checked = user.active != false;
             _pin.Clear();
             _pinHint.Text = "Leave empty to keep the PIN";
@@ -223,7 +232,7 @@ namespace Interlock.Ui
 
         private async Task SaveUserAsync()
         {
-            var problem = AdminRules.ValidateUser(_editingNew, _username.Text, _role.SelectedItem as string, _pin.Text);
+            var problem = AdminRules.ValidateUser(_editingNew, _username.Text, _role.SelectedItem as string, _pin.Text, _users.Select(u => u.username));
             if (problem != null)
             {
                 ShowError(_usersStatus, problem);
@@ -243,7 +252,8 @@ namespace Interlock.Ui
 
         private ApiKeyDto SelectedKey()
         {
-            return _keysGrid.SelectedRows.Count == 0 ? null : _keysGrid.SelectedRows[0].Tag as ApiKeyDto;
+            // Only a row the user chose counts: the grid may select row 0 by itself when it is first shown.
+            return !_keyPicked || _keysGrid.SelectedRows.Count == 0 ? null : _keysGrid.SelectedRows[0].Tag as ApiKeyDto;
         }
 
         private async Task ReloadKeysAsync()
@@ -258,10 +268,12 @@ namespace Interlock.Ui
                 var i = _keysGrid.Rows.Add(k.id, k.name, k.canUnlock ? "yes" : "no", k.active ? "yes" : "no");
                 _keysGrid.Rows[i].Tag = k;
             }
+            _keysGrid.CurrentCell = null;
             _keysGrid.ClearSelection();
+            _keyPicked = false;
             if (selectedId.HasValue)
                 foreach (DataGridViewRow row in _keysGrid.Rows)
-                    if (((ApiKeyDto)row.Tag).id == selectedId.Value) { row.Selected = true; break; }
+                    if (((ApiKeyDto)row.Tag).id == selectedId.Value) { row.Selected = true; _keyPicked = true; break; }
         }
 
         private async Task CreateKeyAsync()

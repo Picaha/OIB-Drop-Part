@@ -40,6 +40,7 @@ namespace Interlock.Ui
         private readonly FlowLayoutPanel _decisionsBar = new FlowLayoutPanel { Dock = DockStyle.Top, Height = 36, Padding = new Padding(6, 6, 0, 0) };
 
         private bool _decisionsLoaded;
+        private bool _binding;
 
         public HistoryForm(ApiClient client, LockDto selected)
         {
@@ -75,14 +76,13 @@ namespace Interlock.Ui
             _lockId.KeyDown += async (s, e) => { if (e.KeyCode == Keys.Enter) { e.SuppressKeyPress = true; await RunLoad(_actionsBar, _actionsStatus, LoadActionsAsync); } };
             _uid.KeyDown += async (s, e) => { if (e.KeyCode == Keys.Enter) { e.SuppressKeyPress = true; await RunLoad(_decisionsBar, _decisionsStatus, LoadDecisionsAsync); } };
             _pn.KeyDown += async (s, e) => { if (e.KeyCode == Keys.Enter) { e.SuppressKeyPress = true; await RunLoad(_decisionsBar, _decisionsStatus, LoadDecisionsAsync); } };
-            _released.SelectionChanged += (s, e) =>
-            {
-                var l = SelectedReleased();
-                if (l != null) _lockId.Text = l.id.ToString(CultureInfo.InvariantCulture);
-            };
+            // Only a click or a key press of the user copies a lock number into the box; filling the grid never does.
+            _released.CellClick += (s, e) => PickReleased();
+            _released.KeyUp += (s, e) => { if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Down || e.KeyCode == Keys.PageUp || e.KeyCode == Keys.PageDown) PickReleased(); };
             _released.CellDoubleClick += async (s, e) =>
             {
                 if (e.RowIndex < 0 || SelectedReleased() == null) return;
+                PickReleased();
                 _tabs.SelectedIndex = 1;
                 await RunLoad(_actionsBar, _actionsStatus, LoadActionsAsync);
             };
@@ -164,18 +164,28 @@ namespace Interlock.Ui
             return _released.SelectedRows.Count == 0 ? null : _released.SelectedRows[0].Tag as LockDto;
         }
 
+        private void PickReleased()
+        {
+            _lockId.Text = HistoryLockSelection.NextIdText(_lockId.Text, SelectedReleased(), !_binding);
+        }
+
         private async Task LoadReleasedAsync(Label status)
         {
             var locks = await _client.GetLocks("RELEASED", null, null, null);
             if (IsClosed) return;
-            _released.Rows.Clear();
-            foreach (var l in locks)
+            _binding = true;
+            try
             {
-                var i = _released.Rows.Add(l.id, l.type, l.target, l.lanes, l.linePath, l.reason, l.source, l.createdBy,
-                    MainRules.LocalTime(l.createdAt), l.enforceState, l.enforceError, l.releasedBy, MainRules.LocalTime(l.releasedAt), l.releaseReason);
-                _released.Rows[i].Tag = l;
+                _released.Rows.Clear();
+                foreach (var l in locks)
+                {
+                    var i = _released.Rows.Add(l.id, l.type, l.target, l.lanes, l.linePath, l.reason, l.source, l.createdBy,
+                        MainRules.LocalTime(l.createdAt), l.enforceState, l.enforceError, l.releasedBy, MainRules.LocalTime(l.releasedAt), l.releaseReason);
+                    _released.Rows[i].Tag = l;
+                }
+                _released.ClearSelection();
             }
-            _released.ClearSelection();
+            finally { _binding = false; }
             ShowInfo(status, locks.Count + " released lock(s)");
         }
 
