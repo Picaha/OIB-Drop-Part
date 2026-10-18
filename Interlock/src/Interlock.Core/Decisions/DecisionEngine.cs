@@ -35,11 +35,22 @@ namespace Interlock.Core.Decisions
             switch (l.Type)
             {
                 case LockType.Pu: return SameValue(l, pu.Uid);
-                case LockType.Pn: return InScope(l, pu) && SameValue(l, pu.ComponentName);
-                case LockType.Mpn: return InScope(l, pu) && SameValue(l, pu.Mpn);
-                case LockType.Supplier: return InScope(l, pu) && SameValue(l, pu.Supplier);
+                case LockType.Pn: return LineInScope(l.LinePath, pu.LinePath) && SameValue(l, pu.ComponentName);
+                case LockType.Mpn: return LineInScope(l.LinePath, pu.LinePath) && SameValue(l, pu.Mpn);
+                case LockType.Supplier: return LineInScope(l.LinePath, pu.LinePath) && SameValue(l, pu.Supplier);
                 default: return false; // FEEDER and CONVEYOR locks are enforced on the machine, not by scan check
             }
+        }
+
+        /// <summary>
+        /// Line scope of a lock. Both paths are compared with <see cref="Normalizer.Norm"/>: a blank lock path is plant-wide,
+        /// a blank other path (PU without a line, spec section 6 rule 4) is in scope of every lock, otherwise the lines must be equal.
+        /// </summary>
+        public static bool LineInScope(string lockLinePath, string otherLinePath)
+        {
+            var lockLine = Normalizer.Norm(lockLinePath);
+            var otherLine = Normalizer.Norm(otherLinePath);
+            return lockLine == null || otherLine == null || lockLine == otherLine;
         }
 
         public static string FormatMessage(LockRecord l)
@@ -66,14 +77,6 @@ namespace Interlock.Core.Decisions
         {
             var norm = Normalizer.Norm(value);
             return norm != null && l.TargetNorm != null && l.TargetNorm == norm;
-        }
-
-        /// <summary>Plant-wide lock, PU without a line path (spec section 6 rule 4), or the same line.</summary>
-        private static bool InScope(LockRecord l, PuInfo pu)
-        {
-            return l.LinePath == null
-                || string.IsNullOrWhiteSpace(pu.LinePath)
-                || string.Equals(l.LinePath, pu.LinePath, StringComparison.OrdinalIgnoreCase);
         }
     }
 }

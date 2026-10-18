@@ -76,6 +76,53 @@ namespace Interlock.Tests.Core
         public void Line_scoped_lock_applies_on_same_line_ignoring_case() =>
             Assert.That(DecisionEngine.Decide(new PuInfo { ComponentName = "C1", LinePath = "lines\\l1" }, new[] { L(1, LockType.Pn, "C1", "Lines\\L1") }).Ok, Is.False);
 
+        [TestCase("")]
+        [TestCase("  ")]
+        public void Lock_with_blank_line_path_is_plant_wide(string lockLine) =>
+            Assert.That(DecisionEngine.Decide(new PuInfo { ComponentName = "C1", LinePath = "Lines\\L2" }, new[] { L(1, LockType.Pn, "C1", lockLine) }).Ok, Is.False);
+
+        [Test]
+        public void Line_scoped_lock_applies_when_pu_line_is_whitespace() =>
+            Assert.That(DecisionEngine.Decide(new PuInfo { ComponentName = "C1", LinePath = "  " }, new[] { L(1, LockType.Pn, "C1", "Lines\\L1") }).Ok, Is.False);
+
+        [TestCase("Lines\\L1 ", "Lines\\L1")]
+        [TestCase("Lines\\L1", " Lines\\L1  ")]
+        [TestCase("Lines\\L1", "lines\\l1")]
+        [TestCase(" LINES\\L1\t", "lines\\l1 ")]
+        public void Line_paths_are_compared_trimmed_and_ignoring_case(string lockLine, string puLine) =>
+            Assert.That(DecisionEngine.Decide(new PuInfo { ComponentName = "C1", LinePath = puLine }, new[] { L(1, LockType.Pn, "C1", lockLine) }).Ok, Is.False);
+
+        [Test]
+        public void Mpn_line_scoped_lock_ignores_other_line() =>
+            Assert.That(DecisionEngine.Decide(new PuInfo { Mpn = "M1", LinePath = "Lines\\L2" }, new[] { L(1, LockType.Mpn, "M1", "Lines\\L1") }).Ok, Is.True);
+
+        [Test]
+        public void Supplier_line_scoped_lock_ignores_other_line() =>
+            Assert.That(DecisionEngine.Decide(new PuInfo { Supplier = "S1", LinePath = "Lines\\L2" }, new[] { L(1, LockType.Supplier, "S1", "Lines\\L1") }).Ok, Is.True);
+
+        [TestCase(null, "Lines\\L1")]
+        [TestCase("", "Lines\\L1")]
+        [TestCase("  ", "Lines\\L1")]
+        public void LineInScope_blank_lock_line_is_plant_wide(string lockLine, string otherLine) =>
+            Assert.That(DecisionEngine.LineInScope(lockLine, otherLine), Is.True);
+
+        [TestCase("Lines\\L1", null)]
+        [TestCase("Lines\\L1", "")]
+        [TestCase("Lines\\L1", " \r\n")]
+        public void LineInScope_blank_other_line_matches_every_lock(string lockLine, string otherLine) =>
+            Assert.That(DecisionEngine.LineInScope(lockLine, otherLine), Is.True);
+
+        [TestCase("Lines\\L1", "Lines\\L1")]
+        [TestCase("Lines\\L1 ", "Lines\\L1")]
+        [TestCase("lines\\l1", " LINES\\L1")]
+        public void LineInScope_equal_after_normalising(string lockLine, string otherLine) =>
+            Assert.That(DecisionEngine.LineInScope(lockLine, otherLine), Is.True);
+
+        [TestCase("Lines\\L1", "Lines\\L2")]
+        [TestCase("Lines\\L1", "Lines\\L1\\Sub")]
+        public void LineInScope_different_lines_are_out_of_scope(string lockLine, string otherLine) =>
+            Assert.That(DecisionEngine.LineInScope(lockLine, otherLine), Is.False);
+
         [Test]
         public void Plant_wide_lock_applies_everywhere()
         {
