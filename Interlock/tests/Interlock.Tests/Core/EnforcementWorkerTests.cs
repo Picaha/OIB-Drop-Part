@@ -676,23 +676,6 @@ namespace Interlock.Tests.Core
             Assert.That(_queue.Count, Is.EqualTo(0));
         }
 
-        [TestCase(LockType.Pn)]
-        [TestCase(LockType.Mpn)]
-        [TestCase(LockType.Supplier)]
-        public void Pn_mpn_and_supplier_jobs_are_dropped_with_a_warning(LockType type)
-        {
-            Enqueue(MakeLock(1, type, "X1"), JobKind.Apply);
-
-            _worker.RunDue();
-
-            Assert.That(_sc.Calls, Is.Empty);
-            Assert.That(_lc.Calls, Is.Empty);
-            Assert.That(_audit.Actions, Is.Empty);
-            Assert.That(_queue.Count, Is.EqualTo(0));
-            Assert.That(_repo.Get(1).EnforceState, Is.EqualTo(EnforceState.Pending));
-            Assert.That(_log.Warnings, Has.Some.Contains("not handled yet"));
-        }
-
         [Test]
         public void Reblock_of_a_non_conveyor_lock_is_dropped_with_a_warning()
         {

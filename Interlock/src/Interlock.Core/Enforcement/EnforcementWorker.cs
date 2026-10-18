@@ -1,18 +1,23 @@
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using Interlock.Core.Decisions;
 using Interlock.Core.Errors;
 using Interlock.Core.Locks;
 using Interlock.Core.Model;
 using Interlock.Core.Ports;
+using Interlock.Core.Text;
 
 namespace Interlock.Core.Enforcement
 {
     /// <summary>
-    /// Takes the due jobs from the <see cref="ActionQueue"/> and makes the OIB calls for PU, FEEDER and CONVEYOR locks.
-    /// A failed call is retried by <see cref="RetryPolicy"/> and ends as FAILED with an alarm. Every call is written to
-    /// the action log. A database that cannot be reached never stops enforcement. Run it from one thread.
+    /// Takes the due jobs from the <see cref="ActionQueue"/> and makes the OIB calls for PU, FEEDER, CONVEYOR, PN, MPN and
+    /// SUPPLIER locks. A PN, MPN or SUPPLIER lock sweeps the mounted reels and locks the matching ones; its release unlocks
+    /// only the reels no other lock still covers. A failed call is retried by <see cref="RetryPolicy"/> and ends as FAILED
+    /// with an alarm. Every call is written to the action log. A database that cannot be reached never stops enforcement.
+    /// Run it from one thread.
     /// </summary>
     public sealed class EnforcementWorker
     {
@@ -102,6 +107,12 @@ namespace Interlock.Core.Enforcement
                 return;
             }
 
+            if (outcome.LoggedError != null)
+            {
+                OnFailure(job, action, outcome.LoggedError, true, false);
+                return;
+            }
+
             if (outcome.CalledOib)
                 WriteAction(job, action, true, null);
             SetState(job, outcome.State, null);
@@ -117,6 +128,9 @@ namespace Interlock.Core.Enforcement
             {
                 case LockType.Pu:
                 case LockType.Feeder:
+                case LockType.Pn:
+                case LockType.Mpn:
+                case LockType.Supplier:
                     if (job.Kind != JobKind.Reblock)
                         return true;
                     _log.Warn("Lock #" + l.Id + ": only conveyor locks are re-blocked; the job is dropped.");
@@ -124,7 +138,7 @@ namespace Interlock.Core.Enforcement
                 case LockType.Conveyor:
                     return true;
                 default:
-                    _log.Warn("Lock #" + l.Id + ": " + DbEnum.ToDb(l.Type) + " jobs are not handled yet; the job is dropped.");
+                    _log.Warn("Lock #" + l.Id + ": lock type " + l.Type + " is not known; the job is dropped.");
                     return false;
             }
         }
@@ -136,6 +150,10 @@ namespace Interlock.Core.Enforcement
             {
                 case LockType.Pu:
                     return release ? Actions.UNLOCK_PU : Actions.LOCK_PU;
+                case LockType.Pn:
+                case LockType.Mpn:
+                case LockType.Supplier:
+                    return release ? Actions.UNLOCK_PU : Actions.SWEEP;
                 case LockType.Feeder:
                     return release ? Actions.UNLOCK_FEEDER_ONLINE : Actions.LOCK_FEEDER_ONLINE;
                 default:
@@ -153,6 +171,10 @@ namespace Interlock.Core.Enforcement
                     return RunPu(job);
                 case LockType.Feeder:
                     return RunFeeder(job);
+                case LockType.Pn:
+                case LockType.Mpn:
+                case LockType.Supplier:
+                    return job.Kind == JobKind.Release ? ReleaseSweep(job) : ApplySweep(job);
                 default:
                     return RunConveyor(job);
             }
@@ -224,13 +246,155 @@ namespace Interlock.Core.Enforcement
         }
 
         /// <summary>
+        /// Sweeps the mounted reels of the machines in the lock's line scope and locks those the lock matches, in one
+        /// call. Each locked reel is recorded for the lock, only after the call succeeded, so the release unlocks exactly
+        /// those. A sweep that finds nothing is APPLIED too. The sweep writes its own action rows: one LOCK_PU row for the
+        /// lock call and one SWEEP row per attempt, which also records a failed attempt.
+        /// </summary>
+        private Outcome ApplySweep(EnforcementJob job)
+        {
+            var l = job.Lock;
+            var machines = 0;
+            var matched = new List<string>();
+            try
+            {
+                var machineIds = MachineIdsInScope(l);
+                machines = machineIds.Count;
+                if (machines > 0)
+                    matched = MatchingUids(l, _sc.GetMountedPus(machineIds));
+                if (matched.Count > 0)
+                    LockAndRecord(job, matched);
+            }
+            catch (Exception ex)
+            {
+                WriteAction(job, Actions.SWEEP, false, ex.Message, SweepJson(machines, matched));
+                return Outcome.FailedAfterLogging(ex.Message);
+            }
+
+            WriteAction(job, Actions.SWEEP, true, null, SweepJson(machines, matched));
+            return Outcome.Done(EnforceState.Applied, false);
+        }
+
+        /// <summary>
+        /// Unlocks the reels the sweep locked, except those another active lock still covers, in one call, then closes the
+        /// record of every one of them. The records stay open when the unlock fails, so the retry finds them again.
+        /// </summary>
+        private Outcome ReleaseSweep(EnforcementJob job)
+        {
+            var l = job.Lock;
+            var open = new List<string>();
+            var unlock = new List<string>();
+            try
+            {
+                if (l.Id != 0)
+                    open.AddRange(_locks.GetOpenAppliedPus(l.Id));
+                unlock = UidsNoOtherLockCovers(l, open);
+                if (unlock.Count > 0)
+                {
+                    _sc.UnlockPackagingUnits(unlock);
+                    WriteAction(job, Actions.UNLOCK_PU, true, null, UidsJson(unlock));
+                }
+            }
+            catch (Exception ex)
+            {
+                WriteAction(job, Actions.UNLOCK_PU, false, ex.Message, UidsJson(unlock));
+                return Outcome.FailedAfterLogging(ex.Message);
+            }
+
+            var now = _clock.UtcNow;
+            foreach (var stored in open)
+            {
+                var uid = stored;
+                TryDb("close the applied PU", () => _locks.CloseAppliedPu(l.Id, uid, now));
+            }
+            return Outcome.Done(EnforceState.Applied, false);
+        }
+
+        /// <summary>The ids of the machines whose line is in the lock's scope, each once, in the order Setup Center lists them.</summary>
+        private List<string> MachineIdsInScope(LockRecord l)
+        {
+            var ids = new List<string>();
+            var seen = new HashSet<string>();
+            foreach (var machine in _sc.GetMachines())
+            {
+                if (machine == null || string.IsNullOrWhiteSpace(machine.MachineId))
+                    continue;
+                if (DecisionEngine.LineInScope(l.LinePath, machine.LinePath) && seen.Add(machine.MachineId))
+                    ids.Add(machine.MachineId);
+            }
+            return ids;
+        }
+
+        /// <summary>The UIDs of the mounted reels the lock matches, each once (compared with <see cref="Normalizer.Norm"/>), as Setup Center wrote them.</summary>
+        private static List<string> MatchingUids(LockRecord l, IEnumerable<MountedPu> mounted)
+        {
+            var uids = new List<string>();
+            var seen = new HashSet<string>();
+            foreach (var m in mounted)
+            {
+                if (m == null || m.Pu == null || !DecisionEngine.Matches(l, m.Pu))
+                    continue;
+                var norm = Normalizer.Norm(m.Pu.Uid);
+                if (norm != null && seen.Add(norm))
+                    uids.Add(m.Pu.Uid);
+            }
+            return uids;
+        }
+
+        /// <summary>The open UIDs, each once, that no other active lock covers (overlap guard), as the repository stored them.</summary>
+        private List<string> UidsNoOtherLockCovers(LockRecord l, IEnumerable<string> open)
+        {
+            var uids = new List<string>();
+            var seen = new HashSet<string>();
+            foreach (var uid in open)
+            {
+                var norm = Normalizer.Norm(uid);
+                if (norm == null || !seen.Add(norm))
+                    continue;
+                if (_locks.IsUidCoveredByOtherActiveLock(norm, l.Id))
+                    _log.Info("Lock #" + l.Id + ": PU " + uid + " stays locked, another active lock still covers it.");
+                else
+                    uids.Add(uid);
+            }
+            return uids;
+        }
+
+        /// <summary>Locks the reels, writes the LOCK_PU row of that call, then records each reel for the lock. A failed call records nothing and throws.</summary>
+        private void LockAndRecord(EnforcementJob job, IList<string> uids)
+        {
+            var l = job.Lock;
+            var request = UidsJson(uids);
+            try
+            {
+                _sc.LockPackagingUnits(uids, l.Reason);
+            }
+            catch (Exception ex)
+            {
+                WriteAction(job, Actions.LOCK_PU, false, ex.Message, request);
+                throw;
+            }
+            WriteAction(job, Actions.LOCK_PU, true, null, request);
+
+            if (l.Id == 0)
+                return;
+
+            var now = _clock.UtcNow;
+            foreach (var locked in uids)
+            {
+                var uid = locked;
+                TryDb("record the applied PU", () => _locks.AddAppliedPu(l.Id, uid, now));
+            }
+        }
+
+        /// <summary>
         /// Logs the failed call, then queues a retry, or ends the job as FAILED when it must not or can no longer be retried.
         /// An Apply or Reblock job whose lock has left the cache (released meanwhile) is dropped instead: no retry, no FAILED, no alarm.
         /// </summary>
-        private void OnFailure(EnforcementJob job, string action, string error, bool canRetry)
+        private void OnFailure(EnforcementJob job, string action, string error, bool canRetry, bool writeRow = true)
         {
             var l = job.Lock;
-            WriteAction(job, action, false, error);
+            if (writeRow)
+                WriteAction(job, action, false, error);
 
             if (job.Kind != JobKind.Release && !IsInCache(l))
             {
@@ -256,7 +420,8 @@ namespace Interlock.Core.Enforcement
             _alarms.Raise("Lock #" + l.Id + " FAILED: " + error, _clock.UtcNow);
         }
 
-        private void WriteAction(EnforcementJob job, string action, bool success, string error)
+        /// <summary>Writes one action row. <paramref name="requestJson"/> defaults to the lock's target and lanes.</summary>
+        private void WriteAction(EnforcementJob job, string action, bool success, string error, string requestJson = null)
         {
             var l = job.Lock;
             if (l.Id == 0)
@@ -266,7 +431,7 @@ namespace Interlock.Core.Enforcement
             {
                 LockId = l.Id,
                 Action = action,
-                RequestJson = RequestJson(l),
+                RequestJson = requestJson ?? RequestJson(l),
                 Success = success,
                 Error = error,
                 Attempt = job.FailedAttempts + 1,
@@ -326,6 +491,34 @@ namespace Interlock.Core.Enforcement
             return json.Append('}').ToString();
         }
 
+        private static string SweepJson(int machines, IEnumerable<string> matched)
+        {
+            var json = new StringBuilder("{\"machines\":").Append(machines.ToString(CultureInfo.InvariantCulture)).Append(",\"matched\":");
+            AppendJsonArray(json, matched);
+            return json.Append('}').ToString();
+        }
+
+        private static string UidsJson(IEnumerable<string> uids)
+        {
+            var json = new StringBuilder("{\"uids\":");
+            AppendJsonArray(json, uids);
+            return json.Append('}').ToString();
+        }
+
+        private static void AppendJsonArray(StringBuilder json, IEnumerable<string> values)
+        {
+            json.Append('[');
+            var first = true;
+            foreach (var value in values)
+            {
+                if (!first)
+                    json.Append(',');
+                first = false;
+                AppendJsonString(json, value);
+            }
+            json.Append(']');
+        }
+
         private static void AppendJsonString(StringBuilder json, string value)
         {
             if (value == null)
@@ -353,11 +546,14 @@ namespace Interlock.Core.Enforcement
 
             public EnforceState State { get; private set; }
 
-            /// <summary>True when an OIB write call was made, so the action log gets a row.</summary>
+            /// <summary>True when an OIB write call was made, so the action log gets a row. A sweep writes its own rows and leaves this false.</summary>
             public bool CalledOib { get; private set; }
 
             /// <summary>Set when the job failed in a way a retry cannot fix.</summary>
             public string PermanentError { get; private set; }
+
+            /// <summary>Set when the job failed, a retry may fix it, and the failed attempt is already in the action log.</summary>
+            public string LoggedError { get; private set; }
 
             public static Outcome Done(EnforceState state, bool calledOib)
             {
@@ -367,6 +563,11 @@ namespace Interlock.Core.Enforcement
             public static Outcome Failed(string error)
             {
                 return new Outcome { PermanentError = error };
+            }
+
+            public static Outcome FailedAfterLogging(string error)
+            {
+                return new Outcome { LoggedError = error };
             }
         }
     }
