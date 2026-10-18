@@ -415,6 +415,27 @@ namespace Interlock.Tests.Core
         }
 
         [Test]
+        public void OnCall_sees_each_member_before_the_availability_check()
+        {
+            var seen = new System.Collections.Generic.List<string>();
+            _repo.OnCall = c =>
+            {
+                seen.Add(c);
+                if (c == "Insert")
+                    _repo.Down = true;
+            };
+
+            _repo.LoadActive();
+            Assert.Throws<DbUnavailableException>(() => _repo.Insert(Pu("A")));
+            Assert.Throws<DbUnavailableException>(() => _repo.FindActive(LockType.Pu, "A", null, null));
+
+            Assert.That(seen, Is.EqualTo(new[] { "LoadActive", "Insert", "FindActive" }));
+            _repo.OnCall = null;
+            _repo.Down = false;
+            Assert.That(_repo.LoadActive(), Is.Empty, "the insert that found the repository down stored nothing");
+        }
+
+        [Test]
         public void Down_makes_every_member_throw_db_unavailable()
         {
             var calls = new System.Collections.Generic.Dictionary<string, Action>

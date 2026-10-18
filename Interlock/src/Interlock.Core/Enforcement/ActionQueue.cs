@@ -69,6 +69,20 @@ namespace Interlock.Core.Enforcement
                 _entries.RemoveAll(e => e.Job.Lock.Id == lockId);
         }
 
+        /// <summary>
+        /// Drops every queued job <paramref name="match"/> accepts and returns how many it dropped. Unlike
+        /// <see cref="Cancel"/> it can also reach the jobs of spooled locks (Id 0). The predicate runs inside the queue's lock:
+        /// keep it short and do not call the queue from it.
+        /// </summary>
+        public int CancelWhere(Predicate<EnforcementJob> match)
+        {
+            if (match == null)
+                throw new ArgumentNullException(nameof(match));
+
+            lock (_gate)
+                return _entries.RemoveAll(e => match(e.Job));
+        }
+
         private sealed class Entry
         {
             public Entry(EnforcementJob job, DateTime notBeforeUtc, long sequence)

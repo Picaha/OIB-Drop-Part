@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\Interlock.Core\Interlock.Core.csproj" />
+    <ProjectReference Include="..\..\src\Interlock.Service\Interlock.Service.csproj" />
   </ItemGroup>
 
 </Project>

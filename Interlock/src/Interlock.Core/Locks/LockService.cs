@@ -46,6 +46,7 @@ namespace Interlock.Core.Locks
     public sealed class LockService
     {
         private const string SetupCenterName = "SetupCenter";
+        private const string MismatchReasonText = "Setup Center component mismatch";
 
         private readonly ILockRepository _locks;
         private readonly IAuditRepository _audit;
@@ -119,8 +120,32 @@ namespace Interlock.Core.Locks
             if (string.IsNullOrWhiteSpace(uid))
                 throw new ArgumentException("A UID is required.", nameof(uid));
 
-            var l = NewLock(LockType.Pu, uid, null, null, reason, LockSource.SetupCenter, SetupCenterName);
-            return Store(l).Lock;
+            return Store(NewSetupCenterLock(uid, reason)).Lock;
+        }
+
+        /// <summary>
+        /// Turns Setup Center component mismatches into PU locks. Each report is handled on its own: a blank UID, a UID the cache
+        /// already holds an ACTIVE PU lock for (also a spooled one), and a report without a mismatch newer than the last
+        /// release of that PU are skipped. Otherwise the lock is created like any other (stored, cached, Apply queued); while
+        /// the database is down it is spooled, cached with <c>Id == 0</c> and queued instead, and <see cref="CacheRefresher"/>
+        /// stores it later. Never throws: a report that fails is logged and the next one is handled.
+        /// </summary>
+        public void OnLockStateChanged(IList<PuLockReport> reports)
+        {
+            if (reports == null)
+                return;
+
+            foreach (var report in reports)
+            {
+                try
+                {
+                    Escalate(report);
+                }
+                catch (Exception ex)
+                {
+                    _log.Error("Could not escalate the Setup Center report for PU " + (report == null ? "(none)" : report.Uid) + ".", ex);
+                }
+            }
         }
 
         /// <summary>
@@ -247,6 +272,79 @@ namespace Interlock.Core.Locks
             {
                 throw Unavailable();
             }
+        }
+
+        private void Escalate(PuLockReport report)
+        {
+            if (report == null)
+                return;
+            var uidNorm = Normalizer.Norm(report.Uid);
+            if (uidNorm == null)
+                return;
+
+            // The common case (the PU is locked already) must not cost a database call.
+            if (_cache.FindActive(LockType.Pu, uidNorm, null, null) != null)
+                return;
+
+            var mismatch = EscalationFilter.FindNewMismatch(report, LatestReleaseUtcOrNull(uidNorm));
+            if (mismatch == null)
+                return;
+
+            var reason = MismatchReason(mismatch);
+            try
+            {
+                CreateFromSetupCenter(report.Uid, reason);
+            }
+            catch (DbUnavailableException ex)
+            {
+                SpoolInstead(NewSetupCenterLock(report.Uid, reason), ex);
+            }
+        }
+
+        /// <summary>The newest release of a PU lock for this UID, or null when there is none or the database cannot be reached.</summary>
+        private DateTime? LatestReleaseUtcOrNull(string uidNorm)
+        {
+            try
+            {
+                return _locks.GetLatestReleaseUtc(LockType.Pu, uidNorm);
+            }
+            catch (DbUnavailableException)
+            {
+                return null;
+            }
+        }
+
+        private LockRecord NewSetupCenterLock(string uid, string reason)
+        {
+            return NewLock(LockType.Pu, uid, null, null, reason, LockSource.SetupCenter, SetupCenterName);
+        }
+
+        private static string MismatchReason(LockInfoRef mismatch)
+        {
+            return string.IsNullOrWhiteSpace(mismatch.Message)
+                ? MismatchReasonText
+                : MismatchReasonText + ": " + mismatch.Message;
+        }
+
+        /// <summary>
+        /// The database is down: the lock goes to the spool (<c>Id == 0</c>), the cache and the queue, all under the write gate
+        /// so a cache reload or a spool flush cannot interleave. Nothing is cached or queued when the spool write fails.
+        /// </summary>
+        private void SpoolInstead(LockRecord l, DbUnavailableException cause)
+        {
+            lock (_cache.WriteGate)
+            {
+                // Another report for the same PU may have been spooled while this one waited for the gate.
+                if (_cache.FindActive(l.Type, l.TargetNorm, l.LinePath, l.Lanes) != null)
+                    return;
+
+                _spool.Append(l);
+                _cache.Upsert(l.Clone());
+                Enqueue(JobKind.Apply, l);
+            }
+
+            _log.Warn("Database unavailable (" + cause.Message + "): the PU lock for " + l.Target
+                + " was written to the spool and cached; it is stored when the database is back.");
         }
 
         private LockRecord NewLock(LockType type, string target, string linePath, Lanes? lanes, string reason,

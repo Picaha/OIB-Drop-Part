@@ -27,6 +27,12 @@ namespace Interlock.Tests.Fakes
         /// <summary>While true, only <see cref="AddAppliedPu"/> throws <see cref="DbUnavailableException"/>; every other member works.</summary>
         public bool FailAddAppliedPu { get; set; }
 
+        /// <summary>
+        /// Called with the member name at the start of every <see cref="ILockRepository"/> member, before the availability
+        /// check. Lets a test change the world (for example set <see cref="Down"/>) while a sequence of calls is in flight.
+        /// </summary>
+        public Action<string> OnCall { get; set; }
+
         // ---- test helpers: they ignore Down and the uniqueness rule ----
 
         /// <summary>Stores the row as given, as ACTIVE. An <c>Id</c> of 0 gets the next id.</summary>
@@ -59,14 +65,14 @@ namespace Interlock.Tests.Fakes
 
         public IList<LockRecord> LoadActive()
         {
-            CheckUp();
+            CheckUp("LoadActive");
             lock (_gate)
                 return Copies(_rows.Where(r => r.Status == LockStatus.Active));
         }
 
         public IList<LockRecord> LoadPendingReleases()
         {
-            CheckUp();
+            CheckUp("LoadPendingReleases");
             lock (_gate)
                 return Copies(_rows.Where(r => r.Status == LockStatus.Released && r.EnforceState == EnforceState.Pending));
         }
@@ -75,7 +81,7 @@ namespace Interlock.Tests.Fakes
         {
             if (l == null)
                 throw new ArgumentNullException(nameof(l));
-            CheckUp();
+            CheckUp("Insert");
             lock (_gate)
             {
                 if (_duplicateForNextInsert != null)
@@ -98,7 +104,7 @@ namespace Interlock.Tests.Fakes
 
         public LockRecord FindActive(LockType t, string targetNorm, string linePath, Lanes? lanes)
         {
-            CheckUp();
+            CheckUp("FindActive");
             var target = Normalizer.Norm(targetNorm);
             if (target == null)
                 return null;
@@ -117,7 +123,7 @@ namespace Interlock.Tests.Fakes
 
         public LockRecord Get(long id)
         {
-            CheckUp();
+            CheckUp("Get");
             lock (_gate)
             {
                 var row = _rows.FirstOrDefault(r => r.Id == id);
@@ -127,7 +133,7 @@ namespace Interlock.Tests.Fakes
 
         public IList<LockRecord> Query(LockQuery q)
         {
-            CheckUp();
+            CheckUp("Query");
             q = q ?? new LockQuery();
             var line = Normalizer.Norm(q.LinePath);
             var text = string.IsNullOrWhiteSpace(q.Text) ? null : q.Text;
@@ -146,7 +152,7 @@ namespace Interlock.Tests.Fakes
 
         public void MarkReleased(long id, string by, DateTime atUtc, string reason)
         {
-            CheckUp();
+            CheckUp("MarkReleased");
             lock (_gate)
             {
                 // Like the guarded SQL UPDATE (WHERE status = 'ACTIVE'): a row that is not ACTIVE stays as it is.
@@ -163,7 +169,7 @@ namespace Interlock.Tests.Fakes
 
         public void SetEnforceState(long id, EnforceState s, string error)
         {
-            CheckUp();
+            CheckUp("SetEnforceState");
             lock (_gate)
             {
                 var row = _rows.FirstOrDefault(r => r.Id == id);
@@ -176,7 +182,7 @@ namespace Interlock.Tests.Fakes
 
         public void AddAppliedPu(long lockId, string uid, DateTime atUtc)
         {
-            CheckUp();
+            CheckUp("AddAppliedPu");
             if (FailAddAppliedPu)
                 throw new DbUnavailableException("The in-memory lock repository cannot record applied PUs.");
             lock (_gate)
@@ -185,14 +191,14 @@ namespace Interlock.Tests.Fakes
 
         public IList<string> GetOpenAppliedPus(long lockId)
         {
-            CheckUp();
+            CheckUp("GetOpenAppliedPus");
             lock (_gate)
                 return _appliedPus.Where(a => a.LockId == lockId && !a.Closed).Select(a => a.Uid).ToList();
         }
 
         public void CloseAppliedPu(long lockId, string uid, DateTime atUtc)
         {
-            CheckUp();
+            CheckUp("CloseAppliedPu");
             var norm = Normalizer.Norm(uid);
             if (norm == null)
                 return;
@@ -206,7 +212,7 @@ namespace Interlock.Tests.Fakes
 
         public bool IsUidCoveredByOtherActiveLock(string uidNorm, long exceptLockId)
         {
-            CheckUp();
+            CheckUp("IsUidCoveredByOtherActiveLock");
             var uid = Normalizer.Norm(uidNorm);
             if (uid == null)
                 return false;
@@ -225,7 +231,7 @@ namespace Interlock.Tests.Fakes
 
         public DateTime? GetLatestReleaseUtc(LockType t, string targetNorm)
         {
-            CheckUp();
+            CheckUp("GetLatestReleaseUtc");
             var target = Normalizer.Norm(targetNorm);
             if (target == null)
                 return null;
@@ -241,8 +247,9 @@ namespace Interlock.Tests.Fakes
 
         // ---- internals ----
 
-        private void CheckUp()
+        private void CheckUp(string call)
         {
+            OnCall?.Invoke(call);
             if (Down)
                 throw new DbUnavailableException("The in-memory lock repository is down.");
         }

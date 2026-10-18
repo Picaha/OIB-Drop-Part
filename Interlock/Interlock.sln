@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interlock.Core", "src\Inter
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interlock.Tests", "tests\Interlock.Tests\Interlock.Tests.csproj", "{CA39FC23-5825-4534-BFF6-C2481C5F6981}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interlock.Service", "src\Interlock.Service\Interlock.Service.csproj", "{172ECBE3-6B7C-46E8-BD38-C4F30823FA43}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +45,18 @@ Global
 		{CA39FC23-5825-4534-BFF6-C2481C5F6981}.Release|x64.Build.0 = Release|Any CPU
 		{CA39FC23-5825-4534-BFF6-C2481C5F6981}.Release|x86.ActiveCfg = Release|Any CPU
 		{CA39FC23-5825-4534-BFF6-C2481C5F6981}.Release|x86.Build.0 = Release|Any CPU
+		{172ECBE3-6B7C-46E8-BD38-C4F30823FA43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{172ECBE3-6B7C-46E8-BD38-C4F30823FA43}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{172ECBE3-6B7C-46E8-BD38-C4F30823FA43}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{172ECBE3-6B7C-46E8-BD38-C4F30823FA43}.Debug|x64.Build.0 = Debug|Any CPU
+		{172ECBE3-6B7C-46E8-BD38-C4F30823FA43}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{172ECBE3-6B7C-46E8-BD38-C4F30823FA43}.Debug|x86.Build.0 = Debug|Any CPU
+		{172ECBE3-6B7C-46E8-BD38-C4F30823FA43}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{172ECBE3-6B7C-46E8-BD38-C4F30823FA43}.Release|Any CPU.Build.0 = Release|Any CPU
+		{172ECBE3-6B7C-46E8-BD38-C4F30823FA43}.Release|x64.ActiveCfg = Release|Any CPU
+		{172ECBE3-6B7C-46E8-BD38-C4F30823FA43}.Release|x64.Build.0 = Release|Any CPU
+		{172ECBE3-6B7C-46E8-BD38-C4F30823FA43}.Release|x86.ActiveCfg = Release|Any CPU
+		{172ECBE3-6B7C-46E8-BD38-C4F30823FA43}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -50,5 +64,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{9FE647C5-E476-492F-AF6D-B1F3584B399E} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
 		{CA39FC23-5825-4534-BFF6-C2481C5F6981} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
+		{172ECBE3-6B7C-46E8-BD38-C4F30823FA43} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
 	EndGlobalSection
 EndGlobal

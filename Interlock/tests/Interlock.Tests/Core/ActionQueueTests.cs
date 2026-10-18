@@ -138,6 +138,70 @@ namespace Interlock.Tests.Core
         }
 
         [Test]
+        public void CancelWhere_removes_the_matching_jobs_and_returns_their_number()
+        {
+            var keep = Job(5, T0);
+            _queue.Enqueue(Job(0, T0));
+            _queue.Enqueue(keep);
+            _queue.Enqueue(Job(0, T0.AddMinutes(1), JobKind.Release));
+
+            var removed = _queue.CancelWhere(j => j.Lock.Id == 0);
+
+            Assert.That(removed, Is.EqualTo(2));
+            Assert.That(_queue.Count, Is.EqualTo(1));
+            Assert.That(_queue.TakeDue(T0.AddHours(1)), Is.EqualTo(new[] { keep }));
+        }
+
+        [Test]
+        public void CancelWhere_that_matches_nothing_changes_nothing()
+        {
+            _queue.Enqueue(Job(5, T0));
+
+            Assert.That(_queue.CancelWhere(j => false), Is.EqualTo(0));
+            Assert.That(_queue.Count, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void CancelWhere_can_cancel_spooled_jobs_that_Cancel_zero_leaves_alone()
+        {
+            _queue.Enqueue(Job(0, T0));
+
+            _queue.Cancel(0);
+            Assert.That(_queue.Count, Is.EqualTo(1));
+
+            Assert.That(_queue.CancelWhere(j => j.Lock.Id == 0), Is.EqualTo(1));
+            Assert.That(_queue.Count, Is.EqualTo(0));
+        }
+
+        [Test]
+        public void CancelWhere_rejects_a_missing_predicate()
+        {
+            Assert.Throws<ArgumentNullException>(() => _queue.CancelWhere(null));
+        }
+
+        [Test]
+        public void CancelWhere_runs_safely_beside_enqueue_and_take()
+        {
+            const int total = 2000;
+            var enqueue = Task.Run(() =>
+            {
+                for (var i = 0; i < total; i++)
+                    _queue.Enqueue(Job(i % 2 == 0 ? 0 : i, T0));
+            });
+            var removed = 0;
+            var cancel = Task.Run(() =>
+            {
+                for (var i = 0; i < 200; i++)
+                    removed += _queue.CancelWhere(j => j.Lock.Id == 0);
+            });
+            Task.WaitAll(enqueue, cancel);
+            removed += _queue.CancelWhere(j => j.Lock.Id == 0);
+
+            Assert.That(removed, Is.EqualTo(total / 2));
+            Assert.That(_queue.Count, Is.EqualTo(total / 2));
+        }
+
+        [Test]
         public void Enqueue_rejects_a_missing_job_or_lock()
         {
             Assert.Throws<ArgumentNullException>(() => _queue.Enqueue(null));
