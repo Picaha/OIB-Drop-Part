@@ -39,6 +39,36 @@ namespace Interlock.Tests.Core
         }
 
         [Test]
+        public void Any_finds_a_queued_job_whether_or_not_it_is_due_and_removes_nothing()
+        {
+            _queue.Enqueue(Job(1, T0));
+            _queue.Enqueue(Job(2, T0.AddHours(1), JobKind.Reblock));
+
+            Assert.That(_queue.Any(j => j.Lock.Id == 1), Is.True);
+            Assert.That(_queue.Any(j => j.Lock.Id == 2 && j.Kind == JobKind.Reblock), Is.True);
+            Assert.That(_queue.Any(j => j.Lock.Id == 2 && j.Kind == JobKind.Apply), Is.False);
+            Assert.That(_queue.Any(j => j.Lock.Id == 3), Is.False);
+            Assert.That(_queue.Count, Is.EqualTo(2));
+        }
+
+        [Test]
+        public void Any_is_false_for_an_empty_queue_and_for_a_job_that_was_taken()
+        {
+            Assert.That(_queue.Any(j => true), Is.False);
+
+            _queue.Enqueue(Job(1, T0));
+            _queue.TakeDue(T0);
+
+            Assert.That(_queue.Any(j => true), Is.False);
+        }
+
+        [Test]
+        public void Any_rejects_a_missing_predicate()
+        {
+            Assert.Throws<ArgumentNullException>(() => _queue.Any(null));
+        }
+
+        [Test]
         public void TakeDue_returns_only_due_jobs_in_order()
         {
             var late = Job(1, T0.AddSeconds(10));

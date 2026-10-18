@@ -83,6 +83,19 @@ namespace Interlock.Core.Enforcement
                 return _entries.RemoveAll(e => match(e.Job));
         }
 
+        /// <summary>
+        /// True when the queue holds a job <paramref name="match"/> accepts, due or not. Takes nothing out. The predicate runs
+        /// inside the queue's lock: keep it short and do not call the queue from it.
+        /// </summary>
+        public bool Any(Predicate<EnforcementJob> match)
+        {
+            if (match == null)
+                throw new ArgumentNullException(nameof(match));
+
+            lock (_gate)
+                return _entries.Exists(e => match(e.Job));
+        }
+
         private sealed class Entry
         {
             public Entry(EnforcementJob job, DateTime notBeforeUtc, long sequence)
