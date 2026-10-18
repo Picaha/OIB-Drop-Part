@@ -220,6 +220,22 @@ namespace Interlock.Tests.Core
         }
 
         [Test]
+        public void MarkReleased_leaves_a_row_that_is_not_active_untouched()
+        {
+            var id = _repo.Insert(Pu("A")).Id;
+            _repo.MarkReleased(id, "qa1", T0.AddMinutes(5), "fixed");
+            _repo.SetEnforceState(id, EnforceState.Applied, null);
+
+            _repo.MarkReleased(id, "qa2", T0.AddMinutes(9), "again");
+
+            var row = _repo.Get(id);
+            Assert.That(row.ReleasedBy, Is.EqualTo("qa1"));
+            Assert.That(row.ReleasedAtUtc, Is.EqualTo(T0.AddMinutes(5)));
+            Assert.That(row.ReleaseReason, Is.EqualTo("fixed"));
+            Assert.That(row.EnforceState, Is.EqualTo(EnforceState.Applied), "a second release must not set the lock pending again");
+        }
+
+        [Test]
         public void LoadPendingReleases_lists_released_rows_still_pending()
         {
             var a = _repo.Insert(Pu("A")).Id;

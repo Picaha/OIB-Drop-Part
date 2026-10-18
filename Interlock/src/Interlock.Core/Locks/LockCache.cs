@@ -17,6 +17,13 @@ namespace Interlock.Core.Locks
         private LockRecord[] _items = new LockRecord[0];
         private long _loadedAtTicks;
 
+        /// <summary>
+        /// Held by whoever must change the database and this cache as one step (creating, releasing or retrying a lock,
+        /// reloading the cache), so a reload can never drop a lock created meanwhile. It is not the cache's own lock:
+        /// the cache's members never take it, and holding it does not block them.
+        /// </summary>
+        public object WriteGate { get; } = new object();
+
         public IReadOnlyCollection<LockRecord> Snapshot
         {
             get { return Volatile.Read(ref _items); }

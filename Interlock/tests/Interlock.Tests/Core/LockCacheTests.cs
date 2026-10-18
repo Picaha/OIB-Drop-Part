@@ -282,5 +282,43 @@ namespace Interlock.Tests.Core
             Assert.That(failures, Is.EqualTo(0));
             Assert.That(_cache.Snapshot.Count, Is.EqualTo(writers * perWriter));
         }
+
+        [Test]
+        public void WriteGate_is_one_dedicated_object_that_does_not_block_the_cache()
+        {
+            Assert.That(_cache.WriteGate, Is.Not.Null);
+            Assert.That(_cache.WriteGate, Is.SameAs(_cache.WriteGate));
+
+            var entered = new ManualResetEventSlim();
+            var release = new ManualResetEventSlim();
+            var holder = Task.Run(() =>
+            {
+                lock (_cache.WriteGate)
+                {
+                    entered.Set();
+                    release.Wait();
+                }
+            });
+
+            try
+            {
+                Assert.That(entered.Wait(TimeSpan.FromSeconds(5)), Is.True, "the holder never took the gate");
+
+                var writer = Task.Run(() =>
+                {
+                    _cache.Upsert(L(1));
+                    _cache.Remove(2);
+                    _cache.Replace(new[] { L(3) }, T0);
+                });
+
+                Assert.That(writer.Wait(TimeSpan.FromSeconds(5)), Is.True, "cache members must not wait for the write gate");
+                Assert.That(_cache.Snapshot.Select(l => l.Id), Is.EqualTo(new long[] { 3 }));
+            }
+            finally
+            {
+                release.Set();
+                holder.Wait();
+            }
+        }
     }
 }

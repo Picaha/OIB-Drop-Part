@@ -11,7 +11,7 @@ namespace Interlock.Tests.Fakes
     /// <summary>
     /// A lock repository that lives in memory and follows the rules of the real one: ids count up from 1,
     /// reads return copies, and an ACTIVE lock with the same identity is a duplicate. Updates to an unknown id
-    /// do nothing, like an SQL UPDATE that matches no row.
+    /// do nothing, like an SQL UPDATE that matches no row; so does <see cref="MarkReleased"/> on a row that is not ACTIVE.
     /// </summary>
     public sealed class InMemoryLockRepository : ILockRepository
     {
@@ -149,8 +149,9 @@ namespace Interlock.Tests.Fakes
             CheckUp();
             lock (_gate)
             {
+                // Like the guarded SQL UPDATE (WHERE status = 'ACTIVE'): a row that is not ACTIVE stays as it is.
                 var row = _rows.FirstOrDefault(r => r.Id == id);
-                if (row == null)
+                if (row == null || row.Status != LockStatus.Active)
                     return;
                 row.Status = LockStatus.Released;
                 row.ReleasedBy = by;
