@@ -11,6 +11,53 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="System.ServiceModel" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Asm.As.Oib.Common">
+      <HintPath>$(OibDir)SetupCenter\Asm.As.Oib.Common.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Asm.As.Oib.Common.Proxy">
+      <HintPath>$(OibDir)SetupCenter\Asm.As.Oib.Common.Proxy.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Asm.As.Oib.WS.Common">
+      <HintPath>$(OibDir)SetupCenter\Asm.As.Oib.WS.Common.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Asm.As.Oib.WS.Eventing.Contracts">
+      <HintPath>$(OibDir)SetupCenter\Asm.As.Oib.WS.Eventing.Contracts.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Asm.As.Oib.SIPLACESetupCenter.Contracts">
+      <HintPath>$(OibDir)SetupCenter\Asm.As.Oib.SIPLACESetupCenter.Contracts.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Asm.As.Oib.SiplaceSetupCenter.Proxy">
+      <HintPath>$(OibDir)SetupCenter\Asm.As.Oib.SiplaceSetupCenter.Proxy.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Asm.As.Oib.SIPLACEPro.LineControl.Contracts">
+      <HintPath>$(OibDir)SiplacePro.LineControl\Asm.As.Oib.SIPLACEPro.LineControl.Contracts.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Asm.As.Oib.SIPLACEPro.LineControl.Proxy">
+      <HintPath>$(OibDir)SiplacePro.LineControl\Asm.As.Oib.SIPLACEPro.LineControl.Proxy.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Asm.As.Oib.Monitoring.Contracts">
+      <HintPath>$(OibDir)Monitoring\Asm.As.Oib.Monitoring.Contracts.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Asm.As.Oib.Monitoring.Proxy">
+      <HintPath>$(OibDir)Monitoring\Asm.As.Oib.Monitoring.Proxy.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\src\Interlock.Core\Interlock.Core.csproj" />
     <ProjectReference Include="..\..\src\Interlock.Service\Interlock.Service.csproj" />
   </ItemGroup>
