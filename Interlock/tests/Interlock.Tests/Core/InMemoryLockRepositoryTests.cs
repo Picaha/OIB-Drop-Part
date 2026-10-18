@@ -385,6 +385,20 @@ namespace Interlock.Tests.Core
         // ---- the database being down ----
 
         [Test]
+        public void FailAddAppliedPu_fails_only_that_member()
+        {
+            _repo.FailAddAppliedPu = true;
+
+            Assert.Throws<DbUnavailableException>(() => _repo.AddAppliedPu(1, "A", T0));
+            Assert.That(_repo.GetOpenAppliedPus(1), Is.Empty);
+            Assert.DoesNotThrow(() => _repo.LoadActive());
+
+            _repo.FailAddAppliedPu = false;
+            _repo.AddAppliedPu(1, "A", T0);
+            Assert.That(_repo.GetOpenAppliedPus(1), Is.EqualTo(new[] { "A" }));
+        }
+
+        [Test]
         public void Down_makes_every_member_throw_db_unavailable()
         {
             var calls = new System.Collections.Generic.Dictionary<string, Action>

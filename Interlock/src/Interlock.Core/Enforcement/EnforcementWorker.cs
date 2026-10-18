@@ -23,6 +23,7 @@ namespace Interlock.Core.Enforcement
     {
         private const string NotSupportedError = "Conveyor block not supported";
         private const string NoLanesError = "Conveyor lock has no lanes";
+        private const string UnstoredSweepError = "Sweep needs a stored lock";
 
         private readonly ActionQueue _queue;
         private readonly ILockRepository _locks;
@@ -248,12 +249,17 @@ namespace Interlock.Core.Enforcement
         /// <summary>
         /// Sweeps the mounted reels of the machines in the lock's line scope and locks those the lock matches, in one
         /// call. Each locked reel is recorded for the lock, only after the call succeeded, so the release unlocks exactly
-        /// those. A sweep that finds nothing is APPLIED too. The sweep writes its own action rows: one LOCK_PU row for the
-        /// lock call and one SWEEP row per attempt, which also records a failed attempt.
+        /// those; a record that cannot be written fails the attempt like a failed OIB call, because a reel locked without a
+        /// record can never be unlocked by the release. A sweep that finds nothing is APPLIED too. The sweep writes its own
+        /// action rows: one LOCK_PU row for the lock call and one SWEEP row per attempt, which also records a failed attempt.
+        /// A lock without an id has nowhere to record the reels, so it fails at once, before any OIB call.
         /// </summary>
         private Outcome ApplySweep(EnforcementJob job)
         {
             var l = job.Lock;
+            if (l.Id == 0)
+                return Outcome.Failed(UnstoredSweepError);
+
             var machines = 0;
             var matched = new List<string>();
             try
@@ -359,7 +365,10 @@ namespace Interlock.Core.Enforcement
             return uids;
         }
 
-        /// <summary>Locks the reels, writes the LOCK_PU row of that call, then records each reel for the lock. A failed call records nothing and throws.</summary>
+        /// <summary>
+        /// Locks the reels, writes the LOCK_PU row of that call, then records each reel for the lock. A failed call records
+        /// nothing. A call or a record that fails throws, and the sweep attempt fails.
+        /// </summary>
         private void LockAndRecord(EnforcementJob job, IList<string> uids)
         {
             var l = job.Lock;
@@ -375,15 +384,9 @@ namespace Interlock.Core.Enforcement
             }
             WriteAction(job, Actions.LOCK_PU, true, null, request);
 
-            if (l.Id == 0)
-                return;
-
             var now = _clock.UtcNow;
-            foreach (var locked in uids)
-            {
-                var uid = locked;
-                TryDb("record the applied PU", () => _locks.AddAppliedPu(l.Id, uid, now));
-            }
+            foreach (var uid in uids)
+                _locks.AddAppliedPu(l.Id, uid, now);
         }
 
         /// <summary>

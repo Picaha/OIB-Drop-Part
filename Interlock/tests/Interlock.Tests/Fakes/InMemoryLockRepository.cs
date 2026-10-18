@@ -24,6 +24,9 @@ namespace Interlock.Tests.Fakes
         /// <summary>While true, every <see cref="ILockRepository"/> member throws <see cref="DbUnavailableException"/>.</summary>
         public bool Down { get; set; }
 
+        /// <summary>While true, only <see cref="AddAppliedPu"/> throws <see cref="DbUnavailableException"/>; every other member works.</summary>
+        public bool FailAddAppliedPu { get; set; }
+
         // ---- test helpers: they ignore Down and the uniqueness rule ----
 
         /// <summary>Stores the row as given, as ACTIVE. An <c>Id</c> of 0 gets the next id.</summary>
@@ -173,6 +176,8 @@ namespace Interlock.Tests.Fakes
         public void AddAppliedPu(long lockId, string uid, DateTime atUtc)
         {
             CheckUp();
+            if (FailAddAppliedPu)
+                throw new DbUnavailableException("The in-memory lock repository cannot record applied PUs.");
             lock (_gate)
                 _appliedPus.Add(new AppliedPuRow { LockId = lockId, Uid = uid });
         }

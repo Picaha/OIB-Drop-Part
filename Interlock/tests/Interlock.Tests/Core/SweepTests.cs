@@ -465,7 +465,25 @@ namespace Interlock.Tests.Core
         }
 
         [Test]
-        public void Db_down_during_a_sweep_does_not_stop_the_oib_lock()
+        public void Action_log_down_during_a_sweep_does_not_stop_it()
+        {
+            _sc.Machines.Add(M("m1", L1));
+            _sc.MountedPus.Add(Mounted("m1", "A", pn: "C1"));
+            _audit.Down = true;
+            Enqueue(Pn(1, "C1"), JobKind.Apply);
+
+            Assert.DoesNotThrow(() => _worker.RunDue());
+
+            Assert.That(_sc.Calls, Is.EqualTo(new[] { "GetMachines", "GetMountedPus:m1", "LockPackagingUnits:A" }));
+            Assert.That(_repo.GetOpenAppliedPus(1), Is.EqualTo(new[] { "A" }));
+            Assert.That(_repo.Get(1).EnforceState, Is.EqualTo(EnforceState.Applied));
+            Assert.That(_queue.Count, Is.EqualTo(0));
+            Assert.That(_log.Warnings, Is.Not.Empty);
+            Assert.That(_alarms.Recent(5), Is.Empty);
+        }
+
+        [Test]
+        public void Db_down_during_a_sweep_fails_the_attempt_because_the_reels_cannot_be_recorded()
         {
             _sc.Machines.Add(M("m1", L1));
             _sc.MountedPus.Add(Mounted("m1", "A", pn: "C1"));
@@ -476,14 +494,82 @@ namespace Interlock.Tests.Core
             Assert.DoesNotThrow(() => _worker.RunDue());
 
             Assert.That(_sc.Calls, Is.EqualTo(new[] { "GetMachines", "GetMountedPus:m1", "LockPackagingUnits:A" }));
-            Assert.That(_queue.Count, Is.EqualTo(0));
-            Assert.That(_log.Warnings, Is.Not.Empty);
-            Assert.That(_cache.Snapshot.Single().EnforceState, Is.EqualTo(EnforceState.Applied));
+            Assert.That(_queue.Count, Is.EqualTo(1));
+            Assert.That(_cache.Snapshot.Single().EnforceState, Is.EqualTo(EnforceState.Pending));
             Assert.That(_alarms.Recent(5), Is.Empty);
+
+            _repo.Down = false;
+            _audit.Down = false;
+            _clock.Advance(TimeSpan.FromSeconds(5));
+            _worker.RunDue();
+
+            Assert.That(_repo.GetOpenAppliedPus(1), Is.EqualTo(new[] { "A" }));
+            Assert.That(_repo.Get(1).EnforceState, Is.EqualTo(EnforceState.Applied));
+            Assert.That(_queue.Count, Is.EqualTo(0));
         }
 
         [Test]
-        public void Lock_without_an_id_is_swept_but_nothing_is_written_to_the_database()
+        public void Failing_record_fails_the_attempt_and_the_retry_records_the_reels()
+        {
+            _sc.Machines.Add(M("m1", L1));
+            _sc.MountedPus.AddRange(new[] { Mounted("m1", "A", pn: "C1"), Mounted("m1", "B", pn: "C1") });
+            _repo.FailAddAppliedPu = true;
+
+            Enqueue(Pn(1, "C1"), JobKind.Apply);
+            _worker.RunDue();
+
+            Assert.That(_sc.Calls, Is.EqualTo(new[] { "GetMachines", "GetMountedPus:m1", "LockPackagingUnits:A,B" }));
+            Assert.That(_repo.GetOpenAppliedPus(1), Is.Empty);
+            Assert.That(_queue.Count, Is.EqualTo(1));
+            Assert.That(_repo.Get(1).EnforceState, Is.EqualTo(EnforceState.Pending));
+            Assert.That(_alarms.Recent(5), Is.Empty);
+            Assert.That(_audit.Actions.Select(a => a.Action), Is.EqualTo(new[] { Actions.LOCK_PU, Actions.SWEEP }));
+            Assert.That(_audit.Actions.Select(a => a.Success), Is.EqualTo(new[] { true, false }));
+            Assert.That(_audit.Actions.Select(a => a.Attempt), Is.All.EqualTo(1));
+            Assert.That(_audit.Actions[1].Error, Does.Contain("applied PUs"));
+            Assert.That(_audit.Actions[1].RequestJson, Is.EqualTo("{\"machines\":1,\"matched\":[\"A\",\"B\"]}"));
+
+            // the retry sweeps and locks again, and now the reels are recorded
+            _repo.FailAddAppliedPu = false;
+            _clock.Advance(TimeSpan.FromSeconds(5));
+            _worker.RunDue();
+
+            Assert.That(_sc.Calls.Count(c => c.StartsWith("LockPackagingUnits")), Is.EqualTo(2));
+            Assert.That(_repo.GetOpenAppliedPus(1), Is.EqualTo(new[] { "A", "B" }));
+            Assert.That(_repo.Get(1).EnforceState, Is.EqualTo(EnforceState.Applied));
+            Assert.That(_repo.Get(1).EnforceError, Is.Null);
+            Assert.That(_queue.Count, Is.EqualTo(0));
+            Assert.That(_audit.Actions.Select(a => a.Success), Is.EqualTo(new[] { true, false, true, true }));
+            Assert.That(_audit.Actions.Select(a => a.Attempt), Is.EqualTo(new[] { 1, 1, 2, 2 }));
+        }
+
+        [Test]
+        public void Record_that_keeps_failing_ends_failed_with_an_alarm()
+        {
+            _sc.Machines.Add(M("m1", L1));
+            _sc.MountedPus.Add(Mounted("m1", "A", pn: "C1"));
+            _repo.FailAddAppliedPu = true;
+
+            Enqueue(Pn(1, "C1"), JobKind.Apply);
+            _worker.RunDue();
+            _clock.Advance(TimeSpan.FromSeconds(5));
+            _worker.RunDue();
+            _clock.Advance(TimeSpan.FromSeconds(30));
+            _worker.RunDue();
+            _clock.Advance(TimeSpan.FromMinutes(2));
+            _worker.RunDue();
+
+            Assert.That(_sc.Calls.Count(c => c.StartsWith("LockPackagingUnits")), Is.EqualTo(4));
+            Assert.That(_repo.Get(1).EnforceState, Is.EqualTo(EnforceState.Failed));
+            Assert.That(_repo.Get(1).EnforceError, Does.Contain("applied PUs"));
+            Assert.That(_repo.GetOpenAppliedPus(1), Is.Empty);
+            Assert.That(_queue.Count, Is.EqualTo(0));
+            Assert.That(_alarms.Recent(1)[0], Does.Contain("Lock #1 FAILED"));
+            Assert.That(_cache.Snapshot.Single().EnforceState, Is.EqualTo(EnforceState.Failed));
+        }
+
+        [Test]
+        public void Sweep_of_a_lock_without_an_id_fails_at_once_without_an_oib_call()
         {
             _sc.Machines.Add(M("m1", L1));
             _sc.MountedPus.Add(Mounted("m1", "A", pn: "C1"));
@@ -493,12 +579,14 @@ namespace Interlock.Tests.Core
 
             _worker.RunDue();
 
-            Assert.That(_sc.Calls, Is.EqualTo(new[] { "GetMachines", "GetMountedPus:m1", "LockPackagingUnits:A" }));
-            Assert.That(_repo.GetOpenAppliedPus(0), Is.Empty);
+            Assert.That(_sc.Calls, Is.Empty);
+            Assert.That(_queue.Count, Is.EqualTo(0));
             Assert.That(_repo.Query(new LockQuery()), Is.Empty);
             Assert.That(_audit.Actions, Is.Empty);
-            Assert.That(_cache.Snapshot.Single().EnforceState, Is.EqualTo(EnforceState.Applied));
-            Assert.That(_queue.Count, Is.EqualTo(0));
+            Assert.That(_alarms.Recent(1)[0], Does.Contain("Sweep needs a stored lock"));
+            var cached = _cache.Snapshot.Single();
+            Assert.That(cached.EnforceState, Is.EqualTo(EnforceState.Failed));
+            Assert.That(cached.EnforceError, Is.EqualTo("Sweep needs a stored lock"));
         }
 
         // ---- release ----
