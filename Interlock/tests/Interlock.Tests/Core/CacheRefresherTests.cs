@@ -454,6 +454,141 @@ namespace Interlock.Tests.Core
             Assert.That(_cache.Snapshot.Single().Id, Is.EqualTo(job.Lock.Id));
         }
 
+        // ---- failures seen from outside ----
+
+        [Test]
+        public void A_spooled_lock_the_database_refuses_is_counted_tick_by_tick_until_it_is_gone()
+        {
+            _refresher.Tick();
+            _cache.Replace(new[] { Pu(5, "A") }, T0);
+            _spool.Append(Pu(0, "TOO-LONG"));
+            _repo.OnCall = c =>
+            {
+                if (c == "Insert")
+                    throw new InvalidOperationException("value too long for column target");
+            };
+            Assert.That(_refresher.ConsecutiveFailures, Is.EqualTo(0));
+            Assert.That(_refresher.LastError, Is.Null);
+
+            for (var tick = 1; tick <= 3; tick++)
+            {
+                _refresher.Tick();
+
+                Assert.That(_refresher.ConsecutiveFailures, Is.EqualTo(tick));
+                Assert.That(_refresher.LastError, Does.Contain("value too long for column target"));
+                Assert.That(_spool.ReadAll().Count, Is.EqualTo(1), "the record is kept");
+                Assert.That(_cache.Snapshot.Single().Id, Is.EqualTo(5), "the cache is kept");
+                Assert.That(_refresher.DbHealthy, Is.True, "the database itself answers");
+            }
+
+            _spool.Clear();
+            _refresher.Tick();
+
+            Assert.That(_refresher.ConsecutiveFailures, Is.EqualTo(0));
+            Assert.That(_refresher.LastError, Is.Null);
+            Assert.That(_cache.Snapshot, Is.Empty, "the reload went through");
+        }
+
+        [Test]
+        public void An_unreachable_database_counts_as_a_failed_tick_and_a_good_tick_resets_the_count()
+        {
+            _repo.Down = true;
+
+            _refresher.Tick();
+            _refresher.Tick();
+
+            Assert.That(_refresher.ConsecutiveFailures, Is.EqualTo(2));
+            Assert.That(_refresher.LastError, Does.Contain("DbUnavailableException"));
+            Assert.That(_refresher.DbHealthy, Is.False);
+
+            _repo.Down = false;
+            _refresher.Tick();
+
+            Assert.That(_refresher.ConsecutiveFailures, Is.EqualTo(0));
+            Assert.That(_refresher.LastError, Is.Null);
+            Assert.That(_refresher.DbHealthy, Is.True);
+        }
+
+        [Test]
+        public void A_tick_that_fails_for_another_reason_counts_too()
+        {
+            _spool.FailRead = true;
+
+            _refresher.Tick();
+
+            Assert.That(_refresher.ConsecutiveFailures, Is.EqualTo(1));
+            Assert.That(_refresher.LastError, Does.Contain("The spool file cannot be read."));
+        }
+
+        // ---- the worker beside a tick ----
+
+        [Test]
+        public void A_stored_lock_is_in_the_cache_before_its_apply_job_is_queued()
+        {
+            var sc = new FakeSetupCenterClient();
+            var clock = new ProbeClock(T0);
+            var worker = new EnforcementWorker(_queue, _repo, new InMemoryAuditRepository(), sc, new FakeLineControlClient(), _cache,
+                new AlarmBoard(), clock, _log);
+            var refresher = new CacheRefresher(_repo, _spool, _cache, _queue, clock, _log);
+            _spool.Append(Pu(0, "U1"));
+            _spool.Append(Pu(0, "U2"));
+
+            // The worker does not take the gate. Every time the tick reads the clock (once per queued job, and for the
+            // reload), the worker gets a pass, as if it ran on its own thread at that moment.
+            var inPass = false;
+            clock.OnRead = () =>
+            {
+                if (inPass)
+                    return;
+                inPass = true;
+                try
+                {
+                    worker.RunDue();
+                }
+                finally
+                {
+                    inPass = false;
+                }
+            };
+
+            refresher.Tick();
+
+            Assert.That(sc.Calls, Is.EqualTo(new[] { "LockPackagingUnits:U1", "LockPackagingUnits:U2" }),
+                "a job the worker ran in the middle of the tick was dropped because its lock was not cached yet");
+        }
+
+        [Test]
+        public void A_spooled_job_that_is_running_during_the_flush_does_not_displace_the_stored_lock()
+        {
+            SpoolDuringOutage("U1");
+            var sc = new FakeSetupCenterClient();
+            var worker = new EnforcementWorker(_queue, _repo, new InMemoryAuditRepository(), sc, new FakeLineControlClient(), _cache,
+                new AlarmBoard(), _clock, _log);
+            var flushed = false;
+            sc.OnCall = c =>
+            {
+                if (flushed)
+                    return;
+                flushed = true;
+                _refresher.Tick(); // the flush happens while the worker is inside the OIB call of the Id 0 job
+            };
+
+            worker.RunDue();
+
+            Assert.That(flushed, Is.True);
+            var stored = _repo.LoadActive().Single();
+            var cached = _cache.Snapshot.Single();
+            Assert.That(cached.Id, Is.EqualTo(stored.Id), "the Id 0 job finishing must not put an Id 0 copy over the stored lock");
+            Assert.That(_queue.Count, Is.EqualTo(1), "the job for the stored lock is waiting");
+
+            worker.RunDue();
+
+            Assert.That(sc.Calls, Is.EqualTo(new[] { "LockPackagingUnits:U1", "LockPackagingUnits:U1" }));
+            Assert.That(_cache.Snapshot.Single().Id, Is.EqualTo(stored.Id));
+            Assert.That(_cache.Snapshot.Single().EnforceState, Is.EqualTo(EnforceState.Applied));
+            Assert.That(_repo.Get(stored.Id).EnforceState, Is.EqualTo(EnforceState.Applied));
+        }
+
         // ---- write gate ----
 
         [Test]
@@ -509,6 +644,30 @@ namespace Interlock.Tests.Core
             Assert.Throws<ArgumentNullException>(() => new CacheRefresher(_repo, _spool, _cache, null, _clock, _log));
             Assert.Throws<ArgumentNullException>(() => new CacheRefresher(_repo, _spool, _cache, _queue, null, _log));
             Assert.Throws<ArgumentNullException>(() => new CacheRefresher(_repo, _spool, _cache, _queue, _clock, null));
+        }
+
+        /// <summary>A clock that tells the test every time it is read.</summary>
+        private sealed class ProbeClock : IClock
+        {
+            private readonly DateTime _now;
+
+            public ProbeClock(DateTime now)
+            {
+                _now = now;
+            }
+
+            public Action OnRead { get; set; }
+
+            public DateTime UtcNow
+            {
+                get
+                {
+                    var onRead = OnRead;
+                    if (onRead != null)
+                        onRead();
+                    return _now;
+                }
+            }
         }
 
         /// <summary>A memory spool whose reads and clears can be made to fail with an IO error.</summary>

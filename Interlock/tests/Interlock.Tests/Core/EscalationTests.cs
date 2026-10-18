@@ -239,6 +239,29 @@ namespace Interlock.Tests.Core
         }
 
         [Test]
+        public void A_report_without_a_mismatch_costs_no_database_call()
+        {
+            var dbCalls = new List<string>();
+            _repo.OnCall = dbCalls.Add;
+
+            _svc.OnLockStateChanged(new[] { Report("U1", Info(0, T0, source: 4), Info(28, T0, source: 9)), Report("U2") });
+
+            Assert.That(dbCalls, Is.Empty, "the echo of our own locks must not reach the database");
+        }
+
+        [Test]
+        public void A_mismatch_reads_the_last_release_time_once()
+        {
+            var dbCalls = new List<string>();
+            _repo.OnCall = dbCalls.Add;
+
+            _svc.OnLockStateChanged(new[] { Report("U1", Info(1, T0)) });
+
+            Assert.That(dbCalls.Count(c => c == "GetLatestReleaseUtc"), Is.EqualTo(1));
+            Assert.That(SetupCenterPuLocks().Count(), Is.EqualTo(1));
+        }
+
+        [Test]
         public void Each_uid_in_one_call_gets_its_own_lock()
         {
             _svc.OnLockStateChanged(new[] { Report("U1", Info(1, T0)), Report("U2", Info(1, T0)), Report("U3", Info(0, T0)) });

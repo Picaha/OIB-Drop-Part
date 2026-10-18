@@ -98,6 +98,30 @@ namespace Interlock.Tests.Core
         }
 
         [Test]
+        public void Upsert_of_a_spooled_lock_never_replaces_a_stored_entry_with_the_same_identity()
+        {
+            _cache.Upsert(L(5, target: "U1"));
+
+            _cache.Upsert(L(0, target: "U1"));
+
+            Assert.That(_cache.Snapshot.Select(l => l.Id).OrderBy(id => id), Is.EqualTo(new long[] { 0, 5 }));
+            Assert.That(_cache.Snapshot.Single(l => l.Id == 5).Reason, Is.EqualTo("r5"));
+        }
+
+        [Test]
+        public void Upsert_of_a_spooled_lock_replaces_only_the_spooled_entry_next_to_a_stored_twin()
+        {
+            _cache.Upsert(L(5, target: "U1"));
+            _cache.Upsert(L(0, target: "U1"));
+
+            _cache.Upsert(L(0, target: "u1 "));
+
+            Assert.That(_cache.Snapshot.Count, Is.EqualTo(2));
+            Assert.That(_cache.Snapshot.Single(l => l.Id == 0).Target, Is.EqualTo("u1 "));
+            Assert.That(_cache.Snapshot.Single(l => l.Id == 5).Target, Is.EqualTo("U1"));
+        }
+
+        [Test]
         public void Upsert_spooled_identity_includes_type_line_and_lanes()
         {
             _cache.Upsert(L(0, LockType.Pn, "A", line: "Lines\\L1"));
@@ -156,6 +180,18 @@ namespace Interlock.Tests.Core
 
             Assert.That(_cache.Snapshot.Count, Is.EqualTo(1));
             Assert.That(_cache.Snapshot.Single().Target, Is.EqualTo("u1 "));
+        }
+
+        [Test]
+        public void UpsertIfPresent_of_a_spooled_lock_does_not_touch_a_stored_entry_with_the_same_identity()
+        {
+            var stored = L(5, target: "U1");
+            _cache.Upsert(stored);
+
+            var replaced = _cache.UpsertIfPresent(L(0, target: "U1"));
+
+            Assert.That(replaced, Is.False);
+            Assert.That(_cache.Snapshot.Single(), Is.SameAs(stored));
         }
 
         [Test]

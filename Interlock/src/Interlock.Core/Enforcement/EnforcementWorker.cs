@@ -457,15 +457,16 @@ namespace Interlock.Core.Enforcement
         }
 
         /// <summary>
-        /// True while the cache still holds the lock: by id, or for a spooled lock (id 0) by identity. Apply and Reblock jobs act
-        /// only on such a lock. A lock released while its job waited or ran is gone from the cache, and the worker neither
-        /// runs, retries nor re-caches it.
+        /// True while the cache still holds the lock: by id, or for a spooled lock (id 0) as a spooled entry (also id 0) with the
+        /// same identity. Apply and Reblock jobs act only on such a lock. A lock released while its job waited or ran is gone
+        /// from the cache, and the worker neither runs, retries nor re-caches it. Once the spool is flushed the cache holds the
+        /// stored lock instead of the spooled one, so a stale job of the spooled lock is dropped here.
         /// </summary>
         private bool IsInCache(LockRecord l)
         {
             if (l.Id != 0)
                 return _cache.Snapshot.Any(e => e.Id == l.Id);
-            return _cache.FindActive(l.Type, l.TargetNorm, l.LinePath, l.Lanes) != null;
+            return _cache.Snapshot.Any(e => e.Id == 0 && e.Status == LockStatus.Active && LockCache.SameIdentity(e, l));
         }
 
         /// <summary>Runs a database write. A failure is logged and the OIB result stands.</summary>

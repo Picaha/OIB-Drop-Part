@@ -50,7 +50,10 @@ namespace Interlock.Core.Locks
             }
         }
 
-        /// <summary>Replaces the entry with the same <c>Id</c>; for <c>Id == 0</c> (spooled) the entry with the same identity.</summary>
+        /// <summary>
+        /// Replaces the entry with the same <c>Id</c>; for <c>Id == 0</c> (spooled) the spooled entry (also <c>Id == 0</c>) with
+        /// the same identity. A spooled lock never replaces a stored entry, even one with the same identity.
+        /// </summary>
         public void Upsert(LockRecord l)
         {
             if (l == null)
@@ -69,8 +72,8 @@ namespace Interlock.Core.Locks
         }
 
         /// <summary>
-        /// Like <see cref="Upsert"/>, but never adds: replaces the entry with the same <c>Id</c> (for <c>Id == 0</c> the entry
-        /// with the same identity) and returns true, or changes nothing and returns false. The check and the write are one
+        /// Like <see cref="Upsert"/>, but never adds: replaces the entry with the same <c>Id</c> (for <c>Id == 0</c> the spooled
+        /// entry with the same identity, never a stored one) and returns true, or changes nothing and returns false. The check and the write are one
         /// step, so a lock removed meanwhile is not put back.
         /// </summary>
         public bool UpsertIfPresent(LockRecord l)
@@ -127,10 +130,13 @@ namespace Interlock.Core.Locks
 
         private static int IndexOf(List<LockRecord> items, LockRecord l)
         {
-            return items.FindIndex(e => l.Id != 0 ? e.Id == l.Id : SameIdentity(e, l));
+            // A spooled lock (Id 0) is matched against spooled entries only: once the spool is flushed, the stored lock with the
+            // same identity is another entry, and a stale spooled copy must not overwrite it.
+            return items.FindIndex(e => l.Id != 0 ? e.Id == l.Id : e.Id == 0 && SameIdentity(e, l));
         }
 
-        private static bool SameIdentity(LockRecord a, LockRecord b)
+        /// <summary>True when both locks are the same lock: same type, normalised target, normalised line and lanes.</summary>
+        internal static bool SameIdentity(LockRecord a, LockRecord b)
         {
             return a.Type == b.Type
                 && a.TargetNorm == b.TargetNorm

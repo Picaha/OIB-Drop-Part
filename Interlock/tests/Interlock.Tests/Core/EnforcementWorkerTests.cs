@@ -677,6 +677,59 @@ namespace Interlock.Tests.Core
         }
 
         [Test]
+        public void A_stale_job_of_a_spooled_lock_is_dropped_once_the_cache_holds_the_stored_lock()
+        {
+            var stored = Pu(5, "U1");
+            _repo.InsertActive(stored);
+            _cache.Replace(new[] { stored.Clone() }, _clock.UtcNow);
+            _queue.Enqueue(new EnforcementJob { Lock = Pu(0, "U1"), Kind = JobKind.Apply, NotBeforeUtc = _clock.UtcNow });
+
+            _worker.RunDue();
+
+            Assert.That(_sc.Calls, Is.Empty, "the stale Id 0 job must not call OIB");
+            Assert.That(_queue.Count, Is.EqualTo(0));
+            var cached = _cache.Snapshot.Single();
+            Assert.That(cached.Id, Is.EqualTo(5));
+            Assert.That(cached.EnforceState, Is.EqualTo(EnforceState.Pending));
+            Assert.That(_log.Infos, Has.Some.Contains("no longer cached"));
+        }
+
+        [Test]
+        public void A_spooled_job_that_finishes_after_a_flush_leaves_the_stored_cache_entry_alone()
+        {
+            var spooled = Pu(0, "U1");
+            _cache.Upsert(spooled.Clone());
+            _queue.Enqueue(new EnforcementJob { Lock = spooled.Clone(), Kind = JobKind.Apply, NotBeforeUtc = _clock.UtcNow });
+            var stored = Pu(5, "U1");
+            _sc.OnCall = c => _cache.Replace(new[] { stored.Clone() }, _clock.UtcNow);
+
+            _worker.RunDue();
+
+            Assert.That(_sc.Calls, Is.EqualTo(new[] { "LockPackagingUnits:U1" }));
+            var cached = _cache.Snapshot.Single();
+            Assert.That(cached.Id, Is.EqualTo(5), "the Id 0 copy must not replace the stored lock");
+            Assert.That(cached.EnforceState, Is.EqualTo(EnforceState.Pending));
+        }
+
+        [Test]
+        public void A_spooled_job_that_fails_after_a_flush_is_neither_retried_nor_failed()
+        {
+            var spooled = Pu(0, "U1");
+            _cache.Upsert(spooled.Clone());
+            _queue.Enqueue(new EnforcementJob { Lock = spooled.Clone(), Kind = JobKind.Apply, NotBeforeUtc = _clock.UtcNow });
+            var stored = Pu(5, "U1");
+            _sc.ThrowAlways = true;
+            _sc.OnCall = c => _cache.Replace(new[] { stored.Clone() }, _clock.UtcNow);
+
+            _worker.RunDue();
+
+            Assert.That(_queue.Count, Is.EqualTo(0), "no retry of a job whose lock left the cache");
+            Assert.That(_alarms.Recent(5), Is.Empty);
+            Assert.That(_cache.Snapshot.Single().Id, Is.EqualTo(5));
+            Assert.That(_cache.Snapshot.Single().EnforceState, Is.EqualTo(EnforceState.Pending));
+        }
+
+        [Test]
         public void Reblock_of_a_non_conveyor_lock_is_dropped_with_a_warning()
         {
             Enqueue(Pu(1, "U1"), JobKind.Reblock);

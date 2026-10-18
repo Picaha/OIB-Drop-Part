@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using Interlock.Core.Errors;
 using Interlock.Core.Locks;
 using Interlock.Core.Model;
 using Interlock.Core.Ports;
-using Interlock.Core.Text;
 
 namespace Interlock.Core.Enforcement
 {
@@ -25,6 +25,8 @@ namespace Interlock.Core.Enforcement
         private readonly IClock _clock;
         private readonly ILog _log;
         private volatile bool _dbHealthy;
+        private int _consecutiveFailures;
+        private volatile string _lastError;
 
         public CacheRefresher(ILockRepository locks, ILockSpool spool, LockCache cache, ActionQueue queue, IClock clock, ILog log)
         {
@@ -50,6 +52,21 @@ namespace Interlock.Core.Enforcement
         }
 
         /// <summary>
+        /// How many ticks in a row have failed (the database was unreachable, or anything else went wrong); 0 after a tick that
+        /// succeeded. A spooled lock the database keeps refusing makes every tick fail, so a health monitor should alarm on this.
+        /// </summary>
+        public int ConsecutiveFailures
+        {
+            get { return Volatile.Read(ref _consecutiveFailures); }
+        }
+
+        /// <summary>The error of the last failed tick (exception type and message), or null after a tick that succeeded.</summary>
+        public string LastError
+        {
+            get { return _lastError; }
+        }
+
+        /// <summary>
         /// Stores the spooled locks, empties the spool, and replaces the cache with the active locks. Each stored lock gets an
         /// Apply job for the stored row in place of its queued Id 0 job. When the database cannot be reached, <see cref="DbHealthy"/>
         /// turns false and the spool, the queue and the cache stay as they were. Any other failure is logged and changes nothing.
@@ -67,12 +84,20 @@ namespace Interlock.Core.Enforcement
             catch (DbUnavailableException ex)
             {
                 _dbHealthy = false;
+                RecordFailure(ex);
                 _log.Warn("Database unavailable, the lock cache and the spool are kept: " + ex.Message);
             }
             catch (Exception ex)
             {
+                RecordFailure(ex);
                 _log.Error("The lock cache reload failed; the cache and the spool are kept.", ex);
             }
+        }
+
+        private void RecordFailure(Exception ex)
+        {
+            _lastError = ex.GetType().Name + ": " + ex.Message;
+            Interlocked.Increment(ref _consecutiveFailures);
         }
 
         private void Refresh()
@@ -90,20 +115,26 @@ namespace Interlock.Core.Enforcement
                 _spool.Clear();
 
             // 3. Queue and cache, in memory, under the gate. A spooled lock was queued as an Apply job with Id 0, which the worker
-            //    can neither record nor find in the reloaded cache: it is replaced by a job for the stored row.
-            var now = _clock.UtcNow;
+            //    can neither record nor find in the reloaded cache: it is replaced by a job for the stored row. The worker does
+            //    not take the gate and runs a job only while its lock is cached, so the stored lock goes into the cache before
+            //    its job is queued (as in LockService.Store); the Replace below then settles the whole cache.
             var queuedIds = new HashSet<long>();
             foreach (var s in stored)
             {
-                _queue.CancelWhere(j => j.Lock.Id == 0 && SameIdentity(j.Lock, s.Spooled));
+                _queue.CancelWhere(j => j.Lock.Id == 0 && LockCache.SameIdentity(j.Lock, s.Spooled));
                 if (s.NeedsApply && queuedIds.Add(s.Row.Id))
-                    _queue.Enqueue(new EnforcementJob { Lock = s.Row.Clone(), Kind = JobKind.Apply, NotBeforeUtc = now });
+                {
+                    _cache.Upsert(s.Row.Clone());
+                    _queue.Enqueue(new EnforcementJob { Lock = s.Row.Clone(), Kind = JobKind.Apply, NotBeforeUtc = _clock.UtcNow });
+                }
             }
-            _cache.Replace(active, now);
+            _cache.Replace(active, _clock.UtcNow);
 
             if (!_dbHealthy)
                 _log.Info("Database reachable.");
             _dbHealthy = true;
+            Volatile.Write(ref _consecutiveFailures, 0);
+            _lastError = null;
             if (spooled.Count > 0)
                 _log.Info(spooled.Count + " spooled lock(s) stored.");
         }
@@ -126,14 +157,6 @@ namespace Interlock.Core.Enforcement
                 var open = existing.EnforceState == EnforceState.Pending || existing.EnforceState == EnforceState.Failed;
                 return new StoredSpooled(spooled, existing, open);
             }
-        }
-
-        private static bool SameIdentity(LockRecord a, LockRecord b)
-        {
-            return a.Type == b.Type
-                && a.TargetNorm == b.TargetNorm
-                && Normalizer.Norm(a.LinePath) == Normalizer.Norm(b.LinePath)
-                && a.Lanes == b.Lanes;
         }
 
         private sealed class StoredSpooled

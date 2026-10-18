@@ -45,10 +45,10 @@ namespace Interlock.Service.Data
             if (l == null)
                 throw new ArgumentNullException(nameof(l));
 
-            var record = Serialize(l);
-
             lock (_gate)
             {
+                var record = Serialize(l);
+
                 var directory = Path.GetDirectoryName(_path);
                 if (!string.IsNullOrEmpty(directory))
                     Directory.CreateDirectory(directory);

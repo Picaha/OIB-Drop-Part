@@ -286,6 +286,10 @@ namespace Interlock.Core.Locks
             if (_cache.FindActive(LockType.Pu, uidNorm, null, null) != null)
                 return;
 
+            // A report without any mismatch (the echo of our own locks, other reasons) needs no release lookup.
+            if (EscalationFilter.FindNewMismatch(report, null) == null)
+                return;
+
             var mismatch = EscalationFilter.FindNewMismatch(report, LatestReleaseUtcOrNull(uidNorm));
             if (mismatch == null)
                 return;
