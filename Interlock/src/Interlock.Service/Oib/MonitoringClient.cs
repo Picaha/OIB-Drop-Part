@@ -29,7 +29,8 @@ namespace Interlock.Service.Oib
                 ServiceName,
                 () => MonitoringManager.GetOrCreateInstance(address, OibEndpoints.SecureBinding(endpointUri, sendTimeout)),
                 proxy => proxy.Dispose(),
-                clock);
+                clock,
+                proxy => proxy.GetConfiguration()); // a real read on the normal call path; also warms the proxy up
         }
 
         public IList<StationRef> GetStations()

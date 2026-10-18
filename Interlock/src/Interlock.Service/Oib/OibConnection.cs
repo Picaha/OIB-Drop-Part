@@ -23,8 +23,10 @@ namespace Interlock.Service.Oib
     /// either, so it does not start the wait.</item>
     /// </list>
     /// The proxy is created and replaced under a lock, so concurrent first calls create one proxy. Creation (<c>create</c>) runs
-    /// under that lock and may do network I/O, so concurrent callers wait for it. The lock is never held while a call runs or
-    /// while a dead proxy is closed.
+    /// under that lock and may do network I/O, so concurrent callers wait for it, and so do <c>Drop</c> and <c>Dispose</c>: for
+    /// up to the open and send timeouts. The lock is never held while a call runs or while a dead proxy is closed.
+    /// The one-time open does not cover re-opens of a faulted or closed channel (for example after an OIB core restart); those
+    /// happen inside the proxy on a later call.
     /// </summary>
     internal sealed class OibConnection<TProxy> : IDisposable where TProxy : class
     {
@@ -43,7 +45,8 @@ namespace Interlock.Service.Oib
         /// <param name="open">
         /// Opens a new proxy: a harmless first call. WCF channels open themselves on the first call and that open is not safe to
         /// race, so it runs once, right after creation and under the creation lock; the proxy is shared with other threads only
-        /// when it succeeded. A failure counts as a connection failure. Omitted: no open step.
+        /// when it succeeded. It must be a harmless real contract call on the path normal calls take. A fault from the service
+        /// proves the channel open and counts as success; any other failure counts as a connection failure. Omitted: no open step.
         /// </param>
         public OibConnection(string service, Func<TProxy> create, Action<TProxy> close, IClock clock, Action<TProxy> open = null)
         {
@@ -134,7 +137,16 @@ namespace Interlock.Service.Oib
                         var created = _create();
                         failed = created;
                         if (_open != null)
-                            _open(created);
+                        {
+                            try
+                            {
+                                _open(created);
+                            }
+                            catch (FaultException)
+                            {
+                                // The service answered with a fault: the channel is open and works.
+                            }
+                        }
                         failed = null;
                         _proxy = created;
                         return created;

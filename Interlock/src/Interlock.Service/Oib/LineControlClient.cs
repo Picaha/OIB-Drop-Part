@@ -15,6 +15,9 @@ namespace Interlock.Service.Oib
     {
         private const string ServiceName = "Line Control";
 
+        /// <summary>A station path that need not exist: the open step only needs the service to answer, a fault included.</summary>
+        private const string OpenProbeStation = "Interlock\\OpenProbe";
+
         private readonly OibConnection<LineControl> _connection;
 
         /// <param name="sendTimeout">How long a call may take; see <see cref="OibEndpoints.SecureBinding"/> (30 s when omitted).</param>
@@ -29,7 +32,7 @@ namespace Interlock.Service.Oib
                 () => new LineControl(address, OibEndpoints.SecureBinding(endpointUri, sendTimeout)),
                 proxy => proxy.Dispose(),
                 clock,
-                proxy => proxy.IsServiceAlive()); // the first call opens the channel; do it once, before other threads share the proxy
+                proxy => proxy.IsStationConveyorBlockSupported(OpenProbeStation)); // side-effect-free query on the normal call path
         }
 
         // OIB 6.6 and later need no adapter license, so the OIB marks HasAdapterLicense obsolete. The port still reports it for the

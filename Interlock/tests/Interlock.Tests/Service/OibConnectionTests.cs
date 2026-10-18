@@ -275,27 +275,33 @@ namespace Interlock.Tests.Service
 
         // ---- one-time open ----
 
+        private const string OpenInProgress = "Cannot make a call on this channel because a call to Open() is in progress";
+
+        /// <summary>
+        /// Behaves like a WCF channel: the first call opens it (takes 50 ms), and a call made by another thread while that open is
+        /// in progress fails with the WCF message.
+        /// </summary>
         private sealed class ChannelProxy
         {
-            private int _opening;
+            private int _state; // 0 unopened, 1 opening, 2 open
             public int Opens;
             public int Active;
             public int MaxActive;
 
-            /// <summary>Like a WCF channel: a call made while the first call is still opening it fails.</summary>
-            public int FirstCall()
-            {
-                Interlocked.Increment(ref Opens);
-                Interlocked.Exchange(ref _opening, 1);
-                Thread.Sleep(100);
-                Interlocked.Exchange(ref _opening, 0);
-                return 0;
-            }
-
             public int Use(int sleepMs)
             {
-                if (Volatile.Read(ref _opening) == 1)
-                    throw new InvalidOperationException("Cannot make a call on this channel because a call to Open() is in progress");
+                var before = Interlocked.CompareExchange(ref _state, 1, 0);
+                if (before == 0)
+                {
+                    Interlocked.Increment(ref Opens);
+                    Thread.Sleep(50);
+                    Volatile.Write(ref _state, 2);
+                }
+                else if (before == 1)
+                {
+                    throw new InvalidOperationException(OpenInProgress);
+                }
+
                 var now = Interlocked.Increment(ref Active);
                 int seen;
                 while ((seen = Volatile.Read(ref MaxActive)) < now && Interlocked.CompareExchange(ref MaxActive, now, seen) != seen)
@@ -307,54 +313,118 @@ namespace Interlock.Tests.Service
             }
         }
 
-        [Test]
-        public void A_new_proxy_is_opened_once_before_other_threads_use_it()
+        private Task<int>[] CallFromThreads(OibConnection<ChannelProxy> conn, int threads, int sleepMs)
         {
-            ChannelProxy proxy = new ChannelProxy();
-            var conn = new OibConnection<ChannelProxy>("Setup Center", () => proxy, p => { }, _clock, p => p.FirstCall());
             var start = new ManualResetEventSlim(false);
-
-            var tasks = Enumerable.Range(0, 8).Select(i => Task.Run(() => { start.Wait(); return conn.Call("Use", p => p.Use(1)); })).ToArray();
+            var tasks = Enumerable.Range(0, threads)
+                .Select(i => Task.Run(() =>
+                {
+                    start.Wait();
+                    return conn.Call("Use", p => p.Use(sleepMs));
+                })).ToArray();
             start.Set();
-            Task.WaitAll(tasks);
-
-            Assert.That(proxy.Opens, Is.EqualTo(1));
-            Assert.That(tasks.Select(x => x.Result), Is.All.EqualTo(1));
+            try
+            {
+                Task.WaitAll(tasks);
+            }
+            catch (AggregateException)
+            {
+                // The tests look at each task.
+            }
+            return tasks;
         }
 
         [Test]
-        public void A_failed_open_counts_once_closes_the_proxy_and_is_retried_after_the_wait()
+        public void A_new_proxy_is_opened_once_before_other_threads_use_it()
+        {
+            var proxy = new ChannelProxy();
+            var conn = new OibConnection<ChannelProxy>("Setup Center", () => proxy, p => { }, _clock, p => p.Use(0));
+
+            var tasks = CallFromThreads(conn, 8, 1);
+
+            Assert.That(tasks.Select(x => x.Status), Is.All.EqualTo(TaskStatus.RanToCompletion));
+            Assert.That(proxy.Opens, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void Without_an_open_step_concurrent_first_calls_hit_the_open_in_progress_failure()
+        {
+            // The negative twin of the test above: it documents the defect the open step fixes.
+            var proxy = new ChannelProxy();
+            var conn = new OibConnection<ChannelProxy>("Setup Center", () => proxy, p => { }, _clock);
+
+            var tasks = CallFromThreads(conn, 8, 1);
+
+            var failures = tasks.Where(x => x.IsFaulted).Select(x => x.Exception.InnerException).OfType<OibCallException>().ToList();
+            Assert.That(failures, Is.Not.Empty);
+            Assert.That(failures.Select(f => f.InnerException.Message), Has.All.EqualTo(OpenInProgress));
+        }
+
+        [Test]
+        public void A_failed_open_counts_once_even_with_many_callers_and_is_retried_after_the_wait()
         {
             var created = new List<ChannelProxy>();
             var closed = new List<ChannelProxy>();
             var fail = true;
-            var conn = new OibConnection<ChannelProxy>("Setup Center", () => { var p = new ChannelProxy(); created.Add(p); return p; }, closed.Add, _clock,
-                p => { if (fail) throw new System.ServiceModel.EndpointNotFoundException("no core"); });
+            var conn = new OibConnection<ChannelProxy>("Setup Center", () => { lock (created) { var p = new ChannelProxy(); created.Add(p); return p; } }, p => { lock (closed) closed.Add(p); }, _clock,
+                p => { Thread.Sleep(30); if (fail) throw new System.ServiceModel.EndpointNotFoundException("no core"); });
 
-            var ex = Assert.Throws<OibCallException>(() => conn.Call("Use", p => p.Use(0)));
-            Assert.That(ex.InnerException, Is.TypeOf<System.ServiceModel.EndpointNotFoundException>());
-            Assert.That(closed, Is.EqualTo(created), "the unopened proxy is closed");
-            Assert.That(Assert.Throws<OibCallException>(() => conn.Call("Use", p => p.Use(0))).Message, Is.EqualTo("Setup Center not connected"));
+            var tasks = CallFromThreads(conn, 8, 0);
+
+            var errors = tasks.Select(x => x.Exception.InnerException).OfType<OibCallException>().ToList();
+            Assert.That(errors, Has.Count.EqualTo(8));
+            Assert.That(errors.Count(e => e.InnerException is System.ServiceModel.EndpointNotFoundException), Is.EqualTo(1), "one caller ran the open");
+            Assert.That(errors.Count(e => e.Message == "Setup Center not connected"), Is.EqualTo(7));
+            Assert.That(created, Has.Count.EqualTo(1));
+            Assert.That(closed, Is.EqualTo(created));
 
             fail = false;
-            _clock.Advance(TimeSpan.FromSeconds(4));
-            Assert.Throws<OibCallException>(() => conn.Call("Use", p => p.Use(0)));
-            _clock.Advance(TimeSpan.FromSeconds(1));
-            Assert.That(conn.Call("Use", p => p.Use(0)), Is.EqualTo(1), "5 s wait: one failure counted");
+            _clock.Advance(TimeSpan.FromSeconds(5));
+            Assert.That(conn.Call("Use", p => p.Use(0)), Is.EqualTo(1), "one failure means a 5 s wait");
             Assert.That(created, Has.Count.EqualTo(2));
+        }
+
+        [Test]
+        public void A_fault_from_the_open_step_proves_the_channel_open()
+        {
+            var created = new List<ChannelProxy>();
+            var conn = new OibConnection<ChannelProxy>("Line Control", () => { var p = new ChannelProxy(); created.Add(p); return p; }, p => { }, _clock,
+                p => { throw new FaultException("unknown station"); });
+
+            Assert.That(conn.Call("Use", p => p.Use(0)), Is.EqualTo(1));
+            Assert.That(conn.Call("Use", p => p.Use(0)), Is.EqualTo(1));
+            Assert.That(created, Has.Count.EqualTo(1), "the proxy was kept and no wait started");
+        }
+
+        [Test]
+        public void Disposing_during_an_open_waits_for_it_and_then_closes_the_proxy()
+        {
+            var release = new ManualResetEventSlim(false);
+            var entered = new ManualResetEventSlim(false);
+            var proxy = new ChannelProxy();
+            var closed = new List<ChannelProxy>();
+            var conn = new OibConnection<ChannelProxy>("Setup Center", () => proxy, p => { lock (closed) closed.Add(p); }, _clock,
+                p => { entered.Set(); release.Wait(); });
+
+            var call = Task.Run(() => conn.Call("Use", p => p.Use(0)));
+            Assert.That(entered.Wait(5000), Is.True);
+            var dispose = Task.Run(() => conn.Dispose());
+            Assert.That(dispose.Wait(150), Is.False, "Dispose waits for the open (documented)");
+
+            release.Set();
+
+            Assert.That(Task.WaitAll(new Task[] { call, dispose }, 5000), Is.True, "no deadlock");
+            Assert.That(closed, Is.EqualTo(new[] { proxy }));
         }
 
         [Test]
         public void After_the_open_calls_run_concurrently()
         {
             var proxy = new ChannelProxy();
-            var conn = new OibConnection<ChannelProxy>("Setup Center", () => proxy, p => { }, _clock, p => p.FirstCall());
+            var conn = new OibConnection<ChannelProxy>("Setup Center", () => proxy, p => { }, _clock, p => p.Use(0));
             conn.Call("Use", p => p.Use(0));
-            var start = new ManualResetEventSlim(false);
 
-            var tasks = Enumerable.Range(0, 2).Select(i => Task.Run(() => { start.Wait(); return conn.Call("Use", p => p.Use(300)); })).ToArray();
-            start.Set();
-            Task.WaitAll(tasks);
+            CallFromThreads(conn, 2, 300);
 
             Assert.That(proxy.MaxActive, Is.EqualTo(2), "two slow calls overlapped");
         }
