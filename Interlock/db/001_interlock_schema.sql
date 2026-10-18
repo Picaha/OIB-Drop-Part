@@ -84,8 +84,10 @@ CREATE TABLE IF NOT EXISTS interlock.api_key (
     created_at timestamptz NOT NULL
 );
 
--- At most one ACTIVE lock per identity. A violation is reported to the service as DuplicateActiveLockException.
-CREATE UNIQUE INDEX IF NOT EXISTS lock_active_uq ON interlock.lock (lock_type, target_norm, coalesce(line_path, ''), coalesce(lanes, '')) WHERE status = 'ACTIVE';
+-- At most one ACTIVE lock per identity: type, normalised target, line compared ignoring case and surrounding whitespace
+-- (blank = plant-wide, like NULL), and lanes. The line expression is the one FindActive uses. A violation is reported to
+-- the service as DuplicateActiveLockException.
+CREATE UNIQUE INDEX IF NOT EXISTS lock_active_uq ON interlock.lock (lock_type, target_norm, upper(btrim(coalesce(line_path, ''), E' \t\r\n')), coalesce(lanes, '')) WHERE status = 'ACTIVE';
 CREATE INDEX IF NOT EXISTS lock_status_ix ON interlock.lock (status);
 
 CREATE INDEX IF NOT EXISTS lock_applied_pu_open_lock_ix ON interlock.lock_applied_pu (lock_id) WHERE released_at IS NULL;
@@ -102,3 +104,5 @@ CREATE INDEX IF NOT EXISTS decision_log_uid_ix ON interlock.decision_log (upper(
 -- Names are unique ignoring case; SaveUser upserts on this index.
 CREATE UNIQUE INDEX IF NOT EXISTS app_user_username_uq ON interlock.app_user (lower(username));
 CREATE UNIQUE INDEX IF NOT EXISTS api_key_name_uq ON interlock.api_key (lower(name));
+-- One key per hash; also the index for the lookup on every API request.
+CREATE UNIQUE INDEX IF NOT EXISTS api_key_hash_uq ON interlock.api_key (key_hash);

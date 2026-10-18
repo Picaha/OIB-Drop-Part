@@ -30,6 +30,19 @@ namespace Interlock.Tests.Integration
             Assert.That(ex.InnerException, Is.Not.Null, "the cause is kept");
         }
 
+        // ---- log texts ----
+
+        [Test]
+        public void WithoutNul_removes_nul_characters_and_keeps_everything_else()
+        {
+            const string plain = "Interlock: PU U1 locked – damaged (#7)\r\n";
+
+            Assert.That(NpgsqlDb.WithoutNul(null), Is.Null);
+            Assert.That(NpgsqlDb.WithoutNul("\0U\01\0"), Is.EqualTo("U1"));
+            Assert.That(NpgsqlDb.WithoutNul("\0"), Is.EqualTo(string.Empty));
+            Assert.That(NpgsqlDb.WithoutNul(plain), Is.SameAs(plain));
+        }
+
         // ---- transient SQL states ----
 
         [TestCase("08000")]

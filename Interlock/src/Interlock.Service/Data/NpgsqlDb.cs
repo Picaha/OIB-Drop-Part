@@ -12,10 +12,11 @@ using NpgsqlTypes;
 namespace Interlock.Service.Data
 {
     /// <summary>
-    /// Opens connections to the Interlock database and turns connection failures and transient server conditions into
-    /// <see cref="DbUnavailableException"/>; every other failure (constraint violations, syntax, permissions) goes through
-    /// unchanged. Each call uses one short-lived connection from the Npgsql pool. Unless the connection string sets them,
-    /// the connect timeout is 5 s and the command timeout 10 s: the lock write gate is held across database calls.
+    /// Opens connections to the Interlock database. Every failure to connect, and every connection failure or transient
+    /// server condition while a call runs, becomes <see cref="DbUnavailableException"/>; any other failure of a running call
+    /// (constraint violations, syntax, permissions) goes through unchanged. Each call uses one short-lived connection from
+    /// the Npgsql pool. Unless the connection string sets them, the connect timeout is 5 s and the command timeout 10 s:
+    /// the lock write gate is held across database calls.
     /// The schema name is the only text put into SQL; it is checked against <c>^[a-z_][a-z0-9_]*$</c>.
     /// </summary>
     public sealed class NpgsqlDb
@@ -52,7 +53,11 @@ namespace Interlock.Service.Data
 
         public string Schema { get; }
 
-        /// <summary>An open connection; the caller disposes it. Throws <see cref="DbUnavailableException"/> when the database cannot be reached.</summary>
+        /// <summary>
+        /// An open connection; the caller disposes it. Every failure to connect throws <see cref="DbUnavailableException"/>
+        /// with the cause as inner exception, server errors included (a rotated password, a pg_hba change, a missing
+        /// database): no record can be at fault before a connection exists, so each of them means the database is unavailable.
+        /// </summary>
         public NpgsqlConnection Open()
         {
             var connection = new NpgsqlConnection(_connectionString);
@@ -64,14 +69,14 @@ namespace Interlock.Service.Data
             catch (Exception e)
             {
                 connection.Dispose();
-                var mapped = Map(e);
-                if (ReferenceEquals(mapped, e))
-                    throw;
-                throw mapped;
+                throw new DbUnavailableException("Database unavailable: " + e.Message, e);
             }
         }
 
-        /// <summary>Runs <paramref name="work"/> on a fresh connection and maps its failures like <see cref="Open"/>.</summary>
+        /// <summary>
+        /// Runs <paramref name="work"/> on a fresh connection from <see cref="Open"/>. Failures while it runs are mapped with
+        /// <see cref="Map"/>: connection failures and transient server conditions become <see cref="DbUnavailableException"/>.
+        /// </summary>
         internal T Run<T>(Func<NpgsqlConnection, T> work)
         {
             try
@@ -197,6 +202,17 @@ namespace Interlock.Service.Data
         internal static object ToUtcOrNull(DateTime? value)
         {
             return value.HasValue ? (object)ToUtc(value.Value) : null;
+        }
+
+        /// <summary>
+        /// The text without NUL characters, which PostgreSQL rejects in text (22021). Used for the action and decision logs,
+        /// so one stray NUL from a scanner or an OIB reply cannot make a log batch fail on every retry.
+        /// </summary>
+        internal static string WithoutNul(string text)
+        {
+            if (text == null || text.IndexOf('\0') < 0)
+                return text;
+            return text.Replace("\0", string.Empty);
         }
 
         internal static string GetText(DbDataReader reader, int ordinal)

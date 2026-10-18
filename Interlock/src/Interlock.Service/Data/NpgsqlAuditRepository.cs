@@ -11,7 +11,8 @@ namespace Interlock.Service.Data
 {
     /// <summary>
     /// The action log and the decision log in PostgreSQL. Actions are listed by id; the decision search returns the newest
-    /// rows first. A batch of decisions is written in one transaction: all of it or nothing.
+    /// rows first. A batch of decisions is written in one transaction: all of it or nothing. NUL characters are removed from
+    /// every text written, because PostgreSQL rejects them and a rejected batch would fail on every retry.
     /// </summary>
     public sealed class NpgsqlAuditRepository : IAuditRepository
     {
@@ -28,7 +29,7 @@ namespace Interlock.Service.Data
             _db = db;
         }
 
-        /// <summary>Stores the entry; the database gives it its id. The caller's entry is not changed.</summary>
+        /// <summary>Stores the entry with NUL characters removed from its texts; the database gives it its id. The caller's entry is not changed.</summary>
         public void AddAction(ActionLogEntry e)
         {
             if (e == null)
@@ -41,10 +42,10 @@ namespace Interlock.Service.Data
                     + "VALUES (@lock_id, @action, @request_json, @success, @error, @attempt, @created_at)"))
                 {
                     NpgsqlDb.Add(command, "lock_id", NpgsqlDbType.Bigint, e.LockId);
-                    NpgsqlDb.Add(command, "action", NpgsqlDbType.Text, e.Action);
-                    NpgsqlDb.Add(command, "request_json", NpgsqlDbType.Text, e.RequestJson);
+                    NpgsqlDb.Add(command, "action", NpgsqlDbType.Text, NpgsqlDb.WithoutNul(e.Action));
+                    NpgsqlDb.Add(command, "request_json", NpgsqlDbType.Text, NpgsqlDb.WithoutNul(e.RequestJson));
                     NpgsqlDb.Add(command, "success", NpgsqlDbType.Boolean, e.Success);
-                    NpgsqlDb.Add(command, "error", NpgsqlDbType.Text, e.Error);
+                    NpgsqlDb.Add(command, "error", NpgsqlDbType.Text, NpgsqlDb.WithoutNul(e.Error));
                     NpgsqlDb.Add(command, "attempt", NpgsqlDbType.Integer, e.Attempt);
                     NpgsqlDb.Add(command, "created_at", NpgsqlDbType.TimestampTz, NpgsqlDb.ToUtc(e.CreatedAtUtc));
                     command.ExecuteNonQuery();
@@ -72,7 +73,10 @@ namespace Interlock.Service.Data
             });
         }
 
-        /// <summary>Writes the whole batch in one transaction; when one row fails, none is stored and the failure is thrown.</summary>
+        /// <summary>
+        /// Writes the whole batch in one transaction, with NUL characters removed from the texts; when one row fails, none is
+        /// stored and the failure is thrown.
+        /// </summary>
         public void AddDecisions(IList<DecisionLogEntry> e)
         {
             if (e == null)
@@ -109,18 +113,18 @@ namespace Interlock.Service.Data
 
                     foreach (var d in e)
                     {
-                        method.Value = Value(d.Method);
+                        method.Value = LogText(d.Method);
                         reasonCode.Value = d.ReasonCode.HasValue ? (object)d.ReasonCode.Value : DBNull.Value;
-                        uid.Value = Value(d.Uid);
-                        pn.Value = Value(d.Pn);
-                        mpn.Value = Value(d.Mpn);
-                        supplier.Value = Value(d.Supplier);
-                        linePath.Value = Value(d.LinePath);
-                        machineId.Value = Value(d.MachineId);
-                        feederId.Value = Value(d.FeederId);
-                        result.Value = Value(d.Result);
-                        message.Value = Value(d.Message);
-                        matchedLockIds.Value = Value(d.MatchedLockIds);
+                        uid.Value = LogText(d.Uid);
+                        pn.Value = LogText(d.Pn);
+                        mpn.Value = LogText(d.Mpn);
+                        supplier.Value = LogText(d.Supplier);
+                        linePath.Value = LogText(d.LinePath);
+                        machineId.Value = LogText(d.MachineId);
+                        feederId.Value = LogText(d.FeederId);
+                        result.Value = LogText(d.Result);
+                        message.Value = LogText(d.Message);
+                        matchedLockIds.Value = LogText(d.MatchedLockIds);
                         createdAt.Value = NpgsqlDb.ToUtc(d.CreatedAtUtc);
                         command.ExecuteNonQuery();
                     }
@@ -186,9 +190,10 @@ namespace Interlock.Service.Data
             return command.Parameters.Add(new NpgsqlParameter(name, NpgsqlDbType.Text));
         }
 
-        private static object Value(string text)
+        /// <summary>A log text as a parameter value: NUL characters removed, null as <see cref="DBNull"/>.</summary>
+        private static object LogText(string text)
         {
-            return (object)text ?? DBNull.Value;
+            return (object)NpgsqlDb.WithoutNul(text) ?? DBNull.Value;
         }
 
         private static ActionLogEntry ReadAction(DbDataReader r)

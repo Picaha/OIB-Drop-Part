@@ -112,7 +112,10 @@ namespace Interlock.Service.Data
             });
         }
 
-        /// <summary>Stores the key and returns the stored record with its id. A name taken already (ignoring case) is a unique violation.</summary>
+        /// <summary>
+        /// Stores the key and returns the stored record with its id. A name taken already (ignoring case) or a hash stored
+        /// already is a unique violation.
+        /// </summary>
         public ApiKeyRecord InsertApiKey(ApiKeyRecord k)
         {
             if (k == null)

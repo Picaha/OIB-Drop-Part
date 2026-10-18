@@ -24,8 +24,9 @@ namespace Interlock.Tests.Integration
         private const string Schema = "interlock_test";
         private static readonly DateTime T0 = new DateTime(2026, 10, 18, 8, 0, 0, 123, DateTimeKind.Utc);
         private static readonly DateTime T = T0.AddMinutes(30);
-        private static readonly TimeSpan Ms = TimeSpan.FromMilliseconds(1);
+        private const string Nul = "\0";
 
+        private string _connectionString;
         private NpgsqlDb _db;
         private NpgsqlLockRepository _repo;
         private NpgsqlAuditRepository _audit;
@@ -34,11 +35,11 @@ namespace Interlock.Tests.Integration
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
-            var connectionString = Environment.GetEnvironmentVariable("INTERLOCK_TEST_DB");
-            if (string.IsNullOrWhiteSpace(connectionString))
+            _connectionString = Environment.GetEnvironmentVariable("INTERLOCK_TEST_DB");
+            if (string.IsNullOrWhiteSpace(_connectionString))
                 Assert.Ignore("INTERLOCK_TEST_DB is not set; the integration tests need a non-production PostgreSQL database.");
 
-            _db = new NpgsqlDb(connectionString, Schema);
+            _db = new NpgsqlDb(_connectionString, Schema);
             Execute("DROP SCHEMA IF EXISTS " + Schema + " CASCADE");
             RunSchemaScript();
             _repo = new NpgsqlLockRepository(_db);
@@ -83,6 +84,14 @@ namespace Interlock.Tests.Integration
             using (var connection = _db.Open())
             using (var command = new NpgsqlCommand(sql.Replace("{schema}", Schema), connection))
                 return command.ExecuteScalar();
+        }
+
+        /// <summary>A database object for the test server with one connection setting changed.</summary>
+        private NpgsqlDb DbWith(Action<NpgsqlConnectionStringBuilder> change)
+        {
+            var builder = new NpgsqlConnectionStringBuilder(_connectionString);
+            change(builder);
+            return new NpgsqlDb(builder.ConnectionString, Schema);
         }
 
         private static LockRecord L(LockType type, string target, string line = null, Lanes? lanes = null, string reason = "reason")
@@ -136,6 +145,32 @@ namespace Interlock.Tests.Integration
             Assert.That(actual.ReleaseReason, Is.EqualTo(expected.ReleaseReason), "ReleaseReason");
             Assert.That(actual.EnforceState, Is.EqualTo(expected.EnforceState), "EnforceState");
             Assert.That(actual.EnforceError, Is.EqualTo(expected.EnforceError), "EnforceError");
+        }
+
+        // ---- connecting ----
+
+        [Test]
+        public void A_missing_database_is_an_outage()
+        {
+            var db = DbWith(b => b.Database = "interlock_no_such_database");
+
+            var ex = Assert.Throws<DbUnavailableException>(() => new NpgsqlLockRepository(db).Insert(Pu(0, "U1")));
+
+            Assert.That(ex.InnerException, Is.TypeOf<PostgresException>());
+            Assert.That(((PostgresException)ex.InnerException).SqlState, Is.EqualTo("3D000"));
+        }
+
+        [Test]
+        public void An_unknown_user_is_an_outage()
+        {
+            var db = DbWith(b => b.Username = "interlock_no_such_user");
+
+            var ex = Assert.Throws<DbUnavailableException>(() => db.Open());
+            Assert.Throws<DbUnavailableException>(() => new NpgsqlAuditRepository(db).GetActions(1));
+            Assert.Throws<DbUnavailableException>(() => new NpgsqlUserRepository(db).FindUser("qa1"));
+
+            Assert.That(ex.InnerException, Is.TypeOf<PostgresException>());
+            Assert.That(((PostgresException)ex.InnerException).SqlState, Is.EqualTo("28000"));
         }
 
         // ---- schema ----
@@ -291,6 +326,18 @@ namespace Interlock.Tests.Integration
             Assert.Throws<DuplicateActiveLockException>(() => _repo.Insert(L(LockType.Conveyor, "S1", lanes: Lanes.Left)));
             Assert.Throws<DuplicateActiveLockException>(() => _repo.Insert(L(LockType.Pn, "X")), "null line equals null line");
             Assert.Throws<DuplicateActiveLockException>(() => _repo.Insert(L(LockType.Pn, "X", line: "Lines\\L1")));
+        }
+
+        [Test]
+        public void Line_paths_that_differ_only_in_case_or_surrounding_whitespace_are_one_identity()
+        {
+            _repo.Insert(Pn(0, "X", "Lines\\L1"));
+            _repo.Insert(Pn(0, "Y"));
+
+            Assert.Throws<DuplicateActiveLockException>(() => _repo.Insert(Pn(0, "X", " lines\\l1\r\n")));
+            Assert.Throws<DuplicateActiveLockException>(() => _repo.Insert(Pn(0, "X", "LINES\\L1")));
+            Assert.Throws<DuplicateActiveLockException>(() => _repo.Insert(Pn(0, "Y", " \t")), "a blank line is plant-wide");
+            Assert.That(_repo.LoadActive().Count, Is.EqualTo(2));
         }
 
         [Test]
@@ -889,6 +936,84 @@ namespace Interlock.Tests.Integration
 
             Assert.That(ex.SqlState, Is.EqualTo("23505"));
             Assert.That(_users.ListApiKeys().Count, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void Api_key_hashes_are_unique_and_the_violation_is_not_an_outage()
+        {
+            var first = _users.InsertApiKey(new ApiKeyRecord { Name = "mes", KeyHash = "abc123", Active = true, CreatedAtUtc = T0 });
+
+            var ex = Assert.Throws<PostgresException>(() =>
+                _users.InsertApiKey(new ApiKeyRecord { Name = "erp", KeyHash = "abc123", Active = true, CreatedAtUtc = T0 }));
+
+            Assert.That(ex.SqlState, Is.EqualTo("23505"));
+            Assert.That(ex.ConstraintName, Is.EqualTo("api_key_hash_uq"));
+            Assert.That(_users.FindApiKeyByHash("abc123").Id, Is.EqualTo(first.Id));
+            Assert.That(_users.ListApiKeys().Select(k => k.Name), Is.EqualTo(new[] { "mes" }));
+        }
+
+        // ---- NUL characters in the logs ----
+
+        [Test]
+        public void Nul_characters_are_removed_from_decision_texts_and_the_rest_of_the_batch_is_stored()
+        {
+            _audit.AddDecisions(new List<DecisionLogEntry>
+            {
+                new DecisionLogEntry
+                {
+                    Method = "m" + Nul,
+                    Uid = "U" + Nul + "1",
+                    Pn = Nul + "P1",
+                    Mpn = Nul,
+                    Supplier = "AC" + Nul + "ME",
+                    LinePath = "Lines\\L1" + Nul,
+                    MachineId = "MC" + Nul + "1",
+                    FeederId = "F" + Nul + "1",
+                    Result = "LOCKED" + Nul,
+                    Message = "a" + Nul + "b",
+                    MatchedLockIds = "7" + Nul + ",9",
+                    CreatedAtUtc = T0
+                },
+                new DecisionLogEntry { Method = "m", Uid = "U2", Result = "OK", CreatedAtUtc = T0.AddMinutes(1) }
+            });
+
+            var rows = _audit.QueryDecisions(new DecisionQuery());
+
+            Assert.That(rows.Select(d => d.Uid), Is.EqualTo(new[] { "U2", "U1" }), "both rows of the batch are stored");
+            var cleaned = rows[1];
+            Assert.That(cleaned.Method, Is.EqualTo("m"));
+            Assert.That(cleaned.Pn, Is.EqualTo("P1"));
+            Assert.That(cleaned.Mpn, Is.EqualTo(string.Empty));
+            Assert.That(cleaned.Supplier, Is.EqualTo("ACME"));
+            Assert.That(cleaned.LinePath, Is.EqualTo("Lines\\L1"));
+            Assert.That(cleaned.MachineId, Is.EqualTo("MC1"));
+            Assert.That(cleaned.FeederId, Is.EqualTo("F1"));
+            Assert.That(cleaned.Result, Is.EqualTo("LOCKED"));
+            Assert.That(cleaned.Message, Is.EqualTo("ab"));
+            Assert.That(cleaned.MatchedLockIds, Is.EqualTo("7,9"));
+            Assert.That(_audit.QueryDecisions(new DecisionQuery { Uid = "u1" }).Count, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void Nul_characters_are_removed_from_action_texts()
+        {
+            var lockId = _repo.Insert(Pu(0, "U1")).Id;
+
+            _audit.AddAction(new ActionLogEntry
+            {
+                LockId = lockId,
+                Action = Actions.LOCK_PU + Nul,
+                RequestJson = "{\"uids\":[\"U" + Nul + "1\"]}",
+                Success = false,
+                Error = "bad" + Nul + " reply",
+                Attempt = 1,
+                CreatedAtUtc = T0
+            });
+
+            var stored = _audit.GetActions(lockId).Single();
+            Assert.That(stored.Action, Is.EqualTo(Actions.LOCK_PU));
+            Assert.That(stored.RequestJson, Is.EqualTo("{\"uids\":[\"U1\"]}"));
+            Assert.That(stored.Error, Is.EqualTo("bad reply"));
         }
     }
 }
