@@ -179,7 +179,8 @@ namespace Interlock.Ui
                 }
             }
             catch (ApiException) { throw; }
-            catch (Exception ex) when (ex is HttpRequestException || ex is OperationCanceledException || ex is WebException || ex is IOException)
+            catch (Exception ex) when (ex is HttpRequestException || ex is OperationCanceledException || ex is WebException || ex is IOException
+                || ex is ObjectDisposedException || ex is InvalidOperationException || ex is UriFormatException || ex is ArgumentException)
             {
                 // Details (host names, stack text) are deliberately not shown to the operator.
                 throw new ApiException(0, null, Unreachable);

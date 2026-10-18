@@ -8,9 +8,21 @@ namespace Interlock.Ui
     {
         private const string DefaultBaseUrl = "http://localhost:8090/interlock/v1";
 
+        private static readonly NoticeThrottle Notice = new NoticeThrottle(TimeSpan.FromSeconds(30));
+
+        private static void OnUnhandled(Exception ex)
+        {
+            if (ex != null) UiSafety.Log(ex);
+            if (Notice.TryAcquire())
+                MessageBox.Show("An unexpected error occurred. Details are in ui-error.log.", "Interlock", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+
         [STAThread]
         private static void Main()
         {
+            Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
+            Application.ThreadException += (s, e) => OnUnhandled(e.Exception);
+            AppDomain.CurrentDomain.UnhandledException += (s, e) => OnUnhandled(e.ExceptionObject as Exception);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 

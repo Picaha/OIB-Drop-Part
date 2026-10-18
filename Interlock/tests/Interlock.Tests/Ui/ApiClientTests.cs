@@ -101,6 +101,19 @@ namespace Interlock.Tests.Ui
             Assert.That(ex.Message, Is.EqualTo("Cannot reach the Interlock service"));
         }
 
+        [TestCase(typeof(ObjectDisposedException))]
+        [TestCase(typeof(InvalidOperationException))]
+        [TestCase(typeof(UriFormatException))]
+        [TestCase(typeof(ArgumentException))]
+        public void Client_side_exceptions_are_status_zero(Type type)
+        {
+            var thrown = type == typeof(ObjectDisposedException) ? new ObjectDisposedException("x") : (Exception)Activator.CreateInstance(type);
+            var c = Client(new StubHandler(thrown));
+            var ex = Assert.ThrowsAsync<ApiException>(() => c.GetHealth());
+            Assert.That(ex.Status, Is.EqualTo(0));
+            Assert.That(ex.Message, Is.EqualTo("Cannot reach the Interlock service"));
+        }
+
         [Test]
         public void Timeout_is_status_zero()
         {

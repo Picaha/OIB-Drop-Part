@@ -139,7 +139,7 @@ namespace Interlock.Ui
             AddColumn("Reason", 220);
             AddColumn("Source", 90);
             AddColumn("By", 90);
-            AddColumn("Created", 140);
+            AddColumn("Created (local)", 140);
             AddColumn("State", 90);
             AddColumn("Error", 260);
 
@@ -162,24 +162,31 @@ namespace Interlock.Ui
         private void WireEvents()
         {
             _client.Unauthorized += OnUnauthorized;
-            Load += async (s, e) => await OnLoadAsync();
+            Load += async (s, e) => await UiSafety.RunAsync(OnLoadAsync);
             FormClosed += (s, e) => Shutdown();
 
-            _lockTimer.Tick += async (s, e) => await RefreshLocksAsync(false);
-            _healthTimer.Tick += async (s, e) => await RefreshHealthAsync();
-            _searchDelay.Tick += async (s, e) => { _searchDelay.Stop(); await RefreshLocksAsync(true); };
+            _lockTimer.Tick += async (s, e) => await UiSafety.RunAsync(() => RefreshLocksAsync(false));
+            _healthTimer.Tick += async (s, e) => await UiSafety.RunAsync(RefreshHealthAsync);
+            _searchDelay.Tick += async (s, e) => { _searchDelay.Stop(); await UiSafety.RunAsync(() => RefreshLocksAsync(true)); };
 
             _type.SelectedIndexChanged += async (s, e) => await RefreshLocksAsync(true);
             _line.SelectedIndexChanged += async (s, e) => await RefreshLocksAsync(true);
             _search.TextChanged += (s, e) => { _searchDelay.Stop(); _searchDelay.Start(); };
             _grid.SelectionChanged += (s, e) => { if (!_binding) UpdateButtons(); };
 
-            _new.Click += async (s, e) => { NewLockDialog(this, _client, _session); await RefreshLocksAsync(true); };
-            _release.Click += async (s, e) => { var l = Selected(); if (MainRules.CanRelease(_session, l)) { ReleaseDialog(this, _client, l); await RefreshLocksAsync(true); } };
-            _history.Click += (s, e) => HistoryDialog(this, _client, Selected());
-            _admin.Click += (s, e) => AdminDialog(this, _client, _session);
-            _retry.Click += async (s, e) => await RetryAsync();
+            _new.Click += async (s, e) => { Dialog(() => NewLockDialog(this, _client, _session)); await RefreshLocksAsync(true); };
+            _release.Click += async (s, e) => { var l = Selected(); if (MainRules.CanRelease(_session, l)) { Dialog(() => ReleaseDialog(this, _client, l)); await RefreshLocksAsync(true); } };
+            _history.Click += (s, e) => { var l = Selected(); Dialog(() => HistoryDialog(this, _client, l)); };
+            _admin.Click += (s, e) => Dialog(() => AdminDialog(this, _client, _session));
+            _retry.Click += async (s, e) => await UiSafety.RunAsync(RetryAsync);
             _logout.Click += (s, e) => { ReturnToLogin = true; Close(); };
+        }
+
+        /// <summary>Runs a dialog hook; a failure is logged and shown as one neutral message.</summary>
+        private void Dialog(Action show)
+        {
+            if (!UiSafety.Run(show) && !_closed)
+                MessageBox.Show(this, "Something went wrong. See ui-error.log for details.", "Interlock", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
         // ---- refresh -----------------------------------------------------------------------------------------------
@@ -213,7 +220,7 @@ namespace Interlock.Ui
                 finally { _binding = false; }
                 _linesLoaded = true;
             }
-            catch (ApiException) { /* retried on the next tick; the grid shows the service state */ }
+            catch (Exception ex) { UiSafety.Log(ex); /* retried on the next tick; the grid shows the service state */ }
         }
 
         /// <summary>Reloads the grid. A tick (<paramref name="force"/> false) is skipped while a refresh runs; a filter change is run again afterwards.</summary>
@@ -234,10 +241,11 @@ namespace Interlock.Ui
                 Bind(locks);
                 _service.Text = locks.Count + " active lock(s), updated " + DateTime.Now.ToString("HH:mm:ss");
             }
-            catch (ApiException ex)
+            catch (Exception ex)
             {
+                if (!(ex is ApiException)) UiSafety.Log(ex);
                 if (_closed) return;
-                _service.Text = ex.Status == 0 ? "Service unreachable" : ex.Message;
+                _service.Text = UiSafety.StatusFor(ex);
             }
             finally
             {
@@ -265,8 +273,9 @@ namespace Interlock.Ui
                 _failed.ForeColor = summary.Failed > 0 ? Color.Firebrick : SystemColors.ControlText;
                 _alarm.Text = summary.LatestAlarm.Length == 0 ? "" : "Alarm: " + summary.LatestAlarm;
             }
-            catch (ApiException)
+            catch (Exception ex)
             {
+                if (!(ex is ApiException)) UiSafety.Log(ex);
                 if (_closed) return;
                 SetDot(_sc, "SC", Dot.Unknown);
                 SetDot(_lc, "LineControl", Dot.Unknown);
@@ -291,6 +300,7 @@ namespace Interlock.Ui
         {
             var selectedId = Selected() == null ? (long?)null : Selected().id;
             var firstRow = _grid.FirstDisplayedScrollingRowIndex;
+            var column = _grid.CurrentCell == null ? 0 : _grid.CurrentCell.ColumnIndex;
 
             _binding = true;
             _grid.SuspendLayout();
@@ -318,6 +328,7 @@ namespace Interlock.Ui
                         if (((LockDto)row.Tag).id == selectedId.Value)
                         {
                             row.Selected = true;
+                            _grid.CurrentCell = row.Cells[column];
                             break;
                         }
                     }
@@ -363,9 +374,11 @@ namespace Interlock.Ui
             {
                 await _client.Retry(l.id);
             }
-            catch (ApiException ex)
+            catch (Exception ex)
             {
-                if (!_closed) MessageBox.Show(this, ex.Message, "Retry", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                if (!(ex is ApiException)) UiSafety.Log(ex);
+                if (!_closed)
+                    MessageBox.Show(this, ex is ApiException ? ex.Message : "Unexpected error - see log", "Retry", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             finally
             {

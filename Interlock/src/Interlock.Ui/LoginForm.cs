@@ -80,21 +80,25 @@ namespace Interlock.Ui
                 _message.Text = ex.Message;
                 Failed();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                UiSafety.Log(ex);
                 _message.Text = "Sign-in failed";
                 Failed();
             }
             finally
             {
-                if (!IsDisposed) SetBusy(false);
+                if (!IsDisposed)
+                {
+                    SetBusy(false);
+                    if (DialogResult != DialogResult.OK) _pin.Focus();
+                }
             }
         }
 
         private void Failed()
         {
             _pin.Clear();
-            if (!IsDisposed) _pin.Focus();
         }
 
         private void SetBusy(bool busy)
