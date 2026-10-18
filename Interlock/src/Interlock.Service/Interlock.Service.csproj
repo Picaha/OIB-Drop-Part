@@ -11,6 +11,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <!-- The generated WCF proxy; the External Control services implement its contracts. Never edit it. -->
+    <Compile Include="..\..\..\Interfaces\WCF Proxies (C#)\proxySetupCenter.cs" Link="ExternalControl\proxySetupCenter.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.ServiceModel.Web" />
     <Reference Include="System.ServiceProcess" />
