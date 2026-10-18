@@ -13,6 +13,14 @@ using Interlock.Core.Api;
 
 namespace Interlock.Ui
 {
+    public sealed class CreateResult
+    {
+        public LockDto Lock { get; set; }
+
+        /// <summary>False when an identical lock already existed (HTTP 200).</summary>
+        public bool Created { get; set; }
+    }
+
     /// <summary>
     /// The REST client of the Interlock service (HttpClient + DataContractJsonSerializer). Every call is a Task so the forms
     /// can await it. A failed call throws <see cref="ApiException"/> with a message that is safe to show to an operator;
@@ -69,9 +77,11 @@ namespace Interlock.Ui
             return Send<LockDetailDto>(HttpMethod.Get, "locks/" + Num(id), null, true);
         }
 
-        public Task<LockDto> Create(CreateLockDto d)
+        /// <summary>The service answers 201 for a new lock and 200 with the existing lock for an identical one.</summary>
+        public async Task<CreateResult> Create(CreateLockDto d)
         {
-            return Send<LockDto>(HttpMethod.Post, "locks", d, true);
+            var reply = await SendCore<LockDto>(HttpMethod.Post, "locks", d, true).ConfigureAwait(false);
+            return new CreateResult { Lock = reply.Value, Created = reply.Status == HttpStatusCode.Created };
         }
 
         public Task<LockDto> Release(long id, string reason)
@@ -154,7 +164,14 @@ namespace Interlock.Ui
             return t.HasValue ? t.Value.ToUniversalTime().ToString("o", CultureInfo.InvariantCulture) : null;
         }
 
+        private sealed class Reply<T> { public HttpStatusCode Status; public T Value; }
+
         private async Task<T> Send<T>(HttpMethod method, string path, object body, bool authenticated) where T : class
+        {
+            return (await SendCore<T>(method, path, body, authenticated).ConfigureAwait(false)).Value;
+        }
+
+        private async Task<Reply<T>> SendCore<T>(HttpMethod method, string path, object body, bool authenticated) where T : class
         {
             var request = new HttpRequestMessage(method, _base + "/" + path);
             if (authenticated && !string.IsNullOrEmpty(Token))
@@ -191,7 +208,7 @@ namespace Interlock.Ui
 
             if ((int)status >= 200 && (int)status < 300)
             {
-                try { return Deserialize<T>(text); }
+                try { return new Reply<T> { Status = status, Value = Deserialize<T>(text) }; }
                 catch (Exception ex) when (!(ex is OutOfMemoryException))
                 {
                     throw new ApiException((int)status, null, "The service answered with something unexpected");

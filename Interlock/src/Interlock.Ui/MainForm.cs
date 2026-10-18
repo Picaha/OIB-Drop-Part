@@ -69,16 +69,11 @@ namespace Interlock.Ui
         /// <summary>Why the login screen comes back, shown there; null for a plain logout.</summary>
         public string LoginNotice { get; private set; }
 
-        // Task 18 fills these with the real dialogs. The stubs only say they are not there yet.
-        public Action<IWin32Window, ApiClient, Session> NewLockDialog { get; set; } = NotAvailable<Session>("New lock");
-        public Action<IWin32Window, ApiClient, LockDto> ReleaseDialog { get; set; } = NotAvailable<LockDto>("Release");
-        public Action<IWin32Window, ApiClient, LockDto> HistoryDialog { get; set; } = NotAvailable<LockDto>("History");
-        public Action<IWin32Window, ApiClient, Session> AdminDialog { get; set; } = NotAvailable<Session>("Admin");
-
-        private static Action<IWin32Window, ApiClient, T> NotAvailable<T>(string what)
-        {
-            return (owner, client, arg) => MessageBox.Show(owner, what + " is not available yet.", "Interlock", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
+        // The dialogs are hooks so a test can replace them; the defaults are the real dialogs.
+        public Action<IWin32Window, ApiClient, Session> NewLockDialog { get; set; } = Dialogs.NewLock;
+        public Action<IWin32Window, ApiClient, LockDto> ReleaseDialog { get; set; } = Dialogs.Release;
+        public Action<IWin32Window, ApiClient, LockDto> HistoryDialog { get; set; } = Dialogs.History;
+        public Action<IWin32Window, ApiClient, Session> AdminDialog { get; set; } = Dialogs.Admin;
 
         // ---- layout ------------------------------------------------------------------------------------------------
 
@@ -409,6 +404,12 @@ namespace Interlock.Ui
             if (_closed) return;
             ReturnToLogin = true;
             LoginNotice = "Your session has ended. Please sign in again.";
+            // An open dialog is modal on this form; close it first so the form can end.
+            foreach (var owned in OwnedForms)
+            {
+                try { owned.Close(); }
+                catch (Exception ex) { UiSafety.Log(ex); }
+            }
             Close();
         }
 

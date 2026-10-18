@@ -161,12 +161,22 @@ namespace Interlock.Tests.Ui
         public async Task Create_posts_json_body_and_reads_the_lock()
         {
             var h = new StubHandler(HttpStatusCode.Created, "{\"id\":7,\"type\":\"PU\",\"target\":\"PU1\",\"enforceState\":\"PENDING\"}");
-            var l = await Client(h).Create(new CreateLockDto { type = "PU", target = "PU1", reason = "r" });
-            Assert.That(l.id, Is.EqualTo(7));
+            var r = await Client(h).Create(new CreateLockDto { type = "PU", target = "PU1", reason = "r" });
+            Assert.That(r.Lock.id, Is.EqualTo(7));
+            Assert.That(r.Created, Is.True);
             Assert.That(h.LastRequest.Method, Is.EqualTo(HttpMethod.Post));
             StringAssert.EndsWith("/locks", h.LastRequest.RequestUri.ToString());
             StringAssert.Contains("\"target\":\"PU1\"", h.LastBody);
             Assert.That(h.LastRequest.Content.Headers.ContentType.MediaType, Is.EqualTo("application/json"));
+        }
+
+        [Test]
+        public async Task Create_answered_with_200_is_the_existing_lock_not_a_new_one()
+        {
+            var h = new StubHandler(HttpStatusCode.OK, "{\"id\":5,\"type\":\"PU\",\"target\":\"PU1\"}");
+            var r = await Client(h).Create(new CreateLockDto { type = "PU", target = "PU1", reason = "r" });
+            Assert.That(r.Created, Is.False);
+            Assert.That(r.Lock.id, Is.EqualTo(5));
         }
 
         [Test]
