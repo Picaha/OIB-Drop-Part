@@ -82,16 +82,25 @@ gives the exact steps to switch bindings.
 Run as administrator. Use a dedicated service account that can read the install folder and write `logs\` and `spool\`.
 
 ```
-sc create Interlock binPath= "C:\Interlock\Interlock.Service.exe" start= auto obj= "DOMAIN\svc-interlock" password= "<password>" DisplayName= "Interlock"
+sc create Interlock binPath= "C:\Interlock\Interlock.Service.exe" start= auto DisplayName= "Interlock"
 sc description Interlock "Locks wrong parts and feeders on SIPLACE lines"
 sc failure Interlock reset= 86400 actions= restart/60000/restart/60000/restart/60000
+sc failureflag Interlock 1
+powershell -Command "New-EventLog -LogName Application -Source Interlock"
 netsh http add urlacl url=http://+:8090/interlock/v1/ user=DOMAIN\svc-interlock
 netsh http add urlacl url=http://+:8091/Interlock/ user=DOMAIN\svc-interlock
 netsh advfirewall firewall add rule name="Interlock REST" dir=in action=allow protocol=TCP localport=8090 remoteip=<UI/third-party hosts>
 netsh advfirewall firewall add rule name="Interlock External Control" dir=in action=allow protocol=TCP localport=8091 remoteip=<Setup Center host>
 netsh advfirewall firewall add rule name="Interlock SC events" dir=in action=allow protocol=TCP localport=8092 remoteip=<OIB core host>
-sc start Interlock
 ```
+
+Then set the service account in services.msc (Interlock > Properties > Log On). Do not pass the password on the `sc`
+command line, because it ends up in the shell history and in process listings. A group managed service account
+(`sc config Interlock obj= "DOMAIN\gmsa-interlock$"`) needs no password. Start it with `sc start Interlock`.
+
+Restarts: `sc failure` restarts the service after a crash. `sc failureflag Interlock 1` also restarts it when it stops with
+an error. A failed start-up (bad configuration, a port in use, a missing URL ACL) stops with exit code 1064, so it is retried
+too, every 60 s. A configuration error stays until the file is fixed. Stopping the service with `sc stop` is never retried.
 
 The 8091 URL ACL is needed only while External Control uses http. net.tcp needs no URL ACL, but the firewall rule must name
 the ports you configured.
@@ -101,8 +110,15 @@ session tokens and API keys. Put REST behind HTTPS (a reverse proxy, or an `http
 or a VPN, and limit `remoteip` in the firewall to the UI PCs and the third-party systems.
 
 If start-up fails (missing configuration, a port in use, a missing URL ACL), the service stops with exit code 1064 and the SCM
-shows the failure. The details are in the log file. An event-log entry is also written when the account can write to the
-Application log.
+shows the failure. The details go to:
+- `startup-error.txt` next to the exe, or in `%ProgramData%\Interlock\` if the exe folder is not writable (exception type,
+  message and stack). This file is the only trace of a configuration error, because that error happens before the log file
+  is opened.
+- The log file `logs\interlock-yyyyMMdd.log`, for failures after the configuration was read.
+- The Application event log, source `Interlock`. This needs the `New-EventLog` line above, run once as administrator.
+
+The REST host accepts `+` (strong wildcard: every host name on that port) and `*` (weak wildcard) as the host of
+`Interlock.RestBaseAddress`, matching the `netsh http add urlacl` string. `localhost` listens for loopback names only.
 
 ## First administrator and API keys
 

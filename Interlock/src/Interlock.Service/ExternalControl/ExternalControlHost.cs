@@ -84,6 +84,13 @@ namespace Interlock.Service.ExternalControl
         /// </summary>
         public void Close()
         {
+            Close(CloseTimeout);
+        }
+
+        /// <summary>As <see cref="Close()"/>, sharing at most <paramref name="timeout"/> (never more than 5 s per host) before aborting.</summary>
+        public void Close(TimeSpan timeout)
+        {
+            var deadline = DateTime.UtcNow + timeout;
             List<ServiceHost> hosts;
             lock (_gate)
             {
@@ -97,7 +104,10 @@ namespace Interlock.Service.ExternalControl
             {
                 try
                 {
-                    host.Close(CloseTimeout);
+                    var left = deadline - DateTime.UtcNow;
+                    if (left <= TimeSpan.Zero)
+                        throw new TimeoutException("No time left to close the host.");
+                    host.Close(left < CloseTimeout ? left : CloseTimeout);
                 }
                 catch (Exception ex)
                 {

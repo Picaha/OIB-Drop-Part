@@ -24,7 +24,8 @@ namespace Interlock.Core.Enforcement
         /// <para>
         /// Runs under <see cref="LockCache.WriteGate"/>, with both database reads first: when the database cannot be reached,
         /// <c>DbUnavailableException</c> reaches the caller (which decides whether to try again) and nothing has
-        /// been cached or queued. A lock the database lists twice is queued once per kind.
+        /// been cached or queued. A lock the database lists twice, or one that already has a queued job of that kind, is queued
+        /// once per kind.
         /// </para>
         /// </summary>
         public static int QueueOnStartup(ILockRepository locks, LockCache cache, ActionQueue queue, IClock clock)
@@ -45,7 +46,7 @@ namespace Interlock.Core.Enforcement
                 foreach (var l in active)
                 {
                     var open = l.EnforceState == EnforceState.Pending || l.EnforceState == EnforceState.Failed;
-                    if (!open || !applying.Add(l.Id))
+                    if (!open || !applying.Add(l.Id) || HasQueued(queue, l.Id, JobKind.Apply))
                         continue;
 
                     if (!cache.Snapshot.Any(c => c.Id == l.Id))
@@ -57,7 +58,7 @@ namespace Interlock.Core.Enforcement
                 var releasing = new HashSet<long>();
                 foreach (var l in releases)
                 {
-                    if (!releasing.Add(l.Id))
+                    if (!releasing.Add(l.Id) || HasQueued(queue, l.Id, JobKind.Release))
                         continue;
 
                     queue.Enqueue(new EnforcementJob { Lock = l.Clone(), Kind = JobKind.Release, NotBeforeUtc = now });
@@ -66,6 +67,13 @@ namespace Interlock.Core.Enforcement
 
                 return queued;
             }
+        }
+
+        // A job of the same kind may be queued already, for example the Apply the cache reload queues for a flushed spool record.
+        // The queue does not de-duplicate, and a second Apply could turn an applied lock into FAILED (a re-lock may not answer OK).
+        private static bool HasQueued(ActionQueue queue, long lockId, JobKind kind)
+        {
+            return queue.Any(j => j.Kind == kind && j.Lock != null && j.Lock.Id == lockId);
         }
     }
 }

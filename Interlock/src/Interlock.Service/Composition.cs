@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
+using System.Threading;
 using Interlock.Core.Enforcement;
 using Interlock.Core.Errors;
 using Interlock.Core.Locks;
@@ -24,6 +25,9 @@ namespace Interlock.Service
         public TimeSpan StationRefresh = TimeSpan.FromMinutes(5);
         public TimeSpan Subscriber = TimeSpan.FromSeconds(30);
         public TimeSpan StopBudget = TimeSpan.FromSeconds(25);
+
+        /// <summary>The least time a stop step gets even when the budget is used up, so the later steps (the flush) still run.</summary>
+        public TimeSpan StopStepFloor = TimeSpan.FromMilliseconds(500);
 
         public static CompositionTimings Default
         {
@@ -124,6 +128,11 @@ namespace Interlock.Service
             {
                 StartCore();
             }
+            catch (OperationCanceledException) when (IsStopping)
+            {
+                Info("Start-up cancelled: the service was stopped meanwhile.");
+                throw;
+            }
             catch (Exception ex)
             {
                 if (_log != null)
@@ -131,6 +140,12 @@ namespace Interlock.Service
                 Stop();
                 throw;
             }
+        }
+
+        /// <summary>True once <see cref="Stop"/> was called.</summary>
+        public bool IsStopping
+        {
+            get { lock (_gate) return _stopped; }
         }
 
         private void StartCore()
@@ -174,10 +189,12 @@ namespace Interlock.Service
             _externalControl = _deps.CreateExternalControl(_cache, _decisions, _clock, _log);
             Own(_externalControl);
             _externalControl.Open();
+            ClosedIfStopping(_externalControl);
 
             _rest = _deps.CreateRest(api, _log);
             Own(_rest);
             _rest.Open();
+            ClosedIfStopping(_rest);
 
             _escalation = new EscalationQueue(_lockService.OnLockStateChanged, EscalationCapacity, _log);
             _escalation.Start();
@@ -188,7 +205,7 @@ namespace Interlock.Service
             lock (_gate)
             {
                 if (_stopped)
-                    return;
+                    throw new OperationCanceledException("The service was stopped during start-up.");
                 AddTimer("enforcement worker", _timings.Worker, _timings.Worker, () => _worker.RunDue());
                 AddTimer("cache refresh", _timings.CacheRefresh, _timings.CacheRefresh, RefreshCache);
                 AddTimer("conveyor watchdog", _timings.Watchdog, _timings.Watchdog, () => _watchdog.Tick());
@@ -253,7 +270,11 @@ namespace Interlock.Service
             }
         }
 
-        /// <summary>Stops everything in order, waiting about 25 s at most. Safe to call more than once, and after a failed start.</summary>
+        /// <summary>
+        /// Stops everything in order within one budget (about 25 s): each step gets what is left, at least
+        /// <see cref="CompositionTimings.StopStepFloor"/>. A step that runs over is abandoned (logged) and the next one runs. Safe to
+        /// call more than once, after a failed start and while <see cref="Start"/> still runs on another thread.
+        /// </summary>
         public void Stop()
         {
             lock (_gate)
@@ -264,7 +285,12 @@ namespace Interlock.Service
             }
 
             var budget = Stopwatch.StartNew();
-            Func<TimeSpan> left = () => _timings.StopBudget - budget.Elapsed;
+            Func<TimeSpan> left = () =>
+            {
+                var remaining = _timings.StopBudget - budget.Elapsed;
+                return remaining > _timings.StopStepFloor ? remaining : _timings.StopStepFloor;
+            };
+
             Step("Stopping timers", () =>
             {
                 GuardedTimer[] timers;
@@ -273,25 +299,31 @@ namespace Interlock.Service
                 foreach (var t in timers)
                     t.Stop(left());
             });
-            if (_subscriber != null)
-                Step("Unsubscribing from Setup Center events", () => _subscriber.Stop());
-            if (_rest != null)
-                Step("Closing REST", () => _rest.Close());
-            if (_externalControl != null)
-                Step("Closing External Control", () => _externalControl.Close());
-            if (_escalation != null)
-                Step("Stopping the escalation thread", () => _escalation.Stop(left()));
-            if (_decisions != null && _repos != null)
+            var subscriber = _subscriber;
+            if (subscriber != null)
+                Bounded("Unsubscribing from Setup Center events", () => subscriber.Stop(), left());
+            var rest = _rest;
+            if (rest != null)
+                Step("Closing REST", () => rest.Close(left()));
+            var externalControl = _externalControl;
+            if (externalControl != null)
+                Step("Closing External Control", () => externalControl.Close(left()));
+            var escalation = _escalation;
+            if (escalation != null)
+                Step("Stopping the escalation thread", () => escalation.Stop(left()));
+            var decisions = _decisions;
+            var repos = _repos;
+            if (decisions != null && repos != null)
             {
-                Step("Flushing the decision log", () =>
+                Bounded("Flushing the decision log", () =>
                 {
-                    _decisions.Flush(_repos.Audit);
-                    if (_decisions.Count > 0)
-                        Warn(_decisions.Count.ToString(CultureInfo.InvariantCulture) + " decision log row(s) could not be written and are lost.");
-                });
+                    decisions.Flush(repos.Audit);
+                    if (decisions.Count > 0)
+                        Warn(decisions.Count.ToString(CultureInfo.InvariantCulture) + " decision log row(s) could not be written and are lost.");
+                }, left());
             }
 
-            Info("Interlock stopped.");
+            Info("Interlock stopped (" + budget.Elapsed.TotalSeconds.ToString("0.0", CultureInfo.InvariantCulture) + " s).");
             DisposeOwned();
         }
 
@@ -305,18 +337,48 @@ namespace Interlock.Service
             _timers.Add(new GuardedTimer(name, due, period, action, _log));
         }
 
+        /// <summary>Takes ownership; when the service is stopping already, the object is disposed and start-up ends.</summary>
         private void Own(object o)
         {
-            if (o != null && !_owned.Contains(o))
-                _owned.Add(o);
+            if (o == null)
+                return;
+            lock (_gate)
+            {
+                if (!_stopped)
+                {
+                    if (!_owned.Contains(o))
+                        _owned.Add(o);
+                    return;
+                }
+            }
+            var d = o as IDisposable;
+            if (d != null && !ReferenceEquals(o, _log))
+                d.Dispose();
+            throw new OperationCanceledException("The service was stopped during start-up.");
+        }
+
+        /// <summary>A listener that opened after <see cref="Stop"/> had already closed the listeners is closed here.</summary>
+        private void ClosedIfStopping(IListener listener)
+        {
+            if (!IsStopping)
+                return;
+            listener.Close();
+            throw new OperationCanceledException("The service was stopped during start-up.");
         }
 
         private void DisposeOwned()
         {
-            // Newest first; the log goes last so the other disposals can still log.
-            for (var i = _owned.Count - 1; i >= 0; i--)
+            object[] owned;
+            lock (_gate)
             {
-                var d = _owned[i] as IDisposable;
+                owned = _owned.ToArray();
+                _owned.Clear();
+            }
+
+            // Newest first; the log goes last so the other disposals can still log.
+            for (var i = owned.Length - 1; i >= 0; i--)
+            {
+                var d = owned[i] as IDisposable;
                 if (d == null)
                     continue;
                 try
@@ -329,7 +391,27 @@ namespace Interlock.Service
                         _log.Warn("Disposing " + d.GetType().Name + " failed: " + ex.Message);
                 }
             }
-            _owned.Clear();
+        }
+
+        /// <summary>Runs the step on its own thread and waits at most <paramref name="timeout"/>; a step that runs over is abandoned.</summary>
+        private void Bounded(string what, Action action, TimeSpan timeout)
+        {
+            Info(what + ".");
+            var worker = new Thread(() =>
+            {
+                try
+                {
+                    action();
+                }
+                catch (Exception ex)
+                {
+                    if (_log != null)
+                        _log.Error(what + " failed.", ex);
+                }
+            }) { IsBackground = true, Name = "Interlock stop: " + what };
+            worker.Start();
+            if (!worker.Join(timeout))
+                Warn(what + " did not finish within " + timeout.TotalSeconds.ToString("0.0", CultureInfo.InvariantCulture) + " s and was abandoned.");
         }
 
         private void Step(string what, Action action)

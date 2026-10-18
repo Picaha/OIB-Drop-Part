@@ -165,6 +165,25 @@ namespace Interlock.Tests.Service
             StringAssert.Contains(key, ex.Message);
         }
 
+        [TestCase("http://+:8090/interlock/v1")]
+        [TestCase("http://*:9000/x")]
+        [TestCase("https://server1:8443/interlock/v1")]
+        public void Wildcard_and_named_rest_addresses_are_accepted(string address)
+        {
+            var s = ServiceSettings.Load(With("Interlock.RestBaseAddress", address), Cs("Interlock", "Host=x"));
+            Assert.That(s.RestBaseAddress, Is.EqualTo(address));
+        }
+
+        [TestCase("not a url")]
+        [TestCase("ftp://+:21/x")]
+        [TestCase("http://+:99999/x")]
+        [TestCase("/interlock/v1")]
+        public void Malformed_rest_addresses_name_the_key(string address)
+        {
+            var ex = Assert.Throws<ConfigurationErrorsException>(() => ServiceSettings.Load(With("Interlock.RestBaseAddress", address), Cs("Interlock", "Host=x")));
+            StringAssert.Contains("Interlock.RestBaseAddress", ex.Message);
+        }
+
         [Test]
         public void The_text_form_never_shows_the_connection_string()
         {

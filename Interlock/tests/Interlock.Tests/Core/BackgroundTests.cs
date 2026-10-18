@@ -115,6 +115,26 @@ namespace Interlock.Tests.Core
         }
 
         [Test]
+        public void Reconcile_skips_a_lock_that_already_has_a_queued_job_of_the_same_kind()
+        {
+            _repo.InsertActive(Pu(1, "A", EnforceState.Pending));
+            _repo.InsertActive(Pu(2, "B", EnforceState.Failed));
+            _repo.InsertReleased(Pu(3, "C", EnforceState.Pending));
+            _repo.InsertReleased(Pu(4, "D", EnforceState.Pending));
+            _cache.Upsert(Pu(1, "A", EnforceState.Pending));
+            _queue.Enqueue(new EnforcementJob { Lock = Pu(1, "A", EnforceState.Pending), Kind = JobKind.Apply, NotBeforeUtc = T0 });
+            _queue.Enqueue(new EnforcementJob { Lock = Pu(3, "C", EnforceState.Pending), Kind = JobKind.Release, NotBeforeUtc = T0 });
+            // A Release job for lock 2 does not stand in for its Apply.
+            _queue.Enqueue(new EnforcementJob { Lock = Pu(2, "B", EnforceState.Failed), Kind = JobKind.Release, NotBeforeUtc = T0 });
+
+            Assert.That(Reconciler.QueueOnStartup(_repo, _cache, _queue, _clock), Is.EqualTo(2));
+
+            var jobs = _queue.TakeDue(_clock.UtcNow);
+            Assert.That(Ids(jobs, JobKind.Apply), Is.EqualTo(new long[] { 1, 2 }));
+            Assert.That(Ids(jobs, JobKind.Release), Is.EqualTo(new long[] { 2, 3, 4 }));
+        }
+
+        [Test]
         public void Reconcile_with_no_open_locks_queues_nothing()
         {
             _repo.InsertActive(Pu(1, "A", EnforceState.Applied));

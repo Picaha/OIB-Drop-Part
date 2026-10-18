@@ -6,6 +6,7 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Sockets;
 using System.Runtime.Serialization.Json;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using Interlock.Core.Api;
@@ -221,6 +222,58 @@ namespace Interlock.Tests.Service
         }
 
         // ---- the tests ----
+
+        [Test]
+        public void A_strong_wildcard_base_address_opens_and_answers()
+        {
+            // http://+:80/Temporary_Listen_Addresses/ is reserved for everyone, so a "+" host needs no URL ACL there.
+            var api = new InterlockRestApi(_lockService, _auth, _audit, _stations, _health, new LoginThrottle(_clock), _log);
+            var path = "/Temporary_Listen_Addresses/interlock-" + Guid.NewGuid().ToString("N") + "/interlock/v1";
+            using (var host = new RestHost(api, "http://+:80" + path, _log))
+            {
+                try
+                {
+                    host.Open();
+                }
+                catch (AddressAccessDeniedException ex)
+                {
+                    Assert.Ignore("The platform refused the wildcard prefix: " + ex.Message);
+                }
+
+                using (var response = _http.GetAsync("http://localhost" + path + "/health").GetAwaiter().GetResult())
+                {
+                    Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
+                    StringAssert.Contains("\"dbOk\":true", response.Content.ReadAsStringAsync().GetAwaiter().GetResult());
+                }
+                Assert.That(_log.Infos, Has.Some.EqualTo("REST API listening at http://+:80" + path));
+            }
+        }
+
+        [TestCase("http://+:8090/interlock/v1", "+", 8090)]
+        [TestCase("http://*:8090/interlock/v1", "*", 8090)]
+        [TestCase("http://+/interlock/v1", "+", 80)]
+        [TestCase("https://+:8443/interlock/v1", "+", 8443)]
+        [TestCase("http://localhost:8090/x", "loopback", 8090)]
+        [TestCase("http://127.0.0.1:8090/x", "loopback", 8090)]
+        [TestCase("http://server1:8090/x", "host", 8090)]
+        public void Rest_addresses_with_wildcard_or_named_hosts_parse(string text, string kind, int port)
+        {
+            var a = RestAddress.Parse(text);
+            Assert.That(a.HostKind, Is.EqualTo(kind));
+            Assert.That(a.Uri.Port, Is.EqualTo(port));
+            Assert.That(a.Uri.AbsolutePath, Does.StartWith("/"));
+        }
+
+        [TestCase("")]
+        [TestCase("not a url")]
+        [TestCase("ftp://+:21/x")]
+        [TestCase("http://+x:8090/x")]
+        [TestCase("http://+:99999/x")]
+        [TestCase("/interlock/v1")]
+        public void Malformed_rest_addresses_are_refused(string text)
+        {
+            Assert.That(RestAddress.TryParse(text), Is.Null);
+        }
 
         [Test]
         public void Login_then_create_then_get()

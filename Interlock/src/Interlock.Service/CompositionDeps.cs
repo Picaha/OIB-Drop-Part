@@ -15,6 +15,9 @@ namespace Interlock.Service
 
         /// <summary>Never throws; does nothing when not open.</summary>
         void Close();
+
+        /// <summary>As <see cref="Close()"/>, waiting at most <paramref name="timeout"/>, then aborting.</summary>
+        void Close(TimeSpan timeout);
     }
 
     /// <summary>The station directory with its refresh (never throws).</summary>

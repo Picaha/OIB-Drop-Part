@@ -231,7 +231,7 @@ namespace Interlock.Tests.Service
 
             AssertOrder("subscriber.Stop", "rest.Close", "ec.Close", "dispose.Subscriber", "dispose.Clients");
             Assert.That(IndexOf("subscriber.Stop"), Is.GreaterThanOrEqualTo(before));
-            Assert.That(_deps.Log.Infos.Last(), Is.EqualTo("Interlock stopped."));
+            Assert.That(_deps.Log.Infos.Last(), Does.StartWith("Interlock stopped ("));
             Assert.That(_deps.Log.Disposed, Is.True);
 
             var after = _deps.Events.Count;
@@ -257,6 +257,92 @@ namespace Interlock.Tests.Service
             _composition = new Composition(_deps, Slow());
             Assert.DoesNotThrow(() => _composition.Stop());
             Assert.That(_deps.Events, Is.Empty);
+        }
+
+        [Test]
+        public void Stop_keeps_to_its_budget_and_still_flushes_when_a_step_hangs()
+        {
+            _deps.SubscriberStopDelay = TimeSpan.FromSeconds(5);
+            var timings = Slow();
+            timings.StopBudget = TimeSpan.FromSeconds(1);
+            timings.StopStepFloor = TimeSpan.FromMilliseconds(200);
+            Start(timings);
+            _composition.Decisions.Add(new DecisionLogEntry { Method = "Ping", Result = "OK", CreatedAtUtc = DateTime.UtcNow });
+
+            var sw = Stopwatch.StartNew();
+            _composition.Stop();
+            sw.Stop();
+
+            Assert.That(sw.Elapsed, Is.LessThan(TimeSpan.FromSeconds(3)), "the 5 s unsubscribe was abandoned");
+            Assert.That(_deps.Audit.Decisions.Count, Is.EqualTo(1), "the flush still ran");
+            AssertOrder("subscriber.Stop", "rest.Close", "ec.Close");
+            Assert.That(_deps.Log.Warnings.Any(w => w.Contains("Unsubscribing") && w.Contains("abandoned")), Is.True);
+        }
+
+        [Test]
+        public void Stop_during_start_up_closes_a_listener_that_opened_afterwards()
+        {
+            var gate = new ManualResetEventSlim(false);
+            _deps.Ec.OpenGate = gate;
+            _composition = new Composition(_deps, Slow());
+            Exception startError = null;
+            var starter = new Thread(() =>
+            {
+                try { _composition.Start(); }
+                catch (Exception ex) { startError = ex; }
+            });
+            starter.Start();
+            WaitUntil(() => _deps.Events.Contains("ec.Open"), "External Control to start opening");
+
+            _composition.Stop();
+            gate.Set();
+            Assert.That(starter.Join(TimeSpan.FromSeconds(10)), Is.True);
+
+            Assert.That(startError, Is.InstanceOf<OperationCanceledException>());
+            Assert.That(_deps.Ec.Opened, Is.False, "closed after it opened");
+            Assert.That(_deps.Events, Has.No.Member("rest.Open"));
+            Assert.That(_deps.Events, Has.No.Member("subscriber.Start"));
+            Assert.That(_composition.TimerCount, Is.EqualTo(0));
+            Assert.That(_deps.Log.Errors, Is.Empty, "a cancelled start is not an error");
+        }
+
+        // ---- one Apply per lock ----
+
+        private Dictionary<long, int> ApplyJobsPerLock()
+        {
+            return _composition.Queue.TakeDue(DateTime.MaxValue).Where(j => j.Kind == JobKind.Apply)
+                .GroupBy(j => j.Lock.Id).ToDictionary(g => g.Key, g => g.Count());
+        }
+
+        [Test]
+        public void A_spooled_lock_gets_one_apply_job_when_the_database_is_up_at_start()
+        {
+            _deps.Spool.Append(Pu("SPOOLED-1"));
+            _deps.Locks.InsertActive(Pu("U2", state: EnforceState.Pending));
+
+            Start();
+
+            var perLock = ApplyJobsPerLock();
+            Assert.That(perLock.Keys, Has.No.Member(0L));
+            Assert.That(perLock.Count, Is.EqualTo(2));
+            Assert.That(perLock.Values, Is.All.EqualTo(1));
+        }
+
+        [Test]
+        public void A_spooled_lock_gets_one_apply_job_when_the_database_returns_after_start()
+        {
+            _deps.Spool.Append(Pu("SPOOLED-1"));
+            _deps.Locks.InsertActive(Pu("U2", state: EnforceState.Pending));
+            _deps.Locks.Down = true;
+            Start();
+
+            _deps.Locks.Down = false;
+            _composition.RefreshCache();
+
+            var perLock = ApplyJobsPerLock();
+            Assert.That(perLock.Keys, Has.No.Member(0L));
+            Assert.That(perLock.Count, Is.EqualTo(2));
+            Assert.That(perLock.Values, Is.All.EqualTo(1));
         }
 
         // ---- escalation and timers ----
@@ -416,14 +502,18 @@ namespace Interlock.Tests.Service
             public bool FailOpen { get; set; }
             public bool Opened { get; private set; }
             public bool Disposed { get; private set; }
+            public ManualResetEventSlim OpenGate { get; set; }
             public void Open()
             {
                 _events.Enqueue(_name + ".Open");
+                if (OpenGate != null)
+                    OpenGate.Wait(TimeSpan.FromSeconds(10));
                 if (FailOpen)
                     throw new InvalidOperationException(_name + " cannot listen");
                 Opened = true;
             }
             public void Close() { _events.Enqueue(_name + ".Close"); Opened = false; }
+            public void Close(TimeSpan timeout) { Close(); }
             public void Dispose() { Disposed = true; Close(); }
         }
 
@@ -433,7 +523,8 @@ namespace Interlock.Tests.Service
             public Subscriber(ConcurrentQueue<string> events) { _events = events; }
             public void Start() { _events.Enqueue("subscriber.Start"); }
             public void Tick() { _events.Enqueue("subscriber.Tick"); }
-            public void Stop() { _events.Enqueue("subscriber.Stop"); }
+            public TimeSpan StopDelay { get; set; }
+            public void Stop() { _events.Enqueue("subscriber.Stop"); Thread.Sleep(StopDelay); }
             public void Dispose() { _events.Enqueue("dispose.Subscriber"); }
         }
 
@@ -452,6 +543,8 @@ namespace Interlock.Tests.Service
             public readonly Listener Ec;
             public readonly Listener Rest;
             public Action<IList<PuLockReport>> OnReports;
+            public Subscriber SubscriberInstance;
+            public TimeSpan SubscriberStopDelay = TimeSpan.Zero;
 
             public Deps()
             {
@@ -507,7 +600,8 @@ namespace Interlock.Tests.Service
             public ILockEventSource CreateSubscriber(Action<IList<PuLockReport>> onReports, ILog log)
             {
                 OnReports = onReports;
-                return new Subscriber(Events);
+                SubscriberInstance = new Subscriber(Events) { StopDelay = SubscriberStopDelay };
+                return SubscriberInstance;
             }
         }
     }

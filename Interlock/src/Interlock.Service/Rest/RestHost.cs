@@ -44,8 +44,9 @@ namespace Interlock.Service.Rest
                 WebServiceHost host = null;
                 try
                 {
-                    host = new WebServiceHost(_api, new Uri(_baseAddress));
-                    var endpoint = host.AddServiceEndpoint(typeof(IInterlockRestApi), NewBinding(_baseAddress), string.Empty);
+                    var address = RestAddress.Parse(_baseAddress);
+                    host = new WebServiceHost(_api, address.Uri);
+                    var endpoint = host.AddServiceEndpoint(typeof(IInterlockRestApi), NewBinding(address), string.Empty);
                     endpoint.Behaviors.Add(new JsonWebHttpBehavior(_log));
                     host.Open();
                     _log.Info("REST API listening at " + _baseAddress);
@@ -64,6 +65,12 @@ namespace Interlock.Service.Rest
         /// <summary>Stops listening. Never throws; a host that does not close within the timeout is aborted. Does nothing when not open.</summary>
         public void Close()
         {
+            Close(CloseTimeout);
+        }
+
+        /// <summary>As <see cref="Close()"/>, waiting at most <paramref name="timeout"/> (and never more than 5 s) before aborting.</summary>
+        public void Close(TimeSpan timeout)
+        {
             WebServiceHost host;
             lock (_gate)
             {
@@ -75,7 +82,9 @@ namespace Interlock.Service.Rest
 
             try
             {
-                host.Close(CloseTimeout);
+                if (timeout <= TimeSpan.Zero)
+                    throw new TimeoutException("No time left to close the REST host.");
+                host.Close(timeout < CloseTimeout ? timeout : CloseTimeout);
             }
             catch (Exception ex)
             {
@@ -89,27 +98,24 @@ namespace Interlock.Service.Rest
             Close();
         }
 
-        private static WebHttpBinding NewBinding(string baseAddress)
+        private static WebHttpBinding NewBinding(RestAddress address)
         {
             var binding = new WebHttpBinding(WebHttpSecurityMode.None)
             {
                 MaxReceivedMessageSize = MaxBodyBytes,
                 MaxBufferSize = MaxBodyBytes,
                 ContentTypeMapper = new JsonContentTypeMapper(),
-                HostNameComparisonMode = LoopbackOnly(baseAddress) ? HostNameComparisonMode.Exact : HostNameComparisonMode.StrongWildcard
+                HostNameComparisonMode = address.IsLoopback ? HostNameComparisonMode.Exact
+                    : address.IsWeakWildcard ? HostNameComparisonMode.WeakWildcard
+                    : HostNameComparisonMode.StrongWildcard
             };
             binding.ReaderQuotas.MaxStringContentLength = MaxBodyBytes;
             return binding;
         }
 
         // A loopback host is registered as given (Exact), which is also what lets the Temporary_Listen_Addresses prefix bind without
-        // a URL ACL. This is not an access control: a remote client that sends "Host: localhost" may still be matched. Any other
-        // host (+, *, the machine name) keeps the WCF default (strong wildcard). Restrict access with the firewall.
-        private static bool LoopbackOnly(string baseAddress)
-        {
-            var host = new Uri(baseAddress).Host;
-            return string.Equals(host, "localhost", StringComparison.OrdinalIgnoreCase) || host == "127.0.0.1" || host == "[::1]";
-        }
+        // a URL ACL. This is not an access control: a remote client that sends "Host: localhost" may still be matched. "+" and any
+        // other host (the machine name) use the strong wildcard, "*" the weak one (see RestAddress). Restrict access with the firewall.
 
         private static void Abort(ServiceHost host)
         {

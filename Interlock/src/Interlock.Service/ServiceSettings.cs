@@ -68,7 +68,7 @@ namespace Interlock.Service
                 CoreHost = Required(a, CoreHostKey),
                 EventCallbackName = Optional(a, EventCallbackNameKey, "Interlock.SetupCenterEvents"),
                 EventCallbackPort = Number(a, EventCallbackPortKey, 8092, 1, 65535),
-                RestBaseAddress = Optional(a, RestBaseAddressKey, "http://+:8090/interlock/v1"),
+                RestBaseAddress = RestBase(a),
                 DbSchema = Optional(a, DbSchemaKey, "interlock"),
                 SpoolPath = NextToExe(Optional(a, SpoolPathKey, Path.Combine("spool", "locks.jsonl"))),
                 LogDir = NextToExe(Optional(a, LogDirKey, "logs")),
@@ -97,6 +97,15 @@ namespace Interlock.Service
         {
             var value = a[key];
             return string.IsNullOrWhiteSpace(value) ? fallback : value.Trim();
+        }
+
+        private static string RestBase(NameValueCollection a)
+        {
+            var value = Optional(a, RestBaseAddressKey, "http://+:8090/interlock/v1");
+            if (Rest.RestAddress.TryParse(value) == null)
+                throw new ConfigurationErrorsException("The appSettings key '" + RestBaseAddressKey
+                    + "' must be an absolute http or https address; the host may be + or *.");
+            return value;
         }
 
         private static int Number(NameValueCollection a, string key, int fallback, int min, int max)
